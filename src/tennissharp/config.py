@@ -38,6 +38,12 @@ ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "").strip()
 TOURS = [t.strip().lower() for t in os.environ.get("TOURS", "atp,wta").split(",") if t.strip()]
 START_SEASON = int(os.environ.get("START_SEASON", "2010"))
 
+# Telegram bot (scripts/run_telegram_bot.py) -- both optional. Without a
+# chat ID the bot still answers commands, it just can't push the daily digest.
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
+TELEGRAM_DIGEST_HOUR_UTC = int(os.environ.get("TELEGRAM_DIGEST_HOUR_UTC", "7"))
+
 # tennis-data.co.uk hosts one xlsx per season per tour, with match results
 # (surface, round, rank, date) AND odds from multiple bookmakers -- including
 # Pinnacle, our closing-line benchmark -- combined in a single row per match.

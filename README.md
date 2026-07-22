@@ -129,6 +129,62 @@ the **default branch**, so merge this workflow there for the schedule to take
 effect; `workflow_dispatch` lets you trigger it manually from the Actions tab
 in the meantime.
 
+## Telegram bot & REST API
+
+Two optional front ends sit on top of the same pipeline -- a Telegram bot for
+chatting with it directly, and a REST API if you'd rather build your own app
+(mobile, web, whatever). Both are thin wrappers around
+`src/tennissharp/service.py`, so they always answer with exactly the same
+data; neither reads a CSV directly.
+
+**Telegram bot setup:**
+1. Message [@BotFather](https://t.me/BotFather) on Telegram, `/newbot`, and
+   copy the token it gives you into `config/.env` as `TELEGRAM_BOT_TOKEN`.
+2. `python scripts/update_data.py` at least once, so there's data to answer with.
+3. `python scripts/run_telegram_bot.py` — runs until you stop it (Ctrl+C or a
+   process manager). It's long-polling, so it needs to keep running somewhere
+   (a small VPS, your own machine, or the Docker image below) — GitHub Actions
+   jobs time out and aren't a fit for this part.
+
+Commands: `/rankings [atp|wta] [ta|own]`, `/surface [Turniername]`,
+`/upcoming [atp|wta]`, `/h2h Spieler1 Spieler2`, `/valuebets`. Set
+`TELEGRAM_CHAT_ID` (and optionally `TELEGRAM_DIGEST_HOUR_UTC`, default 7 UTC)
+to also get a daily rankings push instead of only answering on demand.
+
+**REST API:**
+```bash
+python scripts/run_api.py --port 8000
+# then e.g.
+curl "http://localhost:8000/rankings?tour=atp&source=ta&top_n=10"
+curl "http://localhost:8000/upcoming?tour=wta"
+curl "http://localhost:8000/h2h?player1=Djokovic&player2=Nadal"
+curl "http://localhost:8000/value-bets"   # needs ODDS_API_KEY server-side
+```
+Interactive docs (Swagger UI) are auto-generated at `/docs` once it's
+running. Every endpoint mirrors a `service.py` function 1:1 -- see that
+module's docstrings for exactly what each one reads and any caveats (e.g.
+`/rankings?source=own` doesn't separate ATP/WTA, since our own homegrown Elo
+snapshot doesn't tag which tour a player belongs to; use `source=ta` for a
+tour-filtered list). `/h2h` only resolves players currently listed in
+TennisExplorer's today/tomorrow schedule cache, not an arbitrary historical
+lookup.
+
+**Running either in Docker:**
+```bash
+docker build -t tennissharpbot .
+docker run --env-file config/.env tennissharpbot python scripts/run_telegram_bot.py
+docker run --env-file config/.env -p 8000:8000 tennissharpbot python scripts/run_api.py --host 0.0.0.0
+```
+The image bakes in whatever's in `data/`/`models/` at build time; run
+`scripts/update_data.py` on a schedule outside the container (or rebuild
+periodically) to keep it current. Not built/tested against a live Docker
+daemon in this repo's dev environment — standard `python:3.11-slim` pattern,
+but verify it builds before relying on it.
+
+Both front ends carry the same disclaimer as the CLI: this ranks candidates
+by modelled edge vs. the de-vigged market, it is not financial advice, and
+the honest backtest result below applies here too.
+
 ## Honest backtest result — please read this
 
 Running `scripts/run_backtest.py` on the full default dataset (ATP + WTA,
@@ -188,7 +244,13 @@ src/tennissharp/
   backtest.py            historical value-betting simulation
   value_finder.py        live odds -> value bet candidates (+ TA Elo cross-check)
   name_matching.py       'Lastname F.' <-> full-name matching (live use only)
+  service.py             shared data-access layer used by both front ends below
+  api.py                 FastAPI REST API (build your own app on top)
+  bot/
+    telegram_bot.py      Telegram bot (commands + optional daily digest)
+    formatting.py        pure text formatters (Telegram HTML), unit-testable
 scripts/                 CLI entry points (see Usage above)
 tests/                   unit tests (pytest) + tests/fixtures (cached sample HTML)
 .github/workflows/       scheduled data/model refresh
+Dockerfile               runs the bot or the API (see "Telegram bot & REST API")
 ```
