@@ -13,6 +13,7 @@ from tennissharp import config
 from tennissharp.data import odds_history
 from tennissharp.features import build_feature_table
 from tennissharp.model import walk_forward_evaluate
+from tennissharp.tourney_matching import load_surface_speed_index
 
 
 def main() -> None:
@@ -28,7 +29,9 @@ def main() -> None:
     else:
         matches = pd.read_csv(cache, parse_dates=["date"])
 
-    table, _ = build_feature_table(matches)
+    speed_index = load_surface_speed_index(
+        config.PROCESSED_DIR / "ta_surface_speed_history.csv", config.START_SEASON)
+    table, _ = build_feature_table(matches, surface_speed_index=speed_index)
     metrics = walk_forward_evaluate(table, min_train_seasons=args.min_train_seasons)
     metrics.to_csv(config.REPORTS_DIR / "model_metrics.csv", index=False)
     print(metrics.to_string(index=False))

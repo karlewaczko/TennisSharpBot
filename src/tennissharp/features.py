@@ -16,11 +16,12 @@ import numpy as np
 import pandas as pd
 
 from tennissharp.elo import EloRatings
+from tennissharp.tourney_matching import lookup_surface_speed
 
 FORM_WINDOW = 10
 FEATURE_COLUMNS = [
     "elo_overall_diff", "elo_surface_diff", "rank_points_diff",
-    "form_diff", "h2h_diff", "best_of",
+    "form_diff", "h2h_diff", "best_of", "tourney_surface_speed",
 ]
 
 
@@ -58,10 +59,18 @@ def _h2h_key(a: str, b: str) -> tuple[str, str]:
     return (a, b) if a <= b else (b, a)
 
 
-def build_feature_table(matches: pd.DataFrame, form_window: int = FORM_WINDOW) -> pd.DataFrame:
+def build_feature_table(matches: pd.DataFrame, form_window: int = FORM_WINDOW,
+                         surface_speed_index: dict | None = None) -> pd.DataFrame:
     """`matches` must be sorted ascending by date with the columns produced by
     `tennissharp.data.odds_history.normalize` (winner, loser, surface, tier,
     winner_rank/loser_rank, winner_pts/loser_pts, odds, match_id, ...).
+
+    `surface_speed_index` -- from `tourney_matching.build_surface_speed_index`
+    -- is optional; a per-tournament-edition rating dated to when that edition
+    was actually played (unlike Tennis Abstract's Elo, which is a live
+    snapshot and would leak future information if joined onto historical
+    matches). Omit it to fall back to a neutral 1.0 (average speed) for every
+    match.
     """
     elo = EloRatings()
     form: dict[str, deque] = {}
@@ -90,6 +99,11 @@ def build_feature_table(matches: pd.DataFrame, form_window: int = FORM_WINDOW) -
 
         w_matches = elo.matches_played(winner)
         l_matches = elo.matches_played(loser)
+
+        surface_speed = (
+            lookup_surface_speed(surface_speed_index, row.date.year, row.tournament)
+            if surface_speed_index is not None else 1.0
+        )
 
         player1_is_winner = _stable_coin_flip(row.match_id)
         if player1_is_winner:
@@ -129,6 +143,7 @@ def build_feature_table(matches: pd.DataFrame, form_window: int = FORM_WINDOW) -
             "rank_points_diff": (p1_pts - p2_pts) if pd.notna(p1_pts) and pd.notna(p2_pts) else np.nan,
             "form_diff": p1_form - p2_form,
             "h2h_diff": p1_h2h - p2_h2h,
+            "tourney_surface_speed": surface_speed,
             "player1_matches_played": p1_matches,
             "player2_matches_played": p2_matches,
             "player1_pinnacle_odds": p1_odds["pinnacle"],

@@ -1,12 +1,12 @@
 {
-  "n_bets": 33083,
-  "win_rate": 0.3855,
-  "total_staked": 61384.27,
+  "n_bets": 33108,
+  "win_rate": 0.3854,
+  "total_staked": 63507.72,
   "total_pnl": -10000.0,
-  "roi_on_turnover": -0.1629,
+  "roi_on_turnover": -0.1575,
   "starting_bankroll": 10000.0,
-  "final_bankroll": -0.0,
-  "mean_edge_vs_pinnacle": 0.0997,
+  "final_bankroll": 0.0,
+  "mean_edge_vs_pinnacle": 0.0998,
   "seasons": [
     2015,
     2016,

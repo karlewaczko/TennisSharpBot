@@ -33,8 +33,9 @@ def run_backtest(matches: pd.DataFrame, min_train_seasons: int = 5,
                   kelly_fraction: float = staking.DEFAULT_KELLY_FRACTION,
                   starting_bankroll: float = 10_000.0,
                   bet_price_col: str = DEFAULT_BET_PRICE_COL,
-                  min_matches_played: int = MIN_MATCHES_PLAYED) -> tuple[pd.DataFrame, dict]:
-    table, _ = build_feature_table(matches)
+                  min_matches_played: int = MIN_MATCHES_PLAYED,
+                  surface_speed_index: dict | None = None) -> tuple[pd.DataFrame, dict]:
+    table, _ = build_feature_table(matches, surface_speed_index=surface_speed_index)
     table = table.dropna(subset=["player1_pinnacle_odds", "player2_pinnacle_odds"])
     table = table[(table["player1_matches_played"] >= min_matches_played) &
                   (table["player2_matches_played"] >= min_matches_played)]

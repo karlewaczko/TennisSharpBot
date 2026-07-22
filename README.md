@@ -14,14 +14,20 @@ A pipeline that:
    no fuzzy player-name matching is needed between a results feed and an odds feed.
 2. Builds overall + surface-specific Elo ratings chronologically (no
    lookahead), plus recent-form and head-to-head features.
-3. Trains a calibrated gradient-boosting classifier to estimate P(player A wins),
+3. Ingests [Tennis Abstract](https://tennisabstract.com)'s own Elo ratings
+   (the reference the wider tennis-analytics community treats as
+   authoritative) and its per-tournament-edition surface-speed ratings, and
+   pulls schedule/odds/head-to-head data from
+   [TennisExplorer](https://www.tennisexplorer.com) — see "Data sources" below
+   for exactly how each one is used and why.
+4. Trains a calibrated gradient-boosting classifier to estimate P(player A wins),
    validated walk-forward (train on the past, test on the next season only —
    the only honest way to validate a time series like this).
-4. De-vigs bookmaker odds (multiplicative and Shin's method) to get a "true"
+5. De-vigs bookmaker odds (multiplicative and Shin's method) to get a "true"
    market probability, and flags bets where the model's probability clears
    the market's by a threshold (a value bet).
-5. Backtests that strategy with fractional-Kelly staking and reports ROI.
-6. Optionally checks *live* odds (via [The Odds API](https://the-odds-api.com),
+6. Backtests that strategy with fractional-Kelly staking and reports ROI.
+7. Optionally checks *live* odds (via [The Odds API](https://the-odds-api.com),
    your own API key) against the model for today's matches.
 
 ## Why tennis-data.co.uk instead of the Sackmann `tennis_atp`/`tennis_wta` repos
@@ -35,6 +41,36 @@ is still live and updating. If you have access to a Sackmann-schema dataset
 can extend `src/tennissharp/data/` to merge it in for deeper history — see
 `name_matching.py`, which exists for exactly this "full name vs `Lastname F.`"
 matching problem when combining sources that don't share a schema.
+
+## Data sources
+
+| Source | What we take from it | Refreshed | Used for |
+|---|---|---|---|
+| [tennis-data.co.uk](http://www.tennis-data.co.uk/) | ATP/WTA results + odds (2000/2007+) | every `update_data.py` run | primary training data, backtesting |
+| [Tennis Abstract](https://tennisabstract.com) Elo ratings | overall/hard/clay/grass Elo, current snapshot | every run (`data/processed/ta_elo_current.csv`) | **live/current-match scoring and cross-checks only** — see caveat below |
+| Tennis Abstract surface speed | per-tournament-*edition* ace-rate-based speed rating | every run (`data/processed/ta_surface_speed_history.csv`) | a real training feature (`tourney_surface_speed`), safe for backtesting |
+| [TennisExplorer](https://www.tennisexplorer.com) | today/tomorrow's schedule + odds, on-demand head-to-head | every run (`data/processed/tennisexplorer_upcoming.csv`) | free alternative to The Odds API for live schedule/odds; `fetch_head_to_head()` for on-demand H2H lookups |
+| [The Odds API](https://the-odds-api.com) | live bookmaker odds | on demand (`find_value_bets.py`) | live value-bet scoring (needs your own key) |
+
+**Why Tennis Abstract's Elo isn't a training feature but its surface speed is:**
+Elo ratings there are a *live snapshot* — there's no way to ask "what was
+this rating on 2019-03-04?", so joining today's rating onto a 2019 match
+would leak the future into the past (the single most dangerous mistake in a
+backtested trading/betting system). The surface-speed report, by contrast,
+publishes one dated rating per *tournament edition*, so a 2019 tournament's
+rating reflects only information available when that tournament was played —
+safe to join into historical training data. `tourney_matching.py`'s docstring
+spells this out; if you extend the pipeline, keep that distinction in mind.
+
+**Why `tennisabstract.com/cgi-bin/leaders.cgi` (and the WTA/51-100/challenger
+variants) aren't wired in:** those leaderboards are built client-side from a
+large, undocumented internal JavaScript array — reproducing them correctly
+would mean either executing that JS (a headless-browser dependency we
+couldn't validate from this sandboxed dev session, though it should work fine
+in GitHub Actions' unrestricted network) or reverse-engineering an ambiguous,
+inconsistent-length array format blind. Both risk silently feeding wrong
+numbers into a betting model, so this was deliberately left out rather than
+shipped unverified — a reasonable next step if you want to pursue it.
 
 ## Setup
 
@@ -55,7 +91,7 @@ with zero configuration. Key settings:
 ## Usage
 
 ```bash
-# 1. Download data, recompute Elo ratings, retrain the model
+# 1. Download all data sources, recompute Elo ratings, retrain the model
 python scripts/update_data.py
 
 # 2. Walk-forward accuracy/calibration report
@@ -68,9 +104,21 @@ python scripts/run_backtest.py --edge-threshold 0.03 --kelly-fraction 0.25
 python scripts/find_value_bets.py
 ```
 
-Outputs land in `data/processed/` (Elo ratings, normalized match history),
+Outputs land in `data/processed/` (Elo ratings, normalized match history,
+Tennis Abstract Elo + surface speed, TennisExplorer's upcoming schedule),
 `data/reports/` (update summary, model metrics, backtest results), and
 `models/` (the trained classifier + persisted player state for live scoring).
+
+For on-demand head-to-head lookups (not part of the automated pipeline, since
+it's one HTTP request per matchup):
+
+```python
+from tennissharp.data.tennisexplorer import fetch_matches, fetch_head_to_head, head_to_head_summary
+
+today = fetch_matches(0)  # gives player1_slug/player2_slug to feed below
+h2h = fetch_head_to_head("zverev-6f768", "sinner-8b8e8")
+print(head_to_head_summary(h2h, "Zverev A.", "Sinner J."))
+```
 
 ## Keeping data up to date automatically
 
@@ -87,7 +135,7 @@ Running `scripts/run_backtest.py` on the full default dataset (ATP + WTA,
 2010 onward), with a 3% edge-vs-Pinnacle threshold and quarter-Kelly staking:
 
 ```
-n_bets: 33083   win_rate: 38.6%   roi_on_turnover: -16.3%
+n_bets: 33108   win_rate: 38.5%   roi_on_turnover: -15.8%
 ```
 
 The underlying model is reasonably calibrated in aggregate (~65% accuracy,
@@ -125,19 +173,22 @@ project is for research/education. If you do bet:
 
 ```
 src/tennissharp/
-  config.py          paths + env-based settings
+  config.py             paths + env-based settings
   data/
-    odds_history.py  tennis-data.co.uk download + normalization
-    live_odds.py      The Odds API client (live odds, optional)
-  elo.py              overall + surface Elo engine
-  features.py          leakage-free feature table + LiveState for live scoring
-  model.py             calibrated gradient-boosting classifier, walk-forward eval
-  odds_math.py          implied probability, multiplicative + Shin devigging
+    odds_history.py     tennis-data.co.uk download + normalization
+    tennisabstract.py   Tennis Abstract Elo + surface-speed scraping
+    tennisexplorer.py   TennisExplorer schedule/odds/H2H scraping
+    live_odds.py        The Odds API client (live odds, optional)
+  elo.py                overall + surface Elo engine
+  features.py           leakage-free feature table + LiveState for live scoring
+  tourney_matching.py    joins TA surface-speed ratings onto historical matches
+  model.py               calibrated gradient-boosting classifier, walk-forward eval
+  odds_math.py           implied probability, multiplicative + Shin devigging
   staking.py             fractional Kelly bet sizing
   backtest.py            historical value-betting simulation
-  value_finder.py         live odds -> value bet candidates
-  name_matching.py         'Lastname F.' <-> full-name matching (live use only)
-scripts/                  CLI entry points (see Usage above)
-tests/                    unit tests (pytest)
-.github/workflows/        scheduled data/model refresh
+  value_finder.py        live odds -> value bet candidates (+ TA Elo cross-check)
+  name_matching.py       'Lastname F.' <-> full-name matching (live use only)
+scripts/                 CLI entry points (see Usage above)
+tests/                   unit tests (pytest) + tests/fixtures (cached sample HTML)
+.github/workflows/       scheduled data/model refresh
 ```

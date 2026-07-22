@@ -11,13 +11,57 @@ import datetime as dt
 import logging
 
 import joblib
+import pandas as pd
 
 from tennissharp import config, model as model_mod
-from tennissharp.data import odds_history
+from tennissharp.data import odds_history, tennisabstract, tennisexplorer
 from tennissharp.features import build_feature_table
+from tennissharp.tourney_matching import build_surface_speed_index
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
+
+
+def _fetch_tennisabstract_data() -> tuple[pd.DataFrame, dict]:
+    """Tennis Abstract Elo + surface-speed ratings. Best-effort: a hiccup
+    fetching this supplementary source shouldn't abort the whole update.
+    """
+    try:
+        ta_elo = tennisabstract.fetch_all_elo_ratings()
+        ta_elo.to_csv(config.PROCESSED_DIR / "ta_elo_current.csv", index=False)
+        logger.info("Fetched %d Tennis Abstract Elo ratings", len(ta_elo))
+    except Exception:
+        logger.exception("Failed to fetch Tennis Abstract Elo ratings -- continuing without them")
+        ta_elo = pd.DataFrame()
+
+    try:
+        speed_history = tennisabstract.fetch_surface_speed_history(config.START_SEASON)
+        speed_history.to_csv(config.PROCESSED_DIR / "ta_surface_speed_history.csv", index=False)
+        logger.info("Fetched %d Tennis Abstract surface-speed ratings", len(speed_history))
+        speed_index = build_surface_speed_index(speed_history)
+    except Exception:
+        logger.exception("Failed to fetch Tennis Abstract surface-speed ratings -- continuing without them")
+        speed_index = {}
+
+    return ta_elo, speed_index
+
+
+def _fetch_tennisexplorer_schedule() -> pd.DataFrame:
+    """Today + tomorrow's scheduled matches and odds from TennisExplorer --
+    a free complement/alternative to The Odds API for the live value finder.
+    Best-effort like the Tennis Abstract fetches above.
+    """
+    try:
+        upcoming = pd.concat(
+            [tennisexplorer.fetch_matches(0), tennisexplorer.fetch_matches(1)],
+            ignore_index=True,
+        )
+        upcoming.to_csv(config.PROCESSED_DIR / "tennisexplorer_upcoming.csv", index=False)
+        logger.info("Fetched %d upcoming TennisExplorer matches", len(upcoming))
+        return upcoming
+    except Exception:
+        logger.exception("Failed to fetch TennisExplorer schedule -- continuing without it")
+        return pd.DataFrame()
 
 
 def main() -> None:
@@ -30,7 +74,10 @@ def main() -> None:
     logger.info("Loaded %d matches (%s to %s)", len(matches),
                 matches["date"].min().date(), matches["date"].max().date())
 
-    table, state = build_feature_table(matches)
+    ta_elo, speed_index = _fetch_tennisabstract_data()
+    _fetch_tennisexplorer_schedule()
+
+    table, state = build_feature_table(matches, surface_speed_index=speed_index)
     joblib.dump(state, config.MODELS_DIR / "live_state.joblib")
 
     snapshot = state.elo.snapshot()
@@ -40,11 +87,11 @@ def main() -> None:
     full_model = model_mod.train(table)
     model_mod.save(full_model, config.MODELS_DIR / "win_probability_model.joblib")
 
-    _write_report(matches, snapshot)
+    _write_report(matches, snapshot, ta_elo)
     logger.info("Update complete.")
 
 
-def _write_report(matches, snapshot) -> None:
+def _write_report(matches, snapshot, ta_elo) -> None:
     lines = [
         f"# TennisSharpBot data update ({dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')})",
         "",
@@ -58,6 +105,21 @@ def _write_report(matches, snapshot) -> None:
             ["player", "elo_overall", "matches_played"]
         ].to_markdown(index=False),
     ]
+    if ta_elo is not None and not ta_elo.empty:
+        lines += [
+            "",
+            "## Tennis Abstract Elo ratings (top 10 per tour, reference/authoritative)",
+            "",
+        ]
+        for tour in sorted(ta_elo["tour"].unique()):
+            lines += [
+                f"### {tour.upper()}",
+                "",
+                ta_elo[ta_elo["tour"] == tour].sort_values("elo_rank").head(10)[
+                    ["elo_rank", "player", "elo", "helo", "celo", "gelo"]
+                ].to_markdown(index=False),
+                "",
+            ]
     (config.REPORTS_DIR / "latest_update.md").write_text("\n".join(lines))
 
 

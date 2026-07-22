@@ -15,6 +15,7 @@ import pandas as pd
 from tennissharp import config
 from tennissharp.backtest import run_backtest
 from tennissharp.data import odds_history
+from tennissharp.tourney_matching import load_surface_speed_index
 
 
 def main() -> None:
@@ -33,10 +34,12 @@ def main() -> None:
     else:
         matches = pd.read_csv(cache, parse_dates=["date"])
 
+    speed_index = load_surface_speed_index(
+        config.PROCESSED_DIR / "ta_surface_speed_history.csv", config.START_SEASON)
     bets, summary = run_backtest(
         matches, min_train_seasons=args.min_train_seasons,
         edge_threshold=args.edge_threshold, kelly_fraction=args.kelly_fraction,
-        starting_bankroll=args.bankroll,
+        starting_bankroll=args.bankroll, surface_speed_index=speed_index,
     )
     bets.to_csv(config.REPORTS_DIR / "backtest_bets.csv", index=False)
     (config.REPORTS_DIR / "backtest_summary.json").write_text(json.dumps(summary, indent=2, default=str))

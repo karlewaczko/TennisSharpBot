@@ -12,6 +12,7 @@ import _bootstrap  # noqa: F401
 import argparse
 
 import joblib
+import pandas as pd
 
 from tennissharp import config
 from tennissharp.data import live_odds
@@ -35,6 +36,9 @@ def main() -> None:
     model = load_model(model_path)
     state = joblib.load(state_path)
 
+    ta_elo_path = config.PROCESSED_DIR / "ta_elo_current.csv"
+    ta_elo = pd.read_csv(ta_elo_path) if ta_elo_path.exists() else None
+
     events = live_odds.fetch_all_active_tennis_odds(regions=args.regions)
     if not events:
         print("No active tennis events/odds returned by the API right now.")
@@ -42,7 +46,7 @@ def main() -> None:
 
     bets = find_value_bets(
         state, model, events, edge_threshold=args.edge_threshold,
-        kelly_fraction=args.kelly_fraction, bankroll=args.bankroll,
+        kelly_fraction=args.kelly_fraction, bankroll=args.bankroll, ta_elo=ta_elo,
     )
     if bets.empty:
         print("No value bets found above the edge threshold.")
