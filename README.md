@@ -3,6 +3,11 @@
 Surface-Elo + machine-learning tennis match modeling, historical backtesting
 against real bookmaker odds, and (optional) live value-bet detection.
 
+**New here / no coding background?** Follow **[ANLEITUNG.md](ANLEITUNG.md)**
+instead (German, step-by-step, no Python/git knowledge needed) — it walks
+through installing Docker and running the Telegram bot with one script.
+This README is the technical reference for everything under the hood.
+
 **Read the disclaimer at the bottom before using this for anything real.**
 
 ## What this is
@@ -131,6 +136,12 @@ in the meantime.
 
 ## Telegram bot & REST API
 
+**Fastest path:** run `./quickstart.sh` (macOS/Linux) or `./quickstart.ps1`
+(Windows) — an interactive script that only needs Docker installed, asks a
+few questions, and starts everything for you. See [ANLEITUNG.md](ANLEITUNG.md)
+for a fully beginner-oriented walkthrough. The manual steps below are for
+running things outside Docker or understanding what the script does.
+
 Two optional front ends sit on top of the same pipeline -- a Telegram bot for
 chatting with it directly, and a REST API if you'd rather build your own app
 (mobile, web, whatever). Both are thin wrappers around
@@ -169,17 +180,34 @@ tour-filtered list). `/h2h` only resolves players currently listed in
 TennisExplorer's today/tomorrow schedule cache, not an arbitrary historical
 lookup.
 
-**Running either in Docker:**
+**Running in Docker (recommended, this is what quickstart.sh/.ps1 do):**
+```bash
+cp config/settings.example.env config/.env   # then fill in TELEGRAM_BOT_TOKEN etc.
+docker compose up -d --build            # bot + api + auto-updater
+docker compose up -d --build updater bot   # skip the API if you don't need it
+```
+`docker-compose.yml` runs three services off one image, sharing a data
+volume: `updater` (runs `scripts/update_data.py` once immediately, then every
+24h forever -- no separate cron needed), `bot`, and `api`. `bot`/`api` wait
+for `updater`'s first pass to finish before starting (the image also ships
+with the repo's already-committed data baked in, so that wait is usually
+short). `docker compose logs -f` to watch it, `docker compose down` to stop
+everything.
+
+Standalone, without compose:
 ```bash
 docker build -t tennissharpbot .
 docker run --env-file config/.env tennissharpbot python scripts/run_telegram_bot.py
 docker run --env-file config/.env -p 8000:8000 tennissharpbot python scripts/run_api.py --host 0.0.0.0
 ```
-The image bakes in whatever's in `data/`/`models/` at build time; run
-`scripts/update_data.py` on a schedule outside the container (or rebuild
-periodically) to keep it current. Not built/tested against a live Docker
-daemon in this repo's dev environment — standard `python:3.11-slim` pattern,
-but verify it builds before relying on it.
+
+Verified in this dev environment: `docker compose config` renders the compose
+file correctly and both `quickstart.sh`/`quickstart.ps1` were run end-to-end
+against a stubbed `docker` command (covering the questions, `config/.env`
+generation, and service selection logic). The actual `docker build`/`up`
+could **not** be exercised here (no Docker daemon available in this sandbox) —
+if something doesn't come up cleanly on your machine, `docker compose logs`
+is the first place to look.
 
 Both front ends carry the same disclaimer as the CLI: this ranks candidates
 by modelled edge vs. the de-vigged market, it is not financial advice, and
@@ -252,5 +280,9 @@ src/tennissharp/
 scripts/                 CLI entry points (see Usage above)
 tests/                   unit tests (pytest) + tests/fixtures (cached sample HTML)
 .github/workflows/       scheduled data/model refresh
-Dockerfile               runs the bot or the API (see "Telegram bot & REST API")
+Dockerfile               image used by all three docker-compose.yml services
+docker-compose.yml       bot + api + auto-updater, sharing one data volume
+docker/update_loop.sh    runs scripts/update_data.py once, then every 24h
+quickstart.sh / .ps1     interactive setup wizard (writes config/.env, starts compose)
+ANLEITUNG.md             beginner-oriented walkthrough (German)
 ```
