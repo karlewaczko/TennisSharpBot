@@ -1,0 +1,3 @@
+tour,n_bets,roi,std_error,t_stat,significant,interpretation
+atp,4233,-0.04478,0.01705,-2.63,True,statistically distinguishable from zero (still check for bias)
+wta,3831,-0.04984,0.01841,-2.71,True,statistically distinguishable from zero (still check for bias)

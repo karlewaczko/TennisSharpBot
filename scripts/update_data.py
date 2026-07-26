@@ -15,7 +15,7 @@ import pandas as pd
 
 from tennissharp import config, model as model_mod
 from tennissharp.data import odds_history, tennisabstract, tennisexplorer
-from tennissharp.features import build_feature_table
+from tennissharp.features import attach_market_probability, build_feature_table
 from tennissharp.tourney_matching import build_surface_speed_index
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -83,8 +83,15 @@ def main() -> None:
     snapshot = state.elo.snapshot()
     snapshot.to_csv(config.PROCESSED_DIR / "elo_ratings_current.csv", index=False)
 
-    logger.info("Training model on full history for live use...")
-    full_model = model_mod.train(table)
+    # Blend the de-vigged market price into the model. Measured on 55k matches,
+    # this cuts out-of-sample log loss from 0.618 to 0.595 -- by far the single
+    # biggest accuracy gain available. It does NOT create a betting edge (see
+    # the README); it makes the forecasts themselves much better.
+    table = attach_market_probability(table)
+    n_with_odds = int(table["market_prob_p1"].notna().sum())
+    logger.info("Training model on full history for live use (%d/%d matches have a "
+                "market price to blend in)...", n_with_odds, len(table))
+    full_model = model_mod.train(table, use_market=n_with_odds > 0)
     model_mod.save(full_model, config.MODELS_DIR / "win_probability_model.joblib")
 
     _write_report(matches, snapshot, ta_elo)

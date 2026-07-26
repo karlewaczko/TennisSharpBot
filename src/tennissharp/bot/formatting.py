@@ -12,7 +12,9 @@ from html import escape
 import pandas as pd
 
 DISCLAIMER = (
-    "⚠️ Keine Anlage-/Wettberatung. Nur Recherche-Signal, keine Garantie. "
+    "⚠️ Keine Wettberatung. Gemessen: dieses Modell hat KEINEN Vorteil gegenüber "
+    "den Buchmachern (siehe ANLEITUNG.md). Diese Liste zeigt nur Quotenabweichungen "
+    "zwischen Anbietern — ein Beobachtungssignal, kein Gewinnversprechen. "
     "LUGAS-Limit (1.000 €/Monat) beachten, nur GGL-lizenzierte Anbieter nutzen."
 )
 

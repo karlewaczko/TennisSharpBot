@@ -1,27 +1,48 @@
 """Walk-forward historical backtest: train on the past, bet on the next
-season, roll forward. Reports ROI and an "edge vs Pinnacle" proxy for CLV.
+season, roll forward.
 
-Note on CLV: true closing-line value needs the odds you actually bet at
-*and* the market's final closing price as two separate numbers. This
-dataset has one odds snapshot per bookmaker per match, so we treat the
-de-vigged Pinnacle price (the sharpest book, and our devig benchmark) as a
-stand-in for the closing line. A positive mean edge here is a reasonable
-proxy for positive CLV, but isn't literally CLV -- say so in any report.
+Three guardrails exist here because their absence is how backtests lie:
+
+1. **Attainable prices only.** `market_max` is a running maximum over the
+   market's lifetime (it implies cross-book arbitrage on ~43% of matches --
+   see `edge_audit.price_attainability_report`). You cannot bet a price that
+   existed briefly three days ago, so betting it here is refused outright
+   rather than left as a footgun.
+2. **The model is priced against a *different* book than the one it bets at.**
+   The model is trained with the de-vigged market price as a feature, so
+   scoring a bet at book X using X's own price compares X to itself.
+   Pinnacle is the reference; bets are placed at a softer book.
+3. **Every ROI comes with a t-statistic.** Tennis ROIs have huge variance:
+   this repo's own audit produces a +69% ROI over 265 bets that is
+   statistically indistinguishable from zero. An ROI without a standard
+   error is a rumour.
+
+On CLV: true closing-line value needs the price you bet *and* the market's
+final closing price. This dataset has one snapshot per bookmaker per match,
+so `mean_edge_vs_reference` is a stand-in, not literal CLV. Don't report it
+as CLV.
 """
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
+from tennissharp import edge_audit
 from tennissharp import model as model_mod
 from tennissharp import odds_math, staking
-from tennissharp.features import build_feature_table
+from tennissharp.features import attach_market_probability, build_feature_table
 
 DEFAULT_EDGE_THRESHOLD = 0.03
-DEFAULT_BET_PRICE_COL = "market_avg"  # the price you could plausibly get by shopping lines
+# The book we place bets at. Must be a real, quotable price -- never market_max.
+DEFAULT_BET_PRICE_COL = "market_avg"
+# The sharp book we price *against*. Never the same as the bet price column.
+DEFAULT_REFERENCE_COL = "pinnacle"
 # Players with few recorded matches sit at/near the default 1500 Elo, so any
 # "edge" the model shows against the market for them is model ignorance, not
 # real signal -- skip until both players have a minimally informative sample.
 MIN_MATCHES_PLAYED = 10
+# Refuse to bet columns that aren't simultaneously purchasable prices.
+NON_ATTAINABLE_PRICE_COLS = frozenset({"market_max"})
 
 
 def _bet_price(row, side: str, bet_price_col: str) -> float:
@@ -33,10 +54,27 @@ def run_backtest(matches: pd.DataFrame, min_train_seasons: int = 5,
                   kelly_fraction: float = staking.DEFAULT_KELLY_FRACTION,
                   starting_bankroll: float = 10_000.0,
                   bet_price_col: str = DEFAULT_BET_PRICE_COL,
+                  reference_col: str = DEFAULT_REFERENCE_COL,
                   min_matches_played: int = MIN_MATCHES_PLAYED,
-                  surface_speed_index: dict | None = None) -> tuple[pd.DataFrame, dict]:
+                  surface_speed_index: dict | None = None,
+                  use_market: bool = True) -> tuple[pd.DataFrame, dict]:
+    if bet_price_col in NON_ATTAINABLE_PRICE_COLS:
+        raise ValueError(
+            f"'{bet_price_col}' is a running maximum over the market's lifetime, not a "
+            "price you could actually have bet. Backtesting against it fabricates "
+            "profit. Use 'market_avg' or 'bet365'. See edge_audit.price_attainability_report."
+        )
+    if bet_price_col == reference_col:
+        raise ValueError(
+            f"bet_price_col and reference_col are both '{reference_col}'. The model is "
+            "trained with the reference price as a feature, so this would compare a book "
+            "against itself and produce meaningless edges."
+        )
+
     table, _ = build_feature_table(matches, surface_speed_index=surface_speed_index)
-    table = table.dropna(subset=["player1_pinnacle_odds", "player2_pinnacle_odds"])
+    table = attach_market_probability(table, odds_col=reference_col)
+    table = table.dropna(subset=[f"player1_{reference_col}_odds",
+                                  f"player2_{reference_col}_odds"])
     table = table[(table["player1_matches_played"] >= min_matches_played) &
                   (table["player2_matches_played"] >= min_matches_played)]
     table["season"] = table["date"].dt.year
@@ -52,20 +90,23 @@ def run_backtest(matches: pd.DataFrame, min_train_seasons: int = 5,
         test_df = table[table["season"] == season].sort_values("date")
         if train_df.empty or test_df.empty:
             continue
-        model = model_mod.train(train_df)
+        model = model_mod.train(train_df, use_market=use_market)
         p1_probs = model_mod.predict_proba(model, test_df)
 
         for row, p1_prob in zip(test_df.itertuples(index=False), p1_probs):
-            if bankroll <= 0:
-                break
-            fair1, fair2 = odds_math.shin_devig([row.player1_pinnacle_odds, row.player2_pinnacle_odds])
-            edge1 = odds_math.edge(p1_prob, fair1)
-            edge2 = odds_math.edge(1 - p1_prob, fair2)
+            if bankroll <= 0 or np.isnan(p1_prob):
+                continue
+            ref1 = row.market_prob_p1
+            if pd.isna(ref1):
+                continue
+            ref2 = 1.0 - ref1
+            edge1 = odds_math.edge(p1_prob, ref1)
+            edge2 = odds_math.edge(1 - p1_prob, ref2)
 
             if edge1 > edge_threshold:
-                side, model_p, fair_p, edge_val = "1", p1_prob, fair1, edge1
+                side, model_p, ref_p, edge_val = "1", p1_prob, ref1, edge1
             elif edge2 > edge_threshold:
-                side, model_p, fair_p, edge_val = "2", 1 - p1_prob, fair2, edge2
+                side, model_p, ref_p, edge_val = "2", 1 - p1_prob, ref2, edge2
             else:
                 continue
 
@@ -83,31 +124,47 @@ def run_backtest(matches: pd.DataFrame, min_train_seasons: int = 5,
 
             bets.append({
                 "date": row.date, "tour": row.tour, "season": season,
+                "surface": row.surface, "tier": getattr(row, "tier", None),
                 "player": row.player1 if side == "1" else row.player2,
                 "opponent": row.player2 if side == "1" else row.player1,
-                "model_prob": model_p, "market_fair_prob": fair_p, "edge": edge_val,
+                "model_prob": model_p, "reference_prob": ref_p, "edge": edge_val,
                 "price": price, "stake": stake, "won": player_won, "pnl": pnl,
                 "bankroll_after": bankroll,
             })
 
     bets_df = pd.DataFrame(bets)
-    summary = _summarize(bets_df, starting_bankroll)
+    summary = _summarize(bets_df, starting_bankroll, bet_price_col, reference_col)
     return bets_df, summary
 
 
-def _summarize(bets_df: pd.DataFrame, starting_bankroll: float) -> dict:
+def _summarize(bets_df: pd.DataFrame, starting_bankroll: float,
+                bet_price_col: str, reference_col: str) -> dict:
+    base = {"bet_at": bet_price_col, "priced_against": reference_col}
     if bets_df.empty:
-        return {"n_bets": 0, "message": "No qualifying value bets found in this period."}
-    total_staked = bets_df["stake"].sum()
-    total_pnl = bets_df["pnl"].sum()
+        return {**base, "n_bets": 0,
+                "message": "No qualifying value bets found in this period."}
+
+    total_staked = float(bets_df["stake"].sum())
+    total_pnl = float(bets_df["pnl"].sum())
+    # Flat-stake significance: the Kelly-weighted P&L above answers "what would
+    # my bankroll have done", this answers "is the edge real at all".
+    sig = edge_audit.roi_with_significance(
+        bets_df["won"].to_numpy(), bets_df["price"].to_numpy())
+
     return {
+        **base,
         "n_bets": len(bets_df),
-        "win_rate": round(bets_df["won"].mean(), 4),
+        "win_rate": round(float(bets_df["won"].mean()), 4),
         "total_staked": round(total_staked, 2),
         "total_pnl": round(total_pnl, 2),
         "roi_on_turnover": round(total_pnl / total_staked, 4) if total_staked else 0.0,
         "starting_bankroll": starting_bankroll,
         "final_bankroll": round(starting_bankroll + total_pnl, 2),
-        "mean_edge_vs_pinnacle": round(bets_df["edge"].mean(), 4),
+        "mean_edge_vs_reference": round(float(bets_df["edge"].mean()), 4),
         "seasons": sorted(bets_df["season"].unique().tolist()),
+        # The numbers that decide whether any of the above means anything.
+        "flat_stake_roi": sig["roi"],
+        "flat_stake_t_stat": sig["t_stat"],
+        "statistically_significant": sig["significant"],
+        "verdict": sig["interpretation"],
     }

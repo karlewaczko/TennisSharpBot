@@ -26,13 +26,20 @@ A pipeline that:
    [TennisExplorer](https://www.tennisexplorer.com) — see "Data sources" below
    for exactly how each one is used and why.
 4. Trains a calibrated gradient-boosting classifier to estimate P(player A wins),
-   validated walk-forward (train on the past, test on the next season only —
-   the only honest way to validate a time series like this).
+   blended with the de-vigged market price, validated walk-forward (train on
+   the past, test on the next season only — the only honest way to validate a
+   time series like this). **68.3% accuracy, 0.587 log loss** out of sample
+   across 14 seasons.
 5. De-vigs bookmaker odds (multiplicative and Shin's method) to get a "true"
    market probability, and flags bets where the model's probability clears
    the market's by a threshold (a value bet).
-6. Backtests that strategy with fractional-Kelly staking and reports ROI.
-7. Optionally checks *live* odds (via [The Odds API](https://the-odds-api.com),
+6. Backtests that strategy with fractional-Kelly staking, reporting ROI **with
+   t-statistics** and a segment breakdown.
+7. **Audits itself** (`scripts/audit_edge.py`): checks whether the odds columns
+   are really purchasable, whether the market is beatable at all, and whether
+   the model adds anything the market doesn't already know. Read
+   "Can this actually beat the bookmakers?" below before anything else.
+8. Optionally checks *live* odds (via [The Odds API](https://the-odds-api.com),
    your own API key) against the model for today's matches.
 
 ## Why tennis-data.co.uk instead of the Sackmann `tennis_atp`/`tennis_wta` repos
@@ -102,10 +109,14 @@ python scripts/update_data.py
 # 2. Walk-forward accuracy/calibration report
 python scripts/train_model.py
 
-# 3. Historical value-betting backtest (ROI, hit rate, edge vs. Pinnacle)
+# 3. Historical value-betting backtest (ROI + t-stats + segment breakdown)
 python scripts/run_backtest.py --edge-threshold 0.03 --kelly-fraction 0.25
 
-# 4. Live value bets (needs ODDS_API_KEY, and step 1 run at least once)
+# 4. THE IMPORTANT ONE: is an edge even possible with this data?
+#    Run this before believing any backtest, including the one above.
+python scripts/audit_edge.py
+
+# 5. Live value bets (needs ODDS_API_KEY, and step 1 run at least once)
 python scripts/find_value_bets.py
 ```
 
@@ -213,27 +224,103 @@ Both front ends carry the same disclaimer as the CLI: this ranks candidates
 by modelled edge vs. the de-vigged market, it is not financial advice, and
 the honest backtest result below applies here too.
 
-## Honest backtest result — please read this
+## Can this actually beat the bookmakers? — measured, not guessed
 
-Running `scripts/run_backtest.py` on the full default dataset (ATP + WTA,
-2010 onward), with a 3% edge-vs-Pinnacle threshold and quarter-Kelly staking:
+**No. Not with this data.** That is a measurement, not an opinion, and
+`scripts/audit_edge.py` reproduces every number below in about three minutes.
 
-```
-n_bets: 33108   win_rate: 38.5%   roi_on_turnover: -15.8%
-```
+### The decisive test
 
-The underlying model is reasonably calibrated in aggregate (~65% accuracy,
-Brier ≈ 0.22 out of sample — in line with published tennis models), verified
-with a reliability curve. But picking only the matches where this model
-disagrees most with Pinnacle selects for the model's own biggest mistakes
-more often than genuine market inefficiencies, because a 6-feature Elo/form/
-H2H model is simply working with less information than one of the world's
-sharpest sportsbooks. This matches exactly what the professional-betting
-literature says: **a real, sustainable edge against Pinnacle requires
-information the market doesn't already have** (point-by-point stats, injury/
-fatigue intel, surface-transition effects, etc.) — not just re-deriving Elo
-from public results. Treat every number this tool produces as a research
-signal to investigate further, never as a ready-made bet.
+The sharp question isn't "is our model accurate?" — it's **"given the
+bookmaker's price, do our features add anything?"** If a model trained on
+[market price + our features] can't beat one trained on [market price] alone,
+out of sample, then we hold no information the market lacks, and no amount of
+tuning will change that.
+
+Walk-forward over 13 seasons and 55,124 matches:
+
+| model | out-of-sample log loss |
+|---|---|
+| Pinnacle's de-vigged price alone | **0.59406** |
+| our features alone (Elo, form, H2H, fatigue, surface speed) | 0.61842 |
+| Pinnacle's price **+** our features | 0.59494 |
+
+Adding everything we know to Pinnacle's price makes the forecast **worse**
+(−0.00088). In 11 of 13 seasons there is no gain at all. For scale, a
+genuinely useful feature set moves log loss by 0.005–0.02.
+
+### Why: the market is extremely efficient
+
+Pinnacle's de-vigged probabilities vs. realised win rates, 157k player-sides:
+
+| implied | actual | error |
+|---|---|---|
+| 0.063 | 0.056 | −0.008 |
+| 0.252 | 0.252 | −0.000 |
+| 0.446 | 0.452 | +0.006 |
+| 0.649 | 0.642 | −0.007 |
+| 0.846 | 0.842 | −0.004 |
+| 0.937 | 0.945 | +0.008 |
+
+Largest error anywhere in the range: **0.0076**. There is no systematic
+mispricing to exploit.
+
+### A "+69% ROI" strategy that is worth exactly nothing
+
+While building this, an apparent edge showed up: betting the *best available*
+odds whenever they beat Pinnacle's fair price returned **+2.9% to +8.5% ROI**
+with t-statistics above 5, stable across 15 years. It was completely fake, for
+two independent reasons — both now caught automatically:
+
+1. **The price wasn't real.** tennis-data.co.uk's "max" column implies
+   *negative overround* — i.e. risk-free arbitrage — on **43% of matches**.
+   Genuine simultaneous cross-book arbitrage in tennis occurs on a low
+   single-digit percentage. That column is a running maximum over the
+   market's lifetime: the best price any book offered at any moment. You
+   cannot bet a price that existed for ten minutes three days ago.
+   `run_backtest()` now **refuses** to price bets from it, and
+   `edge_audit.price_attainability_report()` flags it automatically.
+2. **The honest version is noise.** Repeat with bet365 — one real,
+   simultaneously-quotable book — and the edge evaporates: +1.93% ROI at
+   t=1.27. Year by year it reads +6.3%, −4.1%, −2.6%, −21.1%, +13.6% … The
+   audit also surfaces a **+69.32% ROI over 265 bets at t=1.13** — which is
+   simply what noise looks like when you slice hard enough. Any ROI reported
+   here now carries a t-statistic, because **an ROI without a standard error
+   is a rumour.**
+
+### What did improve
+
+Feeding the market price into the model (`use_market=True`, now the default)
+cut out-of-sample log loss from 0.618 to 0.595 — a large, real gain — and cut
+the backtest's loss from −15.8% to **−4.7% ROI**. That −4.7% is not a
+disappointment; it is almost exactly the bookmaker's margin on the book being
+bet into, which is the theoretically correct result for a model with no
+informational edge. The old model lost 15.8% because it bet on its own
+biggest *errors*; this one loses only the vig.
+
+### Where a real edge could come from
+
+Nothing below is a promise, and each is hard:
+
+- **Beating the closing line**, by betting early before the market sharpens.
+  Requires timestamped opening/closing odds; this dataset has one snapshot per
+  match, so CLV genuinely cannot be measured here.
+- **Lower tiers** (ITF, Challenger) where limits are small and lines are
+  softer. This dataset is tour-level only.
+- **In-play**, where prices move on every point and models can react faster
+  than traders.
+- **Secondary markets** (total games, set betting, handicaps), which get less
+  sharp attention than match-winner.
+- **Information the market lacks**: verified injury/illness news, on-site
+  scouting, conditions. This is the only category that has ever reliably
+  worked, and it isn't a modelling problem.
+
+Even with a genuine edge, soft books limit or close winning accounts within
+weeks — the practical constraint that ends most of these projects.
+
+**Use this as a forecasting and research tool.** It is a good one. It is not
+a way to make money betting, and the audit script exists so you never have to
+take that on faith.
 
 ## Legal & responsible gambling (Germany)
 
@@ -266,7 +353,9 @@ src/tennissharp/
   elo.py                overall + surface Elo engine
   features.py           leakage-free feature table + LiveState for live scoring
   tourney_matching.py    joins TA surface-speed ratings onto historical matches
-  model.py               calibrated gradient-boosting classifier, walk-forward eval
+  model.py               calibrated GBM, optionally blended with the market price
+  edge_audit.py          the honesty checks: attainability, calibration,
+                         incremental information, ROI significance
   odds_math.py           implied probability, multiplicative + Shin devigging
   staking.py             fractional Kelly bet sizing
   backtest.py            historical value-betting simulation

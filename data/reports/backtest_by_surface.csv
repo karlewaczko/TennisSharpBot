@@ -1,0 +1,4 @@
+surface,n_bets,roi,std_error,t_stat,significant,interpretation
+Clay,2406,-0.0302,0.02307,-1.31,False,consistent with zero edge -- do not bet this
+Hard,4712,-0.05287,0.01636,-3.23,True,statistically distinguishable from zero (still check for bias)
+Grass,946,-0.06205,0.03595,-1.73,False,consistent with zero edge -- do not bet this

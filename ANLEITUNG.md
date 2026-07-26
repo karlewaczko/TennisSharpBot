@@ -4,12 +4,30 @@ Diese Anleitung setzt **nichts** voraus außer: du kannst eine Datei
 herunterladen und ein Programm installieren. Kein Programmieren, kein Git,
 keine Kommandozeilen-Erfahrung nötig.
 
-⚠️ **Wichtig, bevor du startest:** Das hier ist ein Recherche-Werkzeug, keine
-Gelddruckmaschine. Die eingebauten Backtests zeigen selbst mit einem
-ordentlichen Modell einen Verlust gegen Pinnacle (siehe README, Abschnitt
-"Honest backtest result"). Nutze es zum Lernen und Beobachten, nicht als
-Freibrief zum Wetten. In Deutschland gilt außerdem das LUGAS-Einzahlungslimit
-von 1.000 €/Monat, und nur GGL-lizenzierte Anbieter sind rechtlich sauber.
+## ⚠️ Zuerst das Wichtigste: Dieses Modell schlägt die Buchmacher nicht
+
+Das ist keine Vorsichtsformel, sondern ein **Messergebnis**. Der eingebaute
+Prüf-Befehl (`python scripts/audit_edge.py`) rechnet es in drei Minuten nach:
+
+- Pinnacles Quoten sind über 157.000 Datenpunkte auf **unter 1 Prozentpunkt**
+  genau kalibriert. Da ist keine systematische Fehlbewertung zum Ausnutzen.
+- Der entscheidende Test lautet: *Bringt unser Modell zusätzlich zur
+  Buchmacher-Quote irgendeine Information?* Antwort über 13 Saisons und 55.124
+  Spiele: **nein** — die Vorhersage wird mit unseren Merkmalen sogar minimal
+  schlechter. Was wir wissen, weiß der Markt längst.
+- Beim Bauen tauchte eine Strategie mit **+69 % Rendite** auf. Sie war
+  wertlos: einmal, weil sie auf Quoten beruhte, die nie gleichzeitig
+  buchbar waren, und einmal, weil sie statistisch reines Rauschen war. Beide
+  Fallen werden jetzt automatisch erkannt.
+
+**Was das Werkzeug wirklich gut kann:** Spielstärken einschätzen (Elo pro
+Belag), Spielpläne und Quoten verfolgen, Head-to-Heads nachschlagen, Turniere
+nach Platzgeschwindigkeit vergleichen — und dich davor bewahren, auf
+Scheinmuster hereinzufallen. Nutze es zum Lernen und Beobachten.
+
+Wenn du trotzdem wettest: In Deutschland gilt das LUGAS-Einzahlungslimit von
+1.000 €/Monat, nur GGL-lizenzierte Anbieter sind rechtlich sauber, und setze
+nie Geld ein, dessen Verlust dir wehtut.
 
 ## Was du am Ende hast
 
@@ -94,11 +112,17 @@ hast) und `/start` schicken. Er antwortet mit allen verfügbaren Befehlen:
 | `/surface Wimbledon` | Speed-Rating für ein bestimmtes Turnier |
 | `/upcoming atp` | Anstehende Spiele + Quoten |
 | `/h2h Djokovic Nadal` | Direktvergleich zweier Spieler (aus dem aktuellen Spielplan) |
-| `/valuebets` | Aktuelle Value-Bet-Kandidaten (braucht Odds-API-Key) |
+| `/valuebets` | Quotenabweichungen zwischen Buchmachern (braucht Odds-API-Key) |
 
 **Wichtig:** Direkt nach dem Start dauert es 1-2 Minuten, bis die Daten zum
 ersten Mal vollständig geladen sind. Falls der Bot "not found"/"nicht
 bereit" meldet, kurz warten und nochmal fragen.
+
+**Zu `/valuebets`:** Das listet Spiele auf, bei denen ein Buchmacher deutlich
+von den anderen abweicht. Das ist ein *Beobachtungs*-Signal, keine
+Wettempfehlung — laut der Messung oben reicht es nicht für einen echten
+Vorteil. Behandle es als "hier lohnt sich ein zweiter Blick", nicht als
+"hier ist Geld zu holen".
 
 ## Alles wieder stoppen
 

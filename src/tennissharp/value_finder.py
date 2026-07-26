@@ -10,9 +10,10 @@ import unicodedata
 import numpy as np
 import pandas as pd
 
+from tennissharp import model as model_mod
 from tennissharp import odds_math, staking
 from tennissharp.elo import expected_score
-from tennissharp.features import FEATURE_COLUMNS, LiveState
+from tennissharp.features import MARKET_FEATURE, LiveState
 from tennissharp.name_matching import build_name_index, match_full_name
 
 DEFAULT_SURFACE = "Hard"
@@ -44,7 +45,8 @@ def _ta_elo_for(lookup: dict[str, dict], full_name: str) -> dict | None:
 
 
 def _features_for_matchup(state: LiveState, player_a: str, player_b: str, surface: str,
-                           best_of: int, surface_speed: float = 1.0) -> dict:
+                           best_of: int, surface_speed: float = 1.0,
+                           as_of=None) -> dict:
     a_overall, a_surf = state.elo.get(player_a, surface)
     b_overall, b_surf = state.elo.get(player_b, surface)
     a_pts = state.last_rank_pts.get(player_a)
@@ -53,6 +55,8 @@ def _features_for_matchup(state: LiveState, player_a: str, player_b: str, surfac
     if a_pts and b_pts:
         rank_pts_diff = np.log1p(a_pts) - np.log1p(b_pts)
     a_h2h, b_h2h = state.h2h_wins(player_a, player_b)
+
+    as_of = as_of if as_of is not None else pd.Timestamp.now().normalize()
     return {
         "elo_overall_diff": a_overall - b_overall,
         "elo_surface_diff": a_surf - b_surf,
@@ -65,7 +69,39 @@ def _features_for_matchup(state: LiveState, player_a: str, player_b: str, surfac
         # (average speed) matches the neutral default used wherever the
         # historical join in tourney_matching.py can't find a match either.
         "tourney_surface_speed": surface_speed,
+        "days_rest_diff": state.days_rest(player_a, as_of) - state.days_rest(player_b, as_of),
+        "matches_recent_diff": (state.matches_recent(player_a, as_of)
+                                 - state.matches_recent(player_b, as_of)),
+        "surface_switch_diff": (state.surface_switch(player_a, surface)
+                                 - state.surface_switch(player_b, surface)),
     }
+
+
+def _reference_market_probability(event: dict, home: str, away: str,
+                                   exclude_bookmaker: str | None) -> float | None:
+    """De-vigged consensus probability for `home`, built from every bookmaker
+    in the event *except* the one we're about to price against.
+
+    Excluding it matters: the model is trained with the market price as a
+    feature, so scoring a bet at book X using X's own price as input compares
+    X against itself and manufactures an edge of ~zero-but-noisy. Pricing
+    against the consensus of the *other* books is the honest comparison, and
+    is what a sharp bettor actually does (Pinnacle as reference, bet elsewhere).
+    """
+    probs = []
+    for bookmaker in event.get("bookmakers", []):
+        if exclude_bookmaker and bookmaker.get("title") == exclude_bookmaker:
+            continue
+        for market in bookmaker.get("markets", []):
+            if market.get("key") != "h2h":
+                continue
+            outcomes = {o["name"]: o["price"] for o in market.get("outcomes", [])}
+            if home in outcomes and away in outcomes:
+                fair = odds_math.shin_devig([outcomes[home], outcomes[away]])
+                probs.append(fair[0])
+    if not probs:
+        return None
+    return float(np.median(probs))
 
 
 def elo_only_probability(state: LiveState, player_a: str, player_b: str, surface: str) -> float:
@@ -109,11 +145,11 @@ def find_value_bets(state: LiveState, model, live_events: list[dict],
         surface = DEFAULT_SURFACE  # The Odds API doesn't expose surface; override via CLI if known
         best_of = 3
         feats = _features_for_matchup(state, player_a, player_b, surface, best_of)
-        X = pd.DataFrame([{c: feats[c] for c in FEATURE_COLUMNS}])
-        model_prob_a = float(model.predict_proba(X)[:, 1][0])
 
         ta_a, ta_b = _ta_elo_for(ta_lookup, home), _ta_elo_for(ta_lookup, away)
         ta_elo_diff_a = (ta_a["elo"] - ta_b["elo"]) if ta_a and ta_b else None
+
+        uses_market = getattr(model, "tennissharp_uses_market_", False)
 
         for bookmaker in event.get("bookmakers", []):
             for market in bookmaker.get("markets", []):
@@ -123,6 +159,23 @@ def find_value_bets(state: LiveState, model, live_events: list[dict],
                 if home not in outcomes or away not in outcomes:
                     continue
                 odds_a, odds_b = outcomes[home], outcomes[away]
+
+                # Score the model against the OTHER books' consensus, never
+                # against the book we're about to bet at (see
+                # _reference_market_probability for why).
+                row_feats = dict(feats)
+                if uses_market:
+                    ref = _reference_market_probability(
+                        event, home, away, exclude_bookmaker=bookmaker.get("title"))
+                    if ref is None:
+                        continue  # only one book quoting: nothing to compare against
+                    ref = min(max(ref, 1e-6), 1 - 1e-6)
+                    row_feats[MARKET_FEATURE] = float(np.log(ref / (1 - ref)))
+
+                cols = model_mod.feature_columns(uses_market)
+                X = pd.DataFrame([{c: row_feats[c] for c in cols}])
+                model_prob_a = float(model.predict_proba(X)[:, 1][0])
+
                 fair_a, fair_b = odds_math.shin_devig([odds_a, odds_b])
                 edge_a = odds_math.edge(model_prob_a, fair_a)
                 edge_b = odds_math.edge(1 - model_prob_a, fair_b)

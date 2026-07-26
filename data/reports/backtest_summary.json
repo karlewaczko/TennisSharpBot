@@ -1,12 +1,14 @@
 {
-  "n_bets": 33108,
-  "win_rate": 0.3854,
-  "total_staked": 63507.72,
-  "total_pnl": -10000.0,
-  "roi_on_turnover": -0.1575,
+  "bet_at": "market_avg",
+  "priced_against": "pinnacle",
+  "n_bets": 8064,
+  "win_rate": 0.4821,
+  "total_staked": 192419.29,
+  "total_pnl": -9609.3,
+  "roi_on_turnover": -0.0499,
   "starting_bankroll": 10000.0,
-  "final_bankroll": 0.0,
-  "mean_edge_vs_pinnacle": 0.0998,
+  "final_bankroll": 390.7,
+  "mean_edge_vs_reference": 0.0451,
   "seasons": [
     2015,
     2016,
@@ -20,5 +22,9 @@
     2024,
     2025,
     2026
-  ]
+  ],
+  "flat_stake_roi": -0.04718,
+  "flat_stake_t_stat": -3.77,
+  "statistically_significant": true,
+  "verdict": "statistically distinguishable from zero (still check for bias)"
 }
