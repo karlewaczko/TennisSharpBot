@@ -1,15 +1,15 @@
 date,tournament,surface,ace_pct,surface_speed
 2010-01-03,Brisbane,Hard,0.125,1.11
-2010-01-04,Doha,Hard,0.09300000000000001,0.92
 2010-01-04,Chennai,Hard,0.067,0.81
+2010-01-04,Doha,Hard,0.09300000000000001,0.92
 2010-01-11,Sydney,Hard,0.12,1.07
 2010-01-11,Auckland,Hard,0.102,0.97
 2010-01-18,Australian Open,Hard,0.099,1.0
 2010-02-01,Santiago,Clay,0.067,0.92
 2010-02-01,Johannesburg,Hard,0.12300000000000001,1.24
 2010-02-01,Zagreb,Hard,0.12300000000000001,1.22
-2010-02-08,Costa Do Sauipe,Clay,0.071,1.08
 2010-02-08,Rotterdam,Hard,0.09699999999999999,0.95
+2010-02-08,Costa Do Sauipe,Clay,0.071,1.08
 2010-02-08,San Jose,Hard,0.139,1.22
 2010-02-15,Buenos Aires,Clay,0.044000000000000004,0.69
 2010-02-15,Memphis,Hard,0.158,1.1
@@ -37,8 +37,8 @@ date,tournament,surface,ace_pct,surface_speed
 2010-06-13,Eastbourne,Grass,0.094,1.14
 2010-06-21,Wimbledon,Grass,0.131,1.36
 2010-07-05,Newport,Grass,0.14400000000000002,1.42
-2010-07-12,Bastad,Clay,0.065,0.82
 2010-07-12,Stuttgart,Clay,0.077,0.94
+2010-07-12,Bastad,Clay,0.065,0.82
 2010-07-19,Atlanta,Hard,0.151,1.1
 2010-07-19,Hamburg,Clay,0.069,0.93
 2010-07-25,Gstaad,Clay,0.087,0.8
@@ -66,27 +66,27 @@ date,tournament,surface,ace_pct,surface_speed
 2010-11-07,Paris Masters,Hard,0.145,1.44
 2010-11-21,Tour Finals,Hard,0.124,1.15
 2011-01-02,Brisbane,Hard,0.132,1.21
-2011-01-03,Chennai,Hard,0.08,0.91
 2011-01-03,Doha,Hard,0.126,1.54
+2011-01-03,Chennai,Hard,0.08,0.91
 2011-01-10,Auckland,Hard,0.081,1.07
 2011-01-10,Sydney,Hard,0.098,1.11
 2011-01-17,Australian Open,Hard,0.09699999999999999,1.14
-2011-01-31,Santiago,Clay,0.049,1.04
 2011-01-31,Johannesburg,Hard,0.153,1.25
 2011-01-31,Zagreb,Hard,0.122,1.24
-2011-02-07,San Jose,Hard,0.154,1.32
+2011-01-31,Santiago,Clay,0.049,1.04
 2011-02-07,Costa Do Sauipe,Clay,0.062,0.98
 2011-02-07,Rotterdam,Hard,0.14,1.26
+2011-02-07,San Jose,Hard,0.154,1.32
+2011-02-14,Memphis,Hard,0.157,1.31
 2011-02-14,Buenos Aires,Clay,0.045,0.84
 2011-02-14,Marseille,Hard,0.135,1.35
-2011-02-14,Memphis,Hard,0.157,1.31
+2011-02-21,Acapulco,Clay,0.057,0.78
 2011-02-21,Delray Beach,Hard,0.10800000000000001,1.17
 2011-02-21,Dubai,Hard,0.096,1.09
-2011-02-21,Acapulco,Clay,0.057,0.78
 2011-03-10,Indian Wells Masters,Hard,0.08800000000000001,0.94
 2011-03-23,Miami Masters,Hard,0.091,1.04
-2011-04-04,Houston,Clay,0.063,0.66
 2011-04-04,Casablanca,Clay,0.047,0.77
+2011-04-04,Houston,Clay,0.063,0.66
 2011-04-10,Monte Carlo Masters,Clay,0.051,0.61
 2011-04-18,Barcelona,Clay,0.049,0.63
 2011-04-24,Munich,Clay,0.065,0.86
@@ -94,85 +94,85 @@ date,tournament,surface,ace_pct,surface_speed
 2011-04-25,Estoril,Clay,0.055999999999999994,0.67
 2011-05-01,Madrid Masters,Clay,0.081,0.87
 2011-05-08,Rome Masters,Clay,0.059000000000000004,0.67
-2011-05-15,Nice,Clay,0.07,0.78
 2011-05-15,Dusseldorf,Clay,0.039,0.47
+2011-05-15,Nice,Clay,0.07,0.78
 2011-05-22,Roland Garros,Clay,0.068,0.83
-2011-06-06,Queen's Club,Grass,0.124,1.26
 2011-06-06,Halle,Grass,0.125,1.44
-2011-06-12,Eastbourne,Grass,0.078,1.05
+2011-06-06,Queen's Club,Grass,0.124,1.26
 2011-06-12,s Hertogenbosch,Grass,0.083,1.07
+2011-06-12,Eastbourne,Grass,0.078,1.05
 2011-06-20,Wimbledon,Grass,0.11800000000000001,1.26
 2011-07-04,Newport,Grass,0.13699999999999998,1.07
-2011-07-11,Stuttgart,Clay,0.067,1.0
 2011-07-11,Bastad,Clay,0.066,0.63
+2011-07-11,Stuttgart,Clay,0.067,1.0
 2011-07-18,Hamburg,Clay,0.063,0.81
 2011-07-18,Atlanta,Hard,0.113,1.0
-2011-07-25,Umag,Clay,0.05,0.61
 2011-07-25,Los Angeles,Hard,0.086,0.78
 2011-07-25,Gstaad,Clay,0.084,1.01
-2011-07-31,Washington,Hard,0.099,1.05
+2011-07-25,Umag,Clay,0.05,0.61
 2011-07-31,Kitzbuhel,Clay,0.069,0.93
+2011-07-31,Washington,Hard,0.099,1.05
 2011-08-08,Canada Masters,Hard,0.106,1.01
 2011-08-14,Cincinnati Masters,Hard,0.114,1.11
 2011-08-21,Winston-Salem,Hard,0.09699999999999999,1.19
 2011-08-29,US Open,Hard,0.085,0.95
-2011-09-19,Metz,Hard,0.11800000000000001,1.06
 2011-09-19,Bucharest,Clay,0.04,0.73
-2011-09-26,Kuala Lumpur,Hard,0.075,1.04
+2011-09-19,Metz,Hard,0.11800000000000001,1.06
 2011-09-26,Bangkok,Hard,0.094,1.28
-2011-10-03,Beijing,Hard,0.113,0.99
+2011-09-26,Kuala Lumpur,Hard,0.075,1.04
 2011-10-03,Tokyo,Hard,0.08900000000000001,1.1
+2011-10-03,Beijing,Hard,0.113,0.99
 2011-10-09,Shanghai Masters,Hard,0.094,1.07
 2011-10-17,Moscow,Hard,0.11,1.19
 2011-10-17,Stockholm,Hard,0.09300000000000001,0.98
 2011-10-24,St. Petersburg,Hard,0.068,0.75
 2011-10-24,Vienna,Hard,0.141,1.24
-2011-10-31,Basel,Hard,0.09,1.15
 2011-10-31,Valencia,Hard,0.081,1.13
+2011-10-31,Basel,Hard,0.09,1.15
 2011-11-07,Paris Masters,Hard,0.102,1.0
 2011-11-20,Tour Finals,Hard,0.09300000000000001,1.0
 2012-01-01,Brisbane,Hard,0.107,1.2
 2012-01-02,Doha,Hard,0.076,0.96
 2012-01-02,Chennai,Hard,0.11699999999999999,1.26
-2012-01-09,Sydney,Hard,0.096,1.05
 2012-01-09,Auckland,Hard,0.08,1.01
+2012-01-09,Sydney,Hard,0.096,1.05
 2012-01-16,Australian Open,Hard,0.081,0.89
 2012-01-30,Zagreb,Hard,0.121,1.3
 2012-01-30,Santiago,Clay,0.034,0.65
 2012-01-30,Montpellier,Hard,0.155,1.56
-2012-02-13,Rotterdam,Hard,0.085,0.84
-2012-02-13,San Jose,Hard,0.125,1.08
 2012-02-13,Sao Paulo,Clay,0.083,1.31
+2012-02-13,San Jose,Hard,0.125,1.08
+2012-02-13,Rotterdam,Hard,0.085,0.84
+2012-02-20,Marseille,Hard,0.149,1.57
 2012-02-20,Memphis,Hard,0.133,1.02
 2012-02-20,Buenos Aires,Clay,0.046,0.74
-2012-02-20,Marseille,Hard,0.149,1.57
 2012-02-27,Acapulco,Clay,0.06,1.0
-2012-02-27,Delray Beach,Hard,0.109,1.04
 2012-02-27,Dubai,Hard,0.128,1.17
+2012-02-27,Delray Beach,Hard,0.109,1.04
 2012-03-08,Indian Wells Masters,Hard,0.085,0.89
 2012-03-21,Miami Masters,Hard,0.08199999999999999,0.91
 2012-04-09,Houston,Clay,0.077,0.71
 2012-04-09,Casablanca,Clay,0.040999999999999995,0.73
 2012-04-15,Monte Carlo Masters,Clay,0.057999999999999996,0.69
-2012-04-23,Barcelona,Clay,0.069,0.88
 2012-04-23,Bucharest,Clay,0.055,0.59
+2012-04-23,Barcelona,Clay,0.069,0.88
+2012-04-30,Estoril,Clay,0.066,0.75
 2012-04-30,Belgrade,Clay,0.07,0.81
 2012-04-30,Munich,Clay,0.09,0.95
-2012-04-30,Estoril,Clay,0.066,0.75
 2012-05-06,Madrid Masters,Clay,0.106,1.19
 2012-05-13,Rome Masters,Clay,0.052000000000000005,0.62
 2012-05-20,Nice,Clay,0.07,0.77
 2012-05-21,Dusseldorf,Clay,0.07,0.67
 2012-05-27,Roland Garros,Clay,0.071,0.8
-2012-06-11,Queen's Club,Grass,0.113,1.11
 2012-06-11,Halle,Grass,0.106,1.18
+2012-06-11,Queen's Club,Grass,0.113,1.11
 2012-06-17,s Hertogenbosch,Grass,0.09300000000000001,1.15
 2012-06-18,Eastbourne,Grass,0.071,0.96
 2012-06-25,Wimbledon,Grass,0.115,1.27
-2012-07-09,Newport,Grass,0.126,1.33
-2012-07-09,Stuttgart,Clay,0.073,0.94
-2012-07-09,Bastad,Clay,0.051,0.64
 2012-07-09,Umag,Clay,0.047,0.6
+2012-07-09,Bastad,Clay,0.051,0.64
+2012-07-09,Stuttgart,Clay,0.073,0.94
+2012-07-09,Newport,Grass,0.126,1.33
 2012-07-16,Atlanta,Hard,0.155,1.35
 2012-07-16,Gstaad,Clay,0.09,0.83
 2012-07-16,Hamburg,Clay,0.054000000000000006,0.71
@@ -184,8 +184,8 @@ date,tournament,surface,ace_pct,surface_speed
 2012-08-12,Cincinnati Masters,Hard,0.111,1.18
 2012-08-19,Winston-Salem,Hard,0.12300000000000001,1.2
 2012-08-27,US Open,Hard,0.10800000000000001,1.07
-2012-09-17,St. Petersburg,Hard,0.042,0.78
 2012-09-17,Metz,Hard,0.124,1.12
+2012-09-17,St. Petersburg,Hard,0.042,0.78
 2012-09-24,Bangkok,Hard,0.07400000000000001,0.81
 2012-09-24,Kuala Lumpur,Hard,0.05,0.75
 2012-10-01,Beijing,Hard,0.102,1.09
@@ -201,48 +201,48 @@ date,tournament,surface,ace_pct,surface_speed
 2012-12-30,Brisbane,Hard,0.11,1.41
 2012-12-31,Chennai,Hard,0.087,1.16
 2012-12-31,Doha,Hard,0.07400000000000001,0.81
-2013-01-07,Auckland,Hard,0.113,1.08
 2013-01-07,Sydney,Hard,0.114,1.18
+2013-01-07,Auckland,Hard,0.113,1.08
 2013-01-14,Australian Open,Hard,0.10099999999999999,1.1
 2013-02-04,Santiago,Clay,0.068,1.12
-2013-02-04,Montpellier,Hard,0.083,1.09
 2013-02-04,Zagreb,Hard,0.09699999999999999,1.09
-2013-02-11,Rotterdam,Hard,0.11,1.19
+2013-02-04,Montpellier,Hard,0.083,1.09
 2013-02-11,Sao Paulo,Clay,0.09699999999999999,1.44
 2013-02-11,San Jose,Hard,0.136,1.02
-2013-02-18,Marseille,Hard,0.135,1.36
+2013-02-11,Rotterdam,Hard,0.11,1.19
 2013-02-18,Memphis,Hard,0.12300000000000001,1.05
 2013-02-18,Buenos Aires,Clay,0.052000000000000005,0.62
-2013-02-25,Acapulco,Clay,0.062,0.75
+2013-02-18,Marseille,Hard,0.135,1.36
 2013-02-25,Dubai,Hard,0.091,0.96
 2013-02-25,Delray Beach,Hard,0.105,0.86
+2013-02-25,Acapulco,Clay,0.062,0.75
 2013-03-07,Indian Wells Masters,Hard,0.08,0.82
 2013-03-20,Miami Masters,Hard,0.08800000000000001,0.91
-2013-04-08,Casablanca,Clay,0.059000000000000004,0.62
 2013-04-08,Houston,Clay,0.098,0.65
+2013-04-08,Casablanca,Clay,0.059000000000000004,0.62
 2013-04-14,Monte Carlo Masters,Clay,0.059000000000000004,0.64
-2013-04-22,Barcelona,Clay,0.068,0.72
 2013-04-22,Bucharest,Clay,0.052000000000000005,0.69
+2013-04-22,Barcelona,Clay,0.068,0.72
 2013-04-29,Estoril,Clay,0.046,0.66
 2013-04-29,Munich,Clay,0.098,0.99
 2013-05-05,Madrid Masters,Clay,0.073,0.87
 2013-05-12,Rome Masters,Clay,0.077,0.81
-2013-05-19,Dusseldorf,Clay,0.071,0.82
 2013-05-19,Nice,Clay,0.051,0.6
+2013-05-19,Dusseldorf,Clay,0.071,0.82
 2013-05-27,Roland Garros,Clay,0.068,0.76
 2013-06-10,Queen's Club,Grass,0.133,1.19
 2013-06-10,Halle,Grass,0.10400000000000001,1.26
 2013-06-16,s Hertogenbosch,Grass,0.08800000000000001,1.09
 2013-06-17,Eastbourne,Grass,0.10800000000000001,1.11
 2013-06-24,Wimbledon,Grass,0.129,1.29
-2013-07-08,Newport,Grass,0.145,0.92
 2013-07-08,Bastad,Clay,0.052000000000000005,0.61
 2013-07-08,Stuttgart,Clay,0.071,0.92
+2013-07-08,Newport,Grass,0.145,0.92
 2013-07-15,Bogota,Hard,0.081,0.83
 2013-07-15,Hamburg,Clay,0.066,0.76
 2013-07-22,Umag,Clay,0.067,0.88
-2013-07-22,Gstaad,Clay,0.098,1.27
 2013-07-22,Atlanta,Hard,0.174,1.47
+2013-07-22,Gstaad,Clay,0.098,1.27
 2013-07-28,Kitzbuhel,Clay,0.069,0.84
 2013-07-29,Washington,Hard,0.132,1.18
 2013-08-05,Canada Masters,Hard,0.09300000000000001,0.98
@@ -253,34 +253,34 @@ date,tournament,surface,ace_pct,surface_speed
 2013-09-16,St. Petersburg,Hard,0.081,1.07
 2013-09-23,Bangkok,Hard,0.133,1.13
 2013-09-23,Kuala Lumpur,Hard,0.07,0.91
-2013-09-30,Beijing,Hard,0.085,0.93
 2013-09-30,Tokyo,Hard,0.145,1.36
+2013-09-30,Beijing,Hard,0.085,0.93
 2013-10-07,Shanghai Masters,Hard,0.131,1.34
+2013-10-14,Moscow,Hard,0.078,0.88
 2013-10-14,Stockholm,Hard,0.098,0.99
 2013-10-14,Vienna,Hard,0.11900000000000001,1.18
-2013-10-14,Moscow,Hard,0.078,0.88
-2013-10-21,Basel,Hard,0.11800000000000001,1.08
 2013-10-21,Valencia,Hard,0.10099999999999999,1.12
+2013-10-21,Basel,Hard,0.11800000000000001,1.08
 2013-10-28,Paris Masters,Hard,0.122,1.18
 2013-11-04,Tour Finals,Hard,0.096,1.18
 2013-12-29,Brisbane,Hard,0.14400000000000002,1.23
 2013-12-30,Doha,Hard,0.085,0.83
 2013-12-30,Chennai,Hard,0.057,0.65
-2014-01-06,Auckland,Hard,0.099,1.01
 2014-01-06,Sydney,Hard,0.115,1.27
+2014-01-06,Auckland,Hard,0.099,1.01
 2014-01-13,Australian Open,Hard,0.105,1.12
+2014-02-03,Vina del Mar,Clay,0.077,1.04
 2014-02-03,Zagreb,Hard,0.10099999999999999,1.07
 2014-02-03,Montpellier,Hard,0.124,1.29
-2014-02-03,Vina del Mar,Clay,0.077,1.04
+2014-02-10,Buenos Aires,Clay,0.042,0.64
 2014-02-10,Memphis,Hard,0.11199999999999999,0.94
 2014-02-10,Rotterdam,Hard,0.12,1.08
-2014-02-10,Buenos Aires,Clay,0.042,0.64
-2014-02-17,Delray Beach,Hard,0.128,0.93
 2014-02-17,Rio de Janeiro,Clay,0.055999999999999994,0.77
+2014-02-17,Delray Beach,Hard,0.128,0.93
 2014-02-17,Marseille,Hard,0.146,1.26
-2014-02-24,Dubai,Hard,0.085,0.81
-2014-02-24,Sao Paulo,Clay,0.099,1.2
 2014-02-24,Acapulco,Hard,0.113,0.98
+2014-02-24,Sao Paulo,Clay,0.099,1.2
+2014-02-24,Dubai,Hard,0.085,0.81
 2014-03-06,Indian Wells Masters,Hard,0.092,0.9
 2014-03-19,Miami Masters,Hard,0.102,1.04
 2014-04-07,Casablanca,Clay,0.05,0.68
@@ -292,22 +292,22 @@ date,tournament,surface,ace_pct,surface_speed
 2014-04-28,Munich,Clay,0.07400000000000001,0.87
 2014-05-04,Madrid Masters,Clay,0.08800000000000001,0.94
 2014-05-11,Rome Masters,Clay,0.07400000000000001,0.74
-2014-05-18,Dusseldorf,Clay,0.079,0.78
 2014-05-18,Nice,Clay,0.07200000000000001,0.74
+2014-05-18,Dusseldorf,Clay,0.079,0.78
 2014-05-26,Roland Garros,Clay,0.071,0.71
 2014-06-09,Queen's Club,Grass,0.142,1.26
 2014-06-09,Halle,Grass,0.134,1.31
 2014-06-15,s Hertogenbosch,Grass,0.09300000000000001,1.05
 2014-06-16,Eastbourne,Grass,0.129,1.29
 2014-06-23,Wimbledon,Grass,0.132,1.35
-2014-07-07,Bastad,Clay,0.066,1.07
 2014-07-07,Stuttgart,Clay,0.078,0.89
+2014-07-07,Bastad,Clay,0.066,1.07
 2014-07-07,Newport,Grass,0.11,1.23
 2014-07-14,Bogota,Hard,0.152,1.37
 2014-07-14,Hamburg,Clay,0.059000000000000004,0.79
 2014-07-21,Atlanta,Hard,0.121,0.9
-2014-07-21,Umag,Clay,0.07200000000000001,0.76
 2014-07-21,Gstaad,Clay,0.057,0.77
+2014-07-21,Umag,Clay,0.07200000000000001,0.76
 2014-07-27,Kitzbuhel,Clay,0.069,0.81
 2014-07-28,Washington,Hard,0.15,1.25
 2014-08-04,Canada Masters,Hard,0.11599999999999999,1.0
@@ -317,8 +317,8 @@ date,tournament,surface,ace_pct,surface_speed
 2014-09-15,Metz,Hard,0.125,1.37
 2014-09-22,Kuala Lumpur,Hard,0.09300000000000001,1.04
 2014-09-22,Shenzhen,Hard,0.109,1.49
-2014-09-29,Tokyo,Hard,0.115,1.06
 2014-09-29,Beijing,Hard,0.087,0.81
+2014-09-29,Tokyo,Hard,0.115,1.06
 2014-10-05,Shanghai Masters,Hard,0.13,1.34
 2014-10-13,Moscow,Hard,0.09300000000000001,1.12
 2014-10-13,Stockholm,Hard,0.11,1.15
@@ -333,46 +333,46 @@ date,tournament,surface,ace_pct,surface_speed
 2015-01-11,Sydney,Hard,0.152,1.32
 2015-01-12,Auckland,Hard,0.114,1.21
 2015-01-19,Australian Open,Hard,0.125,1.19
-2015-02-02,Montpellier,Hard,0.114,1.29
 2015-02-02,Zagreb,Hard,0.10099999999999999,1.08
 2015-02-02,Quito,Clay,0.08900000000000001,0.89
-2015-02-09,Memphis,Hard,0.17300000000000001,1.19
+2015-02-02,Montpellier,Hard,0.114,1.29
 2015-02-09,Sao Paulo,Clay,0.08800000000000001,1.03
+2015-02-09,Memphis,Hard,0.17300000000000001,1.19
 2015-02-09,Rotterdam,Hard,0.12,1.19
-2015-02-16,Delray Beach,Hard,0.129,0.88
 2015-02-16,Marseille,Hard,0.113,1.28
 2015-02-16,Rio de Janeiro,Clay,0.053,0.8
-2015-02-23,Buenos Aires,Clay,0.051,0.78
-2015-02-23,Dubai,Hard,0.09699999999999999,0.93
+2015-02-16,Delray Beach,Hard,0.129,0.88
 2015-02-23,Acapulco,Hard,0.086,0.67
+2015-02-23,Dubai,Hard,0.09699999999999999,0.93
+2015-02-23,Buenos Aires,Clay,0.051,0.78
 2015-03-12,Indian Wells Masters,Hard,0.105,0.99
 2015-03-25,Miami Masters,Hard,0.084,0.86
-2015-04-06,Casablanca,Clay,0.077,0.83
 2015-04-06,Houston,Clay,0.10300000000000001,0.76
+2015-04-06,Casablanca,Clay,0.077,0.83
 2015-04-12,Monte Carlo Masters,Clay,0.062,0.63
-2015-04-20,Bucharest,Clay,0.061,0.59
 2015-04-20,Barcelona,Clay,0.052000000000000005,0.7
-2015-04-27,Estoril,Clay,0.071,0.63
+2015-04-20,Bucharest,Clay,0.061,0.59
 2015-04-27,Munich,Clay,0.08800000000000001,1.01
 2015-04-27,Istanbul,Clay,0.066,0.83
+2015-04-27,Estoril,Clay,0.071,0.63
 2015-05-03,Madrid Masters,Clay,0.092,0.85
 2015-05-10,Rome Masters,Clay,0.09300000000000001,0.94
-2015-05-17,Geneva,Clay,0.057999999999999996,0.78
 2015-05-17,Nice,Clay,0.07400000000000001,0.64
+2015-05-17,Geneva,Clay,0.057999999999999996,0.78
 2015-05-24,Roland Garros,Clay,0.07,0.72
-2015-06-08,s Hertogenbosch,Grass,0.106,1.06
 2015-06-08,Stuttgart,Grass,0.14,1.32
-2015-06-15,Queen's Club,Grass,0.165,1.27
+2015-06-08,s Hertogenbosch,Grass,0.106,1.06
 2015-06-15,Halle,Grass,0.124,1.13
+2015-06-15,Queen's Club,Grass,0.165,1.27
 2015-06-21,Nottingham,Grass,0.115,1.21
 2015-06-29,Wimbledon,Grass,0.13,1.2
 2015-07-13,Newport,Grass,0.228,1.26
-2015-07-20,Bastad,Clay,0.063,0.64
-2015-07-20,Umag,Clay,0.05,0.67
 2015-07-20,Bogota,Hard,0.171,1.18
+2015-07-20,Umag,Clay,0.05,0.67
+2015-07-20,Bastad,Clay,0.063,0.64
+2015-07-27,Hamburg,Clay,0.054000000000000006,0.62
 2015-07-27,Gstaad,Clay,0.075,0.84
 2015-07-27,Atlanta,Hard,0.177,1.35
-2015-07-27,Hamburg,Clay,0.054000000000000006,0.62
 2015-08-03,Kitzbuhel,Clay,0.08199999999999999,0.85
 2015-08-03,Washington,Hard,0.157,1.12
 2015-08-10,Canada Masters,Hard,0.122,1.08
@@ -389,42 +389,42 @@ date,tournament,surface,ace_pct,surface_speed
 2015-10-19,Stockholm,Hard,0.11800000000000001,1.13
 2015-10-19,Moscow,Hard,0.08900000000000001,1.08
 2015-10-19,Vienna,Hard,0.157,1.39
-2015-10-26,Valencia,Hard,0.10300000000000001,0.95
 2015-10-26,Basel,Hard,0.122,1.02
+2015-10-26,Valencia,Hard,0.10300000000000001,0.95
 2015-11-02,Paris Masters,Hard,0.105,1.03
 2015-11-15,Tour Finals,Hard,0.08,0.96
-2016-01-04,Chennai,Hard,0.10300000000000001,1.08
 2016-01-04,Doha,Hard,0.092,1.17
 2016-01-04,Brisbane,Hard,0.12,1.08
-2016-01-11,Auckland,Hard,0.129,1.16
+2016-01-04,Chennai,Hard,0.10300000000000001,1.08
 2016-01-11,Sydney,Hard,0.106,1.17
+2016-01-11,Auckland,Hard,0.129,1.16
 2016-01-18,Australian Open,Hard,0.12,1.26
 2016-02-01,Sofia,Hard,0.081,0.87
-2016-02-01,Montpellier,Hard,0.099,1.14
 2016-02-01,Quito,Clay,0.124,1.54
-2016-02-08,Rotterdam,Hard,0.098,1.07
-2016-02-08,Buenos Aires,Clay,0.07,0.87
+2016-02-01,Montpellier,Hard,0.099,1.14
 2016-02-08,Memphis,Hard,0.09,0.93
+2016-02-08,Buenos Aires,Clay,0.07,0.87
+2016-02-08,Rotterdam,Hard,0.098,1.07
+2016-02-15,Delray Beach,Hard,0.092,0.93
 2016-02-15,Rio de Janeiro,Clay,0.07400000000000001,0.8
 2016-02-15,Marseille,Hard,0.168,1.41
-2016-02-15,Delray Beach,Hard,0.092,0.93
-2016-02-22,Dubai,Hard,0.099,0.88
 2016-02-22,Sao Paulo,Clay,0.066,0.83
+2016-02-22,Dubai,Hard,0.099,0.88
 2016-02-22,Acapulco,Hard,0.105,0.83
 2016-03-07,Indian Wells Masters,Hard,0.08199999999999999,0.81
 2016-03-21,Miami Masters,Hard,0.1,1.01
-2016-04-04,Marrakech,Clay,0.087,0.93
 2016-04-04,Houston,Clay,0.106,0.86
+2016-04-04,Marrakech,Clay,0.087,0.93
 2016-04-11,Monte Carlo Masters,Clay,0.06,0.7
 2016-04-18,Bucharest,Clay,0.067,0.76
 2016-04-18,Barcelona,Clay,0.055999999999999994,0.65
-2016-04-25,Istanbul,Clay,0.057,0.67
 2016-04-25,Estoril,Clay,0.07400000000000001,0.76
 2016-04-25,Munich,Clay,0.064,0.71
+2016-04-25,Istanbul,Clay,0.057,0.67
 2016-05-02,Madrid Masters,Clay,0.086,0.87
 2016-05-09,Rome Masters,Clay,0.07200000000000001,0.77
-2016-05-16,Nice,Clay,0.063,0.78
 2016-05-16,Geneva,Clay,0.083,0.78
+2016-05-16,Nice,Clay,0.063,0.78
 2016-05-23,Roland Garros,Clay,0.075,0.77
 2016-06-06,Stuttgart,Grass,0.135,1.39
 2016-06-06,s Hertogenbosch,Grass,0.139,1.08
@@ -433,12 +433,12 @@ date,tournament,surface,ace_pct,surface_speed
 2016-06-20,Nottingham,Grass,0.11900000000000001,1.15
 2016-06-27,Wimbledon,Grass,0.11800000000000001,1.05
 2016-07-11,Hamburg,Clay,0.055999999999999994,0.59
-2016-07-11,Newport,Grass,0.109,1.1
 2016-07-11,Bastad,Clay,0.054000000000000006,0.66
+2016-07-11,Newport,Grass,0.109,1.1
 2016-07-18,Umag,Clay,0.054000000000000006,0.75
+2016-07-18,Washington,Hard,0.193,1.26
 2016-07-18,Gstaad,Clay,0.113,1.05
 2016-07-18,Kitzbuhel,Clay,0.067,0.98
-2016-07-18,Washington,Hard,0.193,1.26
 2016-07-25,Canada Masters,Hard,0.126,1.16
 2016-08-01,Atlanta,Hard,0.172,1.06
 2016-08-08,Rio Olympics,Hard,0.071,0.94
@@ -446,15 +446,15 @@ date,tournament,surface,ace_pct,surface_speed
 2016-08-15,Cincinnati Masters,Hard,0.14,1.2
 2016-08-22,Winston-Salem,Hard,0.105,1.06
 2016-08-29,US Open,Hard,0.09,0.9
-2016-09-19,Metz,Hard,0.126,1.38
 2016-09-19,St. Petersburg,Hard,0.085,1.0
-2016-09-26,Shenzhen,Hard,0.129,1.5
+2016-09-19,Metz,Hard,0.126,1.38
 2016-09-26,Chengdu,Hard,0.115,1.27
+2016-09-26,Shenzhen,Hard,0.129,1.5
 2016-10-03,Beijing,Hard,0.096,1.03
 2016-10-03,Tokyo,Hard,0.115,1.13
 2016-10-10,Shanghai Masters,Hard,0.107,1.11
-2016-10-17,Stockholm,Hard,0.086,0.77
 2016-10-17,Moscow,Hard,0.07,0.98
+2016-10-17,Stockholm,Hard,0.086,0.77
 2016-10-17,Antwerp,Hard,0.083,0.96
 2016-10-24,Basel,Hard,0.106,1.14
 2016-10-24,Vienna,Hard,0.128,1.02
@@ -466,15 +466,15 @@ date,tournament,surface,ace_pct,surface_speed
 2017-01-09,Sydney,Hard,0.10300000000000001,1.1
 2017-01-09,Auckland,Hard,0.125,1.11
 2017-01-16,Australian Open,Hard,0.111,1.15
-2017-02-06,Sofia,Hard,0.107,1.33
-2017-02-06,Quito,Clay,0.139,1.58
 2017-02-06,Montpellier,Hard,0.11900000000000001,1.12
-2017-02-13,Rotterdam,Hard,0.111,1.09
+2017-02-06,Quito,Clay,0.139,1.58
+2017-02-06,Sofia,Hard,0.107,1.33
 2017-02-13,Memphis,Hard,0.08800000000000001,1.04
 2017-02-13,Buenos Aires,Clay,0.066,0.88
-2017-02-20,Marseille,Hard,0.14,1.34
-2017-02-20,Delray Beach,Hard,0.115,0.97
+2017-02-13,Rotterdam,Hard,0.111,1.09
 2017-02-20,Rio de Janeiro,Clay,0.053,0.68
+2017-02-20,Delray Beach,Hard,0.115,0.97
+2017-02-20,Marseille,Hard,0.14,1.34
 2017-02-27,Acapulco,Hard,0.11800000000000001,0.92
 2017-02-27,Sao Paulo,Clay,0.061,0.92
 2017-02-27,Dubai,Hard,0.084,0.91
@@ -493,59 +493,59 @@ date,tournament,surface,ace_pct,surface_speed
 2017-05-22,Geneva,Clay,0.08199999999999999,0.85
 2017-05-22,Lyon,Clay,0.085,0.86
 2017-05-29,Roland Garros,Clay,0.077,0.76
-2017-06-12,Stuttgart,Grass,0.166,1.27
 2017-06-12,s Hertogenbosch,Grass,0.145,0.89
-2017-06-19,Halle,Grass,0.113,1.19
+2017-06-12,Stuttgart,Grass,0.166,1.27
 2017-06-19,Queen's Club,Grass,0.18,1.2
+2017-06-19,Halle,Grass,0.113,1.19
 2017-06-26,Eastbourne,Grass,0.107,1.0
 2017-06-26,Antalya,Grass,0.11599999999999999,1.74
 2017-07-03,Wimbledon,Grass,0.113,1.03
-2017-07-17,Newport,Grass,0.145,0.76
 2017-07-17,Umag,Clay,0.045,0.62
+2017-07-17,Newport,Grass,0.145,0.76
 2017-07-17,Bastad,Clay,0.077,0.88
 2017-07-24,Gstaad,Clay,0.076,0.92
 2017-07-24,Hamburg,Clay,0.07,1.02
 2017-07-24,Atlanta,Hard,0.152,0.86
-2017-07-31,Los Cabos,Hard,0.09699999999999999,1.28
-2017-07-31,Washington,Hard,0.128,1.12
 2017-07-31,Kitzbuhel,Clay,0.09,1.02
+2017-07-31,Washington,Hard,0.128,1.12
+2017-07-31,Los Cabos,Hard,0.09699999999999999,1.28
 2017-08-07,Canada Masters,Hard,0.105,0.98
 2017-08-14,Cincinnati Masters,Hard,0.147,1.23
 2017-08-21,Winston-Salem,Hard,0.096,1.08
 2017-08-28,US Open,Hard,0.10300000000000001,0.97
-2017-09-18,Metz,Hard,0.13,1.34
 2017-09-18,St. Petersburg,Hard,0.07200000000000001,0.8
+2017-09-18,Metz,Hard,0.13,1.34
 2017-09-25,Chengdu,Hard,0.10800000000000001,1.17
 2017-09-25,Shenzhen,Hard,0.139,1.25
 2017-10-02,Tokyo,Hard,0.125,1.18
 2017-10-02,Beijing,Hard,0.10400000000000001,0.92
 2017-10-09,Shanghai Masters,Hard,0.152,1.55
+2017-10-16,Moscow,Hard,0.105,1.45
 2017-10-16,Stockholm,Hard,0.11800000000000001,1.06
 2017-10-16,Antwerp,Hard,0.10300000000000001,1.07
-2017-10-16,Moscow,Hard,0.105,1.45
 2017-10-23,Basel,Hard,0.087,0.77
 2017-10-23,Vienna,Hard,0.10400000000000001,0.98
 2017-10-30,Paris Masters,Hard,0.11,1.04
 2017-11-06,NextGen Finals,Hard,0.08199999999999999,0.84
 2017-11-13,Tour Finals,Hard,0.076,0.75
-2018-01-01,Doha,Hard,0.09699999999999999,0.88
 2018-01-01,Pune,Hard,0.094,0.99
+2018-01-01,Doha,Hard,0.09699999999999999,0.88
 2018-01-01,Brisbane,Hard,0.14,1.33
-2018-01-08,Sydney,Hard,0.11599999999999999,1.25
 2018-01-08,Auckland,Hard,0.11599999999999999,1.14
+2018-01-08,Sydney,Hard,0.11599999999999999,1.25
 2018-01-15,Australian Open,Hard,0.11699999999999999,1.16
 2018-02-05,Montpellier,Hard,0.109,1.14
-2018-02-05,Quito,Clay,0.128,1.03
 2018-02-05,Sofia,Hard,0.131,1.15
-2018-02-12,New York,Hard,0.157,1.08
+2018-02-05,Quito,Clay,0.128,1.03
 2018-02-12,Buenos Aires,Clay,0.063,0.67
+2018-02-12,New York,Hard,0.157,1.08
 2018-02-12,Rotterdam,Hard,0.121,1.14
+2018-02-19,Marseille,Hard,0.125,1.23
 2018-02-19,Rio de Janeiro,Clay,0.065,0.73
 2018-02-19,Delray Beach,Hard,0.142,0.98
-2018-02-19,Marseille,Hard,0.125,1.23
-2018-02-26,Sao Paulo,Clay,0.079,0.89
 2018-02-26,Acapulco,Hard,0.135,1.05
 2018-02-26,Dubai,Hard,0.098,1.06
+2018-02-26,Sao Paulo,Clay,0.079,0.89
 2018-03-05,Indian Wells Masters,Hard,0.10099999999999999,0.86
 2018-03-19,Miami Masters,Hard,0.095,0.79
 2018-04-09,Marrakech,Clay,0.057,0.63
@@ -554,90 +554,90 @@ date,tournament,surface,ace_pct,surface_speed
 2018-04-23,Budapest,Clay,0.057999999999999996,0.64
 2018-04-23,Barcelona,Clay,0.053,0.56
 2018-04-30,Estoril,Clay,0.051,0.53
-2018-04-30,Munich,Clay,0.07200000000000001,0.73
 2018-04-30,Istanbul,Clay,0.042,0.6
+2018-04-30,Munich,Clay,0.07200000000000001,0.73
 2018-05-07,Madrid Masters,Clay,0.08800000000000001,0.84
 2018-05-14,Rome Masters,Clay,0.07,0.71
-2018-05-21,Geneva,Clay,0.111,1.03
 2018-05-21,Lyon,Clay,0.08,0.92
+2018-05-21,Geneva,Clay,0.111,1.03
 2018-05-28,Roland Garros,Clay,0.078,0.74
 2018-06-11,s Hertogenbosch,Grass,0.11,1.02
 2018-06-11,Stuttgart,Grass,0.17,1.42
-2018-06-18,Halle,Grass,0.11599999999999999,1.16
 2018-06-18,Queen's Club,Grass,0.147,1.28
+2018-06-18,Halle,Grass,0.11599999999999999,1.16
 2018-06-25,Antalya,Grass,0.099,1.28
 2018-06-25,Eastbourne,Grass,0.08199999999999999,0.94
 2018-07-02,Wimbledon,Grass,0.129,1.15
+2018-07-16,Bastad,Clay,0.055999999999999994,0.73
 2018-07-16,Umag,Clay,0.071,0.79
 2018-07-16,Newport,Grass,0.133,0.84
-2018-07-16,Bastad,Clay,0.055999999999999994,0.73
-2018-07-23,Hamburg,Clay,0.06,0.68
 2018-07-23,Gstaad,Clay,0.095,1.2
+2018-07-23,Hamburg,Clay,0.06,0.68
 2018-07-23,Atlanta,Hard,0.14400000000000002,1.05
+2018-07-30,Washington,Hard,0.10400000000000001,0.98
 2018-07-30,Kitzbuhel,Clay,0.071,0.84
 2018-07-30,Los Cabos,Hard,0.069,0.84
-2018-07-30,Washington,Hard,0.10400000000000001,0.98
 2018-08-06,Canada Masters,Hard,0.127,1.2
 2018-08-13,Cincinnati Masters,Hard,0.114,1.0
 2018-08-20,Winston-Salem,Hard,0.106,1.03
 2018-08-27,US Open,Hard,0.10800000000000001,1.0
-2018-09-17,Metz,Hard,0.106,1.53
 2018-09-17,St. Petersburg,Hard,0.1,1.12
-2018-09-24,Shenzhen,Hard,0.083,1.07
+2018-09-17,Metz,Hard,0.106,1.53
 2018-09-24,Chengdu,Hard,0.131,1.08
+2018-09-24,Shenzhen,Hard,0.083,1.07
 2018-10-01,Tokyo,Hard,0.136,1.37
 2018-10-01,Beijing,Hard,0.096,1.04
 2018-10-08,Shanghai Masters,Hard,0.12300000000000001,1.19
+2018-10-15,Antwerp,Hard,0.14800000000000002,1.26
 2018-10-15,Stockholm,Hard,0.09,1.03
 2018-10-15,Moscow,Hard,0.109,1.24
-2018-10-15,Antwerp,Hard,0.14800000000000002,1.26
-2018-10-22,Basel,Hard,0.124,1.05
 2018-10-22,Vienna,Hard,0.11900000000000001,1.18
+2018-10-22,Basel,Hard,0.124,1.05
 2018-10-29,Paris Masters,Hard,0.111,1.08
 2018-11-05,NextGen Finals,Hard,0.121,1.38
 2018-11-12,Tour Finals,Hard,0.152,1.15
+2018-12-31,Doha,Hard,0.1,1.1
 2018-12-31,Brisbane,Hard,0.133,1.26
 2018-12-31,Pune,Hard,0.14800000000000002,1.05
-2018-12-31,Doha,Hard,0.1,1.1
-2019-01-07,Sydney,Hard,0.09300000000000001,0.98
 2019-01-07,Auckland,Hard,0.107,1.06
+2019-01-07,Sydney,Hard,0.09300000000000001,0.98
 2019-01-14,Australian Open,Hard,0.129,1.26
-2019-02-04,Sofia,Hard,0.111,1.21
-2019-02-04,Montpellier,Hard,0.134,1.17
 2019-02-04,Cordoba,Clay,0.069,0.94
-2019-02-11,New York,Hard,0.17,1.15
-2019-02-11,Rotterdam,Hard,0.08,0.9
+2019-02-04,Montpellier,Hard,0.134,1.17
+2019-02-04,Sofia,Hard,0.111,1.21
 2019-02-11,Buenos Aires,Clay,0.039,0.52
-2019-02-18,Rio de Janeiro,Clay,0.059000000000000004,0.62
-2019-02-18,Marseille,Hard,0.11699999999999999,1.29
+2019-02-11,Rotterdam,Hard,0.08,0.9
+2019-02-11,New York,Hard,0.17,1.15
 2019-02-18,Delray Beach,Hard,0.139,1.1
-2019-02-25,Sao Paulo,Clay,0.098,1.22
-2019-02-25,Acapulco,Hard,0.111,0.86
+2019-02-18,Marseille,Hard,0.11699999999999999,1.29
+2019-02-18,Rio de Janeiro,Clay,0.059000000000000004,0.62
 2019-02-25,Dubai,Hard,0.084,1.02
+2019-02-25,Acapulco,Hard,0.111,0.86
+2019-02-25,Sao Paulo,Clay,0.098,1.22
 2019-03-04,Indian Wells Masters,Hard,0.076,0.76
 2019-03-18,Miami Masters,Hard,0.095,0.85
-2019-04-08,Houston,Clay,0.092,0.73
 2019-04-08,Marrakech,Clay,0.083,0.96
+2019-04-08,Houston,Clay,0.092,0.73
 2019-04-15,Monte Carlo Masters,Clay,0.047,0.5
-2019-04-22,Barcelona,Clay,0.055999999999999994,0.59
 2019-04-22,Budapest,Clay,0.07,0.62
-2019-04-29,Estoril,Clay,0.047,0.58
+2019-04-22,Barcelona,Clay,0.055999999999999994,0.59
 2019-04-29,Munich,Clay,0.07,0.67
+2019-04-29,Estoril,Clay,0.047,0.58
 2019-05-06,Madrid Masters,Clay,0.07,0.71
 2019-05-13,Rome Masters,Clay,0.07,0.68
 2019-05-20,Lyon,Clay,0.099,0.9
 2019-05-20,Geneva,Clay,0.066,0.8
 2019-05-27,Roland Garros,Clay,0.07,0.7
-2019-06-10,s Hertogenbosch,Grass,0.10099999999999999,0.97
 2019-06-10,Stuttgart,Grass,0.145,1.23
-2019-06-17,Queen's Club,Grass,0.128,1.07
+2019-06-10,s Hertogenbosch,Grass,0.10099999999999999,0.97
 2019-06-17,Halle,Grass,0.128,1.23
+2019-06-17,Queen's Club,Grass,0.128,1.07
 2019-06-24,Antalya,Grass,0.146,1.48
 2019-06-24,Eastbourne,Grass,0.132,0.99
 2019-07-01,Wimbledon,Grass,0.105,0.99
 2019-07-15,Newport,Grass,0.127,1.26
-2019-07-15,Bastad,Clay,0.069,0.8
 2019-07-15,Umag,Clay,0.055999999999999994,0.65
+2019-07-15,Bastad,Clay,0.069,0.8
 2019-07-22,Hamburg,Clay,0.075,0.74
 2019-07-22,Atlanta,Hard,0.14300000000000002,1.24
 2019-07-22,Gstaad,Clay,0.055999999999999994,0.88
@@ -652,8 +652,8 @@ date,tournament,surface,ace_pct,surface_speed
 2019-09-16,Metz,Hard,0.135,1.2
 2019-09-23,Chengdu,Hard,0.14800000000000002,1.56
 2019-09-23,Zhuhai,Hard,0.069,0.97
-2019-09-30,Beijing,Hard,0.11599999999999999,1.11
 2019-09-30,Tokyo,Hard,0.11599999999999999,1.08
+2019-09-30,Beijing,Hard,0.11599999999999999,1.11
 2019-10-07,Shanghai Masters,Hard,0.13,1.24
 2019-10-14,Stockholm,Hard,0.11199999999999999,1.06
 2019-10-14,Moscow,Hard,0.135,1.11
@@ -668,9 +668,9 @@ date,tournament,surface,ace_pct,surface_speed
 2020-01-13,Auckland,Hard,0.121,1.15
 2020-01-13,Adelaide,Hard,0.11199999999999999,1.27
 2020-01-20,Australian Open,Hard,0.096,1.17
-2020-02-03,Cordoba,Clay,0.068,1.29
 2020-02-03,Pune,Hard,0.184,1.22
 2020-02-03,Montpellier,Hard,0.13,1.46
+2020-02-03,Cordoba,Clay,0.068,1.29
 2020-02-10,Rotterdam,Hard,0.11,1.33
 2020-02-10,New York,Hard,0.061,0.67
 2020-02-10,Buenos Aires,Clay,0.069,0.93
@@ -686,13 +686,13 @@ date,tournament,surface,ace_pct,surface_speed
 2020-09-14,Rome Masters,Clay,0.067,0.76
 2020-09-21,Hamburg,Clay,0.057999999999999996,0.52
 2020-09-28,Roland Garros,Clay,0.049,0.58
-2020-10-12,Sardinia,Clay,0.036000000000000004,0.54
 2020-10-12,St Petersburg,Hard,0.133,1.11
 2020-10-12,Cologne 1,Hard,0.064,0.66
-2020-10-19,Antwerp,Hard,0.081,1.1
+2020-10-12,Sardinia,Clay,0.036000000000000004,0.54
 2020-10-19,Cologne 2,Hard,0.073,0.78
-2020-10-26,Nur-Sultan,Hard,0.081,0.76
+2020-10-19,Antwerp,Hard,0.081,1.1
 2020-10-26,Vienna,Hard,0.125,1.29
+2020-10-26,Nur-Sultan,Hard,0.081,0.76
 2020-11-02,Paris Masters,Hard,0.11699999999999999,1.31
 2020-11-09,Sofia,Hard,0.081,1.14
 2020-11-16,Tour Finals,Hard,0.11199999999999999,1.14
@@ -702,24 +702,24 @@ date,tournament,surface,ace_pct,surface_speed
 2021-02-01,Murray River Open,Hard,0.096,1.21
 2021-02-02,Atp Cup,Hard,0.099,1.11
 2021-02-08,Australian Open,Hard,0.11,1.16
-2021-02-22,Singapore,Hard,0.12300000000000001,0.97
 2021-02-22,Cordoba,Clay,0.045,0.97
+2021-02-22,Singapore,Hard,0.12300000000000001,0.97
 2021-02-22,Montpellier,Hard,0.10099999999999999,1.32
-2021-03-01,Buenos Aires,Clay,0.05,0.77
 2021-03-01,Rotterdam,Hard,0.086,0.94
-2021-03-08,Santiago,Clay,0.079,1.29
+2021-03-01,Buenos Aires,Clay,0.05,0.77
 2021-03-08,Doha,Hard,0.099,1.05
 2021-03-08,Marseille,Hard,0.12,1.23
-2021-03-15,Acapulco,Hard,0.073,0.71
+2021-03-08,Santiago,Clay,0.079,1.29
 2021-03-15,Dubai,Hard,0.11900000000000001,1.33
+2021-03-15,Acapulco,Hard,0.073,0.71
 2021-03-22,Miami Masters,Hard,0.092,0.95
-2021-04-05,Marbella,Clay,0.06,0.76
 2021-04-05,Cagliari,Clay,0.032,0.35
+2021-04-05,Marbella,Clay,0.06,0.76
 2021-04-12,Monte Carlo Masters,Clay,0.047,0.54
-2021-04-19,Barcelona,Clay,0.048,0.63
 2021-04-19,Belgrade,Clay,0.06,0.62
-2021-04-26,Munich,Clay,0.068,0.75
+2021-04-19,Barcelona,Clay,0.048,0.63
 2021-04-26,Estoril,Clay,0.06,0.65
+2021-04-26,Munich,Clay,0.068,0.75
 2021-05-03,Madrid Masters,Clay,0.086,0.82
 2021-05-10,Rome Masters,Clay,0.075,0.72
 2021-05-17,Geneva,Clay,0.07,0.75
@@ -728,53 +728,53 @@ date,tournament,surface,ace_pct,surface_speed
 2021-05-24,Parma,Clay,0.065,0.81
 2021-05-31,Roland Garros,Clay,0.07200000000000001,0.77
 2021-06-07,Stuttgart,Grass,0.14300000000000002,1.19
-2021-06-14,Queen's Club,Grass,0.13,1.23
 2021-06-14,Halle,Grass,0.11900000000000001,1.22
-2021-06-21,Mallorca,Grass,0.126,1.35
+2021-06-14,Queen's Club,Grass,0.13,1.23
 2021-06-21,Eastbourne,Grass,0.08800000000000001,0.98
+2021-06-21,Mallorca,Grass,0.126,1.35
 2021-06-28,Wimbledon,Grass,0.102,1.07
 2021-07-12,Bastad,Clay,0.057,0.7
-2021-07-12,Hamburg,Clay,0.06,0.74
 2021-07-12,Newport,Grass,0.175,1.25
+2021-07-12,Hamburg,Clay,0.06,0.74
 2021-07-19,Gstaad,Clay,0.085,1.12
 2021-07-19,Los Cabos,Hard,0.155,1.17
 2021-07-19,Umag,Clay,0.04,0.6
-2021-07-26,Atlanta,Hard,0.177,1.34
 2021-07-26,Kitzbuhel,Clay,0.065,0.78
+2021-07-26,Atlanta,Hard,0.177,1.34
 2021-08-02,Washington,Hard,0.10099999999999999,1.08
 2021-08-09,Canada Masters,Hard,0.141,1.26
 2021-08-16,Cincinnati Masters,Hard,0.125,1.29
 2021-08-23,Winston-Salem,Hard,0.107,1.33
 2021-08-30,US Open,Hard,0.125,1.27
-2021-09-20,Metz,Hard,0.095,1.19
 2021-09-20,Nur-Sultan,Hard,0.081,0.79
-2021-09-27,Sofia,Hard,0.094,1.14
+2021-09-20,Metz,Hard,0.095,1.19
 2021-09-27,San Diego,Hard,0.084,0.99
+2021-09-27,Sofia,Hard,0.094,1.14
 2021-10-04,Indian Wells Masters,Hard,0.071,0.71
 2021-10-18,Moscow,Hard,0.091,0.94
 2021-10-18,Antwerp,Hard,0.09699999999999999,1.27
-2021-10-25,Vienna,Hard,0.109,1.22
 2021-10-25,St. Petersburg,Hard,0.105,1.0
+2021-10-25,Vienna,Hard,0.109,1.22
 2021-11-01,Paris Masters,Hard,0.10400000000000001,1.14
 2021-11-08,Stockholm,Hard,0.09,1.05
 2021-11-08,NextGen Finals,Hard,0.067,1.56
 2021-11-15,Tour Finals,Hard,0.159,1.51
-2022-01-03,Atp Cup,Hard,0.1,1.1
 2022-01-03,Adelaide 1,Hard,0.10300000000000001,1.09
 2022-01-03,Melbourne,Hard,0.092,1.0
+2022-01-03,Atp Cup,Hard,0.1,1.1
 2022-01-10,Sydney,Hard,0.099,1.13
 2022-01-10,Adelaide 2,Hard,0.129,1.17
 2022-01-17,Australian Open,Hard,0.102,1.15
+2022-01-31,Pune,Hard,0.096,1.27
 2022-01-31,Cordoba,Clay,0.062,1.1
 2022-01-31,Montpellier,Hard,0.11800000000000001,1.36
-2022-01-31,Pune,Hard,0.096,1.27
+2022-02-07,Buenos Aires,Clay,0.038,0.61
 2022-02-07,Rotterdam,Hard,0.09,0.99
 2022-02-07,Dallas,Hard,0.17800000000000002,1.2
-2022-02-07,Buenos Aires,Clay,0.038,0.61
-2022-02-14,Marseille,Hard,0.11199999999999999,1.26
 2022-02-14,Doha,Hard,0.087,1.0
-2022-02-14,Delray Beach,Hard,0.094,0.72
 2022-02-14,Rio de Janeiro,Clay,0.045,0.81
+2022-02-14,Delray Beach,Hard,0.094,0.72
+2022-02-14,Marseille,Hard,0.11199999999999999,1.26
 2022-02-21,Acapulco,Hard,0.095,0.92
 2022-02-21,Dubai,Hard,0.122,1.28
 2022-02-21,Santiago,Clay,0.051,0.74
@@ -785,17 +785,17 @@ date,tournament,surface,ace_pct,surface_speed
 2022-04-11,Monte Carlo Masters,Clay,0.052000000000000005,0.61
 2022-04-18,Belgrade,Clay,0.055,0.56
 2022-04-18,Barcelona,Clay,0.05,0.72
-2022-04-25,Estoril,Clay,0.055999999999999994,0.74
 2022-04-25,Munich,Clay,0.057999999999999996,0.64
+2022-04-25,Estoril,Clay,0.055999999999999994,0.74
 2022-05-02,Madrid Masters,Clay,0.09,0.97
 2022-05-09,Rome Masters,Clay,0.064,0.7
-2022-05-16,Geneva,Clay,0.08900000000000001,0.88
 2022-05-16,Lyon,Clay,0.061,0.81
+2022-05-16,Geneva,Clay,0.08900000000000001,0.88
 2022-05-23,Roland Garros,Clay,0.061,0.68
-2022-06-06,s Hertogenbosch,Grass,0.081,0.9
 2022-06-06,Stuttgart,Grass,0.14400000000000002,1.21
-2022-06-13,Halle,Grass,0.13699999999999998,1.11
+2022-06-06,s Hertogenbosch,Grass,0.081,0.9
 2022-06-13,Queen's Club,Grass,0.11599999999999999,1.2
+2022-06-13,Halle,Grass,0.13699999999999998,1.11
 2022-06-20,Mallorca,Grass,0.10300000000000001,1.32
 2022-06-20,Eastbourne,Grass,0.11599999999999999,1.0
 2022-06-27,Wimbledon,Grass,0.09699999999999999,1.03
@@ -803,8 +803,8 @@ date,tournament,surface,ace_pct,surface_speed
 2022-07-11,Newport,Grass,0.23199999999999998,0.89
 2022-07-18,Hamburg,Clay,0.05,0.7
 2022-07-18,Gstaad,Clay,0.083,1.03
-2022-07-25,Kitzbuhel,Clay,0.073,1.17
 2022-07-25,Atlanta,Hard,0.11,1.22
+2022-07-25,Kitzbuhel,Clay,0.073,1.17
 2022-07-25,Umag,Clay,0.036000000000000004,0.63
 2022-08-01,Washington,Hard,0.125,0.99
 2022-08-01,Los Cabos,Hard,0.11599999999999999,0.86
@@ -812,49 +812,49 @@ date,tournament,surface,ace_pct,surface_speed
 2022-08-15,Cincinnati Masters,Hard,0.11800000000000001,1.16
 2022-08-22,Winston-Salem,Hard,0.102,1.05
 2022-08-29,US Open,Hard,0.102,1.06
-2022-09-19,Metz,Hard,0.086,1.0
 2022-09-19,San Diego,Hard,0.098,1.05
-2022-09-26,Tel Aviv,Hard,0.125,1.43
+2022-09-19,Metz,Hard,0.086,1.0
 2022-09-26,Seoul,Hard,0.096,1.27
 2022-09-26,Sofia,Hard,0.107,1.12
-2022-10-03,Astana,Hard,0.092,0.76
+2022-09-26,Tel Aviv,Hard,0.125,1.43
 2022-10-03,Tokyo,Hard,0.115,1.03
-2022-10-10,Florence,Hard,0.10099999999999999,1.26
+2022-10-03,Astana,Hard,0.092,0.76
 2022-10-10,Gijon,Hard,0.078,0.77
-2022-10-17,Antwerp,Hard,0.105,1.2
+2022-10-10,Florence,Hard,0.10099999999999999,1.26
 2022-10-17,Naples,Hard,0.08,1.09
+2022-10-17,Antwerp,Hard,0.105,1.2
 2022-10-17,Stockholm,Hard,0.081,0.91
-2022-10-24,Basel,Hard,0.10800000000000001,1.15
 2022-10-24,Vienna,Hard,0.12300000000000001,1.2
+2022-10-24,Basel,Hard,0.10800000000000001,1.15
 2022-10-31,Paris Masters,Hard,0.106,1.14
 2022-11-07,NextGen Finals,Hard,0.134,1.34
 2022-11-14,Tour Finals,Hard,0.16699999999999998,1.5
-2023-01-02,United Cup,Hard,0.131,1.2
-2023-01-02,Pune,Hard,0.115,1.19
 2023-01-02,Adelaide 1,Hard,0.134,1.14
+2023-01-02,Pune,Hard,0.115,1.19
+2023-01-02,United Cup,Hard,0.131,1.2
 2023-01-09,Adelaide 2,Hard,0.131,1.25
 2023-01-09,Auckland,Hard,0.125,1.15
 2023-01-16,Australian Open,Hard,0.10800000000000001,1.03
 2023-02-06,Dallas,Hard,0.131,1.29
 2023-02-06,Montpellier,Hard,0.11800000000000001,1.02
 2023-02-06,Cordoba,Clay,0.055,1.15
-2023-02-13,Rotterdam,Hard,0.105,0.96
 2023-02-13,Delray Beach,Hard,0.098,1.12
 2023-02-13,Buenos Aires,Clay,0.043,0.7
+2023-02-13,Rotterdam,Hard,0.105,0.96
 2023-02-20,Rio De Janeiro,Clay,0.057,0.87
-2023-02-20,Doha,Hard,0.094,1.06
 2023-02-20,Marseille,Hard,0.13699999999999998,1.12
+2023-02-20,Doha,Hard,0.094,1.06
+2023-02-27,Santiago,Clay,0.07400000000000001,0.88
 2023-02-27,Acapulco,Hard,0.063,0.68
 2023-02-27,Dubai,Hard,0.126,1.15
-2023-02-27,Santiago,Clay,0.07400000000000001,0.88
 2023-03-06,Indian Wells Masters,Hard,0.081,0.89
 2023-03-20,Miami Masters,Hard,0.111,1.24
 2023-04-03,Houston,Clay,0.10300000000000001,0.93
 2023-04-03,Estoril,Clay,0.062,0.7
 2023-04-03,Marrakech,Clay,0.052000000000000005,0.59
 2023-04-10,Monte Carlo Masters,Clay,0.063,0.61
-2023-04-17,Banja Luka,Clay,0.043,0.48
 2023-04-17,Barcelona,Clay,0.043,0.51
+2023-04-17,Banja Luka,Clay,0.043,0.48
 2023-04-17,Munich,Clay,0.06,0.63
 2023-04-24,Madrid Masters,Clay,0.08800000000000001,0.92
 2023-05-08,Rome Masters,Clay,0.061,0.69
@@ -865,65 +865,65 @@ date,tournament,surface,ace_pct,surface_speed
 2023-06-12,s Hertogenbosch,Grass,0.12300000000000001,1.22
 2023-06-19,Halle,Grass,0.14,1.28
 2023-06-19,Queen's Club,Grass,0.09699999999999999,1.1
-2023-06-26,Mallorca,Grass,0.10300000000000001,1.12
 2023-06-26,Eastbourne,Grass,0.08800000000000001,1.1
+2023-06-26,Mallorca,Grass,0.10300000000000001,1.12
 2023-07-03,Wimbledon,Grass,0.105,1.1
-2023-07-17,Gstaad,Clay,0.078,0.78
-2023-07-17,Newport,Grass,0.067,0.62
 2023-07-17,Bastad,Clay,0.057999999999999996,0.86
-2023-07-24,Hamburg,Clay,0.07,0.8
-2023-07-24,Umag,Clay,0.051,0.67
+2023-07-17,Newport,Grass,0.067,0.62
+2023-07-17,Gstaad,Clay,0.078,0.78
 2023-07-24,Atlanta,Hard,0.127,1.2
-2023-07-31,Washington,Hard,0.10400000000000001,1.0
+2023-07-24,Umag,Clay,0.051,0.67
+2023-07-24,Hamburg,Clay,0.07,0.8
 2023-07-31,Kitzbuhel,Clay,0.084,0.95
+2023-07-31,Washington,Hard,0.10400000000000001,1.0
 2023-07-31,Los Cabos,Hard,0.083,0.92
 2023-08-07,Canada Masters,Hard,0.094,1.07
 2023-08-14,Cincinnati Masters,Hard,0.083,0.8
 2023-08-21,Winston-Salem,Hard,0.109,1.15
 2023-08-28,US Open,Hard,0.099,1.01
-2023-09-20,Zhuhai,Hard,0.11900000000000001,1.14
 2023-09-20,Chengdu,Hard,0.10099999999999999,1.0
+2023-09-20,Zhuhai,Hard,0.11900000000000001,1.14
 2023-09-25,Astana,Hard,0.10300000000000001,1.03
 2023-09-27,Beijing,Hard,0.08,0.93
 2023-10-02,Shanghai Masters,Hard,0.10300000000000001,1.07
-2023-10-16,Tokyo,Hard,0.106,1.12
 2023-10-16,Antwerp,Hard,0.122,1.25
 2023-10-16,Stockholm,Hard,0.078,0.95
-2023-10-23,Basel,Hard,0.114,1.11
+2023-10-16,Tokyo,Hard,0.106,1.12
 2023-10-23,Vienna,Hard,0.107,1.16
+2023-10-23,Basel,Hard,0.114,1.11
 2023-10-30,Paris Masters,Hard,0.114,1.1
-2023-11-06,Metz,Hard,0.096,1.08
 2023-11-06,Sofia,Hard,0.106,1.19
+2023-11-06,Metz,Hard,0.096,1.08
 2023-11-13,Tour Finals,Hard,0.14800000000000002,1.76
 2023-11-27,NextGen Finals,Hard,0.121,1.3
+2024-01-01,United Cup,Hard,0.113,1.02
 2024-01-01,Brisbane,Hard,0.121,1.3
 2024-01-01,Hong Kong,Hard,0.107,1.08
-2024-01-01,United Cup,Hard,0.113,1.02
 2024-01-08,Adelaide,Hard,0.10400000000000001,1.09
 2024-01-08,Auckland,Hard,0.098,1.05
 2024-01-15,Australian Open,Hard,0.111,1.14
 2024-01-29,Montpellier,Hard,0.111,1.0
-2024-02-05,Dallas,Hard,0.107,1.12
-2024-02-05,Marseille,Hard,0.141,1.29
 2024-02-05,Cordoba,Clay,0.047,0.73
-2024-02-12,Buenos Aires,Clay,0.046,0.67
+2024-02-05,Marseille,Hard,0.141,1.29
+2024-02-05,Dallas,Hard,0.107,1.12
 2024-02-12,Delray Beach,Hard,0.10300000000000001,0.97
+2024-02-12,Buenos Aires,Clay,0.046,0.67
 2024-02-12,Rotterdam,Hard,0.126,1.25
-2024-02-19,Doha,Hard,0.084,0.77
-2024-02-19,Rio De Janeiro,Clay,0.039,0.67
 2024-02-19,Los Cabos,Hard,0.078,0.74
-2024-02-26,Acapulco,Hard,0.09,0.88
+2024-02-19,Rio De Janeiro,Clay,0.039,0.67
+2024-02-19,Doha,Hard,0.084,0.77
 2024-02-26,Santiago,Clay,0.07200000000000001,1.19
+2024-02-26,Acapulco,Hard,0.09,0.88
 2024-02-26,Dubai,Hard,0.122,1.13
 2024-03-04,Indian Wells Masters,Hard,0.085,0.84
 2024-03-18,Miami Masters,Hard,0.10800000000000001,1.11
-2024-04-01,Estoril,Clay,0.052000000000000005,0.58
 2024-04-01,Houston,Clay,0.09,0.8
 2024-04-01,Marrakech,Clay,0.06,0.9
+2024-04-01,Estoril,Clay,0.052000000000000005,0.58
 2024-04-08,Monte Carlo Masters,Clay,0.061,0.61
-2024-04-15,Munich,Clay,0.077,0.64
 2024-04-15,Bucharest,Clay,0.046,0.54
 2024-04-15,Barcelona,Clay,0.049,0.62
+2024-04-15,Munich,Clay,0.077,0.64
 2024-04-22,Madrid Masters,Clay,0.073,0.71
 2024-05-06,Rome Masters,Clay,0.075,0.7
 2024-05-20,Lyon,Clay,0.09,0.82
@@ -931,20 +931,20 @@ date,tournament,surface,ace_pct,surface_speed
 2024-05-27,Roland Garros,Clay,0.067,0.67
 2024-06-10,Stuttgart,Grass,0.171,1.27
 2024-06-10,s Hertogenbosch,Grass,0.09300000000000001,0.92
-2024-06-17,Queen's Club,Grass,0.11900000000000001,1.24
 2024-06-17,Halle,Grass,0.155,1.35
+2024-06-17,Queen's Club,Grass,0.11900000000000001,1.24
 2024-06-24,Mallorca,Grass,0.12300000000000001,1.26
 2024-06-24,Eastbourne,Grass,0.131,1.26
 2024-07-01,Wimbledon,Grass,0.121,1.19
-2024-07-15,Gstaad,Clay,0.10099999999999999,0.79
+2024-07-15,Newport,Grass,0.11800000000000001,0.91
 2024-07-15,Bastad,Clay,0.05,0.61
 2024-07-15,Hamburg,Clay,0.07200000000000001,0.89
-2024-07-15,Newport,Grass,0.11800000000000001,0.91
-2024-07-22,Kitzbuhel,Clay,0.067,0.83
+2024-07-15,Gstaad,Clay,0.10099999999999999,0.79
 2024-07-22,Umag,Clay,0.055999999999999994,0.55
+2024-07-22,Kitzbuhel,Clay,0.067,0.83
 2024-07-22,Atlanta,Hard,0.139,1.26
-2024-07-29,Paris Olympics,Clay,0.073,0.88
 2024-07-29,Washington,Hard,0.153,1.21
+2024-07-29,Paris Olympics,Clay,0.073,0.88
 2024-08-05,Canada Masters,Hard,0.09699999999999999,0.83
 2024-08-12,Cincinnati Masters,Hard,0.12,1.1
 2024-08-19,Winston-Salem,Hard,0.08800000000000001,1.02
@@ -955,14 +955,14 @@ date,tournament,surface,ace_pct,surface_speed
 2024-09-25,Tokyo,Hard,0.11800000000000001,1.17
 2024-09-26,Beijing,Hard,0.084,0.89
 2024-10-02,Shanghai Masters,Hard,0.11,1.16
-2024-10-14,Antwerp,Hard,0.115,1.38
-2024-10-14,Stockholm,Hard,0.11900000000000001,1.08
 2024-10-14,Almaty,Hard,0.12,1.06
+2024-10-14,Stockholm,Hard,0.11900000000000001,1.08
+2024-10-14,Antwerp,Hard,0.115,1.38
 2024-10-21,Vienna,Hard,0.121,1.15
 2024-10-21,Basel,Hard,0.16,1.48
 2024-10-28,Paris Masters,Hard,0.13,1.24
-2024-11-04,Belgrade,Hard,0.125,1.28
 2024-11-04,Metz,Hard,0.087,1.03
+2024-11-04,Belgrade,Hard,0.125,1.28
 2024-11-11,Tour Finals,Hard,0.134,1.37
 2024-12-18,Next Gen Finals,Hard,0.132,1.39
 2024-12-27,United Cup,Hard,0.14400000000000002,1.17
@@ -974,53 +974,53 @@ date,tournament,surface,ace_pct,surface_speed
 2025-01-27,Montpellier,Hard,0.147,1.09
 2025-02-03,Rotterdam,Hard,0.087,0.77
 2025-02-03,Dallas,Hard,0.113,1.2
+2025-02-10,Buenos Aires,Clay,0.063,0.9
 2025-02-10,Marseille,Hard,0.12300000000000001,1.05
 2025-02-10,Delray Beach,Hard,0.115,1.09
-2025-02-10,Buenos Aires,Clay,0.063,0.9
 2025-02-17,Doha,Hard,0.124,1.07
 2025-02-17,Rio de Janeiro,Clay,0.06,0.91
+2025-02-24,Dubai,Hard,0.107,1.0
 2025-02-24,Santiago,Clay,0.06,0.71
 2025-02-24,Acapulco,Hard,0.081,0.81
-2025-02-24,Dubai,Hard,0.107,1.0
 2025-03-05,Indian Wells Masters,Hard,0.071,0.73
 2025-03-19,Miami Masters,Hard,0.125,1.17
 2025-03-31,Marrakech,Clay,0.076,0.78
-2025-03-31,Bucharest,Clay,0.032,0.43
 2025-03-31,Houston,Clay,0.071,0.76
+2025-03-31,Bucharest,Clay,0.032,0.43
 2025-04-07,Monte Carlo Masters,Clay,0.054000000000000006,0.55
-2025-04-14,Barcelona,Clay,0.047,0.57
 2025-04-14,Munich,Clay,0.07200000000000001,0.64
+2025-04-14,Barcelona,Clay,0.047,0.57
 2025-04-23,Madrid Masters,Clay,0.085,0.78
 2025-05-07,Rome Masters,Clay,0.061,0.6
-2025-05-18,Geneva,Clay,0.086,0.71
 2025-05-18,Hamburg,Clay,0.066,0.57
+2025-05-18,Geneva,Clay,0.086,0.71
 2025-05-26,nd Garros,Clay,0.073,0.68
-2025-06-09,Stuttgart,Grass,0.158,1.38
 2025-06-09,s Hertogenbosch,Grass,0.132,0.99
-2025-06-16,Halle,Grass,0.133,1.24
+2025-06-09,Stuttgart,Grass,0.158,1.38
 2025-06-16,Queen's Club,Grass,0.149,1.35
+2025-06-16,Halle,Grass,0.133,1.24
 2025-06-22,Mallorca,Grass,0.102,1.07
 2025-06-23,Eastbourne,Grass,0.083,0.75
 2025-06-30,Wimbledon,Grass,0.11599999999999999,1.09
-2025-07-14,Gstaad,Clay,0.139,1.06
 2025-07-14,Bastad,Clay,0.069,0.85
+2025-07-14,Gstaad,Clay,0.139,1.06
 2025-07-14,Los Cabos,Hard,0.115,1.01
 2025-07-20,Umag,Clay,0.073,0.8
-2025-07-21,Washington,Hard,0.125,1.17
 2025-07-21,Kitzbuhel,Clay,0.1,0.8
+2025-07-21,Washington,Hard,0.125,1.17
 2025-07-27,Canada Masters,Hard,0.11199999999999999,1.02
 2025-08-07,Cincinnati Masters,Hard,0.12300000000000001,1.19
 2025-08-17,Winston-Salem,Hard,0.114,1.1
 2025-08-25,Us Open,Hard,0.106,0.96
-2025-09-17,Chengdu,Hard,0.134,1.18
 2025-09-17,Hangzhou,Hard,0.132,1.38
+2025-09-17,Chengdu,Hard,0.134,1.18
 2025-09-19,Laver Cup,Hard,0.057999999999999996,0.55
 2025-09-24,Tokyo,Hard,0.11599999999999999,1.18
 2025-09-25,Beijing,Hard,0.095,1.05
 2025-10-01,Shanghai Masters,Hard,0.11199999999999999,1.08
-2025-10-13,Stockholm,Hard,0.091,0.9
-2025-10-13,Almaty,Hard,0.102,1.16
 2025-10-13,Brussels,Hard,0.138,1.34
+2025-10-13,Almaty,Hard,0.102,1.16
+2025-10-13,Stockholm,Hard,0.091,0.9
 2025-10-20,Vienna,Hard,0.121,1.25
 2025-10-20,Basel,Hard,0.14800000000000002,1.44
 2025-10-27,Paris Masters,Hard,0.105,0.99
@@ -1029,40 +1029,42 @@ date,tournament,surface,ace_pct,surface_speed
 2025-11-09,Tour Finals,Hard,0.12,1.4
 2025-12-17,Next Gen Finals,Hard,0.102,0.81
 2026-01-02,United Cup,Hard,0.14,1.08
-2026-01-04,Brisbane,Hard,0.146,1.17
-2026-01-05,Hong Kong,Hard,0.114,1.01
+2026-01-04,Brisbane,Hard,0.146,1.16
+2026-01-05,Hong Kong,Hard,0.114,1.02
 2026-01-12,Adelaide,Hard,0.098,1.06
 2026-01-12,Auckland,Hard,0.11800000000000001,1.06
-2026-01-19,Australian Open,Hard,0.11800000000000001,1.12
+2026-01-19,Australian Open,Hard,0.11900000000000001,1.1
 2026-02-02,Montpellier,Hard,0.198,1.38
-2026-02-09,Rotterdam,Hard,0.111,0.89
+2026-02-09,Rotterdam,Hard,0.111,0.9
+2026-02-09,Dallas,Hard,0.165,1.45
 2026-02-09,Buenos Aires,Clay,0.045,0.49
-2026-02-09,Dallas,Hard,0.165,1.46
-2026-02-16,Delray Beach,Hard,0.136,1.3
-2026-02-16,Doha,Hard,0.095,0.91
-2026-02-16,Rio de Janeiro,Clay,0.08,0.95
+2026-02-16,Rio de Janeiro,Clay,0.08,0.97
+2026-02-16,Delray Beach,Hard,0.136,1.29
+2026-02-16,Doha,Hard,0.091,0.87
 2026-02-23,Santiago,Clay,0.073,0.73
-2026-02-23,Acapulco,Hard,0.12,1.12
 2026-02-23,Dubai,Hard,0.159,1.31
-2026-03-04,Indian Wells Masters,Hard,0.111,1.12
+2026-02-23,Acapulco,Hard,0.122,1.08
+2026-03-04,Indian Wells Masters,Hard,0.114,1.14
 2026-03-18,Miami Masters,Hard,0.124,1.18
-2026-03-30,Bucharest,Clay,0.044000000000000004,0.5
+2026-03-30,Houston,Clay,0.12,0.77
 2026-03-30,Marrakech,Clay,0.08900000000000001,1.05
-2026-03-30,Houston,Clay,0.12,0.78
+2026-03-30,Bucharest,Clay,0.044000000000000004,0.5
 2026-04-05,Monte Carlo Masters,ATP Monte Carlo Masters,0.059000000000000004,0.55
 2026-04-13,Barcelona,Clay,0.047,0.5
 2026-04-13,Munich,Clay,0.07,0.66
-2026-04-22,Madrid Masters,Clay,0.092,0.88
-2026-05-06,Rome Masters,Clay,0.067,0.63
-2026-05-17,Geneva,Clay,0.07200000000000001,0.68
+2026-04-22,Madrid Masters,Clay,0.092,0.89
+2026-05-06,Rome Masters,Clay,0.067,0.64
 2026-05-17,Hamburg,Clay,0.052000000000000005,0.55
+2026-05-17,Geneva,Clay,0.07200000000000001,0.68
+2026-06-08,Stuttgart,Grass,0.177,1.3
 2026-06-08,s Hertogenbosch,Grass,0.11,0.95
-2026-06-08,Stuttgart,Grass,0.177,1.31
-2026-06-15,Queen's Club,Grass,0.105,1.03
 2026-06-15,Halle,Grass,0.138,1.15
+2026-06-15,Queen's Club,Grass,0.105,1.02
 2026-06-21,Mallorca,Grass,0.111,1.23
 2026-06-22,Eastbourne,Grass,0.11900000000000001,1.18
-2026-06-29,Wimbledon,Grass,0.12,1.13
-2026-07-13,Bastad,Clay,0.081,0.72
-2026-07-13,Umag,Clay,0.048,0.69
-2026-07-13,Gstaad,Clay,0.105,0.9
+2026-06-29,Wimbledon,Grass,0.121,1.11
+2026-07-13,Bastad,Clay,0.084,0.69
+2026-07-13,Gstaad,Clay,0.105,0.92
+2026-07-13,Umag,Clay,0.048,0.68
+2026-07-20,Kitzbuhel,Clay,0.096,0.8
+2026-07-20,Estoril,Clay,0.055999999999999994,0.49

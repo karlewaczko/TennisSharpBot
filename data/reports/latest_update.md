@@ -1,4 +1,4 @@
-# TennisSharpBot data update (2026-07-26T22:11:04+00:00)
+# TennisSharpBot data update (2026-07-28T21:09:25+00:00)
 
 - Matches in history: 82246
 - Date range: 2010-01-03 to 2026-07-26
@@ -26,7 +26,7 @@
 |   elo_rank | player                |    elo |   helo |   celo |   gelo |
 |-----------:|:----------------------|-------:|-------:|-------:|-------:|
 |          1 | Jannik Sinner         | 2331.9 | 2269.3 | 2221.8 | 2135.5 |
-|          2 | Carlos Alcaraz        | 2156.8 | 2083.3 | 2096.6 | 2024.2 |
+|          2 | Carlos Alcaraz        | 2151.8 | 2078.3 | 2091.6 | 2019.2 |
 |          3 | Alexander Zverev      | 2114.5 | 2048.9 | 2058.5 | 1957.4 |
 |          4 | Novak Djokovic        | 2075.5 | 2029.8 | 1967.4 | 1946.2 |
 |          5 | Arthur Fils           | 2008.9 | 1943.9 | 1949.2 | 1790.7 |
