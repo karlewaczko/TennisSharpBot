@@ -173,6 +173,19 @@ Commands: `/rankings [atp|wta] [ta|own]`, `/surface [Turniername]`,
 `TELEGRAM_CHAT_ID` (and optionally `TELEGRAM_DIGEST_HOUR_UTC`, default 7 UTC)
 to also get a daily rankings push instead of only answering on demand.
 
+**Automatic value-bet scanning:** set `TELEGRAM_VALUEBETS_INTERVAL_MINUTES`
+(minutes between scans, e.g. `240` for every 4 hours; `0` = off, the default)
+to have the bot itself call `service.get_value_bets()` on a
+`job_queue.run_repeating` schedule and push a message to `TELEGRAM_CHAT_ID`
+whenever it finds a *new* candidate above `TELEGRAM_VALUEBETS_EDGE_THRESHOLD`
+(default 0.03) — needs both `TELEGRAM_CHAT_ID` and `ODDS_API_KEY` set.
+Dedup logic lives in `bot/notifications.py` (pure, unit-tested, no Telegram
+imports): each `(player, opponent, bookmaker, commence_time)` combination is
+only alerted once, tracked in `context.bot_data` for the life of the process
+(resets on restart — no database). Mind The Odds API's free-tier budget
+(~500 requests/month, one request per active event per scan) when picking an
+interval.
+
 **REST API:**
 ```bash
 python scripts/run_api.py --port 8000
@@ -364,8 +377,9 @@ src/tennissharp/
   service.py             shared data-access layer used by both front ends below
   api.py                 FastAPI REST API (build your own app on top)
   bot/
-    telegram_bot.py      Telegram bot (commands + optional daily digest)
+    telegram_bot.py      Telegram bot (commands + daily digest + auto value-bet scan)
     formatting.py        pure text formatters (Telegram HTML), unit-testable
+    notifications.py     pure dedup logic for the auto-scan, unit-testable
 scripts/                 CLI entry points (see Usage above)
 tests/                   unit tests (pytest) + tests/fixtures (cached sample HTML)
 .github/workflows/       scheduled data/model refresh

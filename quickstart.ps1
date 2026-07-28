@@ -75,6 +75,17 @@ if (-not $skipQuestions) {
     Write-Info "alles andere (Ranglisten, Spielplan, Head-to-Head) trotzdem ganz normal."
     $oddsApiKey = Read-Host "Odds-API-Key einfuegen (oder Enter zum Ueberspringen)"
 
+    $valuebetsInterval = 0
+    if ($oddsApiKey -and $telegramToken -and $telegramChatId) {
+        Write-Host ""
+        Write-Info "Der Bot kann selbststaendig alle paar Stunden nach Value Bets suchen und"
+        Write-Info "dir bei neuen Kandidaten von sich aus schreiben (statt dass du /valuebets"
+        Write-Info "fragen musst). Achtung: kostenlose Odds-API-Keys sind auf ca. 500"
+        Write-Info "Anfragen/Monat begrenzt -- alle 4 Stunden verbraucht davon ca. 1/4."
+        $autoScan = Read-Host "Automatischen Scan aktivieren? (j/N)"
+        if ($autoScan -match '^[jJ]') { $valuebetsInterval = 240 }
+    }
+
     Write-Host ""
     $startApi = Read-Host "Auch die REST-API starten, z.B. fuer eine eigene App? (j/N)"
     $startApiFlag = $startApi -match '^[jJ]'
@@ -86,6 +97,8 @@ ODDS_API_KEY=$oddsApiKey
 TELEGRAM_BOT_TOKEN=$telegramToken
 TELEGRAM_CHAT_ID=$telegramChatId
 TELEGRAM_DIGEST_HOUR_UTC=7
+TELEGRAM_VALUEBETS_INTERVAL_MINUTES=$valuebetsInterval
+TELEGRAM_VALUEBETS_EDGE_THRESHOLD=0.03
 "@ | Set-Content -Path $envFile -Encoding utf8
 
     Write-Ok "config/.env geschrieben."

@@ -93,7 +93,12 @@ Das Skript fragt dich der Reihe nach:
 3. **Odds-API-Key** (optional, nur für die Value-Bet-Funktion). Kostenlos auf
    [the-odds-api.com](https://the-odds-api.com) registrieren, Key kopieren,
    oder überspringen.
-4. **Ob auch die REST-API gestartet werden soll** (nur relevant, wenn du eine
+4. **Automatischer Scan** (nur wenn du Schritte 1-3 alle ausgefüllt hast).
+   Wenn du "j" wählst, durchsucht der Bot alle 4 Stunden von selbst nach
+   Value-Bet-Kandidaten und schreibt dir automatisch bei neuen Treffern —
+   du musst nicht mehr `/valuebets` fragen. Siehe Hinweis zum API-Budget
+   unten.
+5. **Ob auch die REST-API gestartet werden soll** (nur relevant, wenn du eine
    eigene App bauen willst — für den reinen Telegram-Bot einfach "N"/Enter).
 
 Danach baut und startet das Skript alles automatisch. Das dauert beim
@@ -121,7 +126,19 @@ bereit" meldet, kurz warten und nochmal fragen.
 **Zu `/valuebets`:** Das listet Spiele auf, bei denen ein Buchmacher deutlich
 von den anderen abweicht. Das ist ein *Beobachtungs*-Signal, keine
 Wettempfehlung — laut der Messung oben reicht es nicht für einen echten
-Vorteil. Behandle es als "hier lohnt sich ein zweiter Blick", nicht als
+Vorteil.
+
+**Automatischer Scan (falls aktiviert):** Der Bot meldet sich von selbst,
+sobald er neue Kandidaten findet — kein `/valuebets` mehr nötig. Jede
+Kombination aus Spieler/Gegner/Buchmacher wird nur einmal gemeldet, nicht bei
+jedem Durchlauf erneut. Nachträglich einstellen/ändern: in `config/.env` die
+Zeile `TELEGRAM_VALUEBETS_INTERVAL_MINUTES` bearbeiten (Minuten zwischen zwei
+Scans, `0` = aus) und danach `docker compose up -d --build bot` ausführen.
+**Achtung Kostenkontrolle:** kostenlose Odds-API-Keys sind auf ca. 500
+Anfragen/Monat begrenzt; alle 4 Stunden (Standard) verbraucht davon grob ein
+Viertel, kürzere Intervalle entsprechend mehr.
+
+Behandle es als "hier lohnt sich ein zweiter Blick", nicht als
 "hier ist Geld zu holen".
 
 ## Alles wieder stoppen

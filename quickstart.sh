@@ -70,6 +70,19 @@ if [ -z "${SKIP_QUESTIONS:-}" ]; then
     info "alles andere (Ranglisten, Spielplan, Head-to-Head) trotzdem ganz normal."
     read -r -p "Odds-API-Key einfügen (oder Enter zum Überspringen): " ODDS_API_KEY
 
+    VALUEBETS_INTERVAL=0
+    if [ -n "$ODDS_API_KEY" ] && [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+        echo
+        info "Der Bot kann selbstständig alle paar Stunden nach Value Bets suchen und"
+        info "dir bei neuen Kandidaten von sich aus schreiben (statt dass du /valuebets"
+        info "fragen musst). Achtung: kostenlose Odds-API-Keys sind auf ca. 500"
+        info "Anfragen/Monat begrenzt -- alle 4 Stunden verbraucht davon ca. 1/4."
+        read -r -p "Automatischen Scan aktivieren? (j/N): " AUTO_SCAN
+        if [[ "$AUTO_SCAN" =~ ^[jJ] ]]; then
+            VALUEBETS_INTERVAL=240
+        fi
+    fi
+
     echo
     read -r -p "Auch die REST-API starten, z.B. für eine eigene App? (j/N): " START_API
     START_API_FLAG="nein"
@@ -82,6 +95,8 @@ ODDS_API_KEY=${ODDS_API_KEY}
 TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
 TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
 TELEGRAM_DIGEST_HOUR_UTC=7
+TELEGRAM_VALUEBETS_INTERVAL_MINUTES=${VALUEBETS_INTERVAL}
+TELEGRAM_VALUEBETS_EDGE_THRESHOLD=0.03
 EOF
     ok "config/.env geschrieben."
     echo "$START_API_FLAG" > .quickstart_start_api

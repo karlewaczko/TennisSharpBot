@@ -44,6 +44,14 @@ TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
 TELEGRAM_DIGEST_HOUR_UTC = int(os.environ.get("TELEGRAM_DIGEST_HOUR_UTC", "7"))
 
+# Automatic value-bet scanning (0 = disabled, the default). Each scan is one
+# call to The Odds API per active tennis event, and free-tier keys are
+# capped around 500 requests/month -- pick an interval with that budget in
+# mind (e.g. 240 = 4x/day is roughly 120 calls/month per event scanned).
+# Needs both TELEGRAM_CHAT_ID and ODDS_API_KEY set to actually run.
+TELEGRAM_VALUEBETS_INTERVAL_MINUTES = int(os.environ.get("TELEGRAM_VALUEBETS_INTERVAL_MINUTES", "0"))
+TELEGRAM_VALUEBETS_EDGE_THRESHOLD = float(os.environ.get("TELEGRAM_VALUEBETS_EDGE_THRESHOLD", "0.03"))
+
 # tennis-data.co.uk hosts one xlsx per season per tour, with match results
 # (surface, round, rank, date) AND odds from multiple bookmakers -- including
 # Pinnacle, our closing-line benchmark -- combined in a single row per match.
