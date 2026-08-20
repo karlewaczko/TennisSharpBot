@@ -55,6 +55,13 @@ REFERENCE_BOOK = "Pinnacle"
 # odds 1.37 the required hit rate goes from 73.0% to 77.1%).
 DEFAULT_STAKE_TAX = 0.0
 
+# Betting brokers (BetInAsia, Sportmarket, ...) charge commission on NET
+# WINNINGS instead, typically 0.5-2%. That behaves quite differently from a
+# stake tax: it is only paid on winning bets, so at a ~48% hit rate a 2%
+# commission costs about 1.15 points of ROI, not 2. Set --commission 0 for a
+# plain bookmaker account.
+DEFAULT_COMMISSION = 0.0
+
 
 def _pinnacle_prices(match_id, player_a, player_b) -> tuple[float, float] | None:
     """Pinnacle's latest quote for both sides, or None if it isn't priced."""
@@ -78,6 +85,9 @@ def main() -> None:
     p.add_argument("card", type=Path)
     p.add_argument("--threshold", type=float, default=DEFAULT_EDGE_THRESHOLD)
     p.add_argument("--surface", default="Hard")
+    p.add_argument("--commission", type=float, default=DEFAULT_COMMISSION,
+                   help="broker commission on net winnings, e.g. 0.02 for "
+                        "BetInAsia. Applied only to winning bets.")
     p.add_argument("--tax", type=float, default=DEFAULT_STAKE_TAX,
                    help="stake tax as a fraction. Default 0: bet365/Winamax/Neobet absorb it. Pass 0.053 for a German operator that deducts it.")
     args = p.parse_args()
@@ -146,7 +156,12 @@ def main() -> None:
                 # margin is paid. Always read this column before betting.
                 # Stake tax is levied on the stake, so only (1-tax) is
                 # actually at risk: payout per 1.0 staked is price*(1-tax).
-                "ev_dein_preis": mp * price * (1 - args.tax) - 1.0,
+                # Stake tax hits the stake; broker commission hits only the
+                # profit on winning bets. Net EV per 1.0 staked:
+                #   win  -> (price*(1-tax) - 1) * (1-commission)
+                #   lose -> -1
+                "ev_dein_preis": (mp * ((price * (1 - args.tax) - 1.0) * (1 - args.commission))
+                                   - (1 - mp)),
                 "ev_ohne_steuer": mp * price - 1.0,
                 # Does your book price this side better than the sharp book's
                 # fair value? A market observation, independent of the model.
@@ -156,7 +171,7 @@ def main() -> None:
     df = pd.DataFrame(scored)
     print(f"\n{len(card)} Partien eingelesen, {len(df) // 2 if len(df) else 0} bewertet"
           f" | Referenz: {REFERENCE_BOOK}, Schwelle {args.threshold:.0%}"
-          f", Wettsteuer {args.tax:.1%}\n" + "=" * 84)
+          f", Steuer {args.tax:.1%}, Kommission {args.commission:.1%}\n" + "=" * 84)
 
     if not df.empty:
         hits = df[df["edge"] > args.threshold].sort_values("edge", ascending=False)
@@ -172,7 +187,7 @@ def main() -> None:
             print()
 
         actionable = df[df["ev_dein_preis"] > 0].sort_values("ev_dein_preis", ascending=False)
-        print(f"POSITIVER EV ZU DEINEM PREIS (nach {args.tax:.1%} Wettsteuer):")
+        print("POSITIVER EV ZU DEINEM PREIS (nach Steuer und Kommission):")
         if actionable.empty:
             print("  keine -- jede Seite ist zu deinem Preis negativ.\n")
         else:
