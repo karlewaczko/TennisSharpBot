@@ -45,11 +45,15 @@ resolve_name = _am.resolve_name
 REFERENCE_BOOK = "Pinnacle"
 
 # German betting tax (Rennwett- und Lotteriegesetz): 5.3% of the STAKE, not
-# of winnings, since GlueStV 2021. Licensed operators generally pass it on.
-# It applies before any edge is realised, so it shifts break-even more than
-# any model signal we have ever measured: at odds 1.37 the required hit rate
-# goes from 73.0% to 77.1%. Set --tax 0 only if your operator absorbs it.
-DEFAULT_STAKE_TAX = 0.053
+# of winnings, since GlueStV 2021.
+#
+# Whether it costs YOU anything depends on the operator: most pass it on, but
+# bet365 has absorbed it since January 2024, as have Winamax and Neobet. So
+# the default here is 0 -- bet365 is what this project's cards are read off.
+# Pass --tax 0.053 for an operator that deducts it; it is worth checking,
+# because it moves break-even further than any signal we have measured (at
+# odds 1.37 the required hit rate goes from 73.0% to 77.1%).
+DEFAULT_STAKE_TAX = 0.0
 
 
 def _pinnacle_prices(match_id, player_a, player_b) -> tuple[float, float] | None:
@@ -75,7 +79,7 @@ def main() -> None:
     p.add_argument("--threshold", type=float, default=DEFAULT_EDGE_THRESHOLD)
     p.add_argument("--surface", default="Hard")
     p.add_argument("--tax", type=float, default=DEFAULT_STAKE_TAX,
-                   help="stake tax, default 0.053 (Germany). Use 0 if absorbed.")
+                   help="stake tax as a fraction. Default 0: bet365/Winamax/Neobet absorb it. Pass 0.053 for a German operator that deducts it.")
     args = p.parse_args()
 
     card = pd.read_csv(args.card)
