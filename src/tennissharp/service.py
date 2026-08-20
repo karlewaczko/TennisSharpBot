@@ -175,7 +175,7 @@ def get_odds_history(player1_query: str, player2_query: str) -> dict:
             "match_id": match_id, "history": history}
 
 
-def get_value_bets(edge_threshold: float = 0.10, kelly_fraction: float = 0.25,
+def get_value_bets(edge_threshold: float = 0.05, kelly_fraction: float = 0.25,
                     bankroll: float = 10_000.0, regions: str = "eu") -> pd.DataFrame:
     """Live value bets via The Odds API -- requires ODDS_API_KEY. Raises
     RuntimeError (via live_odds._require_key) with a clear message if unset.

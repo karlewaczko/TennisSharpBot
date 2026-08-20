@@ -113,7 +113,7 @@ def odds_history(player1: str, player2: str) -> dict:
 
 
 @app.get("/value-bets")
-def value_bets(edge_threshold: float = Query(0.10, ge=0, le=1),
+def value_bets(edge_threshold: float = Query(0.05, ge=0, le=1),
                kelly_fraction: float = Query(0.25, ge=0, le=1),
                bankroll: float = Query(10_000.0, gt=0)) -> list[dict]:
     try:

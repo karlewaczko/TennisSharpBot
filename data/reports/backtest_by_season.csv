@@ -1,12 +1,12 @@
 season,n_bets,roi,std_error,t_stat,significant,interpretation
-2020,353,0.06382,0.06007,1.06,False,consistent with zero edge -- do not bet this
-2024,574,0.01357,0.0495,0.27,False,consistent with zero edge -- do not bet this
-2021,1014,0.01331,0.04287,0.31,False,consistent with zero edge -- do not bet this
-2019,882,0.01015,0.04128,0.25,False,consistent with zero edge -- do not bet this
-2022,691,0.00087,0.04229,0.02,False,consistent with zero edge -- do not bet this
-2025,656,-0.02405,0.0453,-0.53,False,consistent with zero edge -- do not bet this
-2017,732,-0.03067,0.04567,-0.67,False,consistent with zero edge -- do not bet this
-2018,780,-0.03779,0.04225,-0.89,False,consistent with zero edge -- do not bet this
-2016,903,-0.04112,0.0402,-1.02,False,consistent with zero edge -- do not bet this
-2015,875,-0.05505,0.03952,-1.39,False,consistent with zero edge -- do not bet this
-2023,630,-0.06067,0.04188,-1.45,False,consistent with zero edge -- do not bet this
+2020,88,0.35932,0.12952,2.77,True,statistically distinguishable from zero (still check for bias)
+2025,129,0.09357,0.10637,0.88,False,consistent with zero edge -- do not bet this
+2018,127,0.08567,0.11254,0.76,False,consistent with zero edge -- do not bet this
+2024,102,0.07235,0.10876,0.67,False,consistent with zero edge -- do not bet this
+2019,196,0.06832,0.09536,0.72,False,consistent with zero edge -- do not bet this
+2022,163,0.01822,0.0861,0.21,False,consistent with zero edge -- do not bet this
+2021,340,0.00968,0.07505,0.13,False,consistent with zero edge -- do not bet this
+2016,234,-0.04085,0.07444,-0.55,False,consistent with zero edge -- do not bet this
+2015,252,-0.08377,0.07089,-1.18,False,consistent with zero edge -- do not bet this
+2023,107,-0.08766,0.1041,-0.84,False,consistent with zero edge -- do not bet this
+2017,157,-0.09127,0.09994,-0.91,False,consistent with zero edge -- do not bet this

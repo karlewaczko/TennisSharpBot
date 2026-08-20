@@ -50,7 +50,7 @@ TELEGRAM_DIGEST_HOUR_UTC = int(os.environ.get("TELEGRAM_DIGEST_HOUR_UTC", "7"))
 # mind (e.g. 240 = 4x/day is roughly 120 calls/month per event scanned).
 # Needs both TELEGRAM_CHAT_ID and ODDS_API_KEY set to actually run.
 TELEGRAM_VALUEBETS_INTERVAL_MINUTES = int(os.environ.get("TELEGRAM_VALUEBETS_INTERVAL_MINUTES", "0"))
-TELEGRAM_VALUEBETS_EDGE_THRESHOLD = float(os.environ.get("TELEGRAM_VALUEBETS_EDGE_THRESHOLD", "0.10"))
+TELEGRAM_VALUEBETS_EDGE_THRESHOLD = float(os.environ.get("TELEGRAM_VALUEBETS_EDGE_THRESHOLD", "0.05"))
 
 # tennis-data.co.uk hosts one xlsx per season per tour, with match results
 # (surface, round, rank, date) AND odds from multiple bookmakers -- including

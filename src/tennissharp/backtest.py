@@ -33,30 +33,34 @@ from tennissharp import odds_math, staking
 from tennissharp.features import attach_market_probability, build_feature_table
 
 # Only bet when the model claims at least this much edge over the sharp
-# reference price. Raised 0.03 -> 0.10 on request. What that buys, measured on
-# the 2015-2026 backtest (data/reports/backtest_bets.csv):
+# reference price. Set to 0.05 on request. Measured on the 2015-2026 backtest
+# (regenerate with scripts/run_backtest.py; per-bet rows land in
+# data/reports/backtest_bets.csv):
 #
-#   threshold   n bets   ROI      t-stat
-#   3%           8112    -1.81%   -1.36
-#   5%           1898    +1.35%   +0.48
-#   10%            51   +16.94%   +0.87
+#   threshold   n bets   ROI      t-stat   bets/yr   yrs to reach t=2
+#   3%           8112    -1.81%   -1.36      738     never (ROI is negative)
+#   5%           1898    +1.35%   +0.48      172     ~191
+#   10%            51   +16.94%   +0.87      4.6      ~59
 #
-# The rising ROI is NOT evidence the filter works: the t-stat stays flat
-# (~0.9), i.e. the whole move is smaller samples having wider spread. At 10%
-# this fires ~4.6 times/year, so reaching t=2 would take ~271 bets ≈ 59 years.
+# ROI rising with the threshold is NOT evidence the filter works: the t-stat
+# stays flat, so the move is smaller samples spreading wider, not signal. Note
+# 5% needs *longer* to validate than 10% (191 vs 59 years) -- its ROI is much
+# smaller relative to the same per-bet variance. Neither is reachable.
 #
-# Worse, the model's edge estimate gets *less* accurate the larger it claims
-# to be -- realised win rate minus model-predicted win rate, by bucket:
+# The model's edge estimate also gets less accurate the larger it claims to be
+# -- realised minus model-predicted win rate, by bucket:
 #   edge 3-5%: -2.4pp | 5-7.5%: -2.9pp | 7.5-10%: -3.8pp | 10%+: -4.3pp
-# At the 10% cut the model claims +11.7pp over the market and delivers +7.5pp,
-# overstating by ~1.6x. That is textbook adverse selection: the bets where the
+# Above the 5% cut the model claims +6.3pp over the market and delivers
+# +3.3pp, overstating by ~1.9x. That is adverse selection: the bets where the
 # model most disagrees with the market are the ones where the model, not the
-# market, is most often wrong. A higher threshold selects harder for that.
+# market, is most often wrong -- and raising the threshold selects harder for
+# exactly those.
 #
-# Treat this as a risk control (fewer, larger-conviction bets), NOT as a
-# profitability filter -- scripts/audit_edge.py still reports no information
-# beyond the market (information gain -0.00078 over 55k matches).
-DEFAULT_EDGE_THRESHOLD = 0.10
+# Treat this as a risk control (bet fewer, higher-conviction spots), NOT as a
+# profitability filter. scripts/audit_edge.py's verdict is unchanged:
+# no information beyond the market (information gain -0.00078 over 55k
+# matches), and every threshold above is "consistent with zero edge".
+DEFAULT_EDGE_THRESHOLD = 0.05
 # The book we place bets at. Must be a real, quotable price -- never market_max.
 DEFAULT_BET_PRICE_COL = "market_avg"
 # The sharp book we price *against*. Never the same as the bet price column.

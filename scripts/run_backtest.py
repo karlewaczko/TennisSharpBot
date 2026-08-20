@@ -24,7 +24,7 @@ from tennissharp.tourney_matching import load_surface_speed_index
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--download", action="store_true")
-    parser.add_argument("--edge-threshold", type=float, default=0.10)
+    parser.add_argument("--edge-threshold", type=float, default=0.05)
     parser.add_argument("--kelly-fraction", type=float, default=0.25)
     parser.add_argument("--bankroll", type=float, default=10_000.0)
     parser.add_argument("--min-train-seasons", type=int, default=5)

@@ -114,7 +114,7 @@ def elo_only_probability(state: LiveState, player_a: str, player_b: str, surface
 
 
 def find_value_bets(state: LiveState, model, live_events: list[dict],
-                     edge_threshold: float = 0.10,
+                     edge_threshold: float = 0.05,
                      kelly_fraction: float = staking.DEFAULT_KELLY_FRACTION,
                      bankroll: float = 10_000.0,
                      ta_elo: pd.DataFrame | None = None) -> pd.DataFrame:
