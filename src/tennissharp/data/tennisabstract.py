@@ -95,6 +95,29 @@ def fetch_all_elo_ratings() -> pd.DataFrame:
     return pd.concat([fetch_elo_ratings("atp"), fetch_elo_ratings("wta")], ignore_index=True)
 
 
+# Columns kept by `general_elo_only` -- the overall rating and its metadata,
+# dropping hElo/cElo/gElo (and their ranks): the per-surface splits.
+GENERAL_ELO_COLUMNS = [
+    "elo_rank", "player", "age", "elo", "peak_elo", "peak_month",
+    "official_rank", "log_diff", "tour",
+]
+
+
+def general_elo_only(df: pd.DataFrame, tour: str | None = None) -> pd.DataFrame:
+    """Drop the surface-specific hElo/cElo/gElo columns, keeping only the
+    overall Elo rating and re-ranking by it.
+
+    `tour` optionally filters first (e.g. `tour="wta"` for a WTA-only,
+    non-surface-specific ratings table) -- pass None to keep whatever tours
+    are already in `df`.
+    """
+    out = df if tour is None else df[df["tour"] == tour]
+    out = out[[c for c in GENERAL_ELO_COLUMNS if c in out.columns]].copy()
+    out = out.sort_values("elo", ascending=False).reset_index(drop=True)
+    out["elo_rank"] = out.index + 1
+    return out
+
+
 _SPEED_COLUMN_MAP = {
     "Date": "date",
     "Tournament": "tournament",

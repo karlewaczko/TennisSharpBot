@@ -44,6 +44,17 @@ def get_rankings(tour: str = "atp", top_n: int = 10, source: str = "ta") -> pd.D
     return df[df["tour"] == tour.lower()].sort_values("elo_rank").head(top_n)
 
 
+def get_wta_general_rankings(top_n: int = 10) -> pd.DataFrame:
+    """WTA Elo ratings without the surface-specific hElo/cElo/gElo columns --
+    just the overall rating, age, peak, and official-rank comparison. See
+    `tennisabstract.general_elo_only`.
+    """
+    path = config.PROCESSED_DIR / "ta_elo_wta_general.csv"
+    _require(path, "WTA general Elo ratings")
+    df = pd.read_csv(path)
+    return df.sort_values("elo_rank").head(top_n)
+
+
 def get_surface_speed(tournament: str | None = None, top_n: int = 10) -> pd.DataFrame:
     """Without `tournament`, returns the fastest `top_n` tournaments from the
     most recent season on record. With it, returns that tournament's rating

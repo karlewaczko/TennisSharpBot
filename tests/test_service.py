@@ -30,6 +30,26 @@ def test_get_rankings_ta_filters_by_tour(processed_dir):
     assert list(wta["player"]) == ["Carla Wta"]
 
 
+def test_get_wta_general_rankings_missing_file_raises_data_not_ready(processed_dir):
+    with pytest.raises(service.DataNotReadyError):
+        service.get_wta_general_rankings()
+
+
+def test_get_wta_general_rankings_returns_ranked_general_elo(processed_dir):
+    pd.DataFrame({
+        "elo_rank": [2, 1, 3],
+        "player": ["Bob", "Alice", "Carla"],
+        "elo": [2100, 2200, 2000],
+        "peak_elo": [2150, 2250, 2050],
+        "tour": ["wta", "wta", "wta"],
+    }).to_csv(processed_dir / "ta_elo_wta_general.csv", index=False)
+
+    df = service.get_wta_general_rankings(top_n=2)
+    assert len(df) == 2
+    assert list(df["player"]) == ["Alice", "Bob"]  # sorted by elo_rank
+    assert "helo" not in df.columns
+
+
 def test_get_rankings_own_ignores_tour_and_filters_low_sample(processed_dir):
     pd.DataFrame({
         "player": ["A", "B", "C"],

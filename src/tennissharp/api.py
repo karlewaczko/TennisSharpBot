@@ -44,6 +44,14 @@ def rankings(tour: str = Query("atp", pattern="^(atp|wta)$"),
     return _records(df)
 
 
+@app.get("/rankings/wta-general")
+def wta_general_rankings(top_n: int = Query(10, ge=1, le=200)) -> list[dict]:
+    """WTA Elo ratings without the surface-specific hElo/cElo/gElo split --
+    just the overall rating."""
+    df = service.get_wta_general_rankings(top_n=top_n)
+    return _records(df)
+
+
 @app.get("/surface-speed")
 def surface_speed(tournament: str | None = None, top_n: int = Query(10, ge=1, le=100)) -> list[dict]:
     df = service.get_surface_speed(tournament=tournament, top_n=top_n)

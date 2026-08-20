@@ -30,6 +30,18 @@ def test_rankings_returns_json_records(processed_dir):
     assert body[0]["player"] == "A"
 
 
+def test_wta_general_rankings_returns_json_without_surface_columns(processed_dir):
+    pd.DataFrame({
+        "elo_rank": [1, 2], "player": ["A", "B"], "elo": [2300.0, 2200.0], "tour": ["wta", "wta"],
+    }).to_csv(processed_dir / "ta_elo_wta_general.csv", index=False)
+
+    r = client.get("/rankings/wta-general", params={"top_n": 5})
+    assert r.status_code == 200
+    body = r.json()
+    assert len(body) == 2
+    assert "helo" not in body[0]
+
+
 def test_rankings_missing_data_returns_503(processed_dir):
     r = client.get("/rankings")
     assert r.status_code == 503
