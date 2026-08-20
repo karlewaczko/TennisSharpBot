@@ -45,12 +45,14 @@ def get_rankings(tour: str = "atp", top_n: int = 10, source: str = "ta") -> pd.D
 
 
 def get_wta_general_rankings(top_n: int = 10) -> pd.DataFrame:
-    """WTA Elo ratings without the surface-specific hElo/cElo/gElo columns --
-    just the overall rating, age, peak, and official-rank comparison. See
-    `tennisabstract.general_elo_only`.
+    """The standalone WTA-only Elo file: every column Tennis Abstract
+    publishes -- overall `elo` plus the surface splits `helo`/`celo`/`gelo`
+    (and their own ranks), age, peak, official-rank comparison. Same schema
+    as `get_rankings(tour="wta", source="ta")`, just pre-filtered to its own
+    file. See `tennisabstract.filter_by_tour`.
     """
     path = config.PROCESSED_DIR / "ta_elo_wta_general.csv"
-    _require(path, "WTA general Elo ratings")
+    _require(path, "WTA Elo ratings")
     df = pd.read_csv(path)
     return df.sort_values("elo_rank").head(top_n)
 

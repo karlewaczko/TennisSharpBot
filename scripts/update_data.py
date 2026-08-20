@@ -31,9 +31,9 @@ def _fetch_tennisabstract_data() -> tuple[pd.DataFrame, dict]:
         ta_elo.to_csv(config.PROCESSED_DIR / "ta_elo_current.csv", index=False)
         logger.info("Fetched %d Tennis Abstract Elo ratings", len(ta_elo))
 
-        wta_general = tennisabstract.general_elo_only(ta_elo, tour="wta")
-        wta_general.to_csv(config.PROCESSED_DIR / "ta_elo_wta_general.csv", index=False)
-        logger.info("Saved %d WTA general (non-surface-specific) Elo ratings", len(wta_general))
+        wta_elo = tennisabstract.filter_by_tour(ta_elo, tour="wta")
+        wta_elo.to_csv(config.PROCESSED_DIR / "ta_elo_wta_general.csv", index=False)
+        logger.info("Saved %d WTA Elo ratings (overall + hElo/cElo/gElo)", len(wta_elo))
     except Exception:
         logger.exception("Failed to fetch Tennis Abstract Elo ratings -- continuing without them")
         ta_elo = pd.DataFrame()

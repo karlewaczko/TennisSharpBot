@@ -2,9 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from tennissharp.data.tennisabstract import (
-    GENERAL_ELO_COLUMNS, general_elo_only, parse_elo_html, parse_surface_speed_html,
-)
+from tennissharp.data.tennisabstract import filter_by_tour, parse_elo_html, parse_surface_speed_html
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -56,23 +54,21 @@ def _mixed_tour_elo() -> pd.DataFrame:
     })
 
 
-def test_general_elo_only_drops_surface_columns():
-    df = general_elo_only(_mixed_tour_elo())
-    assert set(df.columns) == set(GENERAL_ELO_COLUMNS)
-    for col in ("helo", "celo", "gelo", "helo_rank", "celo_rank", "gelo_rank"):
-        assert col not in df.columns
+def test_filter_by_tour_keeps_every_column():
+    df = filter_by_tour(_mixed_tour_elo(), tour="wta")
+    # Nothing dropped -- overall elo AND the hElo/cElo/gElo surface splits.
+    for col in ("elo", "helo", "celo", "gelo", "peak_elo", "peak_month",
+                "official_rank", "log_diff"):
+        assert col in df.columns
 
 
-def test_general_elo_only_filters_by_tour():
-    df = general_elo_only(_mixed_tour_elo(), tour="wta")
+def test_filter_by_tour_only_keeps_that_tour():
+    df = filter_by_tour(_mixed_tour_elo(), tour="wta")
     assert set(df["player"]) == {"C", "D"}
     assert (df["tour"] == "wta").all()
 
 
-def test_general_elo_only_reranks_by_overall_elo():
-    df = general_elo_only(_mixed_tour_elo(), tour="wta")
-    # C (2050) outranks D (1950) on overall elo -- confirm re-ranked 1, 2.
-    assert df.iloc[0]["player"] == "C"
-    assert df.iloc[0]["elo_rank"] == 1
-    assert df.iloc[1]["player"] == "D"
-    assert df.iloc[1]["elo_rank"] == 2
+def test_filter_by_tour_sorted_by_elo_rank():
+    df = filter_by_tour(_mixed_tour_elo(), tour="wta")
+    assert df.iloc[0]["player"] == "C"  # elo_rank 1
+    assert df.iloc[1]["player"] == "D"  # elo_rank 2

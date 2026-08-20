@@ -59,7 +59,7 @@ matching problem when combining sources that don't share a schema.
 | Source | What we take from it | Refreshed | Used for |
 |---|---|---|---|
 | [tennis-data.co.uk](http://www.tennis-data.co.uk/) | ATP/WTA results + odds (2000/2007+) | every `update_data.py` run | primary training data, backtesting |
-| [Tennis Abstract](https://tennisabstract.com) Elo ratings | overall/hard/clay/grass Elo, current snapshot | every run (`data/processed/ta_elo_current.csv`); WTA overall-only in `ta_elo_wta_general.csv` | **live/current-match scoring and cross-checks only** — see caveat below |
+| [Tennis Abstract](https://tennisabstract.com) Elo ratings | overall/hard/clay/grass Elo, current snapshot | every run (`data/processed/ta_elo_current.csv`); standalone WTA-only file (same columns) in `ta_elo_wta_general.csv` | **live/current-match scoring and cross-checks only** — see caveat below |
 | Tennis Abstract surface speed | per-tournament-*edition* ace-rate-based speed rating | every run (`data/processed/ta_surface_speed_history.csv`) | a real training feature (`tourney_surface_speed`), safe for backtesting |
 | [TennisExplorer](https://www.tennisexplorer.com) | today/tomorrow's schedule + odds, on-demand head-to-head | every run (`data/processed/tennisexplorer_upcoming.csv`) | free alternative to The Odds API for live schedule/odds; `fetch_head_to_head()` for on-demand H2H lookups |
 | [The Odds API](https://the-odds-api.com) | live bookmaker odds | on demand (`find_value_bets.py`) | live value-bet scoring (needs your own key) |

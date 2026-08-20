@@ -46,8 +46,8 @@ def rankings(tour: str = Query("atp", pattern="^(atp|wta)$"),
 
 @app.get("/rankings/wta-general")
 def wta_general_rankings(top_n: int = Query(10, ge=1, le=200)) -> list[dict]:
-    """WTA Elo ratings without the surface-specific hElo/cElo/gElo split --
-    just the overall rating."""
+    """The standalone WTA Elo file -- overall rating plus the hElo/cElo/gElo
+    surface splits."""
     df = service.get_wta_general_rankings(top_n=top_n)
     return _records(df)
 
