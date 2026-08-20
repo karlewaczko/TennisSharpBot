@@ -136,10 +136,54 @@ def fetch_surface_speed(year: int | None = None) -> pd.DataFrame:
     return parse_surface_speed_html(resp.text)
 
 
-def fetch_surface_speed_history(start_year: int, end_year: int | None = None) -> pd.DataFrame:
+def _fetch_surface_speed_year_cached(year: int, cache_dir, force: bool = False) -> pd.DataFrame:
+    """Closed seasons never change, so cache each year's raw HTML to disk and
+    skip re-fetching it -- mirrors `odds_history._download_season`'s
+    caching pattern. Only the current (in-progress) season is always
+    re-fetched. On a request failure, fall back to the cached copy rather
+    than dropping that year's data (and the years around it -- see below).
+    """
     import datetime as dt
+    import logging
+
+    logger = logging.getLogger(__name__)
+    dest = cache_dir / f"atp_surface_speed_{year}.html"
+    is_current_season = year >= dt.date.today().year
+    if dest.exists() and not force and not is_current_season:
+        return parse_surface_speed_html(dest.read_text(encoding="utf-8"))
+    try:
+        resp = requests.get(SURFACE_SPEED_YEAR_URL.format(year=year), headers=_HEADERS, timeout=30)
+        resp.raise_for_status()
+    except requests.RequestException as exc:
+        if dest.exists():
+            logger.warning("Surface-speed fetch failed for %s (%s); using cached copy", year, exc)
+            return parse_surface_speed_html(dest.read_text(encoding="utf-8"))
+        logger.warning("No surface-speed data for %s (%s)", year, exc)
+        return pd.DataFrame()
+    dest.write_text(resp.text, encoding="utf-8")
+    return parse_surface_speed_html(resp.text)
+
+
+def fetch_surface_speed_history(start_year: int, end_year: int | None = None,
+                                 force: bool = False) -> pd.DataFrame:
+    """One request per *new* year only -- closed seasons are cached to disk
+    (`config.RAW_DIR/surface_speed/`) and reused, so a routine `update_data.py`
+    run makes exactly one live request (the current season) instead of
+    re-fetching all ~17 years every time. That previously meant a single
+    transient failure (observed in practice: a 429 from repeated same-day
+    scraping) silently dropped the *entire* surface-speed history for that
+    run, not just the failing year -- caching each year independently fixes
+    that too.
+    """
+    import datetime as dt
+
+    from tennissharp import config
+
     end_year = end_year or dt.date.today().year
-    frames = [fetch_surface_speed(year) for year in range(start_year, end_year + 1)]
+    cache_dir = config.RAW_DIR / "surface_speed"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    frames = [_fetch_surface_speed_year_cached(year, cache_dir, force=force)
+              for year in range(start_year, end_year + 1)]
     frames = [f for f in frames if not f.empty]
     combined = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
     return combined.drop_duplicates(subset=["date", "tournament"]).sort_values("date").reset_index(drop=True)

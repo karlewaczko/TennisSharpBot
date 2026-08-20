@@ -60,7 +60,7 @@ matching problem when combining sources that don't share a schema.
 |---|---|---|---|
 | [tennis-data.co.uk](http://www.tennis-data.co.uk/) | ATP/WTA results + odds (2000/2007+) | every `update_data.py` run | primary training data, backtesting |
 | [Tennis Abstract](https://tennisabstract.com) Elo ratings | overall/hard/clay/grass Elo, current snapshot | every run (`data/processed/ta_elo_current.csv`); standalone per-tour files (same columns) in `ta_elo_atp_general.csv` / `ta_elo_wta_general.csv` | **live/current-match scoring and cross-checks only** — see caveat below |
-| Tennis Abstract surface speed | per-tournament-*edition* ace-rate-based speed rating | every run (`data/processed/ta_surface_speed_history.csv`) | a real training feature (`tourney_surface_speed`), safe for backtesting |
+| Tennis Abstract surface speed | per-tournament-*edition* ace-rate-based speed rating (ATP-only source, but applied to WTA matches at shared venues too — see below) | every run (`data/processed/ta_surface_speed_history.csv`); closed seasons cached under `data/raw/surface_speed/`, only the current season is re-fetched | a real training feature (`tourney_surface_speed`), safe for backtesting |
 | [TennisExplorer](https://www.tennisexplorer.com) | today/tomorrow's schedule + odds + final scores, on-demand H2H, on-demand odds-movement history | every run (`data/processed/tennisexplorer_upcoming.csv`); H2H and odds history fetched live on demand | free alternative to The Odds API for live schedule/odds; `fetch_head_to_head()` for H2H; `fetch_match_odds_history()` for per-bookmaker opening-vs-current odds ("Quotenverlauf") |
 | Tennis Abstract Stat Leaders (`leaders.cgi`) | Serve/Return leaderboards, ATP (Top50/51-100/Challenger) + WTA (Top50/51-100), overall and per surface | every run (`data/processed/ta_leaders_{tour}_{pool}_{serve\|return}_{surface}.csv`, 50 files) | `/leaders` API endpoint, Serve/Return features — same live-snapshot caveat as Elo above |
 | [The Odds API](https://the-odds-api.com) | live bookmaker odds | on demand (`find_value_bets.py`) | live value-bet scoring (needs your own key) |
@@ -74,6 +74,16 @@ publishes one dated rating per *tournament edition*, so a 2019 tournament's
 rating reflects only information available when that tournament was played —
 safe to join into historical training data. `tourney_matching.py`'s docstring
 spells this out; if you extend the pipeline, keep that distinction in mind.
+
+**Why it applies to WTA too, despite the source page being ATP-only:**
+`tourney_matching.normalize_tourney_name()` strips "ATP"/"WTA" and other
+tour/level words before matching, joining purely on `(season, tournament
+name)`. A WTA match at a shared venue — Masters/combined events (Indian
+Wells, Miami, Madrid, Rome, Cincinnati) and the Slams — therefore picks up
+the same rating as that year's ATP edition at the same site, on the
+(reasonable, and Tennis Abstract's own) assumption the court plays the same
+regardless of which tour's using it. WTA-only venues get no match and fall
+back to the neutral default (`lookup_surface_speed`'s `default=1.0`).
 
 **How `tennisabstract.com/cgi-bin/leaders.cgi` is scraped despite being
 JS-rendered:** its Serve/Return leaderboards are built client-side, but from

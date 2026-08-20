@@ -1,8 +1,13 @@
+import datetime as dt
 from pathlib import Path
 
 import pandas as pd
+import requests
 
-from tennissharp.data.tennisabstract import filter_by_tour, parse_elo_html, parse_surface_speed_html
+from tennissharp.data import tennisabstract
+from tennissharp.data.tennisabstract import (
+    _fetch_surface_speed_year_cached, filter_by_tour, parse_elo_html, parse_surface_speed_html,
+)
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -72,3 +77,58 @@ def test_filter_by_tour_sorted_by_elo_rank():
     df = filter_by_tour(_mixed_tour_elo(), tour="wta")
     assert df.iloc[0]["player"] == "C"  # elo_rank 1
     assert df.iloc[1]["player"] == "D"  # elo_rank 2
+
+
+_SPEED_HTML = (FIXTURES / "atp_surface_speed_sample.html").read_text(encoding="utf-8")
+
+
+class _FakeResponse:
+    def __init__(self, text: str):
+        self.text = text
+
+    def raise_for_status(self):
+        pass
+
+
+def test_fetch_surface_speed_year_cached_closed_season_skips_network(tmp_path, monkeypatch):
+    calls = []
+    monkeypatch.setattr(tennisabstract.requests, "get", lambda *a, **k: calls.append(1) or _FakeResponse(_SPEED_HTML))
+
+    df1 = _fetch_surface_speed_year_cached(2020, tmp_path)
+    assert len(calls) == 1
+    assert not df1.empty
+    assert (tmp_path / "atp_surface_speed_2020.html").exists()
+
+    df2 = _fetch_surface_speed_year_cached(2020, tmp_path)  # closed season, cached
+    assert len(calls) == 1  # no second network call
+    pd.testing.assert_frame_equal(df1, df2)
+
+
+def test_fetch_surface_speed_year_cached_always_refetches_current_season(tmp_path, monkeypatch):
+    calls = []
+    monkeypatch.setattr(tennisabstract.requests, "get", lambda *a, **k: calls.append(1) or _FakeResponse(_SPEED_HTML))
+    current_year = dt.date.today().year
+
+    _fetch_surface_speed_year_cached(current_year, tmp_path)
+    _fetch_surface_speed_year_cached(current_year, tmp_path)
+    assert len(calls) == 2  # cache file exists but is ignored for the in-progress season
+
+
+def test_fetch_surface_speed_year_cached_falls_back_to_cache_on_failure(tmp_path, monkeypatch):
+    # First call succeeds and populates the cache.
+    monkeypatch.setattr(tennisabstract.requests, "get", lambda *a, **k: _FakeResponse(_SPEED_HTML))
+    good = _fetch_surface_speed_year_cached(2020, tmp_path)
+
+    # A later re-fetch (force=True) that fails should fall back to the cache
+    # instead of dropping that year's data entirely.
+    monkeypatch.setattr(tennisabstract.requests, "get", lambda *a, **k: (_ for _ in ()).throw(
+        requests.ConnectionError("network down")))
+    recovered = _fetch_surface_speed_year_cached(2020, tmp_path, force=True)
+    pd.testing.assert_frame_equal(good, recovered)
+
+
+def test_fetch_surface_speed_year_cached_missing_cache_on_failure_returns_empty(tmp_path, monkeypatch):
+    monkeypatch.setattr(tennisabstract.requests, "get", lambda *a, **k: (_ for _ in ()).throw(
+        requests.ConnectionError("network down")))
+    df = _fetch_surface_speed_year_cached(2020, tmp_path)
+    assert df.empty
