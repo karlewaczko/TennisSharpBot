@@ -44,6 +44,13 @@ resolve_name = _am.resolve_name
 
 REFERENCE_BOOK = "Pinnacle"
 
+# German betting tax (Rennwett- und Lotteriegesetz): 5.3% of the STAKE, not
+# of winnings, since GlueStV 2021. Licensed operators generally pass it on.
+# It applies before any edge is realised, so it shifts break-even more than
+# any model signal we have ever measured: at odds 1.37 the required hit rate
+# goes from 73.0% to 77.1%. Set --tax 0 only if your operator absorbs it.
+DEFAULT_STAKE_TAX = 0.053
+
 
 def _pinnacle_prices(match_id, player_a, player_b) -> tuple[float, float] | None:
     """Pinnacle's latest quote for both sides, or None if it isn't priced."""
@@ -67,6 +74,8 @@ def main() -> None:
     p.add_argument("card", type=Path)
     p.add_argument("--threshold", type=float, default=DEFAULT_EDGE_THRESHOLD)
     p.add_argument("--surface", default="Hard")
+    p.add_argument("--tax", type=float, default=DEFAULT_STAKE_TAX,
+                   help="stake tax, default 0.053 (Germany). Use 0 if absorbed.")
     args = p.parse_args()
 
     card = pd.read_csv(args.card)
@@ -131,7 +140,10 @@ def main() -> None:
                 # *fair* (de-vigged) price, which nobody offers -- a bet can
                 # clear the edge threshold and still be -EV once your book's
                 # margin is paid. Always read this column before betting.
-                "ev_dein_preis": mp * price - 1.0,
+                # Stake tax is levied on the stake, so only (1-tax) is
+                # actually at risk: payout per 1.0 staked is price*(1-tax).
+                "ev_dein_preis": mp * price * (1 - args.tax) - 1.0,
+                "ev_ohne_steuer": mp * price - 1.0,
                 # Does your book price this side better than the sharp book's
                 # fair value? A market observation, independent of the model.
                 "preisvorteil": price * fp - 1.0,
@@ -139,7 +151,8 @@ def main() -> None:
 
     df = pd.DataFrame(scored)
     print(f"\n{len(card)} Partien eingelesen, {len(df) // 2 if len(df) else 0} bewertet"
-          f" | Referenz: {REFERENCE_BOOK}, Schwelle {args.threshold:.0%}\n" + "=" * 84)
+          f" | Referenz: {REFERENCE_BOOK}, Schwelle {args.threshold:.0%}"
+          f", Wettsteuer {args.tax:.1%}\n" + "=" * 84)
 
     if not df.empty:
         hits = df[df["edge"] > args.threshold].sort_values("edge", ascending=False)
@@ -155,7 +168,7 @@ def main() -> None:
             print()
 
         actionable = df[df["ev_dein_preis"] > 0].sort_values("ev_dein_preis", ascending=False)
-        print("POSITIVER EV ZU DEINEM PREIS (die einzige Zahl, die zaehlt):")
+        print(f"POSITIVER EV ZU DEINEM PREIS (nach {args.tax:.1%} Wettsteuer):")
         if actionable.empty:
             print("  keine -- jede Seite ist zu deinem Preis negativ.\n")
         else:
@@ -176,12 +189,12 @@ def main() -> None:
             print()
 
         show = df.sort_values("edge", ascending=False).head(12).copy()
-        for c in ("modell", "pin_fair", "edge", "ev_dein_preis", "preisvorteil"):
-            signed = c in ("edge", "ev_dein_preis", "preisvorteil")
+        for c in ("modell", "pin_fair", "edge", "ev_ohne_steuer", "ev_dein_preis", "preisvorteil"):
+            signed = c in ("edge", "ev_ohne_steuer", "ev_dein_preis", "preisvorteil")
             show[c] = show[c].map(lambda v, s=signed: f"{v:+.1%}" if s else f"{v:.1%}")
         print("Groesste Modellabweichungen:\n")
         print(show[["event", "pick", "dein_preis", "pinnacle", "modell", "pin_fair",
-                    "edge", "ev_dein_preis", "preisvorteil"]].to_string(index=False))
+                    "edge", "ev_ohne_steuer", "ev_dein_preis"]].to_string(index=False))
 
     if problems:
         print(f"\nNicht bewertet ({len(problems)}):")
@@ -191,8 +204,9 @@ def main() -> None:
     print("\n" + "-" * 84)
     print("audit_edge.py: kein Informationsvorsprung ggue. dem Markt (gain -0.00078).")
     print("'Edge' misst gegen Pinnacles FAIRWERT -- den bietet niemand an.")
-    print("'EV bei deinem Preis' ist die Entscheidungsgroesse: Edge ueber der")
-    print("Schwelle bei negativem EV heisst nicht wetten.")
+    print("'ev_dein_preis' ist die Entscheidungsgroesse -- inkl. Wettsteuer.")
+    print(f"Bei {DEFAULT_STAKE_TAX:.1%} Einsatzsteuer muss die Quote um {1/(1-DEFAULT_STAKE_TAX)-1:.1%}")
+    print("hoeher liegen, nur um auf null zu kommen.")
     print("-" * 84 + "\n")
 
 
