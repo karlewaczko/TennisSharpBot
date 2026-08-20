@@ -1,4 +1,4 @@
-# Edge audit (2026-07-26T22:01:01+00:00)
+# Edge audit (2026-08-20T13:44:58+00:00)
 
 ## 1. Price attainability
 
@@ -7,9 +7,9 @@ A price column implying a negative overround on a large share of matches is a ru
 | price_column   |     n |   mean_overround |   negative_overround_rate | attainable   | verdict                                                           |
 |:---------------|------:|-----------------:|--------------------------:|:-------------|:------------------------------------------------------------------|
 | pinnacle       | 78351 |          0.02541 |                    0.0003 | True         | looks like a real quotable price                                  |
-| bet365         | 81711 |          0.06218 |                    0      | True         | looks like a real quotable price                                  |
-| market_avg     | 80220 |          0.05759 |                    0.0003 | True         | looks like a real quotable price                                  |
-| market_max     | 80222 |         -0.00029 |                    0.4275 | False        | NOT ATTAINABLE -- running max over time, do not bet/backtest this |
+| bet365         | 82132 |          0.06212 |                    0      | True         | looks like a real quotable price                                  |
+| market_avg     | 80642 |          0.05762 |                    0.0003 | True         | looks like a real quotable price                                  |
+| market_max     | 80644 |         -0.00016 |                    0.4256 | False        | NOT ATTAINABLE -- running max over time, do not bet/backtest this |
 
 ## 2. Market calibration
 
@@ -34,28 +34,28 @@ The decisive test. If a model trained on [market price + our features] cannot be
 
 |   season |    n |   market_log_loss |   ours_log_loss |   combined_log_loss | we_add_information   |
 |---------:|-----:|------------------:|----------------:|--------------------:|:---------------------|
-|     2013 | 4450 |          0.569976 |        0.596518 |            0.571993 | False                |
-|     2014 | 4320 |          0.587328 |        0.611573 |            0.592726 | False                |
-|     2015 | 4560 |          0.581376 |        0.602451 |            0.582489 | False                |
-|     2016 | 4491 |          0.590369 |        0.612687 |            0.590675 | False                |
-|     2017 | 4503 |          0.608247 |        0.62782  |            0.608121 | True                 |
-|     2018 | 4455 |          0.602766 |        0.626343 |            0.603282 | False                |
-|     2019 | 4438 |          0.605942 |        0.627979 |            0.60625  | False                |
-|     2020 | 2036 |          0.589064 |        0.616848 |            0.589343 | False                |
-|     2021 | 4243 |          0.58832  |        0.615018 |            0.590008 | False                |
-|     2022 | 4312 |          0.597221 |        0.621937 |            0.597885 | False                |
-|     2023 | 4459 |          0.599292 |        0.632783 |            0.599936 | False                |
-|     2024 | 4586 |          0.594918 |        0.618198 |            0.59315  | True                 |
-|     2025 | 4271 |          0.605448 |        0.628925 |            0.605784 | False                |
+|     2013 | 4450 |          0.569976 |        0.597388 |            0.57297  | False                |
+|     2014 | 4320 |          0.587328 |        0.611391 |            0.589754 | False                |
+|     2015 | 4560 |          0.581376 |        0.60093  |            0.580904 | True                 |
+|     2016 | 4491 |          0.590369 |        0.612931 |            0.591924 | False                |
+|     2017 | 4503 |          0.608247 |        0.629983 |            0.608182 | False                |
+|     2018 | 4455 |          0.602766 |        0.624451 |            0.603543 | False                |
+|     2019 | 4438 |          0.605938 |        0.629289 |            0.607116 | False                |
+|     2020 | 2036 |          0.589024 |        0.617983 |            0.588442 | True                 |
+|     2021 | 4243 |          0.58832  |        0.614934 |            0.589043 | False                |
+|     2022 | 4312 |          0.597221 |        0.622916 |            0.597722 | False                |
+|     2023 | 4459 |          0.599292 |        0.631333 |            0.600069 | False                |
+|     2024 | 4586 |          0.594918 |        0.61864  |            0.59438  | True                 |
+|     2025 | 4271 |          0.605448 |        0.628375 |            0.605641 | False                |
 
 ```
 seasons_tested: 13
 matches_tested: 55124
-market_log_loss: 0.59406
-ours_log_loss: 0.61842
-combined_log_loss: 0.59494
-information_gain: -0.00088
-market_lifts_our_model_by: 0.02348
+market_log_loss: 0.59405
+ours_log_loss: 0.61849
+combined_log_loss: 0.59483
+information_gain: -0.00078
+market_lifts_our_model_by: 0.02365
 verdict: NO information beyond the market: the market already prices in everything we know, so this model cannot systematically beat it
 ```
 
