@@ -7,9 +7,10 @@ from-scratch Elo (they fold in ITF/Challenger results, peak ratings, etc.)
 replicate them.
 
 Both pages are plain server-rendered HTML tables (`pandas.read_html` handles
-them directly), unlike tennisabstract.com/cgi-bin/leaders.cgi, whose stat
-leaderboards are built client-side from a large, undocumented internal JS
-array and are deliberately NOT scraped here -- see README for why.
+them directly), unlike tennisabstract.com/cgi-bin/leaders.cgi, whose Serve/
+Return stat leaderboards are built client-side from a per-match JSON array --
+see `tennisabstract_leaders.py` (a separate module, since the parsing
+approach is completely different) for that source.
 """
 from __future__ import annotations
 

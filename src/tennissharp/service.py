@@ -66,6 +66,24 @@ def get_atp_general_rankings(top_n: int = 10) -> pd.DataFrame:
     return get_tour_general_rankings("atp", top_n=top_n)
 
 
+def get_leaders(tour: str, pool: str = "top50", stat: str = "serve", surface: str = "all",
+                 top_n: int = 50) -> pd.DataFrame:
+    """Serve/Return leaderboard (tennisabstract.com/cgi-bin/leaders.cgi), one
+    of the `ta_leaders_{tour}_{pool}_{stat}_{surface}.csv` files scripts/
+    update_data.py writes. `pool`: "top50"/"51-100"/"challenger" (WTA has no
+    challenger pool). `surface`: "all"/"hard"/"clay"/"grass"/"carpet". Sorted
+    by the primary stat (`spw` for serve, `rpw` for return) -- these files
+    don't carry Tennis Abstract's own display rank (based on live official
+    rankings, not a stat), see tennisabstract_leaders.py.
+    """
+    pool_slug = pool.lower().replace("-", "")
+    path = config.PROCESSED_DIR / f"ta_leaders_{tour.lower()}_{pool_slug}_{stat.lower()}_{surface.lower()}.csv"
+    _require(path, f"{tour.upper()} {pool} {stat} leaders ({surface})")
+    df = pd.read_csv(path)
+    sort_col = "spw" if stat.lower() == "serve" else "rpw"
+    return df.sort_values(sort_col, ascending=False).head(top_n)
+
+
 def get_surface_speed(tournament: str | None = None, top_n: int = 10) -> pd.DataFrame:
     """Without `tournament`, returns the fastest `top_n` tournaments from the
     most recent season on record. With it, returns that tournament's rating

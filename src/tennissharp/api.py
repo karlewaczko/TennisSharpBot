@@ -60,6 +60,18 @@ def atp_general_rankings(top_n: int = Query(10, ge=1, le=200)) -> list[dict]:
     return _records(df)
 
 
+@app.get("/leaders")
+def leaders(tour: str = Query("atp", pattern="^(atp|wta)$"),
+            pool: str = Query("top50", pattern="^(top50|51-100|challenger)$"),
+            stat: str = Query("serve", pattern="^(serve|return)$"),
+            surface: str = Query("all", pattern="^(all|hard|clay|grass|carpet)$"),
+            top_n: int = Query(50, ge=1, le=200)) -> list[dict]:
+    """Serve/Return stat leaderboard, overall or filtered to one surface --
+    see service.get_leaders. WTA has no Challenger pool."""
+    df = service.get_leaders(tour=tour, pool=pool, stat=stat, surface=surface, top_n=top_n)
+    return _records(df)
+
+
 @app.get("/surface-speed")
 def surface_speed(tournament: str | None = None, top_n: int = Query(10, ge=1, le=100)) -> list[dict]:
     df = service.get_surface_speed(tournament=tournament, top_n=top_n)

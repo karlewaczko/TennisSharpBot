@@ -60,6 +60,28 @@ def test_atp_general_rankings_returns_json_with_surface_columns(processed_dir):
         assert col in body[0]
 
 
+def test_leaders_returns_json_records(processed_dir):
+    pd.DataFrame({
+        "player": ["A", "B"], "matches": [50, 40], "spw": [0.60, 0.70],
+    }).to_csv(processed_dir / "ta_leaders_atp_top50_serve_all.csv", index=False)
+
+    r = client.get("/leaders", params={"tour": "atp", "pool": "top50", "stat": "serve", "surface": "all"})
+    assert r.status_code == 200
+    body = r.json()
+    assert len(body) == 2
+    assert body[0]["player"] == "B"  # higher spw first
+
+
+def test_leaders_missing_data_returns_503(processed_dir):
+    r = client.get("/leaders")
+    assert r.status_code == 503
+
+
+def test_leaders_rejects_invalid_surface():
+    r = client.get("/leaders", params={"surface": "grasss"})
+    assert r.status_code == 422
+
+
 def test_rankings_missing_data_returns_503(processed_dir):
     r = client.get("/rankings")
     assert r.status_code == 503

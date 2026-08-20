@@ -95,6 +95,43 @@ def test_get_rankings_own_ignores_tour_and_filters_low_sample(processed_dir):
     assert list(df["player"]) == ["A", "C"]
 
 
+def test_get_leaders_missing_file_raises_data_not_ready(processed_dir):
+    with pytest.raises(service.DataNotReadyError):
+        service.get_leaders(tour="atp", pool="top50", stat="serve", surface="all")
+
+
+def test_get_leaders_reads_matching_file_and_sorts_by_primary_stat(processed_dir):
+    pd.DataFrame({
+        "player": ["A", "B", "C"],
+        "matches": [50, 40, 60],
+        "spw": [0.65, 0.70, 0.60],
+    }).to_csv(processed_dir / "ta_leaders_atp_top50_serve_all.csv", index=False)
+
+    df = service.get_leaders(tour="atp", pool="top50", stat="serve", surface="all")
+    assert list(df["player"]) == ["B", "A", "C"]  # sorted by spw, descending
+
+
+def test_get_leaders_pool_and_surface_select_different_files(processed_dir):
+    pd.DataFrame({"player": ["A"], "matches": [10], "spw": [0.5]}).to_csv(
+        processed_dir / "ta_leaders_atp_top50_serve_all.csv", index=False)
+    pd.DataFrame({"player": ["Z"], "matches": [5], "spw": [0.9]}).to_csv(
+        processed_dir / "ta_leaders_atp_top50_serve_hard.csv", index=False)
+
+    assert service.get_leaders(tour="atp", surface="all").iloc[0]["player"] == "A"
+    assert service.get_leaders(tour="atp", surface="hard").iloc[0]["player"] == "Z"
+
+
+def test_get_leaders_return_stat_sorts_by_rpw(processed_dir):
+    pd.DataFrame({
+        "player": ["A", "B"],
+        "matches": [50, 40],
+        "rpw": [0.35, 0.42],
+    }).to_csv(processed_dir / "ta_leaders_wta_top50_return_all.csv", index=False)
+
+    df = service.get_leaders(tour="wta", stat="return", surface="all")
+    assert list(df["player"]) == ["B", "A"]
+
+
 def test_get_surface_speed_by_tournament_name(processed_dir):
     pd.DataFrame({
         "date": ["2024-01-01", "2023-01-01", "2024-06-01"],

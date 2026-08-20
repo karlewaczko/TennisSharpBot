@@ -62,6 +62,7 @@ matching problem when combining sources that don't share a schema.
 | [Tennis Abstract](https://tennisabstract.com) Elo ratings | overall/hard/clay/grass Elo, current snapshot | every run (`data/processed/ta_elo_current.csv`); standalone per-tour files (same columns) in `ta_elo_atp_general.csv` / `ta_elo_wta_general.csv` | **live/current-match scoring and cross-checks only** — see caveat below |
 | Tennis Abstract surface speed | per-tournament-*edition* ace-rate-based speed rating | every run (`data/processed/ta_surface_speed_history.csv`) | a real training feature (`tourney_surface_speed`), safe for backtesting |
 | [TennisExplorer](https://www.tennisexplorer.com) | today/tomorrow's schedule + odds, on-demand head-to-head | every run (`data/processed/tennisexplorer_upcoming.csv`) | free alternative to The Odds API for live schedule/odds; `fetch_head_to_head()` for on-demand H2H lookups |
+| Tennis Abstract Stat Leaders (`leaders.cgi`) | Serve/Return leaderboards, ATP (Top50/51-100/Challenger) + WTA (Top50/51-100), overall and per surface | every run (`data/processed/ta_leaders_{tour}_{pool}_{serve\|return}_{surface}.csv`, 50 files) | `/leaders` API endpoint, Serve/Return features — same live-snapshot caveat as Elo above |
 | [The Odds API](https://the-odds-api.com) | live bookmaker odds | on demand (`find_value_bets.py`) | live value-bet scoring (needs your own key) |
 
 **Why Tennis Abstract's Elo isn't a training feature but its surface speed is:**
@@ -74,15 +75,18 @@ rating reflects only information available when that tournament was played —
 safe to join into historical training data. `tourney_matching.py`'s docstring
 spells this out; if you extend the pipeline, keep that distinction in mind.
 
-**Why `tennisabstract.com/cgi-bin/leaders.cgi` (and the WTA/51-100/challenger
-variants) aren't wired in:** those leaderboards are built client-side from a
-large, undocumented internal JavaScript array — reproducing them correctly
-would mean either executing that JS (a headless-browser dependency we
-couldn't validate from this sandboxed dev session, though it should work fine
-in GitHub Actions' unrestricted network) or reverse-engineering an ambiguous,
-inconsistent-length array format blind. Both risk silently feeding wrong
-numbers into a betting model, so this was deliberately left out rather than
-shipped unverified — a reasonable next step if you want to pursue it.
+**How `tennisabstract.com/cgi-bin/leaders.cgi` is scraped despite being
+JS-rendered:** its Serve/Return leaderboards are built client-side, but from
+a *documented* per-match JSON array (`jsmatches/leadersource*.js` — one file
+per tour/player-pool combination) that's valid JSON on its own, no browser
+needed. `tennisabstract_leaders.py` reimplements the page's own aggregation
+formulas (copied from its `makeMatchTable()` JS, field-for-field) in Python.
+This was previously left out over concern the array's columns were
+ambiguous; they turned out not to be — `var matchhead = [...]` in the page
+source names every field, and the reimplementation's output was checked
+against user-supplied ground truth (Sinner: 76 matches / 625 aces / 102
+double faults over the trailing 52 weeks — exact match) before being wired
+into `update_data.py`.
 
 ## Setup
 
