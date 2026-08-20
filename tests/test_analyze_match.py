@@ -35,17 +35,25 @@ ROSTER = ["Sinner J.", "Alcaraz C.", "Djokovic N.", "Auger Aliassime F.",
 TA_NAMES = ["Jannik Sinner", "Carlos Alcaraz", "Felix Auger Aliassime", "Elena Rybakina"]
 
 
-def test_name_key_handles_all_three_spellings(am):
-    assert am.name_key("Sinner J.") == ("sinner", "j")
-    assert am.name_key("Jannik Sinner") == ("sinner", "j")
-    assert am.name_key("Sinner") == ("sinner", "")
-    # Multi-word surnames stay intact in both directions.
-    assert am.name_key("Auger Aliassime F.") == ("auger aliassime", "f")
-    assert am.name_key("Felix Auger Aliassime") == ("auger aliassime", "f")
+def test_name_keys_unambiguous_when_an_initial_is_present(am):
+    assert am.name_keys("Sinner J.") == {("sinner", "j")}
+    assert am.name_keys("J. Sinner") == {("sinner", "j")}
+    assert am.name_keys("Sinner") == {("sinner", "")}
+    # Multi-word surnames stay intact.
+    assert am.name_keys("Auger Aliassime F.") == {("auger aliassime", "f")}
 
 
-def test_name_key_strips_accents(am):
-    assert am.name_key("Möller H.")[0] == "moller"
+def test_name_keys_offers_both_orders_for_a_bare_full_name(am):
+    """TennisExplorer's schedule writes `Paul T.` while the odds table on the
+    same page writes `Paul Tommy` -- surname first. Both readings are kept so
+    either source resolves without hardcoding an order per feed."""
+    assert ("sinner", "j") in am.name_keys("Jannik Sinner")
+    assert ("paul", "t") in am.name_keys("Paul Tommy")
+    assert ("auger aliassime", "f") in am.name_keys("Felix Auger Aliassime")
+
+
+def test_name_keys_strips_accents(am):
+    assert any(last == "moller" for last, _ in am.name_keys("Möller H."))
 
 
 def test_resolve_bare_surname(am):

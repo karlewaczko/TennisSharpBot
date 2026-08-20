@@ -37,22 +37,30 @@ def _fold(text: str) -> str:
     return stripped.strip().lower()
 
 
-def name_key(name: str) -> tuple[str, str]:
-    """(lastname, first initial) -- the one thing every source agrees on.
+def name_keys(name: str) -> set[tuple[str, str]]:
+    """Every (lastname, initial) reading of `name`.
 
-    Handles both `Sinner J.` (our match history, TennisExplorer) and
-    `Jannik Sinner` (Tennis Abstract). Multi-word surnames stay attached in
-    the "Lastname F." form because the initial is always the final token,
-    so everything before it is the surname.
+    A two-part name with no initial is genuinely ambiguous: TennisExplorer's
+    schedule writes `Sinner J.`, Tennis Abstract writes `Jannik Sinner`, and
+    the odds table on the *same* TennisExplorer page writes `Paul Tommy` --
+    surname first. Rather than guess an order per source, return both
+    readings and let the match succeed if either lands. Callers already
+    reject an ambiguous result, so a spurious extra key costs a failed
+    lookup, never a wrong player.
     """
     parts = _fold(name).replace(",", " ").split()
     if not parts:
-        return ("", "")
+        return set()
     if len(parts) == 1:
-        return (parts[0], "")                                   # bare "Sinner"
+        return {(parts[0], "")}                                  # bare "Sinner"
     if len(parts[-1].rstrip(".")) == 1:
-        return (" ".join(parts[:-1]), parts[-1].rstrip("."))    # "Sinner J."
-    return (" ".join(parts[1:]), parts[0][:1])                  # "Jannik Sinner"
+        return {(" ".join(parts[:-1]), parts[-1].rstrip("."))}   # "Sinner J."
+    if len(parts[0].rstrip(".")) == 1:
+        return {(" ".join(parts[1:]), parts[0].rstrip("."))}     # "J. Sinner"
+    return {
+        (" ".join(parts[1:]), parts[0][:1]),                     # "Jannik Sinner"
+        (" ".join(parts[:-1]), parts[-1][:1]),                   # "Paul Tommy"
+    }
 
 
 def resolve_name(query: str, candidates) -> str | None:
@@ -61,22 +69,21 @@ def resolve_name(query: str, candidates) -> str | None:
     "Alcaraz" resolves, but an ambiguous one returns None rather than
     silently picking the wrong player.
     """
-    q_last, q_init = name_key(query)
-    if not q_last:
+    q_keys = name_keys(query)
+    if not q_keys:
         return None
-    keyed = [(name_key(c), c) for c in candidates]
-    exact = [c for (last, init), c in keyed if last == q_last and init == q_init]
+    q_surnames = {last for last, _ in q_keys}
+    keyed = [(name_keys(c), c) for c in candidates]
+
+    # Full (surname, initial) agreement on any reading of either name.
+    exact = [c for keys, c in keyed if keys & q_keys]
     if exact:
-        return exact[0]
-    surname_only = {c for (last, _), c in keyed if last == q_last}
-    if len(surname_only) == 1:
-        return surname_only.pop()
-    # Bare query like "Alcaraz" against "Alcaraz C." -- query carried no initial.
-    if not q_init:
-        loose = {c for (last, _), c in keyed if last == q_last}
-        if len(loose) == 1:
-            return loose.pop()
-    return None
+        return exact[0] if len(set(exact)) == 1 else None
+
+    # Surname alone -- accepted only when it identifies exactly one player,
+    # so "Zverev" stays unresolved rather than silently picking a brother.
+    surname_only = {c for keys, c in keyed if {last for last, _ in keys} & q_surnames}
+    return surname_only.pop() if len(surname_only) == 1 else None
 
 
 def _load_csv(name: str) -> pd.DataFrame | None:
