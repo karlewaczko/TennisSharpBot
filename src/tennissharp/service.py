@@ -148,6 +148,33 @@ def get_head_to_head(player1_query: str, player2_query: str) -> dict:
     return {"player1": name1, "player2": name2, "wins1": wins1, "wins2": wins2, "history": history}
 
 
+def get_odds_history(player1_query: str, player2_query: str) -> dict:
+    """Odds-movement timeline ("Quotenverlauf") for a match currently listed
+    in today/tomorrow's schedule cache, looked up by player name. Fetched
+    live -- unlike H2H this genuinely changes up to kickoff, so it isn't
+    something `update_data.py` can usefully pre-cache.
+    """
+    from tennissharp.data.tennisexplorer import fetch_match_odds_history
+
+    path = config.PROCESSED_DIR / "tennisexplorer_upcoming.csv"
+    _require(path, "Upcoming matches")
+    df = pd.read_csv(path)
+    q1, q2 = player1_query.strip().lower(), player2_query.strip().lower()
+    p1 = df["player1"].str.lower().str.contains(q1, regex=False, na=False)
+    p2 = df["player2"].str.lower().str.contains(q2, regex=False, na=False)
+    swapped1 = df["player1"].str.lower().str.contains(q2, regex=False, na=False)
+    swapped2 = df["player2"].str.lower().str.contains(q1, regex=False, na=False)
+    hit = df[(p1 & p2) | (swapped1 & swapped2)]
+    if hit.empty:
+        raise ValueError(f"Couldn't find a scheduled match between '{player1_query}' and "
+                          f"'{player2_query}' in today/tomorrow's schedule.")
+    row = hit.iloc[0]
+    match_id = str(row["match_id"])
+    history = fetch_match_odds_history(match_id)
+    return {"player1": row["player1"], "player2": row["player2"],
+            "match_id": match_id, "history": history}
+
+
 def get_value_bets(edge_threshold: float = 0.03, kelly_fraction: float = 0.25,
                     bankroll: float = 10_000.0, regions: str = "eu") -> pd.DataFrame:
     """Live value bets via The Odds API -- requires ODDS_API_KEY. Raises

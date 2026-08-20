@@ -98,6 +98,20 @@ def head_to_head(player1: str, player2: str) -> dict:
     }
 
 
+@app.get("/odds-history")
+def odds_history(player1: str, player2: str) -> dict:
+    """Odds-movement timeline ("Quotenverlauf") for a scheduled match,
+    looked up by player names -- see service.get_odds_history."""
+    try:
+        result = service.get_odds_history(player1, player2)
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    return {
+        "player1": result["player1"], "player2": result["player2"], "match_id": result["match_id"],
+        "history": _records(result["history"]),
+    }
+
+
 @app.get("/value-bets")
 def value_bets(edge_threshold: float = Query(0.03, ge=0, le=1),
                kelly_fraction: float = Query(0.25, ge=0, le=1),

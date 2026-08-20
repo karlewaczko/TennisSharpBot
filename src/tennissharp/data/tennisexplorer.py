@@ -1,17 +1,28 @@
-"""TennisExplorer.com: match schedule + odds, and head-to-head history.
+"""TennisExplorer.com: match schedule + odds + results, head-to-head
+history, and per-bookmaker odds-movement history ("Quotenverlauf").
 
 robots.txt (checked 2026-07) only disallows /redirect/, /terms-of-use/, and
-/contact/ -- the /matches/ and /mutual/ paths used here are unrestricted.
+/contact/ -- the /matches/, /mutual/, and /match-detail/ paths used here are
+unrestricted.
 
 The schedule page (/matches/) is plain server-rendered HTML (no JS needed),
 with a fairly rigid structure: a `<tr class="head flags">` row announces each
 tournament, followed by pairs of `<tr id="sNN">`/`<tr id="sNNb">` rows (one
 per player) for each match in it. We parse that directly with regex rather
 than pandas.read_html, since read_html's positional columns shift depending
-on whether a row has an extra "Live streams..." prefix cell.
+on whether a row has an extra "Live streams..." prefix cell. The same rows
+carry the final score once a match has been played (`day_offset<0`, or any
+match that's since finished), so `fetch_matches()` doubles as the results feed.
 
 The head-to-head page (/mutual/<slug1>/<slug2>/), by contrast, is a clean,
 uniform table that pandas.read_html handles well directly.
+
+The match-detail page (/match-detail/?id=<id>) embeds each bookmaker's full
+odds history (current odds plus every recorded change, oldest one marked
+"Opening odds") directly in its odds-comparison table -- nested tables
+inside table cells, so `fetch_match_odds_history()` depth-counts
+`<table>`/`</table>` tags to isolate it rather than using a non-greedy regex
+(which would stop at the first nested `</tr>`/`</table>` it hit).
 """
 from __future__ import annotations
 
@@ -30,6 +41,19 @@ _ROW_RE = re.compile(r'<tr id="([a-z]\d+)(b?)"[^>]*>(.*?)</tr>', re.DOTALL)
 _PLAYER_RE = re.compile(r'<td class="t-name"><a href="(/player/[^"]+)/">([^<]+)</a>')
 _ODDS_RE = re.compile(r'<td class="course\w*"[^>]*>([\d.]+)</td>')
 _MATCH_ID_RE = re.compile(r'/match-detail/\?id=(\d+)')
+# Present on both scheduled rows (empty placeholders) and finished ones
+# (actual values), so the same regex covers upcoming and past-day fetches.
+_RESULT_RE = re.compile(r'<td class="result">([^<]*)</td>')
+_SCORE_CELL_RE = re.compile(r'<td class="score">([^<]*)</td>')
+
+
+def _clean_cell(text: str | None) -> str | None:
+    """Strip the site's non-breaking-space placeholder (sometimes missing
+    its trailing semicolon, a site-side markup bug) down to None."""
+    if text is None:
+        return None
+    cleaned = text.replace("&nbsp;", "").replace("&nbsp", "").strip()
+    return cleaned or None
 
 
 def _extract_tournament_sections(html: str) -> list[tuple[int, str, str]]:
@@ -74,6 +98,7 @@ def parse_matches_html(html: str) -> pd.DataFrame:
             tournament, tournament_url = _tournament_for_offset(sections, m.start())
             odds = _ODDS_RE.findall(body)
             match_id = _MATCH_ID_RE.search(body)
+            result = _RESULT_RE.search(body)
             pending = {
                 "tournament": tournament,
                 "tournament_url": tournament_url,
@@ -82,14 +107,30 @@ def parse_matches_html(html: str) -> pd.DataFrame:
                 "odds1": float(odds[0]) if len(odds) > 0 else None,
                 "odds2": float(odds[1]) if len(odds) > 1 else None,
                 "match_id": match_id.group(1) if match_id else None,
+                "sets_won1": _clean_cell(result.group(1)) if result else None,
+                "_score_cells1": [_clean_cell(c) for c in _SCORE_CELL_RE.findall(body)],
             }
         elif pending is not None:
+            result = _RESULT_RE.search(body)
+            score_cells1 = pending.pop("_score_cells1")
+            score_cells2 = [_clean_cell(c) for c in _SCORE_CELL_RE.findall(body)]
+            sets = []
+            for g1, g2 in zip(score_cells1, score_cells2):
+                if g1 is None or g2 is None:
+                    break
+                sets.append(f"{g1}-{g2}")
             pending["player2"] = player_name
             pending["player2_slug"] = player_slug
+            pending["sets_won2"] = _clean_cell(result.group(1)) if result else None
+            pending["score"] = " ".join(sets) if sets else None
             rows.append(pending)
             pending = None
 
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    for col in ("sets_won1", "sets_won2"):
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+    return df
 
 
 def fetch_matches(day_offset: int = 0) -> pd.DataFrame:
@@ -127,6 +168,112 @@ def fetch_head_to_head(slug1: str, slug2: str) -> pd.DataFrame:
     resp = requests.get(f"{BASE_URL}/mutual/{slug1}/{slug2}/", headers=_HEADERS, timeout=30)
     resp.raise_for_status()
     return parse_head_to_head_html(resp.text)
+
+
+_ODDS_TABLE_ANCHOR = '<table class="result " cellspacing="0">'  # trailing space distinguishes
+# this from the H2H match-history table above, which is class="result" (no space).
+_BOOKMAKER_ROW_START_RE = re.compile(r'<tr class="(?:one|two)">')
+_BOOKMAKER_NAME_RE = re.compile(r'<span class="t">([^<]+)</span>')
+_ODDS_MOVE_RE = re.compile(r'<tr><td>([^<]+)</td><td class="bold">([^<]+)</td><td class="diff-\w+">([^<]*)</td></tr>')
+_OPENING_MARKER = '<td colspan="3" class="title">Opening odds</td>'
+
+
+def _extract_balanced_table(html: str, start: int) -> str:
+    """Slice out a `<table>...</table>` region honoring nested tables (the
+    odds-comparison table embeds one small history table per bookmaker per
+    player inside it), by depth-counting `<table`/`</table>` occurrences
+    rather than stopping at the first `</table>`.
+    """
+    depth, i = 0, start
+    while True:
+        next_open = html.find("<table", i)
+        next_close = html.find("</table>", i)
+        if next_close == -1:
+            raise ValueError("Unbalanced <table> while scanning odds-comparison table")
+        if next_open != -1 and next_open < next_close:
+            depth += 1
+            i = next_open + len("<table")
+        else:
+            depth -= 1
+            i = next_close + len("</table>")
+            if depth == 0:
+                return html[start:i]
+
+
+def _resolve_odds_timestamp(raw: str, reference: dt.date) -> pd.Timestamp:
+    """The site prints "DD.MM. HH:MM" with no year. Assume `reference`'s
+    year, then roll back a year if that lands more than 2 days in the
+    future (handles scraping in January about odds recorded the preceding
+    December)."""
+    import datetime as dt
+
+    day_str, time_str = raw.strip().split(" ", 1)
+    day, month = (int(x) for x in day_str.rstrip(".").split("."))
+    hour, minute = (int(x) for x in time_str.split(":"))
+    candidate = dt.datetime(reference.year, month, day, hour, minute)
+    if candidate > dt.datetime.combine(reference, dt.time(23, 59)) + dt.timedelta(days=2):
+        candidate = candidate.replace(year=reference.year - 1)
+    return pd.Timestamp(candidate)
+
+
+def parse_odds_history_html(html: str, reference_date: dt.date | None = None) -> pd.DataFrame:
+    """Long-format odds-movement timeline ("Quotenverlauf"): one row per
+    (bookmaker, player, recorded change). The match-detail page embeds each
+    bookmaker's full odds history (newest first, ending in an "Opening
+    odds"-marked oldest entry) directly in its odds-comparison table, so no
+    separate request/page is needed.
+    """
+    import datetime as dt
+
+    reference_date = reference_date or dt.date.today()
+    anchor = html.find(_ODDS_TABLE_ANCHOR)
+    if anchor == -1:
+        return pd.DataFrame()
+    table_html = _extract_balanced_table(html, anchor)
+
+    header_m = re.search(r'<tr class="head">.*?<td class="k1">([^<]+)</td>\s*'
+                          r'<td class="k2">([^<]+)</td>', table_html, re.DOTALL)
+    if not header_m:
+        return pd.DataFrame()
+    player1, player2 = header_m.group(1).strip(), header_m.group(2).strip()
+
+    row_starts = [m.start() for m in _BOOKMAKER_ROW_START_RE.finditer(table_html)]
+    rows = []
+    for idx, start in enumerate(row_starts):
+        end = row_starts[idx + 1] if idx + 1 < len(row_starts) else len(table_html)
+        block = table_html[start:end]
+        name_m = _BOOKMAKER_NAME_RE.search(block)
+        if not name_m:
+            continue
+        bookmaker = name_m.group(1).strip()
+
+        k1_pos, k2_pos = block.find('<td class="k1">'), block.find('<td class="k2">')
+        if k1_pos == -1 or k2_pos == -1:
+            continue
+        regions = {player1: block[k1_pos:k2_pos], player2: block[k2_pos:]}
+
+        for player, region in regions.items():
+            opening_pos = region.find(_OPENING_MARKER)
+            for m in _ODDS_MOVE_RE.finditer(region):
+                rows.append({
+                    "bookmaker": bookmaker,
+                    "player": player,
+                    "timestamp": _resolve_odds_timestamp(m.group(1), reference_date),
+                    "odds": float(m.group(2)),
+                    "is_opening": opening_pos != -1 and m.start() > opening_pos,
+                })
+
+    df = pd.DataFrame(rows)
+    return df.sort_values(["bookmaker", "player", "timestamp"]).reset_index(drop=True) if not df.empty else df
+
+
+def fetch_match_odds_history(match_id: str | int) -> pd.DataFrame:
+    """Odds-movement timeline for one match, straight from its match-detail
+    page (`match_id` comes from `fetch_matches()`'s `match_id` column).
+    """
+    resp = requests.get(f"{BASE_URL}/match-detail/?id={match_id}", headers=_HEADERS, timeout=30)
+    resp.raise_for_status()
+    return parse_odds_history_html(resp.text)
 
 
 def head_to_head_summary(h2h_df: pd.DataFrame, player1: str, player2: str) -> tuple[int, int]:

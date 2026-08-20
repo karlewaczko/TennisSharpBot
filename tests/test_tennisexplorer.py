@@ -1,7 +1,9 @@
+import datetime as dt
 from pathlib import Path
 
 from tennissharp.data.tennisexplorer import (
     head_to_head_summary, parse_head_to_head_html, parse_matches_html,
+    parse_odds_history_html,
 )
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -22,6 +24,58 @@ def test_parse_matches_html_pairs_do_not_duplicate_player1_as_player2():
     html = (FIXTURES / "tennisexplorer_matches_sample.html").read_text(encoding="utf-8")
     df = parse_matches_html(html)
     assert (df["player1"] != df["player2"]).all()
+
+
+def test_parse_matches_html_extracts_final_scores_for_finished_matches():
+    html = (FIXTURES / "tennisexplorer_matches_sample.html").read_text(encoding="utf-8")
+    df = parse_matches_html(html)
+    finished = df[df["score"].notna()]
+    assert len(finished) > 50
+    row = finished[(finished["player1"] == "Gaston H.") & (finished["player2"] == "Droguet T.")].iloc[0]
+    assert row["score"] == "6-0 6-3"
+    assert row["sets_won1"] == 2 and row["sets_won2"] == 0
+    # Unfinished/future matches in the same fixture must stay unscored, not zeroed.
+    unfinished = df[df["score"].isna()]
+    assert len(unfinished) > 0
+    assert unfinished["sets_won1"].isna().all()
+
+
+_ODDS_HISTORY_SAMPLE_HTML = """
+<table class="result " cellspacing="0">
+<tbody>
+<tr class="head"><td class="tl"> </td><td class="k1">Fritz Taylor</td><td class="k2">O'Connell Christopher</td></tr>
+<tr class="one">
+<td class="first tl"><a><span class="t">10Bet</span></a></td>
+<td class="k1"><div class="odds-in odown">1.08<div class="odds-change-div"><table cellspacing="0">
+<tr><td>19.08. 15:38</td><td class="bold">1.08</td><td class="diff-down">-0.02</td></tr>
+<tr><td colspan="3" class="title">Opening odds</td></tr>
+<tr><td>18.08. 21:20</td><td class="bold">1.11</td><td class="diff-down">&nbsp</td></tr>
+</table></div></div></td>
+<td class="k2"><div class="odds-in oup">7.00<div class="odds-change-div"><table cellspacing="0">
+<tr><td>19.08. 06:23</td><td class="bold">7.00</td><td class="diff-up">+0.50</td></tr>
+<tr><td colspan="3" class="title">Opening odds</td></tr>
+<tr><td>18.08. 21:20</td><td class="bold">6.00</td><td class="diff-down">&nbsp</td></tr>
+</table></div></div></td>
+</tr>
+</tbody>
+</table>
+"""
+
+
+def test_parse_odds_history_html_extracts_bookmaker_timeline():
+    df = parse_odds_history_html(_ODDS_HISTORY_SAMPLE_HTML, reference_date=dt.date(2026, 8, 19))
+    assert len(df) == 4
+    assert set(df["bookmaker"]) == {"10Bet"}
+    assert set(df["player"]) == {"Fritz Taylor", "O'Connell Christopher"}
+
+    fritz = df[df["player"] == "Fritz Taylor"].sort_values("timestamp")
+    assert list(fritz["odds"]) == [1.11, 1.08]  # opening first, then latest
+    assert fritz.iloc[0]["is_opening"] and not fritz.iloc[1]["is_opening"]
+    assert fritz.iloc[0]["timestamp"] == dt.datetime(2026, 8, 18, 21, 20)
+
+
+def test_parse_odds_history_html_missing_table_returns_empty():
+    assert parse_odds_history_html("<html><body>no odds here</body></html>").empty
 
 
 def test_parse_head_to_head_html_and_summary():

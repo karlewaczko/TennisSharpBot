@@ -187,3 +187,38 @@ def test_find_player_slug_matches_either_side(processed_dir):
     assert service.find_player_slug("djokovic") == ("Djokovic N.", "djokovic-abc")
     assert service.find_player_slug("Nadal") == ("Nadal R.", "nadal-def")
     assert service.find_player_slug("nobody") is None
+
+
+def test_get_odds_history_unknown_matchup_raises_value_error(processed_dir):
+    pd.DataFrame({
+        "tournament": ["X"], "tournament_url": ["https://x/x/2026/atp-men/"],
+        "player1": ["Djokovic N."], "player1_slug": ["djokovic-abc"],
+        "odds1": [1.2], "odds2": [4.0], "match_id": [1],
+        "player2": ["Nadal R."], "player2_slug": ["nadal-def"],
+    }).to_csv(processed_dir / "tennisexplorer_upcoming.csv", index=False)
+
+    with pytest.raises(ValueError):
+        service.get_odds_history("Nobody", "Alsonobody")
+
+
+def test_get_odds_history_finds_match_id_either_order(processed_dir, monkeypatch):
+    pd.DataFrame({
+        "tournament": ["X"], "tournament_url": ["https://x/x/2026/atp-men/"],
+        "player1": ["Djokovic N."], "player1_slug": ["djokovic-abc"],
+        "odds1": [1.2], "odds2": [4.0], "match_id": [42],
+        "player2": ["Nadal R."], "player2_slug": ["nadal-def"],
+    }).to_csv(processed_dir / "tennisexplorer_upcoming.csv", index=False)
+
+    seen_match_ids = []
+
+    def fake_fetch(match_id):
+        seen_match_ids.append(match_id)
+        return pd.DataFrame({"bookmaker": ["Bet365"], "player": ["Djokovic N."],
+                              "odds": [1.5], "is_opening": [True]})
+
+    monkeypatch.setattr("tennissharp.data.tennisexplorer.fetch_match_odds_history", fake_fetch)
+
+    result = service.get_odds_history("Nadal", "Djokovic")  # reversed order
+    assert result["match_id"] == "42"
+    assert seen_match_ids == ["42"]
+    assert len(result["history"]) == 1

@@ -116,6 +116,35 @@ def test_h2h_unknown_player_returns_404(processed_dir):
     assert r.status_code == 404
 
 
+def test_odds_history_returns_json(processed_dir, monkeypatch):
+    pd.DataFrame({
+        "tournament": ["X"], "tournament_url": ["https://x/x/2026/atp-men/"],
+        "player1": ["A"], "player1_slug": ["a"], "odds1": [1.5], "odds2": [2.5],
+        "match_id": [7], "player2": ["B"], "player2_slug": ["b"],
+    }).to_csv(processed_dir / "tennisexplorer_upcoming.csv", index=False)
+    monkeypatch.setattr(
+        "tennissharp.data.tennisexplorer.fetch_match_odds_history",
+        lambda match_id: pd.DataFrame({"bookmaker": ["Bet365"], "player": ["A"], "odds": [1.5]}),
+    )
+
+    r = client.get("/odds-history", params={"player1": "A", "player2": "B"})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["match_id"] == "7"
+    assert len(body["history"]) == 1
+
+
+def test_odds_history_unknown_matchup_returns_404(processed_dir):
+    pd.DataFrame({
+        "tournament": ["X"], "tournament_url": ["https://x/x/2026/atp-men/"],
+        "player1": ["A"], "player1_slug": ["a"], "odds1": [1.5], "odds2": [2.5],
+        "match_id": [7], "player2": ["B"], "player2_slug": ["b"],
+    }).to_csv(processed_dir / "tennisexplorer_upcoming.csv", index=False)
+
+    r = client.get("/odds-history", params={"player1": "Nobody", "player2": "Elsewhere"})
+    assert r.status_code == 404
+
+
 def test_value_bets_without_api_key_returns_400(processed_dir, monkeypatch):
     monkeypatch.setattr(config, "ODDS_API_KEY", "")
     (processed_dir.parent / "models").mkdir(exist_ok=True)
