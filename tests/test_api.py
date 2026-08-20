@@ -45,6 +45,21 @@ def test_wta_general_rankings_returns_json_with_surface_columns(processed_dir):
         assert col in body[0]
 
 
+def test_atp_general_rankings_returns_json_with_surface_columns(processed_dir):
+    pd.DataFrame({
+        "elo_rank": [1, 2], "player": ["A", "B"], "elo": [2300.0, 2200.0],
+        "helo": [2280.0, 2190.0], "celo": [2250.0, 2180.0], "gelo": [2200.0, 2150.0],
+        "tour": ["atp", "atp"],
+    }).to_csv(processed_dir / "ta_elo_atp_general.csv", index=False)
+
+    r = client.get("/rankings/atp-general", params={"top_n": 5})
+    assert r.status_code == 200
+    body = r.json()
+    assert len(body) == 2
+    for col in ("helo", "celo", "gelo"):
+        assert col in body[0]
+
+
 def test_rankings_missing_data_returns_503(processed_dir):
     r = client.get("/rankings")
     assert r.status_code == 503

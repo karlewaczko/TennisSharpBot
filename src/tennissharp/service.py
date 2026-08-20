@@ -44,17 +44,26 @@ def get_rankings(tour: str = "atp", top_n: int = 10, source: str = "ta") -> pd.D
     return df[df["tour"] == tour.lower()].sort_values("elo_rank").head(top_n)
 
 
-def get_wta_general_rankings(top_n: int = 10) -> pd.DataFrame:
-    """The standalone WTA-only Elo file: every column Tennis Abstract
-    publishes -- overall `elo` plus the surface splits `helo`/`celo`/`gelo`
-    (and their own ranks), age, peak, official-rank comparison. Same schema
-    as `get_rankings(tour="wta", source="ta")`, just pre-filtered to its own
+def get_tour_general_rankings(tour: str, top_n: int = 10) -> pd.DataFrame:
+    """The standalone per-tour Elo file (`tour='atp'` or `'wta'`): every
+    column Tennis Abstract publishes -- overall `elo` plus the surface
+    splits `helo`/`celo`/`gelo` (and their own ranks), age, peak,
+    official-rank comparison. Same schema as
+    `get_rankings(tour=tour, source="ta")`, just pre-filtered to its own
     file. See `tennisabstract.filter_by_tour`.
     """
-    path = config.PROCESSED_DIR / "ta_elo_wta_general.csv"
-    _require(path, "WTA Elo ratings")
+    path = config.PROCESSED_DIR / f"ta_elo_{tour.lower()}_general.csv"
+    _require(path, f"{tour.upper()} Elo ratings")
     df = pd.read_csv(path)
     return df.sort_values("elo_rank").head(top_n)
+
+
+def get_wta_general_rankings(top_n: int = 10) -> pd.DataFrame:
+    return get_tour_general_rankings("wta", top_n=top_n)
+
+
+def get_atp_general_rankings(top_n: int = 10) -> pd.DataFrame:
+    return get_tour_general_rankings("atp", top_n=top_n)
 
 
 def get_surface_speed(tournament: str | None = None, top_n: int = 10) -> pd.DataFrame:

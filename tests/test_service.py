@@ -47,7 +47,41 @@ def test_get_wta_general_rankings_returns_ranked_general_elo(processed_dir):
     df = service.get_wta_general_rankings(top_n=2)
     assert len(df) == 2
     assert list(df["player"]) == ["Alice", "Bob"]  # sorted by elo_rank
-    assert "helo" not in df.columns
+
+
+def test_get_atp_general_rankings_missing_file_raises_data_not_ready(processed_dir):
+    with pytest.raises(service.DataNotReadyError):
+        service.get_atp_general_rankings()
+
+
+def test_get_atp_general_rankings_returns_ranked_general_elo(processed_dir):
+    pd.DataFrame({
+        "elo_rank": [2, 1, 3],
+        "player": ["Bob", "Alice", "Carla"],
+        "elo": [2100, 2200, 2000],
+        "helo": [2050, 2150, 1950],
+        "celo": [2000, 2100, 1900],
+        "gelo": [1950, 2050, 1850],
+        "tour": ["atp", "atp", "atp"],
+    }).to_csv(processed_dir / "ta_elo_atp_general.csv", index=False)
+
+    df = service.get_atp_general_rankings(top_n=2)
+    assert len(df) == 2
+    assert list(df["player"]) == ["Alice", "Bob"]  # sorted by elo_rank
+    for col in ("helo", "celo", "gelo"):
+        assert col in df.columns
+
+
+def test_get_tour_general_rankings_dispatches_by_tour(processed_dir):
+    pd.DataFrame({"elo_rank": [1], "player": ["X"], "elo": [2000], "tour": ["atp"]},
+                 ).to_csv(processed_dir / "ta_elo_atp_general.csv", index=False)
+    pd.DataFrame({"elo_rank": [1], "player": ["Y"], "elo": [2000], "tour": ["wta"]},
+                 ).to_csv(processed_dir / "ta_elo_wta_general.csv", index=False)
+
+    assert service.get_tour_general_rankings("atp").iloc[0]["player"] == "X"
+    assert service.get_tour_general_rankings("wta").iloc[0]["player"] == "Y"
+    # Case-insensitive, matching get_rankings()'s convention.
+    assert service.get_tour_general_rankings("ATP").iloc[0]["player"] == "X"
 
 
 def test_get_rankings_own_ignores_tour_and_filters_low_sample(processed_dir):
