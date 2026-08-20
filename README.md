@@ -124,7 +124,7 @@ python scripts/update_data.py
 python scripts/train_model.py
 
 # 3. Historical value-betting backtest (ROI + t-stats + segment breakdown)
-python scripts/run_backtest.py --edge-threshold 0.03 --kelly-fraction 0.25
+python scripts/run_backtest.py --edge-threshold 0.10 --kelly-fraction 0.25
 
 # 4. THE IMPORTANT ONE: is an edge even possible with this data?
 #    Run this before believing any backtest, including the one above.
@@ -192,7 +192,7 @@ to also get a daily rankings push instead of only answering on demand.
 to have the bot itself call `service.get_value_bets()` on a
 `job_queue.run_repeating` schedule and push a message to `TELEGRAM_CHAT_ID`
 whenever it finds a *new* candidate above `TELEGRAM_VALUEBETS_EDGE_THRESHOLD`
-(default 0.03) — needs both `TELEGRAM_CHAT_ID` and `ODDS_API_KEY` set.
+(default 0.10) — needs both `TELEGRAM_CHAT_ID` and `ODDS_API_KEY` set.
 Dedup logic lives in `bot/notifications.py` (pure, unit-tested, no Telegram
 imports): each `(player, opponent, bookmaker, commence_time)` combination is
 only alerted once, tracked in `context.bot_data` for the life of the process

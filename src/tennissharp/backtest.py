@@ -32,7 +32,31 @@ from tennissharp import model as model_mod
 from tennissharp import odds_math, staking
 from tennissharp.features import attach_market_probability, build_feature_table
 
-DEFAULT_EDGE_THRESHOLD = 0.03
+# Only bet when the model claims at least this much edge over the sharp
+# reference price. Raised 0.03 -> 0.10 on request. What that buys, measured on
+# the 2015-2026 backtest (data/reports/backtest_bets.csv):
+#
+#   threshold   n bets   ROI      t-stat
+#   3%           8112    -1.81%   -1.36
+#   5%           1898    +1.35%   +0.48
+#   10%            51   +16.94%   +0.87
+#
+# The rising ROI is NOT evidence the filter works: the t-stat stays flat
+# (~0.9), i.e. the whole move is smaller samples having wider spread. At 10%
+# this fires ~4.6 times/year, so reaching t=2 would take ~271 bets ≈ 59 years.
+#
+# Worse, the model's edge estimate gets *less* accurate the larger it claims
+# to be -- realised win rate minus model-predicted win rate, by bucket:
+#   edge 3-5%: -2.4pp | 5-7.5%: -2.9pp | 7.5-10%: -3.8pp | 10%+: -4.3pp
+# At the 10% cut the model claims +11.7pp over the market and delivers +7.5pp,
+# overstating by ~1.6x. That is textbook adverse selection: the bets where the
+# model most disagrees with the market are the ones where the model, not the
+# market, is most often wrong. A higher threshold selects harder for that.
+#
+# Treat this as a risk control (fewer, larger-conviction bets), NOT as a
+# profitability filter -- scripts/audit_edge.py still reports no information
+# beyond the market (information gain -0.00078 over 55k matches).
+DEFAULT_EDGE_THRESHOLD = 0.10
 # The book we place bets at. Must be a real, quotable price -- never market_max.
 DEFAULT_BET_PRICE_COL = "market_avg"
 # The sharp book we price *against*. Never the same as the bet price column.
