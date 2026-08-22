@@ -210,13 +210,28 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
     <span class="count">__NMODEL__ Partien</span></div>
   <div class="tbl">
     <div class="thead">
-      <span>Spieler</span><span>Modell</span><span>Markt</span>
-      <span>Faire Quote</span><span>Edge</span>
+      <span>Spieler</span><span>Prognose</span><span>Markt</span>
+      <span>Faire Quote</span><span>EV bei Quote</span>
     </div>
     __ROWS__
   </div>
 
   __TAROWS__
+
+  <div class="verdict none" style="margin-top:26px">
+    <div class="icon">&#8644;</div><div>
+    <h2>Warum der Edge auf beiden Seiten gleich gro&szlig; ist</h2>
+    <p><b>Edge</b> ist die Differenz Prognose minus Markt. Beide Prognosen ergeben zusammen
+       100&nbsp;%, beide entvigten Marktwerte ebenfalls &mdash; die zwei Differenzen sind
+       deshalb zwangsl&auml;ufig exakt spiegelbildlich. Das ist Rechenlogik, kein Fehler,
+       aber es macht die Zahl f&uuml;r eine Wettentscheidung unbrauchbar.</p>
+    <p><b>EV bei Quote</b> ist die Entscheidungsgr&ouml;&szlig;e: Prognose mal angebotene
+       Quote minus 1. Weil die beiden Seiten unterschiedliche Quoten haben, ist sie
+       <i>nicht</i> spiegelbildlich. Auf dieser Karte ist der Edge in
+       <span class="num">__NMATCHES__ von __NMATCHES__</span> Partien symmetrisch, der EV in
+       <span class="num">keiner einzigen</span>. Beispiel Ferro gegen Bennemann:
+       Edge &plusmn;14,9&thinsp;%, EV aber &minus;18,9&thinsp;% gegen +91,1&thinsp;%.</p>
+    </div></div>
 
   <div class="sec"><h2>Wie das Modell rechnet</h2><span class="rule"></span></div>
   <div class="steps">
@@ -231,7 +246,7 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
          fairen Marktpreis als zusätzlichem Merkmal.</p></div>
     <div class="step"><div class="n">SCHRITT 4</div><h3>Differenz prüfen</h3>
       <p>Liegt die Modellwahrscheinlichkeit über der des Marktes, entsteht ein Edge.
-         Ab __THRESH__ wird er markiert.</p></div>
+         Ab __THRESH__ wird er markiert &mdash; entscheidend ist aber der EV zur Quote.</p></div>
   </div>
 
   <div class="sec"><h2>Was die Prüfung sagt</h2><span class="rule"></span></div>
@@ -323,12 +338,14 @@ def render(data: dict) -> str:
                 meta = (f'Elo {sd["elo"]:.0f} &middot; {sd["matches"]} Matches'
                         if sd["matches"] is not None else f'TA-Elo {sd["elo"]:.0f}')
                 if show_edge:
-                    ecls = "p" if sd["edge"] > 0.005 else ("n" if sd["edge"] < -0.005 else "z")
-                    last = (f'<div class="cell"><span class="lbl">Edge</span>'
-                            f'<span class="edge {ecls}">{pct(sd["edge"], 1, sign=True)}</span></div>')
+                    ev = sd["ev_at_ref"]
+                    ecls = "p" if ev > 0.005 else ("n" if ev < -0.005 else "z")
+                    last = (f'<div class="cell"><span class="lbl">EV bei Quote</span>'
+                            f'<span class="edge {ecls}">{pct(ev, 1, sign=True)}</span></div>')
+                    meta += (f' &middot; Edge {pct(sd["edge"], 1, sign=True)}')
                 else:
-                    last = ('<div class="cell"><span class="lbl">Edge</span>'
-                            '<span class="edge z" title="Kein Edge-Wert: reine Elo-Prognose '
+                    last = ('<div class="cell"><span class="lbl">EV bei Quote</span>'
+                            '<span class="edge z" title="Kein EV-Wert: reine Elo-Prognose '
                             'ohne Marktinformation">&ndash;</span></div>')
                 out.append(
                     f'<div class="{cls}">'
@@ -383,7 +400,7 @@ def render(data: dict) -> str:
             'Preis falsch.</p></div></div>'
             '<div class="tbl"><div class="thead">'
             '<span>Spieler</span><span>TA-Prognose</span><span>Markt</span>'
-            '<span>Faire Quote</span><span>Edge</span></div>'
+            '<span>Faire Quote</span><span>EV bei Quote</span></div>'
             + "".join(build_rows(ta_matches, show_edge=False)) + '</div>')
     else:
         ta_html = ""
@@ -395,6 +412,7 @@ def render(data: dict) -> str:
         "__STAMP__": stamp, "__THRESH__": thresh, "__STRIP__": strip_html,
         "__VERDICT__": verdict, "__ROWS__": "".join(rows), "__SKIPPED__": skipped,
         "__TAROWS__": ta_html, "__NSCORED__": str(data["n_scored"]),
+        "__NMATCHES__": str(len(data["matches"])),
         "__NMODEL__": str(len(model_matches)),
         "__NTESTED__": f'{aud["matches_tested"]:,}'.replace(",", " "),
         "__ROI__": pct(aud["backtest_roi"], 2, sign=True),

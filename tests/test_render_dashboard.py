@@ -136,12 +136,12 @@ def _ta_payload():
     return data
 
 
-def test_elo_fallback_rows_carry_no_edge_number(rd):
+def test_elo_fallback_rows_carry_no_ev_number(rd):
     """A pure Elo forecast has no market input and sits ~10.6% from the price
-    on average. Printing that gap as an edge would read as a 26-point value
-    bet on a match the model cannot score at all."""
+    on average. Printing that gap as value would read as a huge bet on a match
+    the model cannot score at all."""
     html = rd.render(_ta_payload())
-    assert "Kein Edge-Wert" in html
+    assert "Kein EV-Wert" in html
     assert "+25.7" not in html and "25,7" not in html
 
 
@@ -166,3 +166,28 @@ def test_fallback_players_show_ta_elo_not_a_match_count(rd):
 def test_page_without_fallback_matches_omits_the_section(rd):
     html = rd.render(_payload())
     assert "Ohne Modellabdeckung" not in html
+
+
+def test_ev_is_the_headline_number_not_edge(rd):
+    """Edge is (forecast - market). Both forecasts sum to 1 and both de-vigged
+    market probabilities sum to 1, so the two edges are always exact mirrors --
+    true arithmetic, useless for deciding a bet. EV uses each side's own odds
+    and is not symmetric."""
+    html = rd.render(_payload())
+    assert "EV bei Quote" in html
+    assert "Warum der Edge auf beiden Seiten gleich" in html
+
+
+def test_both_sides_carry_their_own_ev(rd):
+    data = _payload()
+    a, b = data["matches"][0]["sides"]
+    a["ev_at_ref"], b["ev_at_ref"] = 0.084, -0.132
+    html = rd.render(data)
+    assert "+8.4" in html and "-13.2" in html
+
+
+def test_edge_still_visible_but_secondary(rd):
+    """The threshold is defined on edge, so it stays on the page -- just not
+    where the eye lands first."""
+    html = rd.render(_payload())
+    assert "Edge +2.0" in html or "Edge&nbsp;+2.0" in html or "Edge " in html

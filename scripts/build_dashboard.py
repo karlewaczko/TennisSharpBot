@@ -41,13 +41,14 @@ _am = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_am)
 resolve_name = _am.resolve_name
 
-SKIP_EVENTS = "UTR|Nationalliga"
-# Main-tour events first: the model is trained on tour-level match history,
-# so its Elo is thin-to-absent for challenger and ITF fields (on this card
-# 33 of 38 skipped matches were one challenger event). Ordering by tier
-# means a capped run spends its budget where the model actually has data.
-TIER_PRIORITY = ("Cincinnati", "Toronto", "Montreal", "Winston", "Cleveland",
-                 "Washington", "Memphis")
+# What counts as a real event. ITF, UTR Pro Series and the Swiss league are
+# excluded: neither our Elo nor Tennis Abstract rates those fields (TA's own
+# cutoff is ITF $50K+), so every such match would be dropped anyway after
+# costing an odds-history request.
+EXCLUDE_EVENTS = "UTR|Nationalliga|ITF"
+# Main tour first, then challengers, so a capped run spends its budget where
+# the model has the most history.
+CHALLENGER_MARKER = "challenger"
 SHARP_BOOKS = ("Pinnacle", "Betfair")
 
 # Tennis Abstract's own Elo, used only where our model has too little history.
@@ -111,22 +112,26 @@ def _sharp_reference(match_id):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("-o", "--out", type=Path, default=config.PROCESSED_DIR / "dashboard.json")
-    ap.add_argument("--limit", type=int, default=60)
+    ap.add_argument("--limit", type=int, default=200,
+                    help="max matches; each costs one odds-history request (~2-4s)")
+    ap.add_argument("--tour", choices=("atp", "wta", "both"), default="both")
+    ap.add_argument("--no-challenger", action="store_true")
     ap.add_argument("--threshold", type=float, default=DEFAULT_EDGE_THRESHOLD)
     args = ap.parse_args()
 
     sched = pd.read_csv(config.PROCESSED_DIR / "tennisexplorer_upcoming.csv")
-    sched = sched[~sched["tournament"].str.contains(SKIP_EVENTS, na=False, regex=True)]
+    sched = sched[~sched["tournament"].str.contains(EXCLUDE_EVENTS, na=False, regex=True,
+                                                     case=False)]
     sched = sched[sched["odds1"].notna() & sched["odds2"].notna()]
+    if args.tour in ("atp", "wta"):
+        suffix = "-men/" if args.tour == "atp" else "-women/"
+        sched = sched[sched["tournament_url"].str.contains(suffix, regex=False, na=False)]
+    if args.no_challenger:
+        sched = sched[~sched["tournament"].str.contains(CHALLENGER_MARKER, case=False, na=False)]
 
-    def tier_rank(name: str) -> int:
-        for i, key in enumerate(TIER_PRIORITY):
-            if key.lower() in str(name).lower():
-                return i
-        return len(TIER_PRIORITY) + (1 if "challenger" in str(name).lower() else 0)
-
-    sched = (sched.assign(_tier=sched["tournament"].map(tier_rank))
-                  .sort_values("_tier")
+    is_ch = sched["tournament"].str.contains(CHALLENGER_MARKER, case=False, na=False)
+    sched = (sched.assign(_tier=is_ch.astype(int))
+                  .sort_values("_tier", kind="stable")
                   .drop(columns="_tier")
                   .head(args.limit))
 

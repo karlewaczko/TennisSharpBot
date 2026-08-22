@@ -1,28 +1,65 @@
 {
- "generated_at": "2026-08-22T15:18:46+00:00",
+ "generated_at": "2026-08-22T15:33:00+00:00",
  "threshold": 0.05,
- "n_scheduled": 55,
- "n_scored": 47,
+ "n_scheduled": 131,
+ "n_scored": 72,
  "n_signals": 1,
  "n_by_method": {
-  "model": 32,
-  "ta_elo": 15
+  "model": 41,
+  "ta_elo": 31
  },
  "ref_books": {
-  "10Bet": 3,
-  "1xBet": 3,
-  "Betfair": 11,
+  "10Bet": 4,
+  "1xBet": 2,
+  "Betfair": 17,
   "Betsson": 3,
-  "Betway": 6,
-  "Coral": 2,
-  "Pinnacle": 7,
-  "TennisExplorer": 3,
-  "Unibet": 4,
-  "William Hill": 3,
+  "Betway": 8,
+  "Coral": 3,
+  "Pinnacle": 10,
+  "TennisExplorer": 4,
+  "Unibet": 10,
+  "William Hill": 8,
   "bet-at-home": 1,
-  "bet365": 1
+  "bet365": 1,
+  "bwin": 1
  },
  "matches": [
+  {
+   "match_id": "3283039",
+   "tournament": "Liberec challenger",
+   "tour": "atp",
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0322,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Gonzalo Bueno",
+     "model_prob": 0.3274,
+     "model_fair_odds": 3.055,
+     "market_prob": 0.6208,
+     "market_fair_odds": 1.611,
+     "ref_odds": 1.57,
+     "edge": -0.2935,
+     "ev_at_ref": -0.486,
+     "elo": 1329.3,
+     "matches": null
+    },
+    {
+     "player": "Norbert Gombos",
+     "model_prob": 0.6726,
+     "model_fair_odds": 1.487,
+     "market_prob": 0.3792,
+     "market_fair_odds": 2.637,
+     "ref_odds": 2.53,
+     "edge": 0.2935,
+     "ev_at_ref": 0.7018,
+     "elo": 1454.4,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.2935,
+   "signal": false
+  },
   {
    "match_id": "3300805",
    "tournament": "Winston Salem",
@@ -96,39 +133,39 @@
    "signal": false
   },
   {
-   "match_id": "3283121",
-   "tournament": "Hechingen ITF",
-   "tour": "wta",
-   "ref_book": "Betfair",
-   "ref_margin": 0.0484,
+   "match_id": "3300623",
+   "tournament": "Prague 2 challenger",
+   "tour": "atp",
+   "ref_book": "Unibet",
+   "ref_margin": 0.0686,
    "method": "ta_elo",
    "sides": [
     {
-     "player": "Barbora Palicova",
-     "model_prob": 0.5686,
-     "model_fair_odds": 1.759,
-     "market_prob": 0.379,
-     "market_fair_odds": 2.638,
-     "ref_odds": 2.48,
-     "edge": 0.1896,
-     "ev_at_ref": 0.4102,
-     "elo": 1384.6,
+     "player": "Jan Kumstat",
+     "model_prob": 0.5088,
+     "model_fair_odds": 1.965,
+     "market_prob": 0.7064,
+     "market_fair_odds": 1.416,
+     "ref_odds": 1.35,
+     "edge": -0.1977,
+     "ev_at_ref": -0.3132,
+     "elo": 1487.1,
      "matches": null
     },
     {
-     "player": "Nuria Brancaccio",
-     "model_prob": 0.4314,
-     "model_fair_odds": 2.318,
-     "market_prob": 0.621,
-     "market_fair_odds": 1.61,
-     "ref_odds": 1.55,
-     "edge": -0.1896,
-     "ev_at_ref": -0.3314,
-     "elo": 1336.6,
+     "player": "Chun Hsin Tseng",
+     "model_prob": 0.4912,
+     "model_fair_odds": 2.036,
+     "market_prob": 0.2936,
+     "market_fair_odds": 3.406,
+     "ref_odds": 3.05,
+     "edge": 0.1977,
+     "ev_at_ref": 0.4982,
+     "elo": 1481.0,
      "matches": null
     }
    ],
-   "best_edge": 0.1896,
+   "best_edge": 0.1977,
    "signal": false
   },
   {
@@ -204,42 +241,6 @@
    "signal": false
   },
   {
-   "match_id": "3283119",
-   "tournament": "Hechingen ITF",
-   "tour": "wta",
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0417,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Fiona Ferro",
-     "model_prob": 0.7308,
-     "model_fair_odds": 1.368,
-     "market_prob": 0.88,
-     "market_fair_odds": 1.136,
-     "ref_odds": 1.11,
-     "edge": -0.1492,
-     "ev_at_ref": -0.1888,
-     "elo": 1619.4,
-     "matches": null
-    },
-    {
-     "player": "Eva Bennemann",
-     "model_prob": 0.2692,
-     "model_fair_odds": 3.715,
-     "market_prob": 0.12,
-     "market_fair_odds": 8.335,
-     "ref_odds": 7.1,
-     "edge": 0.1492,
-     "ev_at_ref": 0.9112,
-     "elo": 1445.9,
-     "matches": null
-    }
-   ],
-   "best_edge": 0.1492,
-   "signal": false
-  },
-  {
    "match_id": "3300811",
    "tournament": "Winston Salem",
    "tour": "atp",
@@ -276,6 +277,42 @@
    "signal": false
   },
   {
+   "match_id": "3283107",
+   "tournament": "Samsun challenger",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0825,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Oleg Prihodko",
+     "model_prob": 0.4467,
+     "model_fair_odds": 2.239,
+     "market_prob": 0.306,
+     "market_fair_odds": 3.268,
+     "ref_odds": 2.88,
+     "edge": 0.1407,
+     "ev_at_ref": 0.2864,
+     "elo": 1372.9,
+     "matches": null
+    },
+    {
+     "player": "Daniel Michalski",
+     "model_prob": 0.5533,
+     "model_fair_odds": 1.807,
+     "market_prob": 0.694,
+     "market_fair_odds": 1.441,
+     "ref_odds": 1.36,
+     "edge": -0.1407,
+     "ev_at_ref": -0.2475,
+     "elo": 1410.1,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.1407,
+   "signal": false
+  },
+  {
    "match_id": "3283349",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -309,6 +346,222 @@
     }
    ],
    "best_edge": 0.1332,
+   "signal": false
+  },
+  {
+   "match_id": "3283085",
+   "tournament": "San Marino challenger",
+   "tour": "atp",
+   "ref_book": "Unibet",
+   "ref_margin": 0.0639,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Mili Poljicak",
+     "model_prob": 0.4379,
+     "model_fair_odds": 2.284,
+     "market_prob": 0.5668,
+     "market_fair_odds": 1.764,
+     "ref_odds": 1.67,
+     "edge": -0.129,
+     "ev_at_ref": -0.2688,
+     "elo": 1333.9,
+     "matches": null
+    },
+    {
+     "player": "Juan Pablo Varillas",
+     "model_prob": 0.5621,
+     "model_fair_odds": 1.779,
+     "market_prob": 0.4332,
+     "market_fair_odds": 2.309,
+     "ref_odds": 2.15,
+     "edge": 0.129,
+     "ev_at_ref": 0.2086,
+     "elo": 1377.3,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.129,
+   "signal": false
+  },
+  {
+   "match_id": "3300725",
+   "tournament": "Roehampton challenger",
+   "tour": "atp",
+   "ref_book": "William Hill",
+   "ref_margin": 0.0609,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Oliver Tarvet",
+     "model_prob": 0.6228,
+     "model_fair_odds": 1.606,
+     "market_prob": 0.7447,
+     "market_fair_odds": 1.343,
+     "ref_odds": 1.29,
+     "edge": -0.122,
+     "ev_at_ref": -0.1966,
+     "elo": 1518.5,
+     "matches": null
+    },
+    {
+     "player": "Lucas Poullain",
+     "model_prob": 0.3772,
+     "model_fair_odds": 2.651,
+     "market_prob": 0.2553,
+     "market_fair_odds": 3.918,
+     "ref_odds": 3.5,
+     "edge": 0.122,
+     "ev_at_ref": 0.3203,
+     "elo": 1431.4,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.122,
+   "signal": false
+  },
+  {
+   "match_id": "3300727",
+   "tournament": "Sion challenger",
+   "tour": "atp",
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0342,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Dominic Stricker",
+     "model_prob": 0.6826,
+     "model_fair_odds": 1.465,
+     "market_prob": 0.7893,
+     "market_fair_odds": 1.267,
+     "ref_odds": 1.24,
+     "edge": -0.1068,
+     "ev_at_ref": -0.1536,
+     "elo": 1517.4,
+     "matches": null
+    },
+    {
+     "player": "Benjamin Hassan",
+     "model_prob": 0.3174,
+     "model_fair_odds": 3.15,
+     "market_prob": 0.2107,
+     "market_fair_odds": 4.747,
+     "ref_odds": 4.39,
+     "edge": 0.1068,
+     "ev_at_ref": 0.3935,
+     "elo": 1384.4,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.1068,
+   "signal": false
+  },
+  {
+   "match_id": "3300523",
+   "tournament": "Sion challenger",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0825,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Kokoro Isomura",
+     "model_prob": 0.2174,
+     "model_fair_odds": 4.6,
+     "market_prob": 0.306,
+     "market_fair_odds": 3.268,
+     "ref_odds": 2.88,
+     "edge": -0.0886,
+     "ev_at_ref": -0.3739,
+     "elo": 1152.7,
+     "matches": null
+    },
+    {
+     "player": "Petr Bar Biryukov",
+     "model_prob": 0.7826,
+     "model_fair_odds": 1.278,
+     "market_prob": 0.694,
+     "market_fair_odds": 1.441,
+     "ref_odds": 1.36,
+     "edge": 0.0886,
+     "ev_at_ref": 0.0643,
+     "elo": 1375.2,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0886,
+   "signal": false
+  },
+  {
+   "match_id": "3300441",
+   "tournament": "Kingston challenger",
+   "tour": "atp",
+   "ref_book": "William Hill",
+   "ref_margin": 0.0791,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Pedro Martinez",
+     "model_prob": 0.5977,
+     "model_fair_odds": 1.673,
+     "market_prob": 0.516,
+     "market_fair_odds": 1.938,
+     "ref_odds": 1.8,
+     "edge": 0.0817,
+     "ev_at_ref": 0.0759,
+     "elo": 1549.6,
+     "matches": null
+    },
+    {
+     "player": "Daniil Glinka",
+     "model_prob": 0.4023,
+     "model_fair_odds": 2.486,
+     "market_prob": 0.484,
+     "market_fair_odds": 2.066,
+     "ref_odds": 1.91,
+     "edge": -0.0817,
+     "ev_at_ref": -0.2317,
+     "elo": 1480.8,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0817,
+   "signal": false
+  },
+  {
+   "match_id": "3300753",
+   "tournament": "Quebec City challenger",
+   "tour": "atp",
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.071,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Stefanos Sakellaridis",
+     "model_prob": 0.5553,
+     "model_fair_odds": 1.801,
+     "market_prob": 0.48,
+     "market_fair_odds": 2.084,
+     "ref_odds": 1.94,
+     "edge": 0.0754,
+     "ev_at_ref": 0.0773,
+     "elo": 1566.7,
+     "matches": null
+    },
+    {
+     "player": "Taro Daniel",
+     "model_prob": 0.4447,
+     "model_fair_odds": 2.249,
+     "market_prob": 0.52,
+     "market_fair_odds": 1.923,
+     "ref_odds": 1.8,
+     "edge": -0.0754,
+     "ev_at_ref": -0.1996,
+     "elo": 1528.1,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0754,
    "signal": false
   },
   {
@@ -384,6 +637,78 @@
    "signal": true
   },
   {
+   "match_id": "3283005",
+   "tournament": "Samsun challenger",
+   "tour": "atp",
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0358,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Constantin Bittoun Kouzmine",
+     "model_prob": 0.2792,
+     "model_fair_odds": 3.582,
+     "market_prob": 0.2242,
+     "market_fair_odds": 4.46,
+     "ref_odds": 4.13,
+     "edge": 0.0549,
+     "ev_at_ref": 0.1529,
+     "elo": 1248.0,
+     "matches": null
+    },
+    {
+     "player": "Kenta Miyoshi",
+     "model_prob": 0.7208,
+     "model_fair_odds": 1.387,
+     "market_prob": 0.7758,
+     "market_fair_odds": 1.289,
+     "ref_odds": 1.26,
+     "edge": -0.0549,
+     "ev_at_ref": -0.0917,
+     "elo": 1412.8,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0549,
+   "signal": false
+  },
+  {
+   "match_id": "3283007",
+   "tournament": "Samsun challenger",
+   "tour": "atp",
+   "ref_book": "Coral",
+   "ref_margin": 0.0712,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Carl Emil Overbeck",
+     "model_prob": 0.6175,
+     "model_fair_odds": 1.619,
+     "market_prob": 0.5705,
+     "market_fair_odds": 1.753,
+     "ref_odds": 1.65,
+     "edge": 0.047,
+     "ev_at_ref": 0.0189,
+     "elo": 1271.2,
+     "matches": null
+    },
+    {
+     "player": "Ivan Ivanov",
+     "model_prob": 0.3825,
+     "model_fair_odds": 2.614,
+     "market_prob": 0.4295,
+     "market_fair_odds": 2.328,
+     "ref_odds": 2.15,
+     "edge": -0.047,
+     "ev_at_ref": -0.1776,
+     "elo": 1188.0,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.047,
+   "signal": false
+  },
+  {
    "match_id": "3283331",
    "tournament": "Montreal",
    "tour": "atp",
@@ -417,6 +742,42 @@
     }
    ],
    "best_edge": 0.0423,
+   "signal": false
+  },
+  {
+   "match_id": "3300731",
+   "tournament": "Sion challenger",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.075,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Gonzalo Villanueva",
+     "model_prob": 0.4756,
+     "model_fair_odds": 2.103,
+     "market_prob": 0.4387,
+     "market_fair_odds": 2.279,
+     "ref_odds": 2.1,
+     "edge": 0.0369,
+     "ev_at_ref": -0.0013,
+     "elo": 1285.5,
+     "matches": null
+    },
+    {
+     "player": "Joaquin Aguilar Cardozo",
+     "model_prob": 0.5244,
+     "model_fair_odds": 1.907,
+     "market_prob": 0.5613,
+     "market_fair_odds": 1.782,
+     "ref_odds": 1.67,
+     "edge": -0.0369,
+     "ev_at_ref": -0.1242,
+     "elo": 1302.5,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0369,
    "signal": false
   },
   {
@@ -492,6 +853,42 @@
    "signal": false
   },
   {
+   "match_id": "3300595",
+   "tournament": "Sion challenger",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0779,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Yu Hsiou Hsu",
+     "model_prob": 0.7073,
+     "model_fair_odds": 1.414,
+     "market_prob": 0.6753,
+     "market_fair_odds": 1.481,
+     "ref_odds": 1.4,
+     "edge": 0.032,
+     "ev_at_ref": -0.0097,
+     "elo": 1452.3,
+     "matches": null
+    },
+    {
+     "player": "Masamichi Imamura",
+     "model_prob": 0.2927,
+     "model_fair_odds": 3.417,
+     "market_prob": 0.3247,
+     "market_fair_odds": 3.08,
+     "ref_odds": 2.75,
+     "edge": -0.032,
+     "ev_at_ref": -0.1952,
+     "elo": 1299.0,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.032,
+   "signal": false
+  },
+  {
    "match_id": "3283351",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -564,6 +961,42 @@
    "signal": false
   },
   {
+   "match_id": "3300463",
+   "tournament": "Cancun challenger",
+   "tour": "atp",
+   "ref_book": "10Bet",
+   "ref_margin": 0.0779,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Moez Echargui",
+     "model_prob": 0.3525,
+     "model_fair_odds": 2.837,
+     "market_prob": 0.3247,
+     "market_fair_odds": 3.08,
+     "ref_odds": 2.75,
+     "edge": 0.0279,
+     "ev_at_ref": -0.0305,
+     "elo": 1374.4,
+     "matches": null
+    },
+    {
+     "player": "Moise Kouame",
+     "model_prob": 0.6475,
+     "model_fair_odds": 1.545,
+     "market_prob": 0.6753,
+     "market_fair_odds": 1.481,
+     "ref_odds": 1.4,
+     "edge": -0.0279,
+     "ev_at_ref": -0.0936,
+     "elo": 1480.0,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0279,
+   "signal": false
+  },
+  {
    "match_id": "3300803",
    "tournament": "Winston Salem",
    "tour": "atp",
@@ -633,6 +1066,78 @@
     }
    ],
    "best_edge": 0.0273,
+   "signal": false
+  },
+  {
+   "match_id": "3300449",
+   "tournament": "Cincinnati",
+   "tour": "atp",
+   "ref_book": "Unibet",
+   "ref_margin": 0.0472,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Cobolli F.",
+     "model_prob": 0.2718,
+     "model_fair_odds": 3.679,
+     "market_prob": 0.299,
+     "market_fair_odds": 3.345,
+     "ref_odds": 3.1,
+     "edge": -0.0271,
+     "ev_at_ref": -0.1573,
+     "elo": 1865.1,
+     "matches": 171
+    },
+    {
+     "player": "Fils A.",
+     "model_prob": 0.7282,
+     "model_fair_odds": 1.373,
+     "market_prob": 0.701,
+     "market_fair_odds": 1.426,
+     "ref_odds": 1.38,
+     "edge": 0.0271,
+     "ev_at_ref": 0.0049,
+     "elo": 1985.6,
+     "matches": 165
+    }
+   ],
+   "best_edge": 0.0271,
+   "signal": false
+  },
+  {
+   "match_id": "3282973",
+   "tournament": "Los Cabos",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0317,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Shapovalov D.",
+     "model_prob": 0.3791,
+     "model_fair_odds": 2.638,
+     "market_prob": 0.4061,
+     "market_fair_odds": 2.462,
+     "ref_odds": 2.37,
+     "edge": -0.027,
+     "ev_at_ref": -0.1015,
+     "elo": 1703.5,
+     "matches": 420
+    },
+    {
+     "player": "Norrie C.",
+     "model_prob": 0.6209,
+     "model_fair_odds": 1.611,
+     "market_prob": 0.5939,
+     "market_fair_odds": 1.684,
+     "ref_odds": 1.64,
+     "edge": 0.027,
+     "ev_at_ref": 0.0183,
+     "elo": 1797.0,
+     "matches": 431
+    }
+   ],
+   "best_edge": 0.027,
    "signal": false
   },
   {
@@ -744,6 +1249,42 @@
    "signal": false
   },
   {
+   "match_id": "3283181",
+   "tournament": "San Marino challenger",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0299,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Diaz Acosta F.",
+     "model_prob": 0.6871,
+     "model_fair_odds": 1.455,
+     "market_prob": 0.6653,
+     "market_fair_odds": 1.503,
+     "ref_odds": 1.47,
+     "edge": 0.0218,
+     "ev_at_ref": 0.0101,
+     "elo": 1572.5,
+     "matches": 55
+    },
+    {
+     "player": "Gaubas V.",
+     "model_prob": 0.3129,
+     "model_fair_odds": 3.196,
+     "market_prob": 0.3347,
+     "market_fair_odds": 2.988,
+     "ref_odds": 2.86,
+     "edge": -0.0218,
+     "ev_at_ref": -0.1052,
+     "elo": 1510.6,
+     "matches": 15
+    }
+   ],
+   "best_edge": 0.0218,
+   "signal": false
+  },
+  {
    "match_id": "3283359",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -777,42 +1318,6 @@
     }
    ],
    "best_edge": 0.0208,
-   "signal": false
-  },
-  {
-   "match_id": "3300449",
-   "tournament": "Cincinnati",
-   "tour": "atp",
-   "ref_book": "1xBet",
-   "ref_margin": 0.0234,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Cobolli F.",
-     "model_prob": 0.2718,
-     "model_fair_odds": 3.679,
-     "market_prob": 0.2923,
-     "market_fair_odds": 3.422,
-     "ref_odds": 3.29,
-     "edge": -0.0204,
-     "ev_at_ref": -0.1056,
-     "elo": 1865.1,
-     "matches": 171
-    },
-    {
-     "player": "Fils A.",
-     "model_prob": 0.7282,
-     "model_fair_odds": 1.373,
-     "market_prob": 0.7077,
-     "market_fair_odds": 1.413,
-     "ref_odds": 1.39,
-     "edge": 0.0204,
-     "ev_at_ref": 0.0121,
-     "elo": 1985.6,
-     "matches": 165
-    }
-   ],
-   "best_edge": 0.0204,
    "signal": false
   },
   {
@@ -885,6 +1390,78 @@
     }
    ],
    "best_edge": 0.0188,
+   "signal": false
+  },
+  {
+   "match_id": "3283183",
+   "tournament": "Vancouver WTA",
+   "tour": "wta",
+   "ref_book": "bwin",
+   "ref_margin": 0.0575,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Preston T.",
+     "model_prob": 0.5518,
+     "model_fair_odds": 1.812,
+     "market_prob": 0.57,
+     "market_fair_odds": 1.754,
+     "ref_odds": 1.67,
+     "edge": -0.0182,
+     "ev_at_ref": -0.0785,
+     "elo": 1666.8,
+     "matches": 16
+    },
+    {
+     "player": "Inglis M.",
+     "model_prob": 0.4482,
+     "model_fair_odds": 2.231,
+     "market_prob": 0.43,
+     "market_fair_odds": 2.326,
+     "ref_odds": 2.18,
+     "edge": 0.0182,
+     "ev_at_ref": -0.023,
+     "elo": 1563.4,
+     "matches": 35
+    }
+   ],
+   "best_edge": 0.0182,
+   "signal": false
+  },
+  {
+   "match_id": "3300755",
+   "tournament": "Kingston challenger",
+   "tour": "atp",
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0399,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Royer V.",
+     "model_prob": 0.716,
+     "model_fair_odds": 1.397,
+     "market_prob": 0.6995,
+     "market_fair_odds": 1.43,
+     "ref_odds": 1.39,
+     "edge": 0.0165,
+     "ev_at_ref": -0.0048,
+     "elo": 1554.8,
+     "matches": 42
+    },
+    {
+     "player": "Martinez P.",
+     "model_prob": 0.284,
+     "model_fair_odds": 3.521,
+     "market_prob": 0.3005,
+     "market_fair_odds": 3.327,
+     "ref_odds": 3.12,
+     "edge": -0.0165,
+     "ev_at_ref": -0.1138,
+     "elo": 1531.0,
+     "matches": 211
+    }
+   ],
+   "best_edge": 0.0165,
    "signal": false
   },
   {
@@ -996,6 +1573,42 @@
    "signal": false
   },
   {
+   "match_id": "3283017",
+   "tournament": "Liberec challenger",
+   "tour": "atp",
+   "ref_book": "William Hill",
+   "ref_margin": 0.078,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Jan Kumstat",
+     "model_prob": 0.5275,
+     "model_fair_odds": 1.896,
+     "market_prob": 0.539,
+     "market_fair_odds": 1.855,
+     "ref_odds": 1.73,
+     "edge": -0.0116,
+     "ev_at_ref": -0.0875,
+     "elo": 1487.1,
+     "matches": null
+    },
+    {
+     "player": "Sumit Nagal",
+     "model_prob": 0.4725,
+     "model_fair_odds": 2.116,
+     "market_prob": 0.461,
+     "market_fair_odds": 2.169,
+     "ref_odds": 2.0,
+     "edge": 0.0116,
+     "ev_at_ref": -0.0549,
+     "elo": 1468.0,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0116,
+   "signal": false
+  },
+  {
    "match_id": "3283817",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -1029,6 +1642,42 @@
     }
    ],
    "best_edge": 0.0109,
+   "signal": false
+  },
+  {
+   "match_id": "3300749",
+   "tournament": "Quebec City challenger",
+   "tour": "atp",
+   "ref_book": "Unibet",
+   "ref_margin": 0.06,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Gaston H.",
+     "model_prob": 0.3297,
+     "model_fair_odds": 3.033,
+     "market_prob": 0.3404,
+     "market_fair_odds": 2.938,
+     "ref_odds": 2.7,
+     "edge": -0.0106,
+     "ev_at_ref": -0.1098,
+     "elo": 1560.1,
+     "matches": 132
+    },
+    {
+     "player": "Van Assche L.",
+     "model_prob": 0.6703,
+     "model_fair_odds": 1.492,
+     "market_prob": 0.6596,
+     "market_fair_odds": 1.516,
+     "ref_odds": 1.45,
+     "edge": 0.0106,
+     "ev_at_ref": -0.0281,
+     "elo": 1669.3,
+     "matches": 69
+    }
+   ],
+   "best_edge": 0.0106,
    "signal": false
   },
   {
@@ -1068,42 +1717,6 @@
    "signal": false
   },
   {
-   "match_id": "3283353",
-   "tournament": "Toronto WTA",
-   "tour": "wta",
-   "ref_book": "William Hill",
-   "ref_margin": 0.0596,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Tararudee L.",
-     "model_prob": 0.2676,
-     "model_fair_odds": 3.737,
-     "market_prob": 0.2779,
-     "market_fair_odds": 3.598,
-     "ref_odds": 3.25,
-     "edge": -0.0103,
-     "ev_at_ref": -0.1304,
-     "elo": 1672.1,
-     "matches": 17
-    },
-    {
-     "player": "Zheng Q.",
-     "model_prob": 0.7324,
-     "model_fair_odds": 1.365,
-     "market_prob": 0.7221,
-     "market_fair_odds": 1.385,
-     "ref_odds": 1.33,
-     "edge": 0.0103,
-     "ev_at_ref": -0.0259,
-     "elo": 1827.0,
-     "matches": 212
-    }
-   ],
-   "best_edge": 0.0103,
-   "signal": false
-  },
-  {
    "match_id": "3282269",
    "tournament": "Memphis",
    "tour": "wta",
@@ -1134,6 +1747,42 @@
      "ev_at_ref": -0.0588,
      "elo": 1656.9,
      "matches": 58
+    }
+   ],
+   "best_edge": 0.0103,
+   "signal": false
+  },
+  {
+   "match_id": "3283353",
+   "tournament": "Toronto WTA",
+   "tour": "wta",
+   "ref_book": "William Hill",
+   "ref_margin": 0.0596,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Tararudee L.",
+     "model_prob": 0.2676,
+     "model_fair_odds": 3.737,
+     "market_prob": 0.2779,
+     "market_fair_odds": 3.598,
+     "ref_odds": 3.25,
+     "edge": -0.0103,
+     "ev_at_ref": -0.1304,
+     "elo": 1672.1,
+     "matches": 17
+    },
+    {
+     "player": "Zheng Q.",
+     "model_prob": 0.7324,
+     "model_fair_odds": 1.365,
+     "market_prob": 0.7221,
+     "market_fair_odds": 1.385,
+     "ref_odds": 1.33,
+     "edge": 0.0103,
+     "ev_at_ref": -0.0259,
+     "elo": 1827.0,
+     "matches": 212
     }
    ],
    "best_edge": 0.0103,
@@ -1212,6 +1861,42 @@
    "signal": false
   },
   {
+   "match_id": "3300451",
+   "tournament": "Quebec City challenger",
+   "tour": "atp",
+   "ref_book": "Unibet",
+   "ref_margin": 0.0648,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Daniel T.",
+     "model_prob": 0.3297,
+     "model_fair_odds": 3.033,
+     "market_prob": 0.338,
+     "market_fair_odds": 2.959,
+     "ref_odds": 2.7,
+     "edge": -0.0082,
+     "ev_at_ref": -0.1098,
+     "elo": 1518.4,
+     "matches": 227
+    },
+    {
+     "player": "Fearnley J.",
+     "model_prob": 0.6703,
+     "model_fair_odds": 1.492,
+     "market_prob": 0.662,
+     "market_fair_odds": 1.51,
+     "ref_odds": 1.44,
+     "edge": 0.0082,
+     "ev_at_ref": -0.0348,
+     "elo": 1585.5,
+     "matches": 51
+    }
+   ],
+   "best_edge": 0.0082,
+   "signal": false
+  },
+  {
    "match_id": "3283341",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -1281,6 +1966,42 @@
     }
    ],
    "best_edge": 0.0072,
+   "signal": false
+  },
+  {
+   "match_id": "3300529",
+   "tournament": "Cancun challenger",
+   "tour": "atp",
+   "ref_book": "Unibet",
+   "ref_margin": 0.0669,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Harris L.",
+     "model_prob": 0.555,
+     "model_fair_odds": 1.802,
+     "market_prob": 0.5618,
+     "market_fair_odds": 1.78,
+     "ref_odds": 1.68,
+     "edge": -0.0068,
+     "ev_at_ref": -0.0676,
+     "elo": 1624.4,
+     "matches": 143
+    },
+    {
+     "player": "Kopriva V.",
+     "model_prob": 0.445,
+     "model_fair_odds": 2.247,
+     "market_prob": 0.4382,
+     "market_fair_odds": 2.282,
+     "ref_odds": 2.12,
+     "edge": 0.0068,
+     "ev_at_ref": -0.0566,
+     "elo": 1672.9,
+     "matches": 72
+    }
+   ],
+   "best_edge": 0.0068,
    "signal": false
   },
   {
@@ -1356,6 +2077,42 @@
    "signal": false
   },
   {
+   "match_id": "3282855",
+   "tournament": "Los Cabos",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0287,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Gea A.",
+     "model_prob": 0.5329,
+     "model_fair_odds": 1.877,
+     "market_prob": 0.5381,
+     "market_fair_odds": 1.858,
+     "ref_odds": 1.81,
+     "edge": -0.0052,
+     "ev_at_ref": -0.0354,
+     "elo": 1772.5,
+     "matches": 13
+    },
+    {
+     "player": "Wong C.",
+     "model_prob": 0.4671,
+     "model_fair_odds": 2.141,
+     "market_prob": 0.4619,
+     "market_fair_odds": 2.165,
+     "ref_odds": 2.1,
+     "edge": 0.0052,
+     "ev_at_ref": -0.0191,
+     "elo": 1698.3,
+     "matches": 33
+    }
+   ],
+   "best_edge": 0.0052,
+   "signal": false
+  },
+  {
    "match_id": "3283211",
    "tournament": "Memphis",
    "tour": "wta",
@@ -1425,6 +2182,42 @@
     }
    ],
    "best_edge": 0.0046,
+   "signal": false
+  },
+  {
+   "match_id": "3283013",
+   "tournament": "Samsun challenger",
+   "tour": "atp",
+   "ref_book": "Betway",
+   "ref_margin": 0.0718,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Petr Nesterov",
+     "model_prob": 0.6544,
+     "model_fair_odds": 1.528,
+     "market_prob": 0.6585,
+     "market_fair_odds": 1.519,
+     "ref_odds": 1.44,
+     "edge": -0.0042,
+     "ev_at_ref": -0.0577,
+     "elo": 1447.6,
+     "matches": null
+    },
+    {
+     "player": "Eero Vasa",
+     "model_prob": 0.3456,
+     "model_fair_odds": 2.893,
+     "market_prob": 0.3415,
+     "market_fair_odds": 2.929,
+     "ref_odds": 2.65,
+     "edge": 0.0042,
+     "ev_at_ref": -0.0841,
+     "elo": 1336.7,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0042,
    "signal": false
   },
   {
@@ -1536,6 +2329,78 @@
    "signal": false
   },
   {
+   "match_id": "3300465",
+   "tournament": "Cancun challenger",
+   "tour": "atp",
+   "ref_book": "Betway",
+   "ref_margin": 0.0505,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Baez S.",
+     "model_prob": 0.5834,
+     "model_fair_odds": 1.714,
+     "market_prob": 0.5808,
+     "market_fair_odds": 1.722,
+     "ref_odds": 1.65,
+     "edge": 0.0026,
+     "ev_at_ref": -0.0373,
+     "elo": 1672.7,
+     "matches": 242
+    },
+    {
+     "player": "Wong C.",
+     "model_prob": 0.4166,
+     "model_fair_odds": 2.401,
+     "market_prob": 0.4192,
+     "market_fair_odds": 2.386,
+     "ref_odds": 2.25,
+     "edge": -0.0026,
+     "ev_at_ref": -0.0628,
+     "elo": 1698.3,
+     "matches": 33
+    }
+   ],
+   "best_edge": 0.0026,
+   "signal": false
+  },
+  {
+   "match_id": "3283029",
+   "tournament": "Bonn challenger",
+   "tour": "atp",
+   "ref_book": "William Hill",
+   "ref_margin": 0.0596,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Jan Choinski",
+     "model_prob": 0.7199,
+     "model_fair_odds": 1.389,
+     "market_prob": 0.7221,
+     "market_fair_odds": 1.385,
+     "ref_odds": 1.33,
+     "edge": -0.0022,
+     "ev_at_ref": -0.0425,
+     "elo": 1598.4,
+     "matches": null
+    },
+    {
+     "player": "Federico Agustin Gomez",
+     "model_prob": 0.2801,
+     "model_fair_odds": 3.57,
+     "market_prob": 0.2779,
+     "market_fair_odds": 3.598,
+     "ref_odds": 3.25,
+     "edge": 0.0022,
+     "ev_at_ref": -0.0897,
+     "elo": 1434.4,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0022,
+   "signal": false
+  },
+  {
    "match_id": "3300037",
    "tournament": "Cincinnati",
    "tour": "atp",
@@ -1569,6 +2434,42 @@
     }
    ],
    "best_edge": 0.0021,
+   "signal": false
+  },
+  {
+   "match_id": "3283185",
+   "tournament": "Washington",
+   "tour": "wta",
+   "ref_book": "1xBet",
+   "ref_margin": 0.0499,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Pegula J.",
+     "model_prob": 0.761,
+     "model_fair_odds": 1.314,
+     "market_prob": 0.7625,
+     "market_fair_odds": 1.312,
+     "ref_odds": 1.27,
+     "edge": -0.0015,
+     "ev_at_ref": -0.0335,
+     "elo": 2050.6,
+     "matches": 429
+    },
+    {
+     "player": "Shnaider D.",
+     "model_prob": 0.239,
+     "model_fair_odds": 4.184,
+     "market_prob": 0.2375,
+     "market_fair_odds": 4.21,
+     "ref_odds": 3.81,
+     "edge": 0.0015,
+     "ev_at_ref": -0.0894,
+     "elo": 1894.6,
+     "matches": 183
+    }
+   ],
+   "best_edge": 0.0015,
    "signal": false
   },
   {
@@ -1608,36 +2509,36 @@
    "signal": false
   },
   {
-   "match_id": "3283185",
-   "tournament": "Washington",
-   "tour": "wta",
-   "ref_book": "1xBet",
-   "ref_margin": 0.0499,
-   "method": "model",
+   "match_id": "3282853",
+   "tournament": "Vancouver challenger",
+   "tour": "atp",
+   "ref_book": "William Hill",
+   "ref_margin": 0.0718,
+   "method": "ta_elo",
    "sides": [
     {
-     "player": "Pegula J.",
-     "model_prob": 0.761,
-     "model_fair_odds": 1.314,
-     "market_prob": 0.7625,
-     "market_fair_odds": 1.312,
-     "ref_odds": 1.27,
+     "player": "J J Wolf",
+     "model_prob": 0.5799,
+     "model_fair_odds": 1.724,
+     "market_prob": 0.5814,
+     "market_fair_odds": 1.72,
+     "ref_odds": 1.62,
      "edge": -0.0015,
-     "ev_at_ref": -0.0335,
-     "elo": 2050.6,
-     "matches": 429
+     "ev_at_ref": -0.0606,
+     "elo": 1586.3,
+     "matches": null
     },
     {
-     "player": "Shnaider D.",
-     "model_prob": 0.239,
-     "model_fair_odds": 4.184,
-     "market_prob": 0.2375,
-     "market_fair_odds": 4.21,
-     "ref_odds": 3.81,
+     "player": "Jay Dylan Hara Friend",
+     "model_prob": 0.4201,
+     "model_fair_odds": 2.38,
+     "market_prob": 0.4186,
+     "market_fair_odds": 2.389,
+     "ref_odds": 2.2,
      "edge": 0.0015,
-     "ev_at_ref": -0.0894,
-     "elo": 1894.6,
-     "matches": 183
+     "ev_at_ref": -0.0758,
+     "elo": 1530.3,
+     "matches": null
     }
    ],
    "best_edge": 0.0015,
@@ -1718,6 +2619,31 @@
  ],
  "skipped": [
   {
+   "match": "Balshaw F. vs Pow L.",
+   "tournament": "Winston Salem",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Gorzny S. vs Polmans M.",
+   "tournament": "Winston Salem",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Heck H. vs Rottgering M.",
+   "tournament": "Winston Salem",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Shelbayh A. vs Seggerman R.",
+   "tournament": "Winston Salem",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Pascual Ferra R. vs Suresh D.",
+   "tournament": "Winston Salem",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
    "match": "Kudermetova P. vs Alexander A.",
    "tournament": "Toronto WTA",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
@@ -1733,28 +2659,258 @@
    "reason": "Barrios Vera M.T.: nur 2 Matches bei uns und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Shelbayh A. vs Seggerman R.",
-   "tournament": "Winston Salem",
+   "match": "Dellavedova M. vs Mitsui S.",
+   "tournament": "Sion challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Heck H. vs Rottgering M.",
-   "tournament": "Winston Salem",
+   "match": "Perez Contri S. vs Lopez Montagud C.",
+   "tournament": "Sion challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Gorzny S. vs Polmans M.",
-   "tournament": "Winston Salem",
+   "match": "Juan Mano A. vs Fita Juan S.",
+   "tournament": "Sion challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Balshaw F. vs Pow L.",
-   "tournament": "Winston Salem",
+   "match": "Lokoli L. vs Spiridon D.",
+   "tournament": "Sion challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Pascual Ferra R. vs Suresh D.",
-   "tournament": "Winston Salem",
+   "match": "Bieldiugin T. vs Senn N.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Rapagnetta D. vs Mazza M.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Seghetti S. vs Rottoli L.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Handel T. vs Petkovic M.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Gundacker J. vs Planinsek F.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Sorger S. vs Dominko S.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Hipfl N. vs Reitano S.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "De Marchi A. vs Baker B.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Marques G. vs Colombo A.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Lagutin P. vs Fernandes R.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Nagel A. vs Maute J.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Basile P. vs Comino L.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Masur D. vs Marterer M.",
+   "tournament": "Sion challenger",
+   "reason": "Masur D.: nur 6 Matches bei uns und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Sanchez Jover C. vs Juan Mano A.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Ritschard A. vs Perez Contri S.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Oradini G. vs Martin Manzano J.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Weis A. vs Rahmani K.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Handel T. vs Bieldiugin T.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Seghetti S. vs De Marchi A.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Rapagnetta D. vs Lokoli L.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Nagel A. vs Masur D.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Basile P. vs Hipfl N.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "M Rifki F. vs Chung Y.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Miletich I. vs Guna R.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Mashtakov M. vs Zielinski M.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Juhas K. vs Arzhankin A.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Guttau N. vs Simonsson J.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Borg L. vs Hallquist Lithen J.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Sciahbasi M. vs Madaras D.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Kisimov D. vs Pankin S.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Loge J. vs Vankan M.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Behrmann T. vs Noce G.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Michalski D. vs Sadzik J.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Agwi M. vs Juszczak P.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Van Der Meerschen M. vs Faucon R.",
+   "tournament": "Sion challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "MacKenzie J. vs Dahlin M.",
+   "tournament": "Bonn challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Debru G. vs Inchauspe P.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Gogineni V. vs Kuzuhara B.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Baris O. vs Monday J.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Krolo F. vs Sickenberger T.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Blancaneaux G. vs Loge J.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Hudd E. vs Blaydes B.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Pereira T. vs Guttau N.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Tarvet O. vs Hohmann R.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Papoe R. vs Artnak B.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Sorger S. vs Kopp S.",
+   "tournament": "Samsun challenger",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Andreescu S. vs Ferrari F.",
+   "tournament": "Samsun challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   }
  ],
