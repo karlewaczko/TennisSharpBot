@@ -117,3 +117,52 @@ def test_theme_tokens_defined_outside_media_queries(rd):
     root_block = html.split(":root {", 1)[1].split("}", 1)[0]
     for token in ("--bg", "--text", "--accent", "--border", "--pos", "--neg"):
         assert token in root_block, f"{token} fehlt im Basis-:root"
+
+
+def _ta_payload():
+    """A card with one model-scored match and one Tennis Abstract fallback."""
+    data = _payload()
+    data["matches"].append({
+        "match_id": "2", "tournament": "Winston Salem", "tour": "atp",
+        "ref_book": "Betway", "ref_margin": 0.06, "method": "ta_elo",
+        "sides": [
+            {**_side("Pierre Hugues Herbert", 0.699, 0.442, 2.10, 0.257), "matches": None},
+            {**_side("Kenta Miyoshi", 0.301, 0.558, 1.62, -0.257), "matches": None},
+        ],
+        "best_edge": 0.257, "signal": False,
+    })
+    data["matches"][0]["method"] = "model"
+    data["n_scored"] = 2
+    return data
+
+
+def test_elo_fallback_rows_carry_no_edge_number(rd):
+    """A pure Elo forecast has no market input and sits ~10.6% from the price
+    on average. Printing that gap as an edge would read as a 26-point value
+    bet on a match the model cannot score at all."""
+    html = rd.render(_ta_payload())
+    assert "Kein Edge-Wert" in html
+    assert "+25.7" not in html and "25,7" not in html
+
+
+def test_elo_fallback_is_a_separate_section(rd):
+    """The two methods must never share a table -- their numbers are not
+    comparable."""
+    html = rd.render(_ta_payload())
+    assert "Ohne Modellabdeckung" in html
+    assert html.index("Modellbewertung") < html.index("Ohne Modellabdeckung")
+    # The model match keeps its edge badge.
+    assert "+2.0" in html or "+2,0" in html
+
+
+def test_fallback_players_show_ta_elo_not_a_match_count(rd):
+    """`matches: None` marks a player our own history does not cover; showing
+    '0 Matches' next to a rating would misstate why the row exists."""
+    html = rd.render(_ta_payload())
+    assert "TA-Elo 1800" in html
+    assert "None Matches" not in html
+
+
+def test_page_without_fallback_matches_omits_the_section(rd):
+    html = rd.render(_payload())
+    assert "Ohne Modellabdeckung" not in html

@@ -50,6 +50,27 @@ TIER_PRIORITY = ("Cincinnati", "Toronto", "Montreal", "Winston", "Cleveland",
                  "Washington", "Memphis")
 SHARP_BOOKS = ("Pinnacle", "Betfair")
 
+# Tennis Abstract's own Elo, used only where our model has too little history.
+# Their pool is much wider than ours -- it counts tour-level qualifying,
+# challengers and ITF $50K+ events, which tennis-data.co.uk does not carry --
+# so it rates players our own Elo has never seen. On the current card that is
+# 15 of the 23 matches we would otherwise drop entirely.
+#
+# This is a *different method*, not a fallback value slotted into the model:
+# the model is trained on our Elo's scale with the market price as a feature,
+# so feeding another provider's ratings into it would be an input it never saw.
+# Instead these matches carry Tennis Abstract's own forecast, computed with the
+# standard Elo formula their methodology note specifies, and are labelled as
+# such in the payload so the page never presents them as model output.
+#
+# Formula verified against the five reference points they publish: 100 points
+# -> 64%, 200 -> 76%, 300 -> 85%, 400 -> 91%, 500 -> 95%.
+TA_SURFACE_COLUMN = {"hard": "helo", "clay": "celo", "grass": "gelo"}
+
+
+def _ta_elo_probability(elo_a: float, elo_b: float) -> float:
+    return 1.0 / (1.0 + 10 ** (-(elo_a - elo_b) / 400.0))
+
 
 def _sharp_reference(match_id):
     """(book, [odds_a, odds_b], players) from the sharpest book quoting this
@@ -116,20 +137,50 @@ def main() -> None:
     played = dict(zip(snapshot["player"], snapshot["matches_played"]))
     elo_overall = dict(zip(snapshot["player"], snapshot["elo_overall"]))
 
+    ta = pd.concat([pd.read_csv(config.PROCESSED_DIR / f"ta_elo_{t}_general.csv")
+                    for t in ("wta", "atp")], ignore_index=True)
+    ta_names = ta["player"].tolist()
+    ta_by_name = ta.set_index("player")
+
+    def ta_rating(query: str, surface: str):
+        """(display name, rating) from Tennis Abstract, surface-specific where
+        they publish one -- their note says the surface blends forecast
+        individual matches better than the overall number."""
+        hit = resolve_name(query, ta_names)
+        if not hit:
+            return None
+        row = ta_by_name.loc[hit]
+        col = TA_SURFACE_COLUMN.get(surface.lower())
+        for candidate in (col, "elo"):
+            if candidate and candidate in row and pd.notna(row[candidate]):
+                return hit, float(row[candidate])
+        return None
+
     matches, skipped = [], []
     for _, m in sched.iterrows():
         a = resolve_name(str(m["player1"]), roster, weight=played.get)
         b = resolve_name(str(m["player2"]), roster, weight=played.get)
         label = f"{m['player1']} vs {m['player2']}"
+
+        thin_reason = None
         if not a or not b or a == b:
-            skipped.append({"match": label, "tournament": str(m["tournament"]),
-                            "reason": "Spieler nicht im Modell"})
-            continue
-        if min(played.get(a, 0), played.get(b, 0)) < MIN_MATCHES_PLAYED:
+            thin_reason = "Spieler nicht in unserer Historie"
+        elif min(played.get(a, 0), played.get(b, 0)) < MIN_MATCHES_PLAYED:
             thin = a if played.get(a, 0) < played.get(b, 0) else b
-            skipped.append({"match": label, "tournament": str(m["tournament"]),
-                            "reason": f"{thin}: nur {played.get(thin, 0):.0f} Matches"})
-            continue
+            thin_reason = f"{thin}: nur {played.get(thin, 0):.0f} Matches bei uns"
+
+        # Our own Elo is too thin -- fall back to Tennis Abstract's rating if
+        # it covers both players, rather than dropping the match.
+        ta_fallback = None
+        if thin_reason:
+            ra = ta_rating(str(m["player1"]), "hard")
+            rb = ta_rating(str(m["player2"]), "hard")
+            if ra and rb:
+                ta_fallback = (ra, rb)
+            else:
+                skipped.append({"match": label, "tournament": str(m["tournament"]),
+                                "reason": thin_reason + " und kein Tennis-Abstract-Elo"})
+                continue
 
         ref = _sharp_reference(m["match_id"])
         if ref is None:
@@ -138,20 +189,37 @@ def main() -> None:
         else:
             ref_book, ref_odds, ref_players = ref
 
-        # Orient the reference prices onto (a, b).
-        first = resolve_name(ref_players[0], [a, b])
-        if first == b:
+        if ta_fallback:
+            (name_a, elo_a), (name_b, elo_b) = ta_fallback
+            method, label_a, label_b = "ta_elo", name_a, name_b
+            elos = (elo_a, elo_b)
+            counts = (None, None)
+            p_a = _ta_elo_probability(elo_a, elo_b)
+            first_is_a = resolve_name(ref_players[0], [name_a, name_b]) == name_a
+        else:
+            method, label_a, label_b = "model", a, b
+            elos = (float(elo_overall.get(a, float("nan"))),
+                    float(elo_overall.get(b, float("nan"))))
+            counts = (int(played.get(a, 0)), int(played.get(b, 0)))
+            first_is_a = resolve_name(ref_players[0], [a, b]) != b
+
+        # Orient the reference prices onto (first player, second player).
+        if not first_is_a:
             ref_odds = [ref_odds[1], ref_odds[0]]
 
         fair_a, fair_b = odds_math.shin_devig(ref_odds)
-        feats = _features_for_matchup(state, a, b, "Hard", 3, 1.0)
-        clipped = float(np.clip(fair_a, 1e-6, 1 - 1e-6))
-        feats["market_logit"] = float(np.log(clipped / (1 - clipped)))
-        p_a = float(model.predict_proba(pd.DataFrame([feats])[feature_columns(True)])[0][1])
+
+        if not ta_fallback:
+            feats = _features_for_matchup(state, a, b, "Hard", 3, 1.0)
+            clipped = float(np.clip(fair_a, 1e-6, 1 - 1e-6))
+            feats["market_logit"] = float(np.log(clipped / (1 - clipped)))
+            p_a = float(model.predict_proba(pd.DataFrame([feats])[feature_columns(True)])[0][1])
 
         sides = []
-        for name, prob, fair, ref_price in ((a, p_a, fair_a, ref_odds[0]),
-                                             (b, 1 - p_a, fair_b, ref_odds[1])):
+        for name, prob, fair, ref_price, elo, n in (
+            (label_a, p_a, fair_a, ref_odds[0], elos[0], counts[0]),
+            (label_b, 1 - p_a, fair_b, ref_odds[1], elos[1], counts[1]),
+        ):
             sides.append({
                 "player": name,
                 "model_prob": round(prob, 4),
@@ -161,8 +229,8 @@ def main() -> None:
                 "ref_odds": round(ref_price, 3),
                 "edge": round(odds_math.edge(prob, fair), 4),
                 "ev_at_ref": round(prob * ref_price - 1, 4),
-                "elo": round(float(elo_overall.get(name, float("nan"))), 1),
-                "matches": int(played.get(name, 0)),
+                "elo": round(elo, 1),
+                "matches": n,
             })
 
         matches.append({
@@ -171,9 +239,21 @@ def main() -> None:
             "tour": "wta" if "-women/" in str(m["tournament_url"]) else "atp",
             "ref_book": ref_book,
             "ref_margin": round(sum(1 / x for x in ref_odds) - 1, 4),
+            # "model" = our trained classifier with the market price blended in.
+            # "ta_elo" = Tennis Abstract's rating through their published Elo
+            # formula, no market input. Never mix the two in one comparison.
+            "method": method,
             "sides": sides,
             "best_edge": round(max(s["edge"] for s in sides), 4),
-            "signal": max(s["edge"] for s in sides) > args.threshold,
+            # Only the trained model's disagreements are treated as signals.
+            # A pure-Elo forecast carries no market information at all, and it
+            # shows: measured on this card the model sits 1.5% from the market
+            # on average (3% of sides past 5%), the Elo fallback 10.6% (60% of
+            # sides past 5%, worst 25.6%). Against a market our own audit finds
+            # calibrated to within 0.8pp, that gap is the rating being
+            # incomplete, not the price being wrong -- so these rows are shown
+            # for coverage and are never scored as value.
+            "signal": method == "model" and max(s["edge"] for s in sides) > args.threshold,
         })
 
     matches.sort(key=lambda x: x["best_edge"], reverse=True)
@@ -183,6 +263,8 @@ def main() -> None:
         "n_scheduled": int(len(sched)),
         "n_scored": len(matches),
         "n_signals": sum(1 for m in matches if m["signal"]),
+        "n_by_method": {meth: sum(1 for m in matches if m["method"] == meth)
+                        for meth in sorted({m["method"] for m in matches})},
         "ref_books": {b: sum(1 for m in matches if m["ref_book"] == b)
                       for b in sorted({m["ref_book"] for m in matches})},
         "matches": matches,

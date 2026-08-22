@@ -206,8 +206,8 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
 
   __VERDICT__
 
-  <div class="sec"><h2>Partien nach Abweichung</h2><span class="rule"></span>
-    <span class="count">__NSCORED__ bewertet</span></div>
+  <div class="sec"><h2>Modellbewertung</h2><span class="rule"></span>
+    <span class="count">__NMODEL__ Partien</span></div>
   <div class="tbl">
     <div class="thead">
       <span>Spieler</span><span>Modell</span><span>Markt</span>
@@ -215,6 +215,8 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
     </div>
     __ROWS__
   </div>
+
+  __TAROWS__
 
   <div class="sec"><h2>Wie das Modell rechnet</h2><span class="rule"></span></div>
   <div class="steps">
@@ -273,9 +275,13 @@ def render(data: dict) -> str:
     thresh = pct(data["threshold"], 0)
 
     strip = [
-        ("Partien bewertet", str(data["n_scored"]), f'von {data["n_scheduled"]} im Plan'),
+        ("Modellbewertung", str(sum(1 for m in data["matches"]
+                                    if m.get("method", "model") == "model")),
+         f'von {data["n_scored"]} Partien insgesamt'),
         ("Signale", str(data["n_signals"]), f'Edge über {thresh}'),
-        ("Übersprungen", str(len(data["skipped"])), "zu wenig Historie"),
+        ("Nur TA-Elo", str(sum(1 for m in data["matches"] if m.get("method") == "ta_elo")),
+         "ohne Modellabdeckung"),
+        ("Übersprungen", str(len(data["skipped"])), "gar keine Bewertung"),
         ("Referenzbücher", str(len(data["ref_books"])),
          ", ".join(list(data["ref_books"])[:3]) + ("…" if len(data["ref_books"]) > 3 else "")),
     ]
@@ -298,41 +304,54 @@ def render(data: dict) -> str:
                    'gleichzeitig das ehrlichste Ergebnis: Das Modell reproduziert den '
                    'Sharp-Markt weitgehend, statt ihn zu schlagen.</p></div></div>')
 
-    rows = []
-    for m in data["matches"]:
-        a, b = m["sides"]
-        fav = a if a["model_prob"] >= b["model_prob"] else b
-        chip = "chip sharp" if m["ref_book"] in ("Pinnacle", "Betfair") else "chip"
-        rows.append(
-            f'<div class="row"><div class="mhead">'
-            f'<span class="tour">{m["tournament"]}</span>'
-            f'<span class="{chip}">{m["ref_book"]}</span>'
-            f'<span class="chip">{m["tour"].upper()}</span>'
-            f'<span>Marge {pct(m["ref_margin"], 1)}</span></div>')
-        for s in (a, b):
-            cls = "side fav" if s is fav else "side"
-            ecls = "p" if s["edge"] > 0.005 else ("n" if s["edge"] < -0.005 else "z")
-            lo = min(s["model_prob"], s["market_prob"]) * 100
-            hi = max(s["model_prob"], s["market_prob"]) * 100
-            rows.append(
-                f'<div class="{cls}">'
-                f'<div><div class="pname">{s["player"]}</div>'
-                f'<div class="pmeta">Elo {s["elo"]:.0f} &middot; {s["matches"]} Matches</div>'
-                f'<div class="bar" role="img" aria-label="Modell {pct(s["model_prob"])} '
-                f'gegen Markt {pct(s["market_prob"])}">'
-                f'<div class="gap" style="left:{lo:.1f}%;width:{hi - lo:.1f}%"></div>'
-                f'<div class="mk" style="left:{s["market_prob"] * 100:.1f}%"></div>'
-                f'<div class="md" style="left:{s["model_prob"] * 100:.1f}%"></div>'
-                f'</div></div>'
-                f'<div class="cell"><span class="lbl">Modell</span>{pct(s["model_prob"])}</div>'
-                f'<div class="cell"><span class="lbl">Markt</span>{pct(s["market_prob"])}</div>'
-                f'<div class="cell"><span class="lbl">Fair / Quote</span>'
-                f'{s["model_fair_odds"]:.2f} <span style="color:var(--faint)">/ '
-                f'{s["ref_odds"]:.2f}</span></div>'
-                f'<div class="cell"><span class="lbl">Edge</span>'
-                f'<span class="edge {ecls}">{pct(s["edge"], 1, sign=True)}</span></div>'
-                f'</div>')
-        rows.append("</div>")
+    def build_rows(subset, show_edge=True):
+        out = []
+        for m in subset:
+            a, b = m["sides"]
+            fav = a if a["model_prob"] >= b["model_prob"] else b
+            chip = "chip sharp" if m["ref_book"] in ("Pinnacle", "Betfair") else "chip"
+            out.append(
+                f'<div class="row"><div class="mhead">'
+                f'<span class="tour">{m["tournament"]}</span>'
+                f'<span class="{chip}">{m["ref_book"]}</span>'
+                f'<span class="chip">{m["tour"].upper()}</span>'
+                f'<span>Marge {pct(m["ref_margin"], 1)}</span></div>')
+            for sd in (a, b):
+                cls = "side fav" if sd is fav else "side"
+                lo = min(sd["model_prob"], sd["market_prob"]) * 100
+                hi = max(sd["model_prob"], sd["market_prob"]) * 100
+                meta = (f'Elo {sd["elo"]:.0f} &middot; {sd["matches"]} Matches'
+                        if sd["matches"] is not None else f'TA-Elo {sd["elo"]:.0f}')
+                if show_edge:
+                    ecls = "p" if sd["edge"] > 0.005 else ("n" if sd["edge"] < -0.005 else "z")
+                    last = (f'<div class="cell"><span class="lbl">Edge</span>'
+                            f'<span class="edge {ecls}">{pct(sd["edge"], 1, sign=True)}</span></div>')
+                else:
+                    last = ('<div class="cell"><span class="lbl">Edge</span>'
+                            '<span class="edge z" title="Kein Edge-Wert: reine Elo-Prognose '
+                            'ohne Marktinformation">&ndash;</span></div>')
+                out.append(
+                    f'<div class="{cls}">'
+                    f'<div><div class="pname">{sd["player"]}</div>'
+                    f'<div class="pmeta">{meta}</div>'
+                    f'<div class="bar" role="img" aria-label="Prognose {pct(sd["model_prob"])} '
+                    f'gegen Markt {pct(sd["market_prob"])}">'
+                    f'<div class="gap" style="left:{lo:.1f}%;width:{hi - lo:.1f}%"></div>'
+                    f'<div class="mk" style="left:{sd["market_prob"] * 100:.1f}%"></div>'
+                    f'<div class="md" style="left:{sd["model_prob"] * 100:.1f}%"></div>'
+                    f'</div></div>'
+                    f'<div class="cell"><span class="lbl">Prognose</span>{pct(sd["model_prob"])}</div>'
+                    f'<div class="cell"><span class="lbl">Markt</span>{pct(sd["market_prob"])}</div>'
+                    f'<div class="cell"><span class="lbl">Fair / Quote</span>'
+                    f'{sd["model_fair_odds"]:.2f} <span style="color:var(--faint)">/ '
+                    f'{sd["ref_odds"]:.2f}</span></div>'
+                    f'{last}</div>')
+            out.append("</div>")
+        return out
+
+    model_matches = [m for m in data["matches"] if m.get("method", "model") == "model"]
+    ta_matches = [m for m in data["matches"] if m.get("method") == "ta_elo"]
+    rows = build_rows(model_matches)
 
     if data["skipped"]:
         items = "".join(f'<li>{s["match"]} &mdash; {s["reason"]}</li>' for s in data["skipped"])
@@ -347,13 +366,36 @@ def render(data: dict) -> str:
     else:
         skipped = ""
 
+    if ta_matches:
+        ta_html = (
+            '<div class="sec"><h2>Ohne Modellabdeckung</h2><span class="rule"></span>'
+            f'<span class="count">{len(ta_matches)} Partien</span></div>'
+            '<div class="verdict none" style="margin-bottom:12px">'
+            '<div class="icon">&#9633;</div><div>'
+            '<h2>Einschätzung von Tennis Abstract, kein Modellwert</h2>'
+            '<p>Bei diesen Partien fehlt mindestens einem Spieler ausreichend Historie in '
+            'unserer eigenen Datenbasis. Statt sie wegzulassen, steht hier Tennis Abstracts '
+            'Elo-Prognose &mdash; deren Datenbasis umfasst auch Qualifikation, Challenger und '
+            'ITF&nbsp;$50K+. Bewusst <b>ohne Edge-Wert</b>: eine reine Elo-Prognose kennt keinen '
+            'Marktpreis und weicht auf dieser Karte im Mittel um 10,6&thinsp;% vom Markt ab '
+            '(Modell: 1,5&thinsp;%). Gegen einen Markt, der auf 0,8&nbsp;Prozentpunkte genau '
+            'kalibriert ist, heißt das fast immer: die Bewertung ist unvollständig, nicht der '
+            'Preis falsch.</p></div></div>'
+            '<div class="tbl"><div class="thead">'
+            '<span>Spieler</span><span>TA-Prognose</span><span>Markt</span>'
+            '<span>Faire Quote</span><span>Edge</span></div>'
+            + "".join(build_rows(ta_matches, show_edge=False)) + '</div>')
+    else:
+        ta_html = ""
+
     aud = data["audit"]
     stamp = data["generated_at"].replace("T", " ").replace("+00:00", " UTC")
     out = HTML
     for k, v in {
         "__STAMP__": stamp, "__THRESH__": thresh, "__STRIP__": strip_html,
         "__VERDICT__": verdict, "__ROWS__": "".join(rows), "__SKIPPED__": skipped,
-        "__NSCORED__": str(data["n_scored"]),
+        "__TAROWS__": ta_html, "__NSCORED__": str(data["n_scored"]),
+        "__NMODEL__": str(len(model_matches)),
         "__NTESTED__": f'{aud["matches_tested"]:,}'.replace(",", " "),
         "__ROI__": pct(aud["backtest_roi"], 2, sign=True),
         "__T__": f'{aud["backtest_t"]:.2f}',

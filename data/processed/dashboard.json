@@ -1,17 +1,22 @@
 {
- "generated_at": "2026-08-22T15:04:16+00:00",
+ "generated_at": "2026-08-22T15:09:46+00:00",
  "threshold": 0.05,
  "n_scheduled": 55,
- "n_scored": 32,
+ "n_scored": 47,
  "n_signals": 1,
+ "n_by_method": {
+  "model": 32,
+  "ta_elo": 15
+ },
  "ref_books": {
-  "10Bet": 1,
-  "1xBet": 2,
-  "Betfair": 8,
-  "Betsson": 2,
-  "Betway": 5,
+  "10Bet": 3,
+  "1xBet": 3,
+  "Betfair": 10,
+  "Betsson": 3,
+  "Betway": 7,
   "Coral": 2,
-  "Pinnacle": 3,
+  "Pinnacle": 7,
+  "TennisExplorer": 3,
   "Unibet": 4,
   "William Hill": 3,
   "bet-at-home": 1,
@@ -19,11 +24,336 @@
  },
  "matches": [
   {
+   "match_id": "3300805",
+   "tournament": "Winston Salem",
+   "tour": "atp",
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.0679,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Pierre Hugues Herbert",
+     "model_prob": 0.6986,
+     "model_fair_odds": 1.432,
+     "market_prob": 0.4422,
+     "market_fair_odds": 2.261,
+     "ref_odds": 2.1,
+     "edge": 0.2563,
+     "ev_at_ref": 0.467,
+     "elo": 1558.8,
+     "matches": null
+    },
+    {
+     "player": "Kenta Miyoshi",
+     "model_prob": 0.3014,
+     "model_fair_odds": 3.317,
+     "market_prob": 0.5578,
+     "market_fair_odds": 1.793,
+     "ref_odds": 1.69,
+     "edge": -0.2563,
+     "ev_at_ref": -0.4906,
+     "elo": 1412.8,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.2563,
+   "signal": false
+  },
+  {
+   "match_id": "3283195",
+   "tournament": "Memphis",
+   "tour": "wta",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0319,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Kristina Liutova",
+     "model_prob": 0.7831,
+     "model_fair_odds": 1.277,
+     "market_prob": 0.5793,
+     "market_fair_odds": 1.726,
+     "ref_odds": 1.68,
+     "edge": 0.2038,
+     "ev_at_ref": 0.3156,
+     "elo": 1783.4,
+     "matches": null
+    },
+    {
+     "player": "Elvina Kalieva",
+     "model_prob": 0.2169,
+     "model_fair_odds": 4.61,
+     "market_prob": 0.4207,
+     "market_fair_odds": 2.377,
+     "ref_odds": 2.29,
+     "edge": -0.2038,
+     "ev_at_ref": -0.5032,
+     "elo": 1560.4,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.2038,
+   "signal": false
+  },
+  {
+   "match_id": "3283121",
+   "tournament": "Hechingen ITF",
+   "tour": "wta",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0484,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Barbora Palicova",
+     "model_prob": 0.5686,
+     "model_fair_odds": 1.759,
+     "market_prob": 0.379,
+     "market_fair_odds": 2.638,
+     "ref_odds": 2.48,
+     "edge": 0.1896,
+     "ev_at_ref": 0.4102,
+     "elo": 1384.6,
+     "matches": null
+    },
+    {
+     "player": "Nuria Brancaccio",
+     "model_prob": 0.4314,
+     "model_fair_odds": 2.318,
+     "market_prob": 0.621,
+     "market_fair_odds": 1.61,
+     "ref_odds": 1.55,
+     "edge": -0.1896,
+     "ev_at_ref": -0.3314,
+     "elo": 1336.6,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.1896,
+   "signal": false
+  },
+  {
+   "match_id": "3283329",
+   "tournament": "Montreal",
+   "tour": "atp",
+   "ref_book": "Betway",
+   "ref_margin": 0.0452,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Christopher Oconnell",
+     "model_prob": 0.5509,
+     "model_fair_odds": 1.815,
+     "market_prob": 0.3774,
+     "market_fair_odds": 2.65,
+     "ref_odds": 2.5,
+     "edge": 0.1735,
+     "ev_at_ref": 0.3773,
+     "elo": 1634.6,
+     "matches": null
+    },
+    {
+     "player": "Jaime Faria",
+     "model_prob": 0.4491,
+     "model_fair_odds": 2.227,
+     "market_prob": 0.6226,
+     "market_fair_odds": 1.606,
+     "ref_odds": 1.55,
+     "edge": -0.1735,
+     "ev_at_ref": -0.3039,
+     "elo": 1599.1,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.1735,
+   "signal": false
+  },
+  {
+   "match_id": "3283345",
+   "tournament": "Toronto WTA",
+   "tour": "wta",
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.041,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Victoria Jimenez Kasintseva",
+     "model_prob": 0.5475,
+     "model_fair_odds": 1.827,
+     "market_prob": 0.3795,
+     "market_fair_odds": 2.635,
+     "ref_odds": 2.5,
+     "edge": 0.168,
+     "ev_at_ref": 0.3687,
+     "elo": 1549.6,
+     "matches": null
+    },
+    {
+     "player": "Marina Bassols Ribera",
+     "model_prob": 0.4525,
+     "model_fair_odds": 2.21,
+     "market_prob": 0.6205,
+     "market_fair_odds": 1.612,
+     "ref_odds": 1.56,
+     "edge": -0.168,
+     "ev_at_ref": -0.2941,
+     "elo": 1516.5,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.168,
+   "signal": false
+  },
+  {
+   "match_id": "3283119",
+   "tournament": "Hechingen ITF",
+   "tour": "wta",
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0417,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Fiona Ferro",
+     "model_prob": 0.7308,
+     "model_fair_odds": 1.368,
+     "market_prob": 0.88,
+     "market_fair_odds": 1.136,
+     "ref_odds": 1.11,
+     "edge": -0.1492,
+     "ev_at_ref": -0.1888,
+     "elo": 1619.4,
+     "matches": null
+    },
+    {
+     "player": "Eva Bennemann",
+     "model_prob": 0.2692,
+     "model_fair_odds": 3.715,
+     "market_prob": 0.12,
+     "market_fair_odds": 8.335,
+     "ref_odds": 7.1,
+     "edge": 0.1492,
+     "ev_at_ref": 0.9112,
+     "elo": 1445.9,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.1492,
+   "signal": false
+  },
+  {
+   "match_id": "3300811",
+   "tournament": "Winston Salem",
+   "tour": "atp",
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.0684,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Li Tu",
+     "model_prob": 0.6179,
+     "model_fair_odds": 1.618,
+     "market_prob": 0.4786,
+     "market_fair_odds": 2.089,
+     "ref_odds": 1.95,
+     "edge": 0.1393,
+     "ev_at_ref": 0.2049,
+     "elo": 1471.1,
+     "matches": null
+    },
+    {
+     "player": "Quinn Vandecasteele",
+     "model_prob": 0.3821,
+     "model_fair_odds": 2.617,
+     "market_prob": 0.5214,
+     "market_fair_odds": 1.918,
+     "ref_odds": 1.8,
+     "edge": -0.1393,
+     "ev_at_ref": -0.3122,
+     "elo": 1387.6,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.1393,
+   "signal": false
+  },
+  {
+   "match_id": "3283349",
+   "tournament": "Toronto WTA",
+   "tour": "wta",
+   "ref_book": "Betsson",
+   "ref_margin": 0.0629,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Alina Korneeva",
+     "model_prob": 0.8011,
+     "model_fair_odds": 1.248,
+     "market_prob": 0.6678,
+     "market_fair_odds": 1.497,
+     "ref_odds": 1.43,
+     "edge": 0.1332,
+     "ev_at_ref": 0.1455,
+     "elo": 1803.7,
+     "matches": null
+    },
+    {
+     "player": "Mary Stoiana",
+     "model_prob": 0.1989,
+     "model_fair_odds": 5.027,
+     "market_prob": 0.3322,
+     "market_fair_odds": 3.011,
+     "ref_odds": 2.75,
+     "edge": -0.1332,
+     "ev_at_ref": -0.453,
+     "elo": 1561.7,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.1332,
+   "signal": false
+  },
+  {
+   "match_id": "3283313",
+   "tournament": "Montreal",
+   "tour": "atp",
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0437,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Nicolas Mejia",
+     "model_prob": 0.4977,
+     "model_fair_odds": 2.009,
+     "market_prob": 0.4266,
+     "market_fair_odds": 2.344,
+     "ref_odds": 2.23,
+     "edge": 0.0711,
+     "ev_at_ref": 0.1099,
+     "elo": 1486.1,
+     "matches": null
+    },
+    {
+     "player": "Marco Trungelliti",
+     "model_prob": 0.5023,
+     "model_fair_odds": 1.991,
+     "market_prob": 0.5734,
+     "market_fair_odds": 1.744,
+     "ref_odds": 1.68,
+     "edge": -0.0711,
+     "ev_at_ref": -0.1561,
+     "elo": 1487.7,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0711,
+   "signal": false
+  },
+  {
    "match_id": "3283187",
    "tournament": "Washington",
    "tour": "atp",
    "ref_book": "Betfair",
    "ref_margin": 0.0298,
+   "method": "model",
    "sides": [
     {
      "player": "Fritz T.",
@@ -54,11 +384,48 @@
    "signal": true
   },
   {
+   "match_id": "3283331",
+   "tournament": "Montreal",
+   "tour": "atp",
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0388,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Duncan Chan",
+     "model_prob": 0.2138,
+     "model_fair_odds": 4.677,
+     "market_prob": 0.2561,
+     "market_fair_odds": 3.905,
+     "ref_odds": 3.63,
+     "edge": -0.0423,
+     "ev_at_ref": -0.2239,
+     "elo": 1404.4,
+     "matches": null
+    },
+    {
+     "player": "Hugo Gaston",
+     "model_prob": 0.7862,
+     "model_fair_odds": 1.272,
+     "market_prob": 0.7439,
+     "market_fair_odds": 1.344,
+     "ref_odds": 1.31,
+     "edge": 0.0423,
+     "ev_at_ref": 0.0299,
+     "elo": 1630.6,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0423,
+   "signal": false
+  },
+  {
    "match_id": "3283335",
    "tournament": "Montreal",
    "tour": "atp",
    "ref_book": "Betway",
    "ref_margin": 0.0598,
+   "method": "model",
    "sides": [
     {
      "player": "Mochizuki S.",
@@ -94,6 +461,7 @@
    "tour": "atp",
    "ref_book": "Betway",
    "ref_margin": 0.0505,
+   "method": "model",
    "sides": [
     {
      "player": "Jacquet K.",
@@ -129,6 +497,7 @@
    "tour": "wta",
    "ref_book": "Betfair",
    "ref_margin": 0.0362,
+   "method": "model",
    "sides": [
     {
      "player": "Uchijima M.",
@@ -164,6 +533,7 @@
    "tour": "wta",
    "ref_book": "Pinnacle",
    "ref_margin": 0.0417,
+   "method": "model",
    "sides": [
     {
      "player": "Jeanjean L.",
@@ -194,11 +564,48 @@
    "signal": false
   },
   {
+   "match_id": "3300803",
+   "tournament": "Winston Salem",
+   "tour": "atp",
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.0652,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Hugo Grenier",
+     "model_prob": 0.7824,
+     "model_fair_odds": 1.278,
+     "market_prob": 0.7548,
+     "market_fair_odds": 1.325,
+     "ref_odds": 1.27,
+     "edge": 0.0276,
+     "ev_at_ref": -0.0064,
+     "elo": 1508.7,
+     "matches": null
+    },
+    {
+     "player": "Neil Oberleitner",
+     "model_prob": 0.2176,
+     "model_fair_odds": 4.595,
+     "market_prob": 0.2452,
+     "market_fair_odds": 4.079,
+     "ref_odds": 3.6,
+     "edge": -0.0276,
+     "ev_at_ref": -0.2166,
+     "elo": 1286.4,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0276,
+   "signal": false
+  },
+  {
    "match_id": "3283315",
    "tournament": "Montreal",
    "tour": "atp",
    "ref_book": "Unibet",
    "ref_margin": 0.0679,
+   "method": "model",
    "sides": [
     {
      "player": "Damm M.",
@@ -229,46 +636,12 @@
    "signal": false
   },
   {
-   "match_id": "3300449",
-   "tournament": "Cincinnati",
-   "tour": "atp",
-   "ref_book": "Unibet",
-   "ref_margin": 0.0472,
-   "sides": [
-    {
-     "player": "Cobolli F.",
-     "model_prob": 0.2718,
-     "model_fair_odds": 3.679,
-     "market_prob": 0.299,
-     "market_fair_odds": 3.345,
-     "ref_odds": 3.1,
-     "edge": -0.0271,
-     "ev_at_ref": -0.1573,
-     "elo": 1865.1,
-     "matches": 171
-    },
-    {
-     "player": "Fils A.",
-     "model_prob": 0.7282,
-     "model_fair_odds": 1.373,
-     "market_prob": 0.701,
-     "market_fair_odds": 1.426,
-     "ref_odds": 1.38,
-     "edge": 0.0271,
-     "ev_at_ref": 0.0049,
-     "elo": 1985.6,
-     "matches": 165
-    }
-   ],
-   "best_edge": 0.0271,
-   "signal": false
-  },
-  {
    "match_id": "3283361",
    "tournament": "Toronto WTA",
    "tour": "wta",
    "ref_book": "10Bet",
    "ref_margin": 0.0639,
+   "method": "model",
    "sides": [
     {
      "player": "Stefanini L.",
@@ -304,6 +677,7 @@
    "tour": "atp",
    "ref_book": "Coral",
    "ref_margin": 0.0658,
+   "method": "model",
    "sides": [
     {
      "player": "Shimabukuro S.",
@@ -339,6 +713,7 @@
    "tour": "wta",
    "ref_book": "William Hill",
    "ref_margin": 0.0521,
+   "method": "model",
    "sides": [
     {
      "player": "Eala A.",
@@ -374,6 +749,7 @@
    "tour": "wta",
    "ref_book": "Betway",
    "ref_margin": 0.0598,
+   "method": "model",
    "sides": [
     {
      "player": "Sramkova R.",
@@ -404,11 +780,48 @@
    "signal": false
   },
   {
+   "match_id": "3300449",
+   "tournament": "Cincinnati",
+   "tour": "atp",
+   "ref_book": "1xBet",
+   "ref_margin": 0.0234,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Cobolli F.",
+     "model_prob": 0.2718,
+     "model_fair_odds": 3.679,
+     "market_prob": 0.2923,
+     "market_fair_odds": 3.422,
+     "ref_odds": 3.29,
+     "edge": -0.0204,
+     "ev_at_ref": -0.1056,
+     "elo": 1865.1,
+     "matches": 171
+    },
+    {
+     "player": "Fils A.",
+     "model_prob": 0.7282,
+     "model_fair_odds": 1.373,
+     "market_prob": 0.7077,
+     "market_fair_odds": 1.413,
+     "ref_odds": 1.39,
+     "edge": 0.0204,
+     "ev_at_ref": 0.0121,
+     "elo": 1985.6,
+     "matches": 165
+    }
+   ],
+   "best_edge": 0.0204,
+   "signal": false
+  },
+  {
    "match_id": "3283819",
    "tournament": "Toronto WTA",
    "tour": "wta",
    "ref_book": "Betfair",
    "ref_margin": 0.0533,
+   "method": "model",
    "sides": [
     {
      "player": "Blinkova A.",
@@ -444,6 +857,7 @@
    "tour": "atp",
    "ref_book": "Betsson",
    "ref_margin": 0.0766,
+   "method": "model",
    "sides": [
     {
      "player": "Zheng M.",
@@ -474,11 +888,120 @@
    "signal": false
   },
   {
+   "match_id": "3283321",
+   "tournament": "Montreal",
+   "tour": "atp",
+   "ref_book": "10Bet",
+   "ref_margin": 0.0668,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Adam Walton",
+     "model_prob": 0.8662,
+     "model_fair_odds": 1.154,
+     "market_prob": 0.8516,
+     "market_fair_odds": 1.174,
+     "ref_odds": 1.13,
+     "edge": 0.0147,
+     "ev_at_ref": -0.0212,
+     "elo": 1661.8,
+     "matches": null
+    },
+    {
+     "player": "Justin Boulais",
+     "model_prob": 0.1338,
+     "model_fair_odds": 7.475,
+     "market_prob": 0.1484,
+     "market_fair_odds": 6.737,
+     "ref_odds": 5.5,
+     "edge": -0.0147,
+     "ev_at_ref": -0.2642,
+     "elo": 1337.3,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0147,
+   "signal": false
+  },
+  {
+   "match_id": "3283355",
+   "tournament": "Toronto WTA",
+   "tour": "wta",
+   "ref_book": "10Bet",
+   "ref_margin": 0.0542,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Maya Joint",
+     "model_prob": 0.9583,
+     "model_fair_odds": 1.044,
+     "market_prob": 0.9438,
+     "market_fair_odds": 1.06,
+     "ref_odds": 1.03,
+     "edge": 0.0145,
+     "ev_at_ref": -0.0129,
+     "elo": 1682.2,
+     "matches": null
+    },
+    {
+     "player": "Ana Grubor",
+     "model_prob": 0.0417,
+     "model_fair_odds": 23.988,
+     "market_prob": 0.0562,
+     "market_fair_odds": 17.784,
+     "ref_odds": 12.0,
+     "edge": -0.0145,
+     "ev_at_ref": -0.4997,
+     "elo": 1137.6,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0145,
+   "signal": false
+  },
+  {
+   "match_id": "3283065",
+   "tournament": "Targu Mures",
+   "tour": "wta",
+   "ref_book": "Betway",
+   "ref_margin": 0.0592,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Laura Samson",
+     "model_prob": 0.4457,
+     "model_fair_odds": 2.244,
+     "market_prob": 0.4582,
+     "market_fair_odds": 2.183,
+     "ref_odds": 2.05,
+     "edge": -0.0125,
+     "ev_at_ref": -0.0864,
+     "elo": 1527.4,
+     "matches": null
+    },
+    {
+     "player": "Lucia Bronzetti",
+     "model_prob": 0.5543,
+     "model_fair_odds": 1.804,
+     "market_prob": 0.5418,
+     "market_fair_odds": 1.846,
+     "ref_odds": 1.75,
+     "edge": 0.0125,
+     "ev_at_ref": -0.0299,
+     "elo": 1565.3,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0125,
+   "signal": false
+  },
+  {
    "match_id": "3283009",
    "tournament": "Maspalomas ITF",
    "tour": "wta",
    "ref_book": "Betway",
    "ref_margin": 0.0596,
+   "method": "model",
    "sides": [
     {
      "player": "Pigossi L.",
@@ -514,6 +1037,7 @@
    "tour": "wta",
    "ref_book": "Betsson",
    "ref_margin": 0.0628,
+   "method": "model",
    "sides": [
     {
      "player": "Jones E.",
@@ -549,6 +1073,7 @@
    "tour": "atp",
    "ref_book": "Betfair",
    "ref_margin": 0.031,
+   "method": "model",
    "sides": [
     {
      "player": "Fearnley J.",
@@ -584,6 +1109,7 @@
    "tour": "wta",
    "ref_book": "William Hill",
    "ref_margin": 0.0596,
+   "method": "model",
    "sides": [
     {
      "player": "Tararudee L.",
@@ -619,6 +1145,7 @@
    "tour": "wta",
    "ref_book": "bet365",
    "ref_margin": 0.0521,
+   "method": "model",
    "sides": [
     {
      "player": "Zarazua R.",
@@ -654,6 +1181,7 @@
    "tour": "atp",
    "ref_book": "William Hill",
    "ref_margin": 0.0761,
+   "method": "model",
    "sides": [
     {
      "player": "Giron M.",
@@ -689,6 +1217,7 @@
    "tour": "wta",
    "ref_book": "Pinnacle",
    "ref_margin": 0.0453,
+   "method": "model",
    "sides": [
     {
      "player": "Ito A.",
@@ -724,6 +1253,7 @@
    "tour": "atp",
    "ref_book": "Betway",
    "ref_margin": 0.058,
+   "method": "model",
    "sides": [
     {
      "player": "Bonzi B.",
@@ -759,6 +1289,7 @@
    "tour": "wta",
    "ref_book": "Coral",
    "ref_margin": 0.0684,
+   "method": "model",
    "sides": [
     {
      "player": "Boisson L.",
@@ -794,6 +1325,7 @@
    "tour": "wta",
    "ref_book": "Betfair",
    "ref_margin": 0.0357,
+   "method": "model",
    "sides": [
     {
      "player": "Vidmanova D.",
@@ -829,6 +1361,7 @@
    "tour": "wta",
    "ref_book": "Betfair",
    "ref_margin": 0.026,
+   "method": "model",
    "sides": [
     {
      "player": "Vidmanova D.",
@@ -864,6 +1397,7 @@
    "tour": "wta",
    "ref_book": "Unibet",
    "ref_margin": 0.064,
+   "method": "model",
    "sides": [
     {
      "player": "Stephens S.",
@@ -899,6 +1433,7 @@
    "tour": "atp",
    "ref_book": "Betfair",
    "ref_margin": 0.0339,
+   "method": "model",
    "sides": [
     {
      "player": "Droguet T.",
@@ -934,6 +1469,7 @@
    "tour": "atp",
    "ref_book": "Betfair",
    "ref_margin": 0.0284,
+   "method": "model",
    "sides": [
     {
      "player": "Tabilo A.",
@@ -969,6 +1505,7 @@
    "tour": "wta",
    "ref_book": "1xBet",
    "ref_margin": 0.0508,
+   "method": "model",
    "sides": [
     {
      "player": "Eala A.",
@@ -1004,6 +1541,7 @@
    "tour": "atp",
    "ref_book": "bet-at-home",
    "ref_margin": 0.0445,
+   "method": "model",
    "sides": [
     {
      "player": "Tiafoe F.",
@@ -1039,6 +1577,7 @@
    "tour": "atp",
    "ref_book": "Pinnacle",
    "ref_margin": 0.0367,
+   "method": "model",
    "sides": [
     {
      "player": "Popyrin A.",
@@ -1074,6 +1613,7 @@
    "tour": "wta",
    "ref_book": "1xBet",
    "ref_margin": 0.0499,
+   "method": "model",
    "sides": [
     {
      "player": "Pegula J.",
@@ -1109,6 +1649,7 @@
    "tour": "wta",
    "ref_book": "Unibet",
    "ref_margin": 0.0636,
+   "method": "model",
    "sides": [
     {
      "player": "Day K.",
@@ -1137,123 +1678,84 @@
    ],
    "best_edge": 0.0013,
    "signal": false
+  },
+  {
+   "match_id": "3283833",
+   "tournament": "Montreal",
+   "tour": "atp",
+   "ref_book": "Unibet",
+   "ref_margin": 0.0679,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Stefanos Tsitsipas",
+     "model_prob": 0.9012,
+     "model_fair_odds": 1.11,
+     "market_prob": 0.9006,
+     "market_fair_odds": 1.11,
+     "ref_odds": 1.07,
+     "edge": 0.0006,
+     "ev_at_ref": -0.0357,
+     "elo": 1815.1,
+     "matches": null
+    },
+    {
+     "player": "Keegan Rice",
+     "model_prob": 0.0988,
+     "model_fair_odds": 10.12,
+     "market_prob": 0.0994,
+     "market_fair_odds": 10.063,
+     "ref_odds": 7.5,
+     "edge": -0.0006,
+     "ev_at_ref": -0.2589,
+     "elo": 1431.1,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0006,
+   "signal": false
   }
  ],
  "skipped": [
   {
    "match": "Kudermetova P. vs Alexander A.",
    "tournament": "Toronto WTA",
-   "reason": "Spieler nicht im Modell"
-  },
-  {
-   "match": "Joint M. vs Grubor A.",
-   "tournament": "Toronto WTA",
-   "reason": "Spieler nicht im Modell"
-  },
-  {
-   "match": "Korneeva A. vs Stoiana M.",
-   "tournament": "Toronto WTA",
-   "reason": "Stoiana M.: nur 3 Matches"
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
    "match": "Maria T. vs Marton I.",
    "tournament": "Toronto WTA",
-   "reason": "Spieler nicht im Modell"
-  },
-  {
-   "match": "Jimenez Kasintseva V. vs Bassols Ribera M.",
-   "tournament": "Toronto WTA",
-   "reason": "Bassols Ribera M.: nur 1 Matches"
-  },
-  {
-   "match": "O'Connell C. vs Faria J.",
-   "tournament": "Montreal",
-   "reason": "O'Connell C.: nur 3 Matches"
-  },
-  {
-   "match": "Chan D. vs Gaston H.",
-   "tournament": "Montreal",
-   "reason": "Chan D.: nur 1 Matches"
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
    "match": "Vukic A. vs Barrios Vera M.",
    "tournament": "Montreal",
-   "reason": "Barrios Vera M.T.: nur 2 Matches"
-  },
-  {
-   "match": "Walton A. vs Boulais J.",
-   "tournament": "Montreal",
-   "reason": "Spieler nicht im Modell"
-  },
-  {
-   "match": "Mejia N. vs Trungelliti M.",
-   "tournament": "Montreal",
-   "reason": "Mejia N.: nur 7 Matches"
-  },
-  {
-   "match": "Tsitsipas S. vs Rice K.",
-   "tournament": "Montreal",
-   "reason": "Spieler nicht im Modell"
+   "reason": "Barrios Vera M.T.: nur 2 Matches bei uns und kein Tennis-Abstract-Elo"
   },
   {
    "match": "Balshaw F. vs Pow L.",
    "tournament": "Winston Salem",
-   "reason": "Spieler nicht im Modell"
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
    "match": "Pascual Ferra R. vs Suresh D.",
    "tournament": "Winston Salem",
-   "reason": "Spieler nicht im Modell"
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
    "match": "Shelbayh A. vs Seggerman R.",
    "tournament": "Winston Salem",
-   "reason": "Spieler nicht im Modell"
-  },
-  {
-   "match": "Tu L. vs Vandecasteele Q.",
-   "tournament": "Winston Salem",
-   "reason": "Spieler nicht im Modell"
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
    "match": "Heck H. vs Rottgering M.",
    "tournament": "Winston Salem",
-   "reason": "Spieler nicht im Modell"
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
    "match": "Gorzny S. vs Polmans M.",
    "tournament": "Winston Salem",
-   "reason": "Spieler nicht im Modell"
-  },
-  {
-   "match": "Grenier H. vs Oberleitner N.",
-   "tournament": "Winston Salem",
-   "reason": "Spieler nicht im Modell"
-  },
-  {
-   "match": "Herbert P. vs Miyoshi K.",
-   "tournament": "Winston Salem",
-   "reason": "Spieler nicht im Modell"
-  },
-  {
-   "match": "Liutova K. vs Kalieva E.",
-   "tournament": "Memphis",
-   "reason": "Liutova K.: nur 5 Matches"
-  },
-  {
-   "match": "Samson L. vs Bronzetti L.",
-   "tournament": "Targu Mures",
-   "reason": "Samson L.: nur 5 Matches"
-  },
-  {
-   "match": "Palicova B. vs Brancaccio N.",
-   "tournament": "Hechingen ITF",
-   "reason": "Palicova B.: nur 5 Matches"
-  },
-  {
-   "match": "Ferro F. vs Bennemann E.",
-   "tournament": "Hechingen ITF",
-   "reason": "Spieler nicht im Modell"
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   }
  ],
  "audit": {
