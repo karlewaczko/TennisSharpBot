@@ -32,58 +32,134 @@ SURFACES = ("Hard", "Clay", "Grass", "Carpet")
 
 
 def _fold(text: str) -> str:
+    """Lowercase, strip accents, and flatten the separators that differ
+    between sources -- `Auger-Aliassime F.` here, `Felix Auger Aliassime`
+    there, both meaning one player."""
     stripped = "".join(c for c in unicodedata.normalize("NFKD", str(text))
                        if not unicodedata.combining(c))
-    return stripped.strip().lower()
+    for ch in "-–—,":          # separators -> space
+        stripped = stripped.replace(ch, " ")
+    for ch in ".'’":           # abbreviation dots and apostrophes -> dropped
+        stripped = stripped.replace(ch, "")
+    return " ".join(stripped.lower().split())
 
 
-def name_keys(name: str) -> set[tuple[str, str]]:
-    """Every (lastname, initial) reading of `name`.
+def _tokens(name: str) -> list[str]:
+    """Word tokens, with abbreviation dots collapsed: `L.A.` -> `la`."""
+    cleaned = str(name)
+    for ch in "-–—,":
+        cleaned = cleaned.replace(ch, " ")
+    out = []
+    for tok in cleaned.split():
+        folded = _fold(tok.replace(".", ""))
+        if folded:
+            out.append(folded)
+    return out
 
-    A two-part name with no initial is genuinely ambiguous: TennisExplorer's
-    schedule writes `Sinner J.`, Tennis Abstract writes `Jannik Sinner`, and
-    the odds table on the *same* TennisExplorer page writes `Paul Tommy` --
-    surname first. Rather than guess an order per source, return both
-    readings and let the match succeed if either lands. Callers already
-    reject an ambiguous result, so a spurious extra key costs a failed
-    lookup, never a wrong player.
+
+def _is_abbrev(original: str) -> bool:
+    """`J.`, `Ka.`, `L.A.`, `P.H` are abbreviations; `Li` and `Wu` are
+    surnames.
+
+    Any dot marks an abbreviation, not just a trailing one: the roster spells
+    Pierre-Hugues Herbert `P.H.` in one row and `P.H` (no closing dot) in
+    another. A length test looks tempting instead but misclassifies every
+    two-letter surname -- it was why `Ann Li` resolved to nobody.
     """
-    parts = _fold(name).replace(",", " ").split()
-    if not parts:
-        return set()
-    if len(parts) == 1:
-        return {(parts[0], "")}                                  # bare "Sinner"
-    if len(parts[-1].rstrip(".")) == 1:
-        return {(" ".join(parts[:-1]), parts[-1].rstrip("."))}   # "Sinner J."
-    if len(parts[0].rstrip(".")) == 1:
-        return {(" ".join(parts[1:]), parts[0].rstrip("."))}     # "J. Sinner"
-    return {
-        (" ".join(parts[1:]), parts[0][:1]),                     # "Jannik Sinner"
-        (" ".join(parts[:-1]), parts[-1][:1]),                   # "Paul Tommy"
-    }
+    return "." in original
 
 
-def resolve_name(query: str, candidates) -> str | None:
-    """Best match for `query` among `candidates`. Exact (lastname, initial)
-    wins; a unique surname-only hit is accepted as a fallback so a bare
-    "Alcaraz" resolves, but an ambiguous one returns None rather than
-    silently picking the wrong player.
+def name_readings(name: str) -> list[tuple[str, str]]:
+    """(surname, given) readings of `name`, most likely first.
+
+    Sources disagree on order and on how much of the first name survives:
+    the schedule writes `Sinner J.`, Tennis Abstract writes `Jannik Sinner`,
+    the odds table on the same TennisExplorer page writes `Paul Tommy`
+    (surname first), and the Elo roster carries `Pliskova Ka.` / `Pliskova
+    Kr.` -- two-letter initials that distinguish two sisters.
+
+    Readings are *ordered*, not pooled. Treating them as equally valid was a
+    real bug: `Novak Djokovic` matched both `Djokovic N.` and `Novak D.`
+    (Dennis Novak is an actual player), the caller saw an ambiguous result
+    and refused, so the world number one silently dropped out of every
+    lookup. Trying the likeliest reading first and only falling back when it
+    finds nothing keeps `Paul Tommy` working without inventing collisions.
     """
-    q_keys = name_keys(query)
-    if not q_keys:
+    raw = [t for t in str(name).replace(",", " ").split() if t]
+    toks = _tokens(name)
+    if not toks:
+        return []
+    if len(toks) == 1:
+        return [(toks[0], "")]
+
+    # An explicit initial pins the order, so there is only one reading.
+    if raw and _is_abbrev(raw[-1]):
+        return [(" ".join(toks[:-1]), toks[-1])]
+    if raw and _is_abbrev(raw[0]):
+        return [(" ".join(toks[1:]), toks[0])]
+
+    # Initials of every given-name token, so `Juan Manuel Cerundolo` can reach
+    # the roster's `Cerundolo J.M.`; without it three-part names never match.
+    lead_initials = "".join(t[0] for t in toks[:-1])
+    return [
+        (toks[-1], toks[0]),                # "Novak Djokovic" -> djokovic/novak
+        (toks[-1], lead_initials),          # "Juan Manuel Cerundolo" -> cerundolo/jm
+        (" ".join(toks[1:]), toks[0]),      # compound surname: auger aliassime
+        (" ".join(toks[:-1]), toks[-1]),    # surname-first: "Paul Tommy"
+    ]
+
+
+def _given_match(a: str, b: str) -> bool:
+    """`ka` matches `karolina` but not `kristyna`; an empty given matches
+    anything, which is what makes a bare surname query work."""
+    if not a or not b:
+        return True
+    return a.startswith(b) or b.startswith(a)
+
+
+def resolve_name(query: str, candidates, weight=None) -> str | None:
+    """Best match for `query` among `candidates`, or None if genuinely
+    ambiguous. Never guesses between two different players.
+
+    `weight` optionally scores a candidate when several spellings of the
+    *same* player tie -- pass `matches_played.get` so the row carrying the
+    fullest history wins. Without it the longest (most specific) spelling is
+    used, which is right more often than not but picked `Herbert P.H`
+    (16 matches) over `Herbert P.H.` (210) on the live roster.
+    """
+    readings = name_readings(query)
+    if not readings:
         return None
-    q_surnames = {last for last, _ in q_keys}
-    keyed = [(name_keys(c), c) for c in candidates]
+    keyed = [(name_readings(c), c) for c in candidates]
 
-    # Full (surname, initial) agreement on any reading of either name.
-    exact = [c for keys, c in keyed if keys & q_keys]
-    if exact:
-        return exact[0] if len(set(exact)) == 1 else None
+    for q_surname, q_given in readings:
+        hits = [(k[1], c) for keys, c in keyed for k in keys
+                if k[0] == q_surname and _given_match(k[1], q_given)]
+        if not hits:
+            continue
+        names = {c for _, c in hits}
+        if len(names) == 1:
+            return names.pop()
 
-    # Surname alone -- accepted only when it identifies exactly one player,
-    # so "Zverev" stays unresolved rather than silently picking a brother.
-    surname_only = {c for keys, c in keyed if {last for last, _ in keys} & q_surnames}
-    return surname_only.pop() if len(surname_only) == 1 else None
+        # Several rows can be one player entered inconsistently. The roster
+        # carries Pierre-Hugues Herbert as `Herbert P.`, `Herbert P.H`,
+        # `Herbert P.H.` and `Herbert P-H.`, and Emma Raducanu as both
+        # `Raducanu E.` and `Raducànu E.`. Those givens form a prefix chain
+        # (p -> ph), which two *different* players cannot: the source could
+        # not write `P.` for one man and `P.H.` for another without its own
+        # notation being ambiguous. Pliskova `Ka.`/`Kr.` is the contrasting
+        # case -- not prefix-compatible, so it stays unresolved.
+        givens = {g for g, _ in hits}
+        if all(_given_match(x, y) for x in givens for y in givens):
+            if weight is not None:
+                return max(sorted(names), key=lambda c: (weight(c) or 0, _longest_given(c)))
+            return sorted(names, key=lambda c: (-_longest_given(c), c))[0]
+        return None
+    return None
+
+
+def _longest_given(name: str) -> int:
+    return max((len(g) for _, g in name_readings(name)), default=0)
 
 
 def _load_csv(name: str) -> pd.DataFrame | None:
@@ -116,8 +192,9 @@ def analyze(query_a: str, query_b: str, surface: str, best_of: int) -> None:
     snapshot = state.elo.snapshot()
     roster = snapshot["player"].tolist()
 
-    a = resolve_name(query_a, roster)
-    b = resolve_name(query_b, roster)
+    played = dict(zip(snapshot["player"], snapshot["matches_played"]))
+    a = resolve_name(query_a, roster, weight=played.get)
+    b = resolve_name(query_b, roster, weight=played.get)
     for query, hit in ((query_a, a), (query_b, b)):
         if not hit:
             raise SystemExit(f"Kein Spieler gefunden fuer '{query}'. "

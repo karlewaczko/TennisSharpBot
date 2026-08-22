@@ -81,8 +81,8 @@ def main() -> None:
 
     rows, skipped = [], []
     for _, m in sched.iterrows():
-        a = resolve_name(str(m["player1"]), roster)
-        b = resolve_name(str(m["player2"]), roster)
+        a = resolve_name(str(m["player1"]), roster, weight=played.get)
+        b = resolve_name(str(m["player2"]), roster, weight=played.get)
         if not a or not b or a == b:
             skipped.append((m["player1"], m["player2"], m["tournament"], "unbekannt im Modell"))
             continue

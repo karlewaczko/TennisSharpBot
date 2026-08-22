@@ -118,8 +118,8 @@ def main() -> None:
 
     matches, skipped = [], []
     for _, m in sched.iterrows():
-        a = resolve_name(str(m["player1"]), roster)
-        b = resolve_name(str(m["player2"]), roster)
+        a = resolve_name(str(m["player1"]), roster, weight=played.get)
+        b = resolve_name(str(m["player2"]), roster, weight=played.get)
         label = f"{m['player1']} vs {m['player2']}"
         if not a or not b or a == b:
             skipped.append({"match": label, "tournament": str(m["tournament"]),
