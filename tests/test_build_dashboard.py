@@ -75,3 +75,33 @@ def test_a_feed_without_result_columns_is_not_dropped_wholesale(bd):
     rows are unknown, not finished -- dropping them would empty the page."""
     bare = pd.DataFrame([{"player1": "A", "player2": "B", "odds1": 2.0, "odds2": 1.8}])
     assert bd.unplayed_mask(bare).all()
+
+
+def test_placeholder_prices_are_not_a_market(bd):
+    """TennisExplorer lists 1.02/1.02 and 1.03/1.03 for matches nobody has
+    priced yet -- a 94-96 % overround. De-vigged, one of those produced a
+    -60.8 % EV on Vidmanova out of nothing at all."""
+    assert not bd.is_priced([1.02, 1.02])
+    assert not bd.is_priced([1.03, 1.03])
+    assert not bd.is_priced([1.08, 1.33])
+
+
+def test_real_two_way_prices_survive(bd):
+    """Pinnacle runs 2-3 %, the softest books into the teens; the median on a
+    full card is 10 %. None of that may be filtered out."""
+    assert bd.is_priced([1.88, 2.02])      # Pinnacle, ~2 %
+    assert bd.is_priced([1.23, 4.16])      # soft, ~5 %
+    assert bd.is_priced([1.60, 1.72])      # ~21 %, high but a real quote pair
+    assert bd.margin([1.88, 2.02]) < 0.03
+
+
+def test_impossible_odds_are_rejected(bd):
+    """1.0 pays nothing back and a negative overround is a scrape artefact,
+    not an arbitrage -- both sides come from one book."""
+    assert not bd.is_priced([1.0, 5.0])
+    assert not bd.is_priced([2.10, 2.10])  # margin -4.8 %
+    assert not bd.is_priced([None, 2.0])
+
+
+def test_the_margin_ceiling_sits_above_every_real_book(bd):
+    assert 0.15 < bd.MAX_REF_MARGIN < 0.5

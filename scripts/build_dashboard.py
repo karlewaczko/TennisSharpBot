@@ -55,6 +55,24 @@ EXCLUDE_EVENTS = "UTR|Nationalliga|ITF"
 CHALLENGER_MARKER = "challenger"
 SHARP_BOOKS = ("Pinnacle", "Betfair")
 
+# A two-way tennis market runs 2-3% overround at Pinnacle and rarely past 15%
+# at the softest book (median on a full card: 10%). Anything far beyond that
+# is not a price. TennisExplorer lists placeholder pairs like 1.02/1.02 and
+# 1.03/1.03 -- a 94-96% "margin" -- for matches nobody has priced yet, and
+# de-vigging those produced a 60% negative EV out of thin air.
+MAX_REF_MARGIN = 0.30
+
+
+def margin(odds) -> float:
+    return sum(1 / x for x in odds) - 1
+
+
+def is_priced(odds) -> bool:
+    """A quote pair that could plausibly be a real market."""
+    if any(x is None or x <= 1.0 for x in odds):
+        return False
+    return 0.0 <= margin(odds) <= MAX_REF_MARGIN
+
 # Tennis Abstract's own Elo, used only where our model has too little history.
 # Their pool is much wider than ours -- it counts tour-level qualifying,
 # challengers and ITF $50K+ events, which tennis-data.co.uk does not carry --
@@ -119,19 +137,21 @@ def _sharp_reference(match_id):
             return None
         return [float(r["odds"].iloc[0]) for r in rows]
 
+    # A sharp book is preferred only while it is actually quoting the match:
+    # Betfair carries 1.03/1.03 placeholders for unpriced draws, and taking
+    # those on the strength of the book's name is worse than any soft price.
     for book in SHARP_BOOKS:
         q = quotes(book)
-        if q:
+        if q and is_priced(q):
             return book, q, players
 
     best, best_q, best_margin = None, None, None
     for book in cur["bookmaker"].unique():
         q = quotes(book)
-        if not q:
+        if not q or not is_priced(q):
             continue
-        margin = sum(1 / x for x in q) - 1
-        if best_margin is None or margin < best_margin:
-            best, best_q, best_margin = book, q, margin
+        if best_margin is None or margin(q) < best_margin:
+            best, best_q, best_margin = book, q, margin(q)
     return (best, best_q, players) if best else None
 
 
@@ -229,6 +249,16 @@ def main() -> None:
         else:
             ref_book, ref_odds, ref_players = ref
 
+        # No book is quoting a plausible two-way price. Without a market there
+        # is nothing to be right or wrong about, so the match is dropped
+        # rather than scored against a placeholder.
+        if not is_priced(ref_odds):
+            skipped.append({"match": label, "tournament": str(m["tournament"]),
+                            "reason": f"keine belastbaren Quoten "
+                                      f"({ref_odds[0]:.2f}/{ref_odds[1]:.2f}, "
+                                      f"Marge {margin(ref_odds) * 100:.0f}%)"})
+            continue
+
         if ta_fallback:
             (name_a, elo_a), (name_b, elo_b) = ta_fallback
             method, label_a, label_b = "ta_elo", name_a, name_b
@@ -279,7 +309,7 @@ def main() -> None:
             "tournament": str(m["tournament"]),
             "tour": "wta" if "-women/" in str(m["tournament_url"]) else "atp",
             "ref_book": ref_book,
-            "ref_margin": round(sum(1 / x for x in ref_odds) - 1, 4),
+            "ref_margin": round(margin(ref_odds), 4),
             # "model" = our trained classifier with the market price blended in.
             # "ta_elo" = Tennis Abstract's rating through their published Elo
             # formula, no market input. Never mix the two in one comparison.
