@@ -191,3 +191,27 @@ def test_edge_still_visible_but_secondary(rd):
     where the eye lands first."""
     html = rd.render(_payload())
     assert "Edge +2.0" in html or "Edge&nbsp;+2.0" in html or "Edge " in html
+
+
+def test_row_carries_its_playing_day(rd):
+    """The card spans several days now. Without the date every row reads as
+    today's match, which is how a finished match passed for an upcoming one
+    in the first place."""
+    data = _payload()
+    data["matches"][0]["date"] = "2026-08-23"
+    html = rd.render(data)
+    assert "23.08." in html
+    assert "So" in html          # Sunday
+
+
+def test_row_without_a_date_renders_without_a_chip(rd):
+    """Payloads built before the date column exist; they must still render."""
+    html = rd.render(_payload())
+    assert re.findall(r"__[A-Z_]+__", html) == []
+    assert "chip day" not in html
+
+
+def test_unparsable_date_does_not_break_the_page(rd):
+    data = _payload()
+    data["matches"][0]["date"] = "morgen"
+    assert "chip day" not in rd.render(data)

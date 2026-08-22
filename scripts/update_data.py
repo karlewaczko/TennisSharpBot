@@ -78,17 +78,25 @@ def _fetch_tennisabstract_leaders() -> None:
                         tour.upper(), pool, matches["player"].nunique())
 
 
+SCHEDULE_DAYS = (0, 1, 2)
+
+
 def _fetch_tennisexplorer_schedule() -> pd.DataFrame:
-    """Today + tomorrow's scheduled matches and odds from TennisExplorer --
+    """The next few days of scheduled matches and odds from TennisExplorer --
     a free complement/alternative to The Odds API for the live value finder.
     Best-effort like the Tennis Abstract fetches above.
+
+    Three days rather than two: today's card is mostly played out by the
+    afternoon, and the day after tomorrow is where the earliest prices sit
+    (a sample taken on a Saturday: 41 open matches with odds today, 91
+    tomorrow, 26 the day after).
     """
     try:
         upcoming = pd.concat(
-            [tennisexplorer.fetch_matches(0), tennisexplorer.fetch_matches(1)],
+            [tennisexplorer.fetch_matches(d) for d in SCHEDULE_DAYS],
             ignore_index=True,
         )
-        # The two pages overlap around midnight in the site's timezone, and a
+        # The pages overlap around midnight in the site's timezone, and a
         # match listed twice would be scored twice on the dashboard.
         upcoming = upcoming.drop_duplicates(subset="match_id", keep="first")
         upcoming.to_csv(config.PROCESSED_DIR / "tennisexplorer_upcoming.csv", index=False)

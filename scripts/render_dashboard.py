@@ -10,6 +10,7 @@ published, so nothing may be fetched at view time.
 """
 import _bootstrap  # noqa: F401
 import argparse
+import datetime as dt
 import json
 from pathlib import Path
 
@@ -133,6 +134,8 @@ h1 { font-size:29px; font-weight:700; letter-spacing:-.02em; line-height:1.1; }
         padding:2px 7px; border-radius:4px; background:var(--surface);
         border:1px solid var(--border); color:var(--muted); }
 .chip.sharp { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
+.chip.day { text-transform:none; letter-spacing:.02em; color:var(--text);
+            font-family:"IBM Plex Mono",monospace; }
 
 /* divergence bar: market vs model on one axis */
 .bar { position:relative; height:6px; border-radius:3px; background:var(--surface-2);
@@ -286,6 +289,22 @@ def pct(x, digits=1, sign=False):
     return f"{x * 100:+.{digits}f}&thinsp;%" if sign else f"{x * 100:.{digits}f}&thinsp;%"
 
 
+_WEEKDAYS = ("Mo", "Di", "Mi", "Do", "Fr", "Sa", "So")
+
+
+def day_chip(iso: str | None) -> str:
+    """`2026-08-23` -> `So 23.08.`. A card now spans several playing days, so
+    a row without its date reads as if every match were today's."""
+    if not iso:
+        return ""
+    try:
+        day = dt.date.fromisoformat(str(iso))
+    except ValueError:
+        return ""
+    return (f'<span class="chip day">{_WEEKDAYS[day.weekday()]}&nbsp;'
+            f'{day.day:02d}.{day.month:02d}.</span>')
+
+
 def render(data: dict) -> str:
     thresh = pct(data["threshold"], 0)
 
@@ -328,6 +347,7 @@ def render(data: dict) -> str:
             out.append(
                 f'<div class="row"><div class="mhead">'
                 f'<span class="tour">{m["tournament"]}</span>'
+                f'{day_chip(m.get("date"))}'
                 f'<span class="{chip}">{m["ref_book"]}</span>'
                 f'<span class="chip">{m["tour"].upper()}</span>'
                 f'<span>Marge {pct(m["ref_margin"], 1)}</span></div>')

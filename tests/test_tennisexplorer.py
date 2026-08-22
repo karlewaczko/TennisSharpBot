@@ -2,7 +2,7 @@ import datetime as dt
 from pathlib import Path
 
 from tennissharp.data.tennisexplorer import (
-    day_url, head_to_head_summary, parse_head_to_head_html, parse_matches_html,
+    day_for_offset, day_url, head_to_head_summary, parse_head_to_head_html, parse_matches_html,
     parse_odds_history_html,
 )
 
@@ -109,3 +109,8 @@ def test_day_url_crosses_month_and_year_boundaries():
 def test_day_url_zero_pads_so_the_site_reads_the_date():
     url = day_url(0, today=dt.date(2026, 3, 5))
     assert "month=03" in url and "day=05" in url
+
+
+def test_day_for_offset_is_the_calendar_date():
+    assert day_for_offset(2, today=dt.date(2026, 8, 22)) == dt.date(2026, 8, 24)
+    assert day_for_offset(0, today=dt.date(2026, 8, 22)) == dt.date(2026, 8, 22)

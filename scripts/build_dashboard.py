@@ -142,6 +142,8 @@ def main() -> None:
                     help="max matches; each costs one odds-history request (~2-4s)")
     ap.add_argument("--tour", choices=("atp", "wta", "both"), default="both")
     ap.add_argument("--no-challenger", action="store_true")
+    ap.add_argument("--date", action="append", metavar="YYYY-MM-DD",
+                    help="restrict to these playing days; repeatable")
     ap.add_argument("--threshold", type=float, default=DEFAULT_EDGE_THRESHOLD)
     args = ap.parse_args()
 
@@ -151,6 +153,11 @@ def main() -> None:
     sched = sched[sched["odds1"].notna() & sched["odds2"].notna()]
     n_finished = int((~unplayed_mask(sched)).sum())
     sched = sched[unplayed_mask(sched)]
+    if args.date:
+        if "date" not in sched.columns:
+            raise SystemExit("Der Spielplan hat keine date-Spalte -- "
+                             "bitte zuerst scripts/update_data.py neu laufen lassen.")
+        sched = sched[sched["date"].isin(args.date)]
     if args.tour in ("atp", "wta"):
         suffix = "-men/" if args.tour == "atp" else "-women/"
         sched = sched[sched["tournament_url"].str.contains(suffix, regex=False, na=False)]
@@ -268,6 +275,7 @@ def main() -> None:
 
         matches.append({
             "match_id": str(m["match_id"]),
+            "date": str(m["date"]) if pd.notna(m.get("date")) else None,
             "tournament": str(m["tournament"]),
             "tour": "wta" if "-women/" in str(m["tournament_url"]) else "atp",
             "ref_book": ref_book,
@@ -299,6 +307,7 @@ def main() -> None:
         "n_signals": sum(1 for m in matches if m["signal"]),
         "n_by_method": {meth: sum(1 for m in matches if m["method"] == meth)
                         for meth in sorted({m["method"] for m in matches})},
+        "dates": sorted({m["date"] for m in matches if m["date"]}),
         "ref_books": {b: sum(1 for m in matches if m["ref_book"] == b)
                       for b in sorted({m["ref_book"] for m in matches})},
         "matches": matches,

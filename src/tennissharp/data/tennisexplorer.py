@@ -134,6 +134,10 @@ def parse_matches_html(html: str) -> pd.DataFrame:
     return df
 
 
+def day_for_offset(day_offset: int = 0, today: dt.date | None = None) -> dt.date:
+    return (today or dt.date.today()) + dt.timedelta(days=day_offset)
+
+
 def day_url(day_offset: int = 0, today: dt.date | None = None) -> str:
     """URL of the schedule page `day_offset` days from today.
 
@@ -144,16 +148,24 @@ def day_url(day_offset: int = 0, today: dt.date | None = None) -> str:
     reached the value table carrying their pre-match odds. The date has to be
     spelled out in full: year, month and day together.
     """
-    day = (today or dt.date.today()) + dt.timedelta(days=day_offset)
+    day = day_for_offset(day_offset, today)
     return (f"{BASE_URL}/matches/?type=all&timezone=0"
             f"&year={day.year}&month={day.month:02d}&day={day.day:02d}")
 
 
 def fetch_matches(day_offset: int = 0) -> pd.DataFrame:
-    """`day_offset=0` is today, `1` tomorrow, `-1` yesterday (results)."""
+    """`day_offset=0` is today, `1` tomorrow, `-1` yesterday (results).
+
+    Rows carry a `date` column: one page is one calendar day, and without it
+    a file assembled from several pages cannot say which day a match belongs
+    to -- the rows themselves hold no date at all.
+    """
+    day = day_for_offset(day_offset)
     resp = requests.get(day_url(day_offset), headers=_HEADERS, timeout=30)
     resp.raise_for_status()
-    return parse_matches_html(resp.text)
+    df = parse_matches_html(resp.text)
+    df["date"] = day.isoformat()
+    return df
 
 
 _H2H_COLUMN_MAP = {
