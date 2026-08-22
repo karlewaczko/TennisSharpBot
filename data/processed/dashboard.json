@@ -1,22 +1,58 @@
 {
- "generated_at": "2026-08-22T12:30:18+00:00",
+ "generated_at": "2026-08-22T14:22:59+00:00",
  "threshold": 0.05,
- "n_scheduled": 45,
- "n_scored": 26,
- "n_signals": 0,
+ "n_scheduled": 55,
+ "n_scored": 32,
+ "n_signals": 1,
  "ref_books": {
   "10Bet": 1,
   "1xBet": 2,
-  "Betfair": 4,
+  "Betfair": 8,
   "Betsson": 2,
-  "Betway": 4,
+  "Betway": 5,
   "Coral": 2,
   "Pinnacle": 3,
   "Unibet": 4,
   "William Hill": 3,
-  "bet-at-home": 1
+  "bet-at-home": 1,
+  "bet365": 1
  },
  "matches": [
+  {
+   "match_id": "3283187",
+   "tournament": "Washington",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0298,
+   "sides": [
+    {
+     "player": "Fritz T.",
+     "model_prob": 0.5714,
+     "model_fair_odds": 1.75,
+     "market_prob": 0.6303,
+     "market_fair_odds": 1.587,
+     "ref_odds": 1.55,
+     "edge": -0.0588,
+     "ev_at_ref": -0.1143,
+     "elo": 1966.8,
+     "matches": 547
+    },
+    {
+     "player": "Nakashima B.",
+     "model_prob": 0.4286,
+     "model_fair_odds": 2.333,
+     "market_prob": 0.3697,
+     "market_fair_odds": 2.705,
+     "ref_odds": 2.6,
+     "edge": 0.0588,
+     "ev_at_ref": 0.1142,
+     "elo": 1866.8,
+     "matches": 269
+    }
+   ],
+   "best_edge": 0.0588,
+   "signal": true
+  },
   {
    "match_id": "3283335",
    "tournament": "Montreal",
@@ -193,6 +229,41 @@
    "signal": false
   },
   {
+   "match_id": "3300449",
+   "tournament": "Cincinnati",
+   "tour": "atp",
+   "ref_book": "Unibet",
+   "ref_margin": 0.0472,
+   "sides": [
+    {
+     "player": "Cobolli F.",
+     "model_prob": 0.2718,
+     "model_fair_odds": 3.679,
+     "market_prob": 0.299,
+     "market_fair_odds": 3.345,
+     "ref_odds": 3.1,
+     "edge": -0.0271,
+     "ev_at_ref": -0.1573,
+     "elo": 1865.1,
+     "matches": 171
+    },
+    {
+     "player": "Fils A.",
+     "model_prob": 0.7282,
+     "model_fair_odds": 1.373,
+     "market_prob": 0.701,
+     "market_fair_odds": 1.426,
+     "ref_odds": 1.38,
+     "edge": 0.0271,
+     "ev_at_ref": 0.0049,
+     "elo": 1985.6,
+     "matches": 165
+    }
+   ],
+   "best_edge": 0.0271,
+   "signal": false
+  },
+  {
    "match_id": "3283361",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -295,41 +366,6 @@
     }
    ],
    "best_edge": 0.025,
-   "signal": false
-  },
-  {
-   "match_id": "3300449",
-   "tournament": "Cincinnati",
-   "tour": "atp",
-   "ref_book": "Unibet",
-   "ref_margin": 0.0438,
-   "sides": [
-    {
-     "player": "Cobolli F.",
-     "model_prob": 0.2581,
-     "model_fair_odds": 3.874,
-     "market_prob": 0.2811,
-     "market_fair_odds": 3.557,
-     "ref_odds": 3.3,
-     "edge": -0.023,
-     "ev_at_ref": -0.1483,
-     "elo": 1865.1,
-     "matches": 171
-    },
-    {
-     "player": "Fils A.",
-     "model_prob": 0.7419,
-     "model_fair_odds": 1.348,
-     "market_prob": 0.7189,
-     "market_fair_odds": 1.391,
-     "ref_odds": 1.35,
-     "edge": 0.023,
-     "ev_at_ref": 0.0016,
-     "elo": 1985.6,
-     "matches": 165
-    }
-   ],
-   "best_edge": 0.023,
    "signal": false
   },
   {
@@ -438,6 +474,41 @@
    "signal": false
   },
   {
+   "match_id": "3283009",
+   "tournament": "Maspalomas ITF",
+   "tour": "wta",
+   "ref_book": "Betway",
+   "ref_margin": 0.0596,
+   "sides": [
+    {
+     "player": "Pigossi L.",
+     "model_prob": 0.2896,
+     "model_fair_odds": 3.453,
+     "market_prob": 0.2779,
+     "market_fair_odds": 3.598,
+     "ref_odds": 3.25,
+     "edge": 0.0117,
+     "ev_at_ref": -0.0588,
+     "elo": 1484.7,
+     "matches": 33
+    },
+    {
+     "player": "Salkova D.",
+     "model_prob": 0.7104,
+     "model_fair_odds": 1.408,
+     "market_prob": 0.7221,
+     "market_fair_odds": 1.385,
+     "ref_odds": 1.33,
+     "edge": -0.0117,
+     "ev_at_ref": -0.0552,
+     "elo": 1630.3,
+     "matches": 18
+    }
+   ],
+   "best_edge": 0.0117,
+   "signal": false
+  },
+  {
    "match_id": "3283817",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -537,6 +608,41 @@
      "ev_at_ref": -0.0259,
      "elo": 1827.0,
      "matches": 212
+    }
+   ],
+   "best_edge": 0.0103,
+   "signal": false
+  },
+  {
+   "match_id": "3282269",
+   "tournament": "Memphis",
+   "tour": "wta",
+   "ref_book": "bet365",
+   "ref_margin": 0.0521,
+   "sides": [
+    {
+     "player": "Zarazua R.",
+     "model_prob": 0.419,
+     "model_fair_odds": 2.386,
+     "market_prob": 0.4087,
+     "market_fair_odds": 2.446,
+     "ref_odds": 2.3,
+     "edge": 0.0103,
+     "ev_at_ref": -0.0362,
+     "elo": 1635.2,
+     "matches": 92
+    },
+    {
+     "player": "Zakharova A.",
+     "model_prob": 0.581,
+     "model_fair_odds": 1.721,
+     "market_prob": 0.5913,
+     "market_fair_odds": 1.691,
+     "ref_odds": 1.62,
+     "edge": -0.0103,
+     "ev_at_ref": -0.0588,
+     "elo": 1656.9,
+     "matches": 58
     }
    ],
    "best_edge": 0.0103,
@@ -683,6 +789,76 @@
    "signal": false
   },
   {
+   "match_id": "3282839",
+   "tournament": "Memphis",
+   "tour": "wta",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0357,
+   "sides": [
+    {
+     "player": "Vidmanova D.",
+     "model_prob": 0.3458,
+     "model_fair_odds": 2.892,
+     "market_prob": 0.3512,
+     "market_fair_odds": 2.848,
+     "ref_odds": 2.71,
+     "edge": -0.0054,
+     "ev_at_ref": -0.0628,
+     "elo": 1583.2,
+     "matches": 12
+    },
+    {
+     "player": "Volynets K.",
+     "model_prob": 0.6542,
+     "model_fair_odds": 1.529,
+     "market_prob": 0.6488,
+     "market_fair_odds": 1.541,
+     "ref_odds": 1.5,
+     "edge": 0.0054,
+     "ev_at_ref": -0.0187,
+     "elo": 1594.9,
+     "matches": 123
+    }
+   ],
+   "best_edge": 0.0054,
+   "signal": false
+  },
+  {
+   "match_id": "3283211",
+   "tournament": "Memphis",
+   "tour": "wta",
+   "ref_book": "Betfair",
+   "ref_margin": 0.026,
+   "sides": [
+    {
+     "player": "Vidmanova D.",
+     "model_prob": 0.5538,
+     "model_fair_odds": 1.806,
+     "market_prob": 0.5584,
+     "market_fair_odds": 1.791,
+     "ref_odds": 1.75,
+     "edge": -0.0047,
+     "ev_at_ref": -0.0309,
+     "elo": 1583.2,
+     "matches": 12
+    },
+    {
+     "player": "Zarazua R.",
+     "model_prob": 0.4462,
+     "model_fair_odds": 2.241,
+     "market_prob": 0.4416,
+     "market_fair_odds": 2.265,
+     "ref_odds": 2.2,
+     "edge": 0.0047,
+     "ev_at_ref": -0.0183,
+     "elo": 1635.2,
+     "matches": 92
+    }
+   ],
+   "best_edge": 0.0047,
+   "signal": false
+  },
+  {
    "match_id": "3283815",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -750,6 +926,41 @@
     }
    ],
    "best_edge": 0.004,
+   "signal": false
+  },
+  {
+   "match_id": "3282837",
+   "tournament": "Washington",
+   "tour": "atp",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0284,
+   "sides": [
+    {
+     "player": "Tabilo A.",
+     "model_prob": 0.2427,
+     "model_fair_odds": 4.12,
+     "market_prob": 0.239,
+     "market_fair_odds": 4.184,
+     "ref_odds": 3.95,
+     "edge": 0.0037,
+     "ev_at_ref": -0.0412,
+     "elo": 1761.0,
+     "matches": 169
+    },
+    {
+     "player": "Shelton B.",
+     "model_prob": 0.7573,
+     "model_fair_odds": 1.321,
+     "market_prob": 0.761,
+     "market_fair_odds": 1.314,
+     "ref_odds": 1.29,
+     "edge": -0.0037,
+     "ev_at_ref": -0.0231,
+     "elo": 1956.1,
+     "matches": 230
+    }
+   ],
+   "best_edge": 0.0037,
    "signal": false
   },
   {
@@ -1022,6 +1233,26 @@
   {
    "match": "Herbert P. vs Miyoshi K.",
    "tournament": "Winston Salem",
+   "reason": "Spieler nicht im Modell"
+  },
+  {
+   "match": "Liutova K. vs Kalieva E.",
+   "tournament": "Memphis",
+   "reason": "Liutova K.: nur 5 Matches"
+  },
+  {
+   "match": "Samson L. vs Bronzetti L.",
+   "tournament": "Targu Mures",
+   "reason": "Samson L.: nur 5 Matches"
+  },
+  {
+   "match": "Palicova B. vs Brancaccio N.",
+   "tournament": "Hechingen ITF",
+   "reason": "Palicova B.: nur 5 Matches"
+  },
+  {
+   "match": "Ferro F. vs Bennemann E.",
+   "tournament": "Hechingen ITF",
    "reason": "Spieler nicht im Modell"
   }
  ],

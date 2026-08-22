@@ -30,11 +30,21 @@ jobs:
       - name: Refresh walk-forward backtest report
         run: python scripts/run_backtest.py --min-train-seasons 5
 
+      # The dashboard is regenerated from the data refreshed above, so it must
+      # run after update_data.py. Best-effort: TennisExplorer occasionally has
+      # no card (off-season, mid-tournament gaps), and an empty schedule should
+      # leave yesterday's page standing rather than fail the whole run.
+      - name: Rebuild value dashboard
+        continue-on-error: true
+        run: |
+          python scripts/build_dashboard.py --limit 60
+          python scripts/render_dashboard.py -o docs/index.html
+
       - name: Commit updated data if anything changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/processed data/reports models
+          git add data/processed data/reports models docs
           if git diff --cached --quiet; then
             echo "No data changes to commit."
           else
