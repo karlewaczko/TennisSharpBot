@@ -2,7 +2,7 @@ import datetime as dt
 from pathlib import Path
 
 from tennissharp.data.tennisexplorer import (
-    head_to_head_summary, parse_head_to_head_html, parse_matches_html,
+    day_url, head_to_head_summary, parse_head_to_head_html, parse_matches_html,
     parse_odds_history_html,
 )
 
@@ -90,3 +90,22 @@ def test_parse_head_to_head_html_and_summary():
     # Order shouldn't matter beyond which slot each count lands in.
     zverev_wins2, sinner_wins2 = head_to_head_summary(df, "Zverev A.", "Sinner J.")
     assert (sinner_wins2, zverev_wins2) == (sinner_wins, zverev_wins)
+
+
+def test_day_url_spells_out_the_full_date():
+    """The site's `day` parameter is a day of the month, not an offset.
+    Passing the offset straight through returned the 1st of the month for
+    `day_offset=1`, filling the upcoming-matches file with old results."""
+    url = day_url(1, today=dt.date(2026, 8, 22))
+    assert "year=2026" in url and "month=08" in url and "day=23" in url
+
+
+def test_day_url_crosses_month_and_year_boundaries():
+    assert "year=2026&month=09&day=01" in day_url(1, today=dt.date(2026, 8, 31))
+    assert "year=2027&month=01&day=01" in day_url(1, today=dt.date(2026, 12, 31))
+    assert "year=2026&month=07&day=31" in day_url(-1, today=dt.date(2026, 8, 1))
+
+
+def test_day_url_zero_pads_so_the_site_reads_the_date():
+    url = day_url(0, today=dt.date(2026, 3, 5))
+    assert "month=03" in url and "day=05" in url

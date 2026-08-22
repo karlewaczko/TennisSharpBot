@@ -88,6 +88,9 @@ def _fetch_tennisexplorer_schedule() -> pd.DataFrame:
             [tennisexplorer.fetch_matches(0), tennisexplorer.fetch_matches(1)],
             ignore_index=True,
         )
+        # The two pages overlap around midnight in the site's timezone, and a
+        # match listed twice would be scored twice on the dashboard.
+        upcoming = upcoming.drop_duplicates(subset="match_id", keep="first")
         upcoming.to_csv(config.PROCESSED_DIR / "tennisexplorer_upcoming.csv", index=False)
         logger.info("Fetched %d upcoming TennisExplorer matches", len(upcoming))
         return upcoming

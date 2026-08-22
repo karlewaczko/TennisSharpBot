@@ -17,6 +17,10 @@ Matches where either player is below MIN_MATCHES_PLAYED are excluded from
 the value table and counted separately: an unrated player sits at the
 default 1500 Elo, which manufactures a large fake edge -- the most
 attractive-looking and least real signal this model can produce.
+
+The schedule feed is also the results feed (see tennisexplorer's module
+docstring): a row keeps its odds after the match is over, so finished and
+in-play matches have to be filtered out explicitly -- see `unplayed_mask`.
 """
 import _bootstrap  # noqa: F401
 import argparse
@@ -73,6 +77,28 @@ def _ta_elo_probability(elo_a: float, elo_b: float) -> float:
     return 1.0 / (1.0 + 10 ** (-(elo_a - elo_b) / 400.0))
 
 
+# A played match keeps its pre-match odds on the schedule page, so nothing in
+# the odds columns distinguishes it from an upcoming one.
+PLAY_MARKERS = ("score", "sets_won1", "sets_won2")
+
+
+def unplayed_mask(sched: pd.DataFrame) -> pd.Series:
+    """True for matches that have not started yet.
+
+    Both marker kinds are needed. `score` (games per completed set) is absent
+    while the opening set is still running, and `sets_won*` is absent for a
+    match decided by retirement inside the first set -- on the card that first
+    exposed this, Fritz/Nakashima carried a full score and Quevedo/Jones only
+    a set count. Either marker present means the match is over or under way,
+    and either way it does not belong on a page of upcoming value.
+    """
+    started = pd.Series(False, index=sched.index)
+    for col in PLAY_MARKERS:
+        if col in sched.columns:
+            started |= sched[col].notna()
+    return ~started
+
+
 def _sharp_reference(match_id):
     """(book, [odds_a, odds_b], players) from the sharpest book quoting this
     match, preferring Pinnacle, then Betfair, then lowest margin."""
@@ -123,6 +149,8 @@ def main() -> None:
     sched = sched[~sched["tournament"].str.contains(EXCLUDE_EVENTS, na=False, regex=True,
                                                      case=False)]
     sched = sched[sched["odds1"].notna() & sched["odds2"].notna()]
+    n_finished = int((~unplayed_mask(sched)).sum())
+    sched = sched[unplayed_mask(sched)]
     if args.tour in ("atp", "wta"):
         suffix = "-men/" if args.tour == "atp" else "-women/"
         sched = sched[sched["tournament_url"].str.contains(suffix, regex=False, na=False)]
@@ -266,6 +294,7 @@ def main() -> None:
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "threshold": args.threshold,
         "n_scheduled": int(len(sched)),
+        "n_finished": n_finished,
         "n_scored": len(matches),
         "n_signals": sum(1 for m in matches if m["signal"]),
         "n_by_method": {meth: sum(1 for m in matches if m["method"] == meth)
@@ -286,7 +315,7 @@ def main() -> None:
     }
     args.out.write_text(json.dumps(payload, indent=1))
     print(f"{payload['n_scored']} Partien bewertet, {payload['n_signals']} Signale, "
-          f"{len(skipped)} uebersprungen -> {args.out}")
+          f"{len(skipped)} uebersprungen, {n_finished} bereits gespielt -> {args.out}")
     print("Referenzbuecher:", payload["ref_books"])
 
 

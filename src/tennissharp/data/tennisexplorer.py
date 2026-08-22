@@ -26,6 +26,7 @@ inside table cells, so `fetch_match_odds_history()` depth-counts
 """
 from __future__ import annotations
 
+import datetime as dt
 import io
 import re
 
@@ -133,10 +134,24 @@ def parse_matches_html(html: str) -> pd.DataFrame:
     return df
 
 
+def day_url(day_offset: int = 0, today: dt.date | None = None) -> str:
+    """URL of the schedule page `day_offset` days from today.
+
+    The site's `day` parameter is a *calendar day of the month*, not an
+    offset: `?day=1` returns the 1st, whatever today is. Read as an offset it
+    silently returns the wrong date -- `fetch_matches(1)` pulled the 1st of
+    August into the upcoming-matches file, 197 finished matches that then
+    reached the value table carrying their pre-match odds. The date has to be
+    spelled out in full: year, month and day together.
+    """
+    day = (today or dt.date.today()) + dt.timedelta(days=day_offset)
+    return (f"{BASE_URL}/matches/?type=all&timezone=0"
+            f"&year={day.year}&month={day.month:02d}&day={day.day:02d}")
+
+
 def fetch_matches(day_offset: int = 0) -> pd.DataFrame:
     """`day_offset=0` is today, `1` tomorrow, `-1` yesterday (results)."""
-    url = f"{BASE_URL}/matches/" if day_offset == 0 else f"{BASE_URL}/matches/?type=all&timezone=0&day={day_offset}"
-    resp = requests.get(url, headers=_HEADERS, timeout=30)
+    resp = requests.get(day_url(day_offset), headers=_HEADERS, timeout=30)
     resp.raise_for_status()
     return parse_matches_html(resp.text)
 
