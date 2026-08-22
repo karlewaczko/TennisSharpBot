@@ -1,13 +1,13 @@
 {
- "generated_at": "2026-08-22T22:23:45+00:00",
+ "generated_at": "2026-08-22T22:25:35+00:00",
  "threshold": 0.05,
  "n_scheduled": 98,
  "n_finished": 66,
- "n_scored": 41,
+ "n_scored": 38,
  "n_signals": 0,
  "n_by_method": {
-  "model": 17,
-  "ta_elo": 24
+  "model": 16,
+  "ta_elo": 22
  },
  "dates": [
   "2026-08-22",
@@ -15,9 +15,11 @@
   "2026-08-24"
  ],
  "ref_books": {
-  "Betfair": 6,
-  "Pinnacle": 5,
-  "TennisExplorer": 27,
+  "Betfair": 3,
+  "Betsson": 1,
+  "Betway": 1,
+  "Pinnacle": 4,
+  "TennisExplorer": 26,
   "Unibet": 1,
   "bet-at-home": 1,
   "bet365": 1
@@ -139,19 +141,19 @@
    "date": "2026-08-24",
    "tournament": "Roehampton 2 challenger",
    "tour": "atp",
-   "ref_book": "Betfair",
-   "ref_margin": 0.2161,
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.1494,
    "method": "ta_elo",
    "sides": [
     {
      "player": "George Loffhagen",
      "model_prob": 0.6553,
      "model_fair_odds": 1.526,
-     "market_prob": 0.4908,
-     "market_fair_odds": 2.038,
-     "ref_odds": 1.67,
-     "edge": 0.1645,
-     "ev_at_ref": 0.0944,
+     "market_prob": 0.5,
+     "market_fair_odds": 2.0,
+     "ref_odds": 1.74,
+     "edge": 0.1553,
+     "ev_at_ref": 0.1402,
      "elo": 1439.8,
      "matches": null
     },
@@ -159,16 +161,16 @@
      "player": "Alastair Gray",
      "model_prob": 0.3447,
      "model_fair_odds": 2.901,
-     "market_prob": 0.5092,
-     "market_fair_odds": 1.964,
-     "ref_odds": 1.62,
-     "edge": -0.1645,
-     "ev_at_ref": -0.4416,
+     "market_prob": 0.5,
+     "market_fair_odds": 2.0,
+     "ref_odds": 1.74,
+     "edge": -0.1553,
+     "ev_at_ref": -0.4002,
      "elo": 1328.2,
      "matches": null
     }
    ],
-   "best_edge": 0.1645,
+   "best_edge": 0.1553,
    "signal": false
   },
   {
@@ -280,43 +282,6 @@
     }
    ],
    "best_edge": 0.1338,
-   "signal": false
-  },
-  {
-   "match_id": "3301185",
-   "date": "2026-08-24",
-   "tournament": "Roehampton 2 challenger",
-   "tour": "atp",
-   "ref_book": "Betfair",
-   "ref_margin": 0.8868,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Matheus Pucinelli De Almeida",
-     "model_prob": 0.2491,
-     "model_fair_odds": 4.015,
-     "market_prob": 0.6341,
-     "market_fair_odds": 1.577,
-     "ref_odds": 1.06,
-     "edge": -0.385,
-     "ev_at_ref": -0.736,
-     "elo": 1326.8,
-     "matches": null
-    },
-    {
-     "player": "Oliver Tarvet",
-     "model_prob": 0.7509,
-     "model_fair_odds": 1.332,
-     "market_prob": 0.6341,
-     "market_fair_odds": 1.577,
-     "ref_odds": 1.06,
-     "edge": 0.1168,
-     "ev_at_ref": -0.204,
-     "elo": 1518.5,
-     "matches": null
-    }
-   ],
-   "best_edge": 0.1168,
    "signal": false
   },
   {
@@ -505,6 +470,43 @@
    "signal": false
   },
   {
+   "match_id": "3301151",
+   "date": "2026-08-24",
+   "tournament": "Augsburg challenger",
+   "tour": "atp",
+   "ref_book": "Betsson",
+   "ref_margin": 0.0785,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Dominic Stricker",
+     "model_prob": 0.6937,
+     "model_fair_odds": 1.442,
+     "market_prob": 0.6101,
+     "market_fair_odds": 1.639,
+     "ref_odds": 1.54,
+     "edge": 0.0836,
+     "ev_at_ref": 0.0683,
+     "elo": 1517.4,
+     "matches": null
+    },
+    {
+     "player": "Martin Krumich",
+     "model_prob": 0.3063,
+     "model_fair_odds": 3.265,
+     "market_prob": 0.3899,
+     "market_fair_odds": 2.565,
+     "ref_odds": 2.33,
+     "edge": -0.0836,
+     "ev_at_ref": -0.2863,
+     "elo": 1375.4,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0836,
+   "signal": false
+  },
+  {
    "match_id": "3301155",
    "date": "2026-08-23",
    "tournament": "Winston Salem",
@@ -613,43 +615,6 @@
     }
    ],
    "best_edge": 0.0525,
-   "signal": false
-  },
-  {
-   "match_id": "3301151",
-   "date": "2026-08-24",
-   "tournament": "Augsburg challenger",
-   "tour": "atp",
-   "ref_book": "Betfair",
-   "ref_margin": 0.9417,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Dominic Stricker",
-     "model_prob": 0.6937,
-     "model_fair_odds": 1.442,
-     "market_prob": 0.6456,
-     "market_fair_odds": 1.549,
-     "ref_odds": 1.03,
-     "edge": 0.0481,
-     "ev_at_ref": -0.2855,
-     "elo": 1517.4,
-     "matches": null
-    },
-    {
-     "player": "Martin Krumich",
-     "model_prob": 0.3063,
-     "model_fair_odds": 3.265,
-     "market_prob": 0.6456,
-     "market_fair_odds": 1.549,
-     "ref_odds": 1.03,
-     "edge": -0.3393,
-     "ev_at_ref": -0.6845,
-     "elo": 1375.4,
-     "matches": null
-    }
-   ],
-   "best_edge": 0.0481,
    "signal": false
   },
   {
@@ -875,43 +840,6 @@
    "signal": false
   },
   {
-   "match_id": "3301807",
-   "date": "2026-08-23",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.9608,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Abedallah Shelbayh",
-     "model_prob": 0.3227,
-     "model_fair_odds": 3.099,
-     "market_prob": 0.6495,
-     "market_fair_odds": 1.54,
-     "ref_odds": 1.02,
-     "edge": -0.3269,
-     "ev_at_ref": -0.6709,
-     "elo": 1458.2,
-     "matches": null
-    },
-    {
-     "player": "Dhakshineswar Suresh",
-     "model_prob": 0.6773,
-     "model_fair_odds": 1.476,
-     "market_prob": 0.6495,
-     "market_fair_odds": 1.54,
-     "ref_odds": 1.02,
-     "edge": 0.0278,
-     "ev_at_ref": -0.3091,
-     "elo": 1587.0,
-     "matches": null
-    }
-   ],
-   "best_edge": 0.0278,
-   "signal": false
-  },
-  {
    "match_id": "3300841",
    "date": "2026-08-23",
    "tournament": "Winston Salem",
@@ -983,43 +911,6 @@
     }
    ],
    "best_edge": 0.0224,
-   "signal": false
-  },
-  {
-   "match_id": "3300765",
-   "date": "2026-08-23",
-   "tournament": "Cancun challenger",
-   "tour": "atp",
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0376,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Hubert Hurkacz",
-     "model_prob": 0.8959,
-     "model_fair_odds": 1.116,
-     "market_prob": 0.8741,
-     "market_fair_odds": 1.144,
-     "ref_odds": 1.12,
-     "edge": 0.0218,
-     "ev_at_ref": 0.0034,
-     "elo": 1748.3,
-     "matches": null
-    },
-    {
-     "player": "Moez Echargui",
-     "model_prob": 0.1041,
-     "model_fair_odds": 9.605,
-     "market_prob": 0.1259,
-     "market_fair_odds": 7.941,
-     "ref_odds": 6.91,
-     "edge": -0.0218,
-     "ev_at_ref": -0.2806,
-     "elo": 1374.4,
-     "matches": null
-    }
-   ],
-   "best_edge": 0.0218,
    "signal": false
   },
   {
@@ -1282,6 +1173,43 @@
    "signal": false
   },
   {
+   "match_id": "3300765",
+   "date": "2026-08-23",
+   "tournament": "Cancun challenger",
+   "tour": "atp",
+   "ref_book": "Betway",
+   "ref_margin": 0.0519,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Hubert Hurkacz",
+     "model_prob": 0.8959,
+     "model_fair_odds": 1.116,
+     "market_prob": 0.8831,
+     "market_fair_odds": 1.132,
+     "ref_odds": 1.1,
+     "edge": 0.0128,
+     "ev_at_ref": -0.0145,
+     "elo": 1748.3,
+     "matches": null
+    },
+    {
+     "player": "Moez Echargui",
+     "model_prob": 0.1041,
+     "model_fair_odds": 9.605,
+     "market_prob": 0.1169,
+     "market_fair_odds": 8.556,
+     "ref_odds": 7.0,
+     "edge": -0.0128,
+     "ev_at_ref": -0.2712,
+     "elo": 1374.4,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.0128,
+   "signal": false
+  },
+  {
    "match_id": "3300755",
    "date": "2026-08-22",
    "tournament": "Kingston challenger",
@@ -1316,6 +1244,43 @@
     }
    ],
    "best_edge": 0.0123,
+   "signal": false
+  },
+  {
+   "match_id": "3301185",
+   "date": "2026-08-24",
+   "tournament": "Roehampton 2 challenger",
+   "tour": "atp",
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.1711,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Matheus Pucinelli De Almeida",
+     "model_prob": 0.2491,
+     "model_fair_odds": 4.015,
+     "market_prob": 0.2381,
+     "market_fair_odds": 4.2,
+     "ref_odds": 3.09,
+     "edge": 0.011,
+     "ev_at_ref": -0.2303,
+     "elo": 1326.8,
+     "matches": null
+    },
+    {
+     "player": "Oliver Tarvet",
+     "model_prob": 0.7509,
+     "model_fair_odds": 1.332,
+     "market_prob": 0.7619,
+     "market_fair_odds": 1.312,
+     "ref_odds": 1.18,
+     "edge": -0.011,
+     "ev_at_ref": -0.1139,
+     "elo": 1518.5,
+     "matches": null
+    }
+   ],
+   "best_edge": 0.011,
    "signal": false
   },
   {
@@ -1465,92 +1430,33 @@
    ],
    "best_edge": 0.0028,
    "signal": false
-  },
-  {
-   "match_id": "3301805",
-   "date": "2026-08-23",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.9417,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Udvardy P.",
-     "model_prob": 0.6194,
-     "model_fair_odds": 1.615,
-     "market_prob": 0.6456,
-     "market_fair_odds": 1.549,
-     "ref_odds": 1.03,
-     "edge": -0.0262,
-     "ev_at_ref": -0.362,
-     "elo": 1671.7,
-     "matches": 69
-    },
-    {
-     "player": "Vidmanova D.",
-     "model_prob": 0.3806,
-     "model_fair_odds": 2.627,
-     "market_prob": 0.6456,
-     "market_fair_odds": 1.549,
-     "ref_odds": 1.03,
-     "edge": -0.265,
-     "ev_at_ref": -0.608,
-     "elo": 1583.2,
-     "matches": 12
-    }
-   ],
-   "best_edge": -0.0262,
-   "signal": false
-  },
-  {
-   "match_id": "3301157",
-   "date": "2026-08-23",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.6778,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Hugo Grenier",
-     "model_prob": 0.5677,
-     "model_fair_odds": 1.762,
-     "market_prob": 0.6666,
-     "market_fair_odds": 1.5,
-     "ref_odds": 1.08,
-     "edge": -0.0989,
-     "ev_at_ref": -0.3869,
-     "elo": 1508.7,
-     "matches": null
-    },
-    {
-     "player": "Mees Rottgering",
-     "model_prob": 0.4323,
-     "model_fair_odds": 2.313,
-     "market_prob": 0.5118,
-     "market_fair_odds": 1.954,
-     "ref_odds": 1.33,
-     "edge": -0.0795,
-     "ev_at_ref": -0.425,
-     "elo": 1461.4,
-     "matches": null
-    }
-   ],
-   "best_edge": -0.0795,
-   "signal": false
   }
  ],
  "skipped": [
+  {
+   "match": "Grenier H. vs Rottgering M.",
+   "tournament": "Winston Salem",
+   "reason": "keine belastbaren Quoten (1.08/1.33, Marge 68%)"
+  },
   {
    "match": "Balshaw F. vs Gorzny S.",
    "tournament": "Winston Salem",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
+   "match": "Shelbayh A. vs Suresh D.",
+   "tournament": "Winston Salem",
+   "reason": "keine belastbaren Quoten (1.02/1.02, Marge 96%)"
+  },
+  {
    "match": "Joint M. vs Hinojosa Gomez J.",
    "tournament": "Monterrey",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Udvardy P. vs Vidmanova D.",
+   "tournament": "Monterrey",
+   "reason": "keine belastbaren Quoten (1.03/1.03, Marge 94%)"
   },
   {
    "match": "Hijikata R. vs Blanch D.",
