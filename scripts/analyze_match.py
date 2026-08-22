@@ -133,10 +133,22 @@ def resolve_name(query: str, candidates, weight=None) -> str | None:
     keyed = [(name_readings(c), c) for c in candidates]
 
     for q_surname, q_given in readings:
-        hits = [(k[1], c) for keys, c in keyed for k in keys
-                if k[0] == q_surname and _given_match(k[1], q_given)]
-        if not hits:
+        # Rank candidates by how central the matching reading is for THEM,
+        # not just for the query. "Maria T." means surname Maria, and both
+        # Tatjana Maria (primary reading) and Maria Timofeeva (only via the
+        # last-resort surname-first reading) match it -- pooling the two made
+        # it ambiguous and dropped both. The candidate whose own likeliest
+        # reading fits wins.
+        scored = []
+        for keys, c in keyed:
+            for rank, k in enumerate(keys):
+                if k[0] == q_surname and _given_match(k[1], q_given):
+                    scored.append((rank, k[1], c))
+                    break
+        if not scored:
             continue
+        best_rank = min(r for r, _, _ in scored)
+        hits = [(g, c) for r, g, c in scored if r == best_rank]
         names = {c for _, c in hits}
         if len(names) == 1:
             return names.pop()

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-22T15:09:46+00:00",
+ "generated_at": "2026-08-22T15:18:46+00:00",
  "threshold": 0.05,
  "n_scheduled": 55,
  "n_scored": 47,
@@ -11,9 +11,9 @@
  "ref_books": {
   "10Bet": 3,
   "1xBet": 3,
-  "Betfair": 10,
+  "Betfair": 11,
   "Betsson": 3,
-  "Betway": 7,
+  "Betway": 6,
   "Coral": 2,
   "Pinnacle": 7,
   "TennisExplorer": 3,
@@ -28,18 +28,18 @@
    "tournament": "Winston Salem",
    "tour": "atp",
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0679,
+   "ref_margin": 0.0697,
    "method": "ta_elo",
    "sides": [
     {
      "player": "Pierre Hugues Herbert",
      "model_prob": 0.6986,
      "model_fair_odds": 1.432,
-     "market_prob": 0.4422,
-     "market_fair_odds": 2.261,
-     "ref_odds": 2.1,
-     "edge": 0.2563,
-     "ev_at_ref": 0.467,
+     "market_prob": 0.4324,
+     "market_fair_odds": 2.312,
+     "ref_odds": 2.14,
+     "edge": 0.2661,
+     "ev_at_ref": 0.4949,
      "elo": 1558.8,
      "matches": null
     },
@@ -47,16 +47,16 @@
      "player": "Kenta Miyoshi",
      "model_prob": 0.3014,
      "model_fair_odds": 3.317,
-     "market_prob": 0.5578,
-     "market_fair_odds": 1.793,
-     "ref_odds": 1.69,
-     "edge": -0.2563,
-     "ev_at_ref": -0.4906,
+     "market_prob": 0.5676,
+     "market_fair_odds": 1.762,
+     "ref_odds": 1.66,
+     "edge": -0.2661,
+     "ev_at_ref": -0.4996,
      "elo": 1412.8,
      "matches": null
     }
    ],
-   "best_edge": 0.2563,
+   "best_edge": 0.2661,
    "signal": false
   },
   {
@@ -244,18 +244,18 @@
    "tournament": "Winston Salem",
    "tour": "atp",
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0684,
+   "ref_margin": 0.072,
    "method": "ta_elo",
    "sides": [
     {
      "player": "Li Tu",
      "model_prob": 0.6179,
      "model_fair_odds": 1.618,
-     "market_prob": 0.4786,
-     "market_fair_odds": 2.089,
-     "ref_odds": 1.95,
-     "edge": 0.1393,
-     "ev_at_ref": 0.2049,
+     "market_prob": 0.4742,
+     "market_fair_odds": 2.109,
+     "ref_odds": 1.96,
+     "edge": 0.1437,
+     "ev_at_ref": 0.2111,
      "elo": 1471.1,
      "matches": null
     },
@@ -263,16 +263,16 @@
      "player": "Quinn Vandecasteele",
      "model_prob": 0.3821,
      "model_fair_odds": 2.617,
-     "market_prob": 0.5214,
-     "market_fair_odds": 1.918,
-     "ref_odds": 1.8,
-     "edge": -0.1393,
-     "ev_at_ref": -0.3122,
+     "market_prob": 0.5258,
+     "market_fair_odds": 1.902,
+     "ref_odds": 1.78,
+     "edge": -0.1437,
+     "ev_at_ref": -0.3199,
      "elo": 1387.6,
      "matches": null
     }
    ],
-   "best_edge": 0.1393,
+   "best_edge": 0.1437,
    "signal": false
   },
   {
@@ -996,42 +996,6 @@
    "signal": false
   },
   {
-   "match_id": "3283009",
-   "tournament": "Maspalomas ITF",
-   "tour": "wta",
-   "ref_book": "Betway",
-   "ref_margin": 0.0596,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Pigossi L.",
-     "model_prob": 0.2896,
-     "model_fair_odds": 3.453,
-     "market_prob": 0.2779,
-     "market_fair_odds": 3.598,
-     "ref_odds": 3.25,
-     "edge": 0.0117,
-     "ev_at_ref": -0.0588,
-     "elo": 1484.7,
-     "matches": 33
-    },
-    {
-     "player": "Salkova D.",
-     "model_prob": 0.7104,
-     "model_fair_odds": 1.408,
-     "market_prob": 0.7221,
-     "market_fair_odds": 1.385,
-     "ref_odds": 1.33,
-     "edge": -0.0117,
-     "ev_at_ref": -0.0552,
-     "elo": 1630.3,
-     "matches": 18
-    }
-   ],
-   "best_edge": 0.0117,
-   "signal": false
-  },
-  {
    "match_id": "3283817",
    "tournament": "Toronto WTA",
    "tour": "wta",
@@ -1173,6 +1137,42 @@
     }
    ],
    "best_edge": 0.0103,
+   "signal": false
+  },
+  {
+   "match_id": "3283011",
+   "tournament": "Targu Mures",
+   "tour": "wta",
+   "ref_book": "Betfair",
+   "ref_margin": 0.0254,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Quevedo K.",
+     "model_prob": 0.4851,
+     "model_fair_odds": 2.061,
+     "market_prob": 0.4751,
+     "market_fair_odds": 2.105,
+     "ref_odds": 2.05,
+     "edge": 0.01,
+     "ev_at_ref": -0.0055,
+     "elo": 1549.4,
+     "matches": 10
+    },
+    {
+     "player": "Jones F.",
+     "model_prob": 0.5149,
+     "model_fair_odds": 1.942,
+     "market_prob": 0.5249,
+     "market_fair_odds": 1.905,
+     "ref_odds": 1.86,
+     "edge": -0.01,
+     "ev_at_ref": -0.0423,
+     "elo": 1438.0,
+     "matches": 53
+    }
+   ],
+   "best_edge": 0.01,
    "signal": false
   },
   {
@@ -1733,16 +1733,6 @@
    "reason": "Barrios Vera M.T.: nur 2 Matches bei uns und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Balshaw F. vs Pow L.",
-   "tournament": "Winston Salem",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Pascual Ferra R. vs Suresh D.",
-   "tournament": "Winston Salem",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
    "match": "Shelbayh A. vs Seggerman R.",
    "tournament": "Winston Salem",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
@@ -1754,6 +1744,16 @@
   },
   {
    "match": "Gorzny S. vs Polmans M.",
+   "tournament": "Winston Salem",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Balshaw F. vs Pow L.",
+   "tournament": "Winston Salem",
+   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
+  },
+  {
+   "match": "Pascual Ferra R. vs Suresh D.",
    "tournament": "Winston Salem",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   }

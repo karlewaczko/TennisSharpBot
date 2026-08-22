@@ -140,3 +140,15 @@ def test_weight_never_merges_two_different_players(am):
     """A weight must not turn a genuine ambiguity into a confident answer."""
     rows = ["Zverev A.", "Zverev M."]
     assert am.resolve_name("Zverev", rows, weight={"Zverev A.": 500}.get) is None
+
+
+def test_candidate_readings_are_ranked_too(am):
+    """`Maria T.` means surname Maria. Tatjana Maria matches on her primary
+    reading; Maria Timofeeva matches only via the last-resort surname-first
+    reading, where her *first* name is read as a surname. Pooling the two made
+    the query ambiguous and dropped both players."""
+    rows = ["Tatjana Maria", "Maria Timofeeva", "Maria Sakkari"]
+    assert am.resolve_name("Maria T.", rows) == "Tatjana Maria"
+    # The other two stay reachable by their own primary reading.
+    assert am.resolve_name("Timofeeva M.", rows) == "Maria Timofeeva"
+    assert am.resolve_name("Sakkari M.", rows) == "Maria Sakkari"
