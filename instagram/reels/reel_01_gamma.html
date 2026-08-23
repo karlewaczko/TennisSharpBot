@@ -208,7 +208,7 @@ function seek(t){
   cta.style.opacity = ca; cta.style.transform=`scale(${.94+.06*ca})`;
   if(ca>0){c1.style.opacity=0;c2.style.opacity=0;}
 }
-window.seek = seek;
+window.DUR = DUR; window.seek = seek;
 window.READY = document.fonts.ready.then(()=>{seek(0);return true});
 seek(0);
 </script>

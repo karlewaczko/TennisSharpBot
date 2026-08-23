@@ -101,3 +101,84 @@ Dauer: ~60 s Frames + ~30 s Encoding. Voraussetzungen: `node`,
 
 **Vorschau einzelner Zeitpunkte** (schneller als voll rendern):
 `node tools/preview.js` – legt einen Kontaktbogen unter `/tmp/preview.png` ab.
+
+---
+
+# Reel 02 – "Optionsschein ist keine Option" (Creator Bright)
+
+Gleiche Pipeline, **Stil nach Flo-Pharell-Vorbild**: weiß statt dunkel, Anton in
+Versalien, gelbes Marker-Highlight, harte Rot/Grün-Kontraste, Bullen-Mark oben
+links. Details zum Stilsystem in `../03_BRANDING.md`.
+
+| Datei | Was |
+|---|---|
+| `reel_02_optionsschein.mp4` | **Fertiges Reel.** 1080×1920, H.264, 30 fps, 30 s, ~1,6 MB |
+| `cover_02_optionsschein.png` | Cover 1080×1350 im Thumbnail-Stil |
+| `reel_02_optionsschein.html` | Quelle |
+| `fonts_bright.css` | Anton + Inter, eingebettet |
+
+## Warum dieses Thema
+
+Es ist die häufigste Verwechslung deutscher Privatanleger und trifft deine
+Kernzielgruppe direkt: Wer bei einem Neobroker "Optionsschein" kauft, glaubt,
+er handle Optionen. Der Post erklärt den Unterschied, ist **faktisch und ohne
+jede Kursprognose** – und führt logisch zum Broker-Content (Säule 6).
+
+## Aufbau (9 Beats, ~3 s Takt)
+
+| Zeit | Aussage |
+|---|---|
+| 0,0–2,9 | **Hook:** "Optionsschein ist keine Option." |
+| 2,9–5,6 | "Und der Unterschied kostet dich Geld." |
+| 5,6–12,8 | Schein = Produkt der Bank / Option = Kontrakt an der Börse |
+| 12,8–20,2 | Wer stellt den Preis: Bank vs. Markt |
+| 20,2–27,0 | Nur die Option kannst du verkaufen → Prämie |
+| 27,0–30,0 | **CTA:** "Dein Neobroker hat nur die falsche." + Speichern |
+
+Ab Sekunde 12,8 wandert die Headline nach oben und die Vergleichstabelle füllt
+sich Zeile für Zeile mit – das ist der **Save-Auslöser**.
+
+## Sprecherskript
+
+```
+0,0 s   Ein Optionsschein ist keine Option.
+2,9 s   Und der Unterschied kostet dich richtig Geld.
+5,6 s   Der Schein ist ein Produkt der Bank.
+9,2 s   Die Option ist ein Kontrakt an der Börse.
+12,8 s  Beim Schein stellt die Bank den Preis.
+16,6 s  Bei der Option macht das der Markt.
+20,2 s  Und nur eine davon kannst du verkaufen.
+23,8 s  Nur damit kassierst du Prämie statt sie zu zahlen.
+27,0 s  Dein Neobroker hat nur die falsche. Speicher dir das.
+```
+
+## Caption
+
+```
+Optionsschein ≠ Option. Der Unterschied kostet die meisten Anleger Geld.
+
+Der Optionsschein ist ein Wertpapier, das eine Bank herausgibt. Sie stellt den
+Preis, und du trägst ihr Emittentenrisiko.
+
+Die Option ist ein standardisierter Kontrakt an einer Terminbörse. Der Preis
+entsteht am Markt, dahinter steht ein Clearinghaus.
+
+Der entscheidende Punkt: Eine Option kannst du auch verkaufen und dafür Prämie
+kassieren. Beim Schein bist du immer der, der zahlt.
+
+Welchen der beiden hast du zuletzt gehandelt? Schreib es in die Kommentare.
+
+⚠️ Keine Anlageberatung. Derivate können zum Totalverlust führen.
+
+#optionshandel #optionsschein #derivate #optionsstrategie #interactivebrokers
+```
+
+## Rendern
+
+```bash
+export NODE_PATH=$(npm root -g)      # oder lokales node_modules mit playwright-core
+./tools/build.sh reel_02_optionsschein
+```
+
+`render.js` liest die Länge aus `window.DUR` – neue Reels können also beliebig
+lang sein, ohne dass du das Skript anfassen musst.

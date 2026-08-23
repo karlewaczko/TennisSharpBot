@@ -11,11 +11,12 @@ Content-System und Algorithmus-Mechanik bis zur hauptberuflichen Monetarisierung
 | [`00_STRATEGIE.md`](00_STRATEGIE.md) | Marktlücke, Positionierung, Zielgruppen, **Name & Handle**, Content-Verhältnis |
 | [`01_ALGORITHMUS.md`](01_ALGORITHMUS.md) | Ranking-Signale 2026, die 5 Reichweiten-Hebel, **Posting-Zeiten**, TikTok & X |
 | [`02_CONTENT_SYSTEM.md`](02_CONTENT_SYSTEM.md) | 6 Content-Säulen, 8 Formate, Hook-Typen, Reel-Aufbau, **Produktion mit KI** |
-| [`03_BRANDING.md`](03_BRANDING.md) | Bio, **Farben, Fonts, Profilbild**, Feed-Grid, Video-Layout, Tools |
+| [`03_BRANDING.md`](03_BRANDING.md) | **Creator-Stil nach Flo-Pharell-Vorbild**: Farben, Anton-Typo, Faceless-Mark, Thumbnail-Aufbau, Titel-Formeln |
 | [`04_MONETARISIERUNG.md`](04_MONETARISIERUNG.md) | 4 Phasen bis hauptberuflich, Affiliate, Produkte, Preise, Ausstiegskriterien |
 | [`05_RECHT_COMPLIANCE.md`](05_RECHT_COMPLIANCE.md) | BaFin, § 85 WpHG, Werbekennzeichnung, Disclaimer, **die 5.000-€-Challenge** |
 | [`06_90_TAGE_PLAN.md`](06_90_TAGE_PLAN.md) | Woche für Woche, die ersten 9 Posts, KPIs |
-| [`templates/`](templates/) | Post-Template (HTML), Brand-Tokens, 60 Hooks, 4-Wochen-Redaktionsplan |
+| [`templates/`](templates/) | Post-Templates (hell + dunkel), Brand-Tokens, Logos, 60 Hooks, Redaktionsplan |
+| [`reels/`](reels/) | **Zwei fertige Reels als MP4** inkl. Render-Pipeline, Cover und Sprecherskripten |
 
 ## Die Kernthese in fünf Sätzen
 
@@ -34,7 +35,7 @@ Content-System und Algorithmus-Mechanik bis zur hauptberuflichen Monetarisierung
 
 1. Handle `optionsflow.de` (oder Alternative aus `00_STRATEGIE.md`) auf
    Instagram, TikTok, X, YouTube und Threads sichern.
-2. `templates/post_template.html` im Browser öffnen – das ist dein Layout.
+2. `templates/post_template_creator.html` im Browser öffnen – das ist dein Layout.
 3. Die ersten drei Hooks aus `templates/hooks.md` auswählen.
 4. `06_90_TAGE_PLAN.md`, Woche 0, Tag 1 abarbeiten.
 

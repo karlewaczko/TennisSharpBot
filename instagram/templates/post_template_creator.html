@@ -1,0 +1,116 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8">
+<title>AlphaBull – Carousel-Template (Creator Bright)</title>
+<link href="fonts_bright.css" rel="stylesheet">
+<style>
+:root{--ink:#0B0E14;--signal:#FFD400;--down:#FF2D55;--up:#00C46A;--grey:#6B7280;--alt:#F2F4F7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#111;padding:40px;display:flex;flex-wrap:wrap;gap:30px;font-family:Inter,sans-serif}
+
+.slide{width:1080px;height:1350px;background:#fff;color:var(--ink);padding:74px 64px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transform:scale(.5);transform-origin:top left;margin:0 -540px -675px 0}
+
+/* Kopf */
+.top{display:flex;align-items:center;gap:20px}
+.mark{width:88px;height:88px;border-radius:50%;background:var(--signal);flex:none;
+  display:flex;align-items:center;justify-content:center}
+.mark svg{width:68px;height:68px}
+.handle{font-weight:800;font-size:33px}
+.tag{margin-left:auto;font-weight:800;font-size:27px;letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;background:var(--ink);padding:11px 21px;border-radius:9px}
+.num{margin-left:14px;font-weight:800;font-size:27px;color:var(--grey)}
+
+/* Typo */
+h1{font-family:Anton,sans-serif;text-transform:uppercase;font-size:136px;line-height:.98;margin-top:56px}
+h2{font-family:Anton,sans-serif;text-transform:uppercase;font-size:82px;line-height:1.02;margin-top:52px}
+.mk{background:var(--signal);padding:0 16px;margin:0 -8px;display:inline-block;transform:skewX(-6deg)}
+.mk>span{display:inline-block;transform:skewX(6deg)}
+.rd{color:var(--down)}.gr{color:var(--up)}
+.sub{font-weight:800;font-size:44px;color:var(--grey);margin-top:40px;line-height:1.32}
+.sub b{color:var(--ink);border-bottom:8px solid var(--signal)}
+p.body{font-weight:700;font-size:40px;line-height:1.45;margin-top:34px}
+
+/* Listen */
+.list{margin-top:44px;display:flex;flex-direction:column;gap:18px}
+.item{display:flex;gap:22px;align-items:flex-start;border:5px solid var(--ink);
+  border-radius:16px;background:var(--alt);padding:24px 26px}
+.item .n{font-family:Anton,sans-serif;font-size:44px;line-height:1;color:var(--down);min-width:58px}
+.item .t{font-weight:800;font-size:37px;line-height:1.3}
+
+/* Zahlenreihe */
+.stats{display:flex;gap:20px;margin-top:44px}
+.stats div{flex:1;border:5px solid var(--ink);border-radius:16px;padding:26px 18px;text-align:center}
+.stats .v{font-family:Anton,sans-serif;font-size:70px;line-height:1}
+.stats .l{font-weight:800;font-size:25px;color:var(--grey);margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+
+/* Fuß */
+.foot{margin-top:auto;padding-top:34px;display:flex;align-items:flex-end;gap:20px;
+  border-top:5px solid var(--ink)}
+.swipe{font-family:Anton,sans-serif;text-transform:uppercase;font-size:40px}
+.disc{margin-left:auto;font-weight:700;font-size:23px;color:var(--grey);text-align:right;max-width:56%;line-height:1.35}
+</style></head><body>
+
+<!-- ============ 1 · HOOK ============ -->
+<section class="slide">
+  <div class="top">
+    <div class="mark"><svg viewBox="0 0 1080 1080"><g fill="#0B0E14" transform="translate(0,74)">
+      <path d="M420 392 C 330 398 252 356 212 286 C 196 258 190 220 197 189 L 258 212 C 256 243 264 272 281 293 C 314 335 372 353 432 344 Z"/>
+      <path d="M660 392 C 750 398 828 356 868 286 C 884 258 890 220 883 189 L 822 212 C 824 243 816 272 799 293 C 766 335 708 353 648 344 Z"/>
+      <path d="M402 372 C 402 338 430 316 474 309 C 512 303 568 303 606 309 C 650 316 678 338 678 372 L 674 486 C 669 578 640 660 590 712 C 562 741 518 741 490 712 C 440 660 411 578 406 486 Z"/>
+    </g></svg></div>
+    <span class="handle">@alphabull.trade</span>
+    <span class="tag">Optionen</span><span class="num">1/9</span>
+  </div>
+  <h1>5 Fehler,<br>die dich dein<br><span class="mk"><span>Depot</span></span> kosten.</h1>
+  <div class="sub">Ich habe sie alle gemacht.<br>Nummer <b>3 war die teuerste</b>.</div>
+  <div class="foot"><span class="swipe">Wisch →</span>
+    <span class="disc">Keine Anlageberatung.</span></div>
+</section>
+
+<!-- ============ 2 · INHALT ============ -->
+<section class="slide">
+  <div class="top">
+    <div class="mark"><svg viewBox="0 0 1080 1080"><g fill="#0B0E14" transform="translate(0,74)">
+      <path d="M420 392 C 330 398 252 356 212 286 C 196 258 190 220 197 189 L 258 212 C 256 243 264 272 281 293 C 314 335 372 353 432 344 Z"/>
+      <path d="M660 392 C 750 398 828 356 868 286 C 884 258 890 220 883 189 L 822 212 C 824 243 816 272 799 293 C 766 335 708 353 648 344 Z"/>
+      <path d="M402 372 C 402 338 430 316 474 309 C 512 303 568 303 606 309 C 650 316 678 338 678 372 L 674 486 C 669 578 640 660 590 712 C 562 741 518 741 490 712 C 440 660 411 578 406 486 Z"/>
+    </g></svg></div>
+    <span class="handle">@alphabull.trade</span>
+    <span class="tag">Fehler 3</span><span class="num">4/9</span>
+  </div>
+  <h2>Zu <span class="rd">groß</span><br>eingestiegen.</h2>
+  <p class="body">Ein Kontrakt auf eine 200-€-Aktie heißt:
+  du haftest für <b>20.000 €</b>. Nicht für die Prämie.</p>
+  <div class="stats">
+    <div><div class="v">100</div><div class="l">Aktien je Kontrakt</div></div>
+    <div><div class="v rd">1 %</div><div class="l">max. Risiko</div></div>
+    <div><div class="v gr">0,30</div><div class="l">Delta ≈ Chance</div></div>
+  </div>
+  <div class="foot"><span class="swipe">Wisch →</span>
+    <span class="disc">Keine Anlageberatung.</span></div>
+</section>
+
+<!-- ============ 9 · CHEAT-SHEET (der Save-Auslöser) ============ -->
+<section class="slide">
+  <div class="top">
+    <div class="mark"><svg viewBox="0 0 1080 1080"><g fill="#0B0E14" transform="translate(0,74)">
+      <path d="M420 392 C 330 398 252 356 212 286 C 196 258 190 220 197 189 L 258 212 C 256 243 264 272 281 293 C 314 335 372 353 432 344 Z"/>
+      <path d="M660 392 C 750 398 828 356 868 286 C 884 258 890 220 883 189 L 822 212 C 824 243 816 272 799 293 C 766 335 708 353 648 344 Z"/>
+      <path d="M402 372 C 402 338 430 316 474 309 C 512 303 568 303 606 309 C 650 316 678 338 678 372 L 674 486 C 669 578 640 660 590 712 C 562 741 518 741 490 712 C 440 660 411 578 406 486 Z"/>
+    </g></svg></div>
+    <span class="handle">@alphabull.trade</span>
+    <span class="tag">Merken</span><span class="num">9/9</span>
+  </div>
+  <h2>Die <span class="mk"><span>Kurzfassung</span></span></h2>
+  <div class="list">
+    <div class="item"><span class="n">1</span><span class="t">Positionsgröße vor Strategie – immer</span></div>
+    <div class="item"><span class="n">2</span><span class="t">Delta ≈ Wahrscheinlichkeit, im Geld zu landen</span></div>
+    <div class="item"><span class="n">3</span><span class="t">Nie mehr Kontrakte als du liefern kannst</span></div>
+    <div class="item"><span class="n">4</span><span class="t">Ungedeckte Calls: unbegrenztes Risiko</span></div>
+    <div class="item"><span class="n">5</span><span class="t">Prämie kassieren heißt: Zeit arbeitet für dich</span></div>
+  </div>
+  <div class="foot"><span class="swipe">Speichern</span>
+    <span class="disc">Keine Anlageberatung. Keine Kauf- oder Verkaufsempfehlung.
+      Derivate können zum Totalverlust führen.</span></div>
+</section>
+</body></html>

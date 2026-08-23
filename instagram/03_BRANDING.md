@@ -1,192 +1,193 @@
-# 03 – Branding: Profil, Farben, Layout, Video-Design
+# 03 – Branding & Stil (Creator-Stil nach Flo-Pharell-Vorbild)
 
-## 1. Das Profil (Bio-Setup)
+## Vorbemerkung: was übernommen wird und was nicht
 
-```
-Name-Feld:  Optionsflow | Optionen & SPX      ← Suchfeld! Keywords rein.
-Handle:     @optionsflow.de
-Kategorie:  Bildung  (nicht "Finanzdienstleistung" – vermeidet Werbe-Restriktionen)
-```
+Flo Pharell hat handwerklich etwas richtig gemacht – ~103k YouTube-Abos, ~56k
+auf Instagram, seit 2018, über 800 Videos. Dieses **Handwerk** ist kopierbar und
+wird hier übernommen: Personenmarke, Ich-Form, Maske als Wiedererkennung,
+knallige helle Optik, konkrete Zahlen im Titel, Mix aus Finanzen und Lifestyle.
 
-**Bio (Struktur: Was → Für wen → Beweis → CTA), max. 150 Zeichen:**
+**Zwei Dinge werden bewusst nicht kopiert:**
+1. **Nicht seine Maske.** Die Anonymous-Maske ist in dieser Nische eindeutig ihm
+   zugeordnet. Wer sie übernimmt, wird als Nachahmer gelesen statt als Marke –
+   und bewegt sich markenrechtlich auf dünnem Eis. Du bekommst unten ein
+   **eigenes Faceless-Konzept** mit demselben Effekt.
+2. **Nicht sein Geschäftsmodell.** Die Kritik an ihm (Business Insider 10/2024,
+   WirtschaftsWoche 04/2025, Verbraucherschützer) betrifft bezahlte Aktientipps
+   und Copy-Trading-Provisionen – nicht sein Design. Der Stil ist das Asset,
+   die Monetarisierung bleibt wie in `05_RECHT_COMPLIANCE.md` beschrieben.
 
-```
-Optionen, Orderflow & SPX – auf Deutsch.
-Was dein Broker dir nicht zeigt.
-📊 Keine Anlageberatung
-👇 Optionen-Starter-Guide
-```
+Kurz: **sein Look und seine Schlagzahl, dein Fundament.**
 
-**Alternativ (mit Beweis-Element, ab ~5k Followern):**
-```
-Ich handle SPX & Optionen bei IBKR – und zeige jeden Trade.
-Gewinne wie Verluste.
-📉 Keine Anlageberatung
-```
+## 1. Die acht Stil-Merkmale
 
-**Link in Bio:** ein einziger Link (Linktree/Beacons/eigene Seite) mit maximal
-3 Zielen: (1) Gratis-Guide → E-Mail, (2) YouTube, (3) Broker/Ressourcen.
-**Nicht mehr.** Jeder zusätzliche Link halbiert die Klickrate auf den wichtigsten.
+| # | Merkmal | Umsetzung bei dir |
+|---|---|---|
+| 1 | **Person statt Marke** | Der Account läuft auf dich, nicht auf ein Firmenkonstrukt. Ich-Form in jedem Satz. |
+| 2 | **Faceless-Wiedererkennung** | Ein festes Gesichts-Substitut in jedem Thumbnail (siehe §4) |
+| 3 | **Hell und knallig** | Weiß/Off-White statt dunkel. Gelb als Signalfarbe. |
+| 4 | **Riesige Schrift** | 3–5 Wörter füllen das halbe Bild. Nie kleiner als 80 px. |
+| 5 | **Konkrete Zahl im Titel** | "5.000 €", "im Oktober", "in 30 Tagen" – nie vage |
+| 6 | **Marker-Highlight** | Gelber Balken hinter dem Schlüsselwort, leicht schräg |
+| 7 | **Reaktion im Bild** | Pfeile, Kreise, Ausrufezeichen – handgezeichnet wirkend |
+| 8 | **Finanzen + Lifestyle** | ~70/30. Reine Fachaccounts deckeln bei 20k. |
 
-**Story-Highlights** (feste Reihenfolge, einheitliche Cover):
-`START` · `OPTIONEN` · `SPX` · `BROKER` · `DEPOT` · `FAQ`
+## 2. Farbsystem "Signal Bright"
 
-## 2. Farbsystem
-
-Die gesamte deutsche Finanz-Nische ist **blau-weiß** (Finanzfluss, Finanztip,
-Trade Republic, Scalable). Wenn du blau nimmst, verschwindest du.
-
-**Empfohlene Palette – "Terminal Dark":**
+Umgekehrt zur vorherigen Terminal-Optik: **hell, laut, sofort lesbar im Feed.**
 
 | Rolle | Hex | Verwendung |
 |---|---|---|
-| Hintergrund | `#0B0E14` | Basis aller Grafiken (fast schwarz, leicht blau) |
-| Fläche/Karte | `#151A23` | Karten, Boxen |
-| Rahmen | `#232B38` | Linien, Trenner, Chart-Gitter |
-| **Akzent (Marke)** | `#00E5A0` | Logo, Highlights, "Call"-Seite |
-| Warnung / Put | `#FF4D6D` | Verluste, Puts, Risiko |
-| Neutral hell | `#E6EBF2` | Fließtext |
-| Neutral gedimmt | `#8A96A8` | Sekundärtext, Quellenangaben |
-| Signal Gelb | `#FFC845` | Ein einziges Highlight pro Grafik |
+| Hintergrund | `#FFFFFF` | Basis |
+| Hintergrund alt | `#F2F4F7` | Karten, Abgrenzung |
+| Tinte | `#0B0E14` | Text, Rahmen, Outlines |
+| **Signal (Marke)** | `#FFD400` | Marker-Highlight, Akzent, Logo |
+| Grün / Long | `#00C46A` | Gewinne, steigende Kurse |
+| Rot / Short | `#FF2D55` | Verluste, Warnung, Kreise |
+| Grau | `#6B7280` | Sekundärtext, Quellen |
 
-**Warum das funktioniert:**
-- Dunkel = Trading-Terminal = sofortige Kategorie-Erkennung ("das ist ein Profi")
-- **Mint/Cyan-Grün `#00E5A0`** besetzt niemand in DE-Finance → maximale
-  Wiedererkennung im Feed. Es ist außerdem hell genug, dass es im Explore-Grid
-  aus 30 Thumbnails heraussticht.
-- Rot/Grün nur für **Marktrichtung**, nie dekorativ. Sonst verliert das Signal
-  seine Bedeutung.
+**Die Regel, die den Look ausmacht:** Schwarzer Text auf Weiß, und **genau ein**
+gelbes Marker-Highlight pro Bild. Nicht zwei. Das Highlight ist der Blickanker.
 
-**Regel:** Maximal 3 Farben pro Grafik (Hintergrund, Text, ein Akzent).
+**Outline-Trick:** Jedes Textelement bekommt eine 6–8 px schwarze Kontur
+(`-webkit-text-stroke` oder Schattenring). Dadurch bleibt Text lesbar, auch wenn
+er über Foto oder Chart liegt – das ist der Hauptgrund, warum Thumbnails in
+diesem Stil auf dem Handy funktionieren.
 
 ## 3. Typografie
 
-| Rolle | Schrift | Warum |
+| Rolle | Schrift | Einsatz |
 |---|---|---|
-| Headlines / Hooks | **Inter Tight Bold** oder **Archivo Black** | eng, laut, gut lesbar bei 3 cm |
-| Fließtext | **Inter Regular / Medium** | neutral, exzellent auf Displays |
-| Zahlen / Charts | **JetBrains Mono** oder **Roboto Mono** | Ziffern gleich breit → Tabellen wirken sauber |
+| Headline | **Anton** (oder Archivo Black) | VERSALIEN, eng, laut. Der Look steht und fällt damit. |
+| Fließtext | **Inter Bold/ExtraBold** | Karten, Untertitel |
+| Zahlen | **Inter ExtraBold** tabular | Beträge, Prozente |
 
-Alle drei kostenlos (Google Fonts). **Monospace für Zahlen ist der wichtigste
-einzelne Design-Trick** – es lässt jede Kurs-Tabelle sofort professionell wirken.
+Alle kostenlos über Google Fonts. **Anton ist die wichtigste Einzelentscheidung** –
+sie erzeugt den "laut, aber nicht billig"-Eindruck, den dieser Stil braucht.
 
-## 4. Profilbild
+## 4. Deine Faceless-Identität (statt der Maske)
 
-Das Profilbild wird als **32 px Kreis** in den Kommentaren gesehen. Alles
-Detaillierte ist dort unsichtbar. Es gibt genau zwei valide Optionen:
+Der Effekt der Maske ist: **wiedererkennbar ohne Gesicht, kein Klarnamen-Risiko,
+skalierbar (du kannst später jemanden anders filmen lassen).** Das erreichst du
+auch mit einem eigenen Device. Drei Optionen, absteigend nach Empfehlung:
 
-**Option A – Logo-Mark (empfohlen für den Start, weil du dann nicht sofort
-dein Gesicht zeigen musst):**
-- Dunkler Kreis `#0B0E14`, darauf **ein** mintgrünes Element
-- Konkreter Vorschlag: ein stilisierter **aufsteigender Volumen-/Flow-Balken,
-  der in einen Pfeil übergeht** – oder das Zeichen **"Γ" (Gamma)** als
-  Monogramm, geometrisch konstruiert
-- Kein Text, keine Wörter, keine Dünnlinien (verschwinden bei 32 px)
-- Testmethode: Bild auf 32×32 px verkleinern. Noch erkennbar? Wenn nein → zu komplex.
+**A – Der Bulle als Silhouette** (empfohlen, passt zu "AlphaBull")
+Eine flache, schwarze Bullen-Silhouette im Profil, gelber Hintergrundkreis.
+Erscheint in jedem Thumbnail an derselben Stelle. Klar, deutsch lesbar,
+markenfähig, nicht kopiert.
 
-**Option B – Gesicht (stärker für Vertrauen, ab Monat 3 empfohlen):**
-- Schulterportrait, **du füllst 60–70 % des Kreises**
-- Hintergrund: dunkel/unscharf, idealerweise Monitor-Bokeh in Mint/Grün
-- Frontales Licht, neutraler Ausdruck oder leichtes Lächeln, direkter Blick
-- Gleiche Farbwelt wie das Branding → das Profilbild wird Teil des Systems
+**B – Kapuze + Schatten**
+Du filmst dich mit Kapuze und hartem Gegenlicht, Gesicht bleibt dunkel.
+Vorteil: echte Person, echte Bewegung, trotzdem anonym. Nachteil: aufwendiger.
 
-> **Beste Lösung:** Start mit Logo (Option A), Wechsel auf Gesicht (Option B),
-> sobald du ~5k Follower hast und dein Gesicht als Marke etabliert ist.
-> Das Logo lebt danach als Wasserzeichen in allen Grafiken weiter.
+**C – Nur Hände + Bildschirm**
+Du zeigst nie dich, sondern deine Hände am Trading-Setup. Extrem gut für
+Optionen-Content, weil der Bildschirm ohnehin der Star ist.
 
-## 5. Feed-Grid-System
+> **Empfehlung:** A als Marke im Thumbnail + C als Videoinhalt. Damit bist du
+> von Tag 1 produktionsfähig, ohne je vor der Kamera stehen zu müssen –
+> und kannst später jederzeit auf Gesicht wechseln.
 
-Das Grid ist das Erste, was ein neuer Besucher sieht – es entscheidet über
-den Follow. Baue es **spaltenweise systematisch**:
+## 5. Titel- und Hook-Formeln in diesem Stil
+
+Sein Muster, an deinem Thema:
+`Ich-Form + konkrete Zahl + Zeitraum + Emoji`
 
 ```
-Spalte 1        Spalte 2         Spalte 3
-Bildung         Markt/Chart      Transparenz
-(mint auf       (Chart-Bild,     (Depot, Zahl,
- dunkel)         Rahmen dunkel)   Foto)
+Diese Optionen verkaufe ich im November 📈💰
+Ich habe 30 Tage lang nur Puts verkauft – das kam raus 📊
+5.000 € im Monat mit Optionen? Ich teste es 12 Monate 🔍
+Mein Depot nach 90 Tagen: die echten Zahlen 📉
+Warum ich Trade Republic gelöscht habe 🗑️
+Diese eine Zahl checke ich jeden Morgen um 15:30 ⏰
+Ich habe 2.400 € verloren. Hier ist der Fehler ❌
 ```
 
-**Cover-Regeln für Reels (Reel-Cover = Grid-Bild!):**
-- Immer ein eigenes Cover setzen, nie einen zufälligen Frame
-- Aufbau: **3–5 Wörter, riesig, links oben**, darunter kleiner Untertitel
-- Fixe Position des Logos: unten rechts, immer gleiche Größe
-- Sicherheitsbereich: mittige 1080×1350-Zone, weil das Grid quadratisch beschneidet
+**Die vier Bausteine, die fast immer vorkommen:**
+1. **Ich** (nicht "man", nicht "Anleger")
+2. **Eine Zahl** (Betrag, Tage, Uhrzeit, Prozent)
+3. **Ein Zeitbezug** (diesen Monat, nach 90 Tagen, jeden Morgen)
+4. **Ein Emoji** (max. 2, am Ende)
 
-## 6. Post-Templates (Maße)
+**Was du weglässt:** "Diese Aktie explodiert", "Geheimtipp", "Garantiert".
+Das ist der Teil seines Stils, der die Presse-Kritik ausgelöst hat – und der
+rechtlich in `05_RECHT_COMPLIANCE.md` beschriebene Grenzbereich.
 
-| Format | Maße | Einsatz |
+## 6. Profil-Setup
+
+```
+Name-Feld:  AlphaBull | Optionen & SPX
+Handle:     @alphabull.trade
+Kategorie:  Bildung
+```
+
+**Bio in diesem Stil** (Ich-Form, Zahl, konkretes Versprechen):
+```
+Ich handle SPX & Optionen bei IBKR.
+Jeden Monat zeige ich mein echtes Depot – Gewinne wie Verluste.
+📉 Keine Anlageberatung
+👇 Optionen-Starter-Guide
+```
+
+## 7. Thumbnail-Aufbau (der eigentliche Kern des Stils)
+
+```
+┌─────────────────────────────┐
+│  ██████████████             │  ← Headline: 3–5 Wörter, VERSALIEN,
+│  ██  gelb  ████             │     ein Wort gelb hinterlegt
+│  ██████████████             │
+│                    ╭─────╮  │
+│   [Chart / Zahl]   │Bulle│  │  ← Faceless-Mark, IMMER an derselben Stelle
+│      ↗ rote        ╰─────╯  │
+│      Kreise                 │
+└─────────────────────────────┘
+```
+
+**Regeln:**
+- Headline links, Mark rechts – nie tauschen
+- Maximal **5 Wörter**. Bei 6 kürzt du, nicht verkleinerst.
+- Ein rotes handgezeichnetes Element (Kreis oder Pfeil) pro Bild
+- Schwarze Kontur um jeden Text
+- Test: auf 20 % verkleinern – Headline noch lesbar? Sonst kürzen.
+
+## 8. Video-Stil
+
+- **Schnitt alle 1,5–2,5 Sekunden.** Sein Tempo ist der Hauptgrund für die
+  Watch Time. Auch bei Screenrecording: zoomen, springen, hervorheben.
+- **Untertitel Wort für Wort**, VERSALIEN, weiß mit schwarzer Kontur, das
+  aktive Wort gelb. Mittig, etwa auf 60 % Höhe.
+- **Zoom-Sprünge** statt Schnitten, wenn du nur eine Quelle hast.
+- **Zahlen einblenden**, sobald du sie sagst – nie nur sprechen.
+- **Kein Intro.** Erstes Wort ist Inhalt.
+- **Sound:** deine Stimme als Original-Audio, dezenter Beat bei ~15 % Lautstärke.
+
+## 9. Content-Mix (70/30)
+
+Sein Instagram ist **nicht** reiner Finanz-Content – dort laufen auch
+Reise- und Alltagsthemen. Das ist kein Zufall, sondern hält die Reichweite breit
+und die Person nahbar.
+
+- **70 % Fach:** Optionen, SPX, Earnings, Broker
+- **20 % Persönlich:** Setup, Alltag als Trader, Fehler, Zahlen
+- **10 % Lifestyle:** wo du arbeitest, Reisen, Routine
+
+Ohne die 30 % bleibst du ein Lehrbuch. Mit mehr als 30 % verlierst du die
+Positionierung.
+
+---
+
+## Anhang: Variante B – "Terminal Dark"
+
+Die vorherige dunkle Variante bleibt vollständig erhalten und ist weiterhin
+nutzbar (`templates/post_template.html`, `reels/reel_01_gamma.*`).
+
+| | Creator Bright | Terminal Dark |
 |---|---|---|
-| Feed-Post / Carousel | **1080 × 1350** (4:5) | maximaler Platz im Feed |
-| Reel / TikTok / Short | **1080 × 1920** (9:16) | Video |
-| Story | 1080 × 1920 | täglich |
-| X-Post-Grafik | 1600 × 900 (16:9) | Threads |
+| Wirkung | laut, nahbar, Person | seriös, technisch, Marke |
+| Reichweite | höher | niedriger |
+| Vertrauen bei Profis | niedriger | höher |
+| Beste Nutzung | Reels, Thumbnails, Reichweiten-Content | Carousels, Charts, Tiefe |
 
-### Carousel-Aufbau (der einzige, den du brauchst)
-
-```
-Slide 1   HOOK – 4–6 Wörter, größte Schrift, Akzentfarbe
-Slide 2   PROBLEM – warum das teuer/wichtig ist
-Slide 3-7 INHALT – EIN Gedanke pro Slide, Nummerierung sichtbar (3/9)
-Slide 8   BEISPIEL mit echten Zahlen
-Slide 9   ZUSAMMENFASSUNG als Cheat-Sheet → DAS ist der Save-Auslöser
-Slide 10  CTA + Disclaimer
-```
-
-**Der wichtigste Slide ist Slide 9.** Menschen speichern Posts wegen der
-Zusammenfassungs-Slide. Ohne sie verlierst du 60 % der Saves.
-
-**Swipe-Anreiz:** Auf jedem Slide unten rechts ein kleiner Pfeil, und der
-Inhalt läuft am rechten Rand angeschnitten weiter → das Auge folgt.
-
-## 7. Video-Layout (einheitlich, immer gleich)
-
-```
-┌──────────────────────┐  ← 250 px Sicherheitsabstand (IG-UI)
-│  [Logo klein, links] │
-│                      │
-│                      │
-│   CHART / KAMERA     │  ← Hauptfläche
-│                      │
-│  ┌────────────────┐  │
-│  │  HOOK-TEXT     │  │  ← obere Drittel-Linie, Archivo Black
-│  └────────────────┘  │
-│                      │
-│  ┌────────────────┐  │
-│  │  Untertitel    │  │  ← ca. 25 % von unten, max 4 Wörter/Zeile
-│  └────────────────┘  │
-│                      │
-└──────────────────────┘  ← 400 px Sicherheitsabstand (Caption/Buttons)
-```
-
-**Untertitel-Stil (immer identisch):** Inter Bold, weiß, mint hervorgehobenes
-Schlüsselwort, dunkler Schatten oder halbtransparente Box, max. 4 Wörter/Zeile,
-Wort-für-Wort-Highlighting (nicht ganze Sätze einblenden).
-
-**Chart-Darstellung:** TradingView im **Dark Mode**, eigenes Farbschema mit
-`#00E5A0` / `#FF4D6D`, alle Indikatoren ausgeblendet außer den ein bis zwei,
-über die du sprichst. Ein überladener Chart im Reel = Abbruch.
-
-## 8. Wiedererkennungs-Anker (baue mindestens 3 davon)
-
-Menschen erkennen Accounts an Wiederholung, nicht an Logos:
-1. **Ein Satz, der immer kommt** – z. B. zum Schluss: *"Zahlen schlagen Meinung."*
-2. **Ein visuelles Element** – der mintgrüne Balken, der bei jedem Hook einfährt.
-3. **Ein Termin** – "Die Woche voraus", jeden Sonntag 19:00.
-4. **Ein Sound** – ein 0,5-Sek-Signalton bei jedem Chart-Wechsel (Original Audio!).
-5. **Eine Kleidung/Setting** – gleicher Hintergrund, gleiche Farbwelt.
-
-## 9. Tools (kostengünstig)
-
-| Zweck | Tool | Kosten |
-|---|---|---|
-| Grafiken | Figma (Templates einmal bauen) oder Canva Pro | 0 € / ~12 € |
-| Charts | TradingView (Essential reicht anfangs) | 0–15 € |
-| Schnitt | CapCut Desktop | 0 € |
-| Untertitel | CapCut Auto-Captions + manuelle Korrektur | 0 € |
-| Screenrecording | OBS Studio | 0 € |
-| Planung | Meta Business Suite (nativ, keine Reichweiten-Nachteile) | 0 € |
-| DM-Automation | ManyChat Free | 0 € |
-| Ton | Lavalier-Mikro (~40 €) oder Rode Wireless Micro | 40–150 € |
-
-**Ton ist wichtiger als Bild.** Schlechtes Bild verzeiht der Zuschauer,
-schlechten Ton nicht – er wischt sofort weg, und das killt deine Retention.
+**Empfehlung:** Bright für alles, was Reichweite bringen soll (Reels, Cover),
+Dark für Fach-Carousels. Zwei Modi einer Marke sind kein Widerspruch – solange
+Schrift, Mark und Handle-Platzierung identisch bleiben.

@@ -1,0 +1,155 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8">
+<title>Reel 02 – Optionsschein ≠ Option</title>
+<link href="fonts_bright.css" rel="stylesheet">
+<style>
+:root{--bg:#FFFFFF;--alt:#F2F4F7;--ink:#0B0E14;--signal:#FFD400;
+      --up:#00C46A;--down:#FF2D55;--grey:#6B7280}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+body{font-family:Inter,sans-serif;color:var(--ink);position:relative}
+
+/* Kopfzeile */
+#head{position:absolute;top:258px;left:64px;right:64px;display:flex;align-items:center;gap:20px}
+#mark{width:78px;height:78px;border-radius:50%;background:var(--signal);
+      display:flex;align-items:center;justify-content:center;flex:none}
+#mark svg{width:60px;height:60px}
+#handle{font-weight:800;font-size:32px;letter-spacing:-.01em}
+#kick{margin-left:auto;font-weight:800;font-size:26px;letter-spacing:.14em;
+      text-transform:uppercase;color:#fff;background:var(--ink);padding:10px 20px;border-radius:8px}
+
+/* Headline */
+#hl{position:absolute;top:404px;will-change:transform;left:64px;right:64px;height:430px}
+.line{font-family:Anton,sans-serif;text-transform:uppercase;font-size:112px;line-height:1.0;
+      letter-spacing:.004em;white-space:nowrap;position:absolute;left:0;will-change:transform,opacity}
+.line.l2{top:118px}.line.l3{top:236px}
+.mk{background:var(--signal);padding:0 14px;margin:0 -6px;
+    display:inline-block;transform:skewX(-6deg)}
+.mk>span{display:inline-block;transform:skewX(6deg)}
+.rd{color:var(--down)}.gr{color:var(--up)}
+
+/* Vergleich */
+#cmp{position:absolute;top:906px;left:64px;right:64px}
+.trow{display:flex;gap:14px;align-items:stretch;margin-bottom:12px;will-change:transform,opacity}
+.trow>.q{flex:0 0 322px;display:flex;align-items:center;font-weight:800;font-size:29px;color:var(--grey)}
+.trow>.v{flex:1;border:4px solid var(--ink);border-radius:12px;padding:16px 8px;
+  text-align:center;font-weight:800;font-size:38px;background:var(--alt)}
+#cmpHead{display:flex;gap:14px;margin-bottom:16px}
+#cmpHead .q{flex:0 0 322px}
+#cmpHead .h{flex:1;font-family:Anton,sans-serif;text-transform:uppercase;font-size:40px;
+  text-align:center;padding:13px 0;border-radius:12px;color:#fff}
+#cmpHead .a{background:var(--down)}#cmpHead .b{background:var(--up)}
+/* CTA */
+#cta{position:absolute;top:1010px;left:64px;right:64px;text-align:center;opacity:0}
+#ctaBig{font-family:Anton,sans-serif;text-transform:uppercase;font-size:96px;line-height:1}
+#ctaBig span{background:var(--signal);padding:0 18px;display:inline-block;transform:skewX(-6deg)}
+#ctaSub{font-weight:800;font-size:38px;color:var(--grey);margin-top:26px}
+
+/* Fuß */
+#prog{position:absolute;top:1432px;left:64px;right:64px;height:10px;background:#E4E7EC;border-radius:5px}
+#progFill{height:100%;width:0;background:var(--ink);border-radius:5px}
+#disc{position:absolute;top:1464px;left:64px;right:64px;font-size:24px;
+      font-weight:700;color:var(--grey);text-align:center}
+</style></head><body>
+
+<div id="head">
+  <div id="mark"><svg viewBox="0 0 1080 1080"><g fill="#0B0E14" transform="translate(0,74)">
+    <path d="M420 392 C 330 398 252 356 212 286 C 196 258 190 220 197 189 L 258 212 C 256 243 264 272 281 293 C 314 335 372 353 432 344 Z"/>
+    <path d="M660 392 C 750 398 828 356 868 286 C 884 258 890 220 883 189 L 822 212 C 824 243 816 272 799 293 C 766 335 708 353 648 344 Z"/>
+    <path d="M402 372 C 402 338 430 316 474 309 C 512 303 568 303 606 309 C 650 316 678 338 678 372 L 674 486 C 669 578 640 660 590 712 C 562 741 518 741 490 712 C 440 660 411 578 406 486 Z"/>
+  </g></svg></div>
+  <span id="handle">@alphabull.trade</span>
+  <span id="kick">Optionen</span>
+</div>
+
+<div id="hl">
+  <div class="line l1" id="l1"></div>
+  <div class="line l2" id="l2"></div>
+  <div class="line l3" id="l3"></div>
+</div>
+
+<div id="cmp">
+  <div id="cmpHead"><div class="q"></div><div class="h a">Optionsschein</div><div class="h b">Option</div></div>
+  <div id="rows"></div>
+</div>
+
+<div id="cta">
+  <div id="ctaBig"><span>Speichern</span></div>
+  <div id="ctaSub">Bevor du den nächsten Schein kaufst.</div>
+</div>
+
+<div id="prog"><div id="progFill"></div></div>
+<div id="disc">Keine Anlageberatung. Derivate können zum Totalverlust führen.</div>
+
+<script>
+const DUR = 30;
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const ease=t=>t<0?0:t>1?1:1-Math.pow(1-t,3);
+
+const BEATS=[
+ [0.0, 2.9,'Optionsschein','ist keine','<span class="mk"><span>Option</span></span>.','Achtung'],
+ [2.9, 5.6,'Und der','Unterschied','kostet dich <span class="rd">Geld</span>.','Achtung'],
+ [5.6, 9.2,'Der Schein ist','ein Produkt','der <span class="rd">Bank</span>.','Emittent'],
+ [9.2,12.8,'Die Option ist','ein Kontrakt','an der <span class="gr">Börse</span>.','Emittent'],
+ [12.8,16.6,'Beim Schein','stellt die Bank','den <span class="rd">Preis</span>.','Preis'],
+ [16.6,20.2,'Bei der Option','macht das','der <span class="gr">Markt</span>.','Preis'],
+ [20.2,23.8,'Nur eine davon','kannst du','<span class="gr">verkaufen</span>.','Prämie'],
+ [23.8,27.0,'Und nur damit','kassierst du','<span class="mk"><span>Prämie</span></span>.','Prämie'],
+ [27.0,30.0,'Dein Neobroker','hat nur','die <span class="rd">falsche</span>.','Broker']
+];
+
+// Vergleichszeilen: [Frage, Schein, Option, ab Sekunde]
+const ROWS=[
+ ['Wer stellt den Preis?','Die Bank','Der Markt', 12.9],
+ ['Emittentenrisiko?','Ja','Nein', 16.7],
+ ['Verkaufen möglich?','Nein','Ja', 20.3],
+ ['Prämie kassieren?','Nein','Ja', 23.9]
+];
+const rowsEl=document.getElementById('rows');
+ROWS.forEach(([q,a,b])=>rowsEl.insertAdjacentHTML('beforeend',
+  `<div class="trow"><div class="q">${q}</div><div class="v">${a}</div><div class="v">${b}</div></div>`));
+const rEls=[...rowsEl.querySelectorAll('.trow')];
+
+const l=[document.getElementById('l1'),document.getElementById('l2'),document.getElementById('l3')];
+const kick=document.getElementById('kick'), cta=document.getElementById('cta'),
+      progFill=document.getElementById('progFill'), cmp=document.getElementById('cmp');
+
+function fit(el){
+  const max=el.parentElement.clientWidth;
+  let px=112; el.style.fontSize=px+'px';
+  while(el.scrollWidth>max && px>48){ px-=2; el.style.fontSize=px+'px'; }
+}
+function seek(t){
+  t=clamp(t,0,DUR);
+  progFill.style.width=(t/DUR*100)+'%';
+
+  const b=BEATS.find(x=>t>=x[0]&&t<x[1])||BEATS[BEATS.length-1];
+  if(l[0].dataset.b!==b[0]+''){
+    l[0].dataset.b=b[0]+'';
+    l[0].innerHTML=b[2]; l[1].innerHTML=b[3]; l[2].innerHTML=b[4]; kick.textContent=b[5];
+    l.forEach(fit);
+  }
+  // vor dem Vergleich sitzt die Headline mittig, danach wandert sie nach oben
+  const rise = ease(clamp((t-11.6)/1.1,0,1));
+  document.getElementById('hl').style.transform = `translateY(${(1-rise)*250}px)`;
+  const loc=t-b[0];
+  l.forEach((el,i)=>{
+    const a=ease((loc-i*.07)/.32), out=clamp((b[1]-t)/.22,0,1);
+    el.style.opacity=a*out;
+    el.style.transform=`translateY(${(1-a)*38}px)`;
+  });
+
+  // Vergleichsblock erscheint mit der ersten Zeile
+  cmp.style.opacity=ease(clamp((t-12.5)/.4,0,1))*clamp((27.4-t)/.4,0,1);
+  ROWS.forEach(([,,,at],i)=>{
+    const a=ease(clamp((t-at)/.4,0,1));
+    rEls[i].style.opacity=a;
+    rEls[i].style.transform=`translateX(${(1-a)*-36}px)`;
+  });
+
+  const ca=ease(clamp((t-27.3)/.45,0,1));
+  cta.style.opacity=ca; cta.style.transform=`scale(${.92+.08*ca})`;
+}
+window.DUR=DUR; window.seek=seek;
+window.READY=document.fonts.ready.then(()=>{seek(0);return true});
+seek(0);
+</script></body></html>
