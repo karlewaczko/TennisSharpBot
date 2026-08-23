@@ -1,0 +1,30 @@
+{
+  "brand": "Optionsflow",
+  "handle": "@optionsflow.de",
+  "claim": "Was dein Broker dir nicht zeigt.",
+  "signature": "Zahlen schlagen Meinung.",
+  "colors": {
+    "bg":       "#0B0E14",
+    "surface":  "#151A23",
+    "border":   "#232B38",
+    "accent":   "#00E5A0",
+    "danger":   "#FF4D6D",
+    "signal":   "#FFC845",
+    "text":     "#E6EBF2",
+    "muted":    "#8A96A8"
+  },
+  "fonts": {
+    "display": "Archivo Black",
+    "body":    "Inter",
+    "mono":    "JetBrains Mono"
+  },
+  "formats": {
+    "carousel": [1080, 1350],
+    "reel":     [1080, 1920],
+    "story":    [1080, 1920],
+    "x_card":   [1600, 900]
+  },
+  "safe_area_video": { "top": 250, "bottom": 400 },
+  "hashtags": ["#optionshandel", "#stillhalter", "#spx", "#optionsstrategie", "#interactivebrokers"],
+  "disclaimer_short": "Keine Anlageberatung. Keine Kauf- oder Verkaufsempfehlung. Optionen können zum Totalverlust führen."
+}
