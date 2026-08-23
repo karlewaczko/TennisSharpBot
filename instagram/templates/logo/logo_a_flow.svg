@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <title>Optionsflow – Variante A: Volumen-Flow</title>
+  <rect width="1080" height="1080" fill="#0B0E14"/>
+  <g fill="#00E5A0">
+    <rect x="216" y="676" width="96" height="188" rx="10"/>
+    <rect x="352" y="580" width="96" height="284" rx="10"/>
+    <rect x="488" y="452" width="96" height="412" rx="10"/>
+    <path d="M672 864 V386 h-108 L726 216 L888 386 H780 V864 Z"/>
+  </g>
+</svg>
