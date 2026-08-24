@@ -53,3 +53,46 @@ def test_h2h_and_form_accumulate_across_matches():
     assert b_wins_vs_a == 1
     # A won m1 and m2, lost m3, won m4 -> form rate should be above 0.5.
     assert state.form_rate("A") > 0.5
+
+
+def _state_last_seen(**last_seen):
+    """A LiveState carrying nothing but last-seen dates -- the only input
+    is_stale reads."""
+    import pandas as pd
+    from tennissharp.features import LiveState
+    state = LiveState.__new__(LiveState)
+    state.last_seen = {k: pd.Timestamp(v) for k, v in last_seen.items()}
+    return state
+
+
+def test_a_player_we_stopped_tracking_is_stale():
+    """Smith's last match in our feed is 2026-03-31, yet he is in the US Open
+    main draw. days_rest saturates and the model reads the gap as rest --
+    that produced a +5.3% 'edge' while Elo, surface Elo and form all pointed
+    the other way."""
+    import pandas as pd
+    state = _state_last_seen(**{"Smith C.": "2026-03-31"})
+    assert state.is_stale("Smith C.", pd.Timestamp("2026-08-25"))
+
+
+def test_a_player_who_played_last_week_is_not_stale():
+    import pandas as pd
+    state = _state_last_seen(**{"Sinner J.": "2026-08-18"})
+    assert not state.is_stale("Sinner J.", pd.Timestamp("2026-08-25"))
+
+
+def test_an_unknown_player_is_stale():
+    """No record at all is the same problem, not a clean slate."""
+    import pandas as pd
+    assert _state_last_seen().is_stale("Nobody", pd.Timestamp("2026-08-25"))
+
+
+def test_staleness_begins_where_days_rest_saturates():
+    """The cap is exactly where the two readings become indistinguishable."""
+    import pandas as pd
+    from tennissharp.features import DAYS_REST_CAP
+    as_of = pd.Timestamp("2026-08-25")
+    just_under = as_of - pd.Timedelta(days=DAYS_REST_CAP - 1)
+    at_cap = as_of - pd.Timedelta(days=DAYS_REST_CAP)
+    assert not _state_last_seen(**{"P": just_under}).is_stale("P", as_of)
+    assert _state_last_seen(**{"P": at_cap}).is_stale("P", as_of)

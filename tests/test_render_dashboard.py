@@ -215,3 +215,21 @@ def test_unparsable_date_does_not_break_the_page(rd):
     data = _payload()
     data["matches"][0]["date"] = "morgen"
     assert "chip day" not in rd.render(data)
+
+
+def test_stale_rows_are_marked_on_the_page(rd):
+    """A row the model scored on a feed gap still appears -- for coverage --
+    so it has to say so. Smith read as maximally rested only because his last
+    match in our history is five months old."""
+    data = _payload()
+    data["matches"][0]["stale_players"] = ["Smith C."]
+    html = rd.render(data)
+    assert "Daten veraltet" in html
+    assert "Smith C." in html
+
+
+def test_rows_with_current_data_carry_no_stale_chip(rd):
+    assert "Daten veraltet" not in rd.render(_payload())
+    data = _payload()
+    data["matches"][0]["stale_players"] = []
+    assert "Daten veraltet" not in rd.render(data)

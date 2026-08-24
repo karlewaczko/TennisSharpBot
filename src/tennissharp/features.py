@@ -20,6 +20,11 @@ from tennissharp.tourney_matching import lookup_surface_speed
 
 FORM_WINDOW = 10
 FATIGUE_WINDOW_DAYS = 21
+# `days_rest` saturates here. During training that always means a genuine
+# layoff, because the player's previous match is by construction in the data.
+# At serving time it can also mean our feed simply lost track of the player,
+# which is a different thing entirely -- see LiveState.is_stale.
+DAYS_REST_CAP = 60
 
 # The base feature set: everything derivable from results alone.
 FEATURE_COLUMNS = [
@@ -68,6 +73,23 @@ class LiveState:
             return default
         return _days_rest(as_of, last, default)
 
+    def is_stale(self, player: str, as_of) -> bool:
+        """True when our record of this player has run out, so his rest,
+        form and fatigue features describe a gap in the feed rather than the
+        player.
+
+        Nothing distinguishes the two at the level of the number itself: a
+        genuine two-month layoff and a player whose matches we stopped
+        receiving both saturate `days_rest`. During training the distinction
+        cannot arise -- the previous match is always in the data -- so the
+        model learned the saturated value as 'well rested' and applies that
+        reading to a stale row.
+        """
+        last = self.last_seen.get(player)
+        if last is None:
+            return True
+        return _days_rest(as_of, last) >= DAYS_REST_CAP
+
     def matches_recent(self, player: str, as_of, window_days: int = FATIGUE_WINDOW_DAYS) -> int:
         return _count_recent(self.recent_dates.get(player), as_of, window_days)
 
@@ -85,7 +107,7 @@ def _days_rest(as_of, last, default: float = 14.0) -> float:
         delta = (as_of - last).days
     except (TypeError, AttributeError):
         return default
-    return float(min(max(delta, 0), 60))
+    return float(min(max(delta, 0), DAYS_REST_CAP))
 
 
 def _count_recent(dates, as_of, window_days: int) -> int:

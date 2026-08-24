@@ -136,6 +136,7 @@ h1 { font-size:29px; font-weight:700; letter-spacing:-.02em; line-height:1.1; }
 .chip.sharp { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
 .chip.day { text-transform:none; letter-spacing:.02em; color:var(--text);
             font-family:"IBM Plex Mono",monospace; }
+.chip.stale { color:var(--warn); border-color:var(--warn); background:var(--warn-soft); }
 
 /* divergence bar: market vs model on one axis */
 .bar { position:relative; height:6px; border-radius:3px; background:var(--surface-2);
@@ -305,6 +306,18 @@ def day_chip(iso: str | None) -> str:
             f'{day.day:02d}.{day.month:02d}.</span>')
 
 
+def stale_chip(players) -> str:
+    """Marks a row whose rest/form features describe a gap in our feed rather
+    than the player. Such a row is never counted as a signal, but it still
+    appears in the table, so it has to say why its numbers are soft."""
+    if not players:
+        return ""
+    who = ", ".join(str(p) for p in players)
+    return ('<span class="chip stale" title="Letztes Match in unserer Historie '
+            f'zu lange her: {who}. Pause-, Form- und Ermuedungswerte beschreiben '
+            'die Datenluecke, nicht den Spieler.">Daten veraltet</span>')
+
+
 def render(data: dict) -> str:
     thresh = pct(data["threshold"], 0)
 
@@ -350,6 +363,7 @@ def render(data: dict) -> str:
                 f'{day_chip(m.get("date"))}'
                 f'<span class="{chip}">{m["ref_book"]}</span>'
                 f'<span class="chip">{m["tour"].upper()}</span>'
+                f'{stale_chip(m.get("stale_players"))}'
                 f'<span>Marge {pct(m["ref_margin"], 1)}</span></div>')
             for sd in (a, b):
                 cls = "side fav" if sd is fav else "side"

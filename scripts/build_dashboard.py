@@ -254,6 +254,7 @@ def main() -> None:
                 return str(surf)
         return "Hard"
 
+    today = pd.Timestamp.now().normalize()
     matches, skipped = [], []
     for _, m in sched.iterrows():
         a = resolve_name(str(m["player1"]), roster, weight=played.get)
@@ -304,6 +305,7 @@ def main() -> None:
         speed = tourney_matching.lookup_surface_speed(
             speed_index, dt.date.today().year, str(m["tournament"]))
 
+        stale = []
         if ta_fallback:
             (name_a, elo_a), (name_b, elo_b) = ta_fallback
             method, label_a, label_b = "ta_elo", name_a, name_b
@@ -317,6 +319,7 @@ def main() -> None:
                     float(elo_overall.get(b, float("nan"))))
             counts = (int(played.get(a, 0)), int(played.get(b, 0)))
             first_is_a = resolve_name(ref_players[0], [a, b]) != b
+            stale = [p for p in (a, b) if state.is_stale(p, today)]
 
         # Orient the reference prices onto (first player, second player).
         if not first_is_a:
@@ -362,6 +365,9 @@ def main() -> None:
             # formula, no market input. Never mix the two in one comparison.
             "method": method,
             "sides": sides,
+            # Players whose last match in our feed is old enough that their
+            # rest/form/fatigue features describe the gap, not the player.
+            "stale_players": stale,
             "best_edge": round(max(s["edge"] for s in sides), 4),
             # Only the trained model's disagreements are treated as signals.
             # A pure-Elo forecast carries no market information at all, and it
@@ -371,7 +377,15 @@ def main() -> None:
             # calibrated to within 0.8pp, that gap is the rating being
             # incomplete, not the price being wrong -- so these rows are shown
             # for coverage and are never scored as value.
-            "signal": method == "model" and max(s["edge"] for s in sides) > args.threshold,
+            #
+            # A stale row is excluded for the same reason. The first two
+            # signals this dashboard ever produced were both of that kind:
+            # Smith (last seen 2026-03-31) and Pigossi (2025-09-11) each read
+            # as maximally rested against an opponent we still track, and in
+            # Smith's case every other feature -- Elo -257, surface Elo -77,
+            # form -0.30 -- pointed the other way.
+            "signal": (method == "model" and not stale
+                       and max(s["edge"] for s in sides) > args.threshold),
         })
 
     matches.sort(key=lambda x: x["best_edge"], reverse=True)
