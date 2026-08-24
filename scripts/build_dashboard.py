@@ -33,7 +33,7 @@ import joblib
 import numpy as np
 import pandas as pd
 
-from tennissharp import config, odds_math
+from tennissharp import config, odds_math, tourney_matching
 from tennissharp.backtest import DEFAULT_EDGE_THRESHOLD, MIN_MATCHES_PLAYED
 from tennissharp.data import tennisexplorer as te
 from tennissharp.model import feature_columns
@@ -62,6 +62,23 @@ SHARP_BOOKS = ("Pinnacle", "Betfair")
 # de-vigging those produced a 60% negative EV out of thin air.
 MAX_REF_MARGIN = 0.30
 
+# `best_of` is a trained feature: five-setters give the stronger player more
+# chances to assert himself, so the same Elo gap converts to a higher win
+# probability than over three sets. Every match was scored as best-of-three
+# until now, which was harmless while the card held no majors and wrong for
+# 104 US Open matches the moment one started.
+GRAND_SLAMS = ("australian open", "roland garros", "french open", "wimbledon", "us open")
+
+
+def best_of_for(tournament: str, tour: str) -> int:
+    """Men's Grand Slam main draws only. Women play three sets at the majors,
+    and men's qualifying is best-of-three too -- TennisExplorer lists that
+    under its own tournament name, so it never reaches this test."""
+    if tour != "atp":
+        return 3
+    name = str(tournament).lower()
+    return 5 if any(slam in name for slam in GRAND_SLAMS) else 3
+
 
 def margin(odds) -> float:
     return sum(1 / x for x in odds) - 1
@@ -72,6 +89,7 @@ def is_priced(odds) -> bool:
     if any(x is None or x <= 1.0 for x in odds):
         return False
     return 0.0 <= margin(odds) <= MAX_REF_MARGIN
+
 
 # Tennis Abstract's own Elo, used only where our model has too little history.
 # Their pool is much wider than ours -- it counts tour-level qualifying,
@@ -216,6 +234,26 @@ def main() -> None:
                 return hit, float(row[candidate])
         return None
 
+    # Tennis Abstract's per-edition surface-speed report doubles as the only
+    # court-surface source we have for a named tournament. It covers the tour
+    # calendar, not the challenger circuit, so most challengers fall through
+    # to the neutral default -- as they did before, just now on purpose.
+    speed_hist = pd.read_csv(config.PROCESSED_DIR / "ta_surface_speed_history.csv",
+                             parse_dates=["date"])
+    speed_index = tourney_matching.build_surface_speed_index(speed_hist)
+    surface_by_name = {}
+    for row in speed_hist.sort_values("date").itertuples():
+        surface_by_name[tourney_matching.normalize_tourney_name(row.tournament)] = row.surface
+
+    def court_surface(tournament: str) -> str:
+        key = tourney_matching.normalize_tourney_name(tournament)
+        if key in surface_by_name:
+            return str(surface_by_name[key])
+        for name, surf in surface_by_name.items():
+            if name and (key in name or name in key):
+                return str(surf)
+        return "Hard"
+
     matches, skipped = [], []
     for _, m in sched.iterrows():
         a = resolve_name(str(m["player1"]), roster, weight=played.get)
@@ -233,8 +271,9 @@ def main() -> None:
         # it covers both players, rather than dropping the match.
         ta_fallback = None
         if thin_reason:
-            ra = ta_rating(str(m["player1"]), "hard")
-            rb = ta_rating(str(m["player2"]), "hard")
+            court = court_surface(str(m["tournament"]))
+            ra = ta_rating(str(m["player1"]), court)
+            rb = ta_rating(str(m["player2"]), court)
             if ra and rb:
                 ta_fallback = (ra, rb)
             else:
@@ -259,6 +298,12 @@ def main() -> None:
                                       f"Marge {margin(ref_odds) * 100:.0f}%)"})
             continue
 
+        tour = "wta" if "-women/" in str(m["tournament_url"]) else "atp"
+        surface = court_surface(str(m["tournament"]))
+        best_of = best_of_for(str(m["tournament"]), tour)
+        speed = tourney_matching.lookup_surface_speed(
+            speed_index, dt.date.today().year, str(m["tournament"]))
+
         if ta_fallback:
             (name_a, elo_a), (name_b, elo_b) = ta_fallback
             method, label_a, label_b = "ta_elo", name_a, name_b
@@ -280,7 +325,7 @@ def main() -> None:
         fair_a, fair_b = odds_math.shin_devig(ref_odds)
 
         if not ta_fallback:
-            feats = _features_for_matchup(state, a, b, "Hard", 3, 1.0)
+            feats = _features_for_matchup(state, a, b, surface, best_of, speed)
             clipped = float(np.clip(fair_a, 1e-6, 1 - 1e-6))
             feats["market_logit"] = float(np.log(clipped / (1 - clipped)))
             p_a = float(model.predict_proba(pd.DataFrame([feats])[feature_columns(True)])[0][1])
@@ -307,7 +352,9 @@ def main() -> None:
             "match_id": str(m["match_id"]),
             "date": str(m["date"]) if pd.notna(m.get("date")) else None,
             "tournament": str(m["tournament"]),
-            "tour": "wta" if "-women/" in str(m["tournament_url"]) else "atp",
+            "tour": tour,
+            "surface": surface,
+            "best_of": best_of,
             "ref_book": ref_book,
             "ref_margin": round(margin(ref_odds), 4),
             # "model" = our trained classifier with the market price blended in.

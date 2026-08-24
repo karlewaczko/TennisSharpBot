@@ -105,3 +105,23 @@ def test_impossible_odds_are_rejected(bd):
 
 def test_the_margin_ceiling_sits_above_every_real_book(bd):
     assert 0.15 < bd.MAX_REF_MARGIN < 0.5
+
+
+def test_mens_grand_slams_are_best_of_five(bd):
+    """`best_of` is a trained feature -- over five sets the same Elo gap
+    converts to a higher win probability. Every match was scored as
+    best-of-three until the US Open put 104 five-setters on the card."""
+    assert bd.best_of_for("US Open", "atp") == 5
+    assert bd.best_of_for("Wimbledon", "atp") == 5
+    assert bd.best_of_for("Roland Garros", "atp") == 5
+
+
+def test_women_play_three_sets_at_the_majors(bd):
+    assert bd.best_of_for("US Open", "wta") == 3
+    assert bd.best_of_for("Australian Open", "wta") == 3
+
+
+def test_everything_else_stays_best_of_three(bd):
+    assert bd.best_of_for("Winston Salem", "atp") == 3
+    assert bd.best_of_for("Augsburg challenger", "atp") == 3
+    assert bd.best_of_for("Monterrey", "wta") == 3
