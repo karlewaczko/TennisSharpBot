@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-08-24T19:07:28+00:00",
+ "generated_at": "2026-08-24T19:12:12+00:00",
  "threshold": 0.05,
  "n_scheduled": 204,
  "n_finished": 85,
  "n_scored": 137,
- "n_signals": 2,
+ "n_signals": 0,
  "n_by_method": {
   "model": 48,
   "ta_elo": 89
@@ -16,12 +16,11 @@
  "ref_books": {
   "1xBet": 2,
   "Betfair": 15,
-  "Betsson": 4,
+  "Betsson": 5,
   "Betway": 14,
   "Interwetten": 1,
   "Pinnacle": 10,
   "TennisExplorer": 86,
-  "Unibet": 1,
   "bet365": 4
  },
  "matches": [
@@ -61,6 +60,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2935,
    "signal": false
   },
@@ -100,6 +100,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2744,
    "signal": false
   },
@@ -139,6 +140,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2658,
    "signal": false
   },
@@ -178,6 +180,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2569,
    "signal": false
   },
@@ -217,6 +220,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.249,
    "signal": false
   },
@@ -256,6 +260,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2288,
    "signal": false
   },
@@ -295,6 +300,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2255,
    "signal": false
   },
@@ -334,6 +340,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2235,
    "signal": false
   },
@@ -373,6 +380,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2217,
    "signal": false
   },
@@ -412,6 +420,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2127,
    "signal": false
   },
@@ -451,6 +460,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.2047,
    "signal": false
   },
@@ -490,6 +500,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1716,
    "signal": false
   },
@@ -529,6 +540,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1661,
    "signal": false
   },
@@ -568,6 +580,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1601,
    "signal": false
   },
@@ -607,6 +620,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1583,
    "signal": false
   },
@@ -646,6 +660,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.158,
    "signal": false
   },
@@ -685,6 +700,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1417,
    "signal": false
   },
@@ -724,6 +740,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1364,
    "signal": false
   },
@@ -763,6 +780,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1357,
    "signal": false
   },
@@ -802,6 +820,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1263,
    "signal": false
   },
@@ -841,6 +860,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1261,
    "signal": false
   },
@@ -880,6 +900,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1258,
    "signal": false
   },
@@ -919,6 +940,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1212,
    "signal": false
   },
@@ -958,6 +980,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1158,
    "signal": false
   },
@@ -997,6 +1020,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1151,
    "signal": false
   },
@@ -1036,6 +1060,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1146,
    "signal": false
   },
@@ -1075,6 +1100,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1122,
    "signal": false
   },
@@ -1114,6 +1140,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1115,
    "signal": false
   },
@@ -1153,6 +1180,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.11,
    "signal": false
   },
@@ -1192,6 +1220,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.1097,
    "signal": false
   },
@@ -1231,6 +1260,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0964,
    "signal": false
   },
@@ -1270,6 +1300,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0889,
    "signal": false
   },
@@ -1309,6 +1340,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0871,
    "signal": false
   },
@@ -1348,6 +1380,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0839,
    "signal": false
   },
@@ -1387,6 +1420,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0789,
    "signal": false
   },
@@ -1426,6 +1460,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0778,
    "signal": false
   },
@@ -1465,6 +1500,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0774,
    "signal": false
   },
@@ -1504,6 +1540,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.077,
    "signal": false
   },
@@ -1543,6 +1580,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0764,
    "signal": false
   },
@@ -1582,6 +1620,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0744,
    "signal": false
   },
@@ -1621,6 +1660,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0739,
    "signal": false
   },
@@ -1660,6 +1700,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0733,
    "signal": false
   },
@@ -1699,6 +1740,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0726,
    "signal": false
   },
@@ -1738,6 +1780,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0721,
    "signal": false
   },
@@ -1777,6 +1820,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0712,
    "signal": false
   },
@@ -1816,6 +1860,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0659,
    "signal": false
   },
@@ -1855,6 +1900,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0576,
    "signal": false
   },
@@ -1894,6 +1940,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.057,
    "signal": false
   },
@@ -1933,6 +1980,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0558,
    "signal": false
   },
@@ -1972,6 +2020,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0553,
    "signal": false
   },
@@ -2011,6 +2060,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0536,
    "signal": false
   },
@@ -2050,6 +2100,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0531,
    "signal": false
   },
@@ -2089,6 +2140,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.053,
    "signal": false
   },
@@ -2128,8 +2180,11 @@
      "matches": 16
     }
    ],
+   "stale_players": [
+    "Smith C."
+   ],
    "best_edge": 0.0529,
-   "signal": true
+   "signal": false
   },
   {
    "match_id": "3303443",
@@ -2167,6 +2222,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0522,
    "signal": false
   },
@@ -2206,6 +2262,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0522,
    "signal": false
   },
@@ -2245,8 +2302,12 @@
      "matches": 17
     }
    ],
+   "stale_players": [
+    "Pigossi L.",
+    "Papamichail D."
+   ],
    "best_edge": 0.052,
-   "signal": true
+   "signal": false
   },
   {
    "match_id": "3303331",
@@ -2284,6 +2345,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0492,
    "signal": false
   },
@@ -2323,6 +2385,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0424,
    "signal": false
   },
@@ -2361,6 +2424,9 @@
      "elo": 1436.6,
      "matches": 13
     }
+   ],
+   "stale_players": [
+    "Nardi L."
    ],
    "best_edge": 0.0416,
    "signal": false
@@ -2401,6 +2467,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0363,
    "signal": false
   },
@@ -2440,6 +2507,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0363,
    "signal": false
   },
@@ -2479,6 +2547,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0356,
    "signal": false
   },
@@ -2518,6 +2587,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0352,
    "signal": false
   },
@@ -2557,6 +2627,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.035,
    "signal": false
   },
@@ -2595,6 +2666,9 @@
      "elo": 1591.1,
      "matches": 360
     }
+   ],
+   "stale_players": [
+    "Hercog P."
    ],
    "best_edge": 0.0345,
    "signal": false
@@ -2635,6 +2709,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0342,
    "signal": false
   },
@@ -2674,6 +2749,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.034,
    "signal": false
   },
@@ -2712,6 +2788,9 @@
      "elo": 1557.0,
      "matches": 13
     }
+   ],
+   "stale_players": [
+    "Blanchet U."
    ],
    "best_edge": 0.0328,
    "signal": false
@@ -2752,6 +2831,9 @@
      "matches": 143
     }
    ],
+   "stale_players": [
+    "Harris L."
+   ],
    "best_edge": 0.0321,
    "signal": false
   },
@@ -2790,6 +2872,9 @@
      "elo": 1719.1,
      "matches": 78
     }
+   ],
+   "stale_players": [
+    "Mmoh M."
    ],
    "best_edge": 0.031,
    "signal": false
@@ -2830,6 +2915,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0309,
    "signal": false
   },
@@ -2869,6 +2955,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0307,
    "signal": false
   },
@@ -2907,6 +2994,9 @@
      "elo": 1375.1,
      "matches": 14
     }
+   ],
+   "stale_players": [
+    "Brancaccio N."
    ],
    "best_edge": 0.0302,
    "signal": false
@@ -2947,6 +3037,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0278,
    "signal": false
   },
@@ -2985,6 +3076,9 @@
      "elo": 1563.4,
      "matches": 35
     }
+   ],
+   "stale_players": [
+    "Inglis M."
    ],
    "best_edge": 0.0273,
    "signal": false
@@ -3025,6 +3119,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0266,
    "signal": false
   },
@@ -3064,6 +3159,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0264,
    "signal": false
   },
@@ -3102,6 +3198,9 @@
      "elo": 1566.2,
      "matches": 11
     }
+   ],
+   "stale_players": [
+    "Lamens S."
    ],
    "best_edge": 0.0261,
    "signal": false
@@ -3142,6 +3241,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0257,
    "signal": false
   },
@@ -3180,6 +3280,9 @@
      "elo": 1468.8,
      "matches": 14
     }
+   ],
+   "stale_players": [
+    "Shelbayh A."
    ],
    "best_edge": 0.0256,
    "signal": false
@@ -3220,6 +3323,7 @@
      "matches": 325
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0249,
    "signal": false
   },
@@ -3258,6 +3362,10 @@
      "elo": 1639.7,
      "matches": 226
     }
+   ],
+   "stale_players": [
+    "Napolitano S.",
+    "Mcdonald M."
    ],
    "best_edge": 0.0248,
    "signal": false
@@ -3298,6 +3406,7 @@
      "matches": 30
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0246,
    "signal": false
   },
@@ -3337,6 +3446,7 @@
      "matches": 29
     }
    ],
+   "stale_players": [],
    "best_edge": 0.024,
    "signal": false
   },
@@ -3376,6 +3486,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0233,
    "signal": false
   },
@@ -3415,6 +3526,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0231,
    "signal": false
   },
@@ -3454,6 +3566,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0226,
    "signal": false
   },
@@ -3493,6 +3606,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0213,
    "signal": false
   },
@@ -3532,6 +3646,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0212,
    "signal": false
   },
@@ -3570,6 +3685,9 @@
      "elo": 1479.6,
      "matches": 27
     }
+   ],
+   "stale_players": [
+    "Grenier H."
    ],
    "best_edge": 0.0209,
    "signal": false
@@ -3610,6 +3728,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0205,
    "signal": false
   },
@@ -3649,6 +3768,7 @@
      "matches": 546
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0203,
    "signal": false
   },
@@ -3688,6 +3808,7 @@
      "matches": 547
     }
    ],
+   "stale_players": [],
    "best_edge": 0.02,
    "signal": false
   },
@@ -3726,6 +3847,9 @@
      "elo": 1577.8,
      "matches": 13
     }
+   ],
+   "stale_players": [
+    "Moller E."
    ],
    "best_edge": 0.0197,
    "signal": false
@@ -3766,46 +3890,48 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0193,
    "signal": false
   },
   {
-   "match_id": "3302963",
+   "match_id": "3303381",
    "date": "2026-08-25",
    "tournament": "US Open",
-   "tour": "wta",
+   "tour": "atp",
    "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Unibet",
-   "ref_margin": 0.0656,
+   "best_of": 5,
+   "ref_book": "Betfair",
+   "ref_margin": 0.0316,
    "method": "model",
    "sides": [
     {
-     "player": "Hruncakova V.",
-     "model_prob": 0.467,
-     "model_fair_odds": 2.141,
-     "market_prob": 0.448,
-     "market_fair_odds": 2.232,
-     "ref_odds": 2.08,
-     "edge": 0.019,
-     "ev_at_ref": -0.0286,
-     "elo": 1530.1,
-     "matches": 17
+     "player": "Ofner S.",
+     "model_prob": 0.5319,
+     "model_fair_odds": 1.88,
+     "market_prob": 0.5133,
+     "market_fair_odds": 1.948,
+     "ref_odds": 1.89,
+     "edge": 0.0186,
+     "ev_at_ref": 0.0054,
+     "elo": 1605.6,
+     "matches": 120
     },
     {
-     "player": "Riera J.",
-     "model_prob": 0.533,
-     "model_fair_odds": 1.876,
-     "market_prob": 0.552,
-     "market_fair_odds": 1.812,
-     "ref_odds": 1.71,
-     "edge": -0.019,
-     "ev_at_ref": -0.0886,
-     "elo": 1634.8,
-     "matches": 26
+     "player": "Nishikori K.",
+     "model_prob": 0.4681,
+     "model_fair_odds": 2.136,
+     "market_prob": 0.4867,
+     "market_fair_odds": 2.055,
+     "ref_odds": 1.99,
+     "edge": -0.0186,
+     "ev_at_ref": -0.0685,
+     "elo": 1783.8,
+     "matches": 609
     }
    ],
-   "best_edge": 0.019,
+   "stale_players": [],
+   "best_edge": 0.0186,
    "signal": false
   },
   {
@@ -3844,6 +3970,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0175,
    "signal": false
   },
@@ -3883,6 +4010,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0167,
    "signal": false
   },
@@ -3921,6 +4049,9 @@
      "elo": 1294.8,
      "matches": 31
     }
+   ],
+   "stale_players": [
+    "Cabrera L."
    ],
    "best_edge": 0.013,
    "signal": false
@@ -3961,6 +4092,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0129,
    "signal": false
   },
@@ -3999,6 +4131,10 @@
      "elo": 1626.8,
      "matches": 234
     }
+   ],
+   "stale_players": [
+    "Johnson S.",
+    "Garin C."
    ],
    "best_edge": 0.0128,
    "signal": false
@@ -4039,6 +4175,9 @@
      "matches": 71
     }
    ],
+   "stale_players": [
+    "Comesana F."
+   ],
    "best_edge": 0.0125,
    "signal": false
   },
@@ -4078,6 +4217,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0121,
    "signal": false
   },
@@ -4117,6 +4257,7 @@
      "matches": 147
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0113,
    "signal": false
   },
@@ -4156,6 +4297,7 @@
      "matches": 55
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0112,
    "signal": false
   },
@@ -4195,6 +4337,7 @@
      "matches": 282
     }
    ],
+   "stale_players": [],
    "best_edge": 0.011,
    "signal": false
   },
@@ -4234,6 +4377,7 @@
      "matches": 92
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0109,
    "signal": false
   },
@@ -4272,6 +4416,9 @@
      "elo": 1612.7,
      "matches": 18
     }
+   ],
+   "stale_players": [
+    "Bolt A."
    ],
    "best_edge": 0.0103,
    "signal": false
@@ -4312,6 +4459,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0101,
    "signal": false
   },
@@ -4350,6 +4498,9 @@
      "elo": 1533.9,
      "matches": 440
     }
+   ],
+   "stale_players": [
+    "Mladenovic K."
    ],
    "best_edge": 0.0093,
    "signal": false
@@ -4390,6 +4541,7 @@
      "matches": 113
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0092,
    "signal": false
   },
@@ -4429,6 +4581,7 @@
      "matches": 159
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0092,
    "signal": false
   },
@@ -4467,6 +4620,9 @@
      "elo": 1553.7,
      "matches": 43
     }
+   ],
+   "stale_players": [
+    "Gorgodze E."
    ],
    "best_edge": 0.0089,
    "signal": false
@@ -4507,6 +4663,7 @@
      "matches": 152
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0089,
    "signal": false
   },
@@ -4546,6 +4703,7 @@
      "matches": 133
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0081,
    "signal": false
   },
@@ -4585,6 +4743,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0079,
    "signal": false
   },
@@ -4624,7 +4783,51 @@
      "matches": 13
     }
    ],
+   "stale_players": [],
    "best_edge": 0.007,
+   "signal": false
+  },
+  {
+   "match_id": "3302963",
+   "date": "2026-08-25",
+   "tournament": "US Open",
+   "tour": "wta",
+   "surface": "Hard",
+   "best_of": 3,
+   "ref_book": "Betsson",
+   "ref_margin": 0.0633,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Hruncakova V.",
+     "model_prob": 0.4534,
+     "model_fair_odds": 2.206,
+     "market_prob": 0.4468,
+     "market_fair_odds": 2.238,
+     "ref_odds": 2.09,
+     "edge": 0.0066,
+     "ev_at_ref": -0.0524,
+     "elo": 1530.1,
+     "matches": 17
+    },
+    {
+     "player": "Riera J.",
+     "model_prob": 0.5466,
+     "model_fair_odds": 1.829,
+     "market_prob": 0.5532,
+     "market_fair_odds": 1.808,
+     "ref_odds": 1.71,
+     "edge": -0.0066,
+     "ev_at_ref": -0.0653,
+     "elo": 1634.8,
+     "matches": 26
+    }
+   ],
+   "stale_players": [
+    "Hruncakova V.",
+    "Riera J."
+   ],
+   "best_edge": 0.0066,
    "signal": false
   },
   {
@@ -4663,6 +4866,7 @@
      "matches": 93
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0058,
    "signal": false
   },
@@ -4702,6 +4906,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0057,
    "signal": false
   },
@@ -4741,6 +4946,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0052,
    "signal": false
   },
@@ -4779,6 +4985,9 @@
      "elo": 1600.9,
      "matches": 449
     }
+   ],
+   "stale_players": [
+    "Kwon S.W."
    ],
    "best_edge": 0.0052,
    "signal": false
@@ -4819,6 +5028,9 @@
      "matches": 12
     }
    ],
+   "stale_players": [
+    "Guo H."
+   ],
    "best_edge": 0.0049,
    "signal": false
   },
@@ -4858,6 +5070,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0047,
    "signal": false
   },
@@ -4897,6 +5110,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0044,
    "signal": false
   },
@@ -4936,6 +5150,7 @@
      "matches": 148
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0043,
    "signal": false
   },
@@ -4974,6 +5189,9 @@
      "elo": 1575.2,
      "matches": 340
     }
+   ],
+   "stale_players": [
+    "Watson H."
    ],
    "best_edge": 0.0042,
    "signal": false
@@ -5014,6 +5232,9 @@
      "matches": 66
     }
    ],
+   "stale_players": [
+    "Brouwer G."
+   ],
    "best_edge": 0.0035,
    "signal": false
   },
@@ -5053,6 +5274,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0033,
    "signal": false
   },
@@ -5092,6 +5314,7 @@
      "matches": 109
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0023,
    "signal": false
   },
@@ -5131,6 +5354,7 @@
      "matches": 331
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0019,
    "signal": false
   },
@@ -5170,6 +5394,7 @@
      "matches": 469
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0015,
    "signal": false
   },
@@ -5208,6 +5433,9 @@
      "elo": 1420.6,
      "matches": 41
     }
+   ],
+   "stale_players": [
+    "Nagal S."
    ],
    "best_edge": 0.001,
    "signal": false
@@ -5248,6 +5476,7 @@
      "matches": null
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0005,
    "signal": false
   },
@@ -5286,6 +5515,9 @@
      "elo": 1584.3,
      "matches": 52
     }
+   ],
+   "stale_players": [
+    "Broady L."
    ],
    "best_edge": 0.0005,
    "signal": false
@@ -5326,46 +5558,8 @@
      "matches": 77
     }
    ],
+   "stale_players": [],
    "best_edge": 0.0002,
-   "signal": false
-  },
-  {
-   "match_id": "3303381",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betfair",
-   "ref_margin": 0.0367,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Ofner S.",
-     "model_prob": 0.5108,
-     "model_fair_odds": 1.958,
-     "market_prob": 0.5107,
-     "market_fair_odds": 1.958,
-     "ref_odds": 1.89,
-     "edge": 0.0001,
-     "ev_at_ref": -0.0346,
-     "elo": 1605.6,
-     "matches": 120
-    },
-    {
-     "player": "Nishikori K.",
-     "model_prob": 0.4892,
-     "model_fair_odds": 2.044,
-     "market_prob": 0.4893,
-     "market_fair_odds": 2.044,
-     "ref_odds": 1.97,
-     "edge": -0.0001,
-     "ev_at_ref": -0.0363,
-     "elo": 1783.8,
-     "matches": 609
-    }
-   ],
-   "best_edge": 0.0001,
    "signal": false
   }
  ],
