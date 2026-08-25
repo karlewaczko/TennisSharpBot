@@ -48,6 +48,12 @@ _RESULT_RE = re.compile(r'<td class="result">([^<]*)</td>')
 _SCORE_CELL_RE = re.compile(r'<td class="score">([^<]*)</td>')
 
 
+# The columns parse_matches_html emits, in the order it builds them.
+MATCH_COLUMNS = ("tournament", "tournament_url", "player1", "player1_slug",
+                 "odds1", "odds2", "match_id", "sets_won1", "player2",
+                 "player2_slug", "sets_won2", "score")
+
+
 def _clean_cell(text: str | None) -> str | None:
     """Strip the site's non-breaking-space placeholder (sometimes missing
     its trailing semicolon, a site-side markup bug) down to None."""
@@ -127,7 +133,11 @@ def parse_matches_html(html: str) -> pd.DataFrame:
             rows.append(pending)
             pending = None
 
-    df = pd.DataFrame(rows)
+    # A day the site has not filled in yet parses to nothing. Returning a
+    # bare DataFrame() there hands callers a frame with no columns at all, so
+    # the first `df["score"]` raises instead of yielding an empty selection --
+    # fetching three days ahead hits this whenever the last one is still blank.
+    df = pd.DataFrame(rows, columns=None if rows else list(MATCH_COLUMNS))
     for col in ("sets_won1", "sets_won2"):
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")

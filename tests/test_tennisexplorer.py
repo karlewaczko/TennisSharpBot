@@ -114,3 +114,24 @@ def test_day_url_zero_pads_so_the_site_reads_the_date():
 def test_day_for_offset_is_the_calendar_date():
     assert day_for_offset(2, today=dt.date(2026, 8, 22)) == dt.date(2026, 8, 24)
     assert day_for_offset(0, today=dt.date(2026, 8, 22)) == dt.date(2026, 8, 22)
+
+
+def test_a_blank_day_still_has_the_columns():
+    """A date the site has not filled in yet parses to no rows. Returning a
+    frame with no columns makes the first `df["score"]` raise instead of
+    selecting nothing -- fetching three days ahead hits this routinely."""
+    df = parse_matches_html("<html><body>nothing scheduled</body></html>")
+    assert df.empty
+    for col in ("score", "sets_won1", "sets_won2", "odds1", "match_id", "tournament"):
+        assert col in df.columns
+    assert df["score"].notna().sum() == 0
+
+
+def test_a_blank_day_survives_a_concat_with_a_real_one():
+    import pandas as pd
+    real = parse_matches_html(
+        (FIXTURES / "tennisexplorer_matches_sample.html").read_text(encoding="utf-8"))
+    blank = parse_matches_html("<html></html>")
+    both = pd.concat([real, blank], ignore_index=True)
+    assert len(both) == len(real)
+    assert list(both.columns) == list(real.columns)
