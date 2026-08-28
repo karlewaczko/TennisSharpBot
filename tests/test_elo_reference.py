@@ -1,10 +1,19 @@
-"""Ground-truth checks on the stored Tennis Abstract Elo tables.
+"""Structural checks on the stored Tennis Abstract Elo tables.
 
 The scrape reads an HTML table whose column order the site can change without
 notice; a silent shift would mis-assign ratings across the whole file while
-still producing a plausible-looking CSV. These values were transcribed from
-the published leaderboards (last update 2026-08-10) and pin the ends and the
-middle of each table, so a shifted or truncated parse fails loudly.
+still producing a plausible-looking CSV. That is what these tests exist to
+catch.
+
+They used to catch it by pinning exact ratings transcribed from the published
+leaderboards. That does not work against a live table: Tennis Abstract
+recomputes after every tournament, so the pins went red on a legitimate
+refresh (the US Open alone moved Djokovic 1975.5 -> 2061.0 and Sabalenka
+2194.6 -> 2180.9) and a red build then said nothing about whether the parse
+was still correct. A test that fails on correct data cannot report a fault.
+
+The invariants below hold for every edition of the table and break under
+exactly the failure being guarded against -- a shifted or truncated parse.
 
 Skips rather than fails when the files are absent -- they are refreshed by
 scripts/update_data.py and a clean checkout may not have run it yet.
@@ -14,23 +23,13 @@ import pytest
 
 from tennissharp import config
 
-# (player, elo, helo, elo_rank) straight off the published tables.
-WTA_REFERENCE = [
-    ("Aryna Sabalenka", 2194.6, 2179.4, 1),
-    ("Elena Rybakina", 2125.8, 2114.5, 2),
-    ("Camila Osorio", 1795.7, 1766.9, 55),
-    ("Ann Li", 1778.3, 1725.2, 67),
-    ("Sara Lanca", 1019.6, 1003.5, 547),
-]
-ATP_REFERENCE = [
-    ("Jannik Sinner", 2321.9, 2259.3, 1),
-    ("Carlos Alcaraz", 2146.8, 2073.3, 2),
-    ("Novak Djokovic", 1975.5, 1929.8, 7),
-    ("Jan Kumstat", 1719.2, 1487.1, 100),
-    ("Pierre Hugues Herbert", 1571.4, 1558.8, 197),
-    ("Maximo Zeitune", 1043.6, 1131.8, 552),
-]
-EXPECTED_ROWS = {"wta": 547, "atp": 552}
+# Players who have been rated for years and will not vanish between updates.
+# Their presence is what a truncated or mis-keyed parse loses first.
+ANCHORS = {"atp": ["Jannik Sinner", "Carlos Alcaraz", "Novak Djokovic"],
+           "wta": ["Aryna Sabalenka", "Elena Rybakina"]}
+# The published tables have run 500-600 rows per tour for years. A parse that
+# grabbed the wrong table, or stopped early, lands far outside this.
+PLAUSIBLE_ROWS = (350, 800)
 
 
 def _load(tour: str) -> pd.DataFrame:
@@ -40,26 +39,42 @@ def _load(tour: str) -> pd.DataFrame:
     return pd.read_csv(path)
 
 
-@pytest.mark.parametrize("tour,reference", [("wta", WTA_REFERENCE), ("atp", ATP_REFERENCE)])
-def test_ratings_match_the_published_table(tour, reference):
-    df = _load(tour).set_index("player")
-    for player, elo, helo, rank in reference:
-        assert player in df.index, f"{player} fehlt in ta_elo_{tour}_general.csv"
-        row = df.loc[player]
-        assert row["elo"] == pytest.approx(elo, abs=0.05)
-        assert row["helo"] == pytest.approx(helo, abs=0.05)
-        assert int(row["elo_rank"]) == rank
+@pytest.mark.parametrize("tour", ["wta", "atp"])
+def test_rating_falls_with_rank(tour):
+    """The decisive check. `elo_rank` is the site's own ordering by `elo`, so
+    the two columns must agree row by row -- and they stop agreeing the moment
+    a column shift puts some other number in the `elo` position."""
+    df = _load(tour).sort_values("elo_rank")
+    elo = df["elo"].tolist()
+    for higher, lower in zip(elo, elo[1:]):
+        assert higher >= lower - 1e-9, f"elo steigt bei fallendem Rang ({higher} -> {lower})"
 
 
 @pytest.mark.parametrize("tour", ["wta", "atp"])
 def test_table_is_complete_and_rank_ordered(tour):
-    """A truncated scrape still parses; the row count and a contiguous rank
-    sequence are what catch it."""
+    """A truncated scrape still parses; a contiguous rank sequence catches it.
+    The row count moves between editions, so it is bounded, not pinned."""
     df = _load(tour)
-    assert len(df) == EXPECTED_ROWS[tour]
+    assert PLAUSIBLE_ROWS[0] <= len(df) <= PLAUSIBLE_ROWS[1]
     ranks = df["elo_rank"].dropna().astype(int).tolist()
     assert ranks == sorted(ranks)
-    assert ranks[0] == 1 and ranks[-1] == EXPECTED_ROWS[tour]
+    assert ranks[0] == 1 and ranks[-1] == len(df)
+
+
+@pytest.mark.parametrize("tour", ["wta", "atp"])
+def test_the_long_standing_names_are_present(tour):
+    df = _load(tour).set_index("player")
+    for player in ANCHORS[tour]:
+        assert player in df.index, f"{player} fehlt in ta_elo_{tour}_general.csv"
+
+
+@pytest.mark.parametrize("tour", ["wta", "atp"])
+def test_ratings_sit_on_the_elo_scale(tour):
+    """Ratings run roughly 1000-2400. A shift that pulled in age (15-42) or
+    the official ranking (1-1500) would leave this band immediately."""
+    df = _load(tour)
+    assert df["elo"].between(800, 2600).all()
+    assert df["elo"].max() > 2000, "kein Spieler auf Weltklasse-Niveau -- falsche Spalte?"
 
 
 @pytest.mark.parametrize("tour", ["wta", "atp"])
