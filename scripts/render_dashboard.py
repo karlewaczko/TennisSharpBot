@@ -137,6 +137,7 @@ h1 { font-size:29px; font-weight:700; letter-spacing:-.02em; line-height:1.1; }
 .chip.day { text-transform:none; letter-spacing:.02em; color:var(--text);
             font-family:"IBM Plex Mono",monospace; }
 .chip.stale { color:var(--warn); border-color:var(--warn); background:var(--warn-soft); }
+.chip.quali { text-transform:none; letter-spacing:.02em; }
 
 /* divergence bar: market vs model on one axis */
 .bar { position:relative; height:6px; border-radius:3px; background:var(--surface-2);
@@ -306,6 +307,17 @@ def day_chip(iso: str | None) -> str:
             f'{day.day:02d}.{day.month:02d}.</span>')
 
 
+def round_chip(match: dict) -> str:
+    """Qualifying is a different event from the main draw -- different format
+    for the men, and a field our own history barely covers. A row that does
+    not say so reads as a main-draw match."""
+    rnd = match.get("round")
+    if not rnd:
+        return ""
+    cls = "chip quali" if match.get("is_qualifying") else "chip"
+    return f'<span class="{cls}">{rnd}</span>'
+
+
 def stale_chip(players) -> str:
     """Marks a row whose rest/form features describe a gap in our feed rather
     than the player. Such a row is never counted as a signal, but it still
@@ -363,6 +375,7 @@ def render(data: dict) -> str:
                 f'{day_chip(m.get("date"))}'
                 f'<span class="{chip}">{m["ref_book"]}</span>'
                 f'<span class="chip">{m["tour"].upper()}</span>'
+                f'{round_chip(m)}'
                 f'{stale_chip(m.get("stale_players"))}'
                 f'<span>Marge {pct(m["ref_margin"], 1)}</span></div>')
             for sd in (a, b):

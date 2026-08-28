@@ -135,3 +135,37 @@ def test_a_blank_day_survives_a_concat_with_a_real_one():
     both = pd.concat([real, blank], ignore_index=True)
     assert len(both) == len(real)
     assert list(both.columns) == list(real.columns)
+
+
+_CONTEXT_QUALI = ('<div id="center">\n<h1 class="bg">Svrcina - McDonald</h1>\n'
+                  '<div class="box boxBasic lGray"><span class="upper">Today</span>, 17:00, '
+                  '<a href="/us-open/2026/atp-men/">US Open</a>, Qualification - 3. round, hard'
+                  '<iframe src="https://www.facebook.com/plugins/like.php"></iframe></div>')
+_CONTEXT_MAIN = ('<div class="box boxBasic lGray"><span class="upper">28.08.</span>, 14:00, '
+                 '<a href="/augsburg-challenger/2026/atp-men/">Augsburg challenger</a>, '
+                 'semifinal, clay<iframe src="x"></iframe></div>')
+
+
+def test_match_context_reads_the_qualifying_round():
+    """Qualifying and the main draw share a tournament name AND a URL on the
+    schedule page, so only the match page can tell them apart."""
+    from tennissharp.data.tennisexplorer import parse_match_context_html
+    ctx = parse_match_context_html(_CONTEXT_QUALI)
+    assert ctx["is_qualifying"] is True
+    assert ctx["round"] == "Qualification - 3. round"
+    assert ctx["surface"] == "Hard"
+
+
+def test_match_context_reads_a_main_draw_round_and_surface():
+    from tennissharp.data.tennisexplorer import parse_match_context_html
+    ctx = parse_match_context_html(_CONTEXT_MAIN)
+    assert ctx["is_qualifying"] is False
+    assert ctx["round"] == "semifinal"
+    # The tournament-name lookup had this clay challenger on hard court.
+    assert ctx["surface"] == "Clay"
+
+
+def test_match_context_on_a_page_without_the_header():
+    from tennissharp.data.tennisexplorer import parse_match_context_html
+    ctx = parse_match_context_html("<html><body>nothing</body></html>")
+    assert ctx == {"round": None, "is_qualifying": False, "surface": None}

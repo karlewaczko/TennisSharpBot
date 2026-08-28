@@ -125,3 +125,13 @@ def test_everything_else_stays_best_of_three(bd):
     assert bd.best_of_for("Winston Salem", "atp") == 3
     assert bd.best_of_for("Augsburg challenger", "atp") == 3
     assert bd.best_of_for("Monterrey", "wta") == 3
+
+
+def test_grand_slam_qualifying_is_best_of_three(bd):
+    """The men's majors play five sets in the main draw only. Qualifying
+    carries the same tournament name and URL on the schedule page, so reading
+    the name alone scored 70 finished US Open qualifiers as five-setters."""
+    assert bd.best_of_for("US Open", "atp", is_qualifying=True) == 3
+    assert bd.best_of_for("Wimbledon", "atp", is_qualifying=True) == 3
+    # The main draw is unaffected.
+    assert bd.best_of_for("US Open", "atp", is_qualifying=False) == 5

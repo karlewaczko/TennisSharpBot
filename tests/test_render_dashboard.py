@@ -233,3 +233,29 @@ def test_rows_with_current_data_carry_no_stale_chip(rd):
     data = _payload()
     data["matches"][0]["stale_players"] = []
     assert "Daten veraltet" not in rd.render(data)
+
+
+def test_qualifying_rows_name_their_round(rd):
+    """Qualifying is a different event from the main draw -- best of three for
+    the men, and a field our history barely covers. A row that does not say so
+    reads as a main-draw match."""
+    data = _payload()
+    data["matches"][0]["round"] = "Qualification - 3. round"
+    data["matches"][0]["is_qualifying"] = True
+    html = rd.render(data)
+    assert "Qualification - 3. round" in html
+    assert "chip quali" in html
+
+
+def test_main_draw_rounds_are_shown_without_the_qualifying_style(rd):
+    data = _payload()
+    data["matches"][0]["round"] = "quarterfinal"
+    data["matches"][0]["is_qualifying"] = False
+    html = rd.render(data)
+    assert "quarterfinal" in html
+    assert "chip quali" not in html
+
+
+def test_a_row_without_a_round_still_renders(rd):
+    html = rd.render(_payload())
+    assert re.findall(r"__[A-Z_]+__", html) == []

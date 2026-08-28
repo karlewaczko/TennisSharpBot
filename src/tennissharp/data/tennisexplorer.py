@@ -304,6 +304,63 @@ def parse_odds_history_html(html: str, reference_date: dt.date | None = None) ->
     return df.sort_values(["bookmaker", "player", "timestamp"]).reset_index(drop=True) if not df.empty else df
 
 
+# The match-detail header, e.g.
+#   <div class="box boxBasic lGray"><span class="upper">Today</span>, 17:00,
+#   <a href="/us-open/2026/atp-men/">US Open</a>, Qualification - 3. round, hard
+# The schedule page carries none of this: qualifying and main draw share a
+# tournament name AND a URL there, and the surface is never stated at all.
+# The text runs to the next tag, not to </div> -- a Facebook <iframe>
+# follows it immediately inside the same box.
+_CONTEXT_RE = re.compile(
+    r'<div class="box boxBasic[^"]*">.*?</a>\s*,\s*([^<]+)', re.DOTALL)
+
+QUALIFYING_MARKERS = ("qualification", "qualifying", "qualif")
+
+
+def parse_match_context_html(html: str) -> dict:
+    """{'round': str|None, 'is_qualifying': bool, 'surface': str|None}
+
+    Round and surface both matter for scoring. Men's Grand Slam *qualifying*
+    is best of three while the main draw is best of five, and nothing on the
+    schedule page distinguishes them -- 70 finished US Open qualifying
+    matches were scored as five-setters before this existed.
+    """
+    out = {"round": None, "is_qualifying": False, "surface": None}
+    m = _CONTEXT_RE.search(html)
+    if not m:
+        return out
+    # "Qualification - 3. round, hard" -> round part, surface part.
+    tail = re.sub(r"\s+", " ", m.group(1)).strip().rstrip(",")
+    parts = [p.strip() for p in tail.split(",") if p.strip()]
+    if not parts:
+        return out
+    out["surface"] = parts[-1].title() if len(parts) > 1 else None
+    out["round"] = parts[0] if len(parts) > 1 else tail
+    lowered = (out["round"] or "").lower()
+    out["is_qualifying"] = any(k in lowered for k in QUALIFYING_MARKERS)
+    return out
+
+
+def _fetch_match_detail_html(match_id: str | int) -> str:
+    resp = requests.get(f"{BASE_URL}/match-detail/?id={match_id}", headers=_HEADERS, timeout=30)
+    resp.raise_for_status()
+    return resp.text
+
+
+def fetch_match_context(match_id: str | int) -> dict:
+    return parse_match_context_html(_fetch_match_detail_html(match_id))
+
+
+def fetch_match_detail(match_id: str | int) -> tuple[pd.DataFrame, dict]:
+    """(odds history, context) from a single request.
+
+    Both live on the same page, and a full card is a few hundred of these --
+    fetching it twice would double the slowest part of a dashboard build.
+    """
+    html = _fetch_match_detail_html(match_id)
+    return parse_odds_history_html(html), parse_match_context_html(html)
+
+
 def fetch_match_odds_history(match_id: str | int) -> pd.DataFrame:
     """Odds-movement timeline for one match, straight from its match-detail
     page (`match_id` comes from `fetch_matches()`'s `match_id` column).

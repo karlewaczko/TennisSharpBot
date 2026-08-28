@@ -64,17 +64,20 @@ MAX_REF_MARGIN = 0.30
 
 # `best_of` is a trained feature: five-setters give the stronger player more
 # chances to assert himself, so the same Elo gap converts to a higher win
-# probability than over three sets. Every match was scored as best-of-three
-# until now, which was harmless while the card held no majors and wrong for
-# 104 US Open matches the moment one started.
+# probability than over three sets.
 GRAND_SLAMS = ("australian open", "roland garros", "french open", "wimbledon", "us open")
 
 
-def best_of_for(tournament: str, tour: str) -> int:
-    """Men's Grand Slam main draws only. Women play three sets at the majors,
-    and men's qualifying is best-of-three too -- TennisExplorer lists that
-    under its own tournament name, so it never reaches this test."""
-    if tour != "atp":
+def best_of_for(tournament: str, tour: str, is_qualifying: bool = False) -> int:
+    """Five sets only in a men's Grand Slam *main draw*.
+
+    Qualifying at the majors is best of three, and the schedule page gives it
+    the same tournament name and the same URL as the main draw -- so the name
+    alone cannot tell them apart. Reading it as a five-setter mis-scored 70
+    finished US Open qualifying matches before the round came from the
+    match-detail page instead.
+    """
+    if tour != "atp" or is_qualifying:
         return 3
     name = str(tournament).lower()
     return 5 if any(slam in name for slam in GRAND_SLAMS) else 3
@@ -136,18 +139,20 @@ def unplayed_mask(sched: pd.DataFrame) -> pd.Series:
 
 
 def _sharp_reference(match_id):
-    """(book, [odds_a, odds_b], players) from the sharpest book quoting this
-    match, preferring Pinnacle, then Betfair, then lowest margin."""
+    """((book, [odds_a, odds_b], players), context) from the sharpest book
+    quoting this match, preferring Pinnacle, then Betfair, then lowest margin.
+    The context (round, qualifying flag, surface) rides along from the same
+    page rather than costing a second request."""
     try:
-        hist = te.fetch_match_odds_history(match_id)
+        hist, context = te.fetch_match_detail(match_id)
     except Exception:
-        return None
+        return None, {}
     if hist.empty:
-        return None
+        return None, context
     cur = hist.sort_values("timestamp").groupby(["bookmaker", "player"]).last().reset_index()
     players = sorted(cur["player"].unique())
     if len(players) != 2:
-        return None
+        return None, context
 
     def quotes(book):
         rows = [cur[(cur["bookmaker"] == book) & (cur["player"] == pl)] for pl in players]
@@ -161,7 +166,7 @@ def _sharp_reference(match_id):
     for book in SHARP_BOOKS:
         q = quotes(book)
         if q and is_priced(q):
-            return book, q, players
+            return (book, q, players), context
 
     best, best_q, best_margin = None, None, None
     for book in cur["bookmaker"].unique():
@@ -170,7 +175,7 @@ def _sharp_reference(match_id):
             continue
         if best_margin is None or margin(q) < best_margin:
             best, best_q, best_margin = book, q, margin(q)
-    return (best, best_q, players) if best else None
+    return ((best, best_q, players) if best else None), context
 
 
 def main() -> None:
@@ -269,20 +274,17 @@ def main() -> None:
             thin_reason = f"{thin}: nur {played.get(thin, 0):.0f} Matches bei uns"
 
         # Our own Elo is too thin -- fall back to Tennis Abstract's rating if
-        # it covers both players, rather than dropping the match.
-        ta_fallback = None
-        if thin_reason:
-            court = court_surface(str(m["tournament"]))
-            ra = ta_rating(str(m["player1"]), court)
-            rb = ta_rating(str(m["player2"]), court)
-            if ra and rb:
-                ta_fallback = (ra, rb)
-            else:
-                skipped.append({"match": label, "tournament": str(m["tournament"]),
-                                "reason": thin_reason + " und kein Tennis-Abstract-Elo"})
-                continue
+        # it covers both players, rather than dropping the match. Whether they
+        # are in their table is a name question, settled here so a match we
+        # cannot score either way never costs a match-detail request; which
+        # rating to read is a surface question, settled once the page is in.
+        if thin_reason and not (resolve_name(str(m["player1"]), ta_names)
+                                and resolve_name(str(m["player2"]), ta_names)):
+            skipped.append({"match": label, "tournament": str(m["tournament"]),
+                            "reason": thin_reason + " und kein Tennis-Abstract-Elo"})
+            continue
 
-        ref = _sharp_reference(m["match_id"])
+        ref, context = _sharp_reference(m["match_id"])
         if ref is None:
             ref_book, ref_odds = "TennisExplorer", [float(m["odds1"]), float(m["odds2"])]
             ref_players = [str(m["player1"]), str(m["player2"])]
@@ -300,10 +302,24 @@ def main() -> None:
             continue
 
         tour = "wta" if "-women/" in str(m["tournament_url"]) else "atp"
-        surface = court_surface(str(m["tournament"]))
-        best_of = best_of_for(str(m["tournament"]), tour)
+        # The match page states the surface outright; the tournament-name
+        # lookup is only a fallback for a match whose page we could not read.
+        # It had Augsburg on hard court, which is a clay challenger.
+        surface = context.get("surface") or court_surface(str(m["tournament"]))
+        best_of = best_of_for(str(m["tournament"]), tour,
+                              is_qualifying=bool(context.get("is_qualifying")))
         speed = tourney_matching.lookup_surface_speed(
             speed_index, dt.date.today().year, str(m["tournament"]))
+
+        ta_fallback = None
+        if thin_reason:
+            ra = ta_rating(str(m["player1"]), surface)
+            rb = ta_rating(str(m["player2"]), surface)
+            if not (ra and rb):
+                skipped.append({"match": label, "tournament": str(m["tournament"]),
+                                "reason": thin_reason + " und kein Tennis-Abstract-Elo"})
+                continue
+            ta_fallback = (ra, rb)
 
         stale = []
         if ta_fallback:
@@ -358,6 +374,8 @@ def main() -> None:
             "tour": tour,
             "surface": surface,
             "best_of": best_of,
+            "round": context.get("round"),
+            "is_qualifying": bool(context.get("is_qualifying")),
             "ref_book": ref_book,
             "ref_margin": round(margin(ref_odds), 4),
             # "model" = our trained classifier with the market price blended in.
