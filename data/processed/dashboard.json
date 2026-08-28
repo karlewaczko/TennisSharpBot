@@ -1,824 +1,180 @@
 {
- "generated_at": "2026-08-25T09:57:38+00:00",
+ "generated_at": "2026-08-28T12:35:48+00:00",
  "threshold": 0.05,
- "n_scheduled": 303,
- "n_finished": 10,
- "n_scored": 131,
+ "n_scheduled": 51,
+ "n_finished": 56,
+ "n_scored": 26,
  "n_signals": 0,
  "n_by_method": {
-  "model": 48,
-  "ta_elo": 83
+  "model": 13,
+  "ta_elo": 13
  },
  "dates": [
-  "2026-08-25",
-  "2026-08-26"
+  "2026-08-28",
+  "2026-08-29"
  ],
  "ref_books": {
-  "1xBet": 3,
-  "BetVictor": 1,
-  "Betfair": 15,
-  "Betsson": 7,
-  "Betway": 6,
-  "Interwetten": 2,
-  "Pinnacle": 10,
-  "TennisExplorer": 84,
-  "Unibet": 2,
+  "1xBet": 2,
+  "Betfair": 2,
+  "Betway": 3,
+  "Pinnacle": 4,
+  "TennisExplorer": 14,
   "William Hill": 1
  },
  "matches": [
   {
-   "match_id": "3301141",
-   "date": "2026-08-25",
-   "tournament": "Augsburg challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0751,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Facundo Mena",
-     "model_prob": 0.445,
-     "model_fair_odds": 2.247,
-     "market_prob": 0.1526,
-     "market_fair_odds": 6.554,
-     "ref_odds": 5.26,
-     "edge": 0.2924,
-     "ev_at_ref": 1.3405,
-     "elo": 1347.4,
-     "matches": null
-    },
-    {
-     "player": "Max Hans Rehberg",
-     "model_prob": 0.555,
-     "model_fair_odds": 1.802,
-     "market_prob": 0.8474,
-     "market_fair_odds": 1.18,
-     "ref_odds": 1.13,
-     "edge": -0.2924,
-     "ev_at_ref": -0.3728,
-     "elo": 1385.8,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.2924,
-   "signal": false
-  },
-  {
-   "match_id": "3303031",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0655,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Harmony Tan",
-     "model_prob": 0.5104,
-     "model_fair_odds": 1.959,
-     "market_prob": 0.2263,
-     "market_fair_odds": 4.419,
-     "ref_odds": 3.86,
-     "edge": 0.2841,
-     "ev_at_ref": 0.97,
-     "elo": 1568.9,
-     "matches": null
-    },
-    {
-     "player": "Mary Stoiana",
-     "model_prob": 0.4896,
-     "model_fair_odds": 2.042,
-     "market_prob": 0.7737,
-     "market_fair_odds": 1.293,
-     "ref_odds": 1.24,
-     "edge": -0.2841,
-     "ev_at_ref": -0.3928,
-     "elo": 1561.7,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.2841,
-   "signal": false
-  },
-  {
-   "match_id": "3303347",
-   "date": "2026-08-25",
+   "match_id": "3306895",
+   "date": "2026-08-28",
    "tournament": "US Open",
    "tour": "atp",
    "surface": "Hard",
    "best_of": 5,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0655,
+   "ref_margin": 0.0617,
    "method": "ta_elo",
    "sides": [
     {
-     "player": "Moez Echargui",
-     "model_prob": 0.3597,
-     "model_fair_odds": 2.78,
-     "market_prob": 0.6295,
-     "market_fair_odds": 1.589,
-     "ref_odds": 1.51,
-     "edge": -0.2698,
-     "ev_at_ref": -0.4569,
-     "elo": 1374.4,
-     "matches": null
-    },
-    {
-     "player": "Hugo Dellien",
-     "model_prob": 0.6403,
-     "model_fair_odds": 1.562,
-     "market_prob": 0.3705,
-     "market_fair_odds": 2.699,
-     "ref_odds": 2.48,
-     "edge": 0.2698,
-     "ev_at_ref": 0.588,
-     "elo": 1474.6,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.2698,
-   "signal": false
-  },
-  {
-   "match_id": "3303267",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.05,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Moise Kouame",
-     "model_prob": 0.2397,
-     "model_fair_odds": 4.171,
-     "market_prob": 0.5069,
-     "market_fair_odds": 1.973,
-     "ref_odds": 1.88,
-     "edge": -0.2672,
-     "ev_at_ref": -0.5493,
-     "elo": 1480.0,
-     "matches": null
-    },
-    {
-     "player": "Nishesh Basavareddy",
-     "model_prob": 0.7603,
-     "model_fair_odds": 1.315,
-     "market_prob": 0.4931,
-     "market_fair_odds": 2.028,
-     "ref_odds": 1.93,
-     "edge": 0.2672,
-     "ev_at_ref": 0.4673,
-     "elo": 1680.5,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.2672,
-   "signal": false
-  },
-  {
-   "match_id": "3303263",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0594,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Clement Chidekh",
-     "model_prob": 0.6303,
-     "model_fair_odds": 1.586,
-     "market_prob": 0.8962,
-     "market_fair_odds": 1.116,
-     "ref_odds": 1.08,
-     "edge": -0.2659,
-     "ev_at_ref": -0.3192,
-     "elo": 1522.1,
-     "matches": null
-    },
-    {
-     "player": "Federico Coria",
-     "model_prob": 0.3697,
-     "model_fair_odds": 2.705,
-     "market_prob": 0.1038,
-     "market_fair_odds": 9.635,
-     "ref_odds": 7.49,
-     "edge": 0.2659,
-     "ev_at_ref": 1.7688,
-     "elo": 1429.4,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.2659,
-   "signal": false
-  },
-  {
-   "match_id": "3303457",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betway",
-   "ref_margin": 0.0505,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Botic Van De Zandschulp",
-     "model_prob": 0.8063,
-     "model_fair_odds": 1.24,
-     "market_prob": 0.5808,
-     "market_fair_odds": 1.722,
-     "ref_odds": 1.65,
-     "edge": 0.2255,
-     "ev_at_ref": 0.3305,
-     "elo": 1737.4,
-     "matches": null
-    },
-    {
-     "player": "Adolfo Daniel Vallejo",
-     "model_prob": 0.1937,
-     "model_fair_odds": 5.164,
-     "market_prob": 0.4192,
-     "market_fair_odds": 2.386,
+     "player": "Kei Nishikori",
+     "model_prob": 0.6175,
+     "model_fair_odds": 1.619,
+     "market_prob": 0.4136,
+     "market_fair_odds": 2.418,
      "ref_odds": 2.25,
-     "edge": -0.2255,
-     "ev_at_ref": -0.5643,
-     "elo": 1489.6,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.2255,
-   "signal": false
-  },
-  {
-   "match_id": "3305285",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0563,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Mees Rottgering",
-     "model_prob": 0.1074,
-     "model_fair_odds": 9.313,
-     "market_prob": 0.3239,
-     "market_fair_odds": 3.087,
-     "ref_odds": 2.84,
-     "edge": -0.2166,
-     "ev_at_ref": -0.695,
-     "elo": 1461.4,
+     "edge": 0.2039,
+     "ev_at_ref": 0.3894,
+     "elo": 1671.1,
      "matches": null
     },
-    {
-     "player": "Tomas Machac",
-     "model_prob": 0.8926,
-     "model_fair_odds": 1.12,
-     "market_prob": 0.6761,
-     "market_fair_odds": 1.479,
-     "ref_odds": 1.42,
-     "edge": 0.2166,
-     "ev_at_ref": 0.2675,
-     "elo": 1829.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.2166,
-   "signal": false
-  },
-  {
-   "match_id": "3301973",
-   "date": "2026-08-25",
-   "tournament": "Kingston 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0731,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Paul Jubb",
-     "model_prob": 0.4991,
-     "model_fair_odds": 2.003,
-     "market_prob": 0.2903,
-     "market_fair_odds": 3.445,
-     "ref_odds": 3.06,
-     "edge": 0.2089,
-     "ev_at_ref": 0.5274,
-     "elo": 1456.7,
-     "matches": null
-    },
-    {
-     "player": "Rodrigo Pacheco Mendez",
-     "model_prob": 0.5009,
-     "model_fair_odds": 1.997,
-     "market_prob": 0.7097,
-     "market_fair_odds": 1.409,
-     "ref_odds": 1.34,
-     "edge": -0.2089,
-     "ev_at_ref": -0.3288,
-     "elo": 1457.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.2089,
-   "signal": false
-  },
-  {
-   "match_id": "3303001",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0639,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Laura Samson",
-     "model_prob": 0.4264,
-     "model_fair_odds": 2.345,
-     "market_prob": 0.6009,
-     "market_fair_odds": 1.664,
-     "ref_odds": 1.58,
-     "edge": -0.1745,
-     "ev_at_ref": -0.3263,
-     "elo": 1527.4,
-     "matches": null
-    },
-    {
-     "player": "Tamara Zidansek",
-     "model_prob": 0.5736,
-     "model_fair_odds": 1.743,
-     "market_prob": 0.3991,
-     "market_fair_odds": 2.506,
-     "ref_odds": 2.32,
-     "edge": 0.1745,
-     "ev_at_ref": 0.3307,
-     "elo": 1578.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1745,
-   "signal": false
-  },
-  {
-   "match_id": "3303689",
-   "date": "2026-08-26",
-   "tournament": "Roehampton 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0833,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Yanki Erel",
-     "model_prob": 0.6224,
-     "model_fair_odds": 1.607,
-     "market_prob": 0.7917,
-     "market_fair_odds": 1.263,
-     "ref_odds": 1.2,
-     "edge": -0.1693,
-     "ev_at_ref": -0.2531,
-     "elo": 1377.7,
-     "matches": null
-    },
-    {
-     "player": "Kokoro Isomura",
-     "model_prob": 0.3776,
-     "model_fair_odds": 2.648,
-     "market_prob": 0.2083,
-     "market_fair_odds": 4.8,
-     "ref_odds": 4.0,
-     "edge": 0.1693,
-     "ev_at_ref": 0.5105,
-     "elo": 1290.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1693,
-   "signal": false
-  },
-  {
-   "match_id": "3305025",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0671,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Anouk Koevermans",
-     "model_prob": 0.5478,
-     "model_fair_odds": 1.826,
-     "market_prob": 0.3884,
-     "market_fair_odds": 2.575,
-     "ref_odds": 2.37,
-     "edge": 0.1594,
-     "ev_at_ref": 0.2982,
-     "elo": 1537.1,
-     "matches": null
-    },
-    {
-     "player": "Linda Klimovicova",
-     "model_prob": 0.4522,
-     "model_fair_odds": 2.211,
-     "market_prob": 0.6116,
-     "market_fair_odds": 1.635,
-     "ref_odds": 1.55,
-     "edge": -0.1594,
-     "ev_at_ref": -0.2991,
-     "elo": 1503.8,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1594,
-   "signal": false
-  },
-  {
-   "match_id": "3301147",
-   "date": "2026-08-25",
-   "tournament": "Augsburg challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0713,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Marvin Moeller",
-     "model_prob": 0.7043,
-     "model_fair_odds": 1.42,
-     "market_prob": 0.5526,
-     "market_fair_odds": 1.81,
-     "ref_odds": 1.7,
-     "edge": 0.1518,
-     "ev_at_ref": 0.1974,
-     "elo": 1546.6,
-     "matches": null
-    },
-    {
-     "player": "Thomas Faurel",
-     "model_prob": 0.2957,
-     "model_fair_odds": 3.382,
-     "market_prob": 0.4474,
-     "market_fair_odds": 2.235,
-     "ref_odds": 2.07,
-     "edge": -0.1518,
-     "ev_at_ref": -0.388,
-     "elo": 1395.8,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1518,
-   "signal": false
-  },
-  {
-   "match_id": "3305301",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betfair",
-   "ref_margin": 0.1871,
-   "method": "ta_elo",
-   "sides": [
     {
      "player": "Rei Sakamoto",
-     "model_prob": 0.4566,
-     "model_fair_odds": 2.19,
-     "market_prob": 0.6057,
-     "market_fair_odds": 1.651,
-     "ref_odds": 1.43,
-     "edge": -0.1491,
-     "ev_at_ref": -0.347,
-     "elo": 1583.5,
-     "matches": null
-    },
-    {
-     "player": "Alexandre Muller",
-     "model_prob": 0.5434,
-     "model_fair_odds": 1.84,
-     "market_prob": 0.3943,
-     "market_fair_odds": 2.536,
-     "ref_odds": 2.05,
-     "edge": 0.1491,
-     "ev_at_ref": 0.1139,
-     "elo": 1613.7,
+     "model_prob": 0.3825,
+     "model_fair_odds": 2.614,
+     "market_prob": 0.5864,
+     "market_fair_odds": 1.705,
+     "ref_odds": 1.62,
+     "edge": -0.2039,
+     "ev_at_ref": -0.3803,
+     "elo": 1587.9,
      "matches": null
     }
    ],
    "stale_players": [],
-   "best_edge": 0.1491,
+   "best_edge": 0.2039,
    "signal": false
   },
   {
-   "match_id": "3301977",
-   "date": "2026-08-25",
-   "tournament": "Kingston 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0728,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Ivan Marrero Curbelo",
-     "model_prob": 0.4802,
-     "model_fair_odds": 2.083,
-     "market_prob": 0.3467,
-     "market_fair_odds": 2.884,
-     "ref_odds": 2.61,
-     "edge": 0.1334,
-     "ev_at_ref": 0.2532,
-     "elo": 1388.2,
-     "matches": null
-    },
-    {
-     "player": "Blaise Bicknell",
-     "model_prob": 0.5198,
-     "model_fair_odds": 1.924,
-     "market_prob": 0.6533,
-     "market_fair_odds": 1.531,
-     "ref_odds": 1.45,
-     "edge": -0.1334,
-     "ev_at_ref": -0.2462,
-     "elo": 1402.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1334,
-   "signal": false
-  },
-  {
-   "match_id": "3305277",
-   "date": "2026-08-26",
+   "match_id": "3306871",
+   "date": "2026-08-28",
    "tournament": "US Open",
    "tour": "wta",
    "surface": "Hard",
    "best_of": 3,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.066,
+   "ref_margin": 0.0658,
    "method": "ta_elo",
    "sides": [
     {
-     "player": "Tyra Caterina Grant",
-     "model_prob": 0.483,
-     "model_fair_odds": 2.07,
-     "market_prob": 0.6163,
-     "market_fair_odds": 1.622,
-     "ref_odds": 1.54,
-     "edge": -0.1333,
-     "ev_at_ref": -0.2561,
-     "elo": 1557.9,
+     "player": "Mia Ristic",
+     "model_prob": 0.3136,
+     "model_fair_odds": 3.189,
+     "market_prob": 0.4549,
+     "market_fair_odds": 2.198,
+     "ref_odds": 2.05,
+     "edge": -0.1413,
+     "ev_at_ref": -0.3572,
+     "elo": 1419.9,
      "matches": null
     },
     {
      "player": "Himeno Sakatsume",
-     "model_prob": 0.517,
-     "model_fair_odds": 1.934,
-     "market_prob": 0.3837,
-     "market_fair_odds": 2.606,
-     "ref_odds": 2.4,
-     "edge": 0.1333,
-     "ev_at_ref": 0.2407,
-     "elo": 1569.7,
+     "model_prob": 0.6864,
+     "model_fair_odds": 1.457,
+     "market_prob": 0.5451,
+     "market_fair_odds": 1.834,
+     "ref_odds": 1.73,
+     "edge": 0.1413,
+     "ev_at_ref": 0.1875,
+     "elo": 1556.0,
      "matches": null
     }
    ],
    "stale_players": [],
-   "best_edge": 0.1333,
+   "best_edge": 0.1413,
    "signal": false
   },
   {
-   "match_id": "3302987",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0645,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Sofia Costoulas",
-     "model_prob": 0.6967,
-     "model_fair_odds": 1.435,
-     "market_prob": 0.8298,
-     "market_fair_odds": 1.205,
-     "ref_odds": 1.16,
-     "edge": -0.1331,
-     "ev_at_ref": -0.1918,
-     "elo": 1533.2,
-     "matches": null
-    },
-    {
-     "player": "Jennifer Ruggeri",
-     "model_prob": 0.3033,
-     "model_fair_odds": 3.297,
-     "market_prob": 0.1702,
-     "market_fair_odds": 5.876,
-     "ref_odds": 4.94,
-     "edge": 0.1331,
-     "ev_at_ref": 0.4981,
-     "elo": 1388.7,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1331,
-   "signal": false
-  },
-  {
-   "match_id": "3303695",
-   "date": "2026-08-26",
+   "match_id": "3307197",
+   "date": "2026-08-28",
    "tournament": "Roehampton 2 challenger",
    "tour": "atp",
    "surface": "Grass",
    "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0802,
+   "ref_book": "William Hill",
+   "ref_margin": 0.0761,
    "method": "ta_elo",
    "sides": [
     {
-     "player": "Jake Delaney",
-     "model_prob": 0.2983,
-     "model_fair_odds": 3.352,
-     "market_prob": 0.4228,
-     "market_fair_odds": 2.365,
-     "ref_odds": 2.16,
-     "edge": -0.1245,
-     "ev_at_ref": -0.3557,
-     "elo": 1251.5,
+     "player": "Charles Broom",
+     "model_prob": 0.2083,
+     "model_fair_odds": 4.8,
+     "market_prob": 0.3436,
+     "market_fair_odds": 2.91,
+     "ref_odds": 2.62,
+     "edge": -0.1353,
+     "ev_at_ref": -0.4541,
+     "elo": 1413.1,
      "matches": null
     },
     {
-     "player": "Hyeon Chung",
-     "model_prob": 0.7017,
-     "model_fair_odds": 1.425,
-     "market_prob": 0.5772,
-     "market_fair_odds": 1.733,
-     "ref_odds": 1.62,
-     "edge": 0.1245,
-     "ev_at_ref": 0.1368,
-     "elo": 1400.1,
+     "player": "Oliver Tarvet",
+     "model_prob": 0.7917,
+     "model_fair_odds": 1.263,
+     "market_prob": 0.6564,
+     "market_fair_odds": 1.524,
+     "ref_odds": 1.44,
+     "edge": 0.1353,
+     "ev_at_ref": 0.14,
+     "elo": 1645.0,
      "matches": null
     }
    ],
    "stale_players": [],
-   "best_edge": 0.1245,
+   "best_edge": 0.1353,
    "signal": false
   },
   {
-   "match_id": "3303357",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0472,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Nicolas Mejia",
-     "model_prob": 0.3772,
-     "model_fair_odds": 2.651,
-     "market_prob": 0.4945,
-     "market_fair_odds": 2.022,
-     "ref_odds": 1.93,
-     "edge": -0.1173,
-     "ev_at_ref": -0.272,
-     "elo": 1486.1,
-     "matches": null
-    },
-    {
-     "player": "Liam Draxl",
-     "model_prob": 0.6228,
-     "model_fair_odds": 1.606,
-     "market_prob": 0.5055,
-     "market_fair_odds": 1.978,
-     "ref_odds": 1.89,
-     "edge": 0.1173,
-     "ev_at_ref": 0.1771,
-     "elo": 1573.2,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1173,
-   "signal": false
-  },
-  {
-   "match_id": "3301971",
-   "date": "2026-08-25",
-   "tournament": "Kingston 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0743,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Pietro Fellin",
-     "model_prob": 0.5092,
-     "model_fair_odds": 1.964,
-     "market_prob": 0.392,
-     "market_fair_odds": 2.551,
-     "ref_odds": 2.33,
-     "edge": 0.1172,
-     "ev_at_ref": 0.1865,
-     "elo": 1354.0,
-     "matches": null
-    },
-    {
-     "player": "Miguel Tobon",
-     "model_prob": 0.4908,
-     "model_fair_odds": 2.038,
-     "market_prob": 0.608,
-     "market_fair_odds": 1.645,
-     "ref_odds": 1.55,
-     "edge": -0.1172,
-     "ev_at_ref": -0.2393,
-     "elo": 1347.6,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1172,
-   "signal": false
-  },
-  {
-   "match_id": "3302965",
-   "date": "2026-08-25",
+   "match_id": "3306939",
+   "date": "2026-08-28",
    "tournament": "US Open",
    "tour": "wta",
    "surface": "Hard",
    "best_of": 3,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0653,
+   "ref_margin": 0.0643,
    "method": "ta_elo",
    "sides": [
     {
-     "player": "Arantxa Rus",
-     "model_prob": 0.4142,
-     "model_fair_odds": 2.414,
-     "market_prob": 0.2974,
-     "market_fair_odds": 3.363,
-     "ref_odds": 3.03,
-     "edge": 0.1169,
-     "ev_at_ref": 0.2551,
-     "elo": 1489.5,
+     "player": "Elvina Kalieva",
+     "model_prob": 0.3535,
+     "model_fair_odds": 2.829,
+     "market_prob": 0.4704,
+     "market_fair_odds": 2.126,
+     "ref_odds": 1.99,
+     "edge": -0.1169,
+     "ev_at_ref": -0.2966,
+     "elo": 1544.1,
      "matches": null
     },
     {
-     "player": "Teodora Kostovic",
-     "model_prob": 0.5858,
-     "model_fair_odds": 1.707,
-     "market_prob": 0.7026,
-     "market_fair_odds": 1.423,
-     "ref_odds": 1.36,
-     "edge": -0.1169,
-     "ev_at_ref": -0.2033,
-     "elo": 1549.7,
+     "player": "Vendula Valdmannova",
+     "model_prob": 0.6465,
+     "model_fair_odds": 1.547,
+     "market_prob": 0.5296,
+     "market_fair_odds": 1.888,
+     "ref_odds": 1.78,
+     "edge": 0.1169,
+     "ev_at_ref": 0.1508,
+     "elo": 1649.0,
      "matches": null
     }
    ],
@@ -827,3473 +183,412 @@
    "signal": false
   },
   {
-   "match_id": "3301139",
-   "date": "2026-08-25",
-   "tournament": "Augsburg challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0724,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Petr Brunclik",
-     "model_prob": 0.5505,
-     "model_fair_odds": 1.817,
-     "market_prob": 0.6631,
-     "market_fair_odds": 1.508,
-     "ref_odds": 1.43,
-     "edge": -0.1126,
-     "ev_at_ref": -0.2128,
-     "elo": 1437.4,
-     "matches": null
-    },
-    {
-     "player": "Daniel Masur",
-     "model_prob": 0.4495,
-     "model_fair_odds": 2.225,
-     "market_prob": 0.3369,
-     "market_fair_odds": 2.968,
-     "ref_odds": 2.68,
-     "edge": 0.1126,
-     "ev_at_ref": 0.2047,
-     "elo": 1402.2,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1126,
-   "signal": false
-  },
-  {
-   "match_id": "3302949",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0643,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Alice Tubello",
-     "model_prob": 0.291,
-     "model_fair_odds": 3.436,
-     "market_prob": 0.3952,
-     "market_fair_odds": 2.53,
-     "ref_odds": 2.34,
-     "edge": -0.1042,
-     "ev_at_ref": -0.3191,
-     "elo": 1378.1,
-     "matches": null
-    },
-    {
-     "player": "Priscilla Hon",
-     "model_prob": 0.709,
-     "model_fair_odds": 1.41,
-     "market_prob": 0.6048,
-     "market_fair_odds": 1.653,
-     "ref_odds": 1.57,
-     "edge": 0.1042,
-     "ev_at_ref": 0.1131,
-     "elo": 1532.8,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1042,
-   "signal": false
-  },
-  {
-   "match_id": "3305065",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0725,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Francisca Jorge",
-     "model_prob": 0.6045,
-     "model_fair_odds": 1.654,
-     "market_prob": 0.5043,
-     "market_fair_odds": 1.983,
-     "ref_odds": 1.85,
-     "edge": 0.1002,
-     "ev_at_ref": 0.1183,
-     "elo": 1493.6,
-     "matches": null
-    },
-    {
-     "player": "Mia Ristic",
-     "model_prob": 0.3955,
-     "model_fair_odds": 2.528,
-     "market_prob": 0.4957,
-     "market_fair_odds": 2.017,
-     "ref_odds": 1.88,
-     "edge": -0.1002,
-     "ev_at_ref": -0.2565,
-     "elo": 1419.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.1002,
-   "signal": false
-  },
-  {
-   "match_id": "3305045",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betfair",
-   "ref_margin": 0.1248,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Kyrian Jacquet",
-     "model_prob": 0.8091,
-     "model_fair_odds": 1.236,
-     "market_prob": 0.7128,
-     "market_fair_odds": 1.403,
-     "ref_odds": 1.29,
-     "edge": 0.0963,
-     "ev_at_ref": 0.0438,
-     "elo": 1664.0,
-     "matches": null
-    },
-    {
-     "player": "Aziz Dougaz",
-     "model_prob": 0.1909,
-     "model_fair_odds": 5.239,
-     "market_prob": 0.2872,
-     "market_fair_odds": 3.482,
-     "ref_odds": 2.86,
-     "edge": -0.0963,
-     "ev_at_ref": -0.4541,
-     "elo": 1413.1,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0963,
-   "signal": false
-  },
-  {
-   "match_id": "3304673",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0835,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Jacob Fearnley",
-     "model_prob": 0.7198,
-     "model_fair_odds": 1.389,
-     "market_prob": 0.8129,
-     "market_fair_odds": 1.23,
-     "ref_odds": 1.17,
-     "edge": -0.0931,
-     "ev_at_ref": -0.1578,
-     "elo": 1690.5,
-     "matches": null
-    },
-    {
-     "player": "Luka Pavlovic",
-     "model_prob": 0.2802,
-     "model_fair_odds": 3.569,
-     "market_prob": 0.1871,
-     "market_fair_odds": 5.346,
-     "ref_odds": 4.37,
-     "edge": 0.0931,
-     "ev_at_ref": 0.2245,
-     "elo": 1526.6,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0931,
-   "signal": false
-  },
-  {
-   "match_id": "3305033",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0582,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Juan Manuel Cerundolo",
-     "model_prob": 0.6195,
-     "model_fair_odds": 1.614,
-     "market_prob": 0.7116,
-     "market_fair_odds": 1.405,
-     "ref_odds": 1.35,
-     "edge": -0.0921,
-     "ev_at_ref": -0.1636,
-     "elo": 1671.7,
-     "matches": null
-    },
-    {
-     "player": "Dhakshineswar Suresh",
-     "model_prob": 0.3805,
-     "model_fair_odds": 2.628,
-     "market_prob": 0.2884,
-     "market_fair_odds": 3.468,
-     "ref_odds": 3.15,
-     "edge": 0.0921,
-     "ev_at_ref": 0.1985,
-     "elo": 1587.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0921,
-   "signal": false
-  },
-  {
-   "match_id": "3303265",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0648,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Luka Mikrut",
-     "model_prob": 0.6636,
-     "model_fair_odds": 1.507,
-     "market_prob": 0.5737,
-     "market_fair_odds": 1.743,
-     "ref_odds": 1.65,
-     "edge": 0.0899,
-     "ev_at_ref": 0.0949,
-     "elo": 1431.4,
-     "matches": null
-    },
-    {
-     "player": "Nikolas Sanchez Izquierdo",
-     "model_prob": 0.3364,
-     "model_fair_odds": 2.972,
-     "market_prob": 0.4263,
-     "market_fair_odds": 2.346,
-     "ref_odds": 2.18,
-     "edge": -0.0899,
-     "ev_at_ref": -0.2666,
-     "elo": 1313.4,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0899,
-   "signal": false
-  },
-  {
-   "match_id": "3303377",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betway",
-   "ref_margin": 0.0476,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Gauthier Onclin",
-     "model_prob": 0.6034,
-     "model_fair_odds": 1.657,
-     "market_prob": 0.6905,
-     "market_fair_odds": 1.448,
-     "ref_odds": 1.4,
-     "edge": -0.0871,
-     "ev_at_ref": -0.1552,
-     "elo": 1527.8,
-     "matches": null
-    },
-    {
-     "player": "Vitaliy Sachko",
-     "model_prob": 0.3966,
-     "model_fair_odds": 2.521,
-     "market_prob": 0.3095,
-     "market_fair_odds": 3.231,
-     "ref_odds": 3.0,
-     "edge": 0.0871,
-     "ev_at_ref": 0.1898,
-     "elo": 1454.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0871,
-   "signal": false
-  },
-  {
-   "match_id": "3303051",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betsson",
-   "ref_margin": 0.0639,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Lola Radivojevic",
-     "model_prob": 0.5446,
-     "model_fair_odds": 1.836,
-     "market_prob": 0.6303,
-     "market_fair_odds": 1.586,
-     "ref_odds": 1.51,
-     "edge": -0.0857,
-     "ev_at_ref": -0.1776,
-     "elo": 1454.9,
-     "matches": null
-    },
-    {
-     "player": "Kajsa Rinaldo Persson",
-     "model_prob": 0.4554,
-     "model_fair_odds": 2.196,
-     "market_prob": 0.3697,
-     "market_fair_odds": 2.705,
-     "ref_odds": 2.49,
-     "edge": 0.0857,
-     "ev_at_ref": 0.1339,
-     "elo": 1423.8,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0857,
-   "signal": false
-  },
-  {
-   "match_id": "3303055",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0653,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Darya Astakhova",
-     "model_prob": 0.3768,
-     "model_fair_odds": 2.654,
-     "market_prob": 0.2974,
-     "market_fair_odds": 3.363,
-     "ref_odds": 3.03,
-     "edge": 0.0794,
-     "ev_at_ref": 0.1417,
-     "elo": 1429.1,
-     "matches": null
-    },
-    {
-     "player": "Marina Bassols Ribera",
-     "model_prob": 0.6232,
-     "model_fair_odds": 1.605,
-     "market_prob": 0.7026,
-     "market_fair_odds": 1.423,
-     "ref_odds": 1.36,
-     "edge": -0.0794,
-     "ev_at_ref": -0.1525,
-     "elo": 1516.5,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0794,
-   "signal": false
-  },
-  {
-   "match_id": "3303301",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0637,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Shintaro Mochizuki",
-     "model_prob": 0.5095,
-     "model_fair_odds": 1.963,
-     "market_prob": 0.5854,
-     "market_fair_odds": 1.708,
-     "ref_odds": 1.62,
-     "edge": -0.0759,
-     "ev_at_ref": -0.1746,
-     "elo": 1499.5,
-     "matches": null
-    },
-    {
-     "player": "Daniel Milavsky",
-     "model_prob": 0.4905,
-     "model_fair_odds": 2.039,
-     "market_prob": 0.4146,
-     "market_fair_odds": 2.412,
-     "ref_odds": 2.24,
-     "edge": 0.0759,
-     "ev_at_ref": 0.0987,
-     "elo": 1492.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0759,
-   "signal": false
-  },
-  {
-   "match_id": "3301189",
-   "date": "2026-08-25",
+   "match_id": "3307537",
+   "date": "2026-08-28",
    "tournament": "Roehampton 2 challenger",
    "tour": "atp",
    "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0741,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Jay Dylan Hara Friend",
-     "model_prob": 0.7117,
-     "model_fair_odds": 1.405,
-     "market_prob": 0.6386,
-     "market_fair_odds": 1.566,
-     "ref_odds": 1.48,
-     "edge": 0.0731,
-     "ev_at_ref": 0.0533,
-     "elo": 1476.8,
-     "matches": null
-    },
-    {
-     "player": "Michael Geerts",
-     "model_prob": 0.2883,
-     "model_fair_odds": 3.469,
-     "market_prob": 0.3614,
-     "market_fair_odds": 2.767,
-     "ref_odds": 2.51,
-     "edge": -0.0731,
-     "ev_at_ref": -0.2764,
-     "elo": 1319.8,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0731,
-   "signal": false
-  },
-  {
-   "match_id": "3303869",
-   "date": "2026-08-25",
-   "tournament": "Roehampton 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0738,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Inaki Montes De La Torre",
-     "model_prob": 0.5436,
-     "model_fair_odds": 1.839,
-     "market_prob": 0.6167,
-     "market_fair_odds": 1.621,
-     "ref_odds": 1.53,
-     "edge": -0.0731,
-     "ev_at_ref": -0.1682,
-     "elo": 1446.7,
-     "matches": null
-    },
-    {
-     "player": "Gabi Adrian Boitan",
-     "model_prob": 0.4564,
-     "model_fair_odds": 2.191,
-     "market_prob": 0.3833,
-     "market_fair_odds": 2.609,
-     "ref_odds": 2.38,
-     "edge": 0.0731,
-     "ev_at_ref": 0.0861,
-     "elo": 1416.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0731,
-   "signal": false
-  },
-  {
-   "match_id": "3305299",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betsson",
-   "ref_margin": 0.0649,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Remy Bertola",
-     "model_prob": 0.3865,
-     "model_fair_odds": 2.588,
-     "market_prob": 0.4577,
-     "market_fair_odds": 2.185,
-     "ref_odds": 2.04,
-     "edge": -0.0713,
-     "ev_at_ref": -0.2116,
-     "elo": 1456.1,
-     "matches": null
-    },
-    {
-     "player": "Harry Wendelken",
-     "model_prob": 0.6135,
-     "model_fair_odds": 1.63,
-     "market_prob": 0.5423,
-     "market_fair_odds": 1.844,
-     "ref_odds": 1.74,
-     "edge": 0.0713,
-     "ev_at_ref": 0.0676,
-     "elo": 1536.4,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0713,
-   "signal": false
-  },
-  {
-   "match_id": "3303803",
-   "date": "2026-08-25",
-   "tournament": "Philadelphia WTA",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0654,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Mia Pohankova",
-     "model_prob": 0.2699,
-     "model_fair_odds": 3.706,
-     "market_prob": 0.1993,
-     "market_fair_odds": 5.016,
-     "ref_odds": 4.31,
-     "edge": 0.0705,
-     "ev_at_ref": 0.1631,
-     "elo": 1564.9,
-     "matches": null
-    },
-    {
-     "player": "Katie Volynets",
-     "model_prob": 0.7301,
-     "model_fair_odds": 1.37,
-     "market_prob": 0.8007,
-     "market_fair_odds": 1.249,
-     "ref_odds": 1.2,
-     "edge": -0.0705,
-     "ev_at_ref": -0.1238,
-     "elo": 1737.8,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0705,
-   "signal": false
-  },
-  {
-   "match_id": "3301185",
-   "date": "2026-08-25",
-   "tournament": "Roehampton 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0506,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Matheus Pucinelli De Almeida",
-     "model_prob": 0.3075,
-     "model_fair_odds": 3.252,
-     "market_prob": 0.2379,
-     "market_fair_odds": 4.204,
-     "ref_odds": 3.8,
-     "edge": 0.0697,
-     "ev_at_ref": 0.1686,
-     "elo": 1463.3,
-     "matches": null
-    },
-    {
-     "player": "Oliver Tarvet",
-     "model_prob": 0.6925,
-     "model_fair_odds": 1.444,
-     "market_prob": 0.7621,
-     "market_fair_odds": 1.312,
-     "ref_odds": 1.27,
-     "edge": -0.0697,
-     "ev_at_ref": -0.1206,
-     "elo": 1604.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0697,
-   "signal": false
-  },
-  {
-   "match_id": "3305039",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betsson",
-   "ref_margin": 0.061,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Toby Samuel",
-     "model_prob": 0.8289,
-     "model_fair_odds": 1.206,
-     "market_prob": 0.7631,
-     "market_fair_odds": 1.31,
-     "ref_odds": 1.26,
-     "edge": 0.0658,
-     "ev_at_ref": 0.0444,
-     "elo": 1739.1,
-     "matches": null
-    },
-    {
-     "player": "Billy Harris",
-     "model_prob": 0.1711,
-     "model_fair_odds": 5.845,
-     "market_prob": 0.2369,
-     "market_fair_odds": 4.222,
-     "ref_odds": 3.74,
-     "edge": -0.0658,
-     "ev_at_ref": -0.3601,
-     "elo": 1465.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0658,
-   "signal": false
-  },
-  {
-   "match_id": "3303273",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0638,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Henri Squire",
-     "model_prob": 0.7389,
-     "model_fair_odds": 1.353,
-     "market_prob": 0.6773,
-     "market_fair_odds": 1.476,
-     "ref_odds": 1.41,
-     "edge": 0.0616,
-     "ev_at_ref": 0.0418,
-     "elo": 1469.1,
-     "matches": null
-    },
-    {
-     "player": "David Jorda Sanchis",
-     "model_prob": 0.2611,
-     "model_fair_odds": 3.83,
-     "market_prob": 0.3227,
-     "market_fair_odds": 3.099,
-     "ref_odds": 2.82,
-     "edge": -0.0616,
-     "ev_at_ref": -0.2637,
-     "elo": 1288.4,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0616,
-   "signal": false
-  },
-  {
-   "match_id": "3303353",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0633,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Maks Kasnikowski",
-     "model_prob": 0.2993,
-     "model_fair_odds": 3.342,
-     "market_prob": 0.3605,
-     "market_fair_odds": 2.774,
-     "ref_odds": 2.55,
-     "edge": -0.0612,
-     "ev_at_ref": -0.2369,
-     "elo": 1411.9,
-     "matches": null
-    },
-    {
-     "player": "Nicolai Budkov Kjaer",
-     "model_prob": 0.7007,
-     "model_fair_odds": 1.427,
-     "market_prob": 0.6395,
-     "market_fair_odds": 1.564,
-     "ref_odds": 1.49,
-     "edge": 0.0612,
-     "ev_at_ref": 0.0441,
-     "elo": 1559.7,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0612,
-   "signal": false
-  },
-  {
-   "match_id": "3305067",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0717,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Heather Watson",
-     "model_prob": 0.8314,
-     "model_fair_odds": 1.203,
-     "market_prob": 0.7706,
-     "market_fair_odds": 1.298,
-     "ref_odds": 1.24,
-     "edge": 0.0608,
-     "ev_at_ref": 0.031,
-     "elo": 1560.3,
-     "matches": null
-    },
-    {
-     "player": "Angela Fita Boluda",
-     "model_prob": 0.1686,
-     "model_fair_odds": 5.932,
-     "market_prob": 0.2294,
-     "market_fair_odds": 4.359,
-     "ref_odds": 3.77,
-     "edge": -0.0608,
-     "ev_at_ref": -0.3644,
-     "elo": 1283.1,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0608,
-   "signal": false
-  },
-  {
-   "match_id": "3305269",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0703,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Linda Fruhvirtova",
-     "model_prob": 0.5579,
-     "model_fair_odds": 1.793,
-     "market_prob": 0.6185,
-     "market_fair_odds": 1.617,
-     "ref_odds": 1.53,
-     "edge": -0.0606,
-     "ev_at_ref": -0.1464,
-     "elo": 1552.3,
-     "matches": null
-    },
-    {
-     "player": "Carson Branstine",
-     "model_prob": 0.4421,
-     "model_fair_odds": 2.262,
-     "market_prob": 0.3815,
-     "market_fair_odds": 2.621,
-     "ref_odds": 2.4,
-     "edge": 0.0606,
-     "ev_at_ref": 0.0611,
-     "elo": 1511.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0606,
-   "signal": false
-  },
-  {
-   "match_id": "3303283",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0679,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Smith C.",
-     "model_prob": 0.729,
-     "model_fair_odds": 1.372,
-     "market_prob": 0.6703,
-     "market_fair_odds": 1.492,
-     "ref_odds": 1.42,
-     "edge": 0.0587,
-     "ev_at_ref": 0.0351,
-     "elo": 1475.3,
-     "matches": 10
-    },
-    {
-     "player": "Pellegrino A.",
-     "model_prob": 0.271,
-     "model_fair_odds": 3.69,
-     "market_prob": 0.3297,
-     "market_fair_odds": 3.033,
-     "ref_odds": 2.75,
-     "edge": -0.0587,
-     "ev_at_ref": -0.2547,
-     "elo": 1731.9,
-     "matches": 16
-    }
-   ],
-   "stale_players": [
-    "Smith C."
-   ],
-   "best_edge": 0.0587,
-   "signal": false
-  },
-  {
-   "match_id": "3305063",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0722,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Robin Montgomery",
-     "model_prob": 0.48,
-     "model_fair_odds": 2.083,
-     "market_prob": 0.5386,
-     "market_fair_odds": 1.857,
-     "ref_odds": 1.74,
-     "edge": -0.0586,
-     "ev_at_ref": -0.1648,
-     "elo": 1660.9,
-     "matches": null
-    },
-    {
-     "player": "Jeline Vandromme",
-     "model_prob": 0.52,
-     "model_fair_odds": 1.923,
-     "market_prob": 0.4614,
-     "market_fair_odds": 2.167,
-     "ref_odds": 2.01,
-     "edge": 0.0586,
-     "ev_at_ref": 0.0452,
-     "elo": 1674.8,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0586,
-   "signal": false
-  },
-  {
-   "match_id": "3303331",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0585,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Lorenzo Giustino",
-     "model_prob": 0.1525,
-     "model_fair_odds": 6.556,
-     "market_prob": 0.0947,
-     "market_fair_odds": 10.563,
-     "ref_odds": 8.07,
-     "edge": 0.0579,
-     "ev_at_ref": 0.231,
-     "elo": 1445.0,
-     "matches": null
-    },
-    {
-     "player": "Grigor Dimitrov",
-     "model_prob": 0.8475,
-     "model_fair_odds": 1.18,
-     "market_prob": 0.9053,
-     "market_fair_odds": 1.105,
-     "ref_odds": 1.07,
-     "edge": -0.0579,
-     "ev_at_ref": -0.0932,
-     "elo": 1742.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0579,
-   "signal": false
-  },
-  {
-   "match_id": "3303049",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0688,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Kristina Liutova",
-     "model_prob": 0.6828,
-     "model_fair_odds": 1.465,
-     "market_prob": 0.6279,
-     "market_fair_odds": 1.593,
-     "ref_odds": 1.51,
-     "edge": 0.0549,
-     "ev_at_ref": 0.0311,
-     "elo": 1783.4,
-     "matches": null
-    },
-    {
-     "player": "Tatiana Prozorova",
-     "model_prob": 0.3172,
-     "model_fair_odds": 3.153,
-     "market_prob": 0.3721,
-     "market_fair_odds": 2.687,
-     "ref_odds": 2.46,
-     "edge": -0.0549,
-     "ev_at_ref": -0.2197,
-     "elo": 1650.2,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0549,
-   "signal": false
-  },
-  {
-   "match_id": "3303279",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0684,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Andre Ilagan",
-     "model_prob": 0.5296,
-     "model_fair_odds": 1.888,
-     "market_prob": 0.4786,
-     "market_fair_odds": 2.089,
-     "ref_odds": 1.95,
-     "edge": 0.051,
-     "ev_at_ref": 0.0327,
-     "elo": 1571.9,
-     "matches": null
-    },
-    {
-     "player": "Tristan Boyer",
-     "model_prob": 0.4704,
-     "model_fair_odds": 2.126,
-     "market_prob": 0.5214,
-     "market_fair_odds": 1.918,
-     "ref_odds": 1.8,
-     "edge": -0.051,
-     "ev_at_ref": -0.1533,
-     "elo": 1551.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.051,
-   "signal": false
-  },
-  {
-   "match_id": "3301143",
-   "date": "2026-08-25",
-   "tournament": "Augsburg challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0451,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Cezar Cretu",
-     "model_prob": 0.5203,
-     "model_fair_odds": 1.922,
-     "market_prob": 0.4701,
-     "market_fair_odds": 2.127,
-     "ref_odds": 2.03,
-     "edge": 0.0502,
-     "ev_at_ref": 0.0562,
-     "elo": 1407.7,
-     "matches": null
-    },
-    {
-     "player": "Niels Mcdonald",
-     "model_prob": 0.4797,
-     "model_fair_odds": 2.085,
-     "market_prob": 0.5299,
-     "market_fair_odds": 1.887,
-     "ref_odds": 1.81,
-     "edge": -0.0502,
-     "ev_at_ref": -0.1317,
-     "elo": 1393.6,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0502,
-   "signal": false
-  },
-  {
-   "match_id": "3303027",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0668,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Julia Avdeeva",
-     "model_prob": 0.5184,
-     "model_fair_odds": 1.929,
-     "market_prob": 0.4716,
-     "market_fair_odds": 2.12,
-     "ref_odds": 1.98,
-     "edge": 0.0468,
-     "ev_at_ref": 0.0265,
-     "elo": 1463.9,
-     "matches": null
-    },
-    {
-     "player": "Katherine Sebov",
-     "model_prob": 0.4816,
-     "model_fair_odds": 2.076,
-     "market_prob": 0.5284,
-     "market_fair_odds": 1.893,
-     "ref_odds": 1.78,
-     "edge": -0.0468,
-     "ev_at_ref": -0.1428,
-     "elo": 1451.1,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0468,
-   "signal": false
-  },
-  {
-   "match_id": "3303349",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.069,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Zsombor Piros",
-     "model_prob": 0.8318,
-     "model_fair_odds": 1.202,
-     "market_prob": 0.7851,
-     "market_fair_odds": 1.274,
-     "ref_odds": 1.22,
-     "edge": 0.0467,
-     "ev_at_ref": 0.0148,
-     "elo": 1644.6,
-     "matches": null
-    },
-    {
-     "player": "Max Alcala Gurri",
-     "model_prob": 0.1682,
-     "model_fair_odds": 5.946,
-     "market_prob": 0.2149,
-     "market_fair_odds": 4.654,
-     "ref_odds": 4.01,
-     "edge": -0.0467,
-     "ev_at_ref": -0.3256,
-     "elo": 1366.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0467,
-   "signal": false
-  },
-  {
-   "match_id": "3302863",
-   "date": "2026-08-25",
-   "tournament": "Roehampton 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "William Hill",
-   "ref_margin": 0.0882,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Carlos Sanchez Jover",
-     "model_prob": 0.4102,
-     "model_fair_odds": 2.438,
-     "market_prob": 0.4559,
-     "market_fair_odds": 2.194,
-     "ref_odds": 2.0,
-     "edge": -0.0457,
-     "ev_at_ref": -0.1796,
-     "elo": 1406.3,
-     "matches": null
-    },
-    {
-     "player": "Alexander Ritschard",
-     "model_prob": 0.5898,
-     "model_fair_odds": 1.695,
-     "market_prob": 0.5441,
-     "market_fair_odds": 1.838,
-     "ref_odds": 1.7,
-     "edge": 0.0457,
-     "ev_at_ref": 0.0027,
-     "elo": 1469.4,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0457,
-   "signal": false
-  },
-  {
-   "match_id": "3302945",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0622,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Jones F.",
-     "model_prob": 0.8206,
-     "model_fair_odds": 1.219,
-     "market_prob": 0.7753,
-     "market_fair_odds": 1.29,
-     "ref_odds": 1.24,
-     "edge": 0.0453,
-     "ev_at_ref": 0.0176,
-     "elo": 1438.0,
-     "matches": 53
-    },
-    {
-     "player": "Brancaccio N.",
-     "model_prob": 0.1794,
-     "model_fair_odds": 5.575,
-     "market_prob": 0.2247,
-     "market_fair_odds": 4.451,
-     "ref_odds": 3.91,
-     "edge": -0.0453,
-     "ev_at_ref": -0.2987,
-     "elo": 1375.1,
-     "matches": 14
-    }
-   ],
-   "stale_players": [
-    "Brancaccio N."
-   ],
-   "best_edge": 0.0453,
-   "signal": false
-  },
-  {
-   "match_id": "3304611",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0716,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Alevtina Ibragimova",
-     "model_prob": 0.5029,
-     "model_fair_odds": 1.989,
-     "market_prob": 0.5456,
-     "market_fair_odds": 1.833,
-     "ref_odds": 1.72,
-     "edge": -0.0427,
-     "ev_at_ref": -0.135,
-     "elo": 1504.1,
-     "matches": null
-    },
-    {
-     "player": "Mariam Bolkvadze",
-     "model_prob": 0.4971,
-     "model_fair_odds": 2.012,
-     "market_prob": 0.4544,
-     "market_fair_odds": 2.201,
-     "ref_odds": 2.04,
-     "edge": 0.0427,
-     "ev_at_ref": 0.0141,
-     "elo": 1502.1,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0427,
-   "signal": false
-  },
-  {
-   "match_id": "3303375",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0505,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Tomic B.",
-     "model_prob": 0.2765,
-     "model_fair_odds": 3.617,
-     "market_prob": 0.316,
-     "market_fair_odds": 3.164,
-     "ref_odds": 2.93,
-     "edge": -0.0396,
-     "ev_at_ref": -0.19,
-     "elo": 1594.9,
-     "matches": 351
-    },
-    {
-     "player": "Harris L.",
-     "model_prob": 0.7235,
-     "model_fair_odds": 1.382,
-     "market_prob": 0.684,
-     "market_fair_odds": 1.462,
-     "ref_odds": 1.41,
-     "edge": 0.0396,
-     "ev_at_ref": 0.0202,
-     "elo": 1624.4,
-     "matches": 143
-    }
-   ],
-   "stale_players": [
-    "Harris L."
-   ],
-   "best_edge": 0.0396,
-   "signal": false
-  },
-  {
-   "match_id": "3305069",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0541,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Medvedev D.",
-     "model_prob": 0.7043,
-     "model_fair_odds": 1.42,
-     "market_prob": 0.7422,
-     "market_fair_odds": 1.347,
-     "ref_odds": 1.3,
-     "edge": -0.0379,
-     "ev_at_ref": -0.0845,
-     "elo": 1928.3,
-     "matches": 611
-    },
-    {
-     "player": "Damm M.",
-     "model_prob": 0.2957,
-     "model_fair_odds": 3.381,
-     "market_prob": 0.2578,
-     "market_fair_odds": 3.878,
-     "ref_odds": 3.51,
-     "edge": 0.0379,
-     "ev_at_ref": 0.0381,
-     "elo": 1629.2,
-     "matches": 23
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0379,
-   "signal": false
-  },
-  {
-   "match_id": "3303855",
-   "date": "2026-08-25",
-   "tournament": "Augsburg challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0728,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Raphael Perot",
-     "model_prob": 0.382,
-     "model_fair_odds": 2.618,
-     "market_prob": 0.3467,
-     "market_fair_odds": 2.884,
-     "ref_odds": 2.61,
-     "edge": 0.0352,
-     "ev_at_ref": -0.0031,
-     "elo": 1333.8,
-     "matches": null
-    },
-    {
-     "player": "Mika Brunold",
-     "model_prob": 0.618,
-     "model_fair_odds": 1.618,
-     "market_prob": 0.6533,
-     "market_fair_odds": 1.531,
-     "ref_odds": 1.45,
-     "edge": -0.0352,
-     "ev_at_ref": -0.1038,
-     "elo": 1417.4,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0352,
-   "signal": false
-  },
-  {
-   "match_id": "3303343",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0612,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Zdenek Kolar",
-     "model_prob": 0.2373,
-     "model_fair_odds": 4.214,
-     "market_prob": 0.2041,
-     "market_fair_odds": 4.898,
-     "ref_odds": 4.26,
-     "edge": 0.0332,
-     "ev_at_ref": 0.011,
-     "elo": 1409.5,
-     "matches": null
-    },
-    {
-     "player": "Borna Gojo",
-     "model_prob": 0.7627,
-     "model_fair_odds": 1.311,
-     "market_prob": 0.7959,
-     "market_fair_odds": 1.257,
-     "ref_odds": 1.21,
-     "edge": -0.0332,
-     "ev_at_ref": -0.0772,
-     "elo": 1612.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0332,
-   "signal": false
-  },
-  {
-   "match_id": "3302947",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0643,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Osuigwe W.",
-     "model_prob": 0.428,
-     "model_fair_odds": 2.336,
-     "market_prob": 0.3952,
-     "market_fair_odds": 2.53,
-     "ref_odds": 2.34,
-     "edge": 0.0328,
-     "ev_at_ref": 0.0016,
-     "elo": 1332.3,
-     "matches": 20
-    },
-    {
-     "player": "Barthel M.",
-     "model_prob": 0.572,
-     "model_fair_odds": 1.748,
-     "market_prob": 0.6048,
-     "market_fair_odds": 1.653,
-     "ref_odds": 1.57,
-     "edge": -0.0328,
-     "ev_at_ref": -0.102,
-     "elo": 1461.0,
-     "matches": 331
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0328,
-   "signal": false
-  },
-  {
-   "match_id": "3305293",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betway",
-   "ref_margin": 0.0513,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Dalibor Svrcina",
-     "model_prob": 0.609,
-     "model_fair_odds": 1.642,
-     "market_prob": 0.641,
-     "market_fair_odds": 1.56,
-     "ref_odds": 1.5,
-     "edge": -0.032,
-     "ev_at_ref": -0.0865,
-     "elo": 1624.5,
-     "matches": null
-    },
-    {
-     "player": "Alexis Galarneau",
-     "model_prob": 0.391,
-     "model_fair_odds": 2.558,
-     "market_prob": 0.359,
-     "market_fair_odds": 2.786,
-     "ref_odds": 2.6,
-     "edge": 0.032,
-     "ev_at_ref": 0.0165,
-     "elo": 1547.5,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.032,
-   "signal": false
-  },
-  {
-   "match_id": "3305035",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
    "best_of": 3,
    "ref_book": "1xBet",
-   "ref_margin": 0.0531,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Bonzi B.",
-     "model_prob": 0.4253,
-     "model_fair_odds": 2.351,
-     "market_prob": 0.3936,
-     "market_fair_odds": 2.54,
-     "ref_odds": 2.38,
-     "edge": 0.0316,
-     "ev_at_ref": 0.0122,
-     "elo": 1696.9,
-     "matches": 147
-    },
-    {
-     "player": "Halys Q.",
-     "model_prob": 0.5747,
-     "model_fair_odds": 1.74,
-     "market_prob": 0.6064,
-     "market_fair_odds": 1.649,
-     "ref_odds": 1.58,
-     "edge": -0.0316,
-     "ev_at_ref": -0.0919,
-     "elo": 1765.2,
-     "matches": 165
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0316,
-   "signal": false
-  },
-  {
-   "match_id": "3305283",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0578,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Van Assche L.",
-     "model_prob": 0.5574,
-     "model_fair_odds": 1.794,
-     "market_prob": 0.5884,
-     "market_fair_odds": 1.7,
-     "ref_odds": 1.62,
-     "edge": -0.031,
-     "ev_at_ref": -0.097,
-     "elo": 1669.3,
-     "matches": 69
-    },
-    {
-     "player": "Kovacevic A.",
-     "model_prob": 0.4426,
-     "model_fair_odds": 2.259,
-     "market_prob": 0.4116,
-     "market_fair_odds": 2.429,
-     "ref_odds": 2.27,
-     "edge": 0.031,
-     "ev_at_ref": 0.0047,
-     "elo": 1553.4,
-     "matches": 114
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.031,
-   "signal": false
-  },
-  {
-   "match_id": "3303603",
-   "date": "2026-08-25",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0571,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Zhang S.",
-     "model_prob": 0.5518,
-     "model_fair_odds": 1.812,
-     "market_prob": 0.5209,
-     "market_fair_odds": 1.92,
-     "ref_odds": 1.82,
-     "edge": 0.0309,
-     "ev_at_ref": 0.0043,
-     "elo": 1681.6,
-     "matches": 507
-    },
-    {
-     "player": "Timofeeva M.",
-     "model_prob": 0.4482,
-     "model_fair_odds": 2.231,
-     "market_prob": 0.4791,
-     "market_fair_odds": 2.087,
-     "ref_odds": 1.97,
-     "edge": -0.0309,
-     "ev_at_ref": -0.1171,
-     "elo": 1531.7,
-     "matches": 29
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0309,
-   "signal": false
-  },
-  {
-   "match_id": "3302937",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betway",
-   "ref_margin": 0.0556,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Uchijima M.",
-     "model_prob": 0.836,
-     "model_fair_odds": 1.196,
-     "market_prob": 0.8056,
-     "market_fair_odds": 1.241,
-     "ref_odds": 1.2,
-     "edge": 0.0304,
-     "ev_at_ref": 0.0032,
-     "elo": 1476.0,
-     "matches": 81
-    },
-    {
-     "player": "Hercog P.",
-     "model_prob": 0.164,
-     "model_fair_odds": 6.098,
-     "market_prob": 0.1944,
-     "market_fair_odds": 5.143,
-     "ref_odds": 4.5,
-     "edge": -0.0304,
-     "ev_at_ref": -0.262,
-     "elo": 1591.1,
-     "matches": 360
-    }
-   ],
-   "stale_players": [
-    "Hercog P."
-   ],
-   "best_edge": 0.0304,
-   "signal": false
-  },
-  {
-   "match_id": "3303351",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0483,
+   "ref_margin": 0.0867,
    "method": "ta_elo",
    "sides": [
     {
-     "player": "Pedro Martinez",
-     "model_prob": 0.5977,
-     "model_fair_odds": 1.673,
-     "market_prob": 0.5675,
-     "market_fair_odds": 1.762,
-     "ref_odds": 1.69,
-     "edge": 0.0302,
-     "ev_at_ref": 0.0102,
-     "elo": 1549.6,
+     "player": "Gonzalo Villanueva",
+     "model_prob": 0.7232,
+     "model_fair_odds": 1.383,
+     "market_prob": 0.8041,
+     "market_fair_odds": 1.244,
+     "ref_odds": 1.18,
+     "edge": -0.081,
+     "ev_at_ref": -0.1467,
+     "elo": 1399.9,
      "matches": null
     },
     {
-     "player": "Daniil Glinka",
-     "model_prob": 0.4023,
-     "model_fair_odds": 2.486,
-     "market_prob": 0.4325,
-     "market_fair_odds": 2.312,
-     "ref_odds": 2.19,
-     "edge": -0.0302,
-     "ev_at_ref": -0.119,
-     "elo": 1480.8,
+     "player": "Santiago De La Fuente",
+     "model_prob": 0.2768,
+     "model_fair_odds": 3.612,
+     "market_prob": 0.1959,
+     "market_fair_odds": 5.105,
+     "ref_odds": 4.18,
+     "edge": 0.081,
+     "ev_at_ref": 0.1572,
+     "elo": 1233.1,
      "matches": null
     }
    ],
    "stale_players": [],
-   "best_edge": 0.0302,
+   "best_edge": 0.081,
    "signal": false
   },
   {
-   "match_id": "3302961",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Unibet",
-   "ref_margin": 0.0652,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Alina Charaeva",
-     "model_prob": 0.6227,
-     "model_fair_odds": 1.606,
-     "market_prob": 0.6524,
-     "market_fair_odds": 1.533,
-     "ref_odds": 1.46,
-     "edge": -0.0297,
-     "ev_at_ref": -0.0909,
-     "elo": 1613.7,
-     "matches": null
-    },
-    {
-     "player": "Susan Bandecchi",
-     "model_prob": 0.3773,
-     "model_fair_odds": 2.65,
-     "market_prob": 0.3476,
-     "market_fair_odds": 2.876,
-     "ref_odds": 2.63,
-     "edge": 0.0297,
-     "ev_at_ref": -0.0076,
-     "elo": 1526.7,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0297,
-   "signal": false
-  },
-  {
-   "match_id": "3303303",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0622,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Braden Shick",
-     "model_prob": 0.4507,
-     "model_fair_odds": 2.219,
-     "market_prob": 0.4214,
-     "market_fair_odds": 2.373,
-     "ref_odds": 2.21,
-     "edge": 0.0293,
-     "ev_at_ref": -0.0041,
-     "elo": 1526.0,
-     "matches": null
-    },
-    {
-     "player": "Clement Tabur",
-     "model_prob": 0.5493,
-     "model_fair_odds": 1.82,
-     "market_prob": 0.5786,
-     "market_fair_odds": 1.728,
-     "ref_odds": 1.64,
-     "edge": -0.0293,
-     "ev_at_ref": -0.0991,
-     "elo": 1560.4,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0293,
-   "signal": false
-  },
-  {
-   "match_id": "3304613",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "1xBet",
-   "ref_margin": 0.0643,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Frederico Ferreira Silva",
-     "model_prob": 0.3536,
-     "model_fair_odds": 2.828,
-     "market_prob": 0.3828,
-     "market_fair_odds": 2.612,
-     "ref_odds": 2.41,
-     "edge": -0.0292,
-     "ev_at_ref": -0.1478,
-     "elo": 1466.2,
-     "matches": null
-    },
-    {
-     "player": "Jurij Rodionov",
-     "model_prob": 0.6464,
-     "model_fair_odds": 1.547,
-     "market_prob": 0.6172,
-     "market_fair_odds": 1.62,
-     "ref_odds": 1.54,
-     "edge": 0.0292,
-     "ev_at_ref": -0.0045,
-     "elo": 1571.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0292,
-   "signal": false
-  },
-  {
-   "match_id": "3304609",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0715,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Pridankina E.",
-     "model_prob": 0.5518,
-     "model_fair_odds": 1.812,
-     "market_prob": 0.5229,
-     "market_fair_odds": 1.912,
-     "ref_odds": 1.79,
-     "edge": 0.0289,
-     "ev_at_ref": -0.0122,
-     "elo": 1450.1,
-     "matches": 10
-    },
-    {
-     "player": "Marino R.",
-     "model_prob": 0.4482,
-     "model_fair_odds": 2.231,
-     "market_prob": 0.4771,
-     "market_fair_odds": 2.096,
-     "ref_odds": 1.95,
-     "edge": -0.0289,
-     "ev_at_ref": -0.1261,
-     "elo": 1492.6,
-     "matches": 122
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0289,
-   "signal": false
-  },
-  {
-   "match_id": "3301981",
-   "date": "2026-08-25",
+   "match_id": "3307571",
+   "date": "2026-08-28",
    "tournament": "Kingston 2 challenger",
    "tour": "atp",
    "surface": "Grass",
    "best_of": 3,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0675,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Brouwer G.",
-     "model_prob": 0.1738,
-     "model_fair_odds": 5.755,
-     "market_prob": 0.2004,
-     "market_fair_odds": 4.989,
-     "ref_odds": 4.27,
-     "edge": -0.0267,
-     "ev_at_ref": -0.258,
-     "elo": 1633.0,
-     "matches": 27
-    },
-    {
-     "player": "Martin A.",
-     "model_prob": 0.8262,
-     "model_fair_odds": 1.21,
-     "market_prob": 0.7996,
-     "market_fair_odds": 1.251,
-     "ref_odds": 1.2,
-     "edge": 0.0267,
-     "ev_at_ref": -0.0085,
-     "elo": 1518.4,
-     "matches": 66
-    }
-   ],
-   "stale_players": [
-    "Brouwer G."
-   ],
-   "best_edge": 0.0267,
-   "signal": false
-  },
-  {
-   "match_id": "3301193",
-   "date": "2026-08-25",
-   "tournament": "Roehampton 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0446,
+   "ref_margin": 0.0755,
    "method": "ta_elo",
    "sides": [
     {
-     "player": "George Loffhagen",
-     "model_prob": 0.5322,
-     "model_fair_odds": 1.879,
-     "market_prob": 0.5068,
-     "market_fair_odds": 1.973,
-     "ref_odds": 1.89,
-     "edge": 0.0254,
-     "ev_at_ref": 0.0058,
-     "elo": 1408.2,
+     "player": "Rodrigo Pacheco Mendez",
+     "model_prob": 0.5483,
+     "model_fair_odds": 1.824,
+     "market_prob": 0.6245,
+     "market_fair_odds": 1.601,
+     "ref_odds": 1.51,
+     "edge": -0.0762,
+     "ev_at_ref": -0.172,
+     "elo": 1463.5,
      "matches": null
     },
     {
-     "player": "Alastair Gray",
-     "model_prob": 0.4678,
-     "model_fair_odds": 2.138,
-     "market_prob": 0.4932,
-     "market_fair_odds": 2.028,
-     "ref_odds": 1.94,
-     "edge": -0.0254,
-     "ev_at_ref": -0.0925,
-     "elo": 1385.8,
+     "player": "Andres Andrade",
+     "model_prob": 0.4517,
+     "model_fair_odds": 2.214,
+     "market_prob": 0.3755,
+     "market_fair_odds": 2.663,
+     "ref_odds": 2.42,
+     "edge": 0.0762,
+     "ev_at_ref": 0.093,
+     "elo": 1429.8,
      "matches": null
     }
    ],
    "stale_players": [],
-   "best_edge": 0.0254,
+   "best_edge": 0.0762,
    "signal": false
   },
   {
-   "match_id": "3305019",
-   "date": "2026-08-26",
+   "match_id": "3307251",
+   "date": "2026-08-28",
+   "tournament": "Augsburg challenger",
+   "tour": "atp",
+   "surface": "Grass",
+   "best_of": 3,
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.0714,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Cezar Cretu",
+     "model_prob": 0.5071,
+     "model_fair_odds": 1.972,
+     "market_prob": 0.4405,
+     "market_fair_odds": 2.27,
+     "ref_odds": 2.1,
+     "edge": 0.0666,
+     "ev_at_ref": 0.0648,
+     "elo": 1411.2,
+     "matches": null
+    },
+    {
+     "player": "Sandro Kopp",
+     "model_prob": 0.4929,
+     "model_fair_odds": 2.029,
+     "market_prob": 0.5595,
+     "market_fair_odds": 1.787,
+     "ref_odds": 1.68,
+     "edge": -0.0666,
+     "ev_at_ref": -0.1718,
+     "elo": 1406.3,
+     "matches": null
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0666,
+   "signal": false
+  },
+  {
+   "match_id": "3306897",
+   "date": "2026-08-28",
+   "tournament": "US Open",
+   "tour": "atp",
+   "surface": "Hard",
+   "best_of": 5,
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0422,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Zsombor Piros",
+     "model_prob": 0.4517,
+     "model_fair_odds": 2.214,
+     "market_prob": 0.3921,
+     "market_fair_odds": 2.55,
+     "ref_odds": 2.42,
+     "edge": 0.0595,
+     "ev_at_ref": 0.093,
+     "elo": 1644.6,
+     "matches": null
+    },
+    {
+     "player": "Christopher Oconnell",
+     "model_prob": 0.5483,
+     "model_fair_odds": 1.824,
+     "market_prob": 0.6079,
+     "market_fair_odds": 1.645,
+     "ref_odds": 1.59,
+     "edge": -0.0595,
+     "ev_at_ref": -0.1281,
+     "elo": 1678.3,
+     "matches": null
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0595,
+   "signal": false
+  },
+  {
+   "match_id": "3307639",
+   "date": "2026-08-28",
+   "tournament": "Philadelphia WTA",
+   "tour": "wta",
+   "surface": "Hard",
+   "best_of": 3,
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0414,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Selekhmeteva O.",
+     "model_prob": 0.1642,
+     "model_fair_odds": 6.091,
+     "market_prob": 0.201,
+     "market_fair_odds": 4.974,
+     "ref_odds": 4.51,
+     "edge": -0.0369,
+     "ev_at_ref": -0.2596,
+     "elo": 1560.8,
+     "matches": 30
+    },
+    {
+     "player": "Volynets K.",
+     "model_prob": 0.8358,
+     "model_fair_odds": 1.196,
+     "market_prob": 0.799,
+     "market_fair_odds": 1.252,
+     "ref_odds": 1.22,
+     "edge": 0.0369,
+     "ev_at_ref": 0.0197,
+     "elo": 1582.4,
+     "matches": 124
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0369,
+   "signal": false
+  },
+  {
+   "match_id": "3307607",
+   "date": "2026-08-29",
+   "tournament": "Monterrey",
+   "tour": "wta",
+   "surface": "Hard",
+   "best_of": 3,
+   "ref_book": "1xBet",
+   "ref_margin": 0.0533,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Parry D.",
+     "model_prob": 0.4148,
+     "model_fair_odds": 2.411,
+     "market_prob": 0.3815,
+     "market_fair_odds": 2.621,
+     "ref_odds": 2.45,
+     "edge": 0.0333,
+     "ev_at_ref": 0.0161,
+     "elo": 1735.3,
+     "matches": 133
+    },
+    {
+     "player": "Li A.",
+     "model_prob": 0.5852,
+     "model_fair_odds": 1.709,
+     "market_prob": 0.6185,
+     "market_fair_odds": 1.617,
+     "ref_odds": 1.55,
+     "edge": -0.0333,
+     "ev_at_ref": -0.0929,
+     "elo": 1716.2,
+     "matches": 176
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0333,
+   "signal": false
+  },
+  {
+   "match_id": "3307641",
+   "date": "2026-08-29",
+   "tournament": "Monterrey",
+   "tour": "wta",
+   "surface": "Hard",
+   "best_of": 3,
+   "ref_book": "Betfair",
+   "ref_margin": 0.0318,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Bartunkova N.",
+     "model_prob": 0.4667,
+     "model_fair_odds": 2.143,
+     "market_prob": 0.4345,
+     "market_fair_odds": 2.301,
+     "ref_odds": 2.22,
+     "edge": 0.0322,
+     "ev_at_ref": 0.0361,
+     "elo": 1789.2,
+     "matches": 35
+    },
+    {
+     "player": "Mertens E.",
+     "model_prob": 0.5333,
+     "model_fair_odds": 1.875,
+     "market_prob": 0.5655,
+     "market_fair_odds": 1.768,
+     "ref_odds": 1.72,
+     "edge": -0.0322,
+     "ev_at_ref": -0.0827,
+     "elo": 1837.6,
+     "matches": 513
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0322,
+   "signal": false
+  },
+  {
+   "match_id": "3306881",
+   "date": "2026-08-28",
+   "tournament": "US Open",
+   "tour": "atp",
+   "surface": "Hard",
+   "best_of": 5,
+   "ref_book": "Pinnacle",
+   "ref_margin": 0.0418,
+   "method": "model",
+   "sides": [
+    {
+     "player": "Mochizuki S.",
+     "model_prob": 0.565,
+     "model_fair_odds": 1.77,
+     "market_prob": 0.5378,
+     "market_fair_odds": 1.859,
+     "ref_odds": 1.79,
+     "edge": 0.0272,
+     "ev_at_ref": 0.0113,
+     "elo": 1644.2,
+     "matches": 35
+    },
+    {
+     "player": "Passaro F.",
+     "model_prob": 0.435,
+     "model_fair_odds": 2.299,
+     "market_prob": 0.4622,
+     "market_fair_odds": 2.163,
+     "ref_odds": 2.07,
+     "edge": -0.0272,
+     "ev_at_ref": -0.0994,
+     "elo": 1507.3,
+     "matches": 32
+    }
+   ],
+   "stale_players": [
+    "Passaro F."
+   ],
+   "best_edge": 0.0272,
+   "signal": false
+  },
+  {
+   "match_id": "3306925",
+   "date": "2026-08-28",
+   "tournament": "US Open",
+   "tour": "atp",
+   "surface": "Hard",
+   "best_of": 5,
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.0649,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Liam Draxl",
+     "model_prob": 0.5627,
+     "model_fair_odds": 1.777,
+     "market_prob": 0.5423,
+     "market_fair_odds": 1.844,
+     "ref_odds": 1.74,
+     "edge": 0.0204,
+     "ev_at_ref": -0.0209,
+     "elo": 1551.9,
+     "matches": null
+    },
+    {
+     "player": "Tristan Schoolkate",
+     "model_prob": 0.4373,
+     "model_fair_odds": 2.287,
+     "market_prob": 0.4577,
+     "market_fair_odds": 2.185,
+     "ref_odds": 2.04,
+     "edge": -0.0204,
+     "ev_at_ref": -0.1079,
+     "elo": 1508.1,
+     "matches": null
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0204,
+   "signal": false
+  },
+  {
+   "match_id": "3307597",
+   "date": "2026-08-28",
    "tournament": "Philadelphia WTA",
    "tour": "wta",
    "surface": "Hard",
    "best_of": 3,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0815,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Fangran Tian",
-     "model_prob": 0.1226,
-     "model_fair_odds": 8.157,
-     "market_prob": 0.0974,
-     "market_fair_odds": 10.271,
-     "ref_odds": 7.24,
-     "edge": 0.0252,
-     "ev_at_ref": -0.1125,
-     "elo": 1445.2,
-     "matches": null
-    },
-    {
-     "player": "Tereza Valentova",
-     "model_prob": 0.8774,
-     "model_fair_odds": 1.14,
-     "market_prob": 0.9026,
-     "market_fair_odds": 1.108,
-     "ref_odds": 1.06,
-     "edge": -0.0252,
-     "ev_at_ref": -0.0699,
-     "elo": 1787.1,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0252,
-   "signal": false
-  },
-  {
-   "match_id": "3305297",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0805,
+   "ref_margin": 0.0692,
    "method": "model",
    "sides": [
     {
-     "player": "Virtanen O.",
-     "model_prob": 0.6596,
-     "model_fair_odds": 1.516,
-     "market_prob": 0.6354,
-     "market_fair_odds": 1.574,
-     "ref_odds": 1.48,
-     "edge": 0.0242,
-     "ev_at_ref": -0.0238,
-     "elo": 1591.9,
-     "matches": 26
-    },
-    {
-     "player": "Pinnington Jones J.",
-     "model_prob": 0.3404,
-     "model_fair_odds": 2.937,
-     "market_prob": 0.3646,
-     "market_fair_odds": 2.743,
-     "ref_odds": 2.47,
-     "edge": -0.0242,
-     "ev_at_ref": -0.1591,
-     "elo": 1589.0,
-     "matches": 11
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0242,
-   "signal": false
-  },
-  {
-   "match_id": "3302943",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.0747,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Sorribes Tormo S.",
-     "model_prob": 0.68,
-     "model_fair_odds": 1.471,
-     "market_prob": 0.6571,
-     "market_fair_odds": 1.522,
-     "ref_odds": 1.44,
-     "edge": 0.0229,
-     "ev_at_ref": -0.0208,
-     "elo": 1621.1,
-     "matches": 285
-    },
-    {
-     "player": "Noha Akugue N.",
-     "model_prob": 0.32,
-     "model_fair_odds": 3.125,
-     "market_prob": 0.3429,
-     "market_fair_odds": 2.916,
-     "ref_odds": 2.63,
-     "edge": -0.0229,
-     "ev_at_ref": -0.1584,
-     "elo": 1525.3,
-     "matches": 13
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0229,
-   "signal": false
-  },
-  {
-   "match_id": "3303329",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0669,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Timofey Skatov",
-     "model_prob": 0.5952,
-     "model_fair_odds": 1.68,
-     "market_prob": 0.5726,
-     "market_fair_odds": 1.746,
-     "ref_odds": 1.65,
-     "edge": 0.0226,
-     "ev_at_ref": -0.0178,
-     "elo": 1480.7,
-     "matches": null
-    },
-    {
-     "player": "Gilles Arnaud Bailly",
-     "model_prob": 0.4048,
-     "model_fair_odds": 2.471,
-     "market_prob": 0.4274,
-     "market_fair_odds": 2.34,
-     "ref_odds": 2.17,
-     "edge": -0.0226,
-     "ev_at_ref": -0.1217,
-     "elo": 1413.7,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0226,
-   "signal": false
-  },
-  {
-   "match_id": "3303459",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.0319,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Bellucci M.",
-     "model_prob": 0.4911,
-     "model_fair_odds": 2.036,
-     "market_prob": 0.4695,
-     "market_fair_odds": 2.13,
-     "ref_odds": 2.06,
-     "edge": 0.0216,
-     "ev_at_ref": 0.0116,
-     "elo": 1631.8,
-     "matches": 66
-    },
-    {
-     "player": "Darderi L.",
-     "model_prob": 0.5089,
-     "model_fair_odds": 1.965,
-     "market_prob": 0.5305,
-     "market_fair_odds": 1.885,
-     "ref_odds": 1.83,
-     "edge": -0.0216,
-     "ev_at_ref": -0.0687,
-     "elo": 1799.6,
-     "matches": 159
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0216,
-   "signal": false
-  },
-  {
-   "match_id": "3303345",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0684,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Nardi L.",
-     "model_prob": 0.3243,
-     "model_fair_odds": 3.084,
-     "market_prob": 0.3446,
-     "market_fair_odds": 2.902,
-     "ref_odds": 2.64,
-     "edge": -0.0203,
-     "ev_at_ref": -0.1439,
-     "elo": 1604.2,
-     "matches": 57
-    },
-    {
-     "player": "Cina F.",
-     "model_prob": 0.6757,
-     "model_fair_odds": 1.48,
-     "market_prob": 0.6554,
-     "market_fair_odds": 1.526,
-     "ref_odds": 1.45,
+     "player": "Valentova T.",
+     "model_prob": 0.819,
+     "model_fair_odds": 1.221,
+     "market_prob": 0.7987,
+     "market_fair_odds": 1.252,
+     "ref_odds": 1.2,
      "edge": 0.0203,
-     "ev_at_ref": -0.0202,
-     "elo": 1436.6,
-     "matches": 13
+     "ev_at_ref": -0.0172,
+     "elo": 1716.3,
+     "matches": 43
+    },
+    {
+     "player": "Grabher J.",
+     "model_prob": 0.181,
+     "model_fair_odds": 5.526,
+     "market_prob": 0.2013,
+     "market_fair_odds": 4.969,
+     "ref_odds": 4.24,
+     "edge": -0.0203,
+     "ev_at_ref": -0.2327,
+     "elo": 1529.6,
+     "matches": 60
     }
    ],
    "stale_players": [
-    "Nardi L."
+    "Grabher J."
    ],
    "best_edge": 0.0203,
    "signal": false
   },
   {
-   "match_id": "3302967",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0704,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Lamens S.",
-     "model_prob": 0.3206,
-     "model_fair_odds": 3.119,
-     "market_prob": 0.3407,
-     "market_fair_odds": 2.935,
-     "ref_odds": 2.66,
-     "edge": -0.0201,
-     "ev_at_ref": -0.1472,
-     "elo": 1582.7,
-     "matches": 66
-    },
-    {
-     "player": "Jones E.",
-     "model_prob": 0.6794,
-     "model_fair_odds": 1.472,
-     "market_prob": 0.6593,
-     "market_fair_odds": 1.517,
-     "ref_odds": 1.44,
-     "edge": 0.0201,
-     "ev_at_ref": -0.0217,
-     "elo": 1566.2,
-     "matches": 11
-    }
-   ],
-   "stale_players": [
-    "Lamens S."
-   ],
-   "best_edge": 0.0201,
-   "signal": false
-  },
-  {
-   "match_id": "3305263",
-   "date": "2026-08-26",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0585,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Udvardy P.",
-     "model_prob": 0.2341,
-     "model_fair_odds": 4.271,
-     "market_prob": 0.254,
-     "market_fair_odds": 3.936,
-     "ref_odds": 3.53,
-     "edge": -0.0199,
-     "ev_at_ref": -0.1735,
-     "elo": 1671.7,
-     "matches": 69
-    },
-    {
-     "player": "Joint M.",
-     "model_prob": 0.7659,
-     "model_fair_odds": 1.306,
-     "market_prob": 0.746,
-     "market_fair_odds": 1.341,
-     "ref_odds": 1.29,
-     "edge": 0.0199,
-     "ev_at_ref": -0.012,
-     "elo": 1664.9,
-     "matches": 77
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0199,
-   "signal": false
-  },
-  {
-   "match_id": "3303693",
-   "date": "2026-08-26",
-   "tournament": "Roehampton 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "1xBet",
-   "ref_margin": 0.0906,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Moerani Bouzige",
-     "model_prob": 0.5328,
-     "model_fair_odds": 1.877,
-     "market_prob": 0.5134,
-     "market_fair_odds": 1.948,
-     "ref_odds": 1.79,
-     "edge": 0.0194,
-     "ev_at_ref": -0.0464,
-     "elo": 1305.3,
-     "matches": null
-    },
-    {
-     "player": "Luca Castelnuovo",
-     "model_prob": 0.4672,
-     "model_fair_odds": 2.14,
-     "market_prob": 0.4866,
-     "market_fair_odds": 2.055,
-     "ref_odds": 1.88,
-     "edge": -0.0194,
-     "ev_at_ref": -0.1216,
-     "elo": 1282.5,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0194,
-   "signal": false
-  },
-  {
-   "match_id": "3303373",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0647,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Rocha H.",
-     "model_prob": 0.5822,
-     "model_fair_odds": 1.718,
-     "market_prob": 0.5629,
-     "market_fair_odds": 1.777,
-     "ref_odds": 1.68,
-     "edge": 0.0193,
-     "ev_at_ref": -0.0219,
-     "elo": 1488.3,
-     "matches": 10
-    },
-    {
-     "player": "Mmoh M.",
-     "model_prob": 0.4178,
-     "model_fair_odds": 2.394,
-     "market_prob": 0.4371,
-     "market_fair_odds": 2.288,
-     "ref_odds": 2.13,
-     "edge": -0.0193,
-     "ev_at_ref": -0.1101,
-     "elo": 1719.1,
-     "matches": 78
-    }
-   ],
-   "stale_players": [
-    "Mmoh M."
-   ],
-   "best_edge": 0.0193,
-   "signal": false
-  },
-  {
-   "match_id": "3302989",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0654,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Vendula Valdmannova",
-     "model_prob": 0.7368,
-     "model_fair_odds": 1.357,
-     "market_prob": 0.7192,
-     "market_fair_odds": 1.39,
-     "ref_odds": 1.33,
-     "edge": 0.0176,
-     "ev_at_ref": -0.0201,
-     "elo": 1649.0,
-     "matches": null
-    },
-    {
-     "player": "Maria Lourdes Carle",
-     "model_prob": 0.2632,
-     "model_fair_odds": 3.799,
-     "market_prob": 0.2808,
-     "market_fair_odds": 3.561,
-     "ref_odds": 3.19,
-     "edge": -0.0176,
-     "ev_at_ref": -0.1603,
-     "elo": 1470.2,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0176,
-   "signal": false
-  },
-  {
-   "match_id": "3302951",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0675,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Joanna Garland",
-     "model_prob": 0.5488,
-     "model_fair_odds": 1.822,
-     "market_prob": 0.5312,
-     "market_fair_odds": 1.882,
-     "ref_odds": 1.77,
-     "edge": 0.0175,
-     "ev_at_ref": -0.0287,
-     "elo": 1553.0,
-     "matches": null
-    },
-    {
-     "player": "Leyre Romero Gormaz",
-     "model_prob": 0.4512,
-     "model_fair_odds": 2.216,
-     "market_prob": 0.4688,
-     "market_fair_odds": 2.133,
-     "ref_odds": 1.99,
-     "edge": -0.0175,
-     "ev_at_ref": -0.1021,
-     "elo": 1519.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0175,
-   "signal": false
-  },
-  {
-   "match_id": "3305029",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.0392,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Mannarino A.",
-     "model_prob": 0.3853,
-     "model_fair_odds": 2.595,
-     "market_prob": 0.4023,
-     "market_fair_odds": 2.486,
-     "ref_odds": 2.37,
-     "edge": -0.017,
-     "ev_at_ref": -0.0868,
-     "elo": 1666.6,
-     "matches": 683
-    },
-    {
-     "player": "Sonego L.",
-     "model_prob": 0.6147,
-     "model_fair_odds": 1.627,
-     "market_prob": 0.5977,
-     "market_fair_odds": 1.673,
-     "ref_odds": 1.62,
-     "edge": 0.017,
-     "ev_at_ref": -0.0042,
-     "elo": 1680.4,
-     "matches": 360
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.017,
-   "signal": false
-  },
-  {
-   "match_id": "3303281",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0609,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Jerome Kym",
-     "model_prob": 0.8078,
-     "model_fair_odds": 1.238,
-     "market_prob": 0.8243,
-     "market_fair_odds": 1.213,
-     "ref_odds": 1.17,
-     "edge": -0.0165,
-     "ev_at_ref": -0.0549,
-     "elo": 1612.4,
-     "matches": null
-    },
-    {
-     "player": "Dan Added",
-     "model_prob": 0.1922,
-     "model_fair_odds": 5.202,
-     "market_prob": 0.1757,
-     "market_fair_odds": 5.69,
-     "ref_odds": 4.85,
-     "edge": 0.0165,
-     "ev_at_ref": -0.0677,
-     "elo": 1363.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0165,
-   "signal": false
-  },
-  {
-   "match_id": "3305027",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0698,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Lucia Bronzetti",
-     "model_prob": 0.5247,
-     "model_fair_odds": 1.906,
-     "market_prob": 0.5086,
-     "market_fair_odds": 1.966,
-     "ref_odds": 1.84,
-     "edge": 0.0162,
-     "ev_at_ref": -0.0345,
-     "elo": 1565.3,
-     "matches": null
-    },
-    {
-     "player": "Polina Iatcenko",
-     "model_prob": 0.4753,
-     "model_fair_odds": 2.104,
-     "market_prob": 0.4914,
-     "market_fair_odds": 2.035,
-     "ref_odds": 1.9,
-     "edge": -0.0162,
-     "ev_at_ref": -0.097,
-     "elo": 1548.1,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0162,
-   "signal": false
-  },
-  {
-   "match_id": "3304607",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0686,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Zheng Q.",
-     "model_prob": 0.8082,
-     "model_fair_odds": 1.237,
-     "market_prob": 0.7922,
-     "market_fair_odds": 1.262,
-     "ref_odds": 1.21,
-     "edge": 0.016,
-     "ev_at_ref": -0.0221,
-     "elo": 1827.0,
-     "matches": 212
-    },
-    {
-     "player": "Burel C.",
-     "model_prob": 0.1918,
-     "model_fair_odds": 5.214,
-     "market_prob": 0.2078,
-     "market_fair_odds": 4.811,
-     "ref_odds": 4.13,
-     "edge": -0.016,
-     "ev_at_ref": -0.2078,
-     "elo": 1622.2,
-     "matches": 114
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.016,
-   "signal": false
-  },
-  {
-   "match_id": "3303275",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betsson",
-   "ref_margin": 0.0648,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Kwon S.W.",
-     "model_prob": 0.6229,
-     "model_fair_odds": 1.605,
-     "market_prob": 0.6387,
-     "market_fair_odds": 1.566,
-     "ref_odds": 1.49,
-     "edge": -0.0158,
-     "ev_at_ref": -0.0719,
-     "elo": 1646.5,
-     "matches": 117
-    },
-    {
-     "player": "Lajovic D.",
-     "model_prob": 0.3771,
-     "model_fair_odds": 2.652,
-     "market_prob": 0.3613,
-     "market_fair_odds": 2.768,
-     "ref_odds": 2.54,
-     "edge": 0.0158,
-     "ev_at_ref": -0.0422,
-     "elo": 1600.9,
-     "matches": 449
-    }
-   ],
-   "stale_players": [
-    "Kwon S.W."
-   ],
-   "best_edge": 0.0158,
-   "signal": false
-  },
-  {
-   "match_id": "3305331",
-   "date": "2026-08-26",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Unibet",
-   "ref_margin": 0.0549,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Oliynykova O.",
-     "model_prob": 0.2432,
-     "model_fair_odds": 4.111,
-     "market_prob": 0.2582,
-     "market_fair_odds": 3.872,
-     "ref_odds": 3.5,
-     "edge": -0.015,
-     "ev_at_ref": -0.1487,
-     "elo": 1661.5,
-     "matches": 26
-    },
-    {
-     "player": "Parry D.",
-     "model_prob": 0.7568,
-     "model_fair_odds": 1.321,
-     "market_prob": 0.7418,
-     "market_fair_odds": 1.348,
-     "ref_odds": 1.3,
-     "edge": 0.015,
-     "ev_at_ref": -0.0162,
-     "elo": 1681.1,
-     "matches": 129
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.015,
-   "signal": false
-  },
-  {
-   "match_id": "3303609",
-   "date": "2026-08-25",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.0453,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Bucsa C.",
-     "model_prob": 0.4301,
-     "model_fair_odds": 2.325,
-     "market_prob": 0.4446,
-     "market_fair_odds": 2.249,
-     "ref_odds": 2.14,
-     "edge": -0.0146,
-     "ev_at_ref": -0.0796,
-     "elo": 1608.4,
-     "matches": 139
-    },
-    {
-     "player": "Bondar A.",
-     "model_prob": 0.5699,
-     "model_fair_odds": 1.755,
-     "market_prob": 0.5554,
-     "market_fair_odds": 1.801,
-     "ref_odds": 1.73,
-     "edge": 0.0146,
-     "ev_at_ref": -0.014,
-     "elo": 1681.1,
-     "matches": 148
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0146,
-   "signal": false
-  },
-  {
-   "match_id": "3305261",
-   "date": "2026-08-25",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0611,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Tjen J.",
-     "model_prob": 0.5572,
-     "model_fair_odds": 1.795,
-     "market_prob": 0.5718,
-     "market_fair_odds": 1.749,
-     "ref_odds": 1.66,
-     "edge": -0.0146,
-     "ev_at_ref": -0.075,
-     "elo": 1574.0,
-     "matches": 42
-    },
-    {
-     "player": "Starodubtseva Y.",
-     "model_prob": 0.4428,
-     "model_fair_odds": 2.258,
-     "market_prob": 0.4282,
-     "market_fair_odds": 2.336,
-     "ref_odds": 2.18,
-     "edge": 0.0146,
-     "ev_at_ref": -0.0347,
-     "elo": 1606.7,
-     "matches": 66
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0146,
-   "signal": false
-  },
-  {
-   "match_id": "3303381",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betway",
-   "ref_margin": 0.0471,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Ofner S.",
-     "model_prob": 0.4854,
-     "model_fair_odds": 2.06,
-     "market_prob": 0.5,
-     "market_fair_odds": 2.0,
-     "ref_odds": 1.91,
-     "edge": -0.0146,
-     "ev_at_ref": -0.0728,
-     "elo": 1605.6,
-     "matches": 120
-    },
-    {
-     "player": "Nishikori K.",
-     "model_prob": 0.5146,
-     "model_fair_odds": 1.943,
-     "market_prob": 0.5,
-     "market_fair_odds": 2.0,
-     "ref_odds": 1.91,
-     "edge": 0.0146,
-     "ev_at_ref": -0.0172,
-     "elo": 1783.8,
-     "matches": 609
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0146,
-   "signal": false
-  },
-  {
-   "match_id": "3305273",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.2061,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Dominika Salkova",
-     "model_prob": 0.6411,
-     "model_fair_odds": 1.56,
-     "market_prob": 0.6269,
-     "market_fair_odds": 1.595,
-     "ref_odds": 1.37,
-     "edge": 0.0143,
-     "ev_at_ref": -0.1217,
-     "elo": 1634.1,
-     "matches": null
-    },
-    {
-     "player": "Gabriela Andrea Knutson",
-     "model_prob": 0.3589,
-     "model_fair_odds": 2.786,
-     "market_prob": 0.3731,
-     "market_fair_odds": 2.68,
-     "ref_odds": 2.1,
-     "edge": -0.0143,
-     "ev_at_ref": -0.2464,
-     "elo": 1533.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0143,
-   "signal": false
-  },
-  {
-   "match_id": "3302991",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.0455,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Galfi D.",
-     "model_prob": 0.351,
-     "model_fair_odds": 2.849,
-     "market_prob": 0.3649,
-     "market_fair_odds": 2.741,
-     "ref_odds": 2.58,
-     "edge": -0.0139,
-     "ev_at_ref": -0.0945,
-     "elo": 1543.1,
-     "matches": 80
-    },
-    {
-     "player": "Sasnovich A.",
-     "model_prob": 0.649,
-     "model_fair_odds": 1.541,
-     "market_prob": 0.6351,
-     "market_fair_odds": 1.574,
-     "ref_odds": 1.52,
-     "edge": 0.0139,
-     "ev_at_ref": -0.0135,
-     "elo": 1651.0,
-     "matches": 325
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0139,
-   "signal": false
-  },
-  {
-   "match_id": "3305071",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0567,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Arthur Fery",
-     "model_prob": 0.8056,
-     "model_fair_odds": 1.241,
-     "market_prob": 0.8191,
-     "market_fair_odds": 1.221,
-     "ref_odds": 1.18,
-     "edge": -0.0135,
-     "ev_at_ref": -0.0494,
-     "elo": 1730.4,
-     "matches": null
-    },
-    {
-     "player": "Cruz Hewitt",
-     "model_prob": 0.1944,
-     "model_fair_odds": 5.145,
-     "market_prob": 0.1809,
-     "market_fair_odds": 5.529,
-     "ref_odds": 4.78,
-     "edge": 0.0135,
-     "ev_at_ref": -0.0709,
-     "elo": 1483.4,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0135,
-   "signal": false
-  },
-  {
-   "match_id": "3304665",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0689,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Mai Hontama",
-     "model_prob": 0.5236,
-     "model_fair_odds": 1.91,
-     "market_prob": 0.537,
-     "market_fair_odds": 1.862,
-     "ref_odds": 1.75,
-     "edge": -0.0134,
-     "ev_at_ref": -0.0837,
-     "elo": 1533.1,
-     "matches": null
-    },
-    {
-     "player": "Andrea Lazaro Garcia",
-     "model_prob": 0.4764,
-     "model_fair_odds": 2.099,
-     "market_prob": 0.463,
-     "market_fair_odds": 2.16,
-     "ref_odds": 2.01,
-     "edge": 0.0134,
-     "ev_at_ref": -0.0424,
-     "elo": 1516.7,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0134,
-   "signal": false
-  },
-  {
-   "match_id": "3305281",
-   "date": "2026-08-26",
-   "tournament": "Philadelphia WTA",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0794,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Fiona Crawley",
-     "model_prob": 0.8664,
-     "model_fair_odds": 1.154,
-     "market_prob": 0.8531,
-     "market_fair_odds": 1.172,
-     "ref_odds": 1.12,
-     "edge": 0.0132,
-     "ev_at_ref": -0.0297,
-     "elo": 1548.7,
-     "matches": null
-    },
-    {
-     "player": "Ekaterina Ovcharenko",
-     "model_prob": 0.1336,
-     "model_fair_odds": 7.483,
-     "market_prob": 0.1469,
-     "market_fair_odds": 6.809,
-     "ref_odds": 5.36,
-     "edge": -0.0132,
-     "ev_at_ref": -0.2837,
-     "elo": 1224.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0132,
-   "signal": false
-  },
-  {
-   "match_id": "3303029",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.075,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Katie Swan",
-     "model_prob": 0.5482,
-     "model_fair_odds": 1.824,
-     "market_prob": 0.5613,
-     "market_fair_odds": 1.782,
-     "ref_odds": 1.67,
-     "edge": -0.0131,
-     "ev_at_ref": -0.0845,
-     "elo": 1488.1,
-     "matches": null
-    },
-    {
-     "player": "Katrina Scott",
-     "model_prob": 0.4518,
-     "model_fair_odds": 2.213,
-     "market_prob": 0.4387,
-     "market_fair_odds": 2.279,
-     "ref_odds": 2.1,
-     "edge": 0.0131,
-     "ev_at_ref": -0.0512,
-     "elo": 1454.5,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0131,
-   "signal": false
-  },
-  {
-   "match_id": "3301151",
-   "date": "2026-08-25",
-   "tournament": "Augsburg challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.034,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Dominic Stricker",
-     "model_prob": 0.6323,
-     "model_fair_odds": 1.581,
-     "market_prob": 0.6453,
-     "market_fair_odds": 1.55,
-     "ref_odds": 1.51,
-     "edge": -0.0129,
-     "ev_at_ref": -0.0452,
-     "elo": 1538.7,
-     "matches": null
-    },
-    {
-     "player": "Martin Krumich",
-     "model_prob": 0.3677,
-     "model_fair_odds": 2.72,
-     "market_prob": 0.3547,
-     "market_fair_odds": 2.819,
-     "ref_odds": 2.69,
-     "edge": 0.0129,
-     "ev_at_ref": -0.011,
-     "elo": 1444.5,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0129,
-   "signal": false
-  },
-  {
-   "match_id": "3303341",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betsson",
-   "ref_margin": 0.0623,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Bu Yunchaokete",
-     "model_prob": 0.6971,
-     "model_fair_odds": 1.435,
-     "market_prob": 0.7096,
-     "market_fair_odds": 1.409,
-     "ref_odds": 1.35,
-     "edge": -0.0125,
-     "ev_at_ref": -0.0589,
-     "elo": 1645.5,
-     "matches": null
-    },
-    {
-     "player": "Rio Noguchi",
-     "model_prob": 0.3029,
-     "model_fair_odds": 3.301,
-     "market_prob": 0.2904,
-     "market_fair_odds": 3.444,
-     "ref_odds": 3.11,
-     "edge": 0.0125,
-     "ev_at_ref": -0.058,
-     "elo": 1500.7,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0125,
-   "signal": false
-  },
-  {
-   "match_id": "3305289",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0797,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Coleman Wong",
-     "model_prob": 0.7237,
-     "model_fair_odds": 1.382,
-     "market_prob": 0.712,
-     "market_fair_odds": 1.404,
-     "ref_odds": 1.33,
-     "edge": 0.0117,
-     "ev_at_ref": -0.0374,
-     "elo": 1612.3,
-     "matches": null
-    },
-    {
-     "player": "Lukas Neumayer",
-     "model_prob": 0.2763,
-     "model_fair_odds": 3.62,
-     "market_prob": 0.288,
-     "market_fair_odds": 3.472,
-     "ref_odds": 3.05,
-     "edge": -0.0117,
-     "ev_at_ref": -0.1574,
-     "elo": 1445.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0117,
-   "signal": false
-  },
-  {
-   "match_id": "3305041",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betfair",
-   "ref_margin": 0.1642,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Ymer E.",
-     "model_prob": 0.4911,
-     "model_fair_odds": 2.036,
-     "market_prob": 0.4797,
-     "market_fair_odds": 2.085,
-     "ref_odds": 1.78,
-     "edge": 0.0114,
-     "ev_at_ref": -0.1259,
-     "elo": 1517.0,
-     "matches": 97
-    },
-    {
-     "player": "Garin C.",
-     "model_prob": 0.5089,
-     "model_fair_odds": 1.965,
-     "market_prob": 0.5203,
-     "market_fair_odds": 1.922,
-     "ref_odds": 1.66,
-     "edge": -0.0114,
-     "ev_at_ref": -0.1552,
-     "elo": 1626.8,
-     "matches": 234
-    }
-   ],
-   "stale_players": [
-    "Ymer E.",
-    "Garin C."
-   ],
-   "best_edge": 0.0114,
-   "signal": false
-  },
-  {
-   "match_id": "3305049",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Betfair",
-   "ref_margin": 0.267,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Gaubas V.",
-     "model_prob": 0.8206,
-     "model_fair_odds": 1.219,
-     "market_prob": 0.8101,
-     "market_fair_odds": 1.234,
-     "ref_odds": 1.06,
-     "edge": 0.0105,
-     "ev_at_ref": -0.1301,
-     "elo": 1510.6,
-     "matches": 15
-    },
-    {
-     "player": "Cecchinato M.",
-     "model_prob": 0.1794,
-     "model_fair_odds": 5.575,
-     "market_prob": 0.1907,
-     "market_fair_odds": 5.244,
-     "ref_odds": 3.09,
-     "edge": -0.0113,
-     "ev_at_ref": -0.4457,
-     "elo": 1563.2,
-     "matches": 207
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0105,
-   "signal": false
-  },
-  {
-   "match_id": "3303701",
-   "date": "2026-08-26",
-   "tournament": "Roehampton 2 challenger",
-   "tour": "atp",
-   "surface": "Grass",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0898,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Tai Sach",
-     "model_prob": 0.5503,
-     "model_fair_odds": 1.817,
-     "market_prob": 0.5399,
-     "market_fair_odds": 1.852,
-     "ref_odds": 1.71,
-     "edge": 0.0105,
-     "ev_at_ref": -0.0589,
-     "elo": 1351.3,
-     "matches": null
-    },
-    {
-     "player": "Sasi Kumar Mukund",
-     "model_prob": 0.4497,
-     "model_fair_odds": 2.224,
-     "market_prob": 0.4601,
-     "market_fair_odds": 2.173,
-     "ref_odds": 1.98,
-     "edge": -0.0105,
-     "ev_at_ref": -0.1097,
-     "elo": 1316.2,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0105,
-   "signal": false
-  },
-  {
-   "match_id": "3305291",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0791,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Francesco Passaro",
-     "model_prob": 0.494,
-     "model_fair_odds": 2.024,
-     "market_prob": 0.484,
-     "market_fair_odds": 2.066,
-     "ref_odds": 1.91,
-     "edge": 0.01,
-     "ev_at_ref": -0.0565,
-     "elo": 1533.8,
-     "matches": null
-    },
-    {
-     "player": "Tom Gentzsch",
-     "model_prob": 0.506,
-     "model_fair_odds": 1.976,
-     "market_prob": 0.516,
-     "market_fair_odds": 1.938,
-     "ref_odds": 1.8,
-     "edge": -0.01,
-     "ev_at_ref": -0.0891,
-     "elo": 1538.0,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.01,
-   "signal": false
-  },
-  {
-   "match_id": "3304663",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0668,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Brengle M.",
-     "model_prob": 0.2546,
-     "model_fair_odds": 3.928,
-     "market_prob": 0.2642,
-     "market_fair_odds": 3.785,
-     "ref_odds": 3.36,
-     "edge": -0.0096,
-     "ev_at_ref": -0.1446,
-     "elo": 1582.2,
-     "matches": 236
-    },
-    {
-     "player": "Stefanini L.",
-     "model_prob": 0.7454,
-     "model_fair_odds": 1.342,
-     "market_prob": 0.7358,
-     "market_fair_odds": 1.359,
-     "ref_odds": 1.3,
-     "edge": 0.0096,
-     "ev_at_ref": -0.031,
-     "elo": 1497.1,
-     "matches": 43
-    }
-   ],
-   "stale_players": [
-    "Brengle M."
-   ],
-   "best_edge": 0.0096,
-   "signal": false
-  },
-  {
-   "match_id": "3303447",
-   "date": "2026-08-26",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betway",
-   "ref_margin": 0.0505,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Kecmanovic M.",
-     "model_prob": 0.5897,
-     "model_fair_odds": 1.696,
-     "market_prob": 0.5808,
-     "market_fair_odds": 1.722,
-     "ref_odds": 1.65,
-     "edge": 0.0089,
-     "ev_at_ref": -0.0269,
-     "elo": 1656.0,
-     "matches": 361
-    },
-    {
-     "player": "Marozsan F.",
-     "model_prob": 0.4103,
-     "model_fair_odds": 2.438,
-     "market_prob": 0.4192,
-     "market_fair_odds": 2.386,
-     "ref_odds": 2.25,
-     "edge": -0.0089,
-     "ev_at_ref": -0.0769,
-     "elo": 1734.9,
-     "matches": 152
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0089,
-   "signal": false
-  },
-  {
-   "match_id": "3305279",
-   "date": "2026-08-26",
-   "tournament": "Philadelphia WTA",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Interwetten",
-   "ref_margin": 0.0747,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Cabrera L.",
-     "model_prob": 0.1529,
-     "model_fair_odds": 6.54,
-     "market_prob": 0.1445,
-     "market_fair_odds": 6.921,
-     "ref_odds": 5.5,
-     "edge": 0.0084,
-     "ev_at_ref": -0.159,
-     "elo": 1294.8,
-     "matches": 31
-    },
-    {
-     "player": "Sawangkaew M.",
-     "model_prob": 0.8471,
-     "model_fair_odds": 1.181,
-     "market_prob": 0.8555,
-     "market_fair_odds": 1.169,
-     "ref_odds": 1.12,
-     "edge": -0.0084,
-     "ev_at_ref": -0.0513,
-     "elo": 1756.6,
-     "matches": 16
-    }
-   ],
-   "stale_players": [
-    "Cabrera L."
-   ],
-   "best_edge": 0.0084,
-   "signal": false
-  },
-  {
-   "match_id": "3303261",
-   "date": "2026-08-25",
+   "match_id": "3306875",
+   "date": "2026-08-28",
    "tournament": "US Open",
    "tour": "atp",
    "surface": "Hard",
@@ -4303,242 +598,243 @@
    "method": "model",
    "sides": [
     {
-     "player": "Gea A.",
-     "model_prob": 0.8438,
-     "model_fair_odds": 1.185,
-     "market_prob": 0.8521,
-     "market_fair_odds": 1.174,
-     "ref_odds": 1.13,
-     "edge": -0.0082,
-     "ev_at_ref": -0.0465,
-     "elo": 1772.5,
-     "matches": 13
+     "player": "Svrcina D.",
+     "model_prob": 0.5638,
+     "model_fair_odds": 1.774,
+     "market_prob": 0.5451,
+     "market_fair_odds": 1.834,
+     "ref_odds": 1.73,
+     "edge": 0.0187,
+     "ev_at_ref": -0.0247,
+     "elo": 1650.2,
+     "matches": 24
     },
     {
-     "player": "Nagal S.",
-     "model_prob": 0.1562,
-     "model_fair_odds": 6.403,
-     "market_prob": 0.1479,
-     "market_fair_odds": 6.76,
-     "ref_odds": 5.53,
-     "edge": 0.0082,
-     "ev_at_ref": -0.1364,
-     "elo": 1420.6,
-     "matches": 41
+     "player": "Mcdonald M.",
+     "model_prob": 0.4362,
+     "model_fair_odds": 2.292,
+     "market_prob": 0.4549,
+     "market_fair_odds": 2.198,
+     "ref_odds": 2.05,
+     "edge": -0.0187,
+     "ev_at_ref": -0.1057,
+     "elo": 1640.1,
+     "matches": 226
     }
    ],
    "stale_players": [
-    "Nagal S."
+    "Mcdonald M."
    ],
-   "best_edge": 0.0082,
+   "best_edge": 0.0187,
    "signal": false
   },
   {
-   "match_id": "3305037",
-   "date": "2026-08-25",
+   "match_id": "3307591",
+   "date": "2026-08-28",
    "tournament": "Winston Salem",
    "tour": "atp",
    "surface": "Hard",
    "best_of": 3,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.0332,
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.0576,
    "method": "model",
    "sides": [
     {
-     "player": "Walton A.",
-     "model_prob": 0.6003,
-     "model_fair_odds": 1.666,
-     "market_prob": 0.6084,
-     "market_fair_odds": 1.644,
-     "ref_odds": 1.6,
-     "edge": -0.0081,
-     "ev_at_ref": -0.0395,
-     "elo": 1585.9,
-     "matches": 67
+     "player": "Buse I.",
+     "model_prob": 0.4651,
+     "model_fair_odds": 2.15,
+     "market_prob": 0.4474,
+     "market_fair_odds": 2.235,
+     "ref_odds": 2.1,
+     "edge": 0.0177,
+     "ev_at_ref": -0.0234,
+     "elo": 1680.9,
+     "matches": 40
     },
     {
-     "player": "Buse I.",
-     "model_prob": 0.3997,
-     "model_fair_odds": 2.502,
-     "market_prob": 0.3916,
-     "market_fair_odds": 2.554,
-     "ref_odds": 2.45,
-     "edge": 0.0081,
-     "ev_at_ref": -0.0208,
-     "elo": 1719.4,
-     "matches": 39
+     "player": "Bonzi B.",
+     "model_prob": 0.5349,
+     "model_fair_odds": 1.869,
+     "market_prob": 0.5526,
+     "market_fair_odds": 1.81,
+     "ref_odds": 1.72,
+     "edge": -0.0177,
+     "ev_at_ref": -0.0799,
+     "elo": 1696.9,
+     "matches": 147
     }
    ],
    "stale_players": [],
-   "best_edge": 0.0081,
+   "best_edge": 0.0177,
    "signal": false
   },
   {
-   "match_id": "3303611",
-   "date": "2026-08-26",
-   "tournament": "Monterrey",
+   "match_id": "3306943",
+   "date": "2026-08-28",
+   "tournament": "US Open",
+   "tour": "atp",
+   "surface": "Hard",
+   "best_of": 5,
+   "ref_book": "Betway",
+   "ref_margin": 0.0452,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Bu Yunchaokete",
+     "model_prob": 0.6389,
+     "model_fair_odds": 1.565,
+     "market_prob": 0.6226,
+     "market_fair_odds": 1.606,
+     "ref_odds": 1.55,
+     "edge": 0.0163,
+     "ev_at_ref": -0.0098,
+     "elo": 1625.5,
+     "matches": null
+    },
+    {
+     "player": "Federico Cina",
+     "model_prob": 0.3611,
+     "model_fair_odds": 2.769,
+     "market_prob": 0.3774,
+     "market_fair_odds": 2.65,
+     "ref_odds": 2.5,
+     "edge": -0.0163,
+     "ev_at_ref": -0.0972,
+     "elo": 1526.4,
+     "matches": null
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0163,
+   "signal": false
+  },
+  {
+   "match_id": "3306915",
+   "date": "2026-08-28",
+   "tournament": "US Open",
    "tour": "wta",
    "surface": "Hard",
    "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.0315,
+   "ref_book": "Betway",
+   "ref_margin": 0.0452,
    "method": "model",
    "sides": [
     {
-     "player": "Bartunkova N.",
-     "model_prob": 0.6015,
-     "model_fair_odds": 1.662,
-     "market_prob": 0.6092,
-     "market_fair_odds": 1.641,
-     "ref_odds": 1.6,
-     "edge": -0.0077,
-     "ev_at_ref": -0.0375,
-     "elo": 1802.4,
-     "matches": 33
+     "player": "Watson H.",
+     "model_prob": 0.3629,
+     "model_fair_odds": 2.755,
+     "market_prob": 0.3774,
+     "market_fair_odds": 2.65,
+     "ref_odds": 2.5,
+     "edge": -0.0145,
+     "ev_at_ref": -0.0927,
+     "elo": 1575.0,
+     "matches": 340
     },
     {
-     "player": "Potapova A.",
-     "model_prob": 0.3985,
-     "model_fair_odds": 2.51,
-     "market_prob": 0.3908,
-     "market_fair_odds": 2.559,
-     "ref_odds": 2.46,
-     "edge": 0.0077,
-     "ev_at_ref": -0.0198,
-     "elo": 1843.1,
-     "matches": 299
+     "player": "Dart H.",
+     "model_prob": 0.6371,
+     "model_fair_odds": 1.57,
+     "market_prob": 0.6226,
+     "market_fair_odds": 1.606,
+     "ref_odds": 1.55,
+     "edge": 0.0145,
+     "ev_at_ref": -0.0125,
+     "elo": 1503.0,
+     "matches": 123
     }
    ],
-   "stale_players": [],
-   "best_edge": 0.0077,
+   "stale_players": [
+    "Watson H."
+   ],
+   "best_edge": 0.0145,
    "signal": false
   },
   {
-   "match_id": "3303355",
-   "date": "2026-08-25",
+   "match_id": "3306893",
+   "date": "2026-08-28",
+   "tournament": "US Open",
+   "tour": "wta",
+   "surface": "Hard",
+   "best_of": 3,
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.0673,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Yue Yuan",
+     "model_prob": 0.4725,
+     "model_fair_odds": 2.116,
+     "market_prob": 0.4589,
+     "market_fair_odds": 2.179,
+     "ref_odds": 2.03,
+     "edge": 0.0136,
+     "ev_at_ref": -0.0407,
+     "elo": 1574.7,
+     "matches": null
+    },
+    {
+     "player": "Mary Stoiana",
+     "model_prob": 0.5275,
+     "model_fair_odds": 1.896,
+     "market_prob": 0.5411,
+     "market_fair_odds": 1.848,
+     "ref_odds": 1.74,
+     "edge": -0.0136,
+     "ev_at_ref": -0.0822,
+     "elo": 1593.8,
+     "matches": null
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0136,
+   "signal": false
+  },
+  {
+   "match_id": "3306879",
+   "date": "2026-08-28",
    "tournament": "US Open",
    "tour": "atp",
    "surface": "Hard",
    "best_of": 5,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0661,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Stefanos Sakellaridis",
-     "model_prob": 0.4035,
-     "model_fair_odds": 2.478,
-     "market_prob": 0.3961,
-     "market_fair_odds": 2.524,
-     "ref_odds": 2.33,
-     "edge": 0.0074,
-     "ev_at_ref": -0.0598,
-     "elo": 1566.7,
-     "matches": null
-    },
-    {
-     "player": "Christopher Oconnell",
-     "model_prob": 0.5965,
-     "model_fair_odds": 1.676,
-     "market_prob": 0.6039,
-     "market_fair_odds": 1.656,
-     "ref_odds": 1.57,
-     "edge": -0.0074,
-     "ev_at_ref": -0.0635,
-     "elo": 1634.6,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0074,
-   "signal": false
-  },
-  {
-   "match_id": "3302963",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Pinnacle",
-   "ref_margin": 0.042,
+   "ref_margin": 0.0604,
    "method": "model",
    "sides": [
     {
-     "player": "Hruncakova V.",
-     "model_prob": 0.4534,
-     "model_fair_odds": 2.206,
-     "market_prob": 0.4463,
-     "market_fair_odds": 2.241,
-     "ref_odds": 2.14,
-     "edge": 0.0071,
-     "ev_at_ref": -0.0297,
-     "elo": 1530.1,
-     "matches": 17
+     "player": "Gea A.",
+     "model_prob": 0.5763,
+     "model_fair_odds": 1.735,
+     "market_prob": 0.5651,
+     "market_fair_odds": 1.77,
+     "ref_odds": 1.68,
+     "edge": 0.0112,
+     "ev_at_ref": -0.0318,
+     "elo": 1772.5,
+     "matches": 13
     },
     {
-     "player": "Riera J.",
-     "model_prob": 0.5466,
-     "model_fair_odds": 1.829,
-     "market_prob": 0.5537,
-     "market_fair_odds": 1.806,
-     "ref_odds": 1.74,
-     "edge": -0.0071,
-     "ev_at_ref": -0.0489,
-     "elo": 1634.8,
-     "matches": 26
+     "player": "Basavareddy N.",
+     "model_prob": 0.4237,
+     "model_fair_odds": 2.36,
+     "market_prob": 0.4349,
+     "market_fair_odds": 2.299,
+     "ref_odds": 2.15,
+     "edge": -0.0112,
+     "ev_at_ref": -0.089,
+     "elo": 1637.7,
+     "matches": 28
     }
    ],
    "stale_players": [
-    "Hruncakova V.",
-    "Riera J."
+    "Basavareddy N."
    ],
-   "best_edge": 0.0071,
+   "best_edge": 0.0112,
    "signal": false
   },
   {
-   "match_id": "3305265",
-   "date": "2026-08-26",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betfair",
-   "ref_margin": 0.1828,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Alexandrova E.",
-     "model_prob": 0.5473,
-     "model_fair_odds": 1.827,
-     "market_prob": 0.5538,
-     "market_fair_odds": 1.806,
-     "ref_odds": 1.55,
-     "edge": -0.0065,
-     "ev_at_ref": -0.1517,
-     "elo": 1810.1,
-     "matches": 433
-    },
-    {
-     "player": "Tauson C.",
-     "model_prob": 0.4527,
-     "model_fair_odds": 2.209,
-     "market_prob": 0.4462,
-     "market_fair_odds": 2.241,
-     "ref_odds": 1.86,
-     "edge": 0.0065,
-     "ev_at_ref": -0.1579,
-     "elo": 1703.1,
-     "matches": 186
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0065,
-   "signal": false
-  },
-  {
-   "match_id": "3303025",
-   "date": "2026-08-25",
+   "match_id": "3306937",
+   "date": "2026-08-28",
    "tournament": "US Open",
    "tour": "wta",
    "surface": "Hard",
@@ -4548,1631 +844,362 @@
    "method": "model",
    "sides": [
     {
-     "player": "Yuan Y.",
-     "model_prob": 0.639,
-     "model_fair_odds": 1.565,
-     "market_prob": 0.6333,
-     "market_fair_odds": 1.579,
-     "ref_odds": 1.5,
-     "edge": 0.0057,
-     "ev_at_ref": -0.0415,
-     "elo": 1658.1,
-     "matches": 115
-    },
-    {
-     "player": "Guo H.",
-     "model_prob": 0.361,
-     "model_fair_odds": 2.77,
+     "player": "Semenistaja D.",
+     "model_prob": 0.3559,
+     "model_fair_odds": 2.81,
      "market_prob": 0.3667,
      "market_fair_odds": 2.727,
      "ref_odds": 2.5,
-     "edge": -0.0057,
-     "ev_at_ref": -0.0976,
-     "elo": 1429.5,
+     "edge": -0.0108,
+     "ev_at_ref": -0.1102,
+     "elo": 1407.5,
      "matches": 12
-    }
-   ],
-   "stale_players": [
-    "Guo H."
-   ],
-   "best_edge": 0.0057,
-   "signal": false
-  },
-  {
-   "match_id": "3304605",
-   "date": "2026-08-25",
-   "tournament": "Philadelphia WTA",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0683,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Anastasia Zakharova",
-     "model_prob": 0.9058,
-     "model_fair_odds": 1.104,
-     "market_prob": 0.9004,
-     "market_fair_odds": 1.111,
-     "ref_odds": 1.07,
-     "edge": 0.0054,
-     "ev_at_ref": -0.0308,
-     "elo": 1743.7,
-     "matches": null
     },
-    {
-     "player": "Kylie Collins",
-     "model_prob": 0.0942,
-     "model_fair_odds": 10.616,
-     "market_prob": 0.0996,
-     "market_fair_odds": 10.045,
-     "ref_odds": 7.48,
-     "edge": -0.0054,
-     "ev_at_ref": -0.2954,
-     "elo": 1350.5,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0054,
-   "signal": false
-  },
-  {
-   "match_id": "3305275",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "BetVictor",
-   "ref_margin": 0.0863,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Papamichail D.",
-     "model_prob": 0.2182,
-     "model_fair_odds": 4.583,
-     "market_prob": 0.2235,
-     "market_fair_odds": 4.474,
-     "ref_odds": 3.75,
-     "edge": -0.0053,
-     "ev_at_ref": -0.1818,
-     "elo": 1414.0,
-     "matches": 17
-    },
-    {
-     "player": "Gorgodze E.",
-     "model_prob": 0.7818,
-     "model_fair_odds": 1.279,
-     "market_prob": 0.7765,
-     "market_fair_odds": 1.288,
-     "ref_odds": 1.22,
-     "edge": 0.0053,
-     "ev_at_ref": -0.0462,
-     "elo": 1400.1,
-     "matches": 16
-    }
-   ],
-   "stale_players": [
-    "Papamichail D.",
-    "Gorgodze E."
-   ],
-   "best_edge": 0.0053,
-   "signal": false
-  },
-  {
-   "match_id": "3303455",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0608,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Collignon R.",
-     "model_prob": 0.543,
-     "model_fair_odds": 1.842,
-     "market_prob": 0.5378,
-     "market_fair_odds": 1.859,
-     "ref_odds": 1.76,
-     "edge": 0.0052,
-     "ev_at_ref": -0.0444,
-     "elo": 1743.1,
-     "matches": 42
-    },
-    {
-     "player": "Hijikata R.",
-     "model_prob": 0.457,
-     "model_fair_odds": 2.188,
-     "market_prob": 0.4622,
-     "market_fair_odds": 2.163,
-     "ref_odds": 2.03,
-     "edge": -0.0052,
-     "ev_at_ref": -0.0722,
-     "elo": 1635.0,
-     "matches": 113
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0052,
-   "signal": false
-  },
-  {
-   "match_id": "3305287",
-   "date": "2026-08-25",
-   "tournament": "Winston Salem",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0589,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Grenier H.",
-     "model_prob": 0.1872,
-     "model_fair_odds": 5.341,
-     "market_prob": 0.182,
-     "market_fair_odds": 5.495,
-     "ref_odds": 4.73,
-     "edge": 0.0052,
-     "ev_at_ref": -0.1145,
-     "elo": 1479.6,
-     "matches": 27
-    },
-    {
-     "player": "Baez S.",
-     "model_prob": 0.8128,
-     "model_fair_odds": 1.23,
-     "market_prob": 0.818,
-     "market_fair_odds": 1.222,
-     "ref_odds": 1.18,
-     "edge": -0.0052,
-     "ev_at_ref": -0.0409,
-     "elo": 1672.7,
-     "matches": 242
-    }
-   ],
-   "stale_players": [
-    "Grenier H."
-   ],
-   "best_edge": 0.0052,
-   "signal": false
-  },
-  {
-   "match_id": "3305267",
-   "date": "2026-08-26",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0644,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Chwalinska M.",
-     "model_prob": 0.6302,
-     "model_fair_odds": 1.587,
-     "market_prob": 0.6257,
-     "market_fair_odds": 1.598,
-     "ref_odds": 1.52,
-     "edge": 0.0045,
-     "ev_at_ref": -0.0421,
-     "elo": 1788.7,
-     "matches": 22
-    },
-    {
-     "player": "Parks A.",
-     "model_prob": 0.3698,
-     "model_fair_odds": 2.704,
-     "market_prob": 0.3743,
-     "market_fair_odds": 2.672,
-     "ref_odds": 2.46,
-     "edge": -0.0045,
-     "ev_at_ref": -0.0903,
-     "elo": 1611.6,
-     "matches": 130
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0045,
-   "signal": false
-  },
-  {
-   "match_id": "3305271",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0711,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Bianca Andreescu",
-     "model_prob": 0.7355,
-     "model_fair_odds": 1.36,
-     "market_prob": 0.7397,
-     "market_fair_odds": 1.352,
-     "ref_odds": 1.29,
-     "edge": -0.0041,
-     "ev_at_ref": -0.0512,
-     "elo": 1688.3,
-     "matches": null
-    },
-    {
-     "player": "Veronika Podrez",
-     "model_prob": 0.2645,
-     "model_fair_odds": 3.781,
-     "market_prob": 0.2603,
-     "market_fair_odds": 3.841,
-     "ref_odds": 3.38,
-     "edge": 0.0041,
-     "ev_at_ref": -0.1061,
-     "elo": 1510.6,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0041,
-   "signal": false
-  },
-  {
-   "match_id": "3305043",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "Interwetten",
-   "ref_margin": 0.0823,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Andrea Guerrieri",
-     "model_prob": 0.4387,
-     "model_fair_odds": 2.279,
-     "market_prob": 0.4351,
-     "market_fair_odds": 2.299,
-     "ref_odds": 2.1,
-     "edge": 0.0037,
-     "ev_at_ref": -0.0787,
-     "elo": 1498.1,
-     "matches": null
-    },
-    {
-     "player": "Joel Schwaerzler",
-     "model_prob": 0.5613,
-     "model_fair_odds": 1.782,
-     "market_prob": 0.5649,
-     "market_fair_odds": 1.77,
-     "ref_odds": 1.65,
-     "edge": -0.0037,
-     "ev_at_ref": -0.0739,
-     "elo": 1540.9,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0037,
-   "signal": false
-  },
-  {
-   "match_id": "3302959",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betsson",
-   "ref_margin": 0.0639,
-   "method": "model",
-   "sides": [
     {
      "player": "Hunter S.",
-     "model_prob": 0.5006,
-     "model_fair_odds": 1.998,
-     "market_prob": 0.4972,
-     "market_fair_odds": 2.011,
-     "ref_odds": 1.89,
-     "edge": 0.0034,
-     "ev_at_ref": -0.0539,
-     "elo": 1628.4,
+     "model_prob": 0.6441,
+     "model_fair_odds": 1.553,
+     "market_prob": 0.6333,
+     "market_fair_odds": 1.579,
+     "ref_odds": 1.5,
+     "edge": 0.0108,
+     "ev_at_ref": -0.0339,
+     "elo": 1628.1,
      "matches": 24
-    },
-    {
-     "player": "Inglis M.",
-     "model_prob": 0.4994,
-     "model_fair_odds": 2.002,
-     "market_prob": 0.5028,
-     "market_fair_odds": 1.989,
-     "ref_odds": 1.87,
-     "edge": -0.0034,
-     "ev_at_ref": -0.0661,
-     "elo": 1563.4,
-     "matches": 35
     }
    ],
-   "stale_players": [
-    "Inglis M."
-   ],
-   "best_edge": 0.0034,
+   "stale_players": [],
+   "best_edge": 0.0108,
    "signal": false
   },
   {
-   "match_id": "3305031",
-   "date": "2026-08-25",
+   "match_id": "3307629",
+   "date": "2026-08-28",
    "tournament": "Winston Salem",
    "tour": "atp",
    "surface": "Hard",
    "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0598,
+   "ref_book": "Betway",
+   "ref_margin": 0.0505,
    "method": "model",
    "sides": [
     {
      "player": "Duckworth J.",
-     "model_prob": 0.4019,
-     "model_fair_odds": 2.488,
-     "market_prob": 0.4049,
-     "market_fair_odds": 2.47,
-     "ref_odds": 2.3,
-     "edge": -0.003,
-     "ev_at_ref": -0.0756,
-     "elo": 1606.4,
-     "matches": 208
+     "model_prob": 0.4294,
+     "model_fair_odds": 2.329,
+     "market_prob": 0.4192,
+     "market_fair_odds": 2.386,
+     "ref_odds": 2.25,
+     "edge": 0.0102,
+     "ev_at_ref": -0.0339,
+     "elo": 1612.9,
+     "matches": 210
     },
     {
-     "player": "Navone M.",
-     "model_prob": 0.5981,
-     "model_fair_odds": 1.672,
-     "market_prob": 0.5951,
-     "market_fair_odds": 1.68,
-     "ref_odds": 1.6,
-     "edge": 0.003,
-     "ev_at_ref": -0.0431,
-     "elo": 1772.0,
-     "matches": 117
+     "player": "Fery A.",
+     "model_prob": 0.5706,
+     "model_fair_odds": 1.752,
+     "market_prob": 0.5808,
+     "market_fair_odds": 1.722,
+     "ref_odds": 1.65,
+     "edge": -0.0102,
+     "ev_at_ref": -0.0585,
+     "elo": 1834.1,
+     "matches": 21
     }
    ],
    "stale_players": [],
-   "best_edge": 0.003,
+   "best_edge": 0.0102,
    "signal": false
   },
   {
-   "match_id": "3305021",
-   "date": "2026-08-25",
-   "tournament": "Philadelphia WTA",
+   "match_id": "3306913",
+   "date": "2026-08-28",
+   "tournament": "US Open",
    "tour": "wta",
    "surface": "Hard",
    "best_of": 3,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0702,
-   "method": "model",
+   "ref_margin": 0.0643,
+   "method": "ta_elo",
    "sides": [
     {
-     "player": "Grabher J.",
-     "model_prob": 0.1781,
-     "model_fair_odds": 5.614,
-     "market_prob": 0.1804,
-     "market_fair_odds": 5.543,
-     "ref_odds": 4.64,
-     "edge": -0.0023,
-     "ev_at_ref": -0.1735,
-     "elo": 1529.6,
-     "matches": 60
+     "player": "Francesca Jones",
+     "model_prob": 0.6022,
+     "model_fair_odds": 1.661,
+     "market_prob": 0.6048,
+     "market_fair_odds": 1.653,
+     "ref_odds": 1.57,
+     "edge": -0.0026,
+     "ev_at_ref": -0.0546,
+     "elo": 1625.0,
+     "matches": null
     },
     {
-     "player": "Krueger A.",
-     "model_prob": 0.8219,
-     "model_fair_odds": 1.217,
-     "market_prob": 0.8196,
-     "market_fair_odds": 1.22,
-     "ref_odds": 1.17,
-     "edge": 0.0023,
-     "ev_at_ref": -0.0384,
-     "elo": 1747.6,
-     "matches": 125
+     "player": "Joanna Garland",
+     "model_prob": 0.3978,
+     "model_fair_odds": 2.514,
+     "market_prob": 0.3952,
+     "market_fair_odds": 2.53,
+     "ref_odds": 2.34,
+     "edge": 0.0026,
+     "ev_at_ref": -0.069,
+     "elo": 1553.0,
+     "matches": null
     }
    ],
-   "stale_players": [
-    "Grabher J."
-   ],
-   "best_edge": 0.0023,
+   "stale_players": [],
+   "best_edge": 0.0026,
    "signal": false
   },
   {
-   "match_id": "3303379",
-   "date": "2026-08-25",
+   "match_id": "3306935",
+   "date": "2026-08-28",
+   "tournament": "US Open",
+   "tour": "wta",
+   "surface": "Hard",
+   "best_of": 3,
+   "ref_book": "TennisExplorer",
+   "ref_margin": 0.0593,
+   "method": "ta_elo",
+   "sides": [
+    {
+     "player": "Kristina Liutova",
+     "model_prob": 0.7436,
+     "model_fair_odds": 1.345,
+     "market_prob": 0.7456,
+     "market_fair_odds": 1.341,
+     "ref_odds": 1.29,
+     "edge": -0.0019,
+     "ev_at_ref": -0.0407,
+     "elo": 1783.4,
+     "matches": null
+    },
+    {
+     "player": "Martyna Kubka",
+     "model_prob": 0.2564,
+     "model_fair_odds": 3.901,
+     "market_prob": 0.2544,
+     "market_fair_odds": 3.93,
+     "ref_odds": 3.52,
+     "edge": 0.0019,
+     "ev_at_ref": -0.0976,
+     "elo": 1598.4,
+     "matches": null
+    }
+   ],
+   "stale_players": [],
+   "best_edge": 0.0019,
+   "signal": false
+  },
+  {
+   "match_id": "3306927",
+   "date": "2026-08-28",
    "tournament": "US Open",
    "tour": "atp",
    "surface": "Hard",
    "best_of": 5,
    "ref_book": "Pinnacle",
-   "ref_margin": 0.0454,
+   "ref_margin": 0.0426,
    "method": "model",
    "sides": [
     {
-     "player": "Bolt A.",
-     "model_prob": 0.2904,
-     "model_fair_odds": 3.443,
-     "market_prob": 0.2928,
-     "market_fair_odds": 3.416,
-     "ref_odds": 3.17,
-     "edge": -0.0023,
-     "ev_at_ref": -0.0793,
-     "elo": 1617.6,
-     "matches": 52
+     "player": "Harris L.",
+     "model_prob": 0.6213,
+     "model_fair_odds": 1.609,
+     "market_prob": 0.6197,
+     "market_fair_odds": 1.614,
+     "ref_odds": 1.56,
+     "edge": 0.0016,
+     "ev_at_ref": -0.0307,
+     "elo": 1624.3,
+     "matches": 143
     },
     {
      "player": "Llamas Ruiz P.",
-     "model_prob": 0.7096,
-     "model_fair_odds": 1.409,
-     "market_prob": 0.7072,
-     "market_fair_odds": 1.414,
-     "ref_odds": 1.37,
-     "edge": 0.0023,
-     "ev_at_ref": -0.0279,
-     "elo": 1612.7,
+     "model_prob": 0.3787,
+     "model_fair_odds": 2.641,
+     "market_prob": 0.3803,
+     "market_fair_odds": 2.63,
+     "ref_odds": 2.49,
+     "edge": -0.0016,
+     "ev_at_ref": -0.0571,
+     "elo": 1612.8,
      "matches": 18
     }
    ],
    "stale_players": [
-    "Bolt A."
+    "Harris L."
    ],
-   "best_edge": 0.0023,
-   "signal": false
-  },
-  {
-   "match_id": "3302939",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "Betsson",
-   "ref_margin": 0.0635,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Lucie Havlickova",
-     "model_prob": 0.363,
-     "model_fair_odds": 2.755,
-     "market_prob": 0.3651,
-     "market_fair_odds": 2.739,
-     "ref_odds": 2.52,
-     "edge": -0.0021,
-     "ev_at_ref": -0.0853,
-     "elo": 1488.6,
-     "matches": null
-    },
-    {
-     "player": "Elizara Yaneva",
-     "model_prob": 0.637,
-     "model_fair_odds": 1.57,
-     "market_prob": 0.6349,
-     "market_fair_odds": 1.575,
-     "ref_odds": 1.5,
-     "edge": 0.0021,
-     "ev_at_ref": -0.0445,
-     "elo": 1586.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0021,
-   "signal": false
-  },
-  {
-   "match_id": "3303277",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "atp",
-   "surface": "Hard",
-   "best_of": 5,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0632,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Hugo Gaston",
-     "model_prob": 0.8593,
-     "model_fair_odds": 1.164,
-     "market_prob": 0.8612,
-     "market_fair_odds": 1.161,
-     "ref_odds": 1.12,
-     "edge": -0.002,
-     "ev_at_ref": -0.0376,
-     "elo": 1630.6,
-     "matches": null
-    },
-    {
-     "player": "Guido Ivan Justo",
-     "model_prob": 0.1407,
-     "model_fair_odds": 7.106,
-     "market_prob": 0.1388,
-     "market_fair_odds": 7.207,
-     "ref_odds": 5.87,
-     "edge": 0.002,
-     "ev_at_ref": -0.1739,
-     "elo": 1316.3,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.002,
-   "signal": false
-  },
-  {
-   "match_id": "3302953",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0695,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Darja Semenistaja",
-     "model_prob": 0.588,
-     "model_fair_odds": 1.701,
-     "market_prob": 0.5863,
-     "market_fair_odds": 1.705,
-     "ref_odds": 1.61,
-     "edge": 0.0017,
-     "ev_at_ref": -0.0533,
-     "elo": 1526.0,
-     "matches": null
-    },
-    {
-     "player": "Hayu Kinoshita",
-     "model_prob": 0.412,
-     "model_fair_odds": 2.427,
-     "market_prob": 0.4137,
-     "market_fair_odds": 2.417,
-     "ref_odds": 2.23,
-     "edge": -0.0017,
-     "ev_at_ref": -0.0813,
-     "elo": 1464.2,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.0017,
-   "signal": false
-  },
-  {
-   "match_id": "3303605",
-   "date": "2026-08-25",
-   "tournament": "Monterrey",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0555,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Vidmanova D.",
-     "model_prob": 0.5589,
-     "model_fair_odds": 1.789,
-     "market_prob": 0.5605,
-     "market_fair_odds": 1.784,
-     "ref_odds": 1.7,
-     "edge": -0.0016,
-     "ev_at_ref": -0.0499,
-     "elo": 1583.2,
-     "matches": 12
-    },
-    {
-     "player": "Birrell K.",
-     "model_prob": 0.4411,
-     "model_fair_odds": 2.267,
-     "market_prob": 0.4395,
-     "market_fair_odds": 2.275,
-     "ref_odds": 2.14,
-     "edge": 0.0016,
-     "ev_at_ref": -0.0561,
-     "elo": 1646.0,
-     "matches": 109
-    }
-   ],
-   "stale_players": [],
    "best_edge": 0.0016,
    "signal": false
   },
   {
-   "match_id": "3305295",
-   "date": "2026-08-26",
+   "match_id": "3306941",
+   "date": "2026-08-28",
    "tournament": "US Open",
    "tour": "atp",
    "surface": "Hard",
    "best_of": 5,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.086,
+   "ref_margin": 0.0625,
    "method": "model",
    "sides": [
     {
-     "player": "Seyboth Wild T.",
-     "model_prob": 0.3924,
-     "model_fair_odds": 2.548,
-     "market_prob": 0.3937,
-     "market_fair_odds": 2.54,
-     "ref_odds": 2.29,
-     "edge": -0.0012,
-     "ev_at_ref": -0.1014,
-     "elo": 1626.5,
-     "matches": 88
-    },
-    {
-     "player": "Mcdonald M.",
-     "model_prob": 0.6076,
-     "model_fair_odds": 1.646,
-     "market_prob": 0.6063,
-     "market_fair_odds": 1.649,
-     "ref_odds": 1.54,
-     "edge": 0.0012,
-     "ev_at_ref": -0.0643,
-     "elo": 1639.7,
-     "matches": 226
-    }
-   ],
-   "stale_players": [
-    "Seyboth Wild T.",
-    "Mcdonald M."
-   ],
-   "best_edge": 0.0012,
-   "signal": false
-  },
-  {
-   "match_id": "3304617",
-   "date": "2026-08-26",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0694,
-   "method": "ta_elo",
-   "sides": [
-    {
-     "player": "Julieta Pareja",
-     "model_prob": 0.6465,
-     "model_fair_odds": 1.547,
-     "market_prob": 0.6456,
-     "market_fair_odds": 1.549,
-     "ref_odds": 1.47,
+     "player": "Gaston H.",
+     "model_prob": 0.565,
+     "model_fair_odds": 1.77,
+     "market_prob": 0.564,
+     "market_fair_odds": 1.773,
+     "ref_odds": 1.68,
      "edge": 0.001,
-     "ev_at_ref": -0.0496,
-     "elo": 1601.1,
-     "matches": null
+     "ev_at_ref": -0.0509,
+     "elo": 1560.0,
+     "matches": 132
     },
     {
-     "player": "Iryna Shymanovich",
-     "model_prob": 0.3535,
-     "model_fair_odds": 2.829,
-     "market_prob": 0.3544,
-     "market_fair_odds": 2.822,
-     "ref_odds": 2.57,
+     "player": "Smith C.",
+     "model_prob": 0.435,
+     "model_fair_odds": 2.299,
+     "market_prob": 0.436,
+     "market_fair_odds": 2.293,
+     "ref_odds": 2.14,
      "edge": -0.001,
-     "ev_at_ref": -0.0916,
-     "elo": 1496.2,
-     "matches": null
-    }
-   ],
-   "stale_players": [],
-   "best_edge": 0.001,
-   "signal": false
-  },
-  {
-   "match_id": "3302985",
-   "date": "2026-08-25",
-   "tournament": "US Open",
-   "tour": "wta",
-   "surface": "Hard",
-   "best_of": 3,
-   "ref_book": "TennisExplorer",
-   "ref_margin": 0.0611,
-   "method": "model",
-   "sides": [
-    {
-     "player": "Kalieva E.",
-     "model_prob": 0.8946,
-     "model_fair_odds": 1.118,
-     "market_prob": 0.8954,
-     "market_fair_odds": 1.117,
-     "ref_odds": 1.08,
-     "edge": -0.0008,
-     "ev_at_ref": -0.0339,
-     "elo": 1573.8,
-     "matches": 14
-    },
-    {
-     "player": "Mladenovic K.",
-     "model_prob": 0.1054,
-     "model_fair_odds": 9.484,
-     "market_prob": 0.1046,
-     "market_fair_odds": 9.56,
-     "ref_odds": 7.4,
-     "edge": 0.0008,
-     "ev_at_ref": -0.2197,
-     "elo": 1533.9,
-     "matches": 440
+     "ev_at_ref": -0.069,
+     "elo": 1475.4,
+     "matches": 10
     }
    ],
    "stale_players": [
-    "Mladenovic K."
+    "Smith C."
    ],
-   "best_edge": 0.0008,
+   "best_edge": 0.001,
    "signal": false
   }
  ],
  "skipped": [
   {
-   "match": "Wang X. vs Bouzas Maneiro J.",
-   "tournament": "Philadelphia WTA",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Preston J. vs Hibino N.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Mandlik E. vs Penickova K.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Hazelitt J. vs Dart H.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Burrage J. vs Maristany Zuleta De Reales G.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Kubka M. vs Penickova A.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Sobolieva A. vs Shubladze A.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Ku Y. vs Sharma A.",
-   "tournament": "US Open",
-   "reason": "Ku Y.: nur 2 Matches bei uns und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Antonius M. vs Searle H.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Daniel T. vs Johnson A.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Secord J. vs Schoolkate T.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Hong S. vs Basilashvili N.",
-   "tournament": "US Open",
-   "reason": "Hong S.: nur 5 Matches bei uns und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Selekhmeteva O. vs Jauffret C.",
-   "tournament": "Philadelphia WTA",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Rincon D. vs Lee J.",
-   "tournament": "US Open",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Olivieri G. vs Barrios Vera M.",
-   "tournament": "US Open",
-   "reason": "Barrios Vera M.T.: nur 2 Matches bei uns und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Hernandez Serrano J. vs Saraiva Dos Santos P.",
+   "match": "Mayo A. vs Queiroz Miguel L.",
    "tournament": "Kingston 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Poling K. vs Fancutt T.",
-   "tournament": "Kingston 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Chopra K. vs Bigun K.",
-   "tournament": "Kingston 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Kim A. vs Johns G.",
-   "tournament": "Kingston 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Gonzalez Fernandez M. vs Krueger M.",
-   "tournament": "Kingston 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Mayo A. vs Forbes M.",
-   "tournament": "Kingston 2 challenger",
-   "reason": "Forbes M.: nur 1 Matches bei uns und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Ficovich J. vs Zhu E.",
-   "tournament": "Kingston 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Hassan B. vs La Serna J.",
-   "tournament": "Augsburg challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Wehnelt K. vs Hardt N.",
-   "tournament": "Augsburg challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Sanchez Martinez B. vs Dellien M.",
-   "tournament": "Augsburg challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Haupt H. vs Gulin S.",
-   "tournament": "Augsburg challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Krutykh O. vs Soto M.",
-   "tournament": "Augsburg challenger",
-   "reason": "Soto M.: nur 1 Matches bei uns und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Matusevich A. vs Bittoun Kouzmine C.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Zahraj P. vs Brady P.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Andaloro F. vs Hudd E.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Deckers A. vs Potenza L.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Bonding O. vs Durasovic V.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Rossi L. vs Broom C.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Vives Marcos P. vs Baybars A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Mansilla Diez M. vs Dominguez Alonso J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Chepelev A. vs Parenti L.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Ulrich N. vs Aerne L.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Karma N. vs Vlahos S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Cordoba C. vs Fita Juan S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Baumgartner S. vs Bieldiugin T.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Carboni L. vs Bellegy A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Hunziker A. vs Sakellaridis D.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Parisca I. vs Perez Contri S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Aunion P. vs Demin Y.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "McCormick T. vs Lopez Morillo I.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Pieri S. vs Dean T.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Spiridon D. vs La Vela G.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Sadzik J. vs Filar K.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Campana Lee G. vs Cizek J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Wazny A. vs Pieczonka F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Lechno-Wasiutynski F. vs Rytelewski H.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Garcia A. vs Barranco Cosano J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Rodenas P. vs Carrascosa Diaz M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Juan Mano A. vs Turriziani Alvarez A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Sels J. vs Paardekooper S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Taddia L. vs Baker B.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Maric M. vs Bernet H.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "De Lange P. vs Karthik P.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Bozemoj B. vs Van Sambeek F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Gakhov I. vs Carrascosa Diaz E.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "De Felipe Garcia S. vs Palomar X.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Majdandzic M. vs Vanshelboim E.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Martin T. vs Domenc M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Hamza Reguig S. vs Plans J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Plunger M. vs Amarandei D.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Martin A. vs Szerencsits B.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Huszar A. vs Shylov H.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Elamin A. vs Jones R.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Grosman S. vs Omarkhanov A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Chazal M. vs Malis F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Battiston A. vs Turcanu R.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Graski J. vs Zielinski M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Cigarran T. vs Boosarawongse T.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Ambarzumjan E. vs Bekeni M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Naw H. vs Fernandez B.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Trufelli T. vs Branger L.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Couturier L. vs Cado Z.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Bagnolini D. vs Werner E.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Spyrou C. vs Sosedkin F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "D'Agostino S. vs Peiro Serrano A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Aggarwal P. vs Zgirovsky A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Fumagalli F. vs Petrovic D.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Lopez N. vs Held J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Mazdrashki A. vs Petre S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Pieleanu R. vs Berge Nourescu A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Roche M. vs Raquillet L.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Iraqi S. vs Raynel A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "de Schepper K. vs Pizzigoni M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Barreira Bonzom V. vs Casas Blasi J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Martin M. vs Delage P.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Livet Novkirichka F. vs Baudel A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Genier T. vs Tailleu P.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Scaglia M. vs Makhlouf M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Salvestre D. vs Gerbaud T.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Seghetti S. vs Tremblay D.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Grandinetti T. vs De La Fuente S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Garcia Longo N. vs Gagliardo L.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "De Dios F. vs Del Pino M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Colby R. vs Djosic N.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Grippo V. vs Zeitune G.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Malla B. vs Ross J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Bruna N. vs Zeitune M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Monferrer E. vs Vazquez F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Matsuoka S. vs Mesarovic M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Zhang J. vs Shimanov O.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Monday J. vs Maxted L.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Cook E. vs Sureshkumar M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Saitoh K. vs Dellavedova M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Samrej K. vs Mochizuki Y.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Shiraishi H. vs Lee K.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Shin S. vs Santillan A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Koyama H. vs Hazawa S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Weber A. vs Huang T.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Chen Y. vs Wang Y.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Ogura K. vs Jasika O.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Tamm K. vs Nakamura R.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Jeran A. vs Premzl M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Sorger S. vs Kupcic J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Mikovic M. vs Mikovic N.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Planinsek F. vs Hribar M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Balciunas M. vs Jong S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Covato M. vs Wiedenmann L.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Klaassen S. vs Voelzke G.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Angelini L. vs Put S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Vasa I. vs Vasa E.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Michalski D. vs Ribero F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Orlov V. vs Kellovsky D.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Mashtakov M. vs Zeuch T.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Guttau N. vs Knitter K.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Catini N. vs Pereira T.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Berrut A. vs Von Der Schulenburg J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Stanisavljevic M. vs Ehrenschneider N.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Ovcharenko O. vs Laborde A.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Seres F. vs Sakellaridis M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Weis A. vs Blardone O.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Burdet A. vs Fluri M.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Basile P. vs Valdetara F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Lagarrigue F. vs Nikles J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Xiao L. vs M Rifki F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Uchida K. vs Zhang T.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Aguiard E. vs Meng F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Oh C. vs Ryan Ziegann S.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Peliwo F. vs Charlton J.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Kim D. vs Jiang F.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Alhogbani A. vs Te R.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Liu H. vs Chen X.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Sun Q. vs Bar Biryukov P.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Jianu F. vs Melnic V.",
-   "tournament": "Roehampton 2 challenger",
-   "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
-  },
-  {
-   "match": "Sucu M. vs Andreescu S.",
+   "match": "Perez Contri S. vs Rodenas P.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Golescu R. vs Gima S.",
+   "match": "Michalski D. vs Cerny M.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Smiej Y. vs Tudorica A.",
+   "match": "Chepelev A. vs Ehrenschneider N.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Vishal Balsekar A. vs Bessonov D.",
+   "match": "Campana Lee G. vs Pieczonka F.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Hooper L. vs Elsayed A.",
+   "match": "Burdet A. vs Lagarrigue F.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Vaitiekunas P. vs Schlageter J.",
+   "match": "Carboni L. vs Karma N.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Behrmann T. vs Schell N.",
+   "match": "Ovcharenko O. vs Bernet H.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Lanik T. vs Sperle J.",
+   "match": "D'Agostino S. vs Popko D.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Sallay P. vs Hallquist Lithen J.",
+   "match": "Filip J. vs Barsukov N.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Valkusz M. vs Gloeckler M.",
+   "match": "Motta A. vs Fabre A.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Tenti F. vs Monzon I.",
+   "match": "Held J. vs Maute J.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Jelinek M. vs Rivera L.",
+   "match": "Chazal M. vs Tailleu P.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Braynin A. vs Schmid P.",
+   "match": "de Schepper K. vs Delage P.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Ujvary M. vs Larwig N.",
+   "match": "Aguilar Cardozo J. vs Gagliardo L.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Gundacker J. vs Baragiola Mordini T.",
+   "match": "Okonkwo O. vs Corwin F.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Berenz B. vs Denolly C.",
+   "match": "Nakashima B. vs Anthrop J.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Fabre A. vs Aubriot A.",
+   "match": "Martinez T. vs Zarate C.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Bellifemine A. vs Chestovaliev S.",
+   "match": "Malla B. vs Zeitune M.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Nsairi S. vs Larue L.",
+   "match": "Larue L. vs Sahtali T.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Popovic S. vs Dayal N.",
+   "match": "Jones R. vs Jade D.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Longwe-Smit T. vs Sahtali T.",
+   "match": "Jadoun N. vs Omarkhanov A.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Nakashima B. vs Piatti R.",
+   "match": "Vrba J. vs Shimanov O.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Arseneault N. vs Gonzalez-Galino V.",
+   "match": "Bertrand R. vs Domenc M.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   },
   {
-   "match": "Schachter N. vs Anthrop J.",
+   "match": "Mesarovic M. vs Stearns P.",
    "tournament": "Roehampton 2 challenger",
    "reason": "Spieler nicht in unserer Historie und kein Tennis-Abstract-Elo"
   }
