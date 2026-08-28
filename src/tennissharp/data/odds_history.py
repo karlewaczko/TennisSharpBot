@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import datetime as dt
 import logging
+import time
 
 import pandas as pd
 import requests
@@ -32,6 +33,34 @@ ODDS_COLUMN_PAIRS = {
 }
 
 
+# These are multi-megabyte spreadsheets served over plain HTTP from a small
+# site, and a slow response is the normal failure, not a missing file. With
+# no local cache -- a fresh checkout, or CI -- one timeout silently drops a
+# whole season out of the training history, so transient errors are retried.
+DOWNLOAD_TIMEOUT = 60
+DOWNLOAD_ATTEMPTS = 3
+RETRY_BACKOFF = 2.0
+
+
+def _fetch_season_file(url: str, sleep=time.sleep) -> bytes:
+    last = None
+    for attempt in range(DOWNLOAD_ATTEMPTS):
+        try:
+            resp = requests.get(url, timeout=DOWNLOAD_TIMEOUT)
+            resp.raise_for_status()
+            return resp.content
+        except requests.RequestException as exc:
+            last = exc
+            # A 404 is an answer: that season does not exist. Retrying it
+            # just spends three times as long arriving at the same place.
+            status = getattr(getattr(exc, "response", None), "status_code", None)
+            if status is not None and 400 <= status < 500:
+                raise
+            if attempt + 1 < DOWNLOAD_ATTEMPTS:
+                sleep(RETRY_BACKOFF * (attempt + 1))
+    raise last
+
+
 def _download_season(tour: str, year: int, force: bool = False) -> pd.DataFrame | None:
     url = config.ODDS_HISTORY_BASE_URL[tour].format(year=year)
     dest = config.RAW_ODDS_DIR / f"{tour}_{year}.xlsx"
@@ -39,15 +68,14 @@ def _download_season(tour: str, year: int, force: bool = False) -> pd.DataFrame 
     if dest.exists() and not force and not is_current_season:
         return pd.read_excel(dest)
     try:
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
+        content = _fetch_season_file(url)
     except requests.RequestException as exc:
         if dest.exists():
             logger.warning("Download failed for %s %s (%s); using cached copy", tour, year, exc)
             return pd.read_excel(dest)
         logger.warning("No data for %s %s (%s)", tour, year, exc)
         return None
-    dest.write_bytes(resp.content)
+    dest.write_bytes(content)
     return pd.read_excel(dest)
 
 

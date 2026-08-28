@@ -1,52 +1,52 @@
-# TennisSharpBot data update (2026-08-20T09:22:07+00:00)
+# TennisSharpBot data update (2026-08-28T12:31:41+00:00)
 
-- Matches in history: 82552
-- Date range: 2010-01-03 to 2026-08-14
+- Matches in history: 74797
+- Date range: 2010-01-03 to 2026-08-24
 - Tours: atp, wta
 
 ## Top 10 current overall Elo (players with 50+ matches on record)
 
 | player       |   elo_overall |   matches_played |
 |:-------------|--------------:|-----------------:|
-| Sinner J.    |        2341.4 |              443 |
-| Alcaraz C.   |        2248.4 |              350 |
-| Barty A.     |        2179.2 |              268 |
-| Sabalenka A. |        2160.6 |              545 |
-| Djokovic N.  |        2134.7 |             1019 |
-| Zverev A.    |        2085   |              745 |
-| Rybakina E.  |        2084.1 |              428 |
-| Swiatek I.   |        2077   |              413 |
-| Federer R.   |        2069   |              673 |
-| Nadal R.     |        2053.9 |              794 |
+| Sinner J.    |        2325.2 |              443 |
+| Alcaraz C.   |        2231.9 |              350 |
+| Barty A.     |        2179.6 |              268 |
+| Sabalenka A. |        2146   |              548 |
+| Djokovic N.  |        2097.4 |              793 |
+| Gauff C.     |        2093.4 |              390 |
+| Rybakina E.  |        2084.7 |              432 |
+| Swiatek I.   |        2084   |              418 |
+| Pegula J.    |        2072.7 |              435 |
+| Zverev A.    |        2062.8 |              644 |
 
 ## Tennis Abstract Elo ratings (top 10 per tour, reference/authoritative)
 
 ### ATP
 
-|   elo_rank | player           |    elo |   helo |   celo |   gelo |
-|-----------:|:-----------------|-------:|-------:|-------:|-------:|
-|          1 | Jannik Sinner    | 2321.9 | 2259.3 | 2211.8 | 2125.5 |
-|          2 | Carlos Alcaraz   | 2146.8 | 2073.3 | 2086.6 | 2014.2 |
-|          3 | Alexander Zverev | 2099.9 | 2033.5 | 2051.2 | 1950.1 |
-|          4 | Rafael Jodar     | 2024.5 | 1939.9 | 1961.9 | 1741.5 |
-|          5 | Arthur Fils      | 2000.9 | 1933.1 | 1945.2 | 1786.6 |
-|          6 | Ben Shelton      | 1997.7 | 1971.9 | 1863.8 | 1863.1 |
-|          7 | Novak Djokovic   | 1975.5 | 1929.8 | 1867.4 | 1846.2 |
-|          8 | Daniil Medvedev  | 1957.2 | 1944   | 1878.9 | 1842.5 |
-|          9 | Casper Ruud      | 1954.9 | 1872.9 | 1951.5 | 1689.5 |
-|         10 | Taylor Fritz     | 1952   | 1877.5 | 1782.4 | 1882.9 |
+|   elo_rank | player                |    elo |   helo |   celo |   gelo |
+|-----------:|:----------------------|-------:|-------:|-------:|-------:|
+|          1 | Jannik Sinner         | 2321.9 | 2259.3 | 2211.8 | 2125.5 |
+|          2 | Carlos Alcaraz        | 2146.8 | 2073.3 | 2086.6 | 2014.2 |
+|          3 | Alexander Zverev      | 2093.1 | 2027.1 | 2047.8 | 1946.7 |
+|          4 | Novak Djokovic        | 2061   | 2013.1 | 1960.1 | 1939   |
+|          5 | Arthur Fils           | 2055.1 | 1996.3 | 1972.3 | 1813.8 |
+|          6 | Rafael Jodar          | 2014.5 | 1934.7 | 1956.9 | 1736.5 |
+|          7 | Ben Shelton           | 1977.5 | 1948.5 | 1853.6 | 1852.9 |
+|          8 | Felix Auger Aliassime | 1973.3 | 1937.7 | 1871.6 | 1819.6 |
+|          9 | Taylor Fritz          | 1958.6 | 1888.6 | 1785.7 | 1886.2 |
+|         10 | Alex De Minaur        | 1950.3 | 1919.4 | 1864   | 1835   |
 
 ### WTA
 
 |   elo_rank | player          |    elo |   helo |   celo |   gelo |
 |-----------:|:----------------|-------:|-------:|-------:|-------:|
-|          1 | Aryna Sabalenka | 2194.6 | 2179.4 | 2090.4 | 1976.2 |
-|          2 | Elena Rybakina  | 2125.8 | 2114.5 | 2003.3 | 1885.6 |
-|          3 | Iga Swiatek     | 2104.2 | 2068.2 | 2028.2 | 1926.6 |
-|          4 | Coco Gauff      | 2088.1 | 2045.5 | 2026.8 | 1874.2 |
-|          5 | Jessica Pegula  | 2086.3 | 2045.9 | 1936.3 | 1911.3 |
-|          6 | Marta Kostyuk   | 2063.4 | 1973   | 1995.5 | 1825.5 |
-|          7 | Elina Svitolina | 2054.9 | 1991.4 | 1987   | 1834.9 |
-|          8 | Mirra Andreeva  | 2040.6 | 1969   | 2017.7 | 1789.9 |
-|          9 | Linda Noskova   | 2033.5 | 1928.9 | 1840.7 | 1932.7 |
+|          1 | Aryna Sabalenka | 2180.9 | 2164.7 | 2083.6 | 1969.4 |
+|          2 | Coco Gauff      | 2126.9 | 2086.8 | 2046.2 | 1893.6 |
+|          3 | Elena Rybakina  | 2125.7 | 2112.2 | 2003.2 | 1885.5 |
+|          4 | Iga Swiatek     | 2111.9 | 2077.3 | 2032.1 | 1930.4 |
+|          5 | Jessica Pegula  | 2103.9 | 2063.9 | 1945   | 1920.1 |
+|          6 | Marta Kostyuk   | 2068.6 | 1982.9 | 1998.1 | 1828.1 |
+|          7 | Elina Svitolina | 2058.4 | 1996.1 | 1988.8 | 1836.7 |
+|          8 | Mirra Andreeva  | 2035.2 | 1962.2 | 2015   | 1787.2 |
+|          9 | Linda Noskova   | 2026.8 | 1930   | 1837.3 | 1929.4 |
 |         10 | Naomi Osaka     | 2012.2 | 1943.4 | 1898.5 | 1835.1 |
