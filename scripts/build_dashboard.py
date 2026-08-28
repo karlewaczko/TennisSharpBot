@@ -30,14 +30,12 @@ import json
 from pathlib import Path
 
 import joblib
-import numpy as np
 import pandas as pd
 
 from tennissharp import config, odds_math, tourney_matching
 from tennissharp.backtest import DEFAULT_EDGE_THRESHOLD, MIN_MATCHES_PLAYED
 from tennissharp.data import tennisexplorer as te
-from tennissharp.model import feature_columns
-from tennissharp.value_finder import _features_for_matchup
+from tennissharp.value_finder import matchup_probability
 
 _spec = importlib.util.spec_from_file_location(
     "analyze_match", Path(__file__).parent / "analyze_match.py")
@@ -344,10 +342,11 @@ def main() -> None:
         fair_a, fair_b = odds_math.shin_devig(ref_odds)
 
         if not ta_fallback:
-            feats = _features_for_matchup(state, a, b, surface, best_of, speed)
-            clipped = float(np.clip(fair_a, 1e-6, 1 - 1e-6))
-            feats["market_logit"] = float(np.log(clipped / (1 - clipped)))
-            p_a = float(model.predict_proba(pd.DataFrame([feats])[feature_columns(True)])[0][1])
+            # Averaged over both orderings of the pair: the raw classifier is
+            # not antisymmetric, and on this card the ordering moved the
+            # answer by more than the edge being measured.
+            p_a = matchup_probability(model, state, a, b, surface, best_of,
+                                       market_prob_a=fair_a, surface_speed=speed)
 
         sides = []
         for name, prob, fair, ref_price, elo, n in (

@@ -44,6 +44,40 @@ def _ta_elo_for(lookup: dict[str, dict], full_name: str) -> dict | None:
     return lookup[close[0]] if close else None
 
 
+def matchup_probability(model, state: LiveState, player_a: str, player_b: str,
+                         surface: str, best_of: int, market_prob_a: float | None = None,
+                         surface_speed: float = 1.0, as_of=None) -> float:
+    """P(player_a wins), averaged over both orderings of the pair.
+
+    Every feature is a difference (a minus b) and the market feature is a's
+    logit, so swapping the players negates the whole input vector. A model
+    that had learned the antisymmetry would return exactly 1 - p; a gradient
+    boosting ensemble does not -- it splits on raw thresholds and lands in
+    different leaves. On a 93-match US Open card the two orderings disagreed
+    by 1.5 percentage points at the median and 4.7 at the worst, and the sign
+    of the edge flipped on 38 of 88 matches. That is larger than the card's
+    median edge of 0.90 points, i.e. larger than the thing being measured.
+
+    Averaging the two directions restores the antisymmetry exactly:
+    matchup_probability(a, b) + matchup_probability(b, a) == 1 by
+    construction, so which player a row lists first stops being an input.
+    """
+    cols = model_mod.feature_columns(market_prob_a is not None)
+
+    def one_way(x, y, market_x):
+        feats = _features_for_matchup(state, x, y, surface, best_of, surface_speed, as_of)
+        if market_x is not None:
+            clipped = min(max(market_x, 1e-6), 1 - 1e-6)
+            feats[MARKET_FEATURE] = float(np.log(clipped / (1 - clipped)))
+        X = pd.DataFrame([{c: feats[c] for c in cols}])
+        return float(model.predict_proba(X)[:, 1][0])
+
+    market_b = None if market_prob_a is None else 1.0 - market_prob_a
+    forward = one_way(player_a, player_b, market_prob_a)
+    backward = one_way(player_b, player_a, market_b)
+    return (forward + (1.0 - backward)) / 2.0
+
+
 def _features_for_matchup(state: LiveState, player_a: str, player_b: str, surface: str,
                            best_of: int, surface_speed: float = 1.0,
                            as_of=None) -> dict:
