@@ -56,3 +56,35 @@ def test_compute_pre_match_ratings_no_leakage():
     assert enriched.loc[0, "loser_elo_overall"] == 1500.0
     # By the third match, A (won match 1, lost match 2) should reflect that history.
     assert enriched.loc[2, "winner_elo_overall"] != 1500.0
+
+
+def test_normalize_surface_maps_the_known_names():
+    from tennissharp.elo import normalize_surface
+    assert normalize_surface("hard") == "Hard"
+    assert normalize_surface("Clay") == "Clay"
+    assert normalize_surface(" GRASS ") == "Grass"
+    assert normalize_surface("indoor hard") == "Hard"
+
+
+def test_normalize_surface_rejects_the_sites_placeholder():
+    """TennisExplorer writes "-" when an event lists no surface. It is truthy,
+    so it sails through any `or` fallback, and EloRatings.get then returns the
+    1500 default for BOTH players -- elo_surface_diff becomes exactly zero
+    with nothing logged."""
+    from tennissharp.elo import normalize_surface
+    assert normalize_surface("-") is None
+    assert normalize_surface("") is None
+    assert normalize_surface(None) is None
+    assert normalize_surface("Indoors") is None
+
+
+def test_an_unknown_surface_silently_returns_the_default_rating():
+    """Pins the trap normalize_surface exists to keep callers away from:
+    `get` does not raise on a surface it does not track."""
+    from tennissharp.elo import EloRatings, DEFAULT_RATING
+    elo = EloRatings()
+    elo.update("A", "B", "Hard", None)
+    _, on_hard = elo.get("A", "Hard")
+    _, on_junk = elo.get("A", "-")
+    assert on_hard != DEFAULT_RATING
+    assert on_junk == DEFAULT_RATING

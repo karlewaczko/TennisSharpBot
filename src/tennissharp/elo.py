@@ -15,6 +15,26 @@ import pandas as pd
 DEFAULT_RATING = 1500.0
 SURFACES = ("Hard", "Clay", "Grass", "Carpet")
 
+
+def normalize_surface(raw) -> str | None:
+    """Map a surface string onto one of SURFACES, or None if it names none.
+
+    Worth a function because the failure is silent in both directions:
+    `EloRatings.get` returns the 1500 default for anything outside SURFACES
+    while `update` folds the same string into "Hard", so an unrecognised
+    value never raises -- it just sets both players to the default and makes
+    elo_surface_diff exactly zero. TennisExplorer writes "-" for an event
+    with no surface listed, and "-" is truthy, so it passes any `or` fallback
+    untouched.
+    """
+    if raw is None:
+        return None
+    text = str(raw).strip().lower()
+    for surface in SURFACES:
+        if surface.lower() in text:
+            return surface
+    return None
+
 # Multiplies the base K-factor by tournament importance. Unrecognized/older
 # tier labels fall back to 1.0 via TIER_WEIGHTS.get(tier, 1.0).
 TIER_WEIGHTS = {

@@ -33,6 +33,7 @@ import joblib
 import pandas as pd
 
 from tennissharp import config, odds_math, tourney_matching
+from tennissharp.elo import normalize_surface
 from tennissharp.backtest import DEFAULT_EDGE_THRESHOLD, MIN_MATCHES_PLAYED
 from tennissharp.data import tennisexplorer as te
 from tennissharp.value_finder import matchup_probability
@@ -119,6 +120,34 @@ def _ta_elo_probability(elo_a: float, elo_b: float) -> float:
 PLAY_MARKERS = ("score", "sets_won1", "sets_won2")
 
 
+# The dashboard publishes these figures. They were literals in this file
+# until a data refresh moved the information gain from -0.00078 to -0.00111
+# and the page went on claiming the old number for days -- so they are read
+# from the audit's own output now, with the last measured values as a
+# fallback for a checkout that has not run scripts/audit_edge.py yet.
+AUDIT_FALLBACK = {
+    "information_gain": -0.00111,
+    "matches_tested": 55124,
+    "backtest_roi": 0.0135,
+    "backtest_t": 0.48,
+    "backtest_n": 1898,
+}
+
+
+def audit_numbers() -> dict:
+    out = dict(AUDIT_FALLBACK)
+    path = config.PROCESSED_DIR / "edge_audit_summary.json"
+    try:
+        measured = json.loads(path.read_text())
+    except (OSError, ValueError):
+        return out
+    for key in ("information_gain", "matches_tested"):
+        if measured.get(key) is not None:
+            out[key] = measured[key]
+    out["measured_at"] = measured.get("measured_at")
+    return out
+
+
 def unplayed_mask(sched: pd.DataFrame) -> pd.Series:
     """True for matches that have not started yet.
 
@@ -185,7 +214,8 @@ def main() -> None:
     ap.add_argument("--no-challenger", action="store_true")
     ap.add_argument("--date", action="append", metavar="YYYY-MM-DD",
                     help="restrict to these playing days; repeatable")
-    ap.add_argument("--threshold", type=float, default=DEFAULT_EDGE_THRESHOLD)
+    ap.add_argument("--threshold", type=float, default=DEFAULT_EDGE_THRESHOLD,
+                    help="minimum EV on the backed side (0.05 = +5%%)")
     args = ap.parse_args()
 
     sched = pd.read_csv(config.PROCESSED_DIR / "tennisexplorer_upcoming.csv")
@@ -303,7 +333,8 @@ def main() -> None:
         # The match page states the surface outright; the tournament-name
         # lookup is only a fallback for a match whose page we could not read.
         # It had Augsburg on hard court, which is a clay challenger.
-        surface = context.get("surface") or court_surface(str(m["tournament"]))
+        surface = (normalize_surface(context.get("surface"))
+                   or court_surface(str(m["tournament"])))
         best_of = best_of_for(str(m["tournament"]), tour,
                               is_qualifying=bool(context.get("is_qualifying")))
         speed = tourney_matching.lookup_surface_speed(
@@ -386,6 +417,7 @@ def main() -> None:
             # rest/form/fatigue features describe the gap, not the player.
             "stale_players": stale,
             "best_edge": round(max(s["edge"] for s in sides), 4),
+            "best_ev": round(max(s["ev_at_ref"] for s in sides), 4),
             # Only the trained model's disagreements are treated as signals.
             # A pure-Elo forecast carries no market information at all, and it
             # shows: measured on this card the model sits 1.5% from the market
@@ -401,8 +433,25 @@ def main() -> None:
             # as maximally rested against an opponent we still track, and in
             # Smith's case every other feature -- Elo -257, surface Elo -77,
             # form -0.30 -- pointed the other way.
+            # The market feature the model was trained on is Pinnacle's
+            # de-vigged price, and training drops every row without one. A
+            # soft book's de-vigged price is an unbiased but noisier stand-in:
+            # measured over 20 000 historical matches carrying both, the two
+            # differ by 0.63 percentage points at the median and 1.69 at the
+            # 90th percentile, with a median bias of +0.07. That noise is the
+            # size of the edge being measured, so a row priced only by a soft
+            # book is shown but is not called a signal.
+            "ref_is_sharp": ref_book in SHARP_BOOKS,
+            # Thresholded on EV, not edge. The brief is "bet at +5% EV", and
+            # the two are not the same test: edge is (forecast - market),
+            # which is an exact mirror between the two sides, while EV is
+            # edge converted at that side's own price. Mannarino at 3.85
+            # carries +5.23% EV on a 3.41 point edge; a 3.41 point edge on a
+            # 1.30 shot is worth +1.1%. Thresholding on edge therefore
+            # demanded far more from a longshot than from a favourite.
             "signal": (method == "model" and not stale
-                       and max(s["edge"] for s in sides) > args.threshold),
+                       and ref_book in SHARP_BOOKS
+                       and max(s["ev_at_ref"] for s in sides) > args.threshold),
         })
 
     matches.sort(key=lambda x: x["best_edge"], reverse=True)
@@ -422,13 +471,7 @@ def main() -> None:
         "skipped": skipped,
         # Carried into the page so the dashboard cannot be read as a
         # profitability claim -- these are this repo's own audit numbers.
-        "audit": {
-            "information_gain": -0.00078,
-            "matches_tested": 55124,
-            "backtest_roi": 0.0135,
-            "backtest_t": 0.48,
-            "backtest_n": 1898,
-        },
+        "audit": audit_numbers(),
     }
     args.out.write_text(json.dumps(payload, indent=1))
     print(f"{payload['n_scored']} Partien bewertet, {payload['n_signals']} Signale, "

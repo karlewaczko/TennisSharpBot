@@ -337,7 +337,7 @@ def render(data: dict) -> str:
         ("Modellbewertung", str(sum(1 for m in data["matches"]
                                     if m.get("method", "model") == "model")),
          f'von {data["n_scored"]} Partien insgesamt'),
-        ("Signale", str(data["n_signals"]), f'Edge über {thresh}'),
+        ("Signale", str(data["n_signals"]), f'EV über {thresh}'),
         ("Nur TA-Elo", str(sum(1 for m in data["matches"] if m.get("method") == "ta_elo")),
          "ohne Modellabdeckung"),
         ("Übersprungen", str(len(data["skipped"])), "gar keine Bewertung"),
@@ -359,7 +359,8 @@ def render(data: dict) -> str:
     else:
         verdict = ('<div class="verdict none"><div class="icon">&#9675;</div><div>'
                    '<h2>Kein Signal auf dieser Karte</h2>'
-                   f'<p>Keine Partie erreicht {thresh} Edge. Das ist der Normalfall und '
+                   f'<p>Keine Partie erreicht {thresh} EV bei einem scharfen Buch. Das ist der '
+                   'Normalfall und '
                    'gleichzeitig das ehrlichste Ergebnis: Das Modell reproduziert den '
                    'Sharp-Markt weitgehend, statt ihn zu schlagen.</p></div></div>')
 

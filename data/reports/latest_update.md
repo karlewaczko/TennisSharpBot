@@ -1,7 +1,7 @@
-# TennisSharpBot data update (2026-08-28T12:33:58+00:00)
+# TennisSharpBot data update (2026-09-01T19:01:56+00:00)
 
-- Matches in history: 82743
-- Date range: 2010-01-03 to 2026-08-24
+- Matches in history: 82817
+- Date range: 2010-01-03 to 2026-08-30
 - Tours: atp, wta
 
 ## Top 10 current overall Elo (players with 50+ matches on record)
@@ -10,12 +10,12 @@
 |:-------------|--------------:|-----------------:|
 | Sinner J.    |        2341.5 |              443 |
 | Alcaraz C.   |        2248.4 |              350 |
-| Barty A.     |        2179.2 |              268 |
-| Sabalenka A. |        2145.8 |              548 |
+| Barty A.     |        2179.4 |              268 |
+| Sabalenka A. |        2145.7 |              548 |
 | Djokovic N.  |        2120.6 |             1020 |
-| Gauff C.     |        2092.9 |              390 |
-| Rybakina E.  |        2085.1 |              432 |
-| Swiatek I.   |        2083.5 |              418 |
+| Gauff C.     |        2092.6 |              390 |
+| Rybakina E.  |        2085   |              432 |
+| Swiatek I.   |        2083.7 |              418 |
 | Zverev A.    |        2077   |              748 |
 | Pegula J.    |        2072.5 |              435 |
 

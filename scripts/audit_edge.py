@@ -13,6 +13,7 @@ believing ANY backtest result -- including this repo's own.
 import _bootstrap  # noqa: F401
 import argparse
 import datetime as dt
+import json
 
 import pandas as pd
 
@@ -126,7 +127,25 @@ def main() -> None:
 
     report_path = config.REPORTS_DIR / "edge_audit.md"
     report_path.write_text("\n".join(out))
+
+    # Machine-readable twin of the summary. The dashboard publishes these
+    # figures, and it used to carry them as literals in its source -- which
+    # went stale silently: the page claimed an information gain of -0.00078
+    # for days after a data refresh moved it to -0.00111.
+    summary_path = config.PROCESSED_DIR / "edge_audit_summary.json"
+    summary_path.write_text(json.dumps({
+        "measured_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "matches_tested": summary.get("matches_tested"),
+        "seasons_tested": summary.get("seasons_tested"),
+        "market_log_loss": summary.get("market_log_loss"),
+        "ours_log_loss": summary.get("ours_log_loss"),
+        "combined_log_loss": summary.get("combined_log_loss"),
+        "information_gain": summary.get("information_gain"),
+        "market_calibration_gap": float(cal["error"].abs().max()) if not cal.empty else None,
+        "verdict": summary.get("verdict"),
+    }, indent=1))
     print(f"\n\nFull report written to {report_path}")
+    print(f"Summary written to {summary_path}")
     print("\n" + "=" * 72)
     print("BOTTOM LINE:", summary.get("verdict", "inconclusive"))
     print("=" * 72)

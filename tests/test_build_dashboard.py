@@ -135,3 +135,48 @@ def test_grand_slam_qualifying_is_best_of_three(bd):
     assert bd.best_of_for("Wimbledon", "atp", is_qualifying=True) == 3
     # The main draw is unaffected.
     assert bd.best_of_for("US Open", "atp", is_qualifying=False) == 5
+
+
+def test_a_soft_book_row_is_shown_but_never_signalled(bd):
+    """The model's market feature is Pinnacle's de-vigged price and training
+    drops rows without one. Over 20 000 historical matches carrying both,
+    Pinnacle and the average book differ by 0.63 percentage points at the
+    median -- the size of the edge being measured."""
+    assert "Pinnacle" in bd.SHARP_BOOKS and "Betfair" in bd.SHARP_BOOKS
+    assert "TennisExplorer" not in bd.SHARP_BOOKS
+    assert "bet365" not in bd.SHARP_BOOKS
+
+
+def test_the_signal_threshold_is_ev_not_edge(bd):
+    """The brief is "bet at +5% EV". Edge is (forecast - market), an exact
+    mirror between the sides; EV is that edge converted at the side's own
+    price. Mannarino at 3.85 carried +5.23% EV on a 3.41 point edge, while
+    the same edge on a 1.30 shot is worth +1.1%. Thresholding on edge asked
+    far more of a longshot than of a favourite."""
+    src = (_SCRIPTS / "build_dashboard.py").read_text()
+    signal_block = src.split('"signal": (', 1)[1].split("),", 1)[0]
+    assert "ev_at_ref" in signal_block
+    assert "edge" not in signal_block
+
+
+def test_audit_numbers_prefer_the_measured_file(bd, tmp_path, monkeypatch):
+    """The page publishes these. They were literals here until a data refresh
+    moved the information gain to -0.00111 and the page kept claiming the old
+    -0.00078 for days."""
+    import json as _json
+    from tennissharp import config
+    monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
+    (tmp_path / "edge_audit_summary.json").write_text(_json.dumps(
+        {"information_gain": -0.00222, "matches_tested": 99, "measured_at": "2026-09-01T00:00:00+00:00"}))
+    got = bd.audit_numbers()
+    assert got["information_gain"] == -0.00222
+    assert got["matches_tested"] == 99
+    assert got["measured_at"] == "2026-09-01T00:00:00+00:00"
+
+
+def test_audit_numbers_fall_back_when_the_file_is_absent(bd, tmp_path, monkeypatch):
+    from tennissharp import config
+    monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
+    got = bd.audit_numbers()
+    assert got["information_gain"] == bd.AUDIT_FALLBACK["information_gain"]
+    assert "backtest_roi" in got

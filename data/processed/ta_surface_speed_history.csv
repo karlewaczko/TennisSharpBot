@@ -865,18 +865,18 @@ date,tournament,surface,ace_pct,surface_speed
 2023-06-12,s Hertogenbosch,Grass,0.12300000000000001,1.22
 2023-06-19,Queen's Club,Grass,0.09699999999999999,1.1
 2023-06-19,Halle,Grass,0.14,1.28
-2023-06-26,Mallorca,Grass,0.10300000000000001,1.12
 2023-06-26,Eastbourne,Grass,0.08800000000000001,1.1
+2023-06-26,Mallorca,Grass,0.10300000000000001,1.12
 2023-07-03,Wimbledon,Grass,0.105,1.1
 2023-07-17,Gstaad,Clay,0.078,0.78
-2023-07-17,Bastad,Clay,0.057999999999999996,0.86
 2023-07-17,Newport,Grass,0.067,0.62
-2023-07-24,Hamburg,Clay,0.07,0.8
-2023-07-24,Umag,Clay,0.051,0.67
+2023-07-17,Bastad,Clay,0.057999999999999996,0.86
 2023-07-24,Atlanta,Hard,0.127,1.2
+2023-07-24,Umag,Clay,0.051,0.67
+2023-07-24,Hamburg,Clay,0.07,0.8
 2023-07-31,Los Cabos,Hard,0.083,0.92
-2023-07-31,Kitzbuhel,Clay,0.084,0.95
 2023-07-31,Washington,Hard,0.10400000000000001,1.0
+2023-07-31,Kitzbuhel,Clay,0.084,0.95
 2023-08-07,Canada Masters,Hard,0.094,1.07
 2023-08-14,Cincinnati Masters,Hard,0.083,0.8
 2023-08-21,Winston-Salem,Hard,0.109,1.15
@@ -889,40 +889,40 @@ date,tournament,surface,ace_pct,surface_speed
 2023-10-16,Tokyo,Hard,0.106,1.12
 2023-10-16,Antwerp,Hard,0.122,1.25
 2023-10-16,Stockholm,Hard,0.078,0.95
-2023-10-23,Basel,Hard,0.114,1.11
 2023-10-23,Vienna,Hard,0.107,1.16
+2023-10-23,Basel,Hard,0.114,1.11
 2023-10-30,Paris Masters,Hard,0.114,1.1
 2023-11-06,Sofia,Hard,0.106,1.19
 2023-11-06,Metz,Hard,0.096,1.08
 2023-11-13,Tour Finals,Hard,0.14800000000000002,1.76
 2023-11-27,NextGen Finals,Hard,0.121,1.3
-2024-01-01,Hong Kong,Hard,0.107,1.08
 2024-01-01,United Cup,Hard,0.113,1.02
+2024-01-01,Hong Kong,Hard,0.107,1.08
 2024-01-01,Brisbane,Hard,0.121,1.3
-2024-01-08,Adelaide,Hard,0.10400000000000001,1.09
 2024-01-08,Auckland,Hard,0.098,1.05
+2024-01-08,Adelaide,Hard,0.10400000000000001,1.09
 2024-01-15,Australian Open,Hard,0.111,1.14
 2024-01-29,Montpellier,Hard,0.111,1.0
-2024-02-05,Marseille,Hard,0.141,1.29
-2024-02-05,Cordoba,Clay,0.047,0.73
 2024-02-05,Dallas,Hard,0.107,1.12
-2024-02-12,Buenos Aires,Clay,0.046,0.67
-2024-02-12,Rotterdam,Hard,0.126,1.25
+2024-02-05,Cordoba,Clay,0.047,0.73
+2024-02-05,Marseille,Hard,0.141,1.29
 2024-02-12,Delray Beach,Hard,0.10300000000000001,0.97
+2024-02-12,Rotterdam,Hard,0.126,1.25
+2024-02-12,Buenos Aires,Clay,0.046,0.67
 2024-02-19,Doha,Hard,0.084,0.77
 2024-02-19,Rio De Janeiro,Clay,0.039,0.67
 2024-02-19,Los Cabos,Hard,0.078,0.74
-2024-02-26,Dubai,Hard,0.122,1.13
-2024-02-26,Acapulco,Hard,0.09,0.88
 2024-02-26,Santiago,Clay,0.07200000000000001,1.19
+2024-02-26,Acapulco,Hard,0.09,0.88
+2024-02-26,Dubai,Hard,0.122,1.13
 2024-03-04,Indian Wells Masters,Hard,0.085,0.84
 2024-03-18,Miami Masters,Hard,0.10800000000000001,1.11
-2024-04-01,Houston,Clay,0.09,0.8
 2024-04-01,Marrakech,Clay,0.06,0.9
+2024-04-01,Houston,Clay,0.09,0.8
 2024-04-01,Estoril,Clay,0.052000000000000005,0.58
 2024-04-08,Monte Carlo Masters,Clay,0.061,0.61
-2024-04-15,Munich,Clay,0.077,0.64
 2024-04-15,Bucharest,Clay,0.046,0.54
+2024-04-15,Munich,Clay,0.077,0.64
 2024-04-15,Barcelona,Clay,0.049,0.62
 2024-04-22,Madrid Masters,Clay,0.073,0.71
 2024-05-06,Rome Masters,Clay,0.075,0.7
@@ -933,13 +933,13 @@ date,tournament,surface,ace_pct,surface_speed
 2024-06-10,Stuttgart,Grass,0.171,1.27
 2024-06-17,Halle,Grass,0.155,1.35
 2024-06-17,Queen's Club,Grass,0.11900000000000001,1.24
-2024-06-24,Eastbourne,Grass,0.131,1.26
 2024-06-24,Mallorca,Grass,0.12300000000000001,1.26
+2024-06-24,Eastbourne,Grass,0.131,1.26
 2024-07-01,Wimbledon,Grass,0.121,1.19
-2024-07-15,Newport,Grass,0.11800000000000001,0.91
-2024-07-15,Gstaad,Clay,0.10099999999999999,0.79
-2024-07-15,Hamburg,Clay,0.07200000000000001,0.89
 2024-07-15,Bastad,Clay,0.05,0.61
+2024-07-15,Gstaad,Clay,0.10099999999999999,0.79
+2024-07-15,Newport,Grass,0.11800000000000001,0.91
+2024-07-15,Hamburg,Clay,0.07200000000000001,0.89
 2024-07-22,Atlanta,Hard,0.139,1.26
 2024-07-22,Umag,Clay,0.055999999999999994,0.55
 2024-07-22,Kitzbuhel,Clay,0.067,0.83
@@ -955,11 +955,11 @@ date,tournament,surface,ace_pct,surface_speed
 2024-09-25,Tokyo,Hard,0.11800000000000001,1.17
 2024-09-26,Beijing,Hard,0.084,0.89
 2024-10-02,Shanghai Masters,Hard,0.11,1.16
-2024-10-14,Antwerp,Hard,0.115,1.38
 2024-10-14,Almaty,Hard,0.12,1.06
+2024-10-14,Antwerp,Hard,0.115,1.38
 2024-10-14,Stockholm,Hard,0.11900000000000001,1.08
-2024-10-21,Basel,Hard,0.16,1.48
 2024-10-21,Vienna,Hard,0.121,1.15
+2024-10-21,Basel,Hard,0.16,1.48
 2024-10-28,Paris Masters,Hard,0.13,1.24
 2024-11-04,Belgrade,Hard,0.125,1.28
 2024-11-04,Metz,Hard,0.087,1.03
@@ -977,37 +977,37 @@ date,tournament,surface,ace_pct,surface_speed
 2025-02-10,Buenos Aires,Clay,0.063,0.9
 2025-02-10,Delray Beach,Hard,0.115,1.09
 2025-02-10,Marseille,Hard,0.12300000000000001,1.05
-2025-02-17,Doha,Hard,0.124,1.07
 2025-02-17,Rio de Janeiro,Clay,0.06,0.91
+2025-02-17,Doha,Hard,0.124,1.07
 2025-02-24,Dubai,Hard,0.107,1.0
 2025-02-24,Acapulco,Hard,0.081,0.81
 2025-02-24,Santiago,Clay,0.06,0.71
 2025-03-05,Indian Wells Masters,Hard,0.071,0.73
 2025-03-19,Miami Masters,Hard,0.125,1.17
-2025-03-31,Bucharest,Clay,0.032,0.43
 2025-03-31,Houston,Clay,0.071,0.76
+2025-03-31,Bucharest,Clay,0.032,0.43
 2025-03-31,Marrakech,Clay,0.076,0.78
 2025-04-07,Monte Carlo Masters,Clay,0.054000000000000006,0.55
-2025-04-14,Barcelona,Clay,0.047,0.57
 2025-04-14,Munich,Clay,0.07200000000000001,0.64
+2025-04-14,Barcelona,Clay,0.047,0.57
 2025-04-23,Madrid Masters,Clay,0.085,0.78
 2025-05-07,Rome Masters,Clay,0.061,0.6
 2025-05-18,Geneva,Clay,0.086,0.71
 2025-05-18,Hamburg,Clay,0.066,0.57
 2025-05-26,nd Garros,Clay,0.073,0.68
-2025-06-09,Stuttgart,Grass,0.158,1.38
 2025-06-09,s Hertogenbosch,Grass,0.132,0.99
+2025-06-09,Stuttgart,Grass,0.158,1.38
 2025-06-16,Queen's Club,Grass,0.149,1.35
 2025-06-16,Halle,Grass,0.133,1.24
 2025-06-22,Mallorca,Grass,0.102,1.07
 2025-06-23,Eastbourne,Grass,0.083,0.75
 2025-06-30,Wimbledon,Grass,0.11599999999999999,1.09
-2025-07-14,Gstaad,Clay,0.139,1.06
 2025-07-14,Bastad,Clay,0.069,0.85
+2025-07-14,Gstaad,Clay,0.139,1.06
 2025-07-14,Los Cabos,Hard,0.115,1.01
 2025-07-20,Umag,Clay,0.073,0.8
-2025-07-21,Washington,Hard,0.125,1.17
 2025-07-21,Kitzbuhel,Clay,0.1,0.8
+2025-07-21,Washington,Hard,0.125,1.17
 2025-07-27,Canada Masters,Hard,0.11199999999999999,1.02
 2025-08-07,Cincinnati Masters,Hard,0.12300000000000001,1.19
 2025-08-17,Winston-Salem,Hard,0.114,1.1
@@ -1018,57 +1018,58 @@ date,tournament,surface,ace_pct,surface_speed
 2025-09-24,Tokyo,Hard,0.11599999999999999,1.18
 2025-09-25,Beijing,Hard,0.095,1.05
 2025-10-01,Shanghai Masters,Hard,0.11199999999999999,1.08
+2025-10-13,Almaty,Hard,0.102,1.16
 2025-10-13,Brussels,Hard,0.138,1.34
 2025-10-13,Stockholm,Hard,0.091,0.9
-2025-10-13,Almaty,Hard,0.102,1.16
 2025-10-20,Basel,Hard,0.14800000000000002,1.44
 2025-10-20,Vienna,Hard,0.121,1.25
 2025-10-27,Paris Masters,Hard,0.105,0.99
-2025-11-02,Metz,Hard,0.131,1.34
 2025-11-02,Athens,Hard,0.146,1.45
+2025-11-02,Metz,Hard,0.131,1.34
 2025-11-09,Tour Finals,Hard,0.12,1.4
 2025-12-17,Next Gen Finals,Hard,0.102,0.81
-2026-01-02,United Cup,Hard,0.14,1.09
+2026-01-02,United Cup,Hard,0.14,1.08
 2026-01-04,Brisbane,Hard,0.146,1.18
-2026-01-05,Hong Kong,Hard,0.114,1.02
+2026-01-05,Hong Kong,Hard,0.114,1.01
+2026-01-12,Adelaide,Hard,0.098,1.05
 2026-01-12,Auckland,Hard,0.11800000000000001,1.08
-2026-01-12,Adelaide,Hard,0.098,1.06
 2026-01-19,Australian Open,Hard,0.11900000000000001,1.12
-2026-02-02,Montpellier,Hard,0.198,1.49
-2026-02-09,Rotterdam,Hard,0.111,0.9
-2026-02-09,Dallas,Hard,0.165,1.47
+2026-02-02,Montpellier,Hard,0.198,1.48
+2026-02-09,Rotterdam,Hard,0.111,0.89
 2026-02-09,Buenos Aires,Clay,0.044000000000000004,0.51
+2026-02-09,Dallas,Hard,0.165,1.48
 2026-02-16,Doha,Hard,0.091,0.89
-2026-02-16,Delray Beach,Hard,0.136,1.29
-2026-02-16,Rio de Janeiro,Clay,0.08199999999999999,0.96
+2026-02-16,Delray Beach,Hard,0.136,1.3
+2026-02-16,Rio de Janeiro,Clay,0.08199999999999999,0.95
+2026-02-23,Acapulco,Hard,0.122,1.1
 2026-02-23,Santiago,Clay,0.077,0.81
-2026-02-23,Dubai,Hard,0.159,1.33
-2026-02-23,Acapulco,Hard,0.122,1.09
+2026-02-23,Dubai,Hard,0.159,1.32
 2026-03-04,Indian Wells Masters,Hard,0.114,1.17
 2026-03-18,Miami Masters,Hard,0.12300000000000001,1.19
 2026-03-30,Bucharest,Clay,0.044000000000000004,0.52
 2026-03-30,Houston,Clay,0.09,0.66
-2026-03-30,Marrakech,Clay,0.08,0.97
+2026-03-30,Marrakech,Clay,0.08,0.95
 2026-04-05,Monte Carlo Masters,ATP Monte Carlo Masters,0.059000000000000004,0.56
-2026-04-13,Barcelona,Clay,0.05,0.52
 2026-04-13,Munich,Clay,0.07200000000000001,0.71
-2026-04-22,Madrid Masters,Clay,0.08900000000000001,0.88
+2026-04-13,Barcelona,Clay,0.05,0.52
+2026-04-22,Madrid Masters,Clay,0.08900000000000001,0.87
 2026-05-06,Rome Masters,Clay,0.068,0.65
-2026-05-17,Geneva,Clay,0.07,0.68
-2026-05-17,Hamburg,Clay,0.051,0.53
+2026-05-17,Hamburg,Clay,0.051,0.52
+2026-05-17,Geneva,Clay,0.07,0.67
 2026-06-08,s Hertogenbosch,Grass,0.11,0.96
 2026-06-08,Stuttgart,Grass,0.177,1.3
-2026-06-15,Halle,Grass,0.138,1.18
 2026-06-15,Queen's Club,Grass,0.105,1.03
+2026-06-15,Halle,Grass,0.138,1.18
 2026-06-21,Mallorca,Grass,0.11,1.21
-2026-06-22,Eastbourne,Grass,0.11900000000000001,1.16
-2026-06-29,Wimbledon,Grass,0.11900000000000001,1.12
-2026-07-13,Umag,Clay,0.052000000000000005,0.67
+2026-06-22,Eastbourne,Grass,0.11900000000000001,1.17
+2026-06-29,Wimbledon,Grass,0.11900000000000001,1.11
 2026-07-13,Bastad,Clay,0.077,0.66
-2026-07-13,Gstaad,Clay,0.105,0.9
-2026-07-20,Estoril,Clay,0.053,0.56
+2026-07-13,Gstaad,Clay,0.105,0.89
+2026-07-13,Umag,Clay,0.052000000000000005,0.67
+2026-07-20,Estoril,Clay,0.053,0.55
 2026-07-20,Kitzbuhel,Clay,0.09300000000000001,0.79
 2026-07-27,Washington,Hard,0.125,1.1
-2026-07-27,Los Cabos,Hard,0.055,0.53
+2026-07-27,Los Cabos,Hard,0.055,0.54
 2026-08-02,Canada Masters,Hard,0.09300000000000001,0.86
 2026-08-13,Cincinnati Masters,Hard,0.11699999999999999,1.12
+2026-08-23,Winston-Salem,Hard,0.109,1.04
