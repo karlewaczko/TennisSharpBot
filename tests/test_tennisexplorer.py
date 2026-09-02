@@ -169,3 +169,41 @@ def test_match_context_on_a_page_without_the_header():
     from tennissharp.data.tennisexplorer import parse_match_context_html
     ctx = parse_match_context_html("<html><body>nothing</body></html>")
     assert ctx == {"round": None, "is_qualifying": False, "surface": None}
+
+
+_UNLINKED_HEADER_HTML = """
+<tr class="head flags"><td class="t-name" colspan="2"><a href="/plovdiv-3-challenger/2026/atp-men/"><span class="fl fl-bg">&nbsp;</span><span class="type-men2">&nbsp;</span>Plovdiv 3 challenger</a></td></tr>
+<tr id="s1"><td class="t-name"><a href="/player/aaa/">Aaa A.</a></td><td class="result">&nbsp;</td><td class="course">1.50</td><td class="course">2.50</td><td><a href="/match-detail/?id=1">d</a></td></tr>
+<tr id="s1b"><td class="t-name"><a href="/player/bbb/">Bbb B.</a></td><td class="result">&nbsp;</td></tr>
+<tr class="head flags"><td class="t-name" colspan="2"><span class="fl fl-all">&nbsp;</span><span class="type-men2">&nbsp;</span>Futures 2026</td></tr>
+<tr id="s2"><td class="t-name"><a href="/player/ccc/">Ccc C.</a></td><td class="result">&nbsp;</td><td class="course">1.20</td><td class="course">4.00</td><td><a href="/match-detail/?id=2">d</a></td></tr>
+<tr id="s2b"><td class="t-name"><a href="/player/ddd/">Ddd D.</a></td><td class="result">&nbsp;</td></tr>
+"""
+
+
+def test_a_header_without_a_link_is_still_a_header():
+    """The collective "Futures 2026" band is plain text in its cell. Skipping
+    it does not drop those matches -- attribution walks forward to the last
+    section seen, so they land under the PREVIOUS tournament. On one day that
+    filed 206 ITF Futures matches as "Plovdiv 3 challenger", which also
+    carried them past the ITF filter."""
+    df = parse_matches_html(_UNLINKED_HEADER_HTML)
+    assert len(df) == 2
+    assert df.iloc[0]["tournament"] == "Plovdiv 3 challenger"
+    assert df.iloc[1]["tournament"] == "Futures 2026"
+
+
+def test_an_unlinked_section_carries_an_empty_url():
+    df = parse_matches_html(_UNLINKED_HEADER_HTML)
+    assert df.iloc[0]["tournament_url"].endswith("/plovdiv-3-challenger/2026/atp-men/")
+    assert df.iloc[1]["tournament_url"] == ""
+
+
+def test_the_real_page_attributes_every_header():
+    """Regression on the live fixture: parser-visible sections must match the
+    header rows in the markup, or some tournament silently absorbs another."""
+    import re
+    html = (FIXTURES / "tennisexplorer_matches_sample.html").read_text(encoding="utf-8")
+    from tennissharp.data.tennisexplorer import _extract_tournament_sections
+    assert len(_extract_tournament_sections(html)) == len(
+        re.findall(r'<tr class="head flags">', html))

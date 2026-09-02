@@ -44,11 +44,11 @@ _am = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_am)
 resolve_name = _am.resolve_name
 
-# What counts as a real event. ITF, UTR Pro Series and the Swiss league are
-# excluded: neither our Elo nor Tennis Abstract rates those fields (TA's own
-# cutoff is ITF $50K+), so every such match would be dropped anyway after
-# costing an odds-history request.
-EXCLUDE_EVENTS = "UTR|Nationalliga|ITF"
+# What counts as a real event. ITF, UTR Pro Series, the Swiss league and the
+# site's collective "Futures" band are excluded: neither our Elo nor Tennis
+# Abstract rates those fields (TA's own cutoff is ITF $50K+), so every such
+# match would be dropped anyway after costing an odds-history request.
+EXCLUDE_EVENTS = "UTR|Nationalliga|ITF|Futures"
 # Main tour first, then challengers, so a capped run spends its budget where
 # the model has the most history.
 CHALLENGER_MARKER = "challenger"

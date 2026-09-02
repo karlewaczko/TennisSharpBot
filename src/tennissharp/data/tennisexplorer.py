@@ -66,16 +66,31 @@ def _clean_cell(text: str | None) -> str | None:
 def _extract_tournament_sections(html: str) -> list[tuple[int, str, str]]:
     """Returns [(char_offset, tournament_name, tournament_url), ...] in
     document order, so match rows can be attributed to the section they
-    fall under."""
+    fall under.
+
+    Not every header links anywhere. The collective "Futures 2026" band is
+    plain text inside its cell, and skipping it does not drop those matches
+    -- it hands them to the *previous* header, because attribution walks
+    forward to the last section seen. On one day that put 206 ITF Futures
+    matches under "Plovdiv 3 challenger", which also carried them straight
+    past the ITF filter. A header with no link is still a header.
+    """
     sections = []
     for m in re.finditer(r'<tr class="head flags">', html):
-        block = html[m.start():m.start() + 400]
+        # Bound the block at the header row's own end. A fixed-width window
+        # runs on into the match rows below, where the first <a href> is a
+        # player link -- which would give an unlinked header someone's player
+        # page as its tournament URL.
+        end = html.find("</tr>", m.start())
+        block = html[m.start():end if end != -1 else m.start() + 400]
         link = re.search(r'<a href="([^"]+)"[^>]*>', block)
-        # Tournament name is the link's visible text, stripped of the two
-        # leading flag/type spans.
-        name = re.search(r'</span><span[^>]*>&nbsp;</span>([^<]+)</a>', block)
-        if link and name:
-            sections.append((m.start(), name.group(1).strip(), BASE_URL + link.group(1)))
+        # The name is whatever text follows the two flag/type spans, whether
+        # or not it is wrapped in a link.
+        name = re.search(r'</span>\s*<span[^>]*>&nbsp;</span>\s*([^<]+)', block)
+        if not name:
+            continue
+        url = BASE_URL + link.group(1) if link else ""
+        sections.append((m.start(), name.group(1).strip(), url))
     return sections
 
 
