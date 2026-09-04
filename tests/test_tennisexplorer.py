@@ -1,6 +1,8 @@
 import datetime as dt
 from pathlib import Path
 
+import pytest
+
 from tennissharp.data.tennisexplorer import (
     day_for_offset, day_url, head_to_head_summary, parse_head_to_head_html, parse_matches_html,
     parse_odds_history_html,
@@ -207,3 +209,49 @@ def test_the_real_page_attributes_every_header():
     from tennissharp.data.tennisexplorer import _extract_tournament_sections
     assert len(_extract_tournament_sections(html)) == len(
         re.findall(r'<tr class="head flags">', html))
+
+
+_RATIO_PAGE = ('<html><body><script>var x = [{"date": "2026-09-04", "tournament": "US Open", '
+               '"surface": "Hard", "result": "Win", "player_odd": 1.03, "rival_odd": 15.12, '
+               '"serve_30_40_pts": 2, "serve_30_40_won": 1, '
+               '"serve_pressure_all": 9, "serve_pressure_won": 6, '
+               '"return_pressure_all": 22, "return_pressure_won": 4}, '
+               '{"date": "2026-09-02", "tournament": "US Open", "surface": "Hard", '
+               '"result": "Loss", "player_odd": 2.1, "rival_odd": 1.8, '
+               '"serve_30_40_pts": 4, "serve_30_40_won": 1, '
+               '"serve_pressure_all": 11, "serve_pressure_won": 5, '
+               '"return_pressure_all": 14, "return_pressure_won": 3}];</script></body></html>')
+
+
+def test_tennisratio_extracts_the_embedded_match_array():
+    """The array is bare JSON in the page source, not a labelled script tag,
+    so it is found by one of its own keys and bracket-matched. A non-greedy
+    regex would stop at the first nested brace."""
+    from tennissharp.data.tennisratio import extract_matches
+    rows = extract_matches(_RATIO_PAGE)
+    assert len(rows) == 2
+    assert rows[0]["serve_pressure_all"] == 9
+    assert rows[1]["date"] == "2026-09-02"
+
+
+def test_tennisratio_returns_nothing_for_a_page_without_the_data():
+    from tennissharp.data.tennisratio import extract_matches
+    assert extract_matches("<html><body>nothing here</body></html>") == []
+    assert extract_matches('{"serve_pressure_all": 3}') == []
+
+
+def test_tennisratio_pressure_rates_keep_their_denominator():
+    """A rate without its sample size cannot be weighted, and weighting is
+    the whole point: a player with nine pressure points must not count the
+    same as one with nine hundred."""
+    import pandas as pd
+    from tennissharp.data.tennisratio import extract_matches, pressure_rates
+    df = pd.DataFrame(extract_matches(_RATIO_PAGE))
+    df["first_serve_points"] = [40, 50]
+    df["second_serve_points"] = [20, 25]
+    df["return_1st_serve_points"] = [38, 47]
+    df["return_2nd_serve_points"] = [18, 22]
+    out = pressure_rates(df)
+    assert out["serve_pressure_rate"].iloc[0] == pytest.approx(6 / 9)
+    assert out["serve_pressure_all"].iloc[0] == 9
+    assert out["serve_points"].iloc[0] == 60

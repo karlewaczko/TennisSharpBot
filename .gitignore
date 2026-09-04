@@ -15,3 +15,6 @@ data/reports/backtest_bets.csv
 # Local secrets
 .env
 config/.env
+
+# tennisratio player pages: >1 MB each, re-fetchable, cached locally only
+data/raw/tennisratio/
