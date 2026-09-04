@@ -14,7 +14,8 @@ import joblib
 import pandas as pd
 
 from tennissharp import config, model as model_mod
-from tennissharp.data import odds_history, tennisabstract, tennisabstract_leaders, tennisexplorer
+from tennissharp.data import (odds_history, tennisabstract, tennisabstract_leaders,
+                              tennisexplorer, tennismylife)
 from tennissharp.features import attach_market_probability, build_feature_table
 from tennissharp.tourney_matching import build_surface_speed_index
 
@@ -107,6 +108,19 @@ def _fetch_tennisexplorer_schedule() -> pd.DataFrame:
         return pd.DataFrame()
 
 
+def _refresh_recent_play_index() -> None:
+    """When each player last played, from a source that covers challengers
+    and qualifying. Our own history does not, which is why the dashboard
+    marked players stale who were in fact competing every week.
+    """
+    try:
+        seen = tennismylife.last_seen_index(start_season=dt.date.today().year - 2)
+        pd.to_pickle(seen, config.PROCESSED_DIR / "tml_last_seen.pkl")
+        logger.info("Recent-play index: %d players", len(seen))
+    except Exception:
+        logger.exception("Failed to refresh the recent-play index -- continuing without it")
+
+
 def main() -> None:
     logger.info("Downloading match+odds history for tours: %s", config.TOURS)
     matches = odds_history.load_all()
@@ -117,6 +131,7 @@ def main() -> None:
     logger.info("Loaded %d matches (%s to %s)", len(matches),
                 matches["date"].min().date(), matches["date"].max().date())
 
+    _refresh_recent_play_index()
     ta_elo, speed_index = _fetch_tennisabstract_data()
     _fetch_tennisabstract_leaders()
     _fetch_tennisexplorer_schedule()

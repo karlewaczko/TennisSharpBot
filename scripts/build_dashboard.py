@@ -165,6 +165,40 @@ def unplayed_mask(sched: pd.DataFrame) -> pd.Series:
     return ~started
 
 
+# A player our own feed lost track of may simply have been playing where it
+# does not look. TennisMyLife covers challengers, qualifying and a wider WTA
+# field; on the card that first carried this check, 7 of the 8 players marked
+# stale had played within the last three weeks according to that source.
+RECENT_DAYS = 60
+
+
+def load_recent_play(path=None) -> dict:
+    """{player -> last match date} from TennisMyLife, empty if not built."""
+    path = path or config.PROCESSED_DIR / "tml_last_seen.pkl"
+    try:
+        return pd.read_pickle(path)
+    except (OSError, ValueError, EOFError):
+        return {}
+
+
+def still_stale(player, state, today, recent, names) -> bool:
+    """True only when NEITHER source has seen the player lately.
+
+    Our Elo's own answer stays authoritative for the ratings themselves --
+    those are still computed from tennis-data.co.uk. This only overrides the
+    question `is_stale` was asking, which is whether the player has been
+    playing at all.
+    """
+    if not state.is_stale(player, today):
+        return False
+    if not recent:
+        return True
+    hit = resolve_name(player, names)
+    if hit is None:
+        return True
+    return (today - pd.Timestamp(recent[hit])).days >= RECENT_DAYS
+
+
 def orientation(ref_players, name_a, name_b):
     """True if ref_players[0] is name_a, False if it is name_b, None if that
     cannot be settled.
@@ -309,6 +343,8 @@ def main() -> None:
         return "Hard"
 
     today = pd.Timestamp.now().normalize()
+    recent_play = load_recent_play()
+    recent_names = list(recent_play)
     matches, skipped = [], []
     for _, m in sched.iterrows():
         a = resolve_name(str(m["player1"]), roster, weight=played.get)
@@ -385,7 +421,8 @@ def main() -> None:
                     float(elo_overall.get(b, float("nan"))))
             counts = (int(played.get(a, 0)), int(played.get(b, 0)))
             first_is_a = orientation(ref_players, a, b)
-            stale = [p for p in (a, b) if state.is_stale(p, today)]
+            stale = [p for p in (a, b)
+                     if still_stale(p, state, today, recent_play, recent_names)]
 
         # Orient the reference prices onto (first player, second player).
         # When the pair cannot be matched by name, fall back to the schedule

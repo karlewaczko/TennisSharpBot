@@ -150,3 +150,24 @@ def serve_rates(df: pd.DataFrame) -> pd.DataFrame:
     out["winner_return_win_rate"] = 1 - out["loser_serve_win_rate"]
     out["loser_return_win_rate"] = 1 - out["winner_serve_win_rate"]
     return out
+
+
+def last_seen_index(start_season: int | None = None) -> dict:
+    """{player name -> date of their most recent match in this source}.
+
+    Used to answer the question `LiveState.is_stale` actually cares about:
+    has this player been playing lately? Our own Elo can only answer from
+    tennis-data.co.uk, which carries no challengers and no qualifying, so
+    it says "no" for anyone whose recent tennis happened there. Smith had
+    one match in that feed since March and 84 here through 28.08.
+    """
+    matches = load_all(start_season=start_season)
+    if matches.empty:
+        return {}
+    seen = {}
+    for col in ("winner", "loser"):
+        latest = matches.groupby(col)["date"].max()
+        for player, when in latest.items():
+            if player not in seen or when > seen[player]:
+                seen[player] = when
+    return seen

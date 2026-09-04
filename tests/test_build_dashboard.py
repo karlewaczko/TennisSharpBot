@@ -203,3 +203,46 @@ def test_orientation_refuses_to_guess(bd):
 def test_orientation_refuses_when_both_names_hit_the_same_player(bd):
     assert bd.orientation(["Pegula Jessica", "Pegula J."],
                           "Pegula J.", "Fernandez L.A.") is None
+
+
+class _FakeState:
+    def __init__(self, stale_players):
+        self._stale = set(stale_players)
+
+    def is_stale(self, player, as_of):
+        return player in self._stale
+
+
+def test_a_player_active_elsewhere_is_no_longer_stale(bd):
+    """Our feed carries no challengers or qualifying, so it loses sight of
+    players who are competing there every week. On the card that first
+    carried this check, 7 of the 8 players marked stale had played within
+    three weeks according to TennisMyLife."""
+    today = pd.Timestamp("2026-09-04")
+    recent = {"Thiago Seyboth Wild": pd.Timestamp("2026-08-26")}
+    assert not bd.still_stale("Seyboth Wild T.", _FakeState(["Seyboth Wild T."]),
+                              today, recent, list(recent))
+
+
+def test_a_genuinely_absent_player_stays_stale(bd):
+    today = pd.Timestamp("2026-09-04")
+    recent = {"Carlos Alcaraz": pd.Timestamp("2026-04-15")}
+    assert bd.still_stale("Alcaraz C.", _FakeState(["Alcaraz C."]),
+                          today, recent, list(recent))
+
+
+def test_an_unknown_player_stays_stale(bd):
+    today = pd.Timestamp("2026-09-04")
+    assert bd.still_stale("Nobody X.", _FakeState(["Nobody X."]), today,
+                          {"Carlos Alcaraz": today}, ["Carlos Alcaraz"])
+
+
+def test_a_current_player_is_never_marked_by_the_override(bd):
+    """The second source may only clear a flag, never raise one."""
+    today = pd.Timestamp("2026-09-04")
+    assert not bd.still_stale("Sinner J.", _FakeState([]), today, {}, [])
+
+
+def test_without_the_index_the_original_answer_stands(bd):
+    today = pd.Timestamp("2026-09-04")
+    assert bd.still_stale("Smith C.", _FakeState(["Smith C."]), today, {}, [])
