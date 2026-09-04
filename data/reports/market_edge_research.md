@@ -139,3 +139,75 @@ Streuung zwischen Spielern 0.0178, allein durch Zufall zu erwarten
 
 Clutch existiert also, ist aber so klein, dass der Markt praktisch alles
 davon übersehen müsste, damit daraus ein Vorsprung würde.
+
+## Pressure Points mit den echten Daten (tennisratio.com, 2026-09-04)
+
+Der Nachtrag oben stützte sich auf Breakbälle als Näherung, mit dem
+offenen Einwand, die Stichprobe je Match sei zu dünn. Dieser Abschnitt
+prüft dieselbe Frage mit den tatsächlichen Druckpunkten.
+
+### Die Quelle
+
+tennisratio.com veröffentlicht je Match die Punkte nach Spielstand —
+0:30, 0:40, 15:30, 15:40, 30:30, 30:40, 40:40, 40:A — getrennt für
+Aufschlag und Return, jeweils mit Zähler *und* Nenner, dazu die Quoten
+beider Spieler. Keine andere unserer Quellen führt Spielstände.
+
+robots.txt sperrt `/api/`; die Spielerseiten sind erlaubt und tragen die
+Matchdaten im eigenen HTML. Der Loader liest nur diese, mit 1,5 s Pause
+und lokalem Zwischenspeicher.
+
+Erfasst: 138 Spieler, 36 820 Spieler-Matches, **762 319 Druckpunkte am
+Aufschlag**.
+
+### Der Effekt ist null
+
+| | |
+|---|---|
+| Druckpunktquote am Aufschlag | 0.622 |
+| Basisquote im selben Match | 0.621 |
+| **Überschuss** | **+0.001** |
+
+Spieler gewinnen Druckpunkte praktisch genau mit ihrer normalen Quote.
+
+### Beständigkeit — besser als über Breakbälle, aber schwach
+
+| Merkmal | r (Breakball-Näherung) | r (echte Druckpunkte) |
+|---|---|---|
+| Basisquote am Aufschlag | +0.884 | **+0.914** |
+| Druckquote roh | +0.694 | +0.857 |
+| **Clutch-Überschuss** | +0.064 | **+0.164** |
+| Clutch am Return | — | +0.122 |
+
+Der Einwand war also berechtigt: Mit der dichteren Messung steigt die
+Beständigkeit deutlich. Sie bleibt trotzdem schwach — und die rohe
+Druckquote ist mit +0.857 weiterhin fast vollständig Aufschlagstärke
+unter anderem Namen.
+
+### Gegen die Quoten
+
+Leckfreie, exponentiell gewichtete Clutch-Bewertung je Spieler, gepaart
+über beide Seiten, gegen die mitgelieferten Quoten:
+
+| Saison | n | Markt | kombiniert |
+|---|---|---|---|
+| 2024 | 1 292 | 0.6223 | 0.6388 |
+| 2025 | 1 552 | 0.6199 | 0.6292 |
+| 2026 | 1 580 | 0.6272 | 0.6351 |
+
+**Informationsgewinn −0.01089** — der schlechteste Wert aller geprüften
+Ansätze. Einschränkung: 4 424 getestete Partien sind eine deutlich
+kleinere Basis als die 50 000+ der übrigen Tests, weil beide Spieler im
+Abzug enthalten sein müssen; ein einzelnes schwaches Merkmal überanpasst
+darauf leichter. Die Richtung ist dennoch unmissverständlich, und sie
+passt zu einer Effektgröße von +0.001.
+
+### Gesamtbild
+
+| Ansatz | Informationsgewinn |
+|---|---|
+| bisheriger Feature-Satz | −0.00111 |
+| Aufschlag/Return | −0.00026 |
+| Belaggeschwindigkeit | −0.00058 |
+| Intransitivität (Zielsegment) | −0.00638 |
+| **Druckpunkte / Clutch** | **−0.01089** |

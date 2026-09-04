@@ -241,17 +241,20 @@ def test_tennisratio_returns_nothing_for_a_page_without_the_data():
 
 
 def test_tennisratio_pressure_rates_keep_their_denominator():
-    """A rate without its sample size cannot be weighted, and weighting is
-    the whole point: a player with nine pressure points must not count the
-    same as one with nine hundred."""
+    """A rate without its sample size cannot be weighted, and the baseline
+    must be built from percentages rather than read as counts: the serve
+    columns are percentages, the pressure columns are counts."""
     import pandas as pd
     from tennissharp.data.tennisratio import extract_matches, pressure_rates
     df = pd.DataFrame(extract_matches(_RATIO_PAGE))
-    df["first_serve_points"] = [40, 50]
-    df["second_serve_points"] = [20, 25]
-    df["return_1st_serve_points"] = [38, 47]
-    df["return_2nd_serve_points"] = [18, 22]
+    df["first_serve_accuracy"] = [60.0, 60.0]
+    df["first_serve_points"] = [75.0, 70.0]
+    df["second_serve_points"] = [50.0, 50.0]
+    df["return_1st_serve_points"] = [30.0, 35.0]
+    df["return_2nd_serve_points"] = [55.0, 50.0]
     out = pressure_rates(df)
     assert out["serve_pressure_rate"].iloc[0] == pytest.approx(6 / 9)
     assert out["serve_pressure_all"].iloc[0] == 9
-    assert out["serve_points"].iloc[0] == 60
+    # 0.60*0.75 + 0.40*0.50 = 0.65, not 145 points
+    assert out["serve_baseline"].iloc[0] == pytest.approx(0.65)
+    assert out["serve_clutch"].iloc[0] == pytest.approx(6 / 9 - 0.65)

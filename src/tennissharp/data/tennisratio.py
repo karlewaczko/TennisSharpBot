@@ -128,21 +128,38 @@ def load_players(urls=None, limit: int | None = None) -> pd.DataFrame:
 
 
 def pressure_rates(df: pd.DataFrame) -> pd.DataFrame:
-    """Pressure-point win rates with their denominators kept.
+    """Pressure-point win rates alongside the same match's overall baseline.
 
-    `serve_pressure_rate` is the share of points won while serving in a
-    state where the game is at immediate risk; `serve_baseline` is the
-    same player's overall share of service points won in that match. The
-    difference between them is the quantity every "clutch" claim rests
-    on, and keeping `serve_pressure_all` alongside it is what makes the
-    difference measurable rather than merely computable.
+    Mind the units: `serve_pressure_all`/`_won` are counts, but
+    `first_serve_points`, `second_serve_points` and `first_serve_accuracy`
+    are percentages. The overall serve-point win rate is therefore
+
+        accuracy * first_won% + (1 - accuracy) * second_won%
+
+    which is the baseline the pressure rate has to be judged against.
+    Reading the percentages as counts silently produces a "baseline" of
+    about 150 points per match.
     """
     out = df.copy()
     for side in ("serve", "return"):
-        allp = out[f"{side}_pressure_all"]
-        out[f"{side}_pressure_rate"] = (out[f"{side}_pressure_won"] / allp).where(allp > 0)
-    svpt = out["first_serve_points"] + out["second_serve_points"]
-    rtpt = out["return_1st_serve_points"] + out["return_2nd_serve_points"]
-    out["serve_points"] = svpt
-    out["return_points"] = rtpt
+        allp = pd.to_numeric(out[f"{side}_pressure_all"], errors="coerce")
+        won = pd.to_numeric(out[f"{side}_pressure_won"], errors="coerce")
+        out[f"{side}_pressure_all"] = allp
+        out[f"{side}_pressure_rate"] = (won / allp).where(allp > 0)
+
+    acc = pd.to_numeric(out.get("first_serve_accuracy"), errors="coerce") / 100.0
+    p1 = pd.to_numeric(out.get("first_serve_points"), errors="coerce") / 100.0
+    p2 = pd.to_numeric(out.get("second_serve_points"), errors="coerce") / 100.0
+    out["serve_baseline"] = acc * p1 + (1 - acc) * p2
+
+    r1 = pd.to_numeric(out.get("return_1st_serve_points"), errors="coerce") / 100.0
+    r2 = pd.to_numeric(out.get("return_2nd_serve_points"), errors="coerce") / 100.0
+    # The opponent's first-serve accuracy is not published, so weight the two
+    # return rates by the tour-typical 60/40 split rather than inventing one.
+    out["return_baseline"] = 0.6 * r1 + 0.4 * r2
+
+    # "Clutch" as every such claim defines it: performance under pressure
+    # over and above the player's own level in the same match.
+    out["serve_clutch"] = out["serve_pressure_rate"] - out["serve_baseline"]
+    out["return_clutch"] = out["return_pressure_rate"] - out["return_baseline"]
     return out
