@@ -211,3 +211,62 @@ er dreht das Vorzeichen aber nicht.
 | Belaggeschwindigkeit | −0.00058 |
 | Intransitivität (Zielsegment) | −0.00638 |
 | **Druckpunkte / Clutch** | **−0.00510** |
+
+## Nach Segment aufgeschlüsselt — wo ist der Markt schwach? (2026-09-04)
+
+### War der Druckpunkt-Test beide Touren?
+
+Ja. Der tennisratio-Abzug enthält 30 376 ATP-, 28 092 WTA- und 18 150
+Grand-Slam-Partien. Der Aufschlag/Return-Test lässt sich zudem sauber
+trennen:
+
+| | n | Markt | kombiniert | Gewinn |
+|---|---|---|---|---|
+| beide Touren | 50 226 | 0.58666 | 0.58690 | −0.00023 |
+| nur ATP | 25 180 | 0.57858 | 0.58077 | −0.00219 |
+| nur WTA | 25 046 | 0.59479 | 0.59783 | −0.00303 |
+
+**Die WTA ist nicht weicher.** Das widerlegt eine gängige Annahme: Der
+WTA-Markt hat zwar einen höheren Log-Loss (0.595 gegen 0.579), aber das
+heißt nur, dass WTA-Partien schwerer vorherzusagen sind — nicht, dass
+der Preis falsch ist. Unser Beitrag ist dort sogar etwas schlechter.
+
+### Ist irgendein Segment fehlbepreist?
+
+Kalibrierungsfehler je Wahrscheinlichkeitsband, gemessen als z-Wert
+gegen den eigenen Standardfehler. Rohe Prozentabweichungen täuschen:
+kleine Segmente zeigen immer große Fehler.
+
+| Segment | n | größtes \|z\| | mittleres \|z\| |
+|---|---|---|---|
+| ALLE | 78 351 | 2.31 | 1.03 |
+| ATP | 40 514 | 2.54 | 1.15 |
+| WTA | 37 837 | 1.59 | 0.79 |
+| Grand Slam | 15 934 | 1.92 | 0.88 |
+| Masters 1000 | 8 947 | 2.51 | 1.48 |
+| ATP500 | 6 332 | 2.99 | 1.14 |
+| WTA250 | 4 081 | 1.26 | 0.52 |
+| 2. Runde | 21 907 | 3.17 | 1.42 |
+| Halbfinale | 3 747 | 2.85 | 1.40 |
+| Finale | 1 875 | 0.74 | 0.45 |
+
+Über rund 90 geprüfte Bänder liegt das mittlere \|z\| überall bei etwa 1
+— genau der Wert, den ein perfekt kalibrierter Markt erzeugt. Die
+Handvoll Werte über 2 ist bei so vielen Tests zu erwarten. **Kein
+Segment ist belastbar fehlbepreist**, auch nicht die kleinen Turniere,
+die Außenseiter oder die späten Runden.
+
+### Was der Markt also noch nicht weiß
+
+Nach allem Gemessenen: nichts, was sich aus vergangenen Ergebnissen
+ableiten lässt. Übrig bleibt nur Information, die **nach** der
+Preisstellung entsteht — Verletzung, Krankheit, Aufgabe im Aufwärmen,
+Wetterumschwung. Das ist kein Modellproblem, sondern ein
+Geschwindigkeitsproblem.
+
+Ungeprüft geblieben, weil uns die historischen Daten dafür fehlen:
+Eröffnungs- gegen Schlussquote. Wir ziehen Eröffnungsquoten live von
+TennisExplorer, haben aber kein Archiv, um sie rückwirkend zu testen.
+Das wäre der einzige Ansatz, den ich noch für aussichtsreich halte —
+nicht weil das Modell besser wäre, sondern weil die frühe Quote weicher
+ist als die späte.
