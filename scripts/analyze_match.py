@@ -20,6 +20,7 @@ the briefing falls back to the Elo-only probability and says so.
 """
 import _bootstrap  # noqa: F401
 import argparse
+import re
 import unicodedata
 
 import joblib
@@ -92,11 +93,17 @@ def name_readings(name: str) -> list[tuple[str, str]]:
     if len(toks) == 1:
         return [(toks[0], "")]
 
-    # An explicit initial pins the order, so there is only one reading.
+    # An explicit initial pins the order, so there is only one reading --
+    # plus, for a run of several initials, one carrying just the first.
+    # `Fernandez L.A.` is Leylah Annie: the odds table writes her `Fernandez
+    # Leylah`, whose given "leylah" is no prefix of "la" and no extension of
+    # it either, so she resolved to nobody. A single abbreviation must NOT
+    # get this treatment -- `Pliskova Ka.` would then also answer to
+    # Kristyna.
     if raw and _is_abbrev(raw[-1]):
-        return [(" ".join(toks[:-1]), toks[-1])]
+        return _with_leading_initial(" ".join(toks[:-1]), toks[-1], raw[-1])
     if raw and _is_abbrev(raw[0]):
-        return [(" ".join(toks[1:]), toks[0])]
+        return _with_leading_initial(" ".join(toks[1:]), toks[0], raw[0])
 
     # Initials of every given-name token, so `Juan Manuel Cerundolo` can reach
     # the roster's `Cerundolo J.M.`; without it three-part names never match.
@@ -107,6 +114,17 @@ def name_readings(name: str) -> list[tuple[str, str]]:
         (" ".join(toks[1:]), toks[0]),      # compound surname: auger aliassime
         (" ".join(toks[:-1]), toks[-1]),    # surname-first: "Paul Tommy"
     ]
+
+
+def _with_leading_initial(surname: str, given: str, original: str) -> list[tuple[str, str]]:
+    """[(surname, given)] plus [(surname, first initial)] when `original`
+    spells out several initials -- "L.A." is two given names, "Ka." is one
+    abbreviated, and only the former can be met by a lone spelled-out given.
+    """
+    readings = [(surname, given)]
+    if len(re.findall(r"[A-Za-z]+", original)) > 1 and len(given) > 1:
+        readings.append((surname, given[0]))
+    return readings
 
 
 def _given_match(a: str, b: str) -> bool:

@@ -180,3 +180,26 @@ def test_audit_numbers_fall_back_when_the_file_is_absent(bd, tmp_path, monkeypat
     got = bd.audit_numbers()
     assert got["information_gain"] == bd.AUDIT_FALLBACK["information_gain"]
     assert "backtest_roi" in got
+
+
+def test_orientation_resolves_both_names(bd):
+    assert bd.orientation(["Pegula Jessica", "Fernandez Leylah"],
+                          "Pegula J.", "Fernandez L.A.") is True
+    assert bd.orientation(["Fernandez Leylah", "Pegula Jessica"],
+                          "Pegula J.", "Fernandez L.A.") is False
+
+
+def test_orientation_refuses_to_guess(bd):
+    """The old test read a failed resolution as "first is a" and left the
+    prices where they lay. Pegula got her opponent's 5.30 instead of her own
+    1.15 -- a 95% favourite scored as a 19% outsider, in the model's input as
+    well as on the page."""
+    assert bd.orientation(["Nobody At All", "Pegula Jessica"],
+                          "Pegula J.", "Fernandez L.A.") is None
+    assert bd.orientation(["Pegula Jessica", "Nobody At All"],
+                          "Pegula J.", "Fernandez L.A.") is None
+
+
+def test_orientation_refuses_when_both_names_hit_the_same_player(bd):
+    assert bd.orientation(["Pegula Jessica", "Pegula J."],
+                          "Pegula J.", "Fernandez L.A.") is None

@@ -165,6 +165,27 @@ def unplayed_mask(sched: pd.DataFrame) -> pd.Series:
     return ~started
 
 
+def orientation(ref_players, name_a, name_b):
+    """True if ref_players[0] is name_a, False if it is name_b, None if that
+    cannot be settled.
+
+    None matters. The odds pair comes back ordered by the odds table's own
+    spelling, which differs from the roster's, so it has to be matched by
+    name. The old test was `resolve_name(ref_players[0], [a, b]) != b`, which
+    reads a *failed* resolution as "first is a" and leaves the prices where
+    they lie. On one card that gave Pegula her opponent's 5.30 instead of her
+    own 1.15 -- a 95% favourite scored as a 19% outsider, in the model's
+    input as well as on the page.
+    """
+    first = resolve_name(str(ref_players[0]), [name_a, name_b])
+    second = resolve_name(str(ref_players[1]), [name_a, name_b])
+    if first == name_a and second == name_b:
+        return True
+    if first == name_b and second == name_a:
+        return False
+    return None
+
+
 def _sharp_reference(match_id):
     """((book, [odds_a, odds_b], players), context) from the sharpest book
     quoting this match, preferring Pinnacle, then Betfair, then lowest margin.
@@ -357,17 +378,27 @@ def main() -> None:
             elos = (elo_a, elo_b)
             counts = (None, None)
             p_a = _ta_elo_probability(elo_a, elo_b)
-            first_is_a = resolve_name(ref_players[0], [name_a, name_b]) == name_a
+            first_is_a = orientation(ref_players, name_a, name_b)
         else:
             method, label_a, label_b = "model", a, b
             elos = (float(elo_overall.get(a, float("nan"))),
                     float(elo_overall.get(b, float("nan"))))
             counts = (int(played.get(a, 0)), int(played.get(b, 0)))
-            first_is_a = resolve_name(ref_players[0], [a, b]) != b
+            first_is_a = orientation(ref_players, a, b)
             stale = [p for p in (a, b) if state.is_stale(p, today)]
 
         # Orient the reference prices onto (first player, second player).
-        if not first_is_a:
+        # When the pair cannot be matched by name, fall back to the schedule
+        # row, whose two odds columns are already in player1/player2 order --
+        # a correct soft price beats a sharp one on the wrong player.
+        if first_is_a is None:
+            ref_book = "TennisExplorer"
+            ref_odds = [float(m["odds1"]), float(m["odds2"])]
+            if not is_priced(ref_odds):
+                skipped.append({"match": label, "tournament": str(m["tournament"]),
+                                "reason": "Quoten nicht eindeutig einem Spieler zuzuordnen"})
+                continue
+        elif not first_is_a:
             ref_odds = [ref_odds[1], ref_odds[0]]
 
         fair_a, fair_b = odds_math.shin_devig(ref_odds)

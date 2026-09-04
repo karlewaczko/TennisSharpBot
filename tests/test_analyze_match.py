@@ -120,9 +120,12 @@ def test_unknown_player_returns_none(am):
 
 def test_internal_dot_counts_as_an_abbreviation(am):
     """The roster spells one player `P.H.` in one row and `P.H` (no closing
-    dot) in another; both are initials, not a surname."""
-    assert am.name_readings("Herbert P.H") == [("herbert", "ph")]
-    assert am.name_readings("Herbert P.H.") == [("herbert", "ph")]
+    dot) in another; both are initials, not a surname. A run of initials also
+    carries a second reading with just the first of them -- see
+    test_a_run_of_initials_answers_to_one_spelled_out_given."""
+    assert am.name_readings("Herbert P.H")[0] == ("herbert", "ph")
+    assert am.name_readings("Herbert P.H.")[0] == ("herbert", "ph")
+    assert ("herbert", "p") in am.name_readings("Herbert P.H.")
 
 
 def test_weight_breaks_ties_toward_the_fullest_history(am):
@@ -152,3 +155,23 @@ def test_candidate_readings_are_ranked_too(am):
     # The other two stay reachable by their own primary reading.
     assert am.resolve_name("Timofeeva M.", rows) == "Maria Timofeeva"
     assert am.resolve_name("Sakkari M.", rows) == "Maria Sakkari"
+
+
+def test_a_run_of_initials_answers_to_one_spelled_out_given(am):
+    """`Fernandez L.A.` is Leylah Annie. The odds table writes her
+    `Fernandez Leylah`: "leylah" is no prefix of "la" and no extension of it,
+    so she resolved to nobody -- and the caller read that failure as "no swap
+    needed", handing Pegula her opponent's price of 5.30 instead of 1.15."""
+    roster = ["Pegula J.", "Fernandez L.A."]
+    assert am.resolve_name("Fernandez Leylah", roster) == "Fernandez L.A."
+    assert am.resolve_name("Leylah Fernandez", roster) == "Fernandez L.A."
+
+
+def test_a_single_abbreviation_does_not_get_that_licence(am):
+    """`Ka.` abbreviates one name, so only Karolina may answer to it. Letting
+    a lone initial match any given name of the same first letter would merge
+    the Pliskova sisters."""
+    rows = ["Pliskova Ka.", "Pliskova Kr."]
+    assert am.resolve_name("Karolina Pliskova", rows) == "Pliskova Ka."
+    assert am.resolve_name("Kristyna Pliskova", rows) == "Pliskova Kr."
+    assert am.name_readings("Pliskova Ka.") == [("pliskova", "ka")]
