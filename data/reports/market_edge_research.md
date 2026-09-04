@@ -157,16 +157,16 @@ robots.txt sperrt `/api/`; die Spielerseiten sind erlaubt und tragen die
 Matchdaten im eigenen HTML. Der Loader liest nur diese, mit 1,5 s Pause
 und lokalem Zwischenspeicher.
 
-Erfasst: 138 Spieler, 36 820 Spieler-Matches, **762 319 Druckpunkte am
-Aufschlag**.
+Erfasst: **350 Spieler, 79 878 Spieler-Matches, 1 681 732 Druckpunkte am
+Aufschlag**, zurück bis 2001.
 
 ### Der Effekt ist null
 
 | | |
 |---|---|
-| Druckpunktquote am Aufschlag | 0.622 |
-| Basisquote im selben Match | 0.621 |
-| **Überschuss** | **+0.001** |
+| Druckpunktquote am Aufschlag | 0.6131 |
+| Basisquote im selben Match | 0.6125 |
+| **Überschuss** | **+0.0006** |
 
 Spieler gewinnen Druckpunkte praktisch genau mit ihrer normalen Quote.
 
@@ -174,10 +174,9 @@ Spieler gewinnen Druckpunkte praktisch genau mit ihrer normalen Quote.
 
 | Merkmal | r (Breakball-Näherung) | r (echte Druckpunkte) |
 |---|---|---|
-| Basisquote am Aufschlag | +0.884 | **+0.914** |
-| Druckquote roh | +0.694 | +0.857 |
-| **Clutch-Überschuss** | +0.064 | **+0.164** |
-| Clutch am Return | — | +0.122 |
+| Basisquote am Aufschlag | +0.884 | **+0.925** |
+| Druckquote roh | +0.694 | +0.866 |
+| **Clutch-Überschuss** | +0.064 | **+0.142** |
 
 Der Einwand war also berechtigt: Mit der dichteren Messung steigt die
 Beständigkeit deutlich. Sie bleibt trotzdem schwach — und die rohe
@@ -189,18 +188,19 @@ unter anderem Namen.
 Leckfreie, exponentiell gewichtete Clutch-Bewertung je Spieler, gepaart
 über beide Seiten, gegen die mitgelieferten Quoten:
 
+20 450 gepaarte Partien, 17 120 getestet:
+
 | Saison | n | Markt | kombiniert |
 |---|---|---|---|
-| 2024 | 1 292 | 0.6223 | 0.6388 |
-| 2025 | 1 552 | 0.6199 | 0.6292 |
-| 2026 | 1 580 | 0.6272 | 0.6351 |
+| 2023 | 3 066 | 0.6187 | 0.6324 |
+| 2024 | 3 864 | 0.6166 | 0.6233 |
+| 2025 | 5 324 | 0.6236 | 0.6249 |
+| 2026 | 4 866 | 0.6101 | 0.6127 |
 
-**Informationsgewinn −0.01089** — der schlechteste Wert aller geprüften
-Ansätze. Einschränkung: 4 424 getestete Partien sind eine deutlich
-kleinere Basis als die 50 000+ der übrigen Tests, weil beide Spieler im
-Abzug enthalten sein müssen; ein einzelnes schwaches Merkmal überanpasst
-darauf leichter. Die Richtung ist dennoch unmissverständlich, und sie
-passt zu einer Effektgröße von +0.001.
+**Informationsgewinn −0.0051**, in allen vier Saisons negativ. Der
+Vollabzug halbiert den Wert gegenüber der ersten Teilstichprobe
+(−0.01089 auf 4 424 Partien), was die dortige Überanpassung bestätigt —
+er dreht das Vorzeichen aber nicht.
 
 ### Gesamtbild
 
@@ -210,4 +210,4 @@ passt zu einer Effektgröße von +0.001.
 | Aufschlag/Return | −0.00026 |
 | Belaggeschwindigkeit | −0.00058 |
 | Intransitivität (Zielsegment) | −0.00638 |
-| **Druckpunkte / Clutch** | **−0.01089** |
+| **Druckpunkte / Clutch** | **−0.00510** |
