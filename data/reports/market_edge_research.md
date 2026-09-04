@@ -91,3 +91,51 @@ Die neue Quelle ist der Sache nach besser, auch ohne Marktvorsprung:
 195 444 statt 82 817 Partien, 6 031 statt 2 288 Spieler,
 Aufschlagstatistik auf 94.8 % — und sie schließt die Lücke, die
 `is_stale` überhaupt erst nötig machte.
+
+## Nachtrag — Pressure Points / Clutch (tennisratio.com, 2026-09-04)
+
+Pressure Points sind dort definiert als Punkte bei 0:30, 15:30, 30:40,
+Einstand und Vorteil. Die Behauptung: Sie zeigen mentale Stärke über die
+normalen Statistiken hinaus.
+
+Geprüft am nächstliegenden Maß, das wir haben — Breakballrettung über
+195 444 Partien, 354 755 Spieler-Matches. „Clutch" ist dabei die
+Rettungsquote **abzüglich** der Quote, die die normale Aufschlagstärke
+schon erwarten lässt: genau der Überschuss, den solche Statistiken zu
+isolieren behaupten.
+
+### Beständigkeit (erste gegen zweite Karrierehälfte, 1 255 Spieler)
+
+| Merkmal | r |
+|---|---|
+| Aufschlagquote (bekannte Fähigkeit) | **+0.884** |
+| Breakballrettung roh | +0.694 |
+| **Clutch-Überschuss** | **+0.064** |
+
+Die rohe Breakballquote ist beständig — aber nur, weil gute Aufschläger
+mehr Breakbälle retten. Es ist Aufschlagstärke unter anderem Namen. Der
+Überschuss darüber hinaus sagt über die Zukunft praktisch nichts.
+
+### Der Einwand „mehr Punkte, weniger Rauschen" trägt nicht
+
+Pressure Points erfassen mehr Punkte je Spiel als Breakbälle, also
+weniger Messrauschen. Wäre das die Ursache, müsste die Beständigkeit mit
+der Stichprobe steigen. Sie tut es nicht:
+
+| Breakbälle je Hälfte | Spieler | r |
+|---|---|---|
+| 150–300 | 169 | +0.058 |
+| 300–600 | 362 | +0.079 |
+| 600+ | 724 | +0.060 |
+
+Flach über einen vierfachen Stichprobenbereich.
+
+### Varianzzerlegung
+
+Bei Spielern mit mindestens 300 Breakbällen (n = 1 486): beobachtete
+Streuung zwischen Spielern 0.0178, allein durch Zufall zu erwarten
+0.0165. Echte Fähigkeitsstreuung: **0.0065**, also 0.65 Prozentpunkte
+über die gesamte Tour.
+
+Clutch existiert also, ist aber so klein, dass der Markt praktisch alles
+davon übersehen müsste, damit daraus ein Vorsprung würde.
