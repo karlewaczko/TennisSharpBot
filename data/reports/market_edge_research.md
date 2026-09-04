@@ -1,0 +1,93 @@
+# Was fehlt, um den Markt zu schlagen — recherchiert und gemessen (2026-09-04)
+
+Drei Hypothesen aus der Literatur, alle mit eigenen Daten geprüft.
+
+## Ausgangslage
+
+`audit_edge.py`, 55 124 Partien: Informationsgewinn **−0.00111**.
+Unabhängige Replikation (nickdatak, 8 224 Partien): XGBoost Brier 0.2162
+gegen Betfair 0.1988.
+
+## Hypothese 1 — Aufschlag/Return-Features (Klaassen & Magnus)
+
+Jedes punktbasierte Tennismodell beruht auf der Punktgewinnquote am
+eigenen Aufschlag. Unser Feature-Satz hatte sie nie, weil
+tennis-data.co.uk **keinerlei** Matchstatistik führt. Literatur meldet
+3.8 % ROI über 2 173 Partien (2011).
+
+Umgesetzt: `tennismylife.py` + `build_serve_features.py`. Exponentiell
+gewichtete, leckfreie Aufschlag- und Returnraten über **195 444 Partien**
+(Haupttour, Challenger, Quali, WTA), verknüpft mit unseren Quoten zu
+62 357 Partien (79.6 % Trefferquote, davon 97.5 % mit Statistik).
+
+| | Informationsgewinn |
+|---|---|
+| bisheriger Feature-Satz (Elo, Form, H2H, …) | −0.00111 |
+| **nur Aufschlag/Return** | **−0.00026** |
+
+Vier Mal näher an null, 7 von 13 Saisons positiv — aber netto weiterhin
+**kein** Gewinn. Die Features sind weniger redundant zum Markt als unsere
+bisherigen, reichen aber nicht.
+
+## Hypothese 2 — Intransitivität (arXiv 2510.20454)
+
+A schlägt B, B schlägt C, C schlägt A. Ein Skalar-Rating wie Elo kann das
+strukturell nicht abbilden. Die Studie meldet 3.26 % ROI über 1 903
+Wetten (p = 0.005) in Partien mit hoher Intransitivität.
+
+Umgesetzt: gerichteter Siegesgraph über die volle Historie, 2-Jahres-
+Fenster, Zykelstärke = min(Pfade A→C→B, Pfade B→C→A).
+
+**Der Markt ist auf jeder Intransitivitätsstufe sauber kalibriert:**
+
+| Zykelstärke | n | Marktprognose | tatsächlich | Fehler |
+|---|---|---|---|---|
+| 0 | 14 783 | 50.27 % | 50.19 % | −0.08pp |
+| 1 | 8 689 | 49.33 % | 50.24 % | +0.90pp |
+| 2–3 | 14 751 | 49.84 % | 49.98 % | +0.14pp |
+| 4–6 | 15 666 | 49.72 % | 49.76 % | +0.04pp |
+| 7+ | 8 468 | 49.90 % | 49.81 % | −0.09pp |
+
+Der Log-Loss steigt mit der Zykelstärke (0.537 → 0.639), weil diese
+Partien *schwerer* sind — nicht, weil der Markt sie falsch bepreist.
+
+Und unser Beitrag wird dort **schlechter**, nicht besser:
+
+| Teilmenge | n | Informationsgewinn |
+|---|---|---|
+| alle | 50 226 | −0.00023 |
+| Zykelstärke ≥ 3 | 26 694 | **−0.00319** |
+| Zykelstärke ≥ 5 | 15 450 | **−0.00638** |
+
+Das Gegenteil der publizierten Behauptung. Einschränkung: unser Maß
+(Zykel über gemeinsame Gegner) ist nicht identisch mit ihrem
+spektralen Graphmaß, und ihre Stichprobe war auf Top-Turniere begrenzt.
+
+## Hypothese 3 — Quotenvergleich zwischen Büchern
+
+Bereits im bestehenden Audit gemessen: bet365 spielen, wann immer es
+Pinnacles faire Quote schlägt — ROI +1.93 % (t = 1.27) bei EV > 0,
++9.26 % (t = 1.39) bei EV > 5 %. Alle Schwellen **nicht von null
+unterscheidbar**.
+
+## Was tatsächlich fehlt
+
+Keine dieser Quellen enthält Information, die der Markt nicht schon hat.
+Was fehlen würde, ist nicht *mehr* Statistik, sondern eine andere
+Kategorie:
+
+1. **Schneller als der Markt** — Verletzungsmeldungen, Aufgabe im
+   Aufwärmen, Wetter, Platzgeschwindigkeit am Turniertag. Keine freie
+   Quelle liefert das mit dem nötigen Vorlauf.
+2. **Feiner als der Markt** — Punkt-für-Punkt-Daten (Sackmann Match
+   Charting Project). In TennisMyLife nicht enthalten und nur für einen
+   Bruchteil der Partien überhaupt erfasst.
+3. **Größe statt Vorsprung** — Liquidität in Märkten, die scharfe Bücher
+   gar nicht stellen. Das ist kein Modellproblem.
+
+## Was die Arbeit trotzdem gebracht hat
+
+Die neue Quelle ist der Sache nach besser, auch ohne Marktvorsprung:
+195 444 statt 82 817 Partien, 6 031 statt 2 288 Spieler,
+Aufschlagstatistik auf 94.8 % — und sie schließt die Lücke, die
+`is_stale` überhaupt erst nötig machte.
