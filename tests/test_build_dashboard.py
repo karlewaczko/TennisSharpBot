@@ -246,3 +246,25 @@ def test_a_current_player_is_never_marked_by_the_override(bd):
 def test_without_the_index_the_original_answer_stands(bd):
     today = pd.Timestamp("2026-09-04")
     assert bd.still_stale("Smith C.", _FakeState(["Smith C."]), today, {}, [])
+
+
+def test_a_match_past_its_listed_start_counts_as_started(bd):
+    """No set is in yet, so the score markers are empty, but the clock says
+    it is under way -- and Kalshi is already trading it in-play. On the
+    first card built with the prediction markets, three "arbitrages" were
+    live exchange prices against pre-match schedule quotes."""
+    sched = pd.DataFrame([
+        {"date": "2026-10-23", "time": "07:30", "player1": "A", "player2": "B"},
+        {"date": "2026-10-23", "time": "19:00", "player1": "C", "player2": "D"},
+        {"date": "2026-10-23", "time": None, "player1": "E", "player2": "F"},
+    ])
+    now = pd.Timestamp("2026-10-23 09:00", tz="UTC")
+    assert bd.started_mask(sched, now).tolist() == [True, False, False]
+    starts = bd.start_times(sched)
+    assert starts.iloc[0] == pd.Timestamp("2026-10-23 07:30", tz="UTC")
+    assert pd.isna(starts.iloc[2])
+
+
+def test_a_schedule_without_a_time_column_is_never_marked_started(bd):
+    sched = pd.DataFrame([{"date": "2026-10-23", "player1": "A", "player2": "B"}])
+    assert not bd.started_mask(sched, pd.Timestamp("2026-10-24", tz="UTC")).any()

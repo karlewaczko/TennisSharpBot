@@ -258,3 +258,16 @@ def test_tennisratio_pressure_rates_keep_their_denominator():
     # 0.60*0.75 + 0.40*0.50 = 0.65, not 145 points
     assert out["serve_baseline"].iloc[0] == pytest.approx(0.65)
     assert out["serve_clutch"].iloc[0] == pytest.approx(6 / 9 - 0.65)
+
+
+def test_schedule_rows_carry_their_start_time():
+    """`<td class="first time" rowspan="2">07:30<br />...` -- the page is
+    fetched with timezone=0, so it is UTC. Without it a match in its first
+    set is indistinguishable from one still to come."""
+    from tennissharp.data import tennisexplorer as te_mod
+    html = (FIXTURES / "tennisexplorer_matches_sample.html").read_text(encoding="utf-8")
+    df = te_mod.parse_matches_html(html)
+    assert "time" in df.columns
+    times = df["time"].dropna()
+    assert len(times) > 0
+    assert times.str.fullmatch(r"\d{1,2}:\d{2}").all()

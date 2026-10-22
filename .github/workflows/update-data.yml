@@ -24,10 +24,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # tennis-data.co.uk sits behind Cloudflare and has refused some
+      # clients outright (HTTP 403); on such a day the committed model files
+      # stay as they are and the dashboard below still rebuilds.
       - name: Refresh match/odds history, retrain Elo + model
+        continue-on-error: true
         run: python scripts/update_data.py
 
       - name: Refresh walk-forward backtest report
+        continue-on-error: true
         run: python scripts/run_backtest.py --min-train-seasons 5
 
       # The dashboard is regenerated from the data refreshed above, so it must
@@ -37,7 +42,7 @@ jobs:
       - name: Rebuild value dashboard
         continue-on-error: true
         run: |
-          python scripts/build_dashboard.py --limit 60
+          python scripts/build_dashboard.py --refresh-schedule --limit 120 --itf-limit 40
           python scripts/render_dashboard.py -o docs/index.html
 
       - name: Commit updated data if anything changed

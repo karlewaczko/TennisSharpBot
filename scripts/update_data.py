@@ -122,19 +122,25 @@ def _refresh_recent_play_index() -> None:
 
 
 def main() -> None:
-    logger.info("Downloading match+odds history for tours: %s", config.TOURS)
-    matches = odds_history.load_all()
-    if matches.empty:
-        logger.error("No data downloaded -- aborting update.")
-        return
-    matches.to_csv(config.PROCESSED_DIR / "matches_normalized.csv", index=False)
-    logger.info("Loaded %d matches (%s to %s)", len(matches),
-                matches["date"].min().date(), matches["date"].max().date())
-
+    # The sources that do not depend on tennis-data.co.uk come first: when
+    # its Cloudflare front refuses the download (HTTP 403 seen 2026-10-22),
+    # the recent-play index, the Tennis Abstract tables and the schedule
+    # still refresh, and only the retrain is skipped. Before this ordering a
+    # failed download left every one of them stale for the day as well.
     _refresh_recent_play_index()
     ta_elo, speed_index = _fetch_tennisabstract_data()
     _fetch_tennisabstract_leaders()
     _fetch_tennisexplorer_schedule()
+
+    logger.info("Downloading match+odds history for tours: %s", config.TOURS)
+    matches = odds_history.load_all()
+    if matches.empty:
+        logger.error("No match history downloaded -- keeping the committed Elo state "
+                     "and model; only the supplementary sources were refreshed.")
+        return
+    matches.to_csv(config.PROCESSED_DIR / "matches_normalized.csv", index=False)
+    logger.info("Loaded %d matches (%s to %s)", len(matches),
+                matches["date"].min().date(), matches["date"].max().date())
 
     table, state = build_feature_table(matches, surface_speed_index=speed_index)
     joblib.dump(state, config.MODELS_DIR / "live_state.joblib")

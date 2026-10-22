@@ -46,11 +46,16 @@ _MATCH_ID_RE = re.compile(r'/match-detail/\?id=(\d+)')
 # (actual values), so the same regex covers upcoming and past-day fetches.
 _RESULT_RE = re.compile(r'<td class="result">([^<]*)</td>')
 _SCORE_CELL_RE = re.compile(r'<td class="score">([^<]*)</td>')
+# `<td class="first time" rowspan="2">07:30<br />...` -- the page is fetched
+# with timezone=0, so this is UTC. A match that has started keeps its odds
+# and, until the first set is in, shows no score either; the time is the
+# only way to tell it from one still to come.
+_TIME_RE = re.compile(r'<td class="first time"[^>]*>\s*(\d{1,2}:\d{2})')
 
 
 # The columns parse_matches_html emits, in the order it builds them.
 MATCH_COLUMNS = ("tournament", "tournament_url", "player1", "player1_slug",
-                 "odds1", "odds2", "match_id", "sets_won1", "player2",
+                 "odds1", "odds2", "match_id", "sets_won1", "time", "player2",
                  "player2_slug", "sets_won2", "score")
 
 
@@ -121,6 +126,7 @@ def parse_matches_html(html: str) -> pd.DataFrame:
             odds = _ODDS_RE.findall(body)
             match_id = _MATCH_ID_RE.search(body)
             result = _RESULT_RE.search(body)
+            start = _TIME_RE.search(body)
             pending = {
                 "tournament": tournament,
                 "tournament_url": tournament_url,
@@ -130,6 +136,7 @@ def parse_matches_html(html: str) -> pd.DataFrame:
                 "odds2": float(odds[1]) if len(odds) > 1 else None,
                 "match_id": match_id.group(1) if match_id else None,
                 "sets_won1": _clean_cell(result.group(1)) if result else None,
+                "time": start.group(1) if start else None,
                 "_score_cells1": [_clean_cell(c) for c in _SCORE_CELL_RE.findall(body)],
             }
         elif pending is not None:

@@ -25,7 +25,7 @@ class _Resp:
 def test_a_transient_timeout_is_retried(monkeypatch):
     calls = []
 
-    def flaky(url, timeout):
+    def flaky(url, timeout, **kwargs):
         calls.append(url)
         if len(calls) < 3:
             raise requests.Timeout("read timed out")
@@ -39,7 +39,7 @@ def test_a_transient_timeout_is_retried(monkeypatch):
 def test_it_gives_up_after_the_configured_attempts(monkeypatch):
     calls = []
 
-    def always_times_out(url, timeout):
+    def always_times_out(url, timeout, **kwargs):
         calls.append(url)
         raise requests.Timeout("read timed out")
 
@@ -54,7 +54,7 @@ def test_a_missing_season_is_not_retried(monkeypatch):
     three times as long reaching the same conclusion."""
     calls = []
 
-    def missing(url, timeout):
+    def missing(url, timeout, **kwargs):
         calls.append(url)
         return _Resp(status=404)
 
@@ -67,7 +67,7 @@ def test_a_missing_season_is_not_retried(monkeypatch):
 def test_backoff_grows_between_attempts(monkeypatch):
     waits = []
     monkeypatch.setattr(oh.requests, "get",
-                        lambda url, timeout: (_ for _ in ()).throw(requests.Timeout("x")))
+                        lambda url, timeout, **kwargs: (_ for _ in ()).throw(requests.Timeout("x")))
     with pytest.raises(requests.Timeout):
         oh._fetch_season_file("http://x", sleep=waits.append)
     # One wait fewer than attempts -- no point sleeping after the last try.

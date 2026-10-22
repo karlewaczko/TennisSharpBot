@@ -11,6 +11,7 @@ published, so nothing may be fetched at view time.
 import _bootstrap  # noqa: F401
 import argparse
 import datetime as dt
+import html as html_mod
 import json
 from pathlib import Path
 
@@ -174,6 +175,27 @@ h1 { font-size:29px; font-weight:700; letter-spacing:-.02em; line-height:1.1; }
 .skip ul { margin:8px 0 0; padding-left:18px; columns:2; column-gap:28px; }
 .skip li { margin-bottom:3px; break-inside:avoid; }
 
+/* ---- price tables ---- */
+.tblx { border:1px solid var(--border); border-radius:10px; overflow:auto;
+        background:var(--surface); box-shadow:var(--shadow); }
+.ptable { width:100%; border-collapse:collapse; font-size:13px; }
+.ptable th { text-align:left; padding:9px 12px; background:var(--surface-2);
+             border-bottom:1px solid var(--border); font-size:10.5px; letter-spacing:.07em;
+             text-transform:uppercase; color:var(--faint); font-weight:600; white-space:nowrap; }
+.ptable td { padding:8px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+.ptable tr:last-child td { border-bottom:0; }
+.ptable td.num, .ptable th.num { text-align:right; font-family:"IBM Plex Mono",monospace;
+                                 font-variant-numeric:tabular-nums; white-space:nowrap; }
+.ptable .m { font-weight:600; }
+.ptable .s { color:var(--muted); font-size:11.5px; }
+.chip.venue { text-transform:none; letter-spacing:.02em; }
+.chip.pm { color:var(--warn); border-color:var(--warn); background:var(--warn-soft); text-transform:none; }
+.note { margin:0 0 12px; font-size:13px; color:var(--muted); max-width:80ch; }
+.board summary { cursor:pointer; font-weight:600; padding:6px 0; }
+.board .line { font-size:12.5px; padding:6px 0; border-bottom:1px dashed var(--border); }
+.board .line b { font-weight:600; }
+.board .q { font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--muted); }
+
 footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
          font-size:12px; color:var(--faint); }
 
@@ -198,12 +220,12 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
       </svg>
       <div>
         <h1>Value Radar</h1>
-        <div class="sub">Modellwahrscheinlichkeit gegen Sharp-Marktpreis &middot; ATP &amp; WTA</div>
+        <div class="sub">Modell gegen Sharp-Markt &middot; Preisvergleich B&uuml;cher, Polymarket, Kalshi &middot; ATP, WTA, Challenger, ITF</div>
       </div>
     </div>
     <div class="stamp">
       Stand <b>__STAMP__</b><br>
-      Schwelle <b>__THRESH__</b> Edge &middot; Referenz bevorzugt Pinnacle
+      Schwelle <b>__THRESH__</b> EV &middot; Referenz bevorzugt Pinnacle
     </div>
   </header>
 
@@ -222,6 +244,14 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
   </div>
 
   __TAROWS__
+
+  __SOFTVALUE__
+
+  __PMBOARD__
+
+  __ARBS__
+
+  __PRICEBOARD__
 
   <div class="verdict none" style="margin-top:26px">
     <div class="icon">&#8644;</div><div>
@@ -277,7 +307,7 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
   __SKIPPED__
 
   <footer>
-    Quoten und Spielplan von TennisExplorer, Elo-Referenz von Tennis Abstract.
+    Quoten und Spielplan von TennisExplorer, Elo-Referenz von Tennis Abstract, Prediction-Market-Preise von Polymarket (Gamma API) und Kalshi (Trade API), jeweils &ouml;ffentlich und ohne Schl&uuml;ssel gelesen.
     Erzeugt aus <span class="num">scripts/build_dashboard.py</span>; die Zahlen sind
     von der Kommandozeile reproduzierbar. Momentaufnahme, keine Anlageberatung.
   </footer>
@@ -330,6 +360,190 @@ def stale_chip(players) -> str:
             'die Datenluecke, nicht den Spieler.">Daten veraltet</span>')
 
 
+def esc(x) -> str:
+    return html_mod.escape(str(x), quote=True)
+
+
+def odds_fmt(x) -> str:
+    return f"{x:.2f}" if isinstance(x, (int, float)) and x else "&ndash;"
+
+
+def _match_cell(row: dict) -> str:
+    a, b = row["players"]
+    return (f'<div class="m">{esc(a)} &ndash; {esc(b)}</div>'
+            f'<div class="s">{esc(row["tournament"])} {day_chip(row.get("date"))}'
+            f'{" &middot; " + esc(row["round"]) if row.get("round") else ""}</div>')
+
+
+def _table(headers, body_rows) -> str:
+    head = "".join(f'<th class="{c}">{h}</th>' for h, c in headers)
+    return f'<div class="tblx"><table class="ptable"><thead><tr>{head}</tr></thead><tbody>{body_rows}</tbody></table></div>'
+
+
+def soft_value_section(data: dict) -> str:
+    rows = data.get("soft_value") or []
+    board = data.get("price_board") or []
+    n_sharp = sum(1 for e in board if e.get("fair_quality", "sharp" if e.get("ref_is_sharp") else "soft") == "sharp")
+    n_exch = sum(1 for e in board if e.get("fair_quality") == "exchange")
+    intro = (f'<p class="note">Jede Quote jedes Buches auf der Match-Seite gegen den '
+             f'<b>fairen Preis</b>: den entvigten Kurs des scharfen Buches (Pinnacle, sonst Betfair) '
+             f'oder, wo keines quotiert, den Mittelkurs eines liquiden Prediction Markets '
+             f'(mindestens 5&thinsp;000&nbsp;$ Tiefe, Spread höchstens 2 Cent). Positiv heißt: das weiche '
+             f'Buch zahlt mehr, als der scharfe Markt die Seite wert hält &mdash; der klassische Weg, '
+             f'auf dem Profis ohne eigenes Modell Geld verdienen, und der Grund, warum weiche Bücher '
+             f'Gewinner limitieren. Basis: {n_sharp} Partien mit scharfem Buch, {n_exch} mit '
+             f'Prediction-Market-Anker, von {len(board)} insgesamt.</p>')
+    if not rows:
+        body = ('<div class="verdict none"><div class="icon">&#9675;</div><div>'
+                '<h2>Kein weiches Buch über dem Sharp-Fairwert</h2>'
+                '<p>Normalfall: die weichen Bücher kopieren Pinnacle und legen ihre Marge obendrauf. '
+                'Abweichungen entstehen kurz nach Nachrichten, wenn ein Buch noch nicht nachgezogen hat.</p>'
+                '</div></div>')
+    else:
+        trs = []
+        for r in rows[:20]:
+            chip = "chip venue" if not r.get("signal_only") else "chip pm"
+            note = " <span class=\"s\">(nur Signal)</span>" if r.get("signal_only") else ""
+            trs.append(f'<tr><td>{_match_cell(r)}</td><td class="m">{esc(r["player"])}</td>'
+                       f'<td><span class="{chip}">{esc(r["venue"])}</span>{note}</td>'
+                       f'<td class="num">{odds_fmt(r["odds"])}</td>'
+                       f'<td class="num">{odds_fmt(1 / r["fair_prob"]) if r["fair_prob"] else "&ndash;"}'
+                       f' <span class="s">({esc(r.get("fair_source", r["ref_book"]))})</span></td>'
+                       f'<td class="num"><span class="edge p">{pct(r["ev"], 1, sign=True)}</span></td></tr>')
+        body = _table([("Partie", ""), ("Seite", ""), ("Buch", ""), ("Quote", "num"),
+                       ("Faire Quote", "num"), ("EV", "num")], "".join(trs))
+    return (f'<div class="sec"><h2>Sharp gegen Soft</h2><span class="rule"></span>'
+            f'<span class="count">{len(rows)} Seiten im Plus</span></div>{intro}{body}')
+
+
+def pm_section(data: dict) -> str:
+    rows = data.get("pm_board") or []
+    meta = data.get("prediction_markets") or {}
+    status = meta.get("status") or {}
+    venues = ", ".join(f'{v} {"&#10003;" if st.get("ok") else "&#10007;"} ({st.get("n_markets", 0)} Märkte)'
+                       for v, st in status.items()) or "nicht abgefragt"
+    intro = (f'<p class="note"><b>Nur Signal, kein Wettplatz:</b> Kalshi nimmt nur US-Kunden an, '
+             f'Polymarket sperrt deutsche IPs und steht seit September 2025 auf der Sperrliste der GGL. '
+             f'Die Preise sind trotzdem Information: ein liquider Markt, der von Pinnacle abweicht, '
+             f'zeigt Geldfluss oder Nachrichten, die ein weiches Buch oft noch nicht eingepreist hat. '
+             f'Quoten hier <b>netto</b> nach Taker-Gebühr (Polymarket 5&nbsp;%, Kalshi 7&nbsp;% '
+             f'von p&middot;(1&minus;p) je Anteil). <b>EV Maker</b> unterstellt, dass eine eigene '
+             f'Order zum aktuellen Bid gefüllt wird &mdash; eine Obergrenze, denn gefüllt wird sie '
+             f'am ehesten, wenn der Markt gerade gegen sie läuft. '
+             f'Abgefragt: {venues}; {meta.get("n_matched", 0)} Partien der Karte haben einen '
+             f'Prediction-Market-Preis.</p>')
+    shown = [r for r in rows if (r.get("ev") is not None and r["ev"] > 0)
+             or (r.get("ev_maker") is not None and r["ev_maker"] > 0.02)
+             or (r.get("mid_gap") is not None and abs(r["mid_gap"]) >= 0.02)]
+    if not rows:
+        body = ('<div class="verdict none"><div class="icon">&#9675;</div><div>'
+                '<h2>Keine Partie mit Prediction-Market-Preis und scharfer Referenz</h2>'
+                '<p>Entweder lief kein Markt oder keines der gelisteten Matches hat einen Pinnacle- '
+                'oder Betfair-Preis auf TennisExplorer.</p></div></div>')
+    elif not shown:
+        body = ('<div class="verdict none"><div class="icon">&#9675;</div><div>'
+                '<h2>Polymarket und Kalshi liegen auf dem Sharp-Markt</h2>'
+                f'<p>Über {len(rows)} verglichene Seiten weicht kein Mittelkurs um zwei Punkte oder mehr '
+                'vom Pinnacle-Fairwert ab, und nach Gebühr ist keine Seite im Plus.</p></div></div>')
+    else:
+        trs = []
+        for r in shown[:20]:
+            liq = f'{r["liquidity"]:,.0f}&nbsp;$'.replace(",", "&thinsp;") if r.get("liquidity") else "&ndash;"
+            ev = r.get("ev"); evm = r.get("ev_maker"); gap = r.get("mid_gap")
+            ecls = lambda v: "p" if v is not None and v > 0.005 else ("n" if v is not None and v < -0.005 else "z")
+            trs.append(f'<tr><td>{_match_cell(r)}</td><td class="m">{esc(r["player"])}</td>'
+                       f'<td><span class="chip pm">{esc(r["venue"])}</span></td>'
+                       f'<td class="num">{r["bid"] if r.get("bid") is not None else "&ndash;"} / '
+                       f'{r["ask"] if r.get("ask") is not None else "&ndash;"}</td>'
+                       f'<td class="num">{odds_fmt(r.get("odds"))}</td>'
+                       f'<td class="num">{pct(r["fair_prob"])}</td>'
+                       f'<td class="num"><span class="edge {ecls(gap)}">{pct(gap, 1, sign=True) if gap is not None else "&ndash;"}</span></td>'
+                       f'<td class="num"><span class="edge {ecls(ev)}">{pct(ev, 1, sign=True) if ev is not None else "&ndash;"}</span></td>'
+                       f'<td class="num">{pct(evm, 1, sign=True) if evm is not None else "&ndash;"}</td>'
+                       f'<td class="num">{liq}</td></tr>')
+        body = _table([("Partie", ""), ("Seite", ""), ("Markt", ""), ("Bid / Ask", "num"),
+                       ("Netto-Quote", "num"), ("Sharp fair", "num"), ("Mid &minus; fair", "num"),
+                       ("EV Taker", "num"), ("EV Maker", "num"), ("Liquidität", "num")], "".join(trs))
+    return (f'<div class="sec"><h2>Polymarket &amp; Kalshi gegen den Sharp-Markt</h2><span class="rule"></span>'
+            f'<span class="count">{len(rows)} Seiten verglichen</span></div>{intro}{body}')
+
+
+def arb_section(data: dict) -> str:
+    arbs = data.get("arbs") or []
+    near = data.get("near_arbs") or []
+    board = data.get("price_board") or []
+    intro = ('<p class="note">Beste Quote je Seite über alle Bücher und beide Prediction Markets '
+             '(dort netto nach Gebühr). Ergibt 1/Q<sub>A</sub>&nbsp;+&nbsp;1/Q<sub>B</sub> weniger als 1, '
+             'ist das Paar eine Arbitrage. Paare mit einem Bein bei Polymarket, Kalshi oder Betfair sind '
+             'aus Deutschland nicht spielbar und entsprechend markiert.</p>')
+
+    def leg(side):
+        chip = "chip pm" if side.get("signal_only") else "chip venue"
+        return (f'<div class="m">{esc(side["player"])}</div><div><span class="{chip}">{esc(side["venue"])}</span> '
+                f'<span class="q">{odds_fmt(side["odds"])}</span></div>')
+
+    def rows_for(items, cls):
+        trs = []
+        for r in items[:12]:
+            trs.append(f'<tr><td>{_match_cell(r)}</td><td>{leg(r["side_a"])}</td><td>{leg(r["side_b"])}</td>'
+                       f'<td class="num"><span class="edge {cls}">{pct(r["margin"], 2, sign=True)}</span></td>'
+                       f'<td class="num">{pct(r["profit"], 2, sign=True)}</td>'
+                       f'<td class="num">{r["stake_a"] * 100:.0f} / {r["stake_b"] * 100:.0f}</td>'
+                       f'<td>{"nur Signal" if r.get("signal_only") else "spielbar"}</td></tr>')
+        return _table([("Partie", ""), ("Seite A", ""), ("Seite B", ""), ("Summe &minus; 1", "num"),
+                       ("Gewinn", "num"), ("Einsatz A / B %", "num"), ("Status", "")], "".join(trs))
+
+    if arbs:
+        body = rows_for(arbs, "p")
+    else:
+        body = ('<div class="verdict none"><div class="icon">&#9675;</div><div>'
+                '<h2>Keine Arbitrage auf dieser Karte</h2>'
+                f'<p>Über {len(board)} Partien summiert kein bestes Quotenpaar unter 1. Das ist der Normalfall: '
+                'Arbitragen zwischen Büchern leben Minuten, nicht Stunden, und werden von Scannern mit '
+                'Sekundentakt abgeräumt.</p></div></div>')
+        if near:
+            body += ('<p class="note" style="margin-top:12px">Knappste Paare (Summe unter 1,01):</p>'
+                     + rows_for(near, "z"))
+    return (f'<div class="sec"><h2>Arbitrage</h2><span class="rule"></span>'
+            f'<span class="count">{len(arbs)} gefunden</span></div>{intro}{body}')
+
+
+def price_board_section(data: dict) -> str:
+    board = data.get("price_board") or []
+    if not board:
+        return ""
+    lines = []
+    for e in sorted(board, key=lambda x: (x.get("date") or "", x["circuit"], x["tournament"])):
+        a, b = e["players"]
+        parts = []
+        for book, q in sorted(e["books"].items(), key=lambda kv: (kv[0] not in ("Pinnacle", "Betfair"), kv[0])):
+            mark = "<b>" if book == e["ref_book"] else ""
+            end = "</b>" if book == e["ref_book"] else ""
+            parts.append(f'{mark}{esc(book)}{end} <span class="q">{odds_fmt(q[0])}/{odds_fmt(q[1])}</span>')
+        for q in e.get("prediction_markets") or []:
+            t = q["taker_odds"]
+            parts.append(f'<span class="chip pm">{esc(q["venue"])}</span> '
+                         f'<span class="q">{odds_fmt(t[0])}/{odds_fmt(t[1])}</span>')
+        lines.append(f'<div class="line"><b>{esc(a)} &ndash; {esc(b)}</b> '
+                     f'<span class="s">{esc(e["tournament"])} &middot; {esc(e["circuit"])}</span> '
+                     f'{day_chip(e.get("date"))}<br>{" &middot; ".join(parts)}</div>')
+    return (f'<div class="sec"><h2>Alle Preise</h2><span class="rule"></span>'
+            f'<span class="count">{len(board)} Partien</span></div>'
+            f'<details class="board"><summary>Jede Partie mit jedem Buch (Referenz fett, '
+            f'Prediction Markets netto)</summary>{"".join(lines)}</details>')
+
+
+def fair_chip(match: dict) -> str:
+    """Names the fair value's source when it is not the quoted book: a
+    liquid Polymarket or Kalshi mid stands in for a missing sharp price."""
+    src = match.get("fair_source")
+    if not src or src == match.get("ref_book"):
+        return ""
+    return (f'<span class="chip pm" title="Fairwert aus dem Mittelkurs eines liquiden '
+            f'Prediction Markets; die Quote daneben ist der Preis des genannten Buches">'
+            f'Fair: {esc(src)}</span>')
+
+
 def render(data: dict) -> str:
     thresh = pct(data["threshold"], 0)
 
@@ -343,6 +557,10 @@ def render(data: dict) -> str:
         ("Übersprungen", str(len(data["skipped"])), "gar keine Bewertung"),
         ("Referenzbücher", str(len(data["ref_books"])),
          ", ".join(list(data["ref_books"])[:3]) + ("…" if len(data["ref_books"]) > 3 else "")),
+        ("Soft-Value", str(len(data.get("soft_value") or [])), "Seiten über Sharp-Fair"),
+        ("Prediction Markets", str((data.get("prediction_markets") or {}).get("n_matched", 0)),
+         "Partien mit Polymarket/Kalshi"),
+        ("Arbitrage", str(len(data.get("arbs") or [])), "sichere Paare"),
     ]
     strip_html = "".join(
         f'<div class="stat"><div class="k">{k}</div><div class="v">{v}</div>'
@@ -378,6 +596,7 @@ def render(data: dict) -> str:
                 f'<span class="chip">{m["tour"].upper()}</span>'
                 f'{round_chip(m)}'
                 f'{stale_chip(m.get("stale_players"))}'
+                f'{fair_chip(m)}'
                 f'<span>Marge {pct(m["ref_margin"], 1)}</span></div>')
             for sd in (a, b):
                 cls = "side fav" if sd is fav else "side"
@@ -460,6 +679,8 @@ def render(data: dict) -> str:
         "__STAMP__": stamp, "__THRESH__": thresh, "__STRIP__": strip_html,
         "__VERDICT__": verdict, "__ROWS__": "".join(rows), "__SKIPPED__": skipped,
         "__TAROWS__": ta_html, "__NSCORED__": str(data["n_scored"]),
+        "__SOFTVALUE__": soft_value_section(data), "__PMBOARD__": pm_section(data),
+        "__ARBS__": arb_section(data), "__PRICEBOARD__": price_board_section(data),
         "__NMATCHES__": str(len(data["matches"])),
         "__NMODEL__": str(len(model_matches)),
         "__NTESTED__": f'{aud["matches_tested"]:,}'.replace(",", " "),

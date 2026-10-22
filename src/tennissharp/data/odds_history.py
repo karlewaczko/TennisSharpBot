@@ -38,6 +38,9 @@ ODDS_COLUMN_PAIRS = {
 # no local cache -- a fresh checkout, or CI -- one timeout silently drops a
 # whole season out of the training history, so transient errors are retried.
 DOWNLOAD_TIMEOUT = 60
+# The site sits behind Cloudflare, which refused the default python-requests
+# agent outright on at least one network (HTTP 403, 2026-10-22).
+_HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) TennisSharpBot/1.0 (research script)"}
 DOWNLOAD_ATTEMPTS = 3
 RETRY_BACKOFF = 2.0
 
@@ -46,7 +49,7 @@ def _fetch_season_file(url: str, sleep=time.sleep) -> bytes:
     last = None
     for attempt in range(DOWNLOAD_ATTEMPTS):
         try:
-            resp = requests.get(url, timeout=DOWNLOAD_TIMEOUT)
+            resp = requests.get(url, timeout=DOWNLOAD_TIMEOUT, headers=_HEADERS)
             resp.raise_for_status()
             return resp.content
         except requests.RequestException as exc:

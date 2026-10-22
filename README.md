@@ -64,6 +64,9 @@ matching problem when combining sources that don't share a schema.
 | [TennisExplorer](https://www.tennisexplorer.com) | today/tomorrow's schedule + odds + final scores, on-demand H2H, on-demand odds-movement history | every run (`data/processed/tennisexplorer_upcoming.csv`); H2H and odds history fetched live on demand | free alternative to The Odds API for live schedule/odds; `fetch_head_to_head()` for H2H; `fetch_match_odds_history()` for per-bookmaker opening-vs-current odds ("Quotenverlauf") |
 | Tennis Abstract Stat Leaders (`leaders.cgi`) | Serve/Return leaderboards, ATP (Top50/51-100/Challenger) + WTA (Top50/51-100), overall and per surface | every run (`data/processed/ta_leaders_{tour}_{pool}_{serve\|return}_{surface}.csv`, 50 files) | `/leaders` API endpoint, Serve/Return features — same live-snapshot caveat as Elo above |
 | [The Odds API](https://the-odds-api.com) | live bookmaker odds | on demand (`find_value_bets.py`) | live value-bet scoring (needs your own key) |
+| [Polymarket](https://polymarket.com) Gamma API | open singles moneylines (ATP, WTA, Challenger, ITF): best bid/ask, liquidity, start time | every `build_dashboard.py` run (`data/polymarket.py`, no key) | price board: prediction market vs. sharp fair value, fair-value anchor where no sharp book quotes, arbitrage legs (signal only — geoblocked in Germany) |
+| [Kalshi](https://kalshi.com) Trade API | the same for its ATP/WTA/Challenger/ITF match series | every `build_dashboard.py` run (`data/kalshi.py`, no key) | as above (signal only — US customers only) |
+| TennisExplorer match pages | every bookmaker's current price and full odds history per match | every `build_dashboard.py` run; appended to `data/processed/odds_snapshots.csv` | sharp-vs-soft comparison, arbitrage, opening/closing study (`scripts/study_line_movement.py`), closing-line value (`scripts/report_clv.py`) |
 
 **Why Tennis Abstract's Elo isn't a training feature but its surface speed is:**
 Elo ratings there are a *live snapshot* — there's no way to ask "what was
@@ -152,12 +155,68 @@ print(head_to_head_summary(h2h, "Zverev A.", "Sinner J."))
 
 ## Keeping data up to date automatically
 
-`.github/workflows/update-data.yml` runs `update_data.py` and
-`run_backtest.py` daily via cron and commits any changed files back to the
-repo. GitHub only fires scheduled workflows from the files as they exist on
-the **default branch**, so merge this workflow there for the schedule to take
-effect; `workflow_dispatch` lets you trigger it manually from the Actions tab
-in the meantime.
+Two scheduled workflows:
+
+- `.github/workflows/update-data.yml` — daily, the heavy job: re-downloads
+  the season files, retrains Elo and the model, refreshes the backtest, then
+  rebuilds the dashboard. tennis-data.co.uk sits behind Cloudflare and has
+  refused some clients with HTTP 403; on such a day the retrain step is
+  skipped (`continue-on-error`) and the committed model files stay in use.
+- `.github/workflows/dashboard.yml` — four times a day (03:17, 09:17, 15:17,
+  21:17 UTC), the light job: `build_dashboard.py --refresh-schedule` reads
+  the next three days from TennisExplorer, every bookmaker on each match
+  page, Polymarket and Kalshi, rebuilds `docs/index.html`, and appends the
+  run's quotes to `data/processed/odds_snapshots.csv` and its positive-EV
+  sides to `data/processed/picks_log.csv`.
+
+GitHub only fires scheduled workflows from the files as they exist on the
+**default branch**, and pauses them after 60 days without a commit, so merge
+both workflows there for the schedules to take effect; `workflow_dispatch`
+lets you trigger either manually from the Actions tab in the meantime.
+
+## The price board: sharp vs. soft, prediction markets, arbitrage
+
+The model table answers "does our forecast disagree with the market?". The
+audit says it cannot do so profitably. The price board on the same page
+answers the questions professionals actually trade on, none of which needs
+a model:
+
+1. **Sharp vs. soft.** Every bookmaker's price on the TennisExplorer match
+   page against the *fair* value — Pinnacle's de-vigged price, Betfair's
+   where Pinnacle is absent, and where neither quotes, the mid of a liquid
+   Polymarket/Kalshi market (≥ 5 000 $ depth, spread ≤ 2 cents; measured
+   0.59 pp from Pinnacle's fair value on the first card that carried both).
+   A soft price above the fair value is the "top-down" bet that funds most
+   recreational-pro careers, and the reason soft books limit winners.
+2. **Polymarket and Kalshi vs. the sharp market.** Each market's bid/ask
+   oriented onto the schedule pair, taker fees folded in (Polymarket sports
+   rate 0.05, Kalshi 0.07, both `rate × p × (1 − p)` per share), the mid's
+   gap to the sharp fair value, and the EV a resting (maker) order at the
+   current bid would carry *if* filled. Both venues are information only
+   from Germany: Kalshi serves US residents, Polymarket geoblocks Germany and
+   is on the GGL blacklist (September 2025).
+3. **Arbitrage.** Best price per side over every named venue; a pair is an
+   arbitrage when 1/odds_A + 1/odds_B < 1. The schedule page's own unnamed
+   quote never enters; legs on Polymarket, Kalshi or Betfair are flagged as
+   not playable from Germany. A card without an arbitrage still lists the
+   closest pairs.
+
+Matches past their listed start time (UTC, from the schedule page) and
+markets past their own start time are excluded: the first card built with
+the markets showed three "arbitrages" that were live exchange prices against
+pre-match quotes on matches already in their second set.
+
+Coverage: ATP, WTA and Challenger matches go through the model where
+ratings exist; ITF matches enter the price board whenever a prediction
+market quotes them (`--itf-limit`, default 40), since comparing prices needs
+no rating.
+
+```bash
+python scripts/build_dashboard.py --refresh-schedule --limit 120 --itf-limit 40
+python scripts/render_dashboard.py -o docs/index.html
+python scripts/report_clv.py --results        # CLV + settlement of everything logged
+python scripts/study_line_movement.py --days 3 # opening vs. closing on recent results
+```
 
 ## Telegram bot & REST API
 
@@ -330,8 +389,12 @@ biggest *errors*; this one loses only the vig.
 Nothing below is a promise, and each is hard:
 
 - **Beating the closing line**, by betting early before the market sharpens.
-  Requires timestamped opening/closing odds; this dataset has one snapshot per
-  match, so CLV genuinely cannot be measured here.
+  Requires timestamped opening/closing odds. tennis-data.co.uk has one
+  snapshot per match, but TennisExplorer's match pages keep every book's
+  timestamped history: `scripts/study_line_movement.py` measures opening vs.
+  closing on recent results (see `data/reports/line_movement.json`), and
+  the dashboard now logs its own quotes four times a day so closing-line
+  value can be measured on everything it flags (`scripts/report_clv.py`).
 - **Lower tiers** (ITF, Challenger) where limits are small and lines are
   softer. This dataset is tour-level only.
 - **In-play**, where prices move on every point and models can react faster
@@ -376,6 +439,10 @@ src/tennissharp/
     odds_history.py     tennis-data.co.uk download + normalization
     tennisabstract.py   Tennis Abstract Elo + surface-speed scraping
     tennisexplorer.py   TennisExplorer schedule/odds/H2H scraping
+    polymarket.py       Polymarket Gamma API: tennis moneylines (no key)
+    kalshi.py           Kalshi Trade API: tennis match series (no key)
+    tennismylife.py     TennisMyLife match database (challenger/qualifying coverage)
+    tennisratio.py      tennisratio.com pressure-point statistics
     live_odds.py        The Odds API client (live odds, optional)
   elo.py                overall + surface Elo engine
   features.py           leakage-free feature table + LiveState for live scoring
@@ -384,6 +451,8 @@ src/tennissharp/
   edge_audit.py          the honesty checks: attainability, calibration,
                          incremental information, ROI significance
   odds_math.py           implied probability, multiplicative + Shin devigging
+  market_compare.py      cross-venue price board: name matching, fee-adjusted
+                         odds, EV vs. fair value, arbitrage, quote snapshots, CLV
   staking.py             fractional Kelly bet sizing
   backtest.py            historical value-betting simulation
   value_finder.py        live odds -> value bet candidates (+ TA Elo cross-check)

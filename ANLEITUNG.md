@@ -29,6 +29,30 @@ Wenn du trotzdem wettest: In Deutschland gilt das LUGAS-Einzahlungslimit von
 1.000 €/Monat, nur GGL-lizenzierte Anbieter sind rechtlich sauber, und setze
 nie Geld ein, dessen Verlust dir wehtut.
 
+## Wo dann doch Geld liegt — und wo nicht (Stand Oktober 2026)
+
+Profis schlagen den Markt nicht mit besseren Formeln, sondern mit besseren
+**Preisen**: Sie wetten bei weichen Buchmachern, die Pinnacle hinterherlaufen,
+sie wetten früh (bevor die Linie scharf wird), und sie messen sich nicht an
+Treffern, sondern am Schlusskurs (Closing Line Value). Genau dafür hat das
+Dashboard jetzt ein **Preisbrett**:
+
+- **Sharp gegen Soft:** jede Quote jedes Buches auf der Match-Seite gegen den
+  fairen Preis des scharfen Marktes.
+- **Polymarket & Kalshi:** die beiden Prediction Markets gegen den
+  Sharp-Markt, Gebühren eingerechnet. **Nur Signal:** Kalshi nimmt nur
+  US-Kunden, Polymarket sperrt Deutschland und steht seit September 2025 auf
+  der Sperrliste der GGL. Umgehen (VPN) ist keine Option, die diese Anleitung
+  empfiehlt.
+- **Arbitrage:** beste Quote je Seite über alle Anbieter; summiert das Paar
+  unter 1, ist es risikofrei — auf der ersten Karte gab es genau eine mit
+  einem Polymarket-Bein, also aus Deutschland nicht spielbar.
+- **Logbuch:** jeder Lauf schreibt alle Quoten in `data/processed/odds_snapshots.csv`;
+  `python scripts/report_clv.py --results` rechnet später nach, ob die
+  markierten Seiten den Schlusskurs geschlagen haben.
+
+Ausführlich, mit Quellen und Messwerten: `data/reports/profi_wetten_und_edge.md`.
+
 ## Was du am Ende hast
 
 Einen Telegram-Bot, den du wie einen Chat-Partner fragen kannst:
