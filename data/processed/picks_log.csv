@@ -7,3 +7,5 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-22T22:02:17+00:00,3357339,2026-10-23,Lyon,Altmaier D.,bet365,book,value,4.33,0.245,0.0609,Polymarket Mid
 2026-10-22T22:02:17+00:00,3357339,2026-10-23,Lyon,Altmaier D.,bwin,book,value,4.1,0.245,0.0045,Polymarket Mid
 2026-10-22T22:02:17+00:00,3357267,2026-10-23,Cherbourg-en-Cotentin ITF,Bolkvadze M.,William Hill,book,value,2.05,0.5288,0.0841,Betfair
+2026-10-22T22:09:40+00:00,3357339,2026-10-23,Lyon,Altmaier D.,Betsson,book,value,4.1,0.245,0.0045,Polymarket Mid
+2026-10-22T22:09:40+00:00,3357267,2026-10-23,Cherbourg-en-Cotentin ITF,Bolkvadze M.,William Hill,book,value,2.05,0.5288,0.0841,Betfair

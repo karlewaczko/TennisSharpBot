@@ -191,6 +191,13 @@ Schlusskurs — deshalb steht die Seite jetzt im Logbuch (`picks_log.csv`) und
 wird von `report_clv.py` abgerechnet. Ein GGL-Buch mit 5,3 % Steuer macht aus
 +6,1 % ungefähr +0,5 %.
 
+Wie schnell so etwas verschwindet, zeigte der nächste Lauf sieben Minuten
+später (22:09 UTC, der Stand der veröffentlichten Seite): bet365 hatte
+Altmaier von 4,33 zurückgenommen, Betway, Interwetten und 1xBet ebenso; übrig
+blieb Betsson mit 4,10 (+0,4 %). Von acht positiven Seiten waren noch drei da.
+Wer diesen Edge spielen will, braucht die Quote in der Minute, in der sie
+steht — ein weiterer Grund, warum ein Lauf am Morgen nichts davon sieht.
+
 **Arbitrage.** Genau eine: Bolkvadze bei William Hill 2,05 und Jorge bei
 Polymarket 1,99 netto, Summe 0,990, also +1,0 % sicher — mit einem
 Polymarket-Bein, aus Deutschland nicht spielbar. Knappstes Paar ohne
