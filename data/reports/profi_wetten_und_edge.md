@@ -134,7 +134,7 @@ Preisvergleich und in der Zeit.
 | Dashboard | `scripts/build_dashboard.py`, `scripts/render_dashboard.py` | Sektionen „Sharp gegen Soft", „Polymarket & Kalshi", „Arbitrage", „Alle Preise"; ITF über `--itf-limit`; Startzeit-Sperre gegen In-Play |
 | Logbuch + CLV | `data/processed/odds_snapshots.csv`, `picks_log.csv`, `scripts/report_clv.py` | Eröffnungs- und Schlusskurs je Buch und Partie; jede markierte Seite gegen den Schlusskurs; Abrechnung mit Ergebnissen |
 | Linienstudie | `scripts/study_line_movement.py` | Eröffnung gegen Schluss auf den Ergebnissen der letzten Tage (TennisExplorer führt je Buch die komplette Quotenhistorie) |
-| Automatik | `.github/workflows/dashboard.yml` | 03:17, 09:17, 15:17, 21:17 UTC; `update-data.yml` läuft weiter täglich |
+| Automatik | `.github/workflows/dashboard.yml` | 03:17, 09:17, 15:17, 21:17 UTC; `update-data.yml` täglich — beide erst aktiv, wenn sie auf `main` gemergt sind |
 
 Technische Fakten, die beim Bauen geprüft wurden:
 
@@ -202,9 +202,16 @@ null Marge, aber keine Arbitrage.
 Schwelle, und mit dem Vermerk „Daten veraltet" für Fritz: Der Elo-Zustand
 stammt vom 5. September, weil tennis-data.co.uk aus dieser Umgebung seit dem
 Neustart 403 liefert. Die Modellzeilen sind deshalb an diesem Abend nur
-Plausibilität, keine Signale; das Preisbrett ist davon unabhängig. Der
-tägliche GitHub-Actions-Lauf holt die Historie von einem anderen Netz und
-erneuert Zustand und Modell.
+Plausibilität, keine Signale; das Preisbrett ist davon unabhängig. Die
+Wayback Machine hält die Saisondatei nur mit Stand 3. August, also älter als
+der Zustand selbst. Erneuert wird das Modell vom täglichen GitHub-Actions-Lauf
+aus einem anderen Netz — **sobald die Workflows auf dem Standardzweig `main`
+liegen**, denn GitHub registriert und plant Workflows nur von dort (im
+Repository sind derzeit null Workflows registriert; alle Arbeit liegt auf dem
+Branch `claude/tennis-betting-model-data-wze73q`) — oder von einem lokalen
+`python scripts/update_data.py` auf einem Rechner, den tennis-data.co.uk
+nicht blockt. Tennis-Abstract-Elo und Belagstempo wurden am 22. Oktober
+direkt nachgeladen, deshalb sind die Elo-Fallback-Zeilen aktuell.
 
 **Linienstudie: Eröffnung gegen Schluss** (`scripts/study_line_movement.py`,
 Ergebnisse vom 19. und 20. Oktober, 52 Partien mit vollständiger
