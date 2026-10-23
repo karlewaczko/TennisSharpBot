@@ -265,8 +265,21 @@ Abweichung vom Markt. Jeder Lauf schreibt sie in
 `data/processed/forecasts_log.csv`; `scripts/report_clv.py --forecasts`
 rechnet sie gegen die Ergebnisse ab (Brier, Log-Loss je Quelle). Erst dieser
 Vergleich sagt, ob Tennis Abstracts Elo dem Markt irgendwo näher kommt als
-unser Modell — in der Septembermessung lag TA 6,45 Punkte vom Markt entfernt,
-das Modell 1,24, und der Markt war kalibriert. Das Statistikmodell ist
+unser Modell. Erste Messung auf der Karte vom 23. Oktober (Lauf 06:24 UTC),
+Abstand zum fairen Marktpreis je Quelle:
+
+| Quelle | Partien | Median | Mittel |
+|---|---|---|---|
+| Modell (mit Marktpreis) | 17 | 1,0 pp | 1,0 pp |
+| TA-Elo (Belag) | 27 | 3,8 pp | 8,0 pp |
+| TA-Forecast | 27 | 3,8 pp | 7,5 pp |
+| Statistikmodell | 28 | 7,7 pp | 10,7 pp |
+
+Das deckt sich mit der Septembermessung (TA 6,45 Punkte, Modell 1,24) bei
+einem auf 0,8 Punkte kalibrierten Markt. Die größten TA-Abweichungen liegen
+auf Challenger-Ebene (Misolic 85 % gegen 56 % Markt in Florenz, Pellegrino
+84 % gegen 64 % in Lissabon), wo Elo von Challenger-Siegen lebt und der Markt
+mehr weiß. Das Statistikmodell ist
 absichtlich schlicht (ein Aufschlag- und ein Returnwert je Spieler) und weicht
 entsprechend stark ab; es steht da, weil es die einzige Prognose ist, die weder
 Elo noch Markt kennt.
