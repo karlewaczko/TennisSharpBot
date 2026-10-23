@@ -18,6 +18,7 @@ import _bootstrap  # noqa: F401
 import argparse
 import time
 
+import numpy as np
 import pandas as pd
 
 from tennissharp import config, market_compare as mc
@@ -97,14 +98,65 @@ def settle(picks: pd.DataFrame, results: pd.DataFrame) -> pd.DataFrame:
     return picks
 
 
+FORECAST_SOURCES = ("market_fair_1", "model_1", "ta_elo_1", "ta_forecast_1", "stats_1")
+
+
+def score_forecasts(log: pd.DataFrame, results: pd.DataFrame) -> pd.DataFrame:
+    """Brier score and log loss per forecast source over the decided matches
+    in the forecasts log -- the first logged row per match counts, and the
+    sources are compared only on matches where every one of them spoke."""
+    if log.empty or results.empty:
+        return pd.DataFrame()
+    first = (log.sort_values("taken_at")
+                .drop_duplicates(subset=["match_id"], keep="first")
+                .assign(match_id=lambda d: d["match_id"].astype(str)))
+    res = results.assign(match_id=lambda d: d["match_id"].astype(str))
+    res = res[res["sets_won1"] != res["sets_won2"]]
+    won_1 = dict(zip(res["match_id"], (res["sets_won1"] > res["sets_won2"]).astype(float)))
+    first = first[first["match_id"].isin(won_1)]
+    first = first.assign(y=first["match_id"].map(won_1))
+    rows = []
+    cols = [c for c in FORECAST_SOURCES if c in first.columns]
+    common = first.dropna(subset=cols)
+    for scope, frame in (("all_available", first), ("common_matches", common)):
+        for c in cols:
+            f = frame.dropna(subset=[c])
+            if f.empty:
+                continue
+            p = f[c].astype(float).clip(1e-4, 1 - 1e-4)
+            y = f["y"]
+            rows.append({"scope": scope, "source": c.replace("_1", ""), "n": int(len(f)),
+                         "brier": round(float(((p - y) ** 2).mean()), 4),
+                         "log_loss": round(float(-(y * np.log(p) + (1 - y) * np.log(1 - p)).mean()), 4)})
+    return pd.DataFrame(rows)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", action="store_true", help="fetch recent results and settle")
     ap.add_argument("--days-back", type=int, default=3)
+    ap.add_argument("--forecasts", action="store_true",
+                    help="also score every forecast source in forecasts_log.csv against results")
     args = ap.parse_args()
+
+    if args.forecasts:
+        log_path = config.PROCESSED_DIR / "forecasts_log.csv"
+        if log_path.exists():
+            scores = score_forecasts(pd.read_csv(log_path, dtype={"match_id": str}),
+                                     fetch_results(args.days_back))
+            if scores.empty:
+                print("Prognosen: noch keine abgerechneten Partien.")
+            else:
+                print("Prognosequellen gegen Ergebnisse (niedriger ist besser):\n",
+                      scores.to_string(index=False))
+                scores.to_csv(config.REPORTS_DIR / "forecast_scores.csv", index=False)
+        else:
+            print("Noch kein forecasts_log.csv.")
 
     picks_path = config.PROCESSED_DIR / "picks_log.csv"
     if not picks_path.exists():
+        if args.forecasts:
+            return
         raise SystemExit("Noch keine Picks geloggt (data/processed/picks_log.csv fehlt).")
     picks = pd.read_csv(picks_path, dtype={"match_id": str})
     # The first time a side was logged is the price a follower would have had.

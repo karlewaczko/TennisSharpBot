@@ -41,10 +41,11 @@ from pathlib import Path
 import joblib
 import pandas as pd
 
-from tennissharp import config, market_compare as mc, odds_math, tourney_matching
+from tennissharp import config, market_compare as mc, odds_math, player_stats as ps, tourney_matching
 from tennissharp.elo import normalize_surface
 from tennissharp.backtest import DEFAULT_EDGE_THRESHOLD, MIN_MATCHES_PLAYED
-from tennissharp.data import kalshi, polymarket, tennisexplorer as te
+from tennissharp.data import (kalshi, polymarket, tennisabstract_forecast as taf,
+                              tennisexplorer as te, tennismylife as tml)
 from tennissharp.value_finder import matchup_probability
 
 _spec = importlib.util.spec_from_file_location(
@@ -345,6 +346,79 @@ def refresh_schedule(days=(0, 1, 2)) -> pd.DataFrame:
     return upcoming
 
 
+def load_stat_book(start_season: int | None = None):
+    """Last-52-week serve/return profiles from TennisMyLife (Sackmann's
+    schema, the statistics behind Tennis Abstract's player pages). Best
+    effort: the card builds without it."""
+    try:
+        matches = tml.load_all(start_season=start_season or dt.date.today().year - 1)
+        if matches.empty:
+            return None
+        return ps.StatBook(matches)
+    except Exception as exc:
+        print(f"Statistikprofile nicht verfuegbar: {exc}")
+        return None
+
+
+def fetch_ta_forecasts(enabled: bool = True) -> pd.DataFrame:
+    """Tennis Abstract's own next-round probabilities for every event it is
+    currently forecasting. Best effort."""
+    if not enabled:
+        return pd.DataFrame(columns=list(taf.COLUMNS))
+    try:
+        return taf.fetch_forecasts()
+    except Exception as exc:
+        print(f"Tennis-Abstract-Prognosen nicht verfuegbar: {exc}")
+        return pd.DataFrame(columns=list(taf.COLUMNS))
+
+
+def ta_forecast_for(forecasts: pd.DataFrame, name_1: str, name_2: str) -> dict | None:
+    """Tennis Abstract's probability for the schedule pair, oriented onto it."""
+    if forecasts is None or forecasts.empty:
+        return None
+    for r in forecasts.itertuples(index=False):
+        orient = mc.pair_orientation(name_1, name_2, str(r.player_a), str(r.player_b))
+        if orient is None or r.p_a is None or r.p_a != r.p_a:
+            continue
+        p_1 = float(r.p_a) if orient else 1.0 - float(r.p_a)
+        h2h = (r.h2h_a, r.h2h_b) if orient else (r.h2h_b, r.h2h_a)
+        return {"prob_1": round(p_1, 4), "round": r.round, "tournament": r.tournament,
+                "h2h": [int(x) if x == x and x is not None else None for x in h2h],
+                "url": r.url}
+    return None
+
+
+_STAT_KEYS = ("matches", "with_stats", "wins", "losses", "spw", "rpw", "ace_pct", "df_pct",
+              "first_in", "first_won", "second_won", "hold_pct", "break_pct", "bp_saved",
+              "bp_converted")
+
+
+def stats_summary(book, name_1: str, name_2: str, surface: str, tour: str, best_of: int) -> dict | None:
+    """Both players' profiles on this surface, the head-to-head, and the
+    point-model forecast built from nothing but those numbers."""
+    if book is None:
+        return None
+    full_1, full_2 = book.resolve(name_1), book.resolve(name_2)
+    if not full_1 or not full_2 or full_1 == full_2:
+        return None
+    st_1, st_2 = book.stats(full_1, surface), book.stats(full_2, surface)
+    if not st_1 or not st_2:
+        return None
+    tour_avg = book.tour_average(tour)
+    sides = []
+    for full, st in ((full_1, st_1), (full_2, st_2)):
+        prof = st.get("surface") or st.get("overall") or {}
+        side = {k: (round(prof[k], 4) if isinstance(prof.get(k), float) else prof.get(k))
+                for k in _STAT_KEYS}
+        side.update({"name": full, "scope": surface if st.get("surface") else "overall",
+                     "form10": f'{st["form10"][0]}-{st["form10"][1]}', "rank": st.get("rank"),
+                     "last_date": prof.get("last_date")})
+        sides.append(side)
+    prob = ps.stat_forecast(st_1, st_2, tour_avg, best_of)
+    return {"sides": sides, "prob_1": round(prob, 4) if prob is not None else None,
+            "tour_avg_spw": round(tour_avg, 4), "h2h": book.head_to_head(full_1, full_2)}
+
+
 def _same_pair(ref_players, name_1, name_2):
     """Fast path for the price-only rows: the odds table usually spells the
     players exactly as the schedule does."""
@@ -376,6 +450,10 @@ def main() -> None:
                          "quotes them (the model never scores ITF); each costs one request")
     ap.add_argument("--no-snapshots", action="store_true",
                     help="do not append this run's quotes to odds_snapshots.csv / picks_log.csv")
+    ap.add_argument("--no-ta-forecasts", action="store_true",
+                    help="skip Tennis Abstract's tournament forecast pages")
+    ap.add_argument("--no-stats", action="store_true",
+                    help="skip the TennisMyLife serve/return profiles and the point model")
     args = ap.parse_args()
 
     if args.refresh_schedule:
@@ -435,6 +513,36 @@ def main() -> None:
     ta_names = ta["player"].tolist()
     ta_by_name = ta.set_index("player")
 
+    def ta_side(query: str, surface: str) -> dict | None:
+        """Tennis Abstract's full line for a player: overall and surface Elo,
+        peak, official rank and age -- shown for every match, not only the
+        ones the model cannot score."""
+        hit = resolve_name(query, ta_names)
+        if not hit:
+            return None
+        row = ta_by_name.loc[hit]
+        col = TA_SURFACE_COLUMN.get(surface.lower())
+
+        def num(key):
+            v = row.get(key) if key else None
+            return float(v) if v is not None and pd.notna(v) else None
+
+        return {"name": hit, "elo": num("elo"), "surface_elo": num(col), "surface": surface,
+                "peak_elo": num("peak_elo"), "official_rank": num("official_rank"),
+                "age": num("age"), "elo_rank": num("elo_rank")}
+
+    def ta_block(name_1: str, name_2: str, surface: str) -> dict | None:
+        a, b = ta_side(name_1, surface), ta_side(name_2, surface)
+        if not a or not b or a["name"] == b["name"]:
+            return None
+        ra = a["surface_elo"] if a["surface_elo"] is not None else a["elo"]
+        rb = b["surface_elo"] if b["surface_elo"] is not None else b["elo"]
+        if ra is None or rb is None:
+            return None
+        return {"sides": [a, b], "prob_1": round(_ta_elo_probability(ra, rb), 4),
+                "basis": "surface" if (a["surface_elo"] is not None and b["surface_elo"] is not None)
+                else "overall"}
+
     def ta_rating(query: str, surface: str):
         """(display name, rating) from Tennis Abstract, surface-specific where
         they publish one -- their note says the surface blends forecast
@@ -468,6 +576,9 @@ def main() -> None:
             if name and (key in name or name in key):
                 return str(surf)
         return "Hard"
+
+    ta_fc = fetch_ta_forecasts(not args.no_ta_forecasts)
+    book = None if args.no_stats else load_stat_book()
 
     today = pd.Timestamp.now().normalize()
     recent_play = load_recent_play()
@@ -613,6 +724,15 @@ def main() -> None:
 
         values = mc.value_rows(players, (fair_a, fair_b), books, pm_quotes, ref_book)
         arb = mc.best_arbitrage(players, books, pm_quotes)
+
+        # Three more opinions on the same pair, each from a different source
+        # and none of them fed by the market: Tennis Abstract's Elo (overall
+        # and surface) for both players, Tennis Abstract's own tournament
+        # forecast where the event is on its site, and a point model from
+        # the players' last-52-week serve and return numbers.
+        ta = ta_block(str(m["player1"]), str(m["player2"]), surface)
+        ta_fcst = ta_forecast_for(ta_fc, str(m["player1"]), str(m["player2"]))
+        stats = stats_summary(book, str(m["player1"]), str(m["player2"]), surface, tour, best_of)
         entry = {
             "match_id": match_id,
             "date": str(m["date"]) if pd.notna(m.get("date")) else None,
@@ -633,6 +753,12 @@ def main() -> None:
             "prediction_markets": pm_quotes,
             "values": values,
             "arb": arb,
+            "best_of": best_of,
+            "surface": surface,
+            "ta": ta,
+            "ta_forecast": ta_fcst,
+            "stats": stats,
+            "model_prob_1": None,
         }
         price_board.append(entry)
         if price_only:
@@ -717,7 +843,12 @@ def main() -> None:
             "books": books,
             "prediction_markets": pm_quotes,
             "arb": arb,
+            "ta": ta,
+            "ta_forecast": ta_fcst,
+            "stats": stats,
         })
+        if method == "model":
+            entry["model_prob_1"] = round(p_a, 4)
 
     matches.sort(key=lambda x: x["best_edge"], reverse=True)
     boards = build_boards(price_board)
@@ -747,6 +878,13 @@ def main() -> None:
             "n_markets": int(len(pm_all)),
             "n_matched": len(pm_hits),
             "n_itf_added": int(len(itf_extra)),
+        },
+        "sources": {
+            "ta_elo": sum(1 for e in price_board if e.get("ta")),
+            "ta_forecast": sum(1 for e in price_board if e.get("ta_forecast")),
+            "ta_forecast_pairings": int(len(ta_fc)),
+            "stats": sum(1 for e in price_board if e.get("stats")),
+            "stats_players": len(book.players) if book is not None else 0,
         },
         **boards,
     }
@@ -802,6 +940,32 @@ def build_boards(price_board: list[dict]) -> dict:
 
 PICK_COLUMNS = ["taken_at", "match_id", "date", "tournament", "player", "venue", "kind",
                 "source", "odds", "fair_prob", "ev", "ref_book"]
+FORECAST_COLUMNS = ["taken_at", "match_id", "date", "tournament", "circuit", "player1", "player2",
+                    "surface", "best_of", "market_fair_1", "fair_source", "model_1", "ta_elo_1",
+                    "ta_forecast_1", "stats_1"]
+
+
+def forecast_rows(price_board: list[dict], taken_at: str) -> list[dict]:
+    """One row per match with every source's probability for player 1 --
+    the record that lets a later run score market, model, Tennis Abstract
+    and the point model against the results on equal terms."""
+    rows = []
+    for e in price_board:
+        ta, fc, st = e.get("ta"), e.get("ta_forecast"), e.get("stats")
+        if not (ta or fc or st or e.get("model_prob_1") is not None):
+            continue
+        rows.append({
+            "taken_at": taken_at, "match_id": e["match_id"], "date": e["date"],
+            "tournament": e["tournament"], "circuit": e["circuit"],
+            "player1": e["players"][0], "player2": e["players"][1],
+            "surface": e.get("surface"), "best_of": e.get("best_of"),
+            "market_fair_1": e["fair"][0], "fair_source": e.get("fair_source"),
+            "model_1": e.get("model_prob_1"),
+            "ta_elo_1": ta["prob_1"] if ta else None,
+            "ta_forecast_1": fc["prob_1"] if fc else None,
+            "stats_1": st["prob_1"] if st else None,
+        })
+    return rows
 
 
 def record_snapshots(price_board: list[dict], matches: list[dict], taken_at: str) -> int:
@@ -836,6 +1000,11 @@ def record_snapshots(price_board: list[dict], matches: list[dict], taken_at: str
         path = config.PROCESSED_DIR / "picks_log.csv"
         header = not path.exists() or path.stat().st_size == 0
         pd.DataFrame(picks, columns=PICK_COLUMNS).to_csv(path, mode="a", header=header, index=False)
+    fc_rows = forecast_rows(price_board, taken_at)
+    if fc_rows:
+        path = config.PROCESSED_DIR / "forecasts_log.csv"
+        header = not path.exists() or path.stat().st_size == 0
+        pd.DataFrame(fc_rows, columns=FORECAST_COLUMNS).to_csv(path, mode="a", header=header, index=False)
     return n
 
 

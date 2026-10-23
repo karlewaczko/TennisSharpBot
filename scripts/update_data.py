@@ -13,7 +13,7 @@ import logging
 import joblib
 import pandas as pd
 
-from tennissharp import config, model as model_mod
+from tennissharp import config, model as model_mod, player_stats
 from tennissharp.data import (odds_history, tennisabstract, tennisabstract_leaders,
                               tennisexplorer, tennismylife)
 from tennissharp.features import attach_market_probability, build_feature_table
@@ -54,29 +54,32 @@ def _fetch_tennisabstract_data() -> tuple[pd.DataFrame, dict]:
     return ta_elo, speed_index
 
 
-def _fetch_tennisabstract_leaders() -> None:
-    """Serve/Return leaderboards (tennisabstract.com/cgi-bin/leaders.cgi and
-    its player-pool variants), overall and per surface. One CSV per
-    tour/pool/stat-type/surface combination -- see tennisabstract_leaders.py
-    for how these are reconstructed from the page's own raw match data.
-    Best-effort per (tour, pool): one pool's source file being unavailable
-    shouldn't block the others.
+def _write_leader_tables() -> None:
+    """Serve/Return leaderboards, overall and per surface, one CSV per
+    tour/pool/stat/surface as before -- but computed from the TennisMyLife
+    match database (Sackmann's schema) rather than read from
+    tennisabstract.com/jsmatches/, which the site's robots.txt disallows
+    (checked 2026-10-23: /jsfrags/, /jsmatches/, /jsplayers/). The numbers
+    are the same per-match statistics; the pools follow the players' latest
+    ranking in the window and, for the challenger pool, where they played.
     """
+    try:
+        book = player_stats.StatBook(tennismylife.load_all(start_season=dt.date.today().year - 1))
+    except Exception:
+        logger.exception("Failed to build the serve/return profiles -- leaders left as they were")
+        return
     for tour, pools in tennisabstract_leaders.POOLS_BY_TOUR.items():
         for pool in pools:
-            try:
-                matches = tennisabstract_leaders.fetch_leaders_matches(tour, pool)
-            except Exception:
-                logger.exception("Failed to fetch %s/%s leaders source -- skipping", tour, pool)
-                continue
+            tables = player_stats.leader_tables(book, tour, pool)
             pool_slug = pool.replace("-", "")
-            for stat in ("serve", "return"):
-                for surface in tennisabstract_leaders.SURFACES:
-                    df = tennisabstract_leaders.leaders_for(matches, stat, surface)
-                    fname = f"ta_leaders_{tour}_{pool_slug}_{stat}_{surface.lower()}.csv"
-                    df.to_csv(config.PROCESSED_DIR / fname, index=False)
-            logger.info("Saved %s/%s Serve+Return leaders (%d players, all/per-surface)",
-                        tour.upper(), pool, matches["player"].nunique())
+            for surface in tennisabstract_leaders.SURFACES:
+                key = surface.lower()
+                tables[key].to_csv(config.PROCESSED_DIR / f"ta_leaders_{tour}_{pool_slug}_serve_{key}.csv",
+                                   index=False)
+                tables["return_" + key].to_csv(
+                    config.PROCESSED_DIR / f"ta_leaders_{tour}_{pool_slug}_return_{key}.csv", index=False)
+            logger.info("Saved %s/%s serve+return leaders (%d players)", tour.upper(), pool,
+                        len(tables["all"]))
 
 
 SCHEDULE_DAYS = (0, 1, 2)
@@ -129,7 +132,7 @@ def main() -> None:
     # failed download left every one of them stale for the day as well.
     _refresh_recent_play_index()
     ta_elo, speed_index = _fetch_tennisabstract_data()
-    _fetch_tennisabstract_leaders()
+    _write_leader_tables()
     _fetch_tennisexplorer_schedule()
 
     logger.info("Downloading match+odds history for tours: %s", config.TOURS)

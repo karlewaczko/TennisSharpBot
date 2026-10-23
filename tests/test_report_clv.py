@@ -71,3 +71,30 @@ def test_settlement_pays_the_logged_odds(rc):
     out = rc.settle(picks, results)
     assert out["won"].tolist() == [True, False, None]
     assert out["profit"].tolist()[:2] == pytest.approx([1.60, -1.0])
+
+
+def test_forecast_sources_are_scored_on_decided_matches(rc):
+    log = pd.DataFrame([
+        {"taken_at": "2026-10-22T10:00", "match_id": "7", "market_fair_1": 0.7, "model_1": 0.72,
+         "ta_elo_1": 0.6, "ta_forecast_1": 0.65, "stats_1": None},
+        # Later snapshot of the same match: ignored, the first one counts.
+        {"taken_at": "2026-10-22T20:00", "match_id": "7", "market_fair_1": 0.9, "model_1": 0.9,
+         "ta_elo_1": 0.9, "ta_forecast_1": 0.9, "stats_1": 0.9},
+        {"taken_at": "2026-10-22T10:00", "match_id": "8", "market_fair_1": 0.3, "model_1": 0.35,
+         "ta_elo_1": 0.5, "ta_forecast_1": None, "stats_1": 0.4},
+        {"taken_at": "2026-10-22T10:00", "match_id": "9", "market_fair_1": 0.5, "model_1": 0.5,
+         "ta_elo_1": 0.5, "ta_forecast_1": 0.5, "stats_1": 0.5},   # undecided: dropped
+    ])
+    results = pd.DataFrame([
+        {"match_id": "7", "sets_won1": 2.0, "sets_won2": 0.0},
+        {"match_id": "8", "sets_won1": 0.0, "sets_won2": 2.0},
+        {"match_id": "9", "sets_won1": 1.0, "sets_won2": 1.0},
+    ])
+    scores = rc.score_forecasts(log, results)
+    allv = scores[scores["scope"] == "all_available"].set_index("source")
+    assert allv.loc["market_fair", "n"] == 2
+    assert allv.loc["market_fair", "brier"] == pytest.approx(((0.7 - 1) ** 2 + (0.3 - 0) ** 2) / 2)
+    assert allv.loc["ta_forecast", "n"] == 1
+    # The common scope keeps only matches where every source spoke: none here.
+    assert scores[scores["scope"] == "common_matches"].empty
+    assert rc.score_forecasts(pd.DataFrame(), results).empty

@@ -51,6 +51,12 @@ Dashboard jetzt ein **Preisbrett**:
   `python scripts/report_clv.py --results` rechnet später nach, ob die
   markierten Seiten den Schlusskurs geschlagen haben.
 
+- **Tennis Abstract komplett:** jede Partie zeigt Tennis Abstracts Elo
+  (gesamt und Belag), dessen Turnierprognose, dazu Aufschlag- und
+  Returnprofile der letzten 52 Wochen und ein Punktmodell daraus. Die
+  Matchlogs der Spielerseiten sperrt Tennis Abstract per robots.txt; dieselben
+  Statistiken kommen deshalb von TennisMyLife.
+
 Ausführlich, mit Quellen und Messwerten: `data/reports/profi_wetten_und_edge.md`.
 
 ## Was du am Ende hast

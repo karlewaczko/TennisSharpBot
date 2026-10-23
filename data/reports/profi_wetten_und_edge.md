@@ -246,13 +246,43 @@ Statistik; die Studie läuft wöchentlich weiter.
 
 
 
+## 4b. Tennis Abstract vollständig genutzt (23. Oktober 2026)
+
+Was Tennis Abstract maschinell hergibt, und was davon jetzt in der Karte steckt:
+
+| Tennis-Abstract-Quelle | Status | Verwendung |
+|---|---|---|
+| Elo-Tabellen ATP/WTA (`/reports/*_elo_ratings.html`): Elo, Hard/Clay/Grass-Elo, Peak, Alter, offizieller Rang | **neu für jede Partie**, nicht mehr nur als Ersatz | TA-Elo-Prognose (belagsspezifisch), Spielerzeile mit TA-Elo, Belag-Elo, Rang, Alter |
+| Turnierprognosen (`/current/2026ATPLyon.html` usw., von der Startseite verlinkt) | **neu**: Seiten sind serverseitig gerendert, die Projektion steckt als `projCurrent` im Quelltext | TA-Forecast je Paarung der nächsten Runde (Summe der beiden Werte = 100 %), H2H, Titelchance; 37 Paarungen in 10 Turnieren am 23.10. |
+| Belagstempo (`/reports/atp_surface_speed.html`, `surface-speed.cgi`) | im Einsatz, am 22.10. neu geladen | Belag je Turnier, Tempo-Merkmal |
+| Spieler-Matchlogs (`/jsfrags/`), Leader-Quelldateien (`/jsmatches/`), Spielerlisten (`/jsplayers/`) | **nicht abgerufen** | robots.txt verbietet diese drei Pfade. Die bisherige Leaderboard-Abfrage las `/jsmatches/leadersource*.js` und ist abgeschaltet; die 50 Leader-Tabellen entstehen jetzt aus derselben Statistik bei TennisMyLife |
+| Match-Statistiken (Asse, Doppelfehler, erste/zweite Aufschlagpunkte, Breakbälle) | **neu** über TennisMyLife, das Sackmanns Schema spiegelt (die Daten hinter den TA-Spielerseiten; 25 880 Partien seit Dezember 2024, 98,5 % mit Statistik) | Profil je Spieler über 52 Wochen, gesamt und auf dem Belag: Aufschlag- und Returnpunkte, Hold, Break, Ass-/Doppelfehlerquote, Form, H2H; daraus das Barnett-Clarke-Punktmodell |
+| Sackmanns GitHub (`tennis_atp`, `tennis_wta`, Match Charting Project) | aus dieser Umgebung nicht erreichbar (404 über den Proxy) | TennisMyLife deckt dasselbe Schema ab; das Charting-Projekt bleibt offen |
+
+**Prognosevergleich.** Jede bewertete Partie zeigt jetzt fünf Zahlen
+nebeneinander: Markt, Modell, TA-Elo, TA-Forecast, Statistikmodell, jeweils mit
+Abweichung vom Markt. Jeder Lauf schreibt sie in
+`data/processed/forecasts_log.csv`; `scripts/report_clv.py --forecasts`
+rechnet sie gegen die Ergebnisse ab (Brier, Log-Loss je Quelle). Erst dieser
+Vergleich sagt, ob Tennis Abstracts Elo dem Markt irgendwo näher kommt als
+unser Modell — in der Septembermessung lag TA 6,45 Punkte vom Markt entfernt,
+das Modell 1,24, und der Markt war kalibriert. Das Statistikmodell ist
+absichtlich schlicht (ein Aufschlag- und ein Returnwert je Spieler) und weicht
+entsprechend stark ab; es steht da, weil es die einzige Prognose ist, die weder
+Elo noch Markt kennt.
+
+**Nebenbefund.** Die Match-Seite von TennisExplorer nennt Hallenturniere
+„indoors" ohne Belag; der Namensabgleich fiel dann auf die Frühjahrsausgabe
+zurück und bewertete Lyon im Oktober auf Sand. Hallentennis ist Hartplatz;
+das ist korrigiert.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |
 |---|---|---|
 | tennis-data.co.uk | Historie + Schlussquoten mehrerer Bücher (Training, Backtest) | im Einsatz; Cloudflare lieferte aus dieser Umgebung 403, GitHub Actions läuft mit `continue-on-error` |
 | TennisExplorer | Spielplan, Startzeiten, **Quotenhistorie je Buch mit Eröffnungskurs**, Ergebnisse | im Einsatz; jetzt auch Startzeit und Preisbrett |
-| Tennis Abstract | Elo (auch ITF 50K+), Belagstempo, Serve/Return-Leader | im Einsatz; Elo nur live, nicht für Training |
+| Tennis Abstract | Elo (auch ITF 50K+), Belagstempo, Turnierprognosen | im Einsatz; Elo nur live, nicht für Training; Matchlogs und Leader-Quellen per robots.txt gesperrt |
 | TennisMyLife | Challenger/Quali/WTA-Ergebnisse mit Aufschlagstatistik | im Einsatz für den Aktivitätsindex; Serve-Features gemessen ohne Gewinn |
 | tennisratio.com | Druckpunkte je Match | gemessen: kein Effekt |
 | Sackmann `tennis_atp`/`tennis_wta` (GitHub) | Historie inkl. Futures/ITF, Punkt-für-Punkt der Slams | nicht eingebunden; ohne Quoten kein Beitrag zur Edge-Frage |

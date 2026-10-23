@@ -175,6 +175,13 @@ h1 { font-size:29px; font-weight:700; letter-spacing:-.02em; line-height:1.1; }
 .skip ul { margin:8px 0 0; padding-left:18px; columns:2; column-gap:28px; }
 .skip li { margin-bottom:3px; break-inside:avoid; }
 
+/* ---- forecast line + stats ---- */
+.fcline { display:flex; flex-wrap:wrap; gap:6px 16px; padding:6px 16px; font-size:11.5px;
+          color:var(--muted); border-bottom:1px solid var(--border); background:var(--surface); }
+.fcline b { color:var(--text); font-weight:600; font-family:"IBM Plex Mono",monospace; }
+.fcline .src { white-space:nowrap; }
+.pstat { font-size:11px; color:var(--faint); font-family:"IBM Plex Mono",monospace; margin-top:2px; }
+
 /* ---- price tables ---- */
 .tblx { border:1px solid var(--border); border-radius:10px; overflow:auto;
         background:var(--surface); box-shadow:var(--shadow); }
@@ -245,6 +252,8 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
 
   __TAROWS__
 
+  __FORECASTS__
+
   __SOFTVALUE__
 
   __PMBOARD__
@@ -278,7 +287,9 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
          Ergebnis: die implizite Marktwahrscheinlichkeit.</p></div>
     <div class="step"><div class="n">SCHRITT 3</div><h3>Modell bewerten</h3>
       <p>Belags-Elo, Form, H2H, Ermüdung und Belagsgeschwindigkeit &mdash; mit dem
-         fairen Marktpreis als zusätzlichem Merkmal.</p></div>
+         fairen Marktpreis als zusätzlichem Merkmal. Daneben, unabhängig davon:
+         Tennis Abstracts Elo und Turnierprognose sowie ein Punktmodell aus
+         Aufschlag- und Returnquoten.</p></div>
     <div class="step"><div class="n">SCHRITT 4</div><h3>Differenz prüfen</h3>
       <p>Liegt die Modellwahrscheinlichkeit über der des Marktes, entsteht ein Edge.
          Ab __THRESH__ wird er markiert &mdash; entscheidend ist aber der EV zur Quote.</p></div>
@@ -533,6 +544,123 @@ def price_board_section(data: dict) -> str:
             f'Prediction Markets netto)</summary>{"".join(lines)}</details>')
 
 
+def _p(x, digits=0) -> str:
+    return pct(x, digits) if x is not None else "&ndash;"
+
+
+def forecast_line(match: dict) -> str:
+    """Every source's probability for the first-named player on one line:
+    market, model, Tennis Abstract Elo, Tennis Abstract's tournament
+    forecast, the serve/return point model."""
+    a = match["sides"][0]
+    parts = [f'<span class="src">Markt <b>{_p(a.get("market_prob"))}</b></span>']
+    if match.get("method") == "model":
+        parts.append(f'<span class="src">Modell <b>{_p(a.get("model_prob"))}</b></span>')
+    ta = match.get("ta")
+    if ta:
+        basis = "Belag-Elo" if ta.get("basis") == "surface" else "Elo"
+        parts.append(f'<span class="src">TA-{basis} <b>{_p(ta["prob_1"])}</b></span>')
+    fc = match.get("ta_forecast")
+    if fc:
+        h2h = fc.get("h2h") or [None, None]
+        h2h_txt = f' &middot; H2H {h2h[0]}:{h2h[1]}' if h2h[0] is not None else ""
+        parts.append(f'<span class="src">TA-Forecast <b>{_p(fc["prob_1"])}</b>{h2h_txt}</span>')
+    st = match.get("stats")
+    if st and st.get("prob_1") is not None:
+        parts.append(f'<span class="src">Statistik-Modell <b>{_p(st["prob_1"])}</b></span>')
+    if len(parts) <= 1:
+        return ""
+    return f'<div class="fcline"><span class="src" style="color:var(--faint)">f&uuml;r {esc(a["player"])}:</span>{"".join(parts)}</div>'
+
+
+def side_stats(match: dict, idx: int) -> str:
+    """Tennis Abstract Elo and the last-52-week serve/return profile of one side."""
+    bits = []
+    ta = match.get("ta")
+    if ta:
+        t = ta["sides"][idx]
+        elo = f'TA-Elo {t["elo"]:.0f}' if t.get("elo") else ""
+        if t.get("surface_elo"):
+            elo += f' &middot; {esc(t.get("surface") or "Belag")} {t["surface_elo"]:.0f}'
+        if t.get("official_rank"):
+            elo += f' &middot; Rang {t["official_rank"]:.0f}'
+        if t.get("age"):
+            elo += f' &middot; {t["age"]:.0f}&nbsp;J.'
+        bits.append(elo)
+    st = match.get("stats")
+    if st:
+        p = st["sides"][idx]
+        scope = esc(p.get("scope") or "")
+        line = []
+        if p.get("spw") is not None:
+            line.append(f'Aufschlag {p["spw"] * 100:.0f}&thinsp;%')
+        if p.get("rpw") is not None:
+            line.append(f'Return {p["rpw"] * 100:.0f}&thinsp;%')
+        if p.get("hold_pct") is not None:
+            line.append(f'Hold {p["hold_pct"] * 100:.0f}&thinsp;%')
+        if p.get("break_pct") is not None:
+            line.append(f'Break {p["break_pct"] * 100:.0f}&thinsp;%')
+        if p.get("ace_pct") is not None:
+            line.append(f'Ass {p["ace_pct"] * 100:.1f}&thinsp;%')
+        if p.get("form10"):
+            line.append(f'Form {esc(p["form10"])}')
+        n = p.get("matches")
+        bits.append(" &middot; ".join(line) + (f' <span title="{scope}, letzte 52 Wochen">({n} Matches {scope})</span>' if n else ""))
+    if not bits:
+        return ""
+    return '<div class="pstat">' + "<br>".join(bits) + "</div>"
+
+
+def forecast_section(data: dict) -> str:
+    """One table: every scored match, every source, sorted by how far the
+    farthest source sits from the market."""
+    rows = []
+    for m in data.get("matches") or []:
+        a = m["sides"][0]
+        mk = a.get("market_prob")
+        if mk is None:
+            continue
+        srcs = {"model": a.get("model_prob") if m.get("method") == "model" else None,
+                "ta": (m.get("ta") or {}).get("prob_1"),
+                "fc": (m.get("ta_forecast") or {}).get("prob_1"),
+                "st": (m.get("stats") or {}).get("prob_1")}
+        if not any(v is not None for v in srcs.values()):
+            continue
+        devs = [abs(v - mk) for v in srcs.values() if v is not None]
+        rows.append((max(devs), m, mk, srcs))
+    if not rows:
+        return ""
+    rows.sort(key=lambda r: r[0], reverse=True)
+
+    def cell(v, mk):
+        if v is None:
+            return '<td class="num">&ndash;</td>'
+        d = v - mk
+        cls = "p" if d > 0.03 else ("n" if d < -0.03 else "z")
+        return f'<td class="num">{pct(v, 0)} <span class="edge {cls}" style="font-size:11px">{pct(d, 1, sign=True)}</span></td>'
+
+    trs = []
+    for dev, m, mk, srcs in rows:
+        trs.append(f'<tr><td>{_match_cell({"players": [m["sides"][0]["player"], m["sides"][1]["player"]], "tournament": m["tournament"], "date": m.get("date"), "round": m.get("round")})}</td>'
+                   f'<td class="num">{pct(mk, 0)} <span class="s">{esc(m.get("fair_source") or m["ref_book"])}</span></td>'
+                   f'{cell(srcs["model"], mk)}{cell(srcs["ta"], mk)}{cell(srcs["fc"], mk)}{cell(srcs["st"], mk)}</tr>')
+    src = data.get("sources") or {}
+    intro = (f'<p class="note">Wahrscheinlichkeit des erstgenannten Spielers aus jeder Quelle, daneben die '
+             f'Abweichung vom fairen Marktpreis. <b>Modell</b>: unser Klassifikator mit Marktpreis als Merkmal. '
+             f'<b>TA-Elo</b>: Tennis Abstracts Elo, belagsspezifisch wo vorhanden, durch die Elo-Formel. '
+             f'<b>TA-Forecast</b>: Tennis Abstracts eigene Turnierprognose von der Seite des laufenden Turniers. '
+             f'<b>Statistik</b>: Barnett-Clarke-Punktmodell aus Aufschlag- und Returnquoten der letzten 52 Wochen '
+             f'(TennisMyLife, Sackmann-Schema). Eine Abweichung ist kein Edge: gegen einen auf 0,8 Punkte '
+             f'kalibrierten Markt ist sie fast immer der Fehler der Quelle. Jede Zeile wird in '
+             f'<span class="num">forecasts_log.csv</span> festgehalten, damit die Quellen an den Ergebnissen '
+             f'gemessen werden k&ouml;nnen. Abgedeckt: TA-Elo {src.get("ta_elo", 0)}, TA-Forecast '
+             f'{src.get("ta_forecast", 0)}, Statistik {src.get("stats", 0)} Partien.</p>')
+    table = _table([("Partie", ""), ("Markt", "num"), ("Modell", "num"), ("TA-Elo", "num"),
+                    ("TA-Forecast", "num"), ("Statistik", "num")], "".join(trs))
+    return (f'<div class="sec"><h2>Prognosevergleich</h2><span class="rule"></span>'
+            f'<span class="count">{len(rows)} Partien</span></div>{intro}{table}')
+
+
 def fair_chip(match: dict) -> str:
     """Names the fair value's source when it is not the quoted book: a
     liquid Polymarket or Kalshi mid stands in for a missing sharp price."""
@@ -597,8 +725,9 @@ def render(data: dict) -> str:
                 f'{round_chip(m)}'
                 f'{stale_chip(m.get("stale_players"))}'
                 f'{fair_chip(m)}'
-                f'<span>Marge {pct(m["ref_margin"], 1)}</span></div>')
-            for sd in (a, b):
+                f'<span>Marge {pct(m["ref_margin"], 1)}</span></div>'
+                f'{forecast_line(m)}')
+            for idx, sd in enumerate((a, b)):
                 cls = "side fav" if sd is fav else "side"
                 lo = min(sd["model_prob"], sd["market_prob"]) * 100
                 hi = max(sd["model_prob"], sd["market_prob"]) * 100
@@ -618,6 +747,7 @@ def render(data: dict) -> str:
                     f'<div class="{cls}">'
                     f'<div><div class="pname">{sd["player"]}</div>'
                     f'<div class="pmeta">{meta}</div>'
+                    f'{side_stats(m, idx)}'
                     f'<div class="bar" role="img" aria-label="Prognose {pct(sd["model_prob"])} '
                     f'gegen Markt {pct(sd["market_prob"])}">'
                     f'<div class="gap" style="left:{lo:.1f}%;width:{hi - lo:.1f}%"></div>'
@@ -679,6 +809,7 @@ def render(data: dict) -> str:
         "__STAMP__": stamp, "__THRESH__": thresh, "__STRIP__": strip_html,
         "__VERDICT__": verdict, "__ROWS__": "".join(rows), "__SKIPPED__": skipped,
         "__TAROWS__": ta_html, "__NSCORED__": str(data["n_scored"]),
+        "__FORECASTS__": forecast_section(data),
         "__SOFTVALUE__": soft_value_section(data), "__PMBOARD__": pm_section(data),
         "__ARBS__": arb_section(data), "__PRICEBOARD__": price_board_section(data),
         "__NMATCHES__": str(len(data["matches"])),

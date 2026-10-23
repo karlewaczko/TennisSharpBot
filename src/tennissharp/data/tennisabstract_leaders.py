@@ -24,6 +24,13 @@ source (view-source on leaders.cgi):
 `var matchmx = [...]` in each source file is valid JSON (all-double-quoted
 string arrays), so no bespoke JS parsing is needed -- just slice it out and
 `json.loads` it.
+
+
+NOT FETCHED ANY MORE (2026-10-23): tennisabstract.com/robots.txt disallows
+/jsmatches/, where these source files live. The parsing and aggregation
+code stays for its tests and for anyone with a copy of the files; the
+leader CSVs are now produced from the TennisMyLife match database by
+player_stats.leader_tables (scripts/update_data.py).
 """
 from __future__ import annotations
 

@@ -62,7 +62,9 @@ matching problem when combining sources that don't share a schema.
 | [Tennis Abstract](https://tennisabstract.com) Elo ratings | overall/hard/clay/grass Elo, current snapshot | every run (`data/processed/ta_elo_current.csv`); standalone per-tour files (same columns) in `ta_elo_atp_general.csv` / `ta_elo_wta_general.csv` | **live/current-match scoring and cross-checks only** — see caveat below |
 | Tennis Abstract surface speed | per-tournament-*edition* ace-rate-based speed rating (ATP-only source, but applied to WTA matches at shared venues too — see below) | every run (`data/processed/ta_surface_speed_history.csv`); closed seasons cached under `data/raw/surface_speed/`, only the current season is re-fetched | a real training feature (`tourney_surface_speed`), safe for backtesting |
 | [TennisExplorer](https://www.tennisexplorer.com) | today/tomorrow's schedule + odds + final scores, on-demand H2H, on-demand odds-movement history | every run (`data/processed/tennisexplorer_upcoming.csv`); H2H and odds history fetched live on demand | free alternative to The Odds API for live schedule/odds; `fetch_head_to_head()` for H2H; `fetch_match_odds_history()` for per-bookmaker opening-vs-current odds ("Quotenverlauf") |
-| Tennis Abstract Stat Leaders (`leaders.cgi`) | Serve/Return leaderboards, ATP (Top50/51-100/Challenger) + WTA (Top50/51-100), overall and per surface | every run (`data/processed/ta_leaders_{tour}_{pool}_{serve\|return}_{surface}.csv`, 50 files) | `/leaders` API endpoint, Serve/Return features — same live-snapshot caveat as Elo above |
+| Serve/Return leaderboards | ATP (Top50/51-100/Challenger) + WTA (Top50/51-100), overall and per surface | every run (`data/processed/ta_leaders_{tour}_{pool}_{serve\|return}_{surface}.csv`, 50 files), now computed by `player_stats.leader_tables` from the TennisMyLife match database — tennisabstract.com's own source files sit under `/jsmatches/`, which its robots.txt disallows (checked 2026-10-23) | `/leaders` API endpoint |
+| Tennis Abstract tournament forecasts (`/current/`) | the site's own next-round win probability for every pairing of every event it is forecasting, plus head-to-head and title odds | every `build_dashboard.py` run (`data/tennisabstract_forecast.py`) | "TA-Forecast" column of the forecast comparison; logged to `forecasts_log.csv` |
+| TennisMyLife serve/return profiles | last-52-week serve and return numbers per player, overall and per surface (Sackmann's schema — the statistics behind Tennis Abstract's player pages) | every `build_dashboard.py` run (`player_stats.py`) | per-player stat line on the card, the Barnett–Clarke point model ("Statistik" column), leader tables |
 | [The Odds API](https://the-odds-api.com) | live bookmaker odds | on demand (`find_value_bets.py`) | live value-bet scoring (needs your own key) |
 | [Polymarket](https://polymarket.com) Gamma API | open singles moneylines (ATP, WTA, Challenger, ITF): best bid/ask, liquidity, start time | every `build_dashboard.py` run (`data/polymarket.py`, no key) | price board: prediction market vs. sharp fair value, fair-value anchor where no sharp book quotes, arbitrage legs (signal only — geoblocked in Germany) |
 | [Kalshi](https://kalshi.com) Trade API | the same for its ATP/WTA/Challenger/ITF match series | every `build_dashboard.py` run (`data/kalshi.py`, no key) | as above (signal only — US customers only) |
@@ -210,6 +212,18 @@ Coverage: ATP, WTA and Challenger matches go through the model where
 ratings exist; ITF matches enter the price board whenever a prediction
 market quotes them (`--itf-limit`, default 40), since comparing prices needs
 no rating.
+
+**Forecast comparison.** Every match also carries three opinions that take
+no market input: Tennis Abstract's Elo (surface-specific where published)
+for both players, Tennis Abstract's own tournament forecast where the event
+is on its site, and a Barnett–Clarke point model from each player's
+last-52-week serve and return numbers. The page shows them side by side
+with their distance from the market, and every run appends them to
+`data/processed/forecasts_log.csv` so the sources can be scored against
+results on equal terms. A disagreement with the market is information, not
+an edge: on the US Open card measured in September, Tennis Abstract's
+forecast sat 6.45 pp from the market on average, our model 1.24 pp, and the
+market is calibrated to within 0.8 pp.
 
 ```bash
 python scripts/build_dashboard.py --refresh-schedule --limit 120 --itf-limit 40
@@ -441,6 +455,7 @@ src/tennissharp/
     tennisexplorer.py   TennisExplorer schedule/odds/H2H scraping
     polymarket.py       Polymarket Gamma API: tennis moneylines (no key)
     kalshi.py           Kalshi Trade API: tennis match series (no key)
+    tennisabstract_forecast.py  Tennis Abstract /current/ tournament forecasts
     tennismylife.py     TennisMyLife match database (challenger/qualifying coverage)
     tennisratio.py      tennisratio.com pressure-point statistics
     live_odds.py        The Odds API client (live odds, optional)
@@ -453,6 +468,8 @@ src/tennissharp/
   odds_math.py           implied probability, multiplicative + Shin devigging
   market_compare.py      cross-venue price board: name matching, fee-adjusted
                          odds, EV vs. fair value, arbitrage, quote snapshots, CLV
+  player_stats.py        last-52-week serve/return profiles, head-to-head,
+                         Barnett–Clarke point model, leader tables
   staking.py             fractional Kelly bet sizing
   backtest.py            historical value-betting simulation
   value_finder.py        live odds -> value bet candidates (+ TA Elo cross-check)

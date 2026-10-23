@@ -63,6 +63,10 @@ def test_normalize_surface_maps_the_known_names():
     assert normalize_surface("hard") == "Hard"
     assert normalize_surface("Clay") == "Clay"
     assert normalize_surface(" GRASS ") == "Grass"
+    # The match page says "indoors" for Lyon in October; that is a hard court,
+    # not the clay the spring edition's name lookup would return.
+    assert normalize_surface("indoors") == "Hard"
+    assert normalize_surface("Indoor hard") == "Hard"
     assert normalize_surface("indoor hard") == "Hard"
 
 
@@ -75,7 +79,9 @@ def test_normalize_surface_rejects_the_sites_placeholder():
     assert normalize_surface("-") is None
     assert normalize_surface("") is None
     assert normalize_surface(None) is None
-    assert normalize_surface("Indoors") is None
+    # "Indoors" is not a placeholder: it names a hard court (see the
+    # indoor rule in normalize_surface), so it is not rejected here.
+    assert normalize_surface("Indoors") == "Hard"
 
 
 def test_an_unknown_surface_silently_returns_the_default_rating():

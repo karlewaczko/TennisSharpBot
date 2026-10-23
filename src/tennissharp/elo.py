@@ -33,6 +33,12 @@ def normalize_surface(raw) -> str | None:
     for surface in SURFACES:
         if surface.lower() in text:
             return surface
+    # TennisExplorer labels indoor events "indoors" with no court named.
+    # Indoor tennis is played on hard courts -- the carpet era ended in
+    # 2009 -- and falling through to the tournament-name lookup put the
+    # October edition of Lyon on clay, because the spring edition was.
+    if "indoor" in text:
+        return "Hard"
     return None
 
 # Multiplies the base K-factor by tournament importance. Unrecognized/older
