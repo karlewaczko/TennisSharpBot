@@ -34,3 +34,20 @@ def test_dashboard_job_commits_every_log_it_writes():
     text = (WF / "dashboard.yml").read_text()
     for log in ("odds_snapshots.csv", "picks_log.csv", "forecasts_log.csv"):
         assert log in text
+
+
+def test_queued_runs_start_from_the_branch_tip():
+    """A run waiting in the concurrency queue keeps the SHA it was triggered
+    on; checking that out made the dashboard run of 2026-10-24 rebuild on a
+    stale commit and fail its push."""
+    for name in ("update-data.yml", "dashboard.yml"):
+        text = (WF / name).read_text()
+        assert "ref: ${{ github.ref_name }}" in text
+        assert "pull --rebase -X theirs" in text
+        assert "git rebase --abort" in text
+
+
+def test_append_only_logs_merge_by_union():
+    attrs = (WF.parent.parent / ".gitattributes").read_text()
+    for log in ("odds_snapshots.csv", "picks_log.csv", "forecasts_log.csv", "ta_elo_history.csv"):
+        assert f"data/processed/{log} merge=union" in attrs

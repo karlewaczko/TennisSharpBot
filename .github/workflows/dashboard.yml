@@ -26,7 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      # The branch, not the triggering commit: a run that waited in the
+      # concurrency queue must start from what the previous run pushed.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-python@v5
         with:
@@ -55,8 +59,13 @@ jobs:
             exit 0
           fi
           git commit -m "Dashboard rebuild ($(date -u +%Y-%m-%dT%H:%MZ))"
+          # Logs merge by union (.gitattributes); for the regenerated pages
+          # and tables this run's newer build wins a conflict.
           for attempt in 1 2 3; do
-            git pull --rebase origin "${GITHUB_REF_NAME}" && git push && exit 0
+            if git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
             sleep 15
           done
           exit 1

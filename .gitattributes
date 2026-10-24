@@ -1,0 +1,8 @@
+# Append-only logs written by both scheduled workflows and the Tennis
+# Abstract refresh. When two runs append to the same log, keep both runs'
+# lines instead of stopping at a merge conflict (the dashboard run of
+# 2026-10-24 failed its push on exactly this).
+data/processed/odds_snapshots.csv merge=union
+data/processed/picks_log.csv merge=union
+data/processed/forecasts_log.csv merge=union
+data/processed/ta_elo_history.csv merge=union
