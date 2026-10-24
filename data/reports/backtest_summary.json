@@ -1,0 +1,30 @@
+{
+  "bet_at": "market_avg",
+  "priced_against": "pinnacle",
+  "n_bets": 1898,
+  "win_rate": 0.4636,
+  "total_staked": 292290.77,
+  "total_pnl": 1547.78,
+  "roi_on_turnover": 0.0053,
+  "starting_bankroll": 10000.0,
+  "final_bankroll": 11547.78,
+  "mean_edge_vs_reference": 0.063,
+  "seasons": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "flat_stake_roi": 0.01349,
+  "flat_stake_t_stat": 0.48,
+  "statistically_significant": false,
+  "verdict": "consistent with zero edge -- do not bet this"
+}

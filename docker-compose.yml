@@ -1,0 +1,58 @@
+# One-command setup: `docker compose up -d --build`
+#
+# Three services share one image (built once) and one data volume:
+#   - updater: runs scripts/update_data.py immediately, then every 24h
+#   - bot:     the Telegram bot (needs TELEGRAM_BOT_TOKEN in config/.env)
+#   - api:     the REST API on http://localhost:8000
+#
+# bot/api wait for the updater's *first* run to finish before starting, so
+# the very first boot doesn't answer with stale/no data (the image already
+# ships with real data baked in from this repo, so even that wait is short).
+#
+# Don't want the API? `docker compose up -d updater bot` starts only those two.
+
+services:
+  updater:
+    build: .
+    entrypoint: ["/app/docker/update_loop.sh"]
+    env_file: config/.env
+    volumes:
+      - tennis_data:/app/data
+      - tennis_models:/app/models
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "test", "-f", "/app/data/processed/matches_normalized.csv"]
+      interval: 15s
+      timeout: 5s
+      retries: 40
+      start_period: 10s
+
+  bot:
+    build: .
+    command: ["python", "scripts/run_telegram_bot.py"]
+    env_file: config/.env
+    volumes:
+      - tennis_data:/app/data
+      - tennis_models:/app/models
+    depends_on:
+      updater:
+        condition: service_healthy
+    restart: unless-stopped
+
+  api:
+    build: .
+    command: ["python", "scripts/run_api.py", "--host", "0.0.0.0"]
+    env_file: config/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - tennis_data:/app/data
+      - tennis_models:/app/models
+    depends_on:
+      updater:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  tennis_data:
+  tennis_models:

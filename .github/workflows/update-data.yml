@@ -1,0 +1,83 @@
+name: Weekly update (Tuesday) - Tennis Abstract, player stats, model
+
+# Every Tuesday morning. Tennis Abstract updates its Elo and yElo
+# leaderboards weekly, usually on Monday ("Last update: 2026-10-19" was a
+# Monday), so a Tuesday run picks up the new ratings. 06:41 UTC is off the
+# full hour, where GitHub's scheduler is busiest and delays runs.
+#
+# GitHub runs scheduled workflows from the default branch only, and pauses
+# them after 60 days without activity in the repository; the dashboard job's
+# commits keep it active.
+on:
+  schedule:
+    - cron: "41 6 * * 2"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Shared with dashboard.yml: one data job at a time, so two runs never race
+# each other's push to the same files.
+concurrency:
+  group: data-commits
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Elo, surface Elo and season yElo for every rated ATP and WTA player,
+      # the dated Elo history, and the complete player table with
+      # last-52-week serve/return/hold/break statistics overall and per
+      # surface. Fails (red run) when a source could not be read, after
+      # writing everything it could.
+      - name: Tennis Abstract Elo + yElo, player statistics
+        run: python scripts/update_player_data.py
+
+      # The steps below run even when the one above failed: a Tennis
+      # Abstract outage must not also stop the model and the dashboard.
+      # tennis-data.co.uk sits behind Cloudflare and has refused some
+      # networks (HTTP 403); then the retrain is skipped with a warning and
+      # the committed model stays in use.
+      - name: Match/odds history, Elo state, model
+        if: ${{ !cancelled() }}
+        run: python scripts/update_data.py --skip-player-data
+
+      - name: Walk-forward backtest report
+        if: ${{ !cancelled() }}
+        run: python scripts/run_backtest.py --min-train-seasons 5
+
+      - name: Rebuild value dashboard
+        if: ${{ !cancelled() }}
+        run: |
+          python scripts/build_dashboard.py --refresh-schedule --limit 120 --itf-limit 40
+          python scripts/render_dashboard.py -o docs/index.html
+          cp docs/index.html data/reports/dashboard.html
+
+      - name: Commit and push
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/processed data/reports models docs
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+            exit 0
+          fi
+          git commit -m "Weekly update ($(date -u +%Y-%m-%d)): Tennis Abstract, player stats, model"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push && exit 0
+            sleep 15
+          done
+          exit 1

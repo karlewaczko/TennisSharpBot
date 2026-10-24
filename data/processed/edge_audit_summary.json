@@ -1,0 +1,11 @@
+{
+ "measured_at": "2026-09-01T19:07:04+00:00",
+ "matches_tested": 55124,
+ "seasons_tested": 13,
+ "market_log_loss": 0.59408,
+ "ours_log_loss": 0.61869,
+ "combined_log_loss": 0.59519,
+ "information_gain": -0.00111,
+ "market_calibration_gap": 0.0076,
+ "verdict": "NO information beyond the market: the market already prices in everything we know, so this model cannot systematically beat it"
+}

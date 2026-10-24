@@ -1,0 +1,25 @@
+{
+ "measured_at": "2026-10-22T22:03:34+00:00",
+ "days": 3,
+ "n_matches": 52,
+ "pinnacle": {
+  "n": 52,
+  "mean_abs_move_prob": 0.0167,
+  "favourite_shortened_share": 0.481,
+  "favourite_drifted_share": 0.519,
+  "clv_open_favourite": -0.0329,
+  "clv_open_underdog": -0.0781,
+  "roi_open_favourite": -0.0913,
+  "roi_open_underdog": 0.0294,
+  "favourite_win_rate": 0.654,
+  "closing_fair_favourite_mean": 0.695
+ },
+ "soft_at_close": {
+  "n_matches": 52,
+  "sides_checked": 1048,
+  "sides_above_pinnacle_fair": 0,
+  "share_above_fair": 0.0,
+  "mean_ev_of_positive_sides": null,
+  "best_side": null
+ }
+}

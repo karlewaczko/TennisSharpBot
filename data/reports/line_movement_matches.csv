@@ -1,0 +1,53 @@
+match_id,tournament,date,players,pin_open_fav,pin_open_dog,pin_close_fav,pin_open_fav_prob,pin_close_fav_prob,fav_won,soft_sides_checked,soft_sides_positive
+3353207,Ningbo WTA,2026-10-19,"['Kasatkina Darya', 'Sasnovich Aliaksandra']",1.81,2.09,1.72,0.5370086441672693,0.5654724491971476,True,22,0
+3351573,Ningbo WTA,2026-10-19,"['Fernandez Leylah', 'Mertens Elise']",1.75,2.17,1.71,0.5552995391660864,0.5691833751055907,False,22,0
+3353119,Osaka WTA,2026-10-19,"['Kraus Sinja', 'McNally Caty']",1.39,3.2,1.41,0.7034622302179913,0.6938382249028192,False,22,0
+3351289,Osaka WTA,2026-10-19,"['Quevedo Kaitlin', 'Tararudee Lanlana']",1.53,2.63,1.57,0.6366833171755133,0.6216209438724917,True,22,0
+3351853,Lyon,2026-10-19,"['Kouame Moise', 'Sonego Lorenzo']",1.6,2.46,1.57,0.6092479674796112,0.6216209438724917,False,20,0
+3351855,Lyon,2026-10-19,"['Arnaldi Matteo', 'Musetti Lorenzo']",1.4,3.11,1.49,0.6963711529678893,0.6569990412283135,True,24,0
+3351969,Lisbon challenger,2026-10-19,"['Blanch Dali', 'Rocha Henrique']",1.25,4.23,1.29,0.7817966903046799,0.7546181758242282,True,20,0
+3353059,Fort Worth challenger,2026-10-19,"['Rehberg Max Hans', 'Rottgering Mees']",1.71,2.15,1.71,0.5598395212842823,0.5630398626525009,True,22,0
+3353041,Fort Worth challenger,2026-10-19,"['Legout Timo', 'Winter Edward']",1.31,3.5,1.3,0.7388222464578688,0.7464938376513126,True,22,0
+3353039,Fort Worth challenger,2026-10-19,"['Brooksby Jenson', 'Krueger Mitchell']",1.13,6.01,1.12,0.8592832005669319,0.8683035714284425,True,18,0
+3353043,Fort Worth challenger,2026-10-19,"['Ambrogi Luciano Emanuel', 'Maloney Patrick (2000)']",1.21,4.55,1.22,0.803333030607978,0.7989713205594704,True,24,0
+3351533,Guangzhou challenger,2026-10-19,"['Alkaya Mert', 'Ilagan Andre']",1.51,2.6,1.52,0.6388181355072128,0.637376487192349,True,24,0
+3353951,Cali challenger,2026-10-19,"['Gomez Juan Sebastian', 'Meligeni Rodrigues Alves Felipe']",1.06,8.84,1.05,0.9151370272342204,0.9229423398746104,True,8,0
+3353955,Cali challenger,2026-10-19,"['Hernandez Serrano Juan Alejandro', 'Ribero Franco']",1.52,2.52,1.56,0.6305346700025317,0.6139012502611617,False,20,0
+3353673,Cali challenger,2026-10-19,"['Dedura-Palomero Diego', 'Rengifo Frazier']",1.03,11.92,1.05,0.9434905844791154,0.9214858810037097,True,18,0
+3353675,Cali challenger,2026-10-19,"['Alves Mateus (2001)', 'Pereira Jose']",1.21,4.32,1.25,0.7974823997566705,0.7714652956257997,False,6,0
+3353617,Florence challenger,2026-10-19,"['Jones Maximus', 'Milev Yanaki']",1.39,3.03,1.36,0.6946957285603121,0.7142728256958584,True,22,0
+3353615,Florence challenger,2026-10-19,"['Misolic Filip', 'Siniakov Daniel']",1.37,3.13,1.33,0.7052190946988851,0.7305910124155344,True,22,0
+3353693,Fort Worth challenger,2026-10-19,"['Antonius Michael', 'Pedrico Kravtsov Albert']",1.55,2.43,1.47,0.6168193282832175,0.6514568091426841,False,24,0
+3353695,Fort Worth challenger,2026-10-19,"['Bigun Kaylan', 'Zahraj Patrick']",1.67,2.18,1.72,0.5700433994372873,0.5537308497738356,True,18,0
+3353697,Fort Worth challenger,2026-10-19,"['Arutiunian Erik', 'McHugh Aidan']",1.86,1.92,1.89,0.5084005376375995,0.49999999999511857,True,22,0
+3353669,Fort Worth challenger,2026-10-19,"['Jong Sander', 'Miyoshi Kenta (2004)']",1.79,2.0,1.63,0.52932960894359,0.5855095282022744,False,22,0
+3353665,Fort Worth challenger,2026-10-19,"['Artnak Bor', 'Rybakov Alex']",1.49,2.6,1.47,0.6432627774861615,0.6514568091426841,True,20,0
+3353007,Fort Worth challenger,2026-10-19,"['Arutiunian Erik', 'Johnson Spencer']",1.41,2.86,1.4,0.679784754249432,0.6847290640437237,False,18,0
+3353125,Guangzhou challenger,2026-10-19,"['Purcell Max', 'Zhu Evan']",1.25,3.89,1.23,0.7714652956257997,0.7851448417393223,True,10,0
+3353217,Guangzhou challenger,2026-10-19,"['Demin Yaroslav', 'Samrej Kasidit']",1.85,1.93,1.78,0.5112029127576253,0.5333741239319955,False,22,0
+3353127,Guangzhou challenger,2026-10-19,"['Jasika Omar', 'Matsuda Koki']",1.22,4.18,1.2,0.7902188406898705,0.8053080920579885,False,24,0
+3353681,Lisbon challenger,2026-10-19,"['Krutykh Oleksii', 'Taberner Carlos']",1.46,2.75,1.49,0.6606475716015332,0.6503852846119988,True,20,0
+3353231,Lisbon challenger,2026-10-19,"['Domingues Joao', 'Leote Prata Vasco']",1.22,4.34,1.22,0.7946286923018661,0.7969692484191584,True,14,0
+3353233,Lyon,2026-10-19,"['Gojo Borna', 'Sachko Vitaliy']",1.6,2.4,1.72,0.6041666666716493,0.561339876248888,True,24,0
+3351373,Almaty,2026-10-20,"['Atmane Terence', 'Hijikata Rinky']",1.89,1.98,1.84,0.5120250120266949,0.5290206838366204,False,24,0
+3353239,Almaty,2026-10-20,"['Safiullin Roman', 'Shimabukuro Sho']",1.16,5.71,1.15,0.8434688085057019,0.853349383938193,False,10,0
+3354713,Lyon,2026-10-20,"['Tabur Clement', 'Van Assche Luca']",1.65,2.34,1.59,0.5893550893487814,0.6144654088058412,True,22,0
+3354711,Lyon,2026-10-20,"['Fery Arthur', 'Gojo Borna']",1.49,2.75,1.57,0.6537522879802895,0.6231588375784585,False,22,0
+3354709,Lyon,2026-10-20,"['Baez Sebastian', 'Herbert Pierre-Hugues']",1.7,2.24,1.62,0.570903361348356,0.6037239425238794,True,22,0
+3353659,Brussels,2026-10-20,"['Basavareddy Nishesh', 'Collignon Raphael']",1.68,2.27,1.79,0.5773547304344387,0.544587824895014,False,22,0
+3351109,Brussels,2026-10-20,"['Bergs Zizou', 'Samuel Toby']",1.43,2.98,1.47,0.6818651147462478,0.6653108795917513,True,22,0
+3351113,Brussels,2026-10-20,"['Fearnley Jacob', 'Gaston Hugo']",1.51,2.69,1.71,0.6452522218605653,0.570175438592352,True,18,0
+3351105,Brussels,2026-10-20,"['Giron Marcos', 'Struff Jan-Lennard']",1.66,2.32,1.61,0.5856875779035684,0.6073069736951545,True,22,0
+3351117,Brussels,2026-10-20,"['Griekspoor Tallon', 'Schoenhaus Max']",1.26,4.16,1.27,0.7766330891359938,0.772635412097718,True,24,0
+3351961,Lisbon challenger,2026-10-20,"['Elias Gastao', 'Passaro Francesco']",1.08,8.03,1.09,0.9006964623393342,0.8967577276795318,True,20,0
+3355623,Cali challenger,2026-10-20,"['Dedura-Palomero Diego', 'Kicker Nicolas']",1.4,2.99,1.43,0.6899187768728514,0.6790018854816484,True,20,0
+3355621,Cali challenger,2026-10-20,"['Pacheco Mendez Rodrigo', 'Rodriguez Taverna Santiago']",1.34,3.33,1.35,0.7229841782095769,0.7193129685621548,False,22,0
+3355617,Cali challenger,2026-10-20,"['Salazar Daniel', 'Torres Juan Bautista']",1.22,4.44,1.22,0.7972234529634376,0.7967138936270372,True,22,0
+3355619,Cali challenger,2026-10-20,"['Pereira Jose', 'Pucinelli De Almeida Matheus']",1.08,7.99,1.09,0.9003847401862466,0.8915112952538342,True,8,0
+3353049,Fort Worth challenger,2026-10-20,"['Wolf Jeffrey John', 'Zink Tyler']",1.22,4.37,1.21,0.7954195896011284,0.8040528348224724,True,22,0
+3355607,Fort Worth challenger,2026-10-20,"['Blanch Darwin', 'Pedrico Kravtsov Albert']",1.18,4.95,1.19,0.822718712547542,0.8172874087903662,True,22,0
+3355601,Fort Worth challenger,2026-10-20,"['Bigun Kaylan', 'Svajda Trevor']",1.28,3.73,1.31,0.7565767426282174,0.742403623300482,False,18,0
+3354263,Guangzhou challenger,2026-10-20,"['Purcell Max', 'Smith Keegan']",1.45,2.8,1.47,0.6662561576384142,0.6596306392603026,False,22,0
+3351537,Guangzhou challenger,2026-10-20,"['Hewitt Cruz', 'Te Rigele']",1.51,2.6,1.5,0.6388181355072128,0.6453634085169568,True,24,0
+3354257,Guangzhou challenger,2026-10-20,"['Noguchi Rio', 'Samrej Kasidit']",1.43,2.89,1.45,0.6766399690317768,0.6687712481751404,False,24,0
+3351531,Guangzhou challenger,2026-10-20,"['Uchida Kaichi', 'Zhang Zhizhen']",1.09,7.09,1.09,0.8881937345518416,0.8905027723182978,True,20,0
