@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-24T20:44:08+00:00",
+ "generated_at": "2026-10-24T20:46:37+00:00",
  "ta_elo_last_update": {
   "atp": "2026-10-19",
   "wta": "2026-10-19"
@@ -32,7 +32,10 @@
    "with_elo_and_stats": 307
   }
  },
- "errors": [],
+ "errors": [
+  "Tennis Abstract Elo nicht aktualisiert: 403 Client Error: Forbidden for url: https://tennisabstract.com/reports/atp_elo_ratings.html",
+  "Tennis Abstract yElo nicht aktualisiert: 403 Client Error: Forbidden for url: https://tennisabstract.com/reports/atp_season_yelo_ratings.html"
+ ],
  "ta_fetched_at": {
   "elo": "2026-10-24T20:43:36+00:00",
   "yelo": "2026-10-24T20:43:36+00:00",
