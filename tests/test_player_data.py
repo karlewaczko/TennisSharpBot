@@ -193,3 +193,41 @@ def test_reconciled_players_share_one_row():
     assert len(table) == 2
     assert table["in_stats"].all() and table["in_ta_elo"].all()
     assert set(table["player"]) == {"Christopher Oconnell", "Bu Yunchaokete"}
+
+
+def test_refresh_remembers_when_tennis_abstract_was_last_read(tmp_path, monkeypatch):
+    monkeypatch.setattr(ta, "fetch_all_elo_ratings", _ta_elo)
+    monkeypatch.setattr(ta, "fetch_all_yelo_ratings", _ta_yelo)
+    monkeypatch.setattr(tml, "load_all", lambda start_season=None, tours=None: _matches())
+    first = pdx.refresh(out_dir=tmp_path, today=dt.date(2026, 10, 20))
+    assert first["ta_fetched_at"]["elo"] and first["statistics_ok"]
+    assert pdx.ta_age_days(first) < 0.01
+
+    def refused():
+        raise ConnectionError("403 Forbidden")
+
+    monkeypatch.setattr(ta, "fetch_all_elo_ratings", refused)
+    second = pdx.refresh(out_dir=tmp_path, today=dt.date(2026, 10, 21))
+    # The refused read keeps the earlier timestamp: age measures the data.
+    assert second["ta_fetched_at"]["elo"] == first["ta_fetched_at"]["elo"]
+    later = dt.datetime.fromisoformat(first["ta_fetched_at"]["elo"]) + dt.timedelta(days=9)
+    assert pdx.ta_age_days(second, now=later) > pdx.TA_MAX_AGE_DAYS
+    assert pdx.ta_age_days({}) is None
+
+
+def test_statistics_failure_is_reported(tmp_path, monkeypatch):
+    monkeypatch.setattr(ta, "fetch_all_elo_ratings", _ta_elo)
+    monkeypatch.setattr(ta, "fetch_all_yelo_ratings", _ta_yelo)
+    monkeypatch.setattr(tml, "load_all", lambda start_season=None, tours=None: pd.DataFrame())
+    meta = pdx.refresh(out_dir=tmp_path, today=dt.date(2026, 10, 20))
+    assert meta["statistics_ok"] is False
+    assert any("Statistiken" in e for e in meta["errors"])
+
+
+def test_surface_speed_history_with_every_year_refused_is_empty(monkeypatch, tmp_path):
+    from tennissharp import config
+    monkeypatch.setattr(config, "RAW_DIR", tmp_path)
+    monkeypatch.setattr(ta, "_fetch_surface_speed_year_cached",
+                        lambda year, cache_dir, force=False: pd.DataFrame())
+    out = ta.fetch_surface_speed_history(2024, 2026)
+    assert out.empty and "date" in out.columns

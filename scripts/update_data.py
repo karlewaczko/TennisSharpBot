@@ -29,13 +29,23 @@ def _fetch_surface_speed() -> dict:
     (The Elo and yElo leaderboards and the player statistics are refreshed
     by player_data.refresh, which the weekly job also runs on its own.)
     """
+    path = config.PROCESSED_DIR / "ta_surface_speed_history.csv"
     try:
         speed_history = tennisabstract.fetch_surface_speed_history(config.START_SEASON)
-        speed_history.to_csv(config.PROCESSED_DIR / "ta_surface_speed_history.csv", index=False)
+        if speed_history.empty:
+            raise RuntimeError("no surface-speed ratings returned")
+        speed_history.to_csv(path, index=False)
         logger.info("Fetched %d Tennis Abstract surface-speed ratings", len(speed_history))
         return build_surface_speed_index(speed_history)
-    except Exception:
-        logger.exception("Failed to fetch Tennis Abstract surface-speed ratings -- continuing without them")
+    except Exception as exc:
+        # `tourney_surface_speed` is a trained feature: retraining with an
+        # empty index would set it to the neutral default on every row and
+        # teach the model that speed does not exist. The committed history
+        # (refreshed weekly by scripts/update_player_data.py) stands in.
+        logger.warning("Surface-speed ratings not refreshed (%s) -- using the saved history", exc)
+        if path.exists():
+            saved = pd.read_csv(path, parse_dates=["date"])
+            return build_surface_speed_index(saved)
         return {}
 
 

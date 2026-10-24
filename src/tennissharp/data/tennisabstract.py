@@ -238,5 +238,9 @@ def fetch_surface_speed_history(start_year: int, end_year: int | None = None,
     frames = [_fetch_surface_speed_year_cached(year, cache_dir, force=force)
               for year in range(start_year, end_year + 1)]
     frames = [f for f in frames if not f.empty]
-    combined = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
+    if not frames:
+        # Every year refused -- Tennis Abstract answers GitHub's runners with
+        # HTTP 403. An empty frame, not a KeyError from sorting nothing.
+        return pd.DataFrame(columns=["date", "tournament", "surface", "ace_pct", "surface_speed"])
+    combined = pd.concat(frames, ignore_index=True)
     return combined.drop_duplicates(subset=["date", "tournament"]).sort_values("date").reset_index(drop=True)
