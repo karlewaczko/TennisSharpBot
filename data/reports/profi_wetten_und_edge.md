@@ -134,7 +134,7 @@ Preisvergleich und in der Zeit.
 | Dashboard | `scripts/build_dashboard.py`, `scripts/render_dashboard.py` | Sektionen „Sharp gegen Soft", „Polymarket & Kalshi", „Arbitrage", „Alle Preise"; ITF über `--itf-limit`; Startzeit-Sperre gegen In-Play |
 | Logbuch + CLV | `data/processed/odds_snapshots.csv`, `picks_log.csv`, `scripts/report_clv.py` | Eröffnungs- und Schlusskurs je Buch und Partie; jede markierte Seite gegen den Schlusskurs; Abrechnung mit Ergebnissen |
 | Linienstudie | `scripts/study_line_movement.py` | Eröffnung gegen Schluss auf den Ergebnissen der letzten Tage (TennisExplorer führt je Buch die komplette Quotenhistorie) |
-| Automatik | `.github/workflows/dashboard.yml`, `update-data.yml` | Preisbrett 03:17, 09:17, 15:17, 21:17 UTC; Spielertabelle, Tennis-Abstract-Elo und Modell jeden Dienstag 06:41 UTC |
+| Automatik | `.github/workflows/dashboard.yml`, `update-data.yml`, Claude-Code-Zeitplan | Preisbrett 03:17, 09:17, 15:17, 21:17 UTC; Tennis-Abstract-Elo dienstags 05:53 UTC über Claude Code, weil Tennis Abstract GitHub sperrt; Spielertabelle und Modell dienstags 06:41 UTC |
 
 Technische Fakten, die beim Bauen geprüft wurden:
 

@@ -37,12 +37,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Elo, surface Elo and season yElo for every rated ATP and WTA player,
-      # the dated Elo history, and the complete player table with
-      # last-52-week serve/return/hold/break statistics overall and per
-      # surface. Fails (red run) when a source could not be read, after
-      # writing everything it could.
-      - name: Tennis Abstract Elo + yElo, player statistics
+      # The complete player table: last-52-week serve/return/hold/break
+      # statistics overall and per surface around the stored Tennis
+      # Abstract Elo, surface Elo and yElo. Tennis Abstract refuses GitHub's
+      # runners (HTTP 403), so its pages are read 48 minutes earlier by a
+      # Claude Code scheduled task that pushes them to main; a refused read
+      # here is a warning. Red only when the statistics fail or the stored
+      # ratings are more than 8 days old.
+      - name: Player statistics around the stored Tennis Abstract ratings
         run: python scripts/update_player_data.py
 
       # The steps below run even when the one above failed: a Tennis

@@ -55,6 +55,9 @@ from tennissharp.data import tennismylife as tml
 logger = logging.getLogger(__name__)
 
 TOURS = ("atp", "wta")
+# Tennis Abstract updates weekly; a stored copy older than this means the
+# weekly refresh has stopped reaching it, which is what a run should flag.
+TA_MAX_AGE_DAYS = 8
 TOUR_OF_SOURCE = {"atp": "atp", "challenger": "atp", "atp_quali": "atp", "wta": "wta"}
 PROFILE_SURFACES = ("Hard", "Clay", "Grass")
 STAT_KEYS = ("spw", "rpw", "tpw", "dr", "ace_pct", "df_pct", "first_in", "first_won",
@@ -309,7 +312,35 @@ def summarize(table: pd.DataFrame, book, ta_elo, ta_yelo, today: dt.date, errors
     }
 
 
-def refresh(out_dir: Path | None = None, today: dt.date | None = None) -> dict:
+def _previous_meta(out_dir: Path) -> dict:
+    try:
+        return json.loads((out_dir / "player_profiles_meta.json").read_text())
+    except (OSError, ValueError):
+        return {}
+
+
+def ta_age_days(meta: dict, now: dt.datetime | None = None) -> float | None:
+    """Days since Tennis Abstract's Elo was last read successfully."""
+    stamp = (meta.get("ta_fetched_at") or {}).get("elo")
+    if not stamp:
+        return None
+    now = now or dt.datetime.now(dt.timezone.utc)
+    return (now - dt.datetime.fromisoformat(stamp)).total_seconds() / 86400.0
+
+
+def refresh_surface_speed(out_dir: Path) -> int:
+    """Tennis Abstract's per-edition surface speed, the trained feature and
+    the court-surface lookup. Kept with the other Tennis Abstract reads
+    because the same hosts refuse the same networks."""
+    hist = ta.fetch_surface_speed_history(config.START_SEASON)
+    if hist.empty:
+        raise RuntimeError("no surface-speed ratings returned")
+    hist.to_csv(out_dir / "ta_surface_speed_history.csv", index=False)
+    return int(len(hist))
+
+
+def refresh(out_dir: Path | None = None, today: dt.date | None = None,
+            surface_speed: bool = False) -> dict:
     """Fetch, compute and write everything listed in the module docstring.
 
     Each source is best effort. A failed Tennis Abstract fetch falls back to
@@ -319,11 +350,14 @@ def refresh(out_dir: Path | None = None, today: dt.date | None = None) -> dict:
     out_dir = Path(out_dir or config.PROCESSED_DIR)
     today = today or dt.date.today()
     errors: list[str] = []
+    stamp = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    fetched = dict(_previous_meta(out_dir).get("ta_fetched_at") or {})
 
     elo_fresh = False
     try:
         ta_elo = ta.fetch_all_elo_ratings()
         elo_fresh = True
+        fetched["elo"] = stamp
         ta_elo.to_csv(out_dir / "ta_elo_current.csv", index=False)
         for tour in TOURS:
             ta.filter_by_tour(ta_elo, tour).to_csv(out_dir / f"ta_elo_{tour}_general.csv", index=False)
@@ -336,6 +370,7 @@ def refresh(out_dir: Path | None = None, today: dt.date | None = None) -> dict:
 
     try:
         ta_yelo = ta.fetch_all_yelo_ratings()
+        fetched["yelo"] = stamp
         ta_yelo.to_csv(out_dir / "ta_yelo_current.csv", index=False)
         logger.info("Tennis Abstract yElo: %d players", len(ta_yelo))
     except Exception as exc:
@@ -352,6 +387,15 @@ def refresh(out_dir: Path | None = None, today: dt.date | None = None) -> dict:
         except Exception as exc:
             logger.exception("Elo history not written")
             errors.append(f"Elo-Historie nicht geschrieben: {exc}")
+
+    if surface_speed:
+        try:
+            n = refresh_surface_speed(out_dir)
+            fetched["surface_speed"] = stamp
+            logger.info("Tennis Abstract surface speed: %d tournament editions", n)
+        except Exception as exc:
+            logger.exception("Surface speed not refreshed")
+            errors.append(f"Belagstempo nicht aktualisiert: {exc}")
 
     book = None
     try:
@@ -376,5 +420,7 @@ def refresh(out_dir: Path | None = None, today: dt.date | None = None) -> dict:
             errors.append(f"Bestenlisten nicht geschrieben: {exc}")
 
     meta = summarize(table, book, ta_elo, ta_yelo, today, errors)
+    meta["ta_fetched_at"] = fetched
+    meta["statistics_ok"] = book is not None
     (out_dir / "player_profiles_meta.json").write_text(json.dumps(meta, indent=1))
     return meta

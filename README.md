@@ -178,7 +178,27 @@ Two scheduled workflows:
   rebuilds `docs/index.html`, and appends to the quote, pick and forecast
   logs in `data/processed/`.
 
-Both share one concurrency group, so they never push at the same time.
+- **A Claude Code scheduled task, every Tuesday 05:53 UTC**, for Tennis
+  Abstract. The site answers GitHub's runners with HTTP 403 (measured on
+  the first run, 2026-10-24) while accepting the Claude Code cloud
+  environment. The task wakes a dedicated session that runs
+  `scripts/update_player_data.py --surface-speed` (Elo, yElo, surface
+  speed, history, player table) and pushes the result to `main`, 48
+  minutes before the GitHub job, which then rebuilds everything around the
+  fresh ratings. Its schedule and prompt are managed at claude.ai/code
+  under scheduled tasks; deleting it stops the Tennis Abstract refresh.
+
+The GitHub job treats a refused Tennis Abstract read as a warning. It turns
+red only when the stored ratings are more than 8 days old -- that is, when
+the scheduled task has stopped reaching the site -- or when the statistics
+could not be built. tennis-data.co.uk refuses both environments, so the
+model retrain waits for a run from a network it accepts (a local
+`python scripts/update_data.py`); until then the committed model is used,
+and a failed surface-speed read falls back to the saved history rather
+than retraining without that feature.
+
+Both GitHub workflows share one concurrency group, so they never push at
+the same time.
 GitHub only fires scheduled workflows from the files as they exist on the
 **default branch** and pauses them after 60 days without activity;
 `workflow_dispatch` runs either one by hand from the Actions tab. The

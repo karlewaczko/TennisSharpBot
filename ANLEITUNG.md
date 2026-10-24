@@ -61,6 +61,9 @@ Dashboard jetzt ein **Preisbrett**:
   Elo, Belag-Elo, Saison-Elo (yElo) sowie Aufschlag-, Return-, Hold- und
   Break-Werten der letzten 52 Wochen, gesamt und je Belag. Auf GitHub lässt
   sich die Datei direkt im Browser als Tabelle öffnen und durchsuchen.
+  Tennis Abstract sperrt die Server von GitHub; die Elo-Werte holt deshalb
+  ein geplanter Claude-Code-Lauf jeden Dienstag um 05:53 UTC und legt sie im
+  Repository ab, kurz bevor der GitHub-Lauf um 06:41 UTC die Tabelle baut.
 
 Ausführlich, mit Quellen und Messwerten: `data/reports/profi_wetten_und_edge.md`.
 
