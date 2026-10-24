@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-24T20:47:50+00:00",
+ "generated_at": "2026-10-24T20:54:05+00:00",
  "threshold": 0.05,
  "n_scheduled": 91,
  "n_finished": 88,
@@ -17,10 +17,9 @@
   "10Bet": 1,
   "1xBet": 1,
   "Betfair": 4,
-  "Betway": 4,
+  "Betway": 5,
   "TennisExplorer": 14,
   "Unibet": 1,
-  "bet-at-home": 1,
   "bet365": 1,
   "bwin": 2
  },
@@ -218,28 +217,28 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.64,
+      0.65,
       0.39
      ],
      "bid": [
       0.61,
-      0.36
+      0.35
      ],
      "mid": [
-      0.625,
-      0.375
+      0.63,
+      0.37
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      1.5348722986247545,
+      1.512001512001512,
       2.4882120951989948
      ],
      "maker_odds": [
       1.639344262295082,
-      2.7777777777777777
+      2.857142857142857
      ],
-     "liquidity": 2220.9472,
+     "liquidity": 2285.9038,
      "volume": 102.73093800000001,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-langmo-takahas-2026-10-24"
@@ -251,12 +250,12 @@
       0.38
      ],
      "bid": [
-      0.6,
-      0.35
+      0.59,
+      0.34
      ],
      "mid": [
-      0.62,
-      0.365
+      0.615,
+      0.36
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -265,10 +264,10 @@
       2.5221189834851647
      ],
      "maker_odds": [
-      1.6666666666666667,
-      2.857142857142857
+      1.6949152542372883,
+      2.941176470588235
      ],
-     "liquidity": 147.6082,
+     "liquidity": 122.6482,
      "volume": 341.35,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24lantak"
@@ -277,8 +276,8 @@
    "arb": {
     "side_a": {
      "player": "Christian Langmo",
-     "venue": "Polymarket",
-     "odds": 1.535,
+     "venue": "Kalshi",
+     "odds": 1.524,
      "signal_only": true
     },
     "side_b": {
@@ -287,10 +286,10 @@
      "odds": 2.522,
      "signal_only": true
     },
-    "margin": 0.048,
-    "profit": -0.0458,
-    "stake_a": 0.6216,
-    "stake_b": 0.3784,
+    "margin": 0.0527,
+    "profit": -0.05,
+    "stake_a": 0.6233,
+    "stake_b": 0.3767,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -482,8 +481,8 @@
       3.571428571428571,
       1.4084507042253522
      ],
-     "liquidity": 8819.0126,
-     "volume": 40.777667,
+     "liquidity": 8700.5626,
+     "volume": 49.501805,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-neumaye-droguet-2026-10-25"
     },
@@ -511,7 +510,7 @@
       3.5269885161253915,
       1.4211105979322842
      ],
-     "liquidity": 549.1899999999999,
+     "liquidity": 204.93,
      "volume": 42.64,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25neudro"
@@ -630,21 +629,21 @@
    "best_of": 3,
    "round": "Qualification - quarterfinal",
    "is_qualifying": true,
-   "ref_book": "bet-at-home",
-   "ref_margin": 0.0901,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
+   "ref_book": "Betway",
+   "ref_margin": 0.0505,
+   "fair_source": "Betway",
+   "fair_quality": "soft",
    "method": "ta_elo",
    "sides": [
     {
      "player": "Mika Brunold",
      "model_prob": 0.7104,
      "model_fair_odds": 1.408,
-     "market_prob": 0.585,
-     "market_fair_odds": 1.709,
-     "ref_odds": 1.6,
-     "edge": 0.1254,
-     "ev_at_ref": 0.1367,
+     "market_prob": 0.5808,
+     "market_fair_odds": 1.722,
+     "ref_odds": 1.65,
+     "edge": 0.1296,
+     "ev_at_ref": 0.1722,
      "elo": 1605.6,
      "matches": null
     },
@@ -652,18 +651,18 @@
      "player": "Remy Bertola",
      "model_prob": 0.2896,
      "model_fair_odds": 3.453,
-     "market_prob": 0.415,
-     "market_fair_odds": 2.41,
-     "ref_odds": 2.15,
-     "edge": -0.1254,
-     "ev_at_ref": -0.3774,
+     "market_prob": 0.4192,
+     "market_fair_odds": 2.386,
+     "ref_odds": 2.25,
+     "edge": -0.1296,
+     "ev_at_ref": -0.3484,
      "elo": 1449.7,
      "matches": null
     }
    ],
    "stale_players": [],
-   "best_edge": 0.1254,
-   "best_ev": 0.1367,
+   "best_edge": 0.1296,
+   "best_ev": 0.1722,
    "ref_is_sharp": false,
    "signal": false,
    "books": {
@@ -671,9 +670,13 @@
      1.62,
      2.1
     ],
+    "Betway": [
+     1.65,
+     2.25
+    ],
     "bet-at-home": [
-     1.6,
-     2.15
+     1.58,
+     2.2
     ]
    },
    "prediction_markets": [
@@ -701,7 +704,7 @@
       1.7241379310344829,
       2.4390243902439024
      ],
-     "liquidity": 5068.6534,
+     "liquidity": 4748.2874,
      "volume": 50.0,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-brunold-bertola-2026-10-25"
@@ -714,11 +717,11 @@
      ],
      "bid": [
       0.57,
-      0.4
+      0.41
      ],
      "mid": [
       0.59,
-      0.41000000000000003
+      0.415
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0175,
@@ -728,9 +731,9 @@
      ],
      "maker_odds": [
       1.7412828117538333,
-      2.4740227610094014
+      2.4140988199281446
      ],
-     "liquidity": 1920.5877999999998,
+     "liquidity": 1885.3077999999998,
      "volume": 161.03,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25bruber"
@@ -916,8 +919,8 @@
       1.923076923076923,
       2.127659574468085
      ],
-     "liquidity": 22436.0206,
-     "volume": 1884.61435,
+     "liquidity": 22251.2421,
+     "volume": 1893.11435,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-lee-pridank-2026-10-24"
     },
@@ -1065,7 +1068,7 @@
    "round": "Qualification - 1. round",
    "is_qualifying": true,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0816,
+   "ref_margin": 0.1111,
    "fair_source": "TennisExplorer",
    "fair_quality": "soft",
    "method": "ta_elo",
@@ -1074,11 +1077,11 @@
      "player": "Filip Peliwo",
      "model_prob": 0.469,
      "model_fair_odds": 2.132,
-     "market_prob": 0.3741,
-     "market_fair_odds": 2.673,
-     "ref_odds": 2.41,
-     "edge": 0.0948,
-     "ev_at_ref": 0.1302,
+     "market_prob": 0.3889,
+     "market_fair_odds": 2.571,
+     "ref_odds": 2.25,
+     "edge": 0.0801,
+     "ev_at_ref": 0.0551,
      "elo": 1236.5,
      "matches": null
     },
@@ -1086,23 +1089,23 @@
      "player": "Saba Purtseladze",
      "model_prob": 0.531,
      "model_fair_odds": 1.883,
-     "market_prob": 0.6259,
-     "market_fair_odds": 1.598,
+     "market_prob": 0.6111,
+     "market_fair_odds": 1.636,
      "ref_odds": 1.5,
-     "edge": -0.0948,
+     "edge": -0.0801,
      "ev_at_ref": -0.2034,
      "elo": 1258.1,
      "matches": null
     }
    ],
    "stale_players": [],
-   "best_edge": 0.0948,
-   "best_ev": 0.1302,
+   "best_edge": 0.0801,
+   "best_ev": 0.0551,
    "ref_is_sharp": false,
    "signal": false,
    "books": {
     "TennisExplorer": [
-     2.41,
+     2.25,
      1.5
     ]
    },
@@ -1292,7 +1295,7 @@
       1.6949152542372883,
       2.5
      ],
-     "liquidity": 10164.1561,
+     "liquidity": 10130.297,
      "volume": 135.325582,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-ribecai-romano-2026-10-25"
@@ -1549,7 +1552,7 @@
    "round": "Qualification - round of 16",
    "is_qualifying": true,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0718,
+   "ref_margin": 0.068,
    "fair_source": "Polymarket Mid",
    "fair_quality": "exchange",
    "method": "ta_elo",
@@ -1560,9 +1563,9 @@
      "model_fair_odds": 1.641,
      "market_prob": 0.575,
      "market_fair_odds": 1.739,
-     "ref_odds": 1.62,
+     "ref_odds": 1.63,
      "edge": 0.0344,
-     "ev_at_ref": -0.0127,
+     "ev_at_ref": -0.0066,
      "elo": 1674.0,
      "matches": null
     },
@@ -1581,12 +1584,12 @@
    ],
    "stale_players": [],
    "best_edge": 0.0344,
-   "best_ev": -0.0127,
+   "best_ev": -0.0066,
    "ref_is_sharp": false,
    "signal": false,
    "books": {
     "TennisExplorer": [
-     1.62,
+     1.63,
      2.2
     ]
    },
@@ -1615,7 +1618,7 @@
       1.7543859649122808,
       2.380952380952381
      ],
-     "liquidity": 6730.9381,
+     "liquidity": 7337.976,
      "volume": 91.206897,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-zakharo-kostovi-2026-10-25"
@@ -1854,36 +1857,36 @@
       2.380952380952381,
       1.7543859649122808
      ],
-     "liquidity": 10418.3261,
-     "volume": 1893.377344,
+     "liquidity": 10330.217,
+     "volume": 1903.493624,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-hijikat-hanfman-2026-10-25"
     },
     {
      "venue": "Kalshi",
      "ask": [
-      0.42,
+      0.41,
       0.59
      ],
      "bid": [
-      0.41,
+      0.4,
       0.58
      ],
      "mid": [
-      0.415,
+      0.405,
       0.585
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0175,
      "taker_odds": [
-      2.288057256344783,
+      2.3422878999749375,
       1.6476283214127425
      ],
      "maker_odds": [
-      2.4140988199281446,
+      2.4740227610094014,
       1.7115579798823475
      ],
-     "liquidity": 3748.7904,
+     "liquidity": 402.11,
      "volume": 6164.18,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25hijhan"
@@ -1893,7 +1896,7 @@
     "side_a": {
      "player": "Hijikata R.",
      "venue": "Kalshi",
-     "odds": 2.288,
+     "odds": 2.342,
      "signal_only": true
     },
     "side_b": {
@@ -1902,10 +1905,10 @@
      "odds": 1.689,
      "signal_only": true
     },
-    "margin": 0.0291,
-    "profit": -0.0283,
-    "stake_a": 0.4247,
-    "stake_b": 0.5753,
+    "margin": 0.0191,
+    "profit": -0.0187,
+    "stake_a": 0.419,
+    "stake_b": 0.581,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -2071,7 +2074,7 @@
       2.2222222222222223,
       1.8518518518518516
      ],
-     "liquidity": 24259.0486,
+     "liquidity": 24214.888,
      "volume": 1054.585613,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-watson-parks-2026-10-24"
@@ -2100,8 +2103,8 @@
       2.2010372387987838,
       1.8714001862978884
      ],
-     "liquidity": 4477.9354,
-     "volume": 1436.6399999999999,
+     "liquidity": 1652.212,
+     "volume": 5167.64,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24watpar"
     }
@@ -2220,7 +2223,7 @@
    "round": "Qualification - quarterfinal",
    "is_qualifying": true,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0673,
+   "ref_margin": 0.0706,
    "fair_source": "Polymarket Mid",
    "fair_quality": "exchange",
    "method": "model",
@@ -2231,9 +2234,9 @@
      "model_fair_odds": 2.164,
      "market_prob": 0.485,
      "market_fair_odds": 2.062,
-     "ref_odds": 1.92,
+     "ref_odds": 1.93,
      "edge": -0.0228,
-     "ev_at_ref": -0.1126,
+     "ev_at_ref": -0.108,
      "elo": 1746.8,
      "matches": 91
     },
@@ -2243,22 +2246,22 @@
      "model_fair_odds": 1.859,
      "market_prob": 0.515,
      "market_fair_odds": 1.942,
-     "ref_odds": 1.83,
+     "ref_odds": 1.81,
      "edge": 0.0228,
-     "ev_at_ref": -0.0158,
+     "ev_at_ref": -0.0265,
      "elo": 1688.7,
      "matches": 212
     }
    ],
    "stale_players": [],
    "best_edge": 0.0228,
-   "best_ev": -0.0158,
+   "best_ev": -0.0265,
    "ref_is_sharp": false,
    "signal": false,
    "books": {
     "TennisExplorer": [
-     1.92,
-     1.83
+     1.93,
+     1.81
     ]
    },
    "prediction_markets": [
@@ -2286,8 +2289,8 @@
       2.0833333333333335,
       1.9607843137254901
      ],
-     "liquidity": 16009.4437,
-     "volume": 36.14,
+     "liquidity": 15928.3283,
+     "volume": 41.303266,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-cerund-altmaie-2026-10-25"
     },
@@ -2298,11 +2301,11 @@
       0.53
      ],
      "bid": [
-      0.48,
+      0.47,
       0.52
      ],
      "mid": [
-      0.485,
+      0.48,
       0.525
      ],
      "fee_rate": 0.07,
@@ -2312,10 +2315,10 @@
       1.8266942132154018
      ],
      "maker_odds": [
-      2.0645459650513662,
+      2.1081068831270815,
       1.9070576389100782
      ],
-     "liquidity": 390.887,
+     "liquidity": 282.23699999999997,
      "volume": 350.88,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25ceralt"
@@ -2435,7 +2438,7 @@
    "round": "Qualification - round of 16",
    "is_qualifying": true,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0852,
+   "ref_margin": 0.0882,
    "fair_source": "Polymarket Mid",
    "fair_quality": "exchange",
    "method": "ta_elo",
@@ -2446,9 +2449,9 @@
      "model_fair_odds": 1.675,
      "market_prob": 0.575,
      "market_fair_odds": 1.739,
-     "ref_odds": 1.63,
+     "ref_odds": 1.64,
      "edge": 0.022,
-     "ev_at_ref": -0.0268,
+     "ev_at_ref": -0.0208,
      "elo": 1673.3,
      "matches": null
     },
@@ -2458,22 +2461,22 @@
      "model_fair_odds": 2.482,
      "market_prob": 0.425,
      "market_fair_odds": 2.353,
-     "ref_odds": 2.12,
+     "ref_odds": 2.09,
      "edge": -0.022,
-     "ev_at_ref": -0.1457,
+     "ev_at_ref": -0.1578,
      "elo": 1605.0,
      "matches": null
     }
    ],
    "stale_players": [],
    "best_edge": 0.022,
-   "best_ev": -0.0268,
+   "best_ev": -0.0208,
    "ref_is_sharp": false,
    "signal": false,
    "books": {
     "TennisExplorer": [
-     1.63,
-     2.12
+     1.64,
+     2.09
     ]
    },
    "prediction_markets": [
@@ -2501,7 +2504,7 @@
       1.7543859649122808,
       2.380952380952381
      ],
-     "liquidity": 7819.0825,
+     "liquidity": 7816.1531,
      "volume": 213.37962,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-prozoro-garland-2026-10-25"
@@ -2650,7 +2653,7 @@
    "round": "Qualification - round of 16",
    "is_qualifying": true,
    "ref_book": "TennisExplorer",
-   "ref_margin": 0.0721,
+   "ref_margin": 0.0738,
    "fair_source": "Polymarket Mid",
    "fair_quality": "exchange",
    "method": "ta_elo",
@@ -2661,9 +2664,9 @@
      "model_fair_odds": 2.604,
      "market_prob": 0.365,
      "market_fair_odds": 2.74,
-     "ref_odds": 2.44,
+     "ref_odds": 2.43,
      "edge": 0.019,
-     "ev_at_ref": -0.063,
+     "ev_at_ref": -0.0669,
      "elo": 1501.2,
      "matches": null
     },
@@ -2682,12 +2685,12 @@
    ],
    "stale_players": [],
    "best_edge": 0.019,
-   "best_ev": -0.063,
+   "best_ev": -0.0669,
    "ref_is_sharp": false,
    "signal": false,
    "books": {
     "TennisExplorer": [
-     2.44,
+     2.43,
      1.51
     ]
    },
@@ -2716,8 +2719,8 @@
       2.7777777777777777,
       1.5873015873015872
      ],
-     "liquidity": 15336.5169,
-     "volume": 28.0,
+     "liquidity": 15341.3169,
+     "volume": 38.810811,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-ibragim-iatcenk-2026-10-24"
     },
@@ -2745,8 +2748,8 @@
       2.825008386743648,
       1.6022482747791702
      ],
-     "liquidity": 987.3984,
-     "volume": 332.31,
+     "liquidity": 980.3584,
+     "volume": 334.31,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24ibriat"
     }
@@ -2955,8 +2958,8 @@
       2.7777777777777777,
       1.5873015873015872
      ],
-     "liquidity": 24695.357,
-     "volume": 364.06054600000004,
+     "liquidity": 29341.681,
+     "volume": 382.81054600000004,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-musetti-fritz-2026-10-25"
     },
@@ -2984,8 +2987,8 @@
       2.825008386743648,
       1.5527178773725527
      ],
-     "liquidity": 751.0258000000001,
-     "volume": 25434.670000000002,
+     "liquidity": 740.5493,
+     "volume": 25449.68,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25musfri"
     }
@@ -3182,7 +3185,7 @@
       3.3333333333333335,
       1.4492753623188408
      ],
-     "liquidity": 4918.4222,
+     "liquidity": 5162.9636,
      "volume": 75.17,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-marozsa-machac-2026-10-25"
@@ -3191,7 +3194,7 @@
      "venue": "Kalshi",
      "ask": [
       0.31,
-      0.71
+      0.72
      ],
      "bid": [
       0.28,
@@ -3199,20 +3202,20 @@
      ],
      "mid": [
       0.29500000000000004,
-      0.7
+      0.705
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0175,
      "taker_odds": [
       3.0771787194628475,
-      1.3804280155104893
+      1.3621899655638376
      ],
      "maker_odds": [
       3.5269885161253915,
       1.4414554664135473
      ],
-     "liquidity": 466.01,
-     "volume": 250.12,
+     "liquidity": 227.25,
+     "volume": 250.16,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25marmac"
     }
@@ -3429,8 +3432,8 @@
       1.923076923076923,
       2.127659574468085
      ],
-     "liquidity": 20315.8177,
-     "volume": 425.784616,
+     "liquidity": 20348.4242,
+     "volume": 444.784616,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-birrell-kasatki-2026-10-24"
     },
@@ -3458,8 +3461,8 @@
       1.94411354011897,
       2.1535618836775083
      ],
-     "liquidity": 561.4825,
-     "volume": 253.83999999999997,
+     "liquidity": 553.7334999999999,
+     "volume": 268.19,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24birkas"
     }
@@ -3644,7 +3647,7 @@
       1.923076923076923,
       2.127659574468085
      ],
-     "liquidity": 23156.7231,
+     "liquidity": 22925.2946,
      "volume": 837.671738,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-sasnovi-rakhimo-2026-10-24"
@@ -3673,7 +3676,7 @@
       1.8714001862978884,
       2.2010372387987838
      ],
-     "liquidity": 3550.6486,
+     "liquidity": 2818.3885999999998,
      "volume": 183.51999999999998,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24sasrak"
@@ -3879,7 +3882,7 @@
       1.2195121951219512,
       6.666666666666667
      ],
-     "liquidity": 4970.2348,
+     "liquidity": 7486.6313,
      "volume": 26.067895,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-dart-yamaguc-2026-10-25"
@@ -3908,7 +3911,7 @@
       1.2012455715331227,
       6.568953483598145
      ],
-     "liquidity": 178.3632,
+     "liquidity": 260.28119999999996,
      "volume": 228.34,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24daryam"
@@ -4151,8 +4154,8 @@
       4.111977367676569,
       1.3634208501815226
      ],
-     "liquidity": 444.6902,
-     "volume": 140.63,
+     "liquidity": 436.8242,
+     "volume": 150.98000000000002,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24honjoi"
     }
@@ -4383,8 +4386,8 @@
       2.272727272727273,
       1.8181818181818181
      ],
-     "liquidity": 38857.6529,
-     "volume": 2653.044847,
+     "liquidity": 38551.0954,
+     "volume": 2669.473419,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-krueger-siniako-2026-10-25"
     },
@@ -4392,7 +4395,7 @@
      "venue": "Kalshi",
      "ask": [
       0.45,
-      0.56
+      0.57
      ],
      "bid": [
       0.43,
@@ -4400,20 +4403,20 @@
      ],
      "mid": [
       0.44,
-      0.555
+      0.56
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0175,
      "taker_odds": [
       2.139838442197614,
-      1.732357669493874
+      1.7031219929252315
      ],
      "maker_odds": [
       2.302612832346184,
       1.8039755110324376
      ],
-     "liquidity": 22688.2215,
-     "volume": 14029.2,
+     "liquidity": 50568.87209999999,
+     "volume": 14063.2,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25krusin"
     }
@@ -4598,8 +4601,8 @@
       2.3255813953488373,
       1.7857142857142856
      ],
-     "liquidity": 13155.9284,
-     "volume": 357.21091,
+     "liquidity": 13057.6327,
+     "volume": 404.96091,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-sonego-fearnle-2026-10-25"
     },
@@ -4829,8 +4832,8 @@
       1.3157894736842106,
       4.3478260869565215
      ],
-     "liquidity": 42119.9738,
-     "volume": 487.769135,
+     "liquidity": 42886.0051,
+     "volume": 1094.262639,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-rybakin-fernand-2026-10-25"
     },
@@ -4858,8 +4861,8 @@
       1.3102862713445633,
       4.111977367676569
      ],
-     "liquidity": 33134.5295,
-     "volume": 16322.16,
+     "liquidity": 30459.041699999998,
+     "volume": 17819.97,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25rybfer"
     }
@@ -5041,7 +5044,7 @@
      2.7
     ],
     "bet-at-home": [
-     1.45,
+     1.48,
      2.5
     ],
     "bwin": [
@@ -5074,7 +5077,7 @@
       1.5625,
       2.857142857142857
      ],
-     "liquidity": 21224.9672,
+     "liquidity": 21239.9626,
      "volume": 713.8724000000001,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-wong-schoolk-2026-10-24"
@@ -5083,7 +5086,7 @@
      "venue": "Kalshi",
      "ask": [
       0.66,
-      0.35
+      0.36
      ],
      "bid": [
       0.64,
@@ -5091,20 +5094,20 @@
      ],
      "mid": [
       0.65,
-      0.345
+      0.35
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
      "taker_odds": [
       1.4799292001870632,
-      2.73280043724807
+      2.6586693891441215
      ],
      "maker_odds": [
       1.5625,
       2.941176470588235
      ],
-     "liquidity": 6636.746,
-     "volume": 607.76,
+     "liquidity": 7554.886799999999,
+     "volume": 629.95,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24wonsch"
     }
@@ -5118,14 +5121,14 @@
     },
     "side_b": {
      "player": "Schoolkate T.",
-     "venue": "Kalshi",
-     "odds": 2.733,
-     "signal_only": true
+     "venue": "Unibet",
+     "odds": 2.7,
+     "signal_only": false
     },
-    "margin": 0.0273,
-    "profit": -0.0265,
-    "stake_a": 0.6438,
-    "stake_b": 0.3562,
+    "margin": 0.0317,
+    "profit": -0.0308,
+    "stake_a": 0.641,
+    "stake_b": 0.359,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -5289,8 +5292,8 @@
       1.6949152542372883,
       2.5
      ],
-     "liquidity": 9885.251,
-     "volume": 25.0,
+     "liquidity": 9331.089,
+     "volume": 28.333332,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-yastrem-jone-2026-10-25"
     },
@@ -5536,8 +5539,8 @@
       1.282051282051282,
       4.761904761904762
      ],
-     "liquidity": 33460.3956,
-     "volume": 511.501255,
+     "liquidity": 35696.5224,
+     "volume": 537.830369,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-medvede-basilas-2026-10-25"
     },
@@ -5565,8 +5568,8 @@
       1.2771343149387677,
       4.696969163223201
      ],
-     "liquidity": 8467.1336,
-     "volume": 6319.24,
+     "liquidity": 8382.140800000001,
+     "volume": 6431.56,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25medbas"
     }
@@ -5726,20 +5729,20 @@
      1.65
     ],
     "1xBet": [
-     2.15,
-     1.63
+     2.1,
+     1.66
     ],
     "BetVictor": [
-     2.2,
-     1.62
+     2.1,
+     1.67
     ],
     "Betfair": [
      2.22,
      1.67
     ],
     "Betsson": [
-     2.13,
-     1.64
+     2.1,
+     1.66
     ],
     "Betway": [
      2.2,
@@ -5774,29 +5777,29 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.44,
+      0.43,
       0.58
      ],
      "bid": [
       0.42,
-      0.56
+      0.57
      ],
      "mid": [
-      0.43,
-      0.5700000000000001
+      0.425,
+      0.575
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      2.2108241952599927,
+      2.261138935681903,
       1.6886757404843125
      ],
      "maker_odds": [
       2.380952380952381,
-      1.7857142857142856
+      1.7543859649122808
      ],
-     "liquidity": 8107.4033,
-     "volume": 175.590218,
+     "liquidity": 8085.8956,
+     "volume": 210.681128,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-perrica-kovacev-2026-10-25"
     },
@@ -5824,7 +5827,7 @@
       2.4140988199281446,
       1.7720693517061483
      ],
-     "liquidity": 687.9827,
+     "liquidity": 503.62269999999995,
      "volume": 449.1,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25mpekov"
@@ -5833,8 +5836,8 @@
    "arb": {
     "side_a": {
      "player": "Giovanni Mpetshi Perricard",
-     "venue": "Betfair",
-     "odds": 2.22,
+     "venue": "Polymarket",
+     "odds": 2.261,
      "signal_only": true
     },
     "side_b": {
@@ -5843,10 +5846,10 @@
      "odds": 1.689,
      "signal_only": true
     },
-    "margin": 0.0425,
-    "profit": -0.0408,
-    "stake_a": 0.4321,
-    "stake_b": 0.5679,
+    "margin": 0.0343,
+    "profit": -0.0332,
+    "stake_a": 0.4276,
+    "stake_b": 0.5724,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -6056,8 +6059,8 @@
       1.5151515151515151,
       3.0303030303030303
      ],
-     "liquidity": 11644.2035,
-     "volume": 143.68080700000002,
+     "liquidity": 11659.2024,
+     "volume": 158.68080700000002,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-valento-zhang-2026-10-24"
     },
@@ -6660,8 +6663,8 @@
       1.3157894736842106,
       4.3478260869565215
      ],
-     "liquidity": 42119.9738,
-     "volume": 487.769135,
+     "liquidity": 42886.0051,
+     "volume": 1094.262639,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-rybakin-fernand-2026-10-25"
     },
@@ -6689,8 +6692,8 @@
       1.3102862713445633,
       4.111977367676569
      ],
-     "liquidity": 33134.5295,
-     "volume": 16322.16,
+     "liquidity": 30459.041699999998,
+     "volume": 17819.97,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25rybfer"
     }
@@ -6819,7 +6822,7 @@
      "ev": -0.0178,
      "ev_maker": 0.0066,
      "mid_gap": 0.0,
-     "liquidity": 42119.9738,
+     "liquidity": 42886.0051,
      "url": "https://polymarket.com/event/wta-rybakin-fernand-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -6838,7 +6841,7 @@
      "ev": -0.0567,
      "ev_maker": 0.0217,
      "mid_gap": 0.0,
-     "liquidity": 42119.9738,
+     "liquidity": 42886.0051,
      "url": "https://polymarket.com/event/wta-rybakin-fernand-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -6857,7 +6860,7 @@
      "ev": -0.0222,
      "ev_maker": 0.0024,
      "mid_gap": 0.0,
-     "liquidity": 33134.5295,
+     "liquidity": 30459.041699999998,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25rybfer",
      "is_sharp": false,
      "is_reference": false,
@@ -6876,7 +6879,7 @@
      "ev": -0.1069,
      "ev_maker": -0.0337,
      "mid_gap": 0.01,
-     "liquidity": 33134.5295,
+     "liquidity": 30459.041699999998,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25rybfer",
      "is_sharp": false,
      "is_reference": false,
@@ -7085,8 +7088,8 @@
       2.272727272727273,
       1.8181818181818181
      ],
-     "liquidity": 38857.6529,
-     "volume": 2653.044847,
+     "liquidity": 38551.0954,
+     "volume": 2669.473419,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-krueger-siniako-2026-10-25"
     },
@@ -7094,7 +7097,7 @@
      "venue": "Kalshi",
      "ask": [
       0.45,
-      0.56
+      0.57
      ],
      "bid": [
       0.43,
@@ -7102,20 +7105,20 @@
      ],
      "mid": [
       0.44,
-      0.555
+      0.56
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0175,
      "taker_odds": [
       2.139838442197614,
-      1.732357669493874
+      1.7031219929252315
      ],
      "maker_odds": [
       2.302612832346184,
       1.8039755110324376
      ],
-     "liquidity": 22688.2215,
-     "volume": 14029.2,
+     "liquidity": 50568.87209999999,
+     "volume": 14063.2,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25krusin"
     }
@@ -7398,7 +7401,7 @@
      "ev": -0.0376,
      "ev_maker": 0.0114,
      "mid_gap": 0.0,
-     "liquidity": 38857.6529,
+     "liquidity": 38551.0954,
      "url": "https://polymarket.com/event/wta-krueger-siniako-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -7417,7 +7420,7 @@
      "ev": -0.0303,
      "ev_maker": 0.0091,
      "mid_gap": 0.0,
-     "liquidity": 38857.6529,
+     "liquidity": 38551.0954,
      "url": "https://polymarket.com/event/wta-krueger-siniako-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -7436,7 +7439,7 @@
      "ev": -0.0478,
      "ev_maker": 0.0247,
      "mid_gap": -0.005,
-     "liquidity": 22688.2215,
+     "liquidity": 50568.87209999999,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25krusin",
      "is_sharp": false,
      "is_reference": false,
@@ -7446,16 +7449,16 @@
      "player": "Siniakova K.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.56,
+     "ask": 0.57,
      "bid": 0.55,
-     "mid": 0.555,
-     "odds": 1.732,
+     "mid": 0.56,
+     "odds": 1.703,
      "maker_odds": 1.804,
      "fair_prob": 0.555,
-     "ev": -0.0385,
+     "ev": -0.0548,
      "ev_maker": 0.0012,
-     "mid_gap": 0.0,
-     "liquidity": 22688.2215,
+     "mid_gap": 0.005,
+     "liquidity": 50568.87209999999,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25krusin",
      "is_sharp": false,
      "is_reference": false,
@@ -7591,7 +7594,7 @@
    ],
    "books": {
     "TennisExplorer": [
-     2.44,
+     2.43,
      1.51
     ]
    },
@@ -7620,8 +7623,8 @@
       2.7777777777777777,
       1.5873015873015872
      ],
-     "liquidity": 15336.5169,
-     "volume": 28.0,
+     "liquidity": 15341.3169,
+     "volume": 38.810811,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-ibragim-iatcenk-2026-10-24"
     },
@@ -7649,8 +7652,8 @@
       2.825008386743648,
       1.6022482747791702
      ],
-     "liquidity": 987.3984,
-     "volume": 332.31,
+     "liquidity": 980.3584,
+     "volume": 334.31,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24ibriat"
     }
@@ -7660,9 +7663,9 @@
      "player": "Alevtina Ibragimova",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 2.44,
+     "odds": 2.43,
      "fair_prob": 0.365,
-     "ev": -0.1094,
+     "ev": -0.113,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -7691,7 +7694,7 @@
      "ev": -0.0436,
      "ev_maker": 0.0139,
      "mid_gap": 0.0,
-     "liquidity": 15336.5169,
+     "liquidity": 15341.3169,
      "url": "https://polymarket.com/event/wta-ibragim-iatcenk-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -7710,7 +7713,7 @@
      "ev": -0.0254,
      "ev_maker": 0.0079,
      "mid_gap": 0.0,
-     "liquidity": 15336.5169,
+     "liquidity": 15341.3169,
      "url": "https://polymarket.com/event/wta-ibragim-iatcenk-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -7729,7 +7732,7 @@
      "ev": -0.0296,
      "ev_maker": 0.0311,
      "mid_gap": -0.01,
-     "liquidity": 987.3984,
+     "liquidity": 980.3584,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24ibriat",
      "is_sharp": false,
      "is_reference": false,
@@ -7748,7 +7751,7 @@
      "ev": -0.0322,
      "ev_maker": 0.0174,
      "mid_gap": -0.005,
-     "liquidity": 987.3984,
+     "liquidity": 980.3584,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24ibriat",
      "is_sharp": false,
      "is_reference": false,
@@ -7913,8 +7916,8 @@
       1.923076923076923,
       2.127659574468085
      ],
-     "liquidity": 22436.0206,
-     "volume": 1884.61435,
+     "liquidity": 22251.2421,
+     "volume": 1893.11435,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-lee-pridank-2026-10-24"
     },
@@ -7984,7 +7987,7 @@
      "ev": -0.0322,
      "ev_maker": 0.0096,
      "mid_gap": 0.0,
-     "liquidity": 22436.0206,
+     "liquidity": 22251.2421,
      "url": "https://polymarket.com/event/wta-lee-pridank-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -8003,7 +8006,7 @@
      "ev": -0.0355,
      "ev_maker": 0.0106,
      "mid_gap": 0.0,
-     "liquidity": 22436.0206,
+     "liquidity": 22251.2421,
      "url": "https://polymarket.com/event/wta-lee-pridank-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -8177,8 +8180,8 @@
    ],
    "books": {
     "TennisExplorer": [
-     1.63,
-     2.12
+     1.64,
+     2.09
     ]
    },
    "prediction_markets": [
@@ -8206,7 +8209,7 @@
       1.7543859649122808,
       2.380952380952381
      ],
-     "liquidity": 7819.0825,
+     "liquidity": 7816.1531,
      "volume": 213.37962,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-prozoro-garland-2026-10-25"
@@ -8246,9 +8249,9 @@
      "player": "Tatiana Prozorova",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 1.63,
+     "odds": 1.64,
      "fair_prob": 0.575,
-     "ev": -0.0628,
+     "ev": -0.057,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -8257,9 +8260,9 @@
      "player": "Joanna Garland",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 2.12,
+     "odds": 2.09,
      "fair_prob": 0.425,
-     "ev": -0.099,
+     "ev": -0.1118,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -8277,7 +8280,7 @@
      "ev": -0.029,
      "ev_maker": 0.0088,
      "mid_gap": 0.0,
-     "liquidity": 7819.0825,
+     "liquidity": 7816.1531,
      "url": "https://polymarket.com/event/wta-prozoro-garland-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -8296,7 +8299,7 @@
      "ev": -0.039,
      "ev_maker": 0.0119,
      "mid_gap": 0.0,
-     "liquidity": 7819.0825,
+     "liquidity": 7816.1531,
      "url": "https://polymarket.com/event/wta-prozoro-garland-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -8499,8 +8502,8 @@
       1.6949152542372883,
       2.5
      ],
-     "liquidity": 9885.251,
-     "volume": 25.0,
+     "liquidity": 9331.089,
+     "volume": 28.333332,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-yastrem-jone-2026-10-25"
     },
@@ -8570,7 +8573,7 @@
      "ev": -0.0278,
      "ev_maker": 0.0085,
      "mid_gap": 0.0,
-     "liquidity": 9885.251,
+     "liquidity": 9331.089,
      "url": "https://polymarket.com/event/wta-yastrem-jone-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -8589,7 +8592,7 @@
      "ev": -0.0405,
      "ev_maker": 0.0125,
      "mid_gap": 0.0,
-     "liquidity": 9885.251,
+     "liquidity": 9331.089,
      "url": "https://polymarket.com/event/wta-yastrem-jone-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -8812,7 +8815,7 @@
       1.2195121951219512,
       6.666666666666667
      ],
-     "liquidity": 4970.2348,
+     "liquidity": 7486.6313,
      "volume": 26.067895,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-dart-yamaguc-2026-10-25"
@@ -8841,7 +8844,7 @@
       1.2012455715331227,
       6.568953483598145
      ],
-     "liquidity": 178.3632,
+     "liquidity": 260.28119999999996,
      "volume": 228.34,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24daryam"
@@ -8993,7 +8996,7 @@
      "ev": -0.0197,
      "ev_maker": 0.0238,
      "mid_gap": -0.0045,
-     "liquidity": 4970.2348,
+     "liquidity": 7486.6313,
      "url": "https://polymarket.com/event/wta-dart-yamaguc-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -9012,7 +9015,7 @@
      "ev": -0.1437,
      "ev_maker": 0.0697,
      "mid_gap": 0.0045,
-     "liquidity": 4970.2348,
+     "liquidity": 7486.6313,
      "url": "https://polymarket.com/event/wta-dart-yamaguc-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -9031,7 +9034,7 @@
      "ev": -0.0116,
      "ev_maker": 0.0085,
      "mid_gap": -0.0045,
-     "liquidity": 178.3632,
+     "liquidity": 260.28119999999996,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24daryam",
      "is_sharp": false,
      "is_reference": false,
@@ -9050,7 +9053,7 @@
      "ev": -0.157,
      "ev_maker": 0.054,
      "mid_gap": 0.0045,
-     "liquidity": 178.3632,
+     "liquidity": 260.28119999999996,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24daryam",
      "is_sharp": false,
      "is_reference": false,
@@ -9186,7 +9189,7 @@
    ],
    "books": {
     "TennisExplorer": [
-     1.62,
+     1.63,
      2.2
     ]
    },
@@ -9215,7 +9218,7 @@
       1.7543859649122808,
       2.380952380952381
      ],
-     "liquidity": 6730.9381,
+     "liquidity": 7337.976,
      "volume": 91.206897,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-zakharo-kostovi-2026-10-25"
@@ -9255,9 +9258,9 @@
      "player": "Anastasia Zakharova",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 1.62,
+     "odds": 1.63,
      "fair_prob": 0.575,
-     "ev": -0.0685,
+     "ev": -0.0628,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -9286,7 +9289,7 @@
      "ev": -0.029,
      "ev_maker": 0.0088,
      "mid_gap": 0.0,
-     "liquidity": 6730.9381,
+     "liquidity": 7337.976,
      "url": "https://polymarket.com/event/wta-zakharo-kostovi-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -9305,7 +9308,7 @@
      "ev": -0.039,
      "ev_maker": 0.0119,
      "mid_gap": 0.0,
-     "liquidity": 6730.9381,
+     "liquidity": 7337.976,
      "url": "https://polymarket.com/event/wta-zakharo-kostovi-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -9508,7 +9511,7 @@
       1.923076923076923,
       2.127659574468085
      ],
-     "liquidity": 23156.7231,
+     "liquidity": 22925.2946,
      "volume": 837.671738,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-sasnovi-rakhimo-2026-10-24"
@@ -9537,7 +9540,7 @@
       1.8714001862978884,
       2.2010372387987838
      ],
-     "liquidity": 3550.6486,
+     "liquidity": 2818.3885999999998,
      "volume": 183.51999999999998,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24sasrak"
@@ -9579,7 +9582,7 @@
      "ev": -0.0322,
      "ev_maker": 0.0096,
      "mid_gap": 0.0,
-     "liquidity": 23156.7231,
+     "liquidity": 22925.2946,
      "url": "https://polymarket.com/event/wta-sasnovi-rakhimo-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -9598,7 +9601,7 @@
      "ev": -0.0355,
      "ev_maker": 0.0106,
      "mid_gap": 0.0,
-     "liquidity": 23156.7231,
+     "liquidity": 22925.2946,
      "url": "https://polymarket.com/event/wta-sasnovi-rakhimo-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -9617,7 +9620,7 @@
      "ev": -0.0581,
      "ev_maker": -0.0175,
      "mid_gap": 0.01,
-     "liquidity": 3550.6486,
+     "liquidity": 2818.3885999999998,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24sasrak",
      "is_sharp": false,
      "is_reference": false,
@@ -9636,7 +9639,7 @@
      "ev": -0.0255,
      "ev_maker": 0.0455,
      "mid_gap": -0.015,
-     "liquidity": 3550.6486,
+     "liquidity": 2818.3885999999998,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24sasrak",
      "is_sharp": false,
      "is_reference": false,
@@ -9801,7 +9804,7 @@
       2.2222222222222223,
       1.8518518518518516
      ],
-     "liquidity": 24259.0486,
+     "liquidity": 24214.888,
      "volume": 1054.585613,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-watson-parks-2026-10-24"
@@ -9830,8 +9833,8 @@
       2.2010372387987838,
       1.8714001862978884
      ],
-     "liquidity": 4477.9354,
-     "volume": 1436.6399999999999,
+     "liquidity": 1652.212,
+     "volume": 5167.64,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24watpar"
     }
@@ -9872,7 +9875,7 @@
      "ev": -0.0369,
      "ev_maker": 0.0111,
      "mid_gap": 0.0,
-     "liquidity": 24259.0486,
+     "liquidity": 24214.888,
      "url": "https://polymarket.com/event/wta-watson-parks-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -9891,7 +9894,7 @@
      "ev": -0.0309,
      "ev_maker": 0.0093,
      "mid_gap": 0.0,
-     "liquidity": 24259.0486,
+     "liquidity": 24214.888,
      "url": "https://polymarket.com/event/wta-watson-parks-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -9910,7 +9913,7 @@
      "ev": -0.0665,
      "ev_maker": 0.0015,
      "mid_gap": 0.005,
-     "liquidity": 4477.9354,
+     "liquidity": 1652.212,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24watpar",
      "is_sharp": false,
      "is_reference": false,
@@ -9929,7 +9932,7 @@
      "ev": -0.0394,
      "ev_maker": 0.0199,
      "mid_gap": -0.005,
-     "liquidity": 4477.9354,
+     "liquidity": 1652.212,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24watpar",
      "is_sharp": false,
      "is_reference": false,
@@ -10151,8 +10154,8 @@
       4.111977367676569,
       1.3634208501815226
      ],
-     "liquidity": 444.6902,
-     "volume": 140.63,
+     "liquidity": 436.8242,
+     "volume": 150.98000000000002,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24honjoi"
     }
@@ -10385,7 +10388,7 @@
      "ev": -0.0666,
      "ev_maker": 0.0496,
      "mid_gap": -0.0053,
-     "liquidity": 444.6902,
+     "liquidity": 436.8242,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24honjoi",
      "is_sharp": false,
      "is_reference": false,
@@ -10404,7 +10407,7 @@
      "ev": -0.0363,
      "ev_maker": 0.0154,
      "mid_gap": 0.0003,
-     "liquidity": 444.6902,
+     "liquidity": 436.8242,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24honjoi",
      "is_sharp": false,
      "is_reference": false,
@@ -10601,8 +10604,8 @@
       1.923076923076923,
       2.127659574468085
      ],
-     "liquidity": 20315.8177,
-     "volume": 425.784616,
+     "liquidity": 20348.4242,
+     "volume": 444.784616,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-birrell-kasatki-2026-10-24"
     },
@@ -10630,8 +10633,8 @@
       1.94411354011897,
       2.1535618836775083
      ],
-     "liquidity": 561.4825,
-     "volume": 253.83999999999997,
+     "liquidity": 553.7334999999999,
+     "volume": 268.19,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24birkas"
     }
@@ -10848,7 +10851,7 @@
      "ev": -0.0304,
      "ev_maker": 0.0115,
      "mid_gap": -0.001,
-     "liquidity": 20315.8177,
+     "liquidity": 20348.4242,
      "url": "https://polymarket.com/event/wta-birrell-kasatki-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -10867,7 +10870,7 @@
      "ev": -0.0375,
      "ev_maker": 0.0086,
      "mid_gap": 0.001,
-     "liquidity": 20315.8177,
+     "liquidity": 20348.4242,
      "url": "https://polymarket.com/event/wta-birrell-kasatki-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -10886,7 +10889,7 @@
      "ev": -0.0564,
      "ev_maker": 0.0225,
      "mid_gap": -0.001,
-     "liquidity": 561.4825,
+     "liquidity": 553.7334999999999,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24birkas",
      "is_sharp": false,
      "is_reference": false,
@@ -10905,7 +10908,7 @@
      "ev": -0.0659,
      "ev_maker": 0.0209,
      "mid_gap": 0.001,
-     "liquidity": 561.4825,
+     "liquidity": 553.7334999999999,
      "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24birkas",
      "is_sharp": false,
      "is_reference": false,
@@ -11114,8 +11117,8 @@
       1.5151515151515151,
       3.0303030303030303
      ],
-     "liquidity": 11644.2035,
-     "volume": 143.68080700000002,
+     "liquidity": 11659.2024,
+     "volume": 158.68080700000002,
      "start_time": null,
      "url": "https://polymarket.com/event/wta-valento-zhang-2026-10-24"
     },
@@ -11427,7 +11430,7 @@
      "ev": -0.0236,
      "ev_maker": 0.0076,
      "mid_gap": 0.0,
-     "liquidity": 11644.2035,
+     "liquidity": 11659.2024,
      "url": "https://polymarket.com/event/wta-valento-zhang-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -11446,7 +11449,7 @@
      "ev": -0.0462,
      "ev_maker": 0.0152,
      "mid_gap": 0.0,
-     "liquidity": 11644.2035,
+     "liquidity": 11659.2024,
      "url": "https://polymarket.com/event/wta-valento-zhang-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -11681,8 +11684,8 @@
       1.282051282051282,
       4.761904761904762
      ],
-     "liquidity": 33460.3956,
-     "volume": 511.501255,
+     "liquidity": 35696.5224,
+     "volume": 537.830369,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-medvede-basilas-2026-10-25"
     },
@@ -11710,8 +11713,8 @@
       1.2771343149387677,
       4.696969163223201
      ],
-     "liquidity": 8467.1336,
-     "volume": 6319.24,
+     "liquidity": 8382.140800000001,
+     "volume": 6431.56,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25medbas"
     }
@@ -11928,7 +11931,7 @@
      "ev": -0.0167,
      "ev_maker": 0.0064,
      "mid_gap": 0.0,
-     "liquidity": 33460.3956,
+     "liquidity": 35696.5224,
      "url": "https://polymarket.com/event/atp-medvede-basilas-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -11947,7 +11950,7 @@
      "ev": -0.0594,
      "ev_maker": 0.0238,
      "mid_gap": 0.0,
-     "liquidity": 33460.3956,
+     "liquidity": 35696.5224,
      "url": "https://polymarket.com/event/atp-medvede-basilas-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -11966,7 +11969,7 @@
      "ev": -0.0207,
      "ev_maker": 0.0026,
      "mid_gap": 0.0,
-     "liquidity": 8467.1336,
+     "liquidity": 8382.140800000001,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25medbas",
      "is_sharp": false,
      "is_reference": false,
@@ -11985,7 +11988,7 @@
      "ev": -0.0733,
      "ev_maker": 0.0098,
      "mid_gap": 0.0,
-     "liquidity": 8467.1336,
+     "liquidity": 8382.140800000001,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25medbas",
      "is_sharp": false,
      "is_reference": false,
@@ -12174,8 +12177,8 @@
       2.7777777777777777,
       1.5873015873015872
      ],
-     "liquidity": 24695.357,
-     "volume": 364.06054600000004,
+     "liquidity": 29341.681,
+     "volume": 382.81054600000004,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-musetti-fritz-2026-10-25"
     },
@@ -12203,8 +12206,8 @@
       2.825008386743648,
       1.5527178773725527
      ],
-     "liquidity": 751.0258000000001,
-     "volume": 25434.670000000002,
+     "liquidity": 740.5493,
+     "volume": 25449.68,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25musfri"
     }
@@ -12377,7 +12380,7 @@
      "ev": -0.0648,
      "ev_maker": -0.0085,
      "mid_gap": 0.0081,
-     "liquidity": 24695.357,
+     "liquidity": 29341.681,
      "url": "https://polymarket.com/event/atp-musetti-fritz-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -12396,7 +12399,7 @@
      "ev": -0.013,
      "ev_maker": 0.0208,
      "mid_gap": -0.0081,
-     "liquidity": 24695.357,
+     "liquidity": 29341.681,
      "url": "https://polymarket.com/event/atp-musetti-fritz-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -12415,7 +12418,7 @@
      "ev": -0.0511,
      "ev_maker": 0.0083,
      "mid_gap": -0.0019,
-     "liquidity": 751.0258000000001,
+     "liquidity": 740.5493,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25musfri",
      "is_sharp": false,
      "is_reference": false,
@@ -12434,7 +12437,7 @@
      "ev": -0.0343,
      "ev_maker": -0.0015,
      "mid_gap": 0.0019,
-     "liquidity": 751.0258000000001,
+     "liquidity": 740.5493,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25musfri",
      "is_sharp": false,
      "is_reference": false,
@@ -12623,36 +12626,36 @@
       2.380952380952381,
       1.7543859649122808
      ],
-     "liquidity": 10418.3261,
-     "volume": 1893.377344,
+     "liquidity": 10330.217,
+     "volume": 1903.493624,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-hijikat-hanfman-2026-10-25"
     },
     {
      "venue": "Kalshi",
      "ask": [
-      0.42,
+      0.41,
       0.59
      ],
      "bid": [
-      0.41,
+      0.4,
       0.58
      ],
      "mid": [
-      0.415,
+      0.405,
       0.585
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0175,
      "taker_odds": [
-      2.288057256344783,
+      2.3422878999749375,
       1.6476283214127425
      ],
      "maker_odds": [
-      2.4140988199281446,
+      2.4740227610094014,
       1.7115579798823475
      ],
-     "liquidity": 3748.7904,
+     "liquidity": 402.11,
      "volume": 6164.18,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25hijhan"
@@ -12826,7 +12829,7 @@
      "ev": -0.039,
      "ev_maker": 0.0119,
      "mid_gap": 0.0,
-     "liquidity": 10418.3261,
+     "liquidity": 10330.217,
      "url": "https://polymarket.com/event/atp-hijikat-hanfman-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -12845,7 +12848,7 @@
      "ev": -0.029,
      "ev_maker": 0.0088,
      "mid_gap": 0.0,
-     "liquidity": 10418.3261,
+     "liquidity": 10330.217,
      "url": "https://polymarket.com/event/atp-hijikat-hanfman-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -12855,16 +12858,16 @@
      "player": "Hijikata R.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.42,
-     "bid": 0.41,
-     "mid": 0.415,
-     "odds": 2.288,
-     "maker_odds": 2.414,
+     "ask": 0.41,
+     "bid": 0.4,
+     "mid": 0.405,
+     "odds": 2.342,
+     "maker_odds": 2.474,
      "fair_prob": 0.425,
-     "ev": -0.0276,
-     "ev_maker": 0.026,
-     "mid_gap": -0.01,
-     "liquidity": 3748.7904,
+     "ev": -0.0045,
+     "ev_maker": 0.0515,
+     "mid_gap": -0.02,
+     "liquidity": 402.11,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25hijhan",
      "is_sharp": false,
      "is_reference": false,
@@ -12883,7 +12886,7 @@
      "ev": -0.0526,
      "ev_maker": -0.0159,
      "mid_gap": 0.01,
-     "liquidity": 3748.7904,
+     "liquidity": 402.11,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25hijhan",
      "is_sharp": false,
      "is_reference": false,
@@ -12894,7 +12897,7 @@
     "side_a": {
      "player": "Hijikata R.",
      "venue": "Kalshi",
-     "odds": 2.288,
+     "odds": 2.342,
      "signal_only": true
     },
     "side_b": {
@@ -12903,10 +12906,10 @@
      "odds": 1.689,
      "signal_only": true
     },
-    "margin": 0.0291,
-    "profit": -0.0283,
-    "stake_a": 0.4247,
-    "stake_b": 0.5753,
+    "margin": 0.0191,
+    "profit": -0.0187,
+    "stake_a": 0.419,
+    "stake_b": 0.581,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -13019,8 +13022,8 @@
    ],
    "books": {
     "TennisExplorer": [
-     1.92,
-     1.83
+     1.93,
+     1.81
     ]
    },
    "prediction_markets": [
@@ -13048,8 +13051,8 @@
       2.0833333333333335,
       1.9607843137254901
      ],
-     "liquidity": 16009.4437,
-     "volume": 36.14,
+     "liquidity": 15928.3283,
+     "volume": 41.303266,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-cerund-altmaie-2026-10-25"
     },
@@ -13060,11 +13063,11 @@
       0.53
      ],
      "bid": [
-      0.48,
+      0.47,
       0.52
      ],
      "mid": [
-      0.485,
+      0.48,
       0.525
      ],
      "fee_rate": 0.07,
@@ -13074,10 +13077,10 @@
       1.8266942132154018
      ],
      "maker_odds": [
-      2.0645459650513662,
+      2.1081068831270815,
       1.9070576389100782
      ],
-     "liquidity": 390.887,
+     "liquidity": 282.23699999999997,
      "volume": 350.88,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25ceralt"
@@ -13088,9 +13091,9 @@
      "player": "Cerundolo J.M.",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 1.92,
+     "odds": 1.93,
      "fair_prob": 0.485,
-     "ev": -0.0688,
+     "ev": -0.064,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -13099,9 +13102,9 @@
      "player": "Altmaier D.",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 1.83,
+     "odds": 1.81,
      "fair_prob": 0.515,
-     "ev": -0.0575,
+     "ev": -0.0678,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -13119,7 +13122,7 @@
      "ev": -0.0348,
      "ev_maker": 0.0104,
      "mid_gap": 0.0,
-     "liquidity": 16009.4437,
+     "liquidity": 15928.3283,
      "url": "https://polymarket.com/event/atp-cerund-altmaie-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -13138,7 +13141,7 @@
      "ev": -0.0328,
      "ev_maker": 0.0098,
      "mid_gap": 0.0,
-     "liquidity": 16009.4437,
+     "liquidity": 15928.3283,
      "url": "https://polymarket.com/event/atp-cerund-altmaie-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -13149,15 +13152,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.49,
-     "bid": 0.48,
-     "mid": 0.485,
+     "bid": 0.47,
+     "mid": 0.48,
      "odds": 1.97,
-     "maker_odds": 2.065,
+     "maker_odds": 2.108,
      "fair_prob": 0.485,
      "ev": -0.0443,
-     "ev_maker": 0.0013,
-     "mid_gap": 0.0,
-     "liquidity": 390.887,
+     "ev_maker": 0.0224,
+     "mid_gap": -0.005,
+     "liquidity": 282.23699999999997,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25ceralt",
      "is_sharp": false,
      "is_reference": false,
@@ -13176,7 +13179,7 @@
      "ev": -0.0593,
      "ev_maker": -0.0179,
      "mid_gap": 0.01,
-     "liquidity": 390.887,
+     "liquidity": 282.23699999999997,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25ceralt",
      "is_sharp": false,
      "is_reference": false,
@@ -13316,20 +13319,20 @@
      1.65
     ],
     "1xBet": [
-     2.15,
-     1.63
+     2.1,
+     1.66
     ],
     "BetVictor": [
-     2.2,
-     1.62
+     2.1,
+     1.67
     ],
     "Betfair": [
      2.22,
      1.67
     ],
     "Betsson": [
-     2.13,
-     1.64
+     2.1,
+     1.66
     ],
     "Betway": [
      2.2,
@@ -13364,29 +13367,29 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.44,
+      0.43,
       0.58
      ],
      "bid": [
       0.42,
-      0.56
+      0.57
      ],
      "mid": [
-      0.43,
-      0.5700000000000001
+      0.425,
+      0.575
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      2.2108241952599927,
+      2.261138935681903,
       1.6886757404843125
      ],
      "maker_odds": [
       2.380952380952381,
-      1.7857142857142856
+      1.7543859649122808
      ],
-     "liquidity": 8107.4033,
-     "volume": 175.590218,
+     "liquidity": 8085.8956,
+     "volume": 210.681128,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-perrica-kovacev-2026-10-25"
     },
@@ -13414,7 +13417,7 @@
       2.4140988199281446,
       1.7720693517061483
      ],
-     "liquidity": 687.9827,
+     "liquidity": 503.62269999999995,
      "volume": 449.1,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25mpekov"
@@ -13447,9 +13450,9 @@
      "player": "Giovanni Mpetshi Perricard",
      "venue": "1xBet",
      "kind": "book",
-     "odds": 2.15,
+     "odds": 2.1,
      "fair_prob": 0.4258,
-     "ev": -0.0845,
+     "ev": -0.1058,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
@@ -13458,9 +13461,9 @@
      "player": "Aleksandar Kovacevic",
      "venue": "1xBet",
      "kind": "book",
-     "odds": 1.63,
+     "odds": 1.66,
      "fair_prob": 0.5742,
-     "ev": -0.0641,
+     "ev": -0.0469,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
@@ -13469,9 +13472,9 @@
      "player": "Giovanni Mpetshi Perricard",
      "venue": "BetVictor",
      "kind": "book",
-     "odds": 2.2,
+     "odds": 2.1,
      "fair_prob": 0.4258,
-     "ev": -0.0632,
+     "ev": -0.1058,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
@@ -13480,9 +13483,9 @@
      "player": "Aleksandar Kovacevic",
      "venue": "BetVictor",
      "kind": "book",
-     "odds": 1.62,
+     "odds": 1.67,
      "fair_prob": 0.5742,
-     "ev": -0.0698,
+     "ev": -0.0411,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
@@ -13513,9 +13516,9 @@
      "player": "Giovanni Mpetshi Perricard",
      "venue": "Betsson",
      "kind": "book",
-     "odds": 2.13,
+     "odds": 2.1,
      "fair_prob": 0.4258,
-     "ev": -0.093,
+     "ev": -0.1058,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
@@ -13524,9 +13527,9 @@
      "player": "Aleksandar Kovacevic",
      "venue": "Betsson",
      "kind": "book",
-     "odds": 1.64,
+     "odds": 1.66,
      "fair_prob": 0.5742,
-     "ev": -0.0584,
+     "ev": -0.0469,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
@@ -13689,16 +13692,16 @@
      "player": "Giovanni Mpetshi Perricard",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.44,
+     "ask": 0.43,
      "bid": 0.42,
-     "mid": 0.43,
-     "odds": 2.211,
+     "mid": 0.425,
+     "odds": 2.261,
      "maker_odds": 2.381,
      "fair_prob": 0.4258,
-     "ev": -0.0586,
+     "ev": -0.0372,
      "ev_maker": 0.0139,
-     "mid_gap": 0.0042,
-     "liquidity": 8107.4033,
+     "mid_gap": -0.0008,
+     "liquidity": 8085.8956,
      "url": "https://polymarket.com/event/atp-perrica-kovacev-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -13709,15 +13712,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.58,
-     "bid": 0.56,
-     "mid": 0.5700000000000001,
+     "bid": 0.57,
+     "mid": 0.575,
      "odds": 1.689,
-     "maker_odds": 1.786,
+     "maker_odds": 1.754,
      "fair_prob": 0.5742,
      "ev": -0.0304,
-     "ev_maker": 0.0253,
-     "mid_gap": -0.0042,
-     "liquidity": 8107.4033,
+     "ev_maker": 0.0073,
+     "mid_gap": 0.0008,
+     "liquidity": 8085.8956,
      "url": "https://polymarket.com/event/atp-perrica-kovacev-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -13736,7 +13739,7 @@
      "ev": -0.0687,
      "ev_maker": 0.028,
      "mid_gap": -0.0008,
-     "liquidity": 687.9827,
+     "liquidity": 503.62269999999995,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25mpekov",
      "is_sharp": false,
      "is_reference": false,
@@ -13755,7 +13758,7 @@
      "ev": -0.054,
      "ev_maker": 0.0175,
      "mid_gap": 0.0008,
-     "liquidity": 687.9827,
+     "liquidity": 503.62269999999995,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25mpekov",
      "is_sharp": false,
      "is_reference": false,
@@ -13765,8 +13768,8 @@
    "arb": {
     "side_a": {
      "player": "Giovanni Mpetshi Perricard",
-     "venue": "Betfair",
-     "odds": 2.22,
+     "venue": "Polymarket",
+     "odds": 2.261,
      "signal_only": true
     },
     "side_b": {
@@ -13775,10 +13778,10 @@
      "odds": 1.689,
      "signal_only": true
     },
-    "margin": 0.0425,
-    "profit": -0.0408,
-    "stake_a": 0.4321,
-    "stake_b": 0.5679,
+    "margin": 0.0343,
+    "profit": -0.0332,
+    "stake_a": 0.4276,
+    "stake_b": 0.5724,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -13881,22 +13884,26 @@
     "Mika Brunold",
     "Remy Bertola"
    ],
-   "ref_book": "bet-at-home",
+   "ref_book": "Betway",
    "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
+   "fair_source": "Betway",
+   "fair_quality": "soft",
    "fair": [
-    0.585,
-    0.415
+    0.5808,
+    0.4192
    ],
    "books": {
     "1xBet": [
      1.62,
      2.1
     ],
+    "Betway": [
+     1.65,
+     2.25
+    ],
     "bet-at-home": [
-     1.6,
-     2.15
+     1.58,
+     2.2
     ]
    },
    "prediction_markets": [
@@ -13924,7 +13931,7 @@
       1.7241379310344829,
       2.4390243902439024
      ],
-     "liquidity": 5068.6534,
+     "liquidity": 4748.2874,
      "volume": 50.0,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-brunold-bertola-2026-10-25"
@@ -13937,11 +13944,11 @@
      ],
      "bid": [
       0.57,
-      0.4
+      0.41
      ],
      "mid": [
       0.59,
-      0.41000000000000003
+      0.415
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0175,
@@ -13951,9 +13958,9 @@
      ],
      "maker_odds": [
       1.7412828117538333,
-      2.4740227610094014
+      2.4140988199281446
      ],
-     "liquidity": 1920.5877999999998,
+     "liquidity": 1885.3077999999998,
      "volume": 161.03,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25bruber"
@@ -13965,8 +13972,8 @@
      "venue": "1xBet",
      "kind": "book",
      "odds": 1.62,
-     "fair_prob": 0.585,
-     "ev": -0.0523,
+     "fair_prob": 0.5808,
+     "ev": -0.0591,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
@@ -13976,32 +13983,54 @@
      "venue": "1xBet",
      "kind": "book",
      "odds": 2.1,
-     "fair_prob": 0.415,
-     "ev": -0.1285,
+     "fair_prob": 0.4192,
+     "ev": -0.1197,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
     },
     {
      "player": "Mika Brunold",
-     "venue": "bet-at-home",
+     "venue": "Betway",
      "kind": "book",
-     "odds": 1.6,
-     "fair_prob": 0.585,
-     "ev": -0.064,
+     "odds": 1.65,
+     "fair_prob": 0.5808,
+     "ev": -0.0417,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
     },
     {
      "player": "Remy Bertola",
-     "venue": "bet-at-home",
+     "venue": "Betway",
      "kind": "book",
-     "odds": 2.15,
-     "fair_prob": 0.415,
-     "ev": -0.1078,
+     "odds": 2.25,
+     "fair_prob": 0.4192,
+     "ev": -0.0568,
      "is_sharp": false,
      "is_reference": true,
+     "signal_only": false
+    },
+    {
+     "player": "Mika Brunold",
+     "venue": "bet-at-home",
+     "kind": "book",
+     "odds": 1.58,
+     "fair_prob": 0.5808,
+     "ev": -0.0823,
+     "is_sharp": false,
+     "is_reference": false,
+     "signal_only": false
+    },
+    {
+     "player": "Remy Bertola",
+     "venue": "bet-at-home",
+     "kind": "book",
+     "odds": 2.2,
+     "fair_prob": 0.4192,
+     "ev": -0.0778,
+     "is_sharp": false,
+     "is_reference": false,
      "signal_only": false
     },
     {
@@ -14013,11 +14042,11 @@
      "mid": 0.585,
      "odds": 1.661,
      "maker_odds": 1.724,
-     "fair_prob": 0.585,
-     "ev": -0.0284,
-     "ev_maker": 0.0086,
-     "mid_gap": 0.0,
-     "liquidity": 5068.6534,
+     "fair_prob": 0.5808,
+     "ev": -0.0354,
+     "ev_maker": 0.0014,
+     "mid_gap": 0.0042,
+     "liquidity": 4748.2874,
      "url": "https://polymarket.com/event/atp-brunold-bertola-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -14032,11 +14061,11 @@
      "mid": 0.415,
      "odds": 2.314,
      "maker_odds": 2.439,
-     "fair_prob": 0.415,
-     "ev": -0.0398,
-     "ev_maker": 0.0122,
-     "mid_gap": 0.0,
-     "liquidity": 5068.6534,
+     "fair_prob": 0.4192,
+     "ev": -0.0301,
+     "ev_maker": 0.0224,
+     "mid_gap": -0.0042,
+     "liquidity": 4748.2874,
      "url": "https://polymarket.com/event/atp-brunold-bertola-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -14051,11 +14080,11 @@
      "mid": 0.59,
      "odds": 1.596,
      "maker_odds": 1.741,
-     "fair_prob": 0.585,
-     "ev": -0.0665,
-     "ev_maker": 0.0187,
-     "mid_gap": 0.005,
-     "liquidity": 1920.5877999999998,
+     "fair_prob": 0.5808,
+     "ev": -0.0732,
+     "ev_maker": 0.0114,
+     "mid_gap": 0.0092,
+     "liquidity": 1885.3077999999998,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25bruber",
      "is_sharp": false,
      "is_reference": false,
@@ -14066,15 +14095,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.42,
-     "bid": 0.4,
-     "mid": 0.41000000000000003,
+     "bid": 0.41,
+     "mid": 0.415,
      "odds": 2.288,
-     "maker_odds": 2.474,
-     "fair_prob": 0.415,
-     "ev": -0.0505,
-     "ev_maker": 0.0267,
-     "mid_gap": -0.005,
-     "liquidity": 1920.5877999999998,
+     "maker_odds": 2.414,
+     "fair_prob": 0.4192,
+     "ev": -0.0409,
+     "ev_maker": 0.012,
+     "mid_gap": -0.0042,
+     "liquidity": 1885.3077999999998,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25bruber",
      "is_sharp": false,
      "is_reference": false,
@@ -14239,8 +14268,8 @@
       2.3255813953488373,
       1.7857142857142856
      ],
-     "liquidity": 13155.9284,
-     "volume": 357.21091,
+     "liquidity": 13057.6327,
+     "volume": 404.96091,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-sonego-fearnle-2026-10-25"
     },
@@ -14310,7 +14339,7 @@
      "ev": -0.0383,
      "ev_maker": 0.0116,
      "mid_gap": 0.0,
-     "liquidity": 13155.9284,
+     "liquidity": 13057.6327,
      "url": "https://polymarket.com/event/atp-sonego-fearnle-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -14329,7 +14358,7 @@
      "ev": -0.0296,
      "ev_maker": 0.0089,
      "mid_gap": 0.0,
-     "liquidity": 13155.9284,
+     "liquidity": 13057.6327,
      "url": "https://polymarket.com/event/atp-sonego-fearnle-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -14560,8 +14589,8 @@
       3.571428571428571,
       1.4084507042253522
      ],
-     "liquidity": 8819.0126,
-     "volume": 40.777667,
+     "liquidity": 8700.5626,
+     "volume": 49.501805,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-neumaye-droguet-2026-10-25"
     },
@@ -14589,7 +14618,7 @@
       3.5269885161253915,
       1.4211105979322842
      ],
-     "liquidity": 549.1899999999999,
+     "liquidity": 204.93,
      "volume": 42.64,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25neudro"
@@ -14785,7 +14814,7 @@
      "ev": -0.0509,
      "ev_maker": 0.0179,
      "mid_gap": 0.0,
-     "liquidity": 8819.0126,
+     "liquidity": 8700.5626,
      "url": "https://polymarket.com/event/atp-neumaye-droguet-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -14804,7 +14833,7 @@
      "ev": -0.0207,
      "ev_maker": 0.007,
      "mid_gap": 0.0,
-     "liquidity": 8819.0126,
+     "liquidity": 8700.5626,
      "url": "https://polymarket.com/event/atp-neumaye-droguet-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -14823,7 +14852,7 @@
      "ev": -0.0944,
      "ev_maker": 0.0052,
      "mid_gap": 0.005,
-     "liquidity": 549.1899999999999,
+     "liquidity": 204.93,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25neudro",
      "is_sharp": false,
      "is_reference": false,
@@ -14842,7 +14871,7 @@
      "ev": -0.0387,
      "ev_maker": 0.0161,
      "mid_gap": 0.0,
-     "liquidity": 549.1899999999999,
+     "liquidity": 204.93,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25neudro",
      "is_sharp": false,
      "is_reference": false,
@@ -15019,7 +15048,7 @@
       3.3333333333333335,
       1.4492753623188408
      ],
-     "liquidity": 4918.4222,
+     "liquidity": 5162.9636,
      "volume": 75.17,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-marozsa-machac-2026-10-25"
@@ -15028,7 +15057,7 @@
      "venue": "Kalshi",
      "ask": [
       0.31,
-      0.71
+      0.72
      ],
      "bid": [
       0.28,
@@ -15036,20 +15065,20 @@
      ],
      "mid": [
       0.29500000000000004,
-      0.7
+      0.705
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0175,
      "taker_odds": [
       3.0771787194628475,
-      1.3804280155104893
+      1.3621899655638376
      ],
      "maker_odds": [
       3.5269885161253915,
       1.4414554664135473
      ],
-     "liquidity": 466.01,
-     "volume": 250.12,
+     "liquidity": 227.25,
+     "volume": 250.16,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25marmac"
     }
@@ -15156,7 +15185,7 @@
      "ev": -0.1026,
      "ev_maker": -0.0407,
      "mid_gap": 0.0172,
-     "liquidity": 4918.4222,
+     "liquidity": 5162.9636,
      "url": "https://polymarket.com/event/atp-marozsa-machac-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -15175,7 +15204,7 @@
      "ev": 0.0024,
      "ev_maker": 0.0322,
      "mid_gap": -0.0172,
-     "liquidity": 4918.4222,
+     "liquidity": 5162.9636,
      "url": "https://polymarket.com/event/atp-marozsa-machac-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -15194,7 +15223,7 @@
      "ev": -0.1144,
      "ev_maker": 0.0151,
      "mid_gap": 0.0072,
-     "liquidity": 466.01,
+     "liquidity": 227.25,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25marmac",
      "is_sharp": false,
      "is_reference": false,
@@ -15204,16 +15233,16 @@
      "player": "Machac T.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.71,
+     "ask": 0.72,
      "bid": 0.69,
-     "mid": 0.7,
-     "odds": 1.38,
+     "mid": 0.705,
+     "odds": 1.362,
      "maker_odds": 1.441,
      "fair_prob": 0.7122,
-     "ev": -0.0169,
+     "ev": -0.0298,
      "ev_maker": 0.0266,
-     "mid_gap": -0.0122,
-     "liquidity": 466.01,
+     "mid_gap": -0.0072,
+     "liquidity": 227.25,
      "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25marmac",
      "is_sharp": false,
      "is_reference": false,
@@ -15599,7 +15628,7 @@
      2.7
     ],
     "bet-at-home": [
-     1.45,
+     1.48,
      2.5
     ],
     "bwin": [
@@ -15632,7 +15661,7 @@
       1.5625,
       2.857142857142857
      ],
-     "liquidity": 21224.9672,
+     "liquidity": 21239.9626,
      "volume": 713.8724000000001,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-wong-schoolk-2026-10-24"
@@ -15641,7 +15670,7 @@
      "venue": "Kalshi",
      "ask": [
       0.66,
-      0.35
+      0.36
      ],
      "bid": [
       0.64,
@@ -15649,20 +15678,20 @@
      ],
      "mid": [
       0.65,
-      0.345
+      0.35
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
      "taker_odds": [
       1.4799292001870632,
-      2.73280043724807
+      2.6586693891441215
      ],
      "maker_odds": [
       1.5625,
       2.941176470588235
      ],
-     "liquidity": 6636.746,
-     "volume": 607.76,
+     "liquidity": 7554.886799999999,
+     "volume": 629.95,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24wonsch"
     }
@@ -15804,9 +15833,9 @@
      "player": "Wong C.",
      "venue": "bet-at-home",
      "kind": "book",
-     "odds": 1.45,
+     "odds": 1.48,
      "fair_prob": 0.645,
-     "ev": -0.0647,
+     "ev": -0.0454,
      "is_sharp": false,
      "is_reference": false,
      "signal_only": false
@@ -15857,7 +15886,7 @@
      "ev": -0.0248,
      "ev_maker": 0.0078,
      "mid_gap": 0.0,
-     "liquidity": 21224.9672,
+     "liquidity": 21239.9626,
      "url": "https://polymarket.com/event/atp-wong-schoolk-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -15876,7 +15905,7 @@
      "ev": -0.0445,
      "ev_maker": 0.0143,
      "mid_gap": 0.0,
-     "liquidity": 21224.9672,
+     "liquidity": 21239.9626,
      "url": "https://polymarket.com/event/atp-wong-schoolk-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -15895,7 +15924,7 @@
      "ev": -0.0454,
      "ev_maker": 0.0078,
      "mid_gap": 0.005,
-     "liquidity": 6636.746,
+     "liquidity": 7554.886799999999,
      "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24wonsch",
      "is_sharp": false,
      "is_reference": false,
@@ -15905,16 +15934,16 @@
      "player": "Schoolkate T.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.35,
+     "ask": 0.36,
      "bid": 0.34,
-     "mid": 0.345,
-     "odds": 2.733,
+     "mid": 0.35,
+     "odds": 2.659,
      "maker_odds": 2.941,
      "fair_prob": 0.355,
-     "ev": -0.0299,
+     "ev": -0.0562,
      "ev_maker": 0.0441,
-     "mid_gap": -0.01,
-     "liquidity": 6636.746,
+     "mid_gap": -0.005,
+     "liquidity": 7554.886799999999,
      "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24wonsch",
      "is_sharp": false,
      "is_reference": false,
@@ -15930,14 +15959,14 @@
     },
     "side_b": {
      "player": "Schoolkate T.",
-     "venue": "Kalshi",
-     "odds": 2.733,
-     "signal_only": true
+     "venue": "Unibet",
+     "odds": 2.7,
+     "signal_only": false
     },
-    "margin": 0.0273,
-    "profit": -0.0265,
-    "stake_a": 0.6438,
-    "stake_b": 0.3562,
+    "margin": 0.0317,
+    "profit": -0.0308,
+    "stake_a": 0.641,
+    "stake_b": 0.359,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -16103,7 +16132,7 @@
       1.6949152542372883,
       2.5
      ],
-     "liquidity": 10164.1561,
+     "liquidity": 10130.297,
      "volume": 135.325582,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-ribecai-romano-2026-10-25"
@@ -16277,7 +16306,7 @@
      "ev": -0.0278,
      "ev_maker": 0.0085,
      "mid_gap": 0.0,
-     "liquidity": 10164.1561,
+     "liquidity": 10130.297,
      "url": "https://polymarket.com/event/atp-ribecai-romano-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -16296,7 +16325,7 @@
      "ev": -0.0405,
      "ev_maker": 0.0125,
      "mid_gap": 0.0,
-     "liquidity": 10164.1561,
+     "liquidity": 10130.297,
      "url": "https://polymarket.com/event/atp-ribecai-romano-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -16705,12 +16734,12 @@
    "fair_source": "TennisExplorer",
    "fair_quality": "soft",
    "fair": [
-    0.3741,
-    0.6259
+    0.3889,
+    0.6111
    ],
    "books": {
     "TennisExplorer": [
-     2.41,
+     2.25,
      1.5
     ]
    },
@@ -16720,9 +16749,9 @@
      "player": "Filip Peliwo",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 2.41,
-     "fair_prob": 0.3741,
-     "ev": -0.0983,
+     "odds": 2.25,
+     "fair_prob": 0.3889,
+     "ev": -0.125,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -16732,8 +16761,8 @@
      "venue": "TennisExplorer",
      "kind": "book",
      "odds": 1.5,
-     "fair_prob": 0.6259,
-     "ev": -0.0612,
+     "fair_prob": 0.6111,
+     "ev": -0.0833,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -16857,28 +16886,28 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.64,
+      0.65,
       0.39
      ],
      "bid": [
       0.61,
-      0.36
+      0.35
      ],
      "mid": [
-      0.625,
-      0.375
+      0.63,
+      0.37
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      1.5348722986247545,
+      1.512001512001512,
       2.4882120951989948
      ],
      "maker_odds": [
       1.639344262295082,
-      2.7777777777777777
+      2.857142857142857
      ],
-     "liquidity": 2220.9472,
+     "liquidity": 2285.9038,
      "volume": 102.73093800000001,
      "start_time": null,
      "url": "https://polymarket.com/event/atp-langmo-takahas-2026-10-24"
@@ -16890,12 +16919,12 @@
       0.38
      ],
      "bid": [
-      0.6,
-      0.35
+      0.59,
+      0.34
      ],
      "mid": [
-      0.62,
-      0.365
+      0.615,
+      0.36
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -16904,10 +16933,10 @@
       2.5221189834851647
      ],
      "maker_odds": [
-      1.6666666666666667,
-      2.857142857142857
+      1.6949152542372883,
+      2.941176470588235
      ],
-     "liquidity": 147.6082,
+     "liquidity": 122.6482,
      "volume": 341.35,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24lantak"
@@ -16940,16 +16969,16 @@
      "player": "Christian Langmo",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.64,
+     "ask": 0.65,
      "bid": 0.61,
-     "mid": 0.625,
-     "odds": 1.535,
+     "mid": 0.63,
+     "odds": 1.512,
      "maker_odds": 1.639,
      "fair_prob": 0.6191,
-     "ev": -0.0497,
+     "ev": -0.0639,
      "ev_maker": 0.015,
-     "mid_gap": 0.0059,
-     "liquidity": 2220.9472,
+     "mid_gap": 0.0109,
+     "liquidity": 2285.9038,
      "url": "https://polymarket.com/event/atp-langmo-takahas-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -16960,15 +16989,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.39,
-     "bid": 0.36,
-     "mid": 0.375,
+     "bid": 0.35,
+     "mid": 0.37,
      "odds": 2.488,
-     "maker_odds": 2.778,
+     "maker_odds": 2.857,
      "fair_prob": 0.3809,
      "ev": -0.0523,
-     "ev_maker": 0.058,
-     "mid_gap": -0.0059,
-     "liquidity": 2220.9472,
+     "ev_maker": 0.0882,
+     "mid_gap": -0.0109,
+     "liquidity": 2285.9038,
      "url": "https://polymarket.com/event/atp-langmo-takahas-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -16979,15 +17008,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.64,
-     "bid": 0.6,
-     "mid": 0.62,
+     "bid": 0.59,
+     "mid": 0.615,
      "odds": 1.524,
-     "maker_odds": 1.667,
+     "maker_odds": 1.695,
      "fair_prob": 0.6191,
      "ev": -0.0564,
-     "ev_maker": 0.0319,
-     "mid_gap": 0.0009,
-     "liquidity": 147.6082,
+     "ev_maker": 0.0494,
+     "mid_gap": -0.0041,
+     "liquidity": 122.6482,
      "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24lantak",
      "is_sharp": false,
      "is_reference": false,
@@ -16998,15 +17027,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.38,
-     "bid": 0.35,
-     "mid": 0.365,
+     "bid": 0.34,
+     "mid": 0.36,
      "odds": 2.522,
-     "maker_odds": 2.857,
+     "maker_odds": 2.941,
      "fair_prob": 0.3809,
      "ev": -0.0394,
-     "ev_maker": 0.0882,
-     "mid_gap": -0.0159,
-     "liquidity": 147.6082,
+     "ev_maker": 0.1202,
+     "mid_gap": -0.0209,
+     "liquidity": 122.6482,
      "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24lantak",
      "is_sharp": false,
      "is_reference": false,
@@ -17016,8 +17045,8 @@
    "arb": {
     "side_a": {
      "player": "Christian Langmo",
-     "venue": "Polymarket",
-     "odds": 1.535,
+     "venue": "Kalshi",
+     "odds": 1.524,
      "signal_only": true
     },
     "side_b": {
@@ -17026,10 +17055,10 @@
      "odds": 2.522,
      "signal_only": true
     },
-    "margin": 0.048,
-    "profit": -0.0458,
-    "stake_a": 0.6216,
-    "stake_b": 0.3784,
+    "margin": 0.0527,
+    "profit": -0.05,
+    "stake_a": 0.6233,
+    "stake_b": 0.3767,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -17134,11 +17163,11 @@
    ],
    "ref_book": "TennisExplorer",
    "ref_is_sharp": false,
-   "fair_source": "TennisExplorer",
-   "fair_quality": "soft",
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
    "fair": [
-    0.4589,
-    0.5411
+    0.285,
+    0.715
    ],
    "books": {
     "TennisExplorer": [
@@ -17150,58 +17179,58 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.32,
+      0.29,
       0.74
      ],
      "bid": [
       0.26,
-      0.68
+      0.71
      ],
      "mid": [
-      0.29000000000000004,
-      0.71
+      0.275,
+      0.725
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      3.0222437137330753,
+      3.3300587755373883,
       1.334009231343881
      ],
      "maker_odds": [
       3.846153846153846,
-      1.4705882352941175
+      1.4084507042253522
      ],
-     "liquidity": 6555.9383,
-     "volume": 1327.065002,
+     "liquidity": 29396.9205,
+     "volume": 1820.517183,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-mi1-defalc1-2026-10-24"
     },
     {
      "venue": "Kalshi",
      "ask": [
-      0.34,
-      0.69
+      0.29,
+      0.72
      ],
      "bid": [
-      0.3,
-      0.65
+      0.28,
+      0.71
      ],
      "mid": [
-      0.32,
-      0.6699999999999999
+      0.28500000000000003,
+      0.715
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      2.811294657415633,
-      1.4184940416157783
+      3.2850108241106657,
+      1.3621899655638376
      ],
      "maker_odds": [
-      3.3333333333333335,
-      1.5384615384615383
+      3.571428571428571,
+      1.4084507042253522
      ],
-     "liquidity": 66.14,
-     "volume": 161013.11,
+     "liquidity": 17539.0821,
+     "volume": 195293.68000000002,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24mixdef"
     }
@@ -17212,8 +17241,8 @@
      "venue": "TennisExplorer",
      "kind": "book",
      "odds": 1.99,
-     "fair_prob": 0.4589,
-     "ev": -0.0869,
+     "fair_prob": 0.285,
+     "ev": -0.4328,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -17223,8 +17252,8 @@
      "venue": "TennisExplorer",
      "kind": "book",
      "odds": 1.71,
-     "fair_prob": 0.5411,
-     "ev": -0.0746,
+     "fair_prob": 0.715,
+     "ev": 0.2227,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -17233,16 +17262,16 @@
      "player": "Mi L.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.32,
+     "ask": 0.29,
      "bid": 0.26,
-     "mid": 0.29000000000000004,
-     "odds": 3.022,
+     "mid": 0.275,
+     "odds": 3.33,
      "maker_odds": 3.846,
-     "fair_prob": 0.4589,
-     "ev": 0.3868,
-     "ev_maker": 0.7648,
-     "mid_gap": -0.1689,
-     "liquidity": 6555.9383,
+     "fair_prob": 0.285,
+     "ev": -0.0509,
+     "ev_maker": 0.0962,
+     "mid_gap": -0.01,
+     "liquidity": 29396.9205,
      "url": "https://polymarket.com/event/itf-mi1-defalc1-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -17253,15 +17282,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.74,
-     "bid": 0.68,
-     "mid": 0.71,
+     "bid": 0.71,
+     "mid": 0.725,
      "odds": 1.334,
-     "maker_odds": 1.471,
-     "fair_prob": 0.5411,
-     "ev": -0.2781,
-     "ev_maker": -0.2042,
-     "mid_gap": 0.1689,
-     "liquidity": 6555.9383,
+     "maker_odds": 1.408,
+     "fair_prob": 0.715,
+     "ev": -0.0462,
+     "ev_maker": 0.007,
+     "mid_gap": 0.01,
+     "liquidity": 29396.9205,
      "url": "https://polymarket.com/event/itf-mi1-defalc1-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -17271,16 +17300,16 @@
      "player": "Mi L.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.34,
-     "bid": 0.3,
-     "mid": 0.32,
-     "odds": 2.811,
-     "maker_odds": 3.333,
-     "fair_prob": 0.4589,
-     "ev": 0.29,
-     "ev_maker": 0.5295,
-     "mid_gap": -0.1389,
-     "liquidity": 66.14,
+     "ask": 0.29,
+     "bid": 0.28,
+     "mid": 0.28500000000000003,
+     "odds": 3.285,
+     "maker_odds": 3.571,
+     "fair_prob": 0.285,
+     "ev": -0.0638,
+     "ev_maker": 0.0179,
+     "mid_gap": 0.0,
+     "liquidity": 17539.0821,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24mixdef",
      "is_sharp": false,
      "is_reference": false,
@@ -17290,16 +17319,16 @@
      "player": "Defalco J.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.69,
-     "bid": 0.65,
-     "mid": 0.6699999999999999,
-     "odds": 1.418,
-     "maker_odds": 1.538,
-     "fair_prob": 0.5411,
-     "ev": -0.2324,
-     "ev_maker": -0.1675,
-     "mid_gap": 0.1289,
-     "liquidity": 66.14,
+     "ask": 0.72,
+     "bid": 0.71,
+     "mid": 0.715,
+     "odds": 1.362,
+     "maker_odds": 1.408,
+     "fair_prob": 0.715,
+     "ev": -0.026,
+     "ev_maker": 0.007,
+     "mid_gap": 0.0,
+     "liquidity": 17539.0821,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24mixdef",
      "is_sharp": false,
      "is_reference": false,
@@ -17310,19 +17339,19 @@
     "side_a": {
      "player": "Mi L.",
      "venue": "Polymarket",
-     "odds": 3.022,
+     "odds": 3.33,
      "signal_only": true
     },
     "side_b": {
      "player": "Defalco J.",
      "venue": "Kalshi",
-     "odds": 1.418,
+     "odds": 1.362,
      "signal_only": true
     },
-    "margin": 0.0361,
-    "profit": -0.0349,
-    "stake_a": 0.3194,
-    "stake_b": 0.6806,
+    "margin": 0.0345,
+    "profit": -0.0334,
+    "stake_a": 0.2903,
+    "stake_b": 0.7097,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -17351,8 +17380,8 @@
    "fair_source": "Kalshi Mid",
    "fair_quality": "exchange",
    "fair": [
-    0.375,
-    0.625
+    0.295,
+    0.705
    ],
    "books": {
     "TennisExplorer": [
@@ -17364,58 +17393,58 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.39,
-      0.64
+      0.34,
+      0.68
      ],
      "bid": [
-      0.36,
-      0.61
+      0.32,
+      0.66
      ],
      "mid": [
-      0.375,
-      0.625
+      0.33,
+      0.67
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      2.4882120951989948,
-      1.5348722986247545
+      2.847218267752406,
+      1.447429365446966
      ],
      "maker_odds": [
-      2.7777777777777777,
-      1.639344262295082
+      3.125,
+      1.5151515151515151
      ],
-     "liquidity": 15968.4242,
-     "volume": 16828.497762,
+     "liquidity": 13102.0262,
+     "volume": 16860.236892999998,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-chang4-ma2-2026-10-24"
     },
     {
      "venue": "Kalshi",
      "ask": [
-      0.38,
-      0.63
+      0.3,
+      0.71
      ],
      "bid": [
-      0.37,
-      0.62
+      0.29,
+      0.7
      ],
      "mid": [
-      0.375,
-      0.625
+      0.295,
+      0.705
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      2.5221189834851647,
-      1.5472283724550027
+      3.1776294884016525,
+      1.3804280155104893
      ],
      "maker_odds": [
-      2.7027027027027026,
-      1.6129032258064517
+      3.4482758620689657,
+      1.4285714285714286
      ],
-     "liquidity": 26702.5041,
-     "volume": 141150.88,
+     "liquidity": 20685.86,
+     "volume": 164346.69,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24chamax"
     }
@@ -17426,8 +17455,8 @@
      "venue": "TennisExplorer",
      "kind": "book",
      "odds": 4.12,
-     "fair_prob": 0.375,
-     "ev": 0.545,
+     "fair_prob": 0.295,
+     "ev": 0.2154,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -17437,8 +17466,8 @@
      "venue": "TennisExplorer",
      "kind": "book",
      "odds": 1.19,
-     "fair_prob": 0.625,
-     "ev": -0.2563,
+     "fair_prob": 0.705,
+     "ev": -0.1611,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -17447,16 +17476,16 @@
      "player": "Chang H.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.39,
-     "bid": 0.36,
-     "mid": 0.375,
-     "odds": 2.488,
-     "maker_odds": 2.778,
-     "fair_prob": 0.375,
-     "ev": -0.0669,
-     "ev_maker": 0.0417,
-     "mid_gap": 0.0,
-     "liquidity": 15968.4242,
+     "ask": 0.34,
+     "bid": 0.32,
+     "mid": 0.33,
+     "odds": 2.847,
+     "maker_odds": 3.125,
+     "fair_prob": 0.295,
+     "ev": -0.1601,
+     "ev_maker": -0.0781,
+     "mid_gap": 0.035,
+     "liquidity": 13102.0262,
      "url": "https://polymarket.com/event/itf-chang4-ma2-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -17466,16 +17495,16 @@
      "player": "Ma C.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.64,
-     "bid": 0.61,
-     "mid": 0.625,
-     "odds": 1.535,
-     "maker_odds": 1.639,
-     "fair_prob": 0.625,
-     "ev": -0.0407,
-     "ev_maker": 0.0246,
-     "mid_gap": 0.0,
-     "liquidity": 15968.4242,
+     "ask": 0.68,
+     "bid": 0.66,
+     "mid": 0.67,
+     "odds": 1.447,
+     "maker_odds": 1.515,
+     "fair_prob": 0.705,
+     "ev": 0.0204,
+     "ev_maker": 0.0682,
+     "mid_gap": -0.035,
+     "liquidity": 13102.0262,
      "url": "https://polymarket.com/event/itf-chang4-ma2-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -17485,16 +17514,16 @@
      "player": "Chang H.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.38,
-     "bid": 0.37,
-     "mid": 0.375,
-     "odds": 2.522,
-     "maker_odds": 2.703,
-     "fair_prob": 0.375,
-     "ev": -0.0542,
-     "ev_maker": 0.0135,
+     "ask": 0.3,
+     "bid": 0.29,
+     "mid": 0.295,
+     "odds": 3.178,
+     "maker_odds": 3.448,
+     "fair_prob": 0.295,
+     "ev": -0.0626,
+     "ev_maker": 0.0172,
      "mid_gap": 0.0,
-     "liquidity": 26702.5041,
+     "liquidity": 20685.86,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24chamax",
      "is_sharp": false,
      "is_reference": false,
@@ -17504,16 +17533,16 @@
      "player": "Ma C.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.63,
-     "bid": 0.62,
-     "mid": 0.625,
-     "odds": 1.547,
-     "maker_odds": 1.613,
-     "fair_prob": 0.625,
-     "ev": -0.033,
-     "ev_maker": 0.0081,
+     "ask": 0.71,
+     "bid": 0.7,
+     "mid": 0.705,
+     "odds": 1.38,
+     "maker_odds": 1.429,
+     "fair_prob": 0.705,
+     "ev": -0.0268,
+     "ev_maker": 0.0071,
      "mid_gap": 0.0,
-     "liquidity": 26702.5041,
+     "liquidity": 20685.86,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24chamax",
      "is_sharp": false,
      "is_reference": false,
@@ -17524,19 +17553,19 @@
     "side_a": {
      "player": "Chang H.",
      "venue": "Kalshi",
-     "odds": 2.522,
+     "odds": 3.178,
      "signal_only": true
     },
     "side_b": {
      "player": "Ma C.",
-     "venue": "Kalshi",
-     "odds": 1.547,
+     "venue": "Polymarket",
+     "odds": 1.447,
      "signal_only": true
     },
-    "margin": 0.0429,
-    "profit": -0.0412,
-    "stake_a": 0.3802,
-    "stake_b": 0.6198,
+    "margin": 0.0057,
+    "profit": -0.0057,
+    "stake_a": 0.3129,
+    "stake_b": 0.6871,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -17578,28 +17607,28 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.54,
+      0.48,
       0.59
      ],
      "bid": [
       0.41,
-      0.46
+      0.52
      ],
      "mid": [
-      0.475,
-      0.525
+      0.44499999999999995,
+      0.5549999999999999
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      1.8102168639803047,
+      2.030539311241066,
       1.6608674710801454
      ],
      "maker_odds": [
       2.4390243902439024,
-      2.1739130434782608
+      1.923076923076923
      ],
-     "liquidity": 87.2261,
+     "liquidity": 103.1061,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-jacque1-klugma1-2026-10-25"
@@ -17632,16 +17661,16 @@
      "player": "Jacquemot E.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.54,
+     "ask": 0.48,
      "bid": 0.41,
-     "mid": 0.475,
-     "odds": 1.81,
+     "mid": 0.44499999999999995,
+     "odds": 2.031,
      "maker_odds": 2.439,
      "fair_prob": 0.4789,
-     "ev": -0.1331,
+     "ev": -0.0276,
      "ev_maker": 0.168,
-     "mid_gap": -0.0039,
-     "liquidity": 87.2261,
+     "mid_gap": -0.0339,
+     "liquidity": 103.1061,
      "url": "https://polymarket.com/event/itf-jacque1-klugma1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -17652,15 +17681,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.59,
-     "bid": 0.46,
-     "mid": 0.525,
+     "bid": 0.52,
+     "mid": 0.5549999999999999,
      "odds": 1.661,
-     "maker_odds": 2.174,
+     "maker_odds": 1.923,
      "fair_prob": 0.5211,
      "ev": -0.1345,
-     "ev_maker": 0.1329,
-     "mid_gap": 0.0039,
-     "liquidity": 87.2261,
+     "ev_maker": 0.0022,
+     "mid_gap": 0.0339,
+     "liquidity": 103.1061,
      "url": "https://polymarket.com/event/itf-jacque1-klugma1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -17671,7 +17700,7 @@
     "side_a": {
      "player": "Jacquemot E.",
      "venue": "Polymarket",
-     "odds": 1.81,
+     "odds": 2.031,
      "signal_only": true
     },
     "side_b": {
@@ -17680,10 +17709,10 @@
      "odds": 1.661,
      "signal_only": true
     },
-    "margin": 0.1545,
-    "profit": -0.1338,
-    "stake_a": 0.4785,
-    "stake_b": 0.5215,
+    "margin": 0.0944,
+    "profit": -0.0863,
+    "stake_a": 0.4499,
+    "stake_b": 0.5501,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -17808,28 +17837,28 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.39,
+      0.37,
       0.74
      ],
      "bid": [
       0.26,
-      0.61
+      0.63
      ],
      "mid": [
-      0.325,
-      0.675
+      0.315,
+      0.685
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      2.4882120951989948,
+      2.6201674286986942,
       1.334009231343881
      ],
      "maker_odds": [
       3.846153846153846,
-      1.639344262295082
+      1.5873015873015872
      ],
-     "liquidity": 140.729,
+     "liquidity": 116.9576,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-zavats1-tan3-2026-10-25"
@@ -17841,12 +17870,12 @@
       0.73
      ],
      "bid": [
-      0.21,
-      0.44
+      0.2,
+      0.43
      ],
      "mid": [
-      0.355,
-      0.585
+      0.35,
+      0.58
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -17855,10 +17884,10 @@
       1.3444528547439691
      ],
      "maker_odds": [
-      4.761904761904762,
-      2.272727272727273
+      5.0,
+      2.3255813953488373
      ],
-     "liquidity": 79.93,
+     "liquidity": 77.00999999999999,
      "volume": 0.0,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25zavtan"
@@ -17913,16 +17942,16 @@
      "player": "Zavatska K.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.39,
+     "ask": 0.37,
      "bid": 0.26,
-     "mid": 0.325,
-     "odds": 2.488,
+     "mid": 0.315,
+     "odds": 2.62,
      "maker_odds": 3.846,
      "fair_prob": 0.2981,
-     "ev": -0.2583,
+     "ev": -0.2189,
      "ev_maker": 0.1465,
-     "mid_gap": 0.0269,
-     "liquidity": 140.729,
+     "mid_gap": 0.0169,
+     "liquidity": 116.9576,
      "url": "https://polymarket.com/event/itf-zavats1-tan3-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -17933,15 +17962,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.74,
-     "bid": 0.61,
-     "mid": 0.675,
+     "bid": 0.63,
+     "mid": 0.685,
      "odds": 1.334,
-     "maker_odds": 1.639,
+     "maker_odds": 1.587,
      "fair_prob": 0.7019,
      "ev": -0.0637,
-     "ev_maker": 0.1507,
-     "mid_gap": -0.0269,
-     "liquidity": 140.729,
+     "ev_maker": 0.1141,
+     "mid_gap": -0.0169,
+     "liquidity": 116.9576,
      "url": "https://polymarket.com/event/itf-zavats1-tan3-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -17952,15 +17981,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.5,
-     "bid": 0.21,
-     "mid": 0.355,
+     "bid": 0.2,
+     "mid": 0.35,
      "odds": 1.932,
-     "maker_odds": 4.762,
+     "maker_odds": 5.0,
      "fair_prob": 0.2981,
      "ev": -0.424,
-     "ev_maker": 0.4195,
-     "mid_gap": 0.0569,
-     "liquidity": 79.93,
+     "ev_maker": 0.4905,
+     "mid_gap": 0.0519,
+     "liquidity": 77.00999999999999,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25zavtan",
      "is_sharp": false,
      "is_reference": false,
@@ -17971,15 +18000,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.73,
-     "bid": 0.44,
-     "mid": 0.585,
+     "bid": 0.43,
+     "mid": 0.58,
      "odds": 1.344,
-     "maker_odds": 2.273,
+     "maker_odds": 2.326,
      "fair_prob": 0.7019,
      "ev": -0.0563,
-     "ev_maker": 0.5952,
-     "mid_gap": -0.1169,
-     "liquidity": 79.93,
+     "ev_maker": 0.6323,
+     "mid_gap": -0.1219,
+     "liquidity": 77.00999999999999,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25zavtan",
      "is_sharp": false,
      "is_reference": false,
@@ -18069,28 +18098,28 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.67,
+      0.66,
       0.37
      ],
      "bid": [
       0.63,
-      0.33
+      0.34
      ],
      "mid": [
-      0.65,
-      0.35
+      0.645,
+      0.355
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      1.4683101952118403,
+      1.489824498674056,
       2.6201674286986942
      ],
      "maker_odds": [
       1.5873015873015872,
-      3.0303030303030303
+      2.941176470588235
      ],
-     "liquidity": 632.1675,
+     "liquidity": 563.1976,
      "volume": 127.0,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-milova1-nishim1-2026-10-25"
@@ -18103,11 +18132,11 @@
      ],
      "bid": [
       0.62,
-      0.26
+      0.25
      ],
      "mid": [
       0.65,
-      0.315
+      0.31
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -18117,9 +18146,9 @@
      ],
      "maker_odds": [
       1.6129032258064517,
-      3.846153846153846
+      4.0
      ],
-     "liquidity": 91.64,
+     "liquidity": 55.970000000000006,
      "volume": 0.0,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25milnis"
@@ -18152,16 +18181,16 @@
      "player": "Milovanovic E.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.67,
+     "ask": 0.66,
      "bid": 0.63,
-     "mid": 0.65,
-     "odds": 1.468,
+     "mid": 0.645,
+     "odds": 1.49,
      "maker_odds": 1.587,
      "fair_prob": 0.668,
-     "ev": -0.0191,
+     "ev": -0.0047,
      "ev_maker": 0.0604,
-     "mid_gap": -0.018,
-     "liquidity": 632.1675,
+     "mid_gap": -0.023,
+     "liquidity": 563.1976,
      "url": "https://polymarket.com/event/itf-milova1-nishim1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -18172,15 +18201,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.37,
-     "bid": 0.33,
-     "mid": 0.35,
+     "bid": 0.34,
+     "mid": 0.355,
      "odds": 2.62,
-     "maker_odds": 3.03,
+     "maker_odds": 2.941,
      "fair_prob": 0.332,
      "ev": -0.1302,
-     "ev_maker": 0.0059,
-     "mid_gap": 0.018,
-     "liquidity": 632.1675,
+     "ev_maker": -0.0237,
+     "mid_gap": 0.023,
+     "liquidity": 563.1976,
      "url": "https://polymarket.com/event/itf-milova1-nishim1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -18199,7 +18228,7 @@
      "ev": -0.0391,
      "ev_maker": 0.0775,
      "mid_gap": -0.018,
-     "liquidity": 91.64,
+     "liquidity": 55.970000000000006,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25milnis",
      "is_sharp": false,
      "is_reference": false,
@@ -18210,15 +18239,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.37,
-     "bid": 0.26,
-     "mid": 0.315,
+     "bid": 0.25,
+     "mid": 0.31,
      "odds": 2.589,
-     "maker_odds": 3.846,
+     "maker_odds": 4.0,
      "fair_prob": 0.332,
      "ev": -0.1407,
-     "ev_maker": 0.2768,
-     "mid_gap": -0.017,
-     "liquidity": 91.64,
+     "ev_maker": 0.3278,
+     "mid_gap": -0.022,
+     "liquidity": 55.970000000000006,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25milnis",
      "is_sharp": false,
      "is_reference": false,
@@ -18229,7 +18258,7 @@
     "side_a": {
      "player": "Milovanovic E.",
      "venue": "Polymarket",
-     "odds": 1.468,
+     "odds": 1.49,
      "signal_only": true
     },
     "side_b": {
@@ -18238,10 +18267,10 @@
      "odds": 2.62,
      "signal_only": true
     },
-    "margin": 0.0629,
-    "profit": -0.0592,
-    "stake_a": 0.6409,
-    "stake_b": 0.3591,
+    "margin": 0.0528,
+    "profit": -0.0502,
+    "stake_a": 0.6375,
+    "stake_b": 0.3625,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -18312,7 +18341,7 @@
       1.923076923076923,
       2.2222222222222223
      ],
-     "liquidity": 5767.3327,
+     "liquidity": 5592.0927,
      "volume": 34.0,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-khomut2-yao1-2026-10-25"
@@ -18325,11 +18354,11 @@
      ],
      "bid": [
       0.52,
-      0.45
+      0.41
      ],
      "mid": [
       0.535,
-      0.45999999999999996
+      0.43999999999999995
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -18339,9 +18368,9 @@
      ],
      "maker_odds": [
       1.923076923076923,
-      2.2222222222222223
+      2.4390243902439024
      ],
-     "liquidity": 277.48120000000006,
+     "liquidity": 253.2812,
      "volume": 60.54,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24khoyao"
@@ -18427,7 +18456,7 @@
      "ev": -0.0325,
      "ev_maker": 0.0464,
      "mid_gap": -0.0091,
-     "liquidity": 5767.3327,
+     "liquidity": 5592.0927,
      "url": "https://polymarket.com/event/itf-khomut2-yao1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -18446,7 +18475,7 @@
      "ev": -0.0743,
      "ev_maker": 0.0131,
      "mid_gap": 0.0091,
-     "liquidity": 5767.3327,
+     "liquidity": 5592.0927,
      "url": "https://polymarket.com/event/itf-khomut2-yao1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -18465,7 +18494,7 @@
      "ev": -0.0409,
      "ev_maker": 0.0464,
      "mid_gap": -0.0091,
-     "liquidity": 277.48120000000006,
+     "liquidity": 253.2812,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24khoyao",
      "is_sharp": false,
      "is_reference": false,
@@ -18476,15 +18505,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.47,
-     "bid": 0.45,
-     "mid": 0.45999999999999996,
+     "bid": 0.41,
+     "mid": 0.43999999999999995,
      "odds": 2.052,
-     "maker_odds": 2.222,
+     "maker_odds": 2.439,
      "fair_prob": 0.4559,
      "ev": -0.0647,
-     "ev_maker": 0.0131,
-     "mid_gap": 0.0041,
-     "liquidity": 277.48120000000006,
+     "ev_maker": 0.1119,
+     "mid_gap": -0.0159,
+     "liquidity": 253.2812,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24khoyao",
      "is_sharp": false,
      "is_reference": false,
@@ -18595,7 +18624,7 @@
       4.166666666666667,
       1.36986301369863
      ],
-     "liquidity": 682.353,
+     "liquidity": 856.1093,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-rugger2-olmo1-2026-10-25"
@@ -18608,11 +18637,11 @@
      ],
      "bid": [
       0.23,
-      0.71
+      0.7
      ],
      "mid": [
       0.25,
-      0.74
+      0.735
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -18622,9 +18651,9 @@
      ],
      "maker_odds": [
       4.3478260869565215,
-      1.4084507042253522
+      1.4285714285714286
      ],
-     "liquidity": 124.7764,
+     "liquidity": 90.8964,
      "volume": 0.51,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25rugmin"
@@ -18666,7 +18695,7 @@
      "ev": -0.1082,
      "ev_maker": 0.0399,
      "mid_gap": 0.0054,
-     "liquidity": 682.353,
+     "liquidity": 856.1093,
      "url": "https://polymarket.com/event/itf-rugger2-olmo1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -18685,7 +18714,7 @@
      "ev": -0.0243,
      "ev_maker": 0.028,
      "mid_gap": -0.0054,
-     "liquidity": 682.353,
+     "liquidity": 856.1093,
      "url": "https://polymarket.com/event/itf-rugger2-olmo1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -18704,7 +18733,7 @@
      "ev": -0.1206,
      "ev_maker": 0.0851,
      "mid_gap": 0.0004,
-     "liquidity": 124.7764,
+     "liquidity": 90.8964,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25rugmin",
      "is_sharp": false,
      "is_reference": false,
@@ -18715,15 +18744,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.77,
-     "bid": 0.71,
-     "mid": 0.74,
+     "bid": 0.7,
+     "mid": 0.735,
      "odds": 1.278,
-     "maker_odds": 1.408,
+     "maker_odds": 1.429,
      "fair_prob": 0.7504,
      "ev": -0.0409,
-     "ev_maker": 0.0569,
-     "mid_gap": -0.0104,
-     "liquidity": 124.7764,
+     "ev_maker": 0.072,
+     "mid_gap": -0.0154,
+     "liquidity": 90.8964,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25rugmin",
      "is_sharp": false,
      "is_reference": false,
@@ -18834,8 +18863,8 @@
       1.5873015873015872,
       2.7777777777777777
      ],
-     "liquidity": 10607.4676,
-     "volume": 30171.634707999998,
+     "liquidity": 10495.4463,
+     "volume": 30217.807481999997,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-sato2-wan3-2026-10-24"
     },
@@ -18847,11 +18876,11 @@
      ],
      "bid": [
       0.62,
-      0.36
+      0.35
      ],
      "mid": [
       0.625,
-      0.37
+      0.365
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -18861,9 +18890,9 @@
      ],
      "maker_odds": [
       1.6129032258064517,
-      2.7777777777777777
+      2.857142857142857
      ],
-     "liquidity": 78.91040000000001,
+     "liquidity": 60.290400000000005,
      "volume": 1914.58,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24satwan"
@@ -18905,7 +18934,7 @@
      "ev": -0.0254,
      "ev_maker": 0.0079,
      "mid_gap": 0.0,
-     "liquidity": 10607.4676,
+     "liquidity": 10495.4463,
      "url": "https://polymarket.com/event/itf-sato2-wan3-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -18924,7 +18953,7 @@
      "ev": -0.0436,
      "ev_maker": 0.0139,
      "mid_gap": 0.0,
-     "liquidity": 10607.4676,
+     "liquidity": 10495.4463,
      "url": "https://polymarket.com/event/itf-sato2-wan3-2026-10-24",
      "is_sharp": false,
      "is_reference": false,
@@ -18943,7 +18972,7 @@
      "ev": -0.0175,
      "ev_maker": 0.0242,
      "mid_gap": -0.01,
-     "liquidity": 78.91040000000001,
+     "liquidity": 60.290400000000005,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24satwan",
      "is_sharp": false,
      "is_reference": false,
@@ -18954,15 +18983,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.38,
-     "bid": 0.36,
-     "mid": 0.37,
+     "bid": 0.35,
+     "mid": 0.365,
      "odds": 2.522,
-     "maker_odds": 2.778,
+     "maker_odds": 2.857,
      "fair_prob": 0.365,
      "ev": -0.0794,
-     "ev_maker": 0.0139,
-     "mid_gap": 0.005,
-     "liquidity": 78.91040000000001,
+     "ev_maker": 0.0429,
+     "mid_gap": 0.0,
+     "liquidity": 60.290400000000005,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24satwan",
      "is_sharp": false,
      "is_reference": false,
@@ -19048,8 +19077,8 @@
       2.564102564102564,
       1.6949152542372883
      ],
-     "liquidity": 663.5545,
-     "volume": 200933.53999999998,
+     "liquidity": 152.1272,
+     "volume": 200964.47999999998,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24zheobr"
     }
@@ -19090,7 +19119,7 @@
      "ev": 0.2445,
      "ev_maker": 0.33,
      "mid_gap": -0.1237,
-     "liquidity": 663.5545,
+     "liquidity": 152.1272,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24zheobr",
      "is_sharp": false,
      "is_reference": false,
@@ -19109,7 +19138,7 @@
      "ev": -0.232,
      "ev_maker": -0.1843,
      "mid_gap": 0.1187,
-     "liquidity": 663.5545,
+     "liquidity": 152.1272,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24zheobr",
      "is_sharp": false,
      "is_reference": false,
@@ -19174,7 +19203,7 @@
     {
      "venue": "Kalshi",
      "ask": [
-      0.6,
+      0.59,
       0.43
      ],
      "bid": [
@@ -19182,21 +19211,21 @@
       0.39
      ],
      "mid": [
-      0.585,
+      0.58,
       0.41000000000000003
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      1.6212710765239948,
+      1.6476283214127425,
       2.2363509908153065
      ],
      "maker_odds": [
       1.7543859649122808,
       2.564102564102564
      ],
-     "liquidity": 296.1954,
-     "volume": 327569.17,
+     "liquidity": 335.5198,
+     "volume": 327576.70999999996,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24horwue"
     }
@@ -19228,16 +19257,16 @@
      "player": "Horvit M.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.6,
+     "ask": 0.59,
      "bid": 0.57,
-     "mid": 0.585,
-     "odds": 1.621,
+     "mid": 0.58,
+     "odds": 1.648,
      "maker_odds": 1.754,
      "fair_prob": 0.1556,
-     "ev": -0.7477,
+     "ev": -0.7436,
      "ev_maker": -0.727,
-     "mid_gap": 0.4294,
-     "liquidity": 296.1954,
+     "mid_gap": 0.4244,
+     "liquidity": 335.5198,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24horwue",
      "is_sharp": false,
      "is_reference": false,
@@ -19256,7 +19285,7 @@
      "ev": 0.8883,
      "ev_maker": 1.1651,
      "mid_gap": -0.4344,
-     "liquidity": 296.1954,
+     "liquidity": 335.5198,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24horwue",
      "is_sharp": false,
      "is_reference": false,
@@ -19267,7 +19296,7 @@
     "side_a": {
      "player": "Horvit M.",
      "venue": "Kalshi",
-     "odds": 1.621,
+     "odds": 1.648,
      "signal_only": true
     },
     "side_b": {
@@ -19276,10 +19305,10 @@
      "odds": 2.236,
      "signal_only": true
     },
-    "margin": 0.0641,
-    "profit": -0.0603,
-    "stake_a": 0.5797,
-    "stake_b": 0.4203,
+    "margin": 0.054,
+    "profit": -0.0513,
+    "stake_a": 0.5757,
+    "stake_b": 0.4243,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -19350,7 +19379,7 @@
       2.7777777777777777,
       1.8181818181818181
      ],
-     "liquidity": 142.6447,
+     "liquidity": 139.6435,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-samir1-barton1-2026-10-25"
@@ -19363,11 +19392,11 @@
      ],
      "bid": [
       0.36,
-      0.43
+      0.42
      ],
      "mid": [
       0.435,
-      0.52
+      0.515
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -19377,9 +19406,9 @@
      ],
      "maker_odds": [
       2.7777777777777777,
-      2.3255813953488373
+      2.380952380952381
      ],
-     "liquidity": 66.07,
+     "liquidity": 65.05,
      "volume": 0.34,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25sambar"
@@ -19465,7 +19494,7 @@
      "ev": -0.1268,
      "ev_maker": 0.1215,
      "mid_gap": 0.0012,
-     "liquidity": 142.6447,
+     "liquidity": 139.6435,
      "url": "https://polymarket.com/event/itf-samir1-barton1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -19484,7 +19513,7 @@
      "ev": -0.0848,
      "ev_maker": 0.0841,
      "mid_gap": -0.0012,
-     "liquidity": 142.6447,
+     "liquidity": 139.6435,
      "url": "https://polymarket.com/event/itf-samir1-barton1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -19503,7 +19532,7 @@
      "ev": -0.2346,
      "ev_maker": 0.1215,
      "mid_gap": 0.0312,
-     "liquidity": 66.07,
+     "liquidity": 65.05,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25sambar",
      "is_sharp": false,
      "is_reference": false,
@@ -19514,15 +19543,15 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.61,
-     "bid": 0.43,
-     "mid": 0.52,
+     "bid": 0.42,
+     "mid": 0.515,
      "odds": 1.596,
-     "maker_odds": 2.326,
+     "maker_odds": 2.381,
      "fair_prob": 0.5962,
      "ev": -0.0485,
-     "ev_maker": 0.3866,
-     "mid_gap": -0.0762,
-     "liquidity": 66.07,
+     "ev_maker": 0.4196,
+     "mid_gap": -0.0812,
+     "liquidity": 65.05,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25sambar",
      "is_sharp": false,
      "is_reference": false,
@@ -19574,13 +19603,13 @@
    "fair_source": "TennisExplorer",
    "fair_quality": "soft",
    "fair": [
-    0.8074,
-    0.1926
+    0.8025,
+    0.1975
    ],
    "books": {
     "TennisExplorer": [
-     1.18,
-     4.3
+     1.19,
+     4.25
     ]
    },
    "prediction_markets": [
@@ -19608,7 +19637,7 @@
       1.2987012987012987,
       4.761904761904762
      ],
-     "liquidity": 1394.3135,
+     "liquidity": 1364.3139,
      "volume": 325.0,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-apisah1-malova1-2026-10-25"
@@ -19617,7 +19646,7 @@
      "venue": "Kalshi",
      "ask": [
       0.78,
-      0.23
+      0.24
      ],
      "bid": [
       0.77,
@@ -19625,19 +19654,19 @@
      ],
      "mid": [
       0.775,
-      0.22
+      0.22499999999999998
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
      "taker_odds": [
       1.2626071322151684,
-      4.125463598971934
+      3.956196986960375
      ],
      "maker_odds": [
       1.2987012987012987,
       4.761904761904762
      ],
-     "liquidity": 145.81000000000003,
+     "liquidity": 219.18,
      "volume": 1734.33,
      "start_time": null,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24apimal"
@@ -19648,9 +19677,9 @@
      "player": "Apisah V.",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 1.18,
-     "fair_prob": 0.8074,
-     "ev": -0.0472,
+     "odds": 1.19,
+     "fair_prob": 0.8025,
+     "ev": -0.045,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -19659,9 +19688,9 @@
      "player": "Malova A.",
      "venue": "TennisExplorer",
      "kind": "book",
-     "odds": 4.3,
-     "fair_prob": 0.1926,
-     "ev": -0.172,
+     "odds": 4.25,
+     "fair_prob": 0.1975,
+     "ev": -0.1607,
      "is_sharp": false,
      "is_reference": true,
      "signal_only": false
@@ -19675,11 +19704,11 @@
      "mid": 0.78,
      "odds": 1.253,
      "maker_odds": 1.299,
-     "fair_prob": 0.8074,
-     "ev": 0.0115,
-     "ev_maker": 0.0486,
-     "mid_gap": -0.0274,
-     "liquidity": 1394.3135,
+     "fair_prob": 0.8025,
+     "ev": 0.0053,
+     "ev_maker": 0.0422,
+     "mid_gap": -0.0225,
+     "liquidity": 1364.3139,
      "url": "https://polymarket.com/event/itf-apisah1-malova1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -19694,11 +19723,11 @@
      "mid": 0.22,
      "odds": 4.187,
      "maker_odds": 4.762,
-     "fair_prob": 0.1926,
-     "ev": -0.1939,
-     "ev_maker": -0.0831,
-     "mid_gap": 0.0274,
-     "liquidity": 1394.3135,
+     "fair_prob": 0.1975,
+     "ev": -0.1732,
+     "ev_maker": -0.0596,
+     "mid_gap": 0.0225,
+     "liquidity": 1364.3139,
      "url": "https://polymarket.com/event/itf-apisah1-malova1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -19713,11 +19742,11 @@
      "mid": 0.775,
      "odds": 1.263,
      "maker_odds": 1.299,
-     "fair_prob": 0.8074,
-     "ev": 0.0195,
-     "ev_maker": 0.0486,
-     "mid_gap": -0.0324,
-     "liquidity": 145.81000000000003,
+     "fair_prob": 0.8025,
+     "ev": 0.0133,
+     "ev_maker": 0.0422,
+     "mid_gap": -0.0275,
+     "liquidity": 219.18,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24apimal",
      "is_sharp": false,
      "is_reference": false,
@@ -19727,16 +19756,16 @@
      "player": "Malova A.",
      "venue": "Kalshi",
      "kind": "prediction",
-     "ask": 0.23,
+     "ask": 0.24,
      "bid": 0.21,
-     "mid": 0.22,
-     "odds": 4.125,
+     "mid": 0.22499999999999998,
+     "odds": 3.956,
      "maker_odds": 4.762,
-     "fair_prob": 0.1926,
-     "ev": -0.2056,
-     "ev_maker": -0.0831,
-     "mid_gap": 0.0274,
-     "liquidity": 145.81000000000003,
+     "fair_prob": 0.1975,
+     "ev": -0.2187,
+     "ev_maker": -0.0596,
+     "mid_gap": 0.0275,
+     "liquidity": 219.18,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24apimal",
      "is_sharp": false,
      "is_reference": false,
@@ -19802,27 +19831,27 @@
      "venue": "Polymarket",
      "ask": [
       0.95,
-      0.53
+      0.51
      ],
      "bid": [
-      0.47,
+      0.49,
       0.05
      ],
      "mid": [
-      0.71,
-      0.29000000000000004
+      0.72,
+      0.28
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
       1.050006562541016,
-      1.8434708869860172
+      1.91389391286041
      ],
      "maker_odds": [
-      2.127659574468085,
+      2.0408163265306123,
       20.0
      ],
-     "liquidity": 104.4613,
+     "liquidity": 105.5613,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-kubare1-iancu1-2026-10-25"
@@ -19885,15 +19914,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.95,
-     "bid": 0.47,
-     "mid": 0.71,
+     "bid": 0.49,
+     "mid": 0.72,
      "odds": 1.05,
-     "maker_odds": 2.128,
+     "maker_odds": 2.041,
      "fair_prob": 0.9092,
      "ev": -0.0453,
-     "ev_maker": 0.9345,
-     "mid_gap": -0.1992,
-     "liquidity": 104.4613,
+     "ev_maker": 0.8555,
+     "mid_gap": -0.1892,
+     "liquidity": 105.5613,
      "url": "https://polymarket.com/event/itf-kubare1-iancu1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -19903,16 +19932,16 @@
      "player": "Iancu A.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.53,
+     "ask": 0.51,
      "bid": 0.05,
-     "mid": 0.29000000000000004,
-     "odds": 1.843,
+     "mid": 0.28,
+     "odds": 1.914,
      "maker_odds": 20.0,
      "fair_prob": 0.0908,
-     "ev": -0.8326,
+     "ev": -0.8262,
      "ev_maker": 0.816,
-     "mid_gap": 0.1992,
-     "liquidity": 104.4613,
+     "mid_gap": 0.1892,
+     "liquidity": 105.5613,
      "url": "https://polymarket.com/event/itf-kubare1-iancu1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -19966,14 +19995,14 @@
     },
     "side_b": {
      "player": "Iancu A.",
-     "venue": "Kalshi",
-     "odds": 1.861,
+     "venue": "Polymarket",
+     "odds": 1.914,
      "signal_only": true
     },
-    "margin": 0.4816,
-    "profit": -0.3251,
-    "stake_a": 0.6373,
-    "stake_b": 0.3627,
+    "margin": 0.4668,
+    "profit": -0.3182,
+    "stake_a": 0.6438,
+    "stake_b": 0.3562,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -20016,27 +20045,27 @@
      "venue": "Polymarket",
      "ask": [
       0.88,
-      0.97
+      0.96
      ],
      "bid": [
-      0.03,
+      0.04,
       0.12
      ],
      "mid": [
-      0.455,
-      0.5449999999999999
+      0.46,
+      0.54
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
       1.129586119645762,
-      1.0293837594124278
+      1.0395874916833001
      ],
      "maker_odds": [
-      33.333333333333336,
+      25.0,
       8.333333333333334
      ],
-     "liquidity": 85.6419,
+     "liquidity": 87.5612,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-frahn1-radwan1-2026-10-25"
@@ -20099,15 +20128,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.88,
-     "bid": 0.03,
-     "mid": 0.455,
+     "bid": 0.04,
+     "mid": 0.46,
      "odds": 1.13,
-     "maker_odds": 33.333,
+     "maker_odds": 25.0,
      "fair_prob": 0.0764,
      "ev": -0.9137,
-     "ev_maker": 1.548,
-     "mid_gap": 0.3786,
-     "liquidity": 85.6419,
+     "ev_maker": 0.911,
+     "mid_gap": 0.3836,
+     "liquidity": 87.5612,
      "url": "https://polymarket.com/event/itf-frahn1-radwan1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20117,16 +20146,16 @@
      "player": "Radwanska U.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.97,
+     "ask": 0.96,
      "bid": 0.12,
-     "mid": 0.5449999999999999,
-     "odds": 1.029,
+     "mid": 0.54,
+     "odds": 1.04,
      "maker_odds": 8.333,
      "fair_prob": 0.9236,
-     "ev": -0.0493,
+     "ev": -0.0399,
      "ev_maker": 6.6963,
-     "mid_gap": -0.3786,
-     "liquidity": 85.6419,
+     "mid_gap": -0.3836,
+     "liquidity": 87.5612,
      "url": "https://polymarket.com/event/itf-frahn1-radwan1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20180,14 +20209,14 @@
     },
     "side_b": {
      "player": "Radwanska U.",
-     "venue": "Kalshi",
-     "odds": 1.039,
+     "venue": "Polymarket",
+     "odds": 1.04,
      "signal_only": true
     },
-    "margin": 0.8404,
-    "profit": -0.4566,
-    "stake_a": 0.477,
-    "stake_b": 0.523,
+    "margin": 0.8395,
+    "profit": -0.4564,
+    "stake_a": 0.4773,
+    "stake_b": 0.5227,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -20250,7 +20279,7 @@
       5.555555555555555,
       1.4084507042253522
      ],
-     "liquidity": 96.7276,
+     "liquidity": 82.8648,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-turkme1-snigir1-2026-10-25"
@@ -20263,11 +20292,11 @@
      ],
      "bid": [
       0.03,
-      0.51
+      0.55
      ],
      "mid": [
       0.14,
-      0.655
+      0.675
      ],
      "fee_rate": 0.07,
      "maker_fee_rate": 0.0,
@@ -20277,7 +20306,7 @@
      ],
      "maker_odds": [
       33.333333333333336,
-      1.9607843137254901
+      1.8181818181818181
      ],
      "liquidity": 98.985,
      "volume": 22.340000000000003,
@@ -20321,7 +20350,7 @@
      "ev": -0.2557,
      "ev_maker": 0.2417,
      "mid_gap": 0.0115,
-     "liquidity": 96.7276,
+     "liquidity": 82.8648,
      "url": "https://polymarket.com/event/itf-turkme1-snigir1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20340,7 +20369,7 @@
      "ev": -0.0615,
      "ev_maker": 0.0937,
      "mid_gap": -0.0115,
-     "liquidity": 96.7276,
+     "liquidity": 82.8648,
      "url": "https://polymarket.com/event/itf-turkme1-snigir1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20370,14 +20399,14 @@
      "venue": "Kalshi",
      "kind": "prediction",
      "ask": 0.8,
-     "bid": 0.51,
-     "mid": 0.655,
+     "bid": 0.55,
+     "mid": 0.675,
      "odds": 1.233,
-     "maker_odds": 1.961,
+     "maker_odds": 1.818,
      "fair_prob": 0.7765,
      "ev": -0.0428,
-     "ev_maker": 0.5226,
-     "mid_gap": -0.1215,
+     "ev_maker": 0.4118,
+     "mid_gap": -0.1015,
      "liquidity": 98.985,
      "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25tursni",
      "is_sharp": false,
@@ -20464,7 +20493,7 @@
       2.1739130434782608,
       16.666666666666668
      ],
-     "liquidity": 84.8165,
+     "liquidity": 84.9165,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-kroito1-veliko1-2026-10-25"
@@ -20535,7 +20564,7 @@
      "ev": -0.0498,
      "ev_maker": 0.9475,
      "mid_gap": -0.1959,
-     "liquidity": 84.8165,
+     "liquidity": 84.9165,
      "url": "https://polymarket.com/event/itf-kroito1-veliko1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20554,7 +20583,7 @@
      "ev": -0.8115,
      "ev_maker": 0.7356,
      "mid_gap": 0.1959,
-     "liquidity": 84.8165,
+     "liquidity": 84.9165,
      "url": "https://polymarket.com/event/itf-kroito1-veliko1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20657,12 +20686,12 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.98,
-      0.97
+      0.97,
+      0.96
      ],
      "bid": [
-      0.03,
-      0.02
+      0.04,
+      0.03
      ],
      "mid": [
       0.505,
@@ -20671,14 +20700,14 @@
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      1.0193887744908154,
-      1.0293837594124278
+      1.0293837594124278,
+      1.0395874916833001
      ],
      "maker_odds": [
-      33.333333333333336,
-      50.0
+      25.0,
+      33.333333333333336
      ],
-     "liquidity": 75.4267,
+     "liquidity": 77.346,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-maric1-akkoyu1-2026-10-25"
@@ -20740,16 +20769,16 @@
      "player": "Maric D.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.98,
-     "bid": 0.03,
+     "ask": 0.97,
+     "bid": 0.04,
      "mid": 0.505,
-     "odds": 1.019,
-     "maker_odds": 33.333,
+     "odds": 1.029,
+     "maker_odds": 25.0,
      "fair_prob": 0.9281,
-     "ev": -0.0539,
-     "ev_maker": 29.9379,
+     "ev": -0.0446,
+     "ev_maker": 22.2034,
      "mid_gap": -0.4231,
-     "liquidity": 75.4267,
+     "liquidity": 77.346,
      "url": "https://polymarket.com/event/itf-maric1-akkoyu1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20759,16 +20788,16 @@
      "player": "Akkoyun A.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.97,
-     "bid": 0.02,
+     "ask": 0.96,
+     "bid": 0.03,
      "mid": 0.495,
-     "odds": 1.029,
-     "maker_odds": 50.0,
+     "odds": 1.04,
+     "maker_odds": 33.333,
      "fair_prob": 0.0719,
-     "ev": -0.926,
-     "ev_maker": 2.5931,
+     "ev": -0.9253,
+     "ev_maker": 1.3954,
      "mid_gap": 0.4231,
-     "liquidity": 75.4267,
+     "liquidity": 77.346,
      "url": "https://polymarket.com/event/itf-maric1-akkoyu1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20872,27 +20901,27 @@
      "venue": "Polymarket",
      "ask": [
       0.96,
-      0.97
+      0.96
      ],
      "bid": [
-      0.03,
+      0.04,
       0.04
      ],
      "mid": [
-      0.495,
-      0.505
+      0.5,
+      0.5
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
       1.0395874916833001,
-      1.0293837594124278
+      1.0395874916833001
      ],
      "maker_odds": [
-      33.333333333333336,
+      25.0,
       25.0
      ],
-     "liquidity": 80.4061,
+     "liquidity": 82.3257,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-yashin1-celik1-2026-10-25"
@@ -20955,15 +20984,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.96,
-     "bid": 0.03,
-     "mid": 0.495,
+     "bid": 0.04,
+     "mid": 0.5,
      "odds": 1.04,
-     "maker_odds": 33.333,
+     "maker_odds": 25.0,
      "fair_prob": 0.9006,
      "ev": -0.0637,
-     "ev_maker": 29.0208,
-     "mid_gap": -0.4056,
-     "liquidity": 80.4061,
+     "ev_maker": 21.5156,
+     "mid_gap": -0.4006,
+     "liquidity": 82.3257,
      "url": "https://polymarket.com/event/itf-yashin1-celik1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -20973,16 +21002,16 @@
      "player": "Celik E.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.97,
+     "ask": 0.96,
      "bid": 0.04,
-     "mid": 0.505,
-     "odds": 1.029,
+     "mid": 0.5,
+     "odds": 1.04,
      "maker_odds": 25.0,
      "fair_prob": 0.0994,
-     "ev": -0.8977,
+     "ev": -0.8967,
      "ev_maker": 1.4844,
-     "mid_gap": 0.4056,
-     "liquidity": 80.4061,
+     "mid_gap": 0.4006,
+     "liquidity": 82.3257,
      "url": "https://polymarket.com/event/itf-yashin1-celik1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -21106,7 +21135,7 @@
       33.333333333333336,
       16.666666666666668
      ],
-     "liquidity": 84.316,
+     "liquidity": 84.3163,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-krupin1-sedysh1-2026-10-25"
@@ -21177,7 +21206,7 @@
      "ev": -0.8468,
      "ev_maker": 3.816,
      "mid_gap": 0.3405,
-     "liquidity": 84.316,
+     "liquidity": 84.3163,
      "url": "https://polymarket.com/event/itf-krupin1-sedysh1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -21196,7 +21225,7 @@
      "ev": -0.1193,
      "ev_maker": 13.2587,
      "mid_gap": -0.3405,
-     "liquidity": 84.316,
+     "liquidity": 84.3163,
      "url": "https://polymarket.com/event/itf-krupin1-sedysh1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -21299,28 +21328,28 @@
     {
      "venue": "Polymarket",
      "ask": [
-      0.98,
+      0.95,
       0.88
      ],
      "bid": [
       0.12,
-      0.02
+      0.05
      ],
      "mid": [
-      0.55,
-      0.45
+      0.5349999999999999,
+      0.465
      ],
      "fee_rate": 0.05,
      "maker_fee_rate": 0.0,
      "taker_odds": [
-      1.0193887744908154,
+      1.050006562541016,
       1.129586119645762
      ],
      "maker_odds": [
       8.333333333333334,
-      50.0
+      20.0
      ],
-     "liquidity": 68.6739,
+     "liquidity": 70.4935,
      "volume": null,
      "start_time": null,
      "url": "https://polymarket.com/event/itf-kartse2-lacino1-2026-10-25"
@@ -21353,16 +21382,16 @@
      "player": "Kartseva A.",
      "venue": "Polymarket",
      "kind": "prediction",
-     "ask": 0.98,
+     "ask": 0.95,
      "bid": 0.12,
-     "mid": 0.55,
-     "odds": 1.019,
+     "mid": 0.5349999999999999,
+     "odds": 1.05,
      "maker_odds": 8.333,
      "fair_prob": 0.1528,
-     "ev": -0.8443,
+     "ev": -0.8396,
      "ev_maker": 0.273,
-     "mid_gap": 0.3972,
-     "liquidity": 68.6739,
+     "mid_gap": 0.3822,
+     "liquidity": 70.4935,
      "url": "https://polymarket.com/event/itf-kartse2-lacino1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -21373,15 +21402,15 @@
      "venue": "Polymarket",
      "kind": "prediction",
      "ask": 0.88,
-     "bid": 0.02,
-     "mid": 0.45,
+     "bid": 0.05,
+     "mid": 0.465,
      "odds": 1.13,
-     "maker_odds": 50.0,
+     "maker_odds": 20.0,
      "fair_prob": 0.8472,
      "ev": -0.043,
-     "ev_maker": 41.362,
-     "mid_gap": -0.3972,
-     "liquidity": 68.6739,
+     "ev_maker": 15.9448,
+     "mid_gap": -0.3822,
+     "liquidity": 70.4935,
      "url": "https://polymarket.com/event/itf-kartse2-lacino1-2026-10-25",
      "is_sharp": false,
      "is_reference": false,
@@ -21392,7 +21421,7 @@
     "side_a": {
      "player": "Kartseva A.",
      "venue": "Polymarket",
-     "odds": 1.019,
+     "odds": 1.05,
      "signal_only": true
     },
     "side_b": {
@@ -21401,10 +21430,10 @@
      "odds": 1.13,
      "signal_only": true
     },
-    "margin": 0.8663,
-    "profit": -0.4642,
-    "stake_a": 0.5258,
-    "stake_b": 0.4742,
+    "margin": 0.8373,
+    "profit": -0.4557,
+    "stake_a": 0.5183,
+    "stake_b": 0.4817,
     "is_arbitrage": false,
     "signal_only": true
    },
@@ -21420,14 +21449,14 @@
   "status": {
    "Polymarket": {
     "ok": true,
-    "n_markets": 394
+    "n_markets": 392
    },
    "Kalshi": {
     "ok": true,
-    "n_markets": 158
+    "n_markets": 164
    }
   },
-  "n_markets": 552,
+  "n_markets": 556,
   "n_matched": 72,
   "n_itf_added": 20
  },
@@ -21439,6 +21468,31 @@
   "stats_players": 1475
  },
  "soft_value": [
+  {
+   "match_id": "3357967",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Mi L.",
+    "Defalco J."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "player": "Defalco J.",
+   "venue": "TennisExplorer",
+   "kind": "book",
+   "odds": 1.71,
+   "fair_prob": 0.715,
+   "ev": 0.2227,
+   "is_sharp": false,
+   "is_reference": true,
+   "signal_only": false
+  },
   {
    "match_id": "3357951",
    "date": "2026-10-24",
@@ -21458,14 +21512,47 @@
    "venue": "TennisExplorer",
    "kind": "book",
    "odds": 4.12,
-   "fair_prob": 0.375,
-   "ev": 0.545,
+   "fair_prob": 0.295,
+   "ev": 0.2154,
    "is_sharp": false,
    "is_reference": true,
    "signal_only": false
   }
  ],
  "pm_board": [
+  {
+   "match_id": "3357951",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Chang H.",
+    "Ma C."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "player": "Ma C.",
+   "venue": "Polymarket",
+   "kind": "prediction",
+   "ask": 0.68,
+   "bid": 0.66,
+   "mid": 0.67,
+   "odds": 1.447,
+   "maker_odds": 1.515,
+   "fair_prob": 0.705,
+   "ev": 0.0204,
+   "ev_maker": 0.0682,
+   "mid_gap": -0.035,
+   "liquidity": 13102.0262,
+   "url": "https://polymarket.com/event/itf-chang4-ma2-2026-10-24",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
   {
    "match_id": "3358545",
    "date": "2026-10-25",
@@ -21493,8 +21580,41 @@
    "ev": 0.0024,
    "ev_maker": 0.0322,
    "mid_gap": -0.0172,
-   "liquidity": 4918.4222,
+   "liquidity": 5162.9636,
    "url": "https://polymarket.com/event/atp-marozsa-machac-2026-10-25",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3358149",
+   "date": "2026-10-25",
+   "tournament": "Basel",
+   "circuit": "Tour",
+   "tour": "atp",
+   "round": "Qualification - quarterfinal",
+   "players": [
+    "Hijikata R.",
+    "Hanfmann Y."
+   ],
+   "ref_book": "Betway",
+   "ref_is_sharp": false,
+   "fair_source": "Polymarket Mid",
+   "fair_quality": "exchange",
+   "player": "Hijikata R.",
+   "venue": "Kalshi",
+   "kind": "prediction",
+   "ask": 0.41,
+   "bid": 0.4,
+   "mid": 0.405,
+   "odds": 2.342,
+   "maker_odds": 2.474,
+   "fair_prob": 0.425,
+   "ev": -0.0045,
+   "ev_maker": 0.0515,
+   "mid_gap": -0.02,
+   "liquidity": 402.11,
+   "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25hijhan",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -21526,7 +21646,7 @@
    "ev": -0.013,
    "ev_maker": 0.0208,
    "mid_gap": -0.0081,
-   "liquidity": 24695.357,
+   "liquidity": 29341.681,
    "url": "https://polymarket.com/event/atp-musetti-fritz-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -21559,41 +21679,8 @@
    "ev": -0.0167,
    "ev_maker": 0.0064,
    "mid_gap": 0.0,
-   "liquidity": 33460.3956,
+   "liquidity": 35696.5224,
    "url": "https://polymarket.com/event/atp-medvede-basilas-2026-10-25",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3358545",
-   "date": "2026-10-25",
-   "tournament": "Vienna",
-   "circuit": "Tour",
-   "tour": "atp",
-   "round": "Qualification - quarterfinal",
-   "players": [
-    "Marozsan F.",
-    "Machac T."
-   ],
-   "ref_book": "Betfair",
-   "ref_is_sharp": true,
-   "fair_source": "Betfair",
-   "fair_quality": "sharp",
-   "player": "Machac T.",
-   "venue": "Kalshi",
-   "kind": "prediction",
-   "ask": 0.71,
-   "bid": 0.69,
-   "mid": 0.7,
-   "odds": 1.38,
-   "maker_odds": 1.441,
-   "fair_prob": 0.7122,
-   "ev": -0.0169,
-   "ev_maker": 0.0266,
-   "mid_gap": -0.0122,
-   "liquidity": 466.01,
-   "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25marmac",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -21625,7 +21712,7 @@
    "ev": -0.0175,
    "ev_maker": 0.0242,
    "mid_gap": -0.01,
-   "liquidity": 78.91040000000001,
+   "liquidity": 60.290400000000005,
    "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24satwan",
    "is_sharp": false,
    "is_reference": false,
@@ -21658,7 +21745,7 @@
    "ev": -0.0178,
    "ev_maker": 0.0066,
    "mid_gap": 0.0,
-   "liquidity": 42119.9738,
+   "liquidity": 42886.0051,
    "url": "https://polymarket.com/event/wta-rybakin-fernand-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -21691,7 +21778,7 @@
    "ev": -0.0207,
    "ev_maker": 0.0026,
    "mid_gap": 0.0,
-   "liquidity": 8467.1336,
+   "liquidity": 8382.140800000001,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25medbas",
    "is_sharp": false,
    "is_reference": false,
@@ -21724,7 +21811,7 @@
    "ev": -0.0207,
    "ev_maker": 0.007,
    "mid_gap": 0.0,
-   "liquidity": 8819.0126,
+   "liquidity": 8700.5626,
    "url": "https://polymarket.com/event/atp-neumaye-droguet-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -21757,7 +21844,7 @@
    "ev": -0.0222,
    "ev_maker": 0.0024,
    "mid_gap": 0.0,
-   "liquidity": 33134.5295,
+   "liquidity": 30459.041699999998,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25rybfer",
    "is_sharp": false,
    "is_reference": false,
@@ -21790,7 +21877,7 @@
    "ev": -0.0236,
    "ev_maker": 0.0076,
    "mid_gap": 0.0,
-   "liquidity": 11644.2035,
+   "liquidity": 11659.2024,
    "url": "https://polymarket.com/event/wta-valento-zhang-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -21823,7 +21910,7 @@
    "ev": -0.0248,
    "ev_maker": 0.0078,
    "mid_gap": 0.0,
-   "liquidity": 21224.9672,
+   "liquidity": 21239.9626,
    "url": "https://polymarket.com/event/atp-wong-schoolk-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -21856,7 +21943,7 @@
    "ev": -0.0254,
    "ev_maker": 0.0079,
    "mid_gap": 0.0,
-   "liquidity": 15336.5169,
+   "liquidity": 15341.3169,
    "url": "https://polymarket.com/event/wta-ibragim-iatcenk-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -21889,7 +21976,7 @@
    "ev": -0.0254,
    "ev_maker": 0.0079,
    "mid_gap": 0.0,
-   "liquidity": 10607.4676,
+   "liquidity": 10495.4463,
    "url": "https://polymarket.com/event/itf-sato2-wan3-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -21922,41 +22009,74 @@
    "ev": -0.0255,
    "ev_maker": 0.0455,
    "mid_gap": -0.015,
-   "liquidity": 3550.6486,
+   "liquidity": 2818.3885999999998,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24sasrak",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
   },
   {
-   "match_id": "3358149",
-   "date": "2026-10-25",
-   "tournament": "Basel",
-   "circuit": "Tour",
-   "tour": "atp",
-   "round": "Qualification - quarterfinal",
+   "match_id": "3357967",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
    "players": [
-    "Hijikata R.",
-    "Hanfmann Y."
+    "Mi L.",
+    "Defalco J."
    ],
-   "ref_book": "Betway",
+   "ref_book": "TennisExplorer",
    "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
+   "fair_source": "Kalshi Mid",
    "fair_quality": "exchange",
-   "player": "Hijikata R.",
+   "player": "Defalco J.",
    "venue": "Kalshi",
    "kind": "prediction",
-   "ask": 0.42,
-   "bid": 0.41,
-   "mid": 0.415,
-   "odds": 2.288,
-   "maker_odds": 2.414,
-   "fair_prob": 0.425,
-   "ev": -0.0276,
-   "ev_maker": 0.026,
-   "mid_gap": -0.01,
-   "liquidity": 3748.7904,
-   "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25hijhan",
+   "ask": 0.72,
+   "bid": 0.71,
+   "mid": 0.715,
+   "odds": 1.362,
+   "maker_odds": 1.408,
+   "fair_prob": 0.715,
+   "ev": -0.026,
+   "ev_maker": 0.007,
+   "mid_gap": 0.0,
+   "liquidity": 17539.0821,
+   "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24mixdef",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3357951",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Chang H.",
+    "Ma C."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "player": "Ma C.",
+   "venue": "Kalshi",
+   "kind": "prediction",
+   "ask": 0.71,
+   "bid": 0.7,
+   "mid": 0.705,
+   "odds": 1.38,
+   "maker_odds": 1.429,
+   "fair_prob": 0.705,
+   "ev": -0.0268,
+   "ev_maker": 0.0071,
+   "mid_gap": 0.0,
+   "liquidity": 20685.86,
+   "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24chamax",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -21988,7 +22108,7 @@
    "ev": -0.0278,
    "ev_maker": 0.0085,
    "mid_gap": 0.0,
-   "liquidity": 9885.251,
+   "liquidity": 9331.089,
    "url": "https://polymarket.com/event/wta-yastrem-jone-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22021,7 +22141,7 @@
    "ev": -0.0278,
    "ev_maker": 0.0085,
    "mid_gap": 0.0,
-   "liquidity": 10164.1561,
+   "liquidity": 10130.297,
    "url": "https://polymarket.com/event/atp-ribecai-romano-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22061,39 +22181,6 @@
    "signal_only": true
   },
   {
-   "match_id": "3358575",
-   "date": "2026-10-25",
-   "tournament": "Basel",
-   "circuit": "Tour",
-   "tour": "atp",
-   "round": "Qualification - quarterfinal",
-   "players": [
-    "Mika Brunold",
-    "Remy Bertola"
-   ],
-   "ref_book": "bet-at-home",
-   "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
-   "player": "Mika Brunold",
-   "venue": "Polymarket",
-   "kind": "prediction",
-   "ask": 0.59,
-   "bid": 0.58,
-   "mid": 0.585,
-   "odds": 1.661,
-   "maker_odds": 1.724,
-   "fair_prob": 0.585,
-   "ev": -0.0284,
-   "ev_maker": 0.0086,
-   "mid_gap": 0.0,
-   "liquidity": 5068.6534,
-   "url": "https://polymarket.com/event/atp-brunold-bertola-2026-10-25",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
    "match_id": "3358117",
    "date": "2026-10-25",
    "tournament": "Guangzhou",
@@ -22120,7 +22207,7 @@
    "ev": -0.029,
    "ev_maker": 0.0088,
    "mid_gap": 0.0,
-   "liquidity": 7819.0825,
+   "liquidity": 7816.1531,
    "url": "https://polymarket.com/event/wta-prozoro-garland-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22153,7 +22240,7 @@
    "ev": -0.029,
    "ev_maker": 0.0088,
    "mid_gap": 0.0,
-   "liquidity": 6730.9381,
+   "liquidity": 7337.976,
    "url": "https://polymarket.com/event/wta-zakharo-kostovi-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22186,7 +22273,7 @@
    "ev": -0.029,
    "ev_maker": 0.0088,
    "mid_gap": 0.0,
-   "liquidity": 10418.3261,
+   "liquidity": 10330.217,
    "url": "https://polymarket.com/event/atp-hijikat-hanfman-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22219,7 +22306,7 @@
    "ev": -0.0296,
    "ev_maker": 0.0311,
    "mid_gap": -0.01,
-   "liquidity": 987.3984,
+   "liquidity": 980.3584,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24ibriat",
    "is_sharp": false,
    "is_reference": false,
@@ -22252,8 +22339,41 @@
    "ev": -0.0296,
    "ev_maker": 0.0089,
    "mid_gap": 0.0,
-   "liquidity": 13155.9284,
+   "liquidity": 13057.6327,
    "url": "https://polymarket.com/event/atp-sonego-fearnle-2026-10-25",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3358545",
+   "date": "2026-10-25",
+   "tournament": "Vienna",
+   "circuit": "Tour",
+   "tour": "atp",
+   "round": "Qualification - quarterfinal",
+   "players": [
+    "Marozsan F.",
+    "Machac T."
+   ],
+   "ref_book": "Betfair",
+   "ref_is_sharp": true,
+   "fair_source": "Betfair",
+   "fair_quality": "sharp",
+   "player": "Machac T.",
+   "venue": "Kalshi",
+   "kind": "prediction",
+   "ask": 0.72,
+   "bid": 0.69,
+   "mid": 0.705,
+   "odds": 1.362,
+   "maker_odds": 1.441,
+   "fair_prob": 0.7122,
+   "ev": -0.0298,
+   "ev_maker": 0.0266,
+   "mid_gap": -0.0072,
+   "liquidity": 227.25,
+   "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25marmac",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -22292,39 +22412,6 @@
    "signal_only": true
   },
   {
-   "match_id": "3358035",
-   "date": "2026-10-25",
-   "tournament": "Guangzhou challenger",
-   "circuit": "Challenger",
-   "tour": "atp",
-   "round": "final",
-   "players": [
-    "Wong C.",
-    "Schoolkate T."
-   ],
-   "ref_book": "Unibet",
-   "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
-   "player": "Schoolkate T.",
-   "venue": "Kalshi",
-   "kind": "prediction",
-   "ask": 0.35,
-   "bid": 0.34,
-   "mid": 0.345,
-   "odds": 2.733,
-   "maker_odds": 2.941,
-   "fair_prob": 0.355,
-   "ev": -0.0299,
-   "ev_maker": 0.0441,
-   "mid_gap": -0.01,
-   "liquidity": 6636.746,
-   "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24wonsch",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
    "match_id": "3358071",
    "date": "2026-10-25",
    "tournament": "Osaka WTA",
@@ -22351,7 +22438,7 @@
    "ev": -0.0303,
    "ev_maker": 0.0091,
    "mid_gap": 0.0,
-   "liquidity": 38857.6529,
+   "liquidity": 38551.0954,
    "url": "https://polymarket.com/event/wta-krueger-siniako-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22417,7 +22504,7 @@
    "ev": -0.0304,
    "ev_maker": 0.0115,
    "mid_gap": -0.001,
-   "liquidity": 20315.8177,
+   "liquidity": 20348.4242,
    "url": "https://polymarket.com/event/wta-birrell-kasatki-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -22442,15 +22529,15 @@
    "venue": "Polymarket",
    "kind": "prediction",
    "ask": 0.58,
-   "bid": 0.56,
-   "mid": 0.5700000000000001,
+   "bid": 0.57,
+   "mid": 0.575,
    "odds": 1.689,
-   "maker_odds": 1.786,
+   "maker_odds": 1.754,
    "fair_prob": 0.5742,
    "ev": -0.0304,
-   "ev_maker": 0.0253,
-   "mid_gap": -0.0042,
-   "liquidity": 8107.4033,
+   "ev_maker": 0.0073,
+   "mid_gap": 0.0008,
+   "liquidity": 8085.8956,
    "url": "https://polymarket.com/event/atp-perrica-kovacev-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22483,7 +22570,7 @@
    "ev": -0.0309,
    "ev_maker": 0.0093,
    "mid_gap": 0.0,
-   "liquidity": 24259.0486,
+   "liquidity": 24214.888,
    "url": "https://polymarket.com/event/wta-watson-parks-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -22516,7 +22603,7 @@
    "ev": -0.0322,
    "ev_maker": 0.0174,
    "mid_gap": -0.005,
-   "liquidity": 987.3984,
+   "liquidity": 980.3584,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24ibriat",
    "is_sharp": false,
    "is_reference": false,
@@ -22549,7 +22636,7 @@
    "ev": -0.0322,
    "ev_maker": 0.0096,
    "mid_gap": 0.0,
-   "liquidity": 22436.0206,
+   "liquidity": 22251.2421,
    "url": "https://polymarket.com/event/wta-lee-pridank-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -22582,7 +22669,7 @@
    "ev": -0.0322,
    "ev_maker": 0.0096,
    "mid_gap": 0.0,
-   "liquidity": 23156.7231,
+   "liquidity": 22925.2946,
    "url": "https://polymarket.com/event/wta-sasnovi-rakhimo-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -22615,41 +22702,8 @@
    "ev": -0.0328,
    "ev_maker": 0.0098,
    "mid_gap": 0.0,
-   "liquidity": 16009.4437,
+   "liquidity": 15928.3283,
    "url": "https://polymarket.com/event/atp-cerund-altmaie-2026-10-25",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3357951",
-   "date": "2026-10-24",
-   "tournament": "Bakersfield ITF",
-   "circuit": "ITF",
-   "tour": "wta",
-   "round": "semifinal",
-   "players": [
-    "Chang H.",
-    "Ma C."
-   ],
-   "ref_book": "TennisExplorer",
-   "ref_is_sharp": false,
-   "fair_source": "Kalshi Mid",
-   "fair_quality": "exchange",
-   "player": "Ma C.",
-   "venue": "Kalshi",
-   "kind": "prediction",
-   "ask": 0.63,
-   "bid": 0.62,
-   "mid": 0.625,
-   "odds": 1.547,
-   "maker_odds": 1.613,
-   "fair_prob": 0.625,
-   "ev": -0.033,
-   "ev_maker": 0.0081,
-   "mid_gap": 0.0,
-   "liquidity": 26702.5041,
-   "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24chamax",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -22681,7 +22735,7 @@
    "ev": -0.0343,
    "ev_maker": -0.0015,
    "mid_gap": 0.0019,
-   "liquidity": 751.0258000000001,
+   "liquidity": 740.5493,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25musfri",
    "is_sharp": false,
    "is_reference": false,
@@ -22714,7 +22768,7 @@
    "ev": -0.0348,
    "ev_maker": 0.0104,
    "mid_gap": 0.0,
-   "liquidity": 16009.4437,
+   "liquidity": 15928.3283,
    "url": "https://polymarket.com/event/atp-cerund-altmaie-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22747,7 +22801,7 @@
    "ev": -0.0355,
    "ev_maker": 0.0106,
    "mid_gap": 0.0,
-   "liquidity": 22436.0206,
+   "liquidity": 22251.2421,
    "url": "https://polymarket.com/event/wta-lee-pridank-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -22780,7 +22834,7 @@
    "ev": -0.0355,
    "ev_maker": 0.0106,
    "mid_gap": 0.0,
-   "liquidity": 23156.7231,
+   "liquidity": 22925.2946,
    "url": "https://polymarket.com/event/wta-sasnovi-rakhimo-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -22846,8 +22900,41 @@
    "ev": -0.0369,
    "ev_maker": 0.0111,
    "mid_gap": 0.0,
-   "liquidity": 24259.0486,
+   "liquidity": 24214.888,
    "url": "https://polymarket.com/event/wta-watson-parks-2026-10-24",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3358491",
+   "date": "2026-10-25",
+   "tournament": "Basel",
+   "circuit": "Tour",
+   "tour": "atp",
+   "round": "Qualification - quarterfinal",
+   "players": [
+    "Giovanni Mpetshi Perricard",
+    "Aleksandar Kovacevic"
+   ],
+   "ref_book": "Betfair",
+   "ref_is_sharp": true,
+   "fair_source": "Betfair",
+   "fair_quality": "sharp",
+   "player": "Giovanni Mpetshi Perricard",
+   "venue": "Polymarket",
+   "kind": "prediction",
+   "ask": 0.43,
+   "bid": 0.42,
+   "mid": 0.425,
+   "odds": 2.261,
+   "maker_odds": 2.381,
+   "fair_prob": 0.4258,
+   "ev": -0.0372,
+   "ev_maker": 0.0139,
+   "mid_gap": -0.0008,
+   "liquidity": 8085.8956,
+   "url": "https://polymarket.com/event/atp-perrica-kovacev-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -22879,7 +22966,7 @@
    "ev": -0.0375,
    "ev_maker": 0.0086,
    "mid_gap": 0.001,
-   "liquidity": 20315.8177,
+   "liquidity": 20348.4242,
    "url": "https://polymarket.com/event/wta-birrell-kasatki-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -22912,7 +22999,7 @@
    "ev": -0.0376,
    "ev_maker": 0.0114,
    "mid_gap": 0.0,
-   "liquidity": 38857.6529,
+   "liquidity": 38551.0954,
    "url": "https://polymarket.com/event/wta-krueger-siniako-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -22945,41 +23032,8 @@
    "ev": -0.0383,
    "ev_maker": 0.0116,
    "mid_gap": 0.0,
-   "liquidity": 13155.9284,
+   "liquidity": 13057.6327,
    "url": "https://polymarket.com/event/atp-sonego-fearnle-2026-10-25",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3358071",
-   "date": "2026-10-25",
-   "tournament": "Osaka WTA",
-   "circuit": "Tour",
-   "tour": "wta",
-   "round": "final",
-   "players": [
-    "Krueger A.",
-    "Siniakova K."
-   ],
-   "ref_book": "bwin",
-   "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
-   "player": "Siniakova K.",
-   "venue": "Kalshi",
-   "kind": "prediction",
-   "ask": 0.56,
-   "bid": 0.55,
-   "mid": 0.555,
-   "odds": 1.732,
-   "maker_odds": 1.804,
-   "fair_prob": 0.555,
-   "ev": -0.0385,
-   "ev_maker": 0.0012,
-   "mid_gap": 0.0,
-   "liquidity": 22688.2215,
-   "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25krusin",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -23011,7 +23065,7 @@
    "ev": -0.0387,
    "ev_maker": 0.0161,
    "mid_gap": 0.0,
-   "liquidity": 549.1899999999999,
+   "liquidity": 204.93,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25neudro",
    "is_sharp": false,
    "is_reference": false,
@@ -23044,7 +23098,7 @@
    "ev": -0.039,
    "ev_maker": 0.0119,
    "mid_gap": 0.0,
-   "liquidity": 7819.0825,
+   "liquidity": 7816.1531,
    "url": "https://polymarket.com/event/wta-prozoro-garland-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -23077,7 +23131,7 @@
    "ev": -0.039,
    "ev_maker": 0.0119,
    "mid_gap": 0.0,
-   "liquidity": 6730.9381,
+   "liquidity": 7337.976,
    "url": "https://polymarket.com/event/wta-zakharo-kostovi-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -23110,7 +23164,7 @@
    "ev": -0.039,
    "ev_maker": 0.0119,
    "mid_gap": 0.0,
-   "liquidity": 10418.3261,
+   "liquidity": 10330.217,
    "url": "https://polymarket.com/event/atp-hijikat-hanfman-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -23143,41 +23197,8 @@
    "ev": -0.0394,
    "ev_maker": 0.0199,
    "mid_gap": -0.005,
-   "liquidity": 4477.9354,
+   "liquidity": 1652.212,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24watpar",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3358575",
-   "date": "2026-10-25",
-   "tournament": "Basel",
-   "circuit": "Tour",
-   "tour": "atp",
-   "round": "Qualification - quarterfinal",
-   "players": [
-    "Mika Brunold",
-    "Remy Bertola"
-   ],
-   "ref_book": "bet-at-home",
-   "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
-   "player": "Remy Bertola",
-   "venue": "Polymarket",
-   "kind": "prediction",
-   "ask": 0.42,
-   "bid": 0.41,
-   "mid": 0.415,
-   "odds": 2.314,
-   "maker_odds": 2.439,
-   "fair_prob": 0.415,
-   "ev": -0.0398,
-   "ev_maker": 0.0122,
-   "mid_gap": 0.0,
-   "liquidity": 5068.6534,
-   "url": "https://polymarket.com/event/atp-brunold-bertola-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -23209,7 +23230,7 @@
    "ev": -0.0405,
    "ev_maker": 0.0125,
    "mid_gap": 0.0,
-   "liquidity": 9885.251,
+   "liquidity": 9331.089,
    "url": "https://polymarket.com/event/wta-yastrem-jone-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -23242,41 +23263,8 @@
    "ev": -0.0405,
    "ev_maker": 0.0125,
    "mid_gap": 0.0,
-   "liquidity": 10164.1561,
+   "liquidity": 10130.297,
    "url": "https://polymarket.com/event/atp-ribecai-romano-2026-10-25",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3357951",
-   "date": "2026-10-24",
-   "tournament": "Bakersfield ITF",
-   "circuit": "ITF",
-   "tour": "wta",
-   "round": "semifinal",
-   "players": [
-    "Chang H.",
-    "Ma C."
-   ],
-   "ref_book": "TennisExplorer",
-   "ref_is_sharp": false,
-   "fair_source": "Kalshi Mid",
-   "fair_quality": "exchange",
-   "player": "Ma C.",
-   "venue": "Polymarket",
-   "kind": "prediction",
-   "ask": 0.64,
-   "bid": 0.61,
-   "mid": 0.625,
-   "odds": 1.535,
-   "maker_odds": 1.639,
-   "fair_prob": 0.625,
-   "ev": -0.0407,
-   "ev_maker": 0.0246,
-   "mid_gap": 0.0,
-   "liquidity": 15968.4242,
-   "url": "https://polymarket.com/event/itf-chang4-ma2-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -23341,7 +23329,7 @@
    "ev": -0.0436,
    "ev_maker": 0.0139,
    "mid_gap": 0.0,
-   "liquidity": 15336.5169,
+   "liquidity": 15341.3169,
    "url": "https://polymarket.com/event/wta-ibragim-iatcenk-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -23374,7 +23362,7 @@
    "ev": -0.0436,
    "ev_maker": 0.0139,
    "mid_gap": 0.0,
-   "liquidity": 10607.4676,
+   "liquidity": 10495.4463,
    "url": "https://polymarket.com/event/itf-sato2-wan3-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -23399,15 +23387,15 @@
    "venue": "Kalshi",
    "kind": "prediction",
    "ask": 0.49,
-   "bid": 0.48,
-   "mid": 0.485,
+   "bid": 0.47,
+   "mid": 0.48,
    "odds": 1.97,
-   "maker_odds": 2.065,
+   "maker_odds": 2.108,
    "fair_prob": 0.485,
    "ev": -0.0443,
-   "ev_maker": 0.0013,
-   "mid_gap": 0.0,
-   "liquidity": 390.887,
+   "ev_maker": 0.0224,
+   "mid_gap": -0.005,
+   "liquidity": 282.23699999999997,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25ceralt",
    "is_sharp": false,
    "is_reference": false,
@@ -23440,7 +23428,7 @@
    "ev": -0.0445,
    "ev_maker": 0.0143,
    "mid_gap": 0.0,
-   "liquidity": 21224.9672,
+   "liquidity": 21239.9626,
    "url": "https://polymarket.com/event/atp-wong-schoolk-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
@@ -23506,7 +23494,7 @@
    "ev": -0.0454,
    "ev_maker": 0.0078,
    "mid_gap": 0.005,
-   "liquidity": 6636.746,
+   "liquidity": 7554.886799999999,
    "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24wonsch",
    "is_sharp": false,
    "is_reference": false,
@@ -23539,8 +23527,41 @@
    "ev": -0.0462,
    "ev_maker": 0.0152,
    "mid_gap": 0.0,
-   "liquidity": 11644.2035,
+   "liquidity": 11659.2024,
    "url": "https://polymarket.com/event/wta-valento-zhang-2026-10-24",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3357967",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Mi L.",
+    "Defalco J."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "player": "Defalco J.",
+   "venue": "Polymarket",
+   "kind": "prediction",
+   "ask": 0.74,
+   "bid": 0.71,
+   "mid": 0.725,
+   "odds": 1.334,
+   "maker_odds": 1.408,
+   "fair_prob": 0.715,
+   "ev": -0.0462,
+   "ev_maker": 0.007,
+   "mid_gap": 0.01,
+   "liquidity": 29396.9205,
+   "url": "https://polymarket.com/event/itf-mi1-defalc1-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -23572,7 +23593,7 @@
    "ev": -0.0478,
    "ev_maker": 0.0247,
    "mid_gap": -0.005,
-   "liquidity": 22688.2215,
+   "liquidity": 50568.87209999999,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25krusin",
    "is_sharp": false,
    "is_reference": false,
@@ -23597,15 +23618,15 @@
    "venue": "Kalshi",
    "kind": "prediction",
    "ask": 0.61,
-   "bid": 0.43,
-   "mid": 0.52,
+   "bid": 0.42,
+   "mid": 0.515,
    "odds": 1.596,
-   "maker_odds": 2.326,
+   "maker_odds": 2.381,
    "fair_prob": 0.5962,
    "ev": -0.0485,
-   "ev_maker": 0.3866,
-   "mid_gap": -0.0762,
-   "liquidity": 66.07,
+   "ev_maker": 0.4196,
+   "mid_gap": -0.0812,
+   "liquidity": 65.05,
    "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25sambar",
    "is_sharp": false,
    "is_reference": false,
@@ -23678,39 +23699,6 @@
    "signal_only": true
   },
   {
-   "match_id": "3358575",
-   "date": "2026-10-25",
-   "tournament": "Basel",
-   "circuit": "Tour",
-   "tour": "atp",
-   "round": "Qualification - quarterfinal",
-   "players": [
-    "Mika Brunold",
-    "Remy Bertola"
-   ],
-   "ref_book": "bet-at-home",
-   "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
-   "player": "Remy Bertola",
-   "venue": "Kalshi",
-   "kind": "prediction",
-   "ask": 0.42,
-   "bid": 0.4,
-   "mid": 0.41000000000000003,
-   "odds": 2.288,
-   "maker_odds": 2.474,
-   "fair_prob": 0.415,
-   "ev": -0.0505,
-   "ev_maker": 0.0267,
-   "mid_gap": -0.005,
-   "liquidity": 1920.5877999999998,
-   "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25bruber",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
    "match_id": "3358457",
    "date": "2026-10-25",
    "tournament": "Vienna",
@@ -23737,8 +23725,41 @@
    "ev": -0.0509,
    "ev_maker": 0.0179,
    "mid_gap": 0.0,
-   "liquidity": 8819.0126,
+   "liquidity": 8700.5626,
    "url": "https://polymarket.com/event/atp-neumaye-droguet-2026-10-25",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3357967",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Mi L.",
+    "Defalco J."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "player": "Mi L.",
+   "venue": "Polymarket",
+   "kind": "prediction",
+   "ask": 0.29,
+   "bid": 0.26,
+   "mid": 0.275,
+   "odds": 3.33,
+   "maker_odds": 3.846,
+   "fair_prob": 0.285,
+   "ev": -0.0509,
+   "ev_maker": 0.0962,
+   "mid_gap": -0.01,
+   "liquidity": 29396.9205,
+   "url": "https://polymarket.com/event/itf-mi1-defalc1-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -23770,7 +23791,7 @@
    "ev": -0.0511,
    "ev_maker": 0.0083,
    "mid_gap": -0.0019,
-   "liquidity": 751.0258000000001,
+   "liquidity": 740.5493,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25musfri",
    "is_sharp": false,
    "is_reference": false,
@@ -23836,7 +23857,7 @@
    "ev": -0.0526,
    "ev_maker": -0.0159,
    "mid_gap": 0.01,
-   "liquidity": 3748.7904,
+   "liquidity": 402.11,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25hijhan",
    "is_sharp": false,
    "is_reference": false,
@@ -23902,41 +23923,74 @@
    "ev": -0.054,
    "ev_maker": 0.0175,
    "mid_gap": 0.0008,
-   "liquidity": 687.9827,
+   "liquidity": 503.62269999999995,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25mpekov",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
   },
   {
-   "match_id": "3357951",
-   "date": "2026-10-24",
-   "tournament": "Bakersfield ITF",
-   "circuit": "ITF",
+   "match_id": "3358071",
+   "date": "2026-10-25",
+   "tournament": "Osaka WTA",
+   "circuit": "Tour",
    "tour": "wta",
-   "round": "semifinal",
+   "round": "final",
    "players": [
-    "Chang H.",
-    "Ma C."
+    "Krueger A.",
+    "Siniakova K."
    ],
-   "ref_book": "TennisExplorer",
+   "ref_book": "bwin",
    "ref_is_sharp": false,
-   "fair_source": "Kalshi Mid",
+   "fair_source": "Polymarket Mid",
    "fair_quality": "exchange",
-   "player": "Chang H.",
+   "player": "Siniakova K.",
    "venue": "Kalshi",
    "kind": "prediction",
-   "ask": 0.38,
-   "bid": 0.37,
-   "mid": 0.375,
-   "odds": 2.522,
-   "maker_odds": 2.703,
-   "fair_prob": 0.375,
-   "ev": -0.0542,
-   "ev_maker": 0.0135,
-   "mid_gap": 0.0,
-   "liquidity": 26702.5041,
-   "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24chamax",
+   "ask": 0.57,
+   "bid": 0.55,
+   "mid": 0.56,
+   "odds": 1.703,
+   "maker_odds": 1.804,
+   "fair_prob": 0.555,
+   "ev": -0.0548,
+   "ev_maker": 0.0012,
+   "mid_gap": 0.005,
+   "liquidity": 50568.87209999999,
+   "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25krusin",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3358035",
+   "date": "2026-10-25",
+   "tournament": "Guangzhou challenger",
+   "circuit": "Challenger",
+   "tour": "atp",
+   "round": "final",
+   "players": [
+    "Wong C.",
+    "Schoolkate T."
+   ],
+   "ref_book": "Unibet",
+   "ref_is_sharp": false,
+   "fair_source": "Polymarket Mid",
+   "fair_quality": "exchange",
+   "player": "Schoolkate T.",
+   "venue": "Kalshi",
+   "kind": "prediction",
+   "ask": 0.36,
+   "bid": 0.34,
+   "mid": 0.35,
+   "odds": 2.659,
+   "maker_odds": 2.941,
+   "fair_prob": 0.355,
+   "ev": -0.0562,
+   "ev_maker": 0.0441,
+   "mid_gap": -0.005,
+   "liquidity": 7554.886799999999,
+   "url": "https://kalshi.com/markets/kxatpchallengermatch/kxatpchallengermatch/kxatpchallengermatch-26oct24wonsch",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -23968,7 +24022,7 @@
    "ev": -0.0564,
    "ev_maker": 0.0225,
    "mid_gap": -0.001,
-   "liquidity": 561.4825,
+   "liquidity": 553.7334999999999,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24birkas",
    "is_sharp": false,
    "is_reference": false,
@@ -24001,7 +24055,7 @@
    "ev": -0.0567,
    "ev_maker": 0.0217,
    "mid_gap": 0.0,
-   "liquidity": 42119.9738,
+   "liquidity": 42886.0051,
    "url": "https://polymarket.com/event/wta-rybakin-fernand-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -24034,41 +24088,8 @@
    "ev": -0.0581,
    "ev_maker": -0.0175,
    "mid_gap": 0.01,
-   "liquidity": 3550.6486,
+   "liquidity": 2818.3885999999998,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24sasrak",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3358491",
-   "date": "2026-10-25",
-   "tournament": "Basel",
-   "circuit": "Tour",
-   "tour": "atp",
-   "round": "Qualification - quarterfinal",
-   "players": [
-    "Giovanni Mpetshi Perricard",
-    "Aleksandar Kovacevic"
-   ],
-   "ref_book": "Betfair",
-   "ref_is_sharp": true,
-   "fair_source": "Betfair",
-   "fair_quality": "sharp",
-   "player": "Giovanni Mpetshi Perricard",
-   "venue": "Polymarket",
-   "kind": "prediction",
-   "ask": 0.44,
-   "bid": 0.42,
-   "mid": 0.43,
-   "odds": 2.211,
-   "maker_odds": 2.381,
-   "fair_prob": 0.4258,
-   "ev": -0.0586,
-   "ev_maker": 0.0139,
-   "mid_gap": 0.0042,
-   "liquidity": 8107.4033,
-   "url": "https://polymarket.com/event/atp-perrica-kovacev-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -24100,7 +24121,7 @@
    "ev": -0.0593,
    "ev_maker": -0.0179,
    "mid_gap": 0.01,
-   "liquidity": 390.887,
+   "liquidity": 282.23699999999997,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25ceralt",
    "is_sharp": false,
    "is_reference": false,
@@ -24133,8 +24154,74 @@
    "ev": -0.0594,
    "ev_maker": 0.0238,
    "mid_gap": 0.0,
-   "liquidity": 33460.3956,
+   "liquidity": 35696.5224,
    "url": "https://polymarket.com/event/atp-medvede-basilas-2026-10-25",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3357951",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Chang H.",
+    "Ma C."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "player": "Chang H.",
+   "venue": "Kalshi",
+   "kind": "prediction",
+   "ask": 0.3,
+   "bid": 0.29,
+   "mid": 0.295,
+   "odds": 3.178,
+   "maker_odds": 3.448,
+   "fair_prob": 0.295,
+   "ev": -0.0626,
+   "ev_maker": 0.0172,
+   "mid_gap": 0.0,
+   "liquidity": 20685.86,
+   "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24chamax",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3357967",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Mi L.",
+    "Defalco J."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "player": "Mi L.",
+   "venue": "Kalshi",
+   "kind": "prediction",
+   "ask": 0.29,
+   "bid": 0.28,
+   "mid": 0.28500000000000003,
+   "odds": 3.285,
+   "maker_odds": 3.571,
+   "fair_prob": 0.285,
+   "ev": -0.0638,
+   "ev_maker": 0.0179,
+   "mid_gap": 0.0,
+   "liquidity": 17539.0821,
+   "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24mixdef",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -24166,7 +24253,7 @@
    "ev": -0.0648,
    "ev_maker": -0.0085,
    "mid_gap": 0.0081,
-   "liquidity": 24695.357,
+   "liquidity": 29341.681,
    "url": "https://polymarket.com/event/atp-musetti-fritz-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -24232,7 +24319,7 @@
    "ev": -0.0659,
    "ev_maker": 0.0209,
    "mid_gap": 0.001,
-   "liquidity": 561.4825,
+   "liquidity": 553.7334999999999,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24birkas",
    "is_sharp": false,
    "is_reference": false,
@@ -24265,74 +24352,8 @@
    "ev": -0.0665,
    "ev_maker": 0.0015,
    "mid_gap": 0.005,
-   "liquidity": 4477.9354,
+   "liquidity": 1652.212,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct24watpar",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3358575",
-   "date": "2026-10-25",
-   "tournament": "Basel",
-   "circuit": "Tour",
-   "tour": "atp",
-   "round": "Qualification - quarterfinal",
-   "players": [
-    "Mika Brunold",
-    "Remy Bertola"
-   ],
-   "ref_book": "bet-at-home",
-   "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
-   "player": "Mika Brunold",
-   "venue": "Kalshi",
-   "kind": "prediction",
-   "ask": 0.61,
-   "bid": 0.57,
-   "mid": 0.59,
-   "odds": 1.596,
-   "maker_odds": 1.741,
-   "fair_prob": 0.585,
-   "ev": -0.0665,
-   "ev_maker": 0.0187,
-   "mid_gap": 0.005,
-   "liquidity": 1920.5877999999998,
-   "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25bruber",
-   "is_sharp": false,
-   "is_reference": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3357951",
-   "date": "2026-10-24",
-   "tournament": "Bakersfield ITF",
-   "circuit": "ITF",
-   "tour": "wta",
-   "round": "semifinal",
-   "players": [
-    "Chang H.",
-    "Ma C."
-   ],
-   "ref_book": "TennisExplorer",
-   "ref_is_sharp": false,
-   "fair_source": "Kalshi Mid",
-   "fair_quality": "exchange",
-   "player": "Chang H.",
-   "venue": "Polymarket",
-   "kind": "prediction",
-   "ask": 0.39,
-   "bid": 0.36,
-   "mid": 0.375,
-   "odds": 2.488,
-   "maker_odds": 2.778,
-   "fair_prob": 0.375,
-   "ev": -0.0669,
-   "ev_maker": 0.0417,
-   "mid_gap": 0.0,
-   "liquidity": 15968.4242,
-   "url": "https://polymarket.com/event/itf-chang4-ma2-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -24364,7 +24385,7 @@
    "ev": -0.0687,
    "ev_maker": 0.028,
    "mid_gap": -0.0008,
-   "liquidity": 687.9827,
+   "liquidity": 503.62269999999995,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25mpekov",
    "is_sharp": false,
    "is_reference": false,
@@ -24430,7 +24451,7 @@
    "ev": -0.0733,
    "ev_maker": 0.0098,
    "mid_gap": 0.0,
-   "liquidity": 8467.1336,
+   "liquidity": 8382.140800000001,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25medbas",
    "is_sharp": false,
    "is_reference": false,
@@ -24455,15 +24476,15 @@
    "venue": "Kalshi",
    "kind": "prediction",
    "ask": 0.38,
-   "bid": 0.36,
-   "mid": 0.37,
+   "bid": 0.35,
+   "mid": 0.365,
    "odds": 2.522,
-   "maker_odds": 2.778,
+   "maker_odds": 2.857,
    "fair_prob": 0.365,
    "ev": -0.0794,
-   "ev_maker": 0.0139,
-   "mid_gap": 0.005,
-   "liquidity": 78.91040000000001,
+   "ev_maker": 0.0429,
+   "mid_gap": 0.0,
+   "liquidity": 60.290400000000005,
    "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct24satwan",
    "is_sharp": false,
    "is_reference": false,
@@ -24496,7 +24517,7 @@
    "ev": -0.0848,
    "ev_maker": 0.0841,
    "mid_gap": -0.0012,
-   "liquidity": 142.6447,
+   "liquidity": 139.6435,
    "url": "https://polymarket.com/event/itf-samir1-barton1-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -24529,7 +24550,7 @@
    "ev": -0.0944,
    "ev_maker": 0.0052,
    "mid_gap": 0.005,
-   "liquidity": 549.1899999999999,
+   "liquidity": 204.93,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25neudro",
    "is_sharp": false,
    "is_reference": false,
@@ -24562,7 +24583,7 @@
    "ev": -0.1026,
    "ev_maker": -0.0407,
    "mid_gap": 0.0172,
-   "liquidity": 4918.4222,
+   "liquidity": 5162.9636,
    "url": "https://polymarket.com/event/atp-marozsa-machac-2026-10-25",
    "is_sharp": false,
    "is_reference": false,
@@ -24595,7 +24616,7 @@
    "ev": -0.1069,
    "ev_maker": -0.0337,
    "mid_gap": 0.01,
-   "liquidity": 33134.5295,
+   "liquidity": 30459.041699999998,
    "url": "https://kalshi.com/markets/kxwtamatch/kxwtamatch/kxwtamatch-26oct25rybfer",
    "is_sharp": false,
    "is_reference": false,
@@ -24628,7 +24649,7 @@
    "ev": -0.1144,
    "ev_maker": 0.0151,
    "mid_gap": 0.0072,
-   "liquidity": 466.01,
+   "liquidity": 227.25,
    "url": "https://kalshi.com/markets/kxatpmatch/kxatpmatch/kxatpmatch-26oct25marmac",
    "is_sharp": false,
    "is_reference": false,
@@ -24661,8 +24682,41 @@
    "ev": -0.1268,
    "ev_maker": 0.1215,
    "mid_gap": 0.0012,
-   "liquidity": 142.6447,
+   "liquidity": 139.6435,
    "url": "https://polymarket.com/event/itf-samir1-barton1-2026-10-25",
+   "is_sharp": false,
+   "is_reference": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3357951",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Chang H.",
+    "Ma C."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "player": "Chang H.",
+   "venue": "Polymarket",
+   "kind": "prediction",
+   "ask": 0.34,
+   "bid": 0.32,
+   "mid": 0.33,
+   "odds": 2.847,
+   "maker_odds": 3.125,
+   "fair_prob": 0.295,
+   "ev": -0.1601,
+   "ev_maker": -0.0781,
+   "mid_gap": 0.035,
+   "liquidity": 13102.0262,
+   "url": "https://polymarket.com/event/itf-chang4-ma2-2026-10-24",
    "is_sharp": false,
    "is_reference": false,
    "signal_only": true
@@ -24694,7 +24748,7 @@
    "ev": -0.2346,
    "ev_maker": 0.1215,
    "mid_gap": 0.0312,
-   "liquidity": 66.07,
+   "liquidity": 65.05,
    "url": "https://kalshi.com/markets/kxitfwmatch/kxitfwmatch/kxitfwmatch-26oct25sambar",
    "is_sharp": false,
    "is_reference": false,
@@ -24703,6 +24757,74 @@
  ],
  "arbs": [],
  "near_arbs": [
+  {
+   "match_id": "3357951",
+   "date": "2026-10-24",
+   "tournament": "Bakersfield ITF",
+   "circuit": "ITF",
+   "tour": "wta",
+   "round": "semifinal",
+   "players": [
+    "Chang H.",
+    "Ma C."
+   ],
+   "ref_book": "TennisExplorer",
+   "ref_is_sharp": false,
+   "fair_source": "Kalshi Mid",
+   "fair_quality": "exchange",
+   "side_a": {
+    "player": "Chang H.",
+    "venue": "Kalshi",
+    "odds": 3.178,
+    "signal_only": true
+   },
+   "side_b": {
+    "player": "Ma C.",
+    "venue": "Polymarket",
+    "odds": 1.447,
+    "signal_only": true
+   },
+   "margin": 0.0057,
+   "profit": -0.0057,
+   "stake_a": 0.3129,
+   "stake_b": 0.6871,
+   "is_arbitrage": false,
+   "signal_only": true
+  },
+  {
+   "match_id": "3358149",
+   "date": "2026-10-25",
+   "tournament": "Basel",
+   "circuit": "Tour",
+   "tour": "atp",
+   "round": "Qualification - quarterfinal",
+   "players": [
+    "Hijikata R.",
+    "Hanfmann Y."
+   ],
+   "ref_book": "Betway",
+   "ref_is_sharp": false,
+   "fair_source": "Polymarket Mid",
+   "fair_quality": "exchange",
+   "side_a": {
+    "player": "Hijikata R.",
+    "venue": "Kalshi",
+    "odds": 2.342,
+    "signal_only": true
+   },
+   "side_b": {
+    "player": "Hanfmann Y.",
+    "venue": "Polymarket",
+    "odds": 1.689,
+    "signal_only": true
+   },
+   "margin": 0.0191,
+   "profit": -0.0187,
+   "stake_a": 0.419,
+   "stake_b": 0.581,
+   "is_arbitrage": false,
+   "signal_only": true
+  },
   {
    "match_id": "3358543",
    "date": "2026-10-25",
@@ -24874,40 +24996,6 @@
    "signal_only": true
   },
   {
-   "match_id": "3358035",
-   "date": "2026-10-25",
-   "tournament": "Guangzhou challenger",
-   "circuit": "Challenger",
-   "tour": "atp",
-   "round": "final",
-   "players": [
-    "Wong C.",
-    "Schoolkate T."
-   ],
-   "ref_book": "Unibet",
-   "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
-   "side_a": {
-    "player": "Wong C.",
-    "venue": "Polymarket",
-    "odds": 1.512,
-    "signal_only": true
-   },
-   "side_b": {
-    "player": "Schoolkate T.",
-    "venue": "Kalshi",
-    "odds": 2.733,
-    "signal_only": true
-   },
-   "margin": 0.0273,
-   "profit": -0.0265,
-   "stake_a": 0.6438,
-   "stake_b": 0.3562,
-   "is_arbitrage": false,
-   "signal_only": true
-  },
-  {
    "match_id": "3358113",
    "date": "2026-10-25",
    "tournament": "Guangzhou",
@@ -24938,40 +25026,6 @@
    "profit": -0.0268,
    "stake_a": 0.366,
    "stake_b": 0.634,
-   "is_arbitrage": false,
-   "signal_only": true
-  },
-  {
-   "match_id": "3357955",
-   "date": "2026-10-25",
-   "tournament": "Sydney 3 ITF",
-   "circuit": "ITF",
-   "tour": "wta",
-   "round": "final",
-   "players": [
-    "Sato H.",
-    "Wan I."
-   ],
-   "ref_book": "TennisExplorer",
-   "ref_is_sharp": false,
-   "fair_source": "Polymarket Mid",
-   "fair_quality": "exchange",
-   "side_a": {
-    "player": "Sato H.",
-    "venue": "Kalshi",
-    "odds": 1.547,
-    "signal_only": true
-   },
-   "side_b": {
-    "player": "Wan I.",
-    "venue": "Polymarket",
-    "odds": 2.62,
-    "signal_only": true
-   },
-   "margin": 0.0281,
-   "profit": -0.0273,
-   "stake_a": 0.6287,
-   "stake_b": 0.3713,
    "is_arbitrage": false,
    "signal_only": true
   }
