@@ -1,14 +1,13 @@
 name: Rebuild value dashboard
 
 # The light job: no retraining. It refreshes the three TennisExplorer
-# schedule pages, reads Polymarket and Kalshi, rebuilds the price board and
-# the model table from the committed model files, appends the run's quotes
-# to the snapshot log and republishes docs/index.html. Four times a day
-# catches the morning openers and the evening closers of every time zone.
+# schedule pages, reads Polymarket, Kalshi and Tennis Abstract's tournament
+# forecasts, rebuilds the price board and the model table from the
+# committed model files, appends the run's quotes and forecasts to the
+# logs and republishes docs/index.html. Four times a day catches the
+# morning openers and the evening closers of every time zone.
 #
-# GitHub runs scheduled workflows from the default branch only, and pauses
-# them after 60 days without a commit; the daily update-data job keeps the
-# repository active.
+# GitHub runs scheduled workflows from the default branch only.
 on:
   schedule:
     - cron: "17 3,9,15,21 * * *"
@@ -17,13 +16,15 @@ on:
 permissions:
   contents: write
 
+# Shared with update-data.yml: one data job at a time.
 concurrency:
-  group: dashboard
+  group: data-commits
   cancel-in-progress: false
 
 jobs:
   rebuild:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -35,21 +36,27 @@ jobs:
       - name: Install dependencies
         run: pip install pandas numpy scikit-learn joblib requests lxml python-dateutil tabulate
 
-      - name: Rebuild the card (schedule, books, Polymarket, Kalshi)
+      - name: Rebuild the card (schedule, books, Polymarket, Kalshi, Tennis Abstract)
         run: |
           python scripts/build_dashboard.py --refresh-schedule --limit 120 --itf-limit 40
           python scripts/render_dashboard.py -o docs/index.html
+          cp docs/index.html data/reports/dashboard.html
 
-      - name: Commit if anything changed
+      - name: Commit and push
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs data/processed/dashboard.json data/processed/tennisexplorer_upcoming.csv \
-                  data/processed/odds_snapshots.csv data/processed/picks_log.csv data/reports/dashboard.html
+          git add docs data/reports/dashboard.html data/processed/dashboard.json \
+                  data/processed/tennisexplorer_upcoming.csv data/processed/odds_snapshots.csv \
+                  data/processed/picks_log.csv data/processed/forecasts_log.csv
           if git diff --cached --quiet; then
             echo "No changes."
-          else
-            git commit -m "Dashboard rebuild ($(date -u +%Y-%m-%dT%H:%MZ))"
-            git pull --rebase origin "${GITHUB_REF_NAME}" || true
-            git push
+            exit 0
           fi
+          git commit -m "Dashboard rebuild ($(date -u +%Y-%m-%dT%H:%MZ))"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push && exit 0
+            sleep 15
+          done
+          exit 1

@@ -7,15 +7,15 @@ current. Safe to re-run any time; each run re-downloads the current season
 and reuses cached files for closed seasons.
 """
 import _bootstrap  # noqa: F401
+import argparse
 import datetime as dt
 import logging
 
 import joblib
 import pandas as pd
 
-from tennissharp import config, model as model_mod, player_stats
-from tennissharp.data import (odds_history, tennisabstract, tennisabstract_leaders,
-                              tennisexplorer, tennismylife)
+from tennissharp import config, model as model_mod, player_data
+from tennissharp.data import odds_history, tennisabstract, tennisexplorer, tennismylife
 from tennissharp.features import attach_market_probability, build_feature_table
 from tennissharp.tourney_matching import build_surface_speed_index
 
@@ -23,63 +23,32 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
 
 
-def _fetch_tennisabstract_data() -> tuple[pd.DataFrame, dict]:
-    """Tennis Abstract Elo + surface-speed ratings. Best-effort: a hiccup
-    fetching this supplementary source shouldn't abort the whole update.
+def _fetch_surface_speed() -> dict:
+    """Tennis Abstract's surface-speed ratings per tournament edition, a
+    trained feature. Best-effort: a hiccup here must not abort the update.
+    (The Elo and yElo leaderboards and the player statistics are refreshed
+    by player_data.refresh, which the weekly job also runs on its own.)
     """
-    try:
-        ta_elo = tennisabstract.fetch_all_elo_ratings()
-        ta_elo.to_csv(config.PROCESSED_DIR / "ta_elo_current.csv", index=False)
-        logger.info("Fetched %d Tennis Abstract Elo ratings", len(ta_elo))
-
-        # Standalone per-tour files, same full schema (overall + hElo/cElo/gElo).
-        for tour in ("atp", "wta"):
-            tour_elo = tennisabstract.filter_by_tour(ta_elo, tour=tour)
-            tour_elo.to_csv(config.PROCESSED_DIR / f"ta_elo_{tour}_general.csv", index=False)
-            logger.info("Saved %d %s Elo ratings (overall + hElo/cElo/gElo)",
-                        len(tour_elo), tour.upper())
-    except Exception:
-        logger.exception("Failed to fetch Tennis Abstract Elo ratings -- continuing without them")
-        ta_elo = pd.DataFrame()
-
     try:
         speed_history = tennisabstract.fetch_surface_speed_history(config.START_SEASON)
         speed_history.to_csv(config.PROCESSED_DIR / "ta_surface_speed_history.csv", index=False)
         logger.info("Fetched %d Tennis Abstract surface-speed ratings", len(speed_history))
-        speed_index = build_surface_speed_index(speed_history)
+        return build_surface_speed_index(speed_history)
     except Exception:
         logger.exception("Failed to fetch Tennis Abstract surface-speed ratings -- continuing without them")
-        speed_index = {}
-
-    return ta_elo, speed_index
+        return {}
 
 
-def _write_leader_tables() -> None:
-    """Serve/Return leaderboards, overall and per surface, one CSV per
-    tour/pool/stat/surface as before -- but computed from the TennisMyLife
-    match database (Sackmann's schema) rather than read from
-    tennisabstract.com/jsmatches/, which the site's robots.txt disallows
-    (checked 2026-10-23: /jsfrags/, /jsmatches/, /jsplayers/). The numbers
-    are the same per-match statistics; the pools follow the players' latest
-    ranking in the window and, for the challenger pool, where they played.
-    """
+def _refresh_player_data() -> None:
+    """Tennis Abstract Elo + yElo, the dated Elo history, the complete player
+    table and the leader tables -- see tennissharp/player_data.py."""
     try:
-        book = player_stats.StatBook(tennismylife.load_all(start_season=dt.date.today().year - 1))
+        meta = player_data.refresh()
+        for err in meta["errors"]:
+            logger.warning(err)
+        logger.info("Player table: %s", meta["players"])
     except Exception:
-        logger.exception("Failed to build the serve/return profiles -- leaders left as they were")
-        return
-    for tour, pools in tennisabstract_leaders.POOLS_BY_TOUR.items():
-        for pool in pools:
-            tables = player_stats.leader_tables(book, tour, pool)
-            pool_slug = pool.replace("-", "")
-            for surface in tennisabstract_leaders.SURFACES:
-                key = surface.lower()
-                tables[key].to_csv(config.PROCESSED_DIR / f"ta_leaders_{tour}_{pool_slug}_serve_{key}.csv",
-                                   index=False)
-                tables["return_" + key].to_csv(
-                    config.PROCESSED_DIR / f"ta_leaders_{tour}_{pool_slug}_return_{key}.csv", index=False)
-            logger.info("Saved %s/%s serve+return leaders (%d players)", tour.upper(), pool,
-                        len(tables["all"]))
+        logger.exception("Player data refresh failed -- continuing")
 
 
 SCHEDULE_DAYS = (0, 1, 2)
@@ -125,14 +94,21 @@ def _refresh_recent_play_index() -> None:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--skip-player-data", action="store_true",
+                    help="do not refresh Tennis Abstract Elo/yElo and the player table "
+                         "(the weekly workflow runs scripts/update_player_data.py first)")
+    args = ap.parse_args()
+
     # The sources that do not depend on tennis-data.co.uk come first: when
     # its Cloudflare front refuses the download (HTTP 403 seen 2026-10-22),
     # the recent-play index, the Tennis Abstract tables and the schedule
     # still refresh, and only the retrain is skipped. Before this ordering a
     # failed download left every one of them stale for the day as well.
     _refresh_recent_play_index()
-    ta_elo, speed_index = _fetch_tennisabstract_data()
-    _write_leader_tables()
+    if not args.skip_player_data:
+        _refresh_player_data()
+    speed_index = _fetch_surface_speed()
     _fetch_tennisexplorer_schedule()
 
     logger.info("Downloading match+odds history for tours: %s", config.TOURS)
@@ -140,6 +116,10 @@ def main() -> None:
     if matches.empty:
         logger.error("No match history downloaded -- keeping the committed Elo state "
                      "and model; only the supplementary sources were refreshed.")
+        # Surfaces on the GitHub Actions run page without failing the run:
+        # the supplementary refreshes above did succeed.
+        print("::warning::tennis-data.co.uk lieferte keine Historie -- Modell und Elo-Zustand "
+              "bleiben auf dem letzten Stand.")
         return
     matches.to_csv(config.PROCESSED_DIR / "matches_normalized.csv", index=False)
     logger.info("Loaded %d matches (%s to %s)", len(matches),
@@ -162,6 +142,8 @@ def main() -> None:
     full_model = model_mod.train(table, use_market=n_with_odds > 0)
     model_mod.save(full_model, config.MODELS_DIR / "win_probability_model.joblib")
 
+    ta_path = config.PROCESSED_DIR / "ta_elo_current.csv"
+    ta_elo = pd.read_csv(ta_path) if ta_path.exists() else pd.DataFrame()
     _write_report(matches, snapshot, ta_elo)
     logger.info("Update complete.")
 

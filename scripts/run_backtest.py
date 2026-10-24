@@ -39,6 +39,11 @@ def main() -> None:
     cache = config.PROCESSED_DIR / "matches_normalized.csv"
     if args.download or not cache.exists():
         matches = odds_history.load_all()
+        if matches.empty:
+            # tennis-data.co.uk unreachable (its Cloudflare front has refused
+            # some networks). Nothing to test; say so instead of crashing.
+            print("::warning::Keine Spielhistorie verfuegbar -- Backtest uebersprungen.")
+            return
         matches.to_csv(cache, index=False)
     else:
         matches = pd.read_csv(cache, parse_dates=["date"])

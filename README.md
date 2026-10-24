@@ -159,22 +159,63 @@ print(head_to_head_summary(h2h, "Zverev A.", "Sinner J."))
 
 Two scheduled workflows:
 
-- `.github/workflows/update-data.yml` — daily, the heavy job: re-downloads
-  the season files, retrains Elo and the model, refreshes the backtest, then
-  rebuilds the dashboard. tennis-data.co.uk sits behind Cloudflare and has
-  refused some clients with HTTP 403; on such a day the retrain step is
-  skipped (`continue-on-error`) and the committed model files stay in use.
+- `.github/workflows/update-data.yml` — **every Tuesday, 06:41 UTC**, the
+  heavy job. Tennis Abstract updates its Elo and yElo leaderboards weekly,
+  usually on Monday, so Tuesday picks up the new ratings. Steps:
+  `scripts/update_player_data.py` (Tennis Abstract Elo + yElo, the dated
+  Elo history, the complete player table, the leader tables), then
+  `update_data.py --skip-player-data` (season files, Elo state, model),
+  the backtest, and a dashboard rebuild. Later steps run even when an
+  earlier one failed, and the run is shown red when a source could not be
+  read. tennis-data.co.uk sits behind Cloudflare and has refused some
+  networks (HTTP 403); then the retrain is skipped with a warning and the
+  committed model stays in use. Weekly rather than daily keeps the
+  repository small: the model files are ~3 MB of binary per retrain.
 - `.github/workflows/dashboard.yml` — four times a day (03:17, 09:17, 15:17,
   21:17 UTC), the light job: `build_dashboard.py --refresh-schedule` reads
   the next three days from TennisExplorer, every bookmaker on each match
-  page, Polymarket and Kalshi, rebuilds `docs/index.html`, and appends the
-  run's quotes to `data/processed/odds_snapshots.csv` and its positive-EV
-  sides to `data/processed/picks_log.csv`.
+  page, Polymarket, Kalshi and Tennis Abstract's tournament forecasts,
+  rebuilds `docs/index.html`, and appends to the quote, pick and forecast
+  logs in `data/processed/`.
 
+Both share one concurrency group, so they never push at the same time.
 GitHub only fires scheduled workflows from the files as they exist on the
-**default branch**, and pauses them after 60 days without a commit, so merge
-both workflows there for the schedules to take effect; `workflow_dispatch`
-lets you trigger either manually from the Actions tab in the meantime.
+**default branch** and pauses them after 60 days without activity;
+`workflow_dispatch` runs either one by hand from the Actions tab. The
+Docker updater (`docker/update_loop.sh`) runs the full `update_data.py`,
+player table included, every 24 hours.
+
+## The player table: every ATP and WTA player
+
+`data/processed/player_profiles_atp.csv` and `player_profiles_wta.csv`,
+rewritten every Tuesday (see `tennissharp/player_data.py`), one row per
+player:
+
+- **Tennis Abstract Elo**: Elo and rank, hard/clay/grass Elo with ranks,
+  peak Elo and month, official ranking, age.
+- **Tennis Abstract yElo**: the season Elo (current calendar year only),
+  its rank, wins and losses.
+- **Last 52 weeks, overall and per surface (hard, clay, grass)**: matches,
+  wins, losses, serve points won, return points won, total points won,
+  dominance ratio, ace and double-fault rates, first serve in and won,
+  second serve won, hold %, break %, break points saved and converted,
+  aces conceded; plus form over the last ten matches, last match date and
+  ranking.
+
+The statistics come from TennisMyLife, which publishes the same (Sackmann)
+schema as the data behind Tennis Abstract's player pages; Tennis Abstract's
+own per-player logs sit under paths its robots.txt disallows. Players are
+the union of both sources. TennisMyLife carries no WTA 125 or ITF matches,
+so WTA players who play mostly there have Elo but no statistics. Names are
+reconciled across the two sources ("Bu Yunchaokete" / "Yunchaokete Bu",
+"Christopher Oconnell" / "Christopher O'Connell") and within TennisMyLife,
+which spells 13 players two ways ("Alex de Minaur" / "Alex De Minaur").
+
+`ta_elo_history.csv` keeps one snapshot per Tennis Abstract update. The
+current ratings cannot be joined onto past matches without leaking the
+future; dated snapshots can, from the week they were taken.
+`player_profiles_meta.json` records the update dates, the statistics
+window, the counts and any source that failed.
 
 ## The price board: sharp vs. soft, prediction markets, arbitrage
 
@@ -470,6 +511,8 @@ src/tennissharp/
                          odds, EV vs. fair value, arbitrage, quote snapshots, CLV
   player_stats.py        last-52-week serve/return profiles, head-to-head,
                          Barnett–Clarke point model, leader tables
+  player_data.py         the weekly player table: TA Elo + yElo joined onto the
+                         statistics, Elo history, leader tables
   staking.py             fractional Kelly bet sizing
   backtest.py            historical value-betting simulation
   value_finder.py        live odds -> value bet candidates (+ TA Elo cross-check)

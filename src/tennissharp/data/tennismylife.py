@@ -21,8 +21,10 @@ per match, `w_`/`l_` prefixed serve columns for winner and loser.
 """
 from __future__ import annotations
 
+import datetime as dt
 import logging
 import re
+import time
 
 import pandas as pd
 import requests
@@ -52,18 +54,54 @@ def _local_name(pattern_key: str, year: int) -> str:
     return FILE_PATTERNS[pattern_key].format(year=year).replace("/", "_")
 
 
-def download_season(pattern_key: str, year: int, force: bool = False):
-    """Cache one season file locally; returns the path or None."""
+# The running season's file grows every day; a cached copy older than this
+# is fetched again. Closed seasons do not change and stay cached for good.
+# Before this rule the cache never expired at all: a long-running checkout
+# (the Docker updater's volume, a developer's clone) loaded the 2026 file
+# once and kept computing "last-52-week" statistics from it indefinitely.
+CURRENT_SEASON_MAX_AGE_HOURS = 6.0
+
+
+def is_running_season(year: int, today: dt.date | None = None) -> bool:
+    """True for the current season -- and, in January, for the one just
+    closed, whose file still takes late corrections."""
+    today = today or dt.date.today()
+    return year >= today.year or (today.month == 1 and year == today.year - 1)
+
+
+def download_season(pattern_key: str, year: int, force: bool = False,
+                    today: dt.date | None = None, now: float | None = None):
+    """Cache one season file locally; returns the path or None.
+
+    A closed season is read from the cache; the running season is fetched
+    again once the cached copy is CURRENT_SEASON_MAX_AGE_HOURS old. When a
+    refresh fails, the stale copy is still returned -- dropping the season
+    would remove a whole year from every statistic instead of a few days.
+    """
     dest = config.RAW_DIR / "tennismylife" / _local_name(pattern_key, year)
     dest.parent.mkdir(parents=True, exist_ok=True)
-    if dest.exists() and dest.stat().st_size and not force:
-        return dest
+    cached = dest.exists() and dest.stat().st_size > 0
+    if cached and not force:
+        if not is_running_season(year, today):
+            return dest
+        age_hours = ((now if now is not None else time.time()) - dest.stat().st_mtime) / 3600.0
+        if age_hours < CURRENT_SEASON_MAX_AGE_HOURS:
+            return dest
     url = f"{BASE_URL}/data/{FILE_PATTERNS[pattern_key].format(year=year)}"
     try:
-        dest.write_bytes(_fetch_season_file(url))
+        content = _fetch_season_file(url)
     except requests.RequestException as exc:
+        if cached:
+            logger.warning("TennisMyLife refresh failed for %s %s (%s); using the cached copy",
+                           pattern_key, year, exc)
+            return dest
         logger.warning("No TennisMyLife data for %s %s (%s)", pattern_key, year, exc)
         return None
+    # Written to a side file and moved into place, so an interrupted
+    # download never leaves a truncated season behind.
+    part = dest.with_name(dest.name + ".part")
+    part.write_bytes(content)
+    part.replace(dest)
     return dest
 
 

@@ -1,0 +1,36 @@
+{
+ "generated_at": "2026-10-24T20:31:09+00:00",
+ "ta_elo_last_update": {
+  "atp": "2026-10-19",
+  "wta": "2026-10-19"
+ },
+ "ta_yelo_last_update": {
+  "atp": "2026-10-19",
+  "wta": "2026-10-19"
+ },
+ "stats_window": {
+  "from": "2025-10-24",
+  "to": "2026-10-24"
+ },
+ "stats_last_match": {
+  "atp": "2026-10-19",
+  "wta": "2026-10-12"
+ },
+ "players": {
+  "atp": {
+   "total": 1126,
+   "with_elo": 559,
+   "with_yelo": 564,
+   "with_stats": 1120,
+   "with_elo_and_stats": 555
+  },
+  "wta": {
+   "total": 603,
+   "with_elo": 515,
+   "with_yelo": 537,
+   "with_stats": 355,
+   "with_elo_and_stats": 307
+  }
+ },
+ "errors": []
+}

@@ -86,14 +86,67 @@ def parse_elo_html(html: str, tour: str) -> pd.DataFrame:
     return data.dropna(subset=["player"]).reset_index(drop=True)
 
 
+# "Updated weekly(ish). Last update: 2026-10-19" -- in the intro of every
+# Elo and yElo leaderboard. The ratings carry no date of their own, so this
+# is what dates a snapshot in the weekly history.
+_LAST_UPDATE_RE = re.compile(r"Last update:\s*(\d{4}-\d{2}-\d{2})")
+
+
+def parse_last_update(html: str) -> str | None:
+    """The leaderboard's own update date as ISO text, or None."""
+    m = _LAST_UPDATE_RE.search(html or "")
+    return m.group(1) if m else None
+
+
 def fetch_elo_ratings(tour: str) -> pd.DataFrame:
     resp = requests.get(ELO_URLS[tour], headers=_HEADERS, timeout=30)
     resp.raise_for_status()
-    return parse_elo_html(resp.text, tour)
+    df = parse_elo_html(resp.text, tour)
+    df["ta_updated"] = parse_last_update(resp.text)
+    return df
 
 
 def fetch_all_elo_ratings() -> pd.DataFrame:
     return pd.concat([fetch_elo_ratings("atp"), fetch_elo_ratings("wta")], ignore_index=True)
+
+
+# Season Elo: the same method run on the current calendar year alone, "as
+# if we had no previous information" -- Tennis Abstract's Elo version of the
+# Race ranking. Lists players with five or more wins this year at tour
+# level, tour qualifying, challengers or ITF $50K+.
+YELO_URLS = {
+    "atp": "https://tennisabstract.com/reports/atp_season_yelo_ratings.html",
+    "wta": "https://tennisabstract.com/reports/wta_season_yelo_ratings.html",
+}
+_YELO_COLUMN_MAP = {"Rank": "yelo_rank", "Player": "player", "Wins": "yelo_wins",
+                    "Losses": "yelo_losses", "yElo": "yelo"}
+
+
+def parse_yelo_html(html: str, tour: str) -> pd.DataFrame:
+    tables = pd.read_html(io.StringIO(html))
+    data = max(tables, key=lambda t: t.shape[0] * t.shape[1])
+    data = data.loc[:, [c for c in data.columns if not str(c).startswith("Unnamed")]]
+    data.columns = [re.sub(r"\s+", " ", str(c)).strip() for c in data.columns]
+    data = data.rename(columns=_YELO_COLUMN_MAP)
+    for col in ("yelo_rank", "yelo_wins", "yelo_losses", "yelo"):
+        if col in data.columns:
+            data[col] = pd.to_numeric(data[col], errors="coerce")
+    data["player"] = data["player"].astype(str).str.replace("\xa0", " ", regex=False).str.strip()
+    data["tour"] = tour
+    data["ta_updated"] = parse_last_update(html)
+    keep = [c for c in ("yelo_rank", "player", "yelo_wins", "yelo_losses", "yelo", "tour", "ta_updated")
+            if c in data.columns]
+    return data[keep].dropna(subset=["player", "yelo"]).reset_index(drop=True)
+
+
+def fetch_yelo_ratings(tour: str) -> pd.DataFrame:
+    resp = requests.get(YELO_URLS[tour], headers=_HEADERS, timeout=30)
+    resp.raise_for_status()
+    return parse_yelo_html(resp.text, tour)
+
+
+def fetch_all_yelo_ratings() -> pd.DataFrame:
+    return pd.concat([fetch_yelo_ratings("atp"), fetch_yelo_ratings("wta")], ignore_index=True)
 
 
 def filter_by_tour(df: pd.DataFrame, tour: str) -> pd.DataFrame:

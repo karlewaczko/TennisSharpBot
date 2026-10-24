@@ -98,3 +98,15 @@ def test_leader_tables_have_the_api_schema():
     assert list(tables["return_hard"].columns) == ps.RETURN_LEADER_COLUMNS
     assert tables["all"]["player"].tolist() == ["Jannik Sinner", "Daniel Altmaier"]
     assert tables["clay"].empty
+
+
+def test_one_player_spelled_two_ways_is_one_profile():
+    m = _matches()
+    variant = m.iloc[[0, 1]].copy()
+    variant["winner"] = "Jannik  sinner "      # case and spacing differ
+    book = ps.StatBook(pd.concat([m, variant], ignore_index=True), as_of="2026-10-20")
+    assert "Jannik  sinner " not in book.players
+    assert book.stats("Jannik Sinner")["overall"]["matches"] == 14
+    names = ps.canonical_names(pd.DataFrame({"winner": ["Alex de Minaur"] * 3 + [" Alex De Minaur"],
+                                             "loser": ["X"] * 4}))
+    assert names[" Alex De Minaur"] == "Alex de Minaur"

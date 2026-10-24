@@ -56,6 +56,11 @@ Dashboard jetzt ein **Preisbrett**:
   Returnprofile der letzten 52 Wochen und ein Punktmodell daraus. Die
   Matchlogs der Spielerseiten sperrt Tennis Abstract per robots.txt; dieselben
   Statistiken kommen deshalb von TennisMyLife.
+- **Spielertabelle, jeden Dienstag neu:** `data/processed/player_profiles_atp.csv`
+  und `player_profiles_wta.csv` enthalten jeden ATP- und WTA-Spieler mit
+  Elo, Belag-Elo, Saison-Elo (yElo) sowie Aufschlag-, Return-, Hold- und
+  Break-Werten der letzten 52 Wochen, gesamt und je Belag. Auf GitHub lässt
+  sich die Datei direkt im Browser als Tabelle öffnen und durchsuchen.
 
 Ausführlich, mit Quellen und Messwerten: `data/reports/profi_wetten_und_edge.md`.
 

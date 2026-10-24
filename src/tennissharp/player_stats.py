@@ -23,6 +23,8 @@ Two uses:
 from __future__ import annotations
 
 import functools
+import re
+import unicodedata
 from collections import defaultdict
 
 import pandas as pd
@@ -71,13 +73,22 @@ def profile(rows: pd.DataFrame) -> dict | None:
               "opp_svgms", "opp_bpsaved", "opp_bpfaced"]].sum(min_count=1)
     with_stats = int(rows["svpt"].notna().sum())
     svpt, opp_svpt = s["svpt"], s["opp_svpt"]
+    serve_won = s["1stwon"] + s["2ndwon"]
+    return_won = opp_svpt - s["opp_1stwon"] - s["opp_2ndwon"]
+    spw = _rate(serve_won, svpt)
+    rpw = _rate(return_won, opp_svpt)
     return {
         "matches": int(len(rows)),
         "with_stats": with_stats,
         "wins": int(rows["won"].sum()),
         "losses": int(len(rows) - rows["won"].sum()),
-        "spw": _rate(s["1stwon"] + s["2ndwon"], svpt),
-        "rpw": _rate(opp_svpt - s["opp_1stwon"] - s["opp_2ndwon"], opp_svpt),
+        "spw": spw,
+        "rpw": rpw,
+        # Total points won, and Tennis Abstract's dominance ratio: return
+        # points won over serve points lost. Above 1.0 means the player wins
+        # more of the opponent's serve than the opponent wins of his.
+        "tpw": _rate(serve_won + return_won, svpt + opp_svpt),
+        "dr": (rpw / (1.0 - spw)) if (rpw is not None and spw is not None and spw < 1.0) else None,
         "ace_pct": _rate(s["ace"], svpt),
         "df_pct": _rate(s["df"], svpt),
         "first_in": _rate(s["1stin"], svpt),
@@ -93,13 +104,38 @@ def profile(rows: pd.DataFrame) -> dict | None:
     }
 
 
+def _compact(name) -> str:
+    folded = unicodedata.normalize("NFKD", str(name)).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z]", "", folded)
+
+
+def canonical_names(matches: pd.DataFrame) -> dict[str, str]:
+    """{spelling -> the player's most frequent spelling}.
+
+    TennisMyLife writes some players several ways -- "Alex de Minaur" on 135
+    matches and "Alex De Minaur" on 9, "Elena-Gabriela Ruse" next to "Elena
+    Gabriela Ruse", " McCartney Kessler" with a leading space; 13 players in
+    2025-26. Grouped by the exact string, each became two profiles and the
+    smaller one's matches were missing from the larger."""
+    counts = pd.concat([matches["winner"], matches["loser"]]).dropna().astype(str).value_counts()
+    best: dict[str, str] = {}
+    for name in counts.index:                    # most frequent first
+        key = _compact(name)
+        if key:
+            best.setdefault(key, name.strip())
+    return {name: best.get(_compact(name), name.strip()) for name in counts.index}
+
+
 class StatBook:
     """Last-52-week profiles for every player in the window."""
 
     def __init__(self, matches: pd.DataFrame, as_of=None, window_days: int = WINDOW_DAYS):
         as_of = pd.Timestamp(as_of or pd.Timestamp.now()).normalize()
         since = as_of - pd.Timedelta(days=window_days)
-        recent = matches[(matches["date"] >= since) & (matches["date"] <= as_of)]
+        recent = matches[(matches["date"] >= since) & (matches["date"] <= as_of)].copy()
+        names = canonical_names(recent)
+        for col in ("winner", "loser"):
+            recent[col] = recent[col].map(names).fillna(recent[col])
         self.long = long_format(recent).sort_values("date")
         self.players = sorted(self.long["player"].unique())
         self._by_player = {p: g for p, g in self.long.groupby("player")}
@@ -111,6 +147,11 @@ class StatBook:
                 self.tour_avg[str(tour)] = prof["spw"]
         self.tour_avg.setdefault("all", profile(self.long)["spw"] if len(self.long) else 0.62)
         self._matches = recent
+
+    def matches_of(self, player: str) -> pd.DataFrame:
+        """The window's rows for one player, oldest first (empty if none)."""
+        rows = self._by_player.get(player)
+        return rows if rows is not None else self.long.iloc[0:0]
 
     def resolve(self, abbreviated: str) -> str | None:
         """The window's player denoted by a schedule-style name; on a tie
