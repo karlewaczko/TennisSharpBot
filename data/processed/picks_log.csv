@@ -55,3 +55,9 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-25T13:12:19+00:00,3359661,2026-10-26,Sioux Falls challenger,Mees Rottgering,Polymarket,prediction,value,1.558,0.6531,0.0179,Betfair
 2026-10-25T13:12:19+00:00,3358591,2026-10-27,Brest challenger,Filippo Romano,10Bet,book,value,3.6,0.287,0.0333,Betfair
 2026-10-25T13:12:19+00:00,3358591,2026-10-27,Brest challenger,Filippo Romano,Betway,book,value,3.5,0.287,0.0046,Betfair
+2026-10-25T13:45:35+00:00,3358543,2026-10-25,Lyon,Musetti L.,Polymarket,prediction,value,3.118,0.3401,0.0605,Betfair
+2026-10-25T13:45:35+00:00,3358283,2026-10-26,Guangzhou,Udvardy P.,Kalshi,prediction,value,2.733,0.3676,0.0047,Pinnacle
+2026-10-25T13:45:35+00:00,3359721,2026-10-27,Tokyo,Sakkari M.,Betsson,book,value,1.63,0.6162,0.0044,Betfair
+2026-10-25T13:45:35+00:00,3359721,2026-10-27,Tokyo,Sakkari M.,Betway,book,value,1.65,0.6162,0.0167,Betfair
+2026-10-25T13:45:35+00:00,3359721,2026-10-27,Tokyo,Sakkari M.,Interwetten,book,value,1.63,0.6162,0.0044,Betfair
+2026-10-25T13:45:35+00:00,3359661,2026-10-26,Sioux Falls challenger,Mees Rottgering,Polymarket,prediction,value,1.558,0.6603,0.0291,Betfair
