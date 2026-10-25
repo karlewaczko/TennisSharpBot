@@ -175,8 +175,10 @@ Two scheduled workflows:
   21:17 UTC), the light job: `build_dashboard.py --refresh-schedule` reads
   the next three days from TennisExplorer, every bookmaker on each match
   page, Polymarket, Kalshi and Tennis Abstract's tournament forecasts,
-  rebuilds `docs/index.html`, and appends to the quote, pick and forecast
-  logs in `data/processed/`.
+  rebuilds `docs/index.html` (including the list of every match today and
+  tomorrow), and appends to the quote, pick and forecast logs in
+  `data/processed/`. `--limit 250` lets every tour and Challenger match of
+  the three days through; 120 had cut the list short on a full card.
 
 - **A Claude Code scheduled task, every Tuesday 05:53 UTC**, for Tennis
   Abstract. The site answers GitHub's runners with HTTP 403 (measured on
@@ -290,8 +292,24 @@ an edge: on the US Open card measured in September, Tennis Abstract's
 forecast sat 6.45 pp from the market on average, our model 1.24 pp, and the
 market is calibrated to within 0.8 pp.
 
+**Every match, today and tomorrow.** The top of the page lists every
+singles match on TennisExplorer's schedule for today and tomorrow in German
+time -- tour, Challenger, ITF, UTR and the site's "Futures" band, upcoming,
+running and finished -- grouped by tournament. Each upcoming match carries
+both players' line from the weekly player table (`player_profiles_*.csv`:
+rank, Elo and surface Elo, form, 52-week record, serve and return points,
+hold and break), the fair market price, the model, Tennis Abstract's Elo and
+the point model, and a one-line verdict. A **signal** there is the model
+table's own signal (trained model, current data, EV of at least +5 %) at
+Pinnacle's price, the one book on the match pages that BetInAsia brokers;
+Elo and point-model gaps and soft-book prices above the fair value are shown
+as hints, never as signals. Matches with no player data, model or Pinnacle
+price, and matches already under way, take one line. The list costs no
+request of its own (`build_dashboard.all_matches_board`), and every run
+rebuilds it.
+
 ```bash
-python scripts/build_dashboard.py --refresh-schedule --limit 120 --itf-limit 40
+python scripts/build_dashboard.py --refresh-schedule --limit 250 --itf-limit 40
 python scripts/render_dashboard.py -o docs/index.html
 python scripts/report_clv.py --results        # CLV + settlement of everything logged
 python scripts/study_line_movement.py --days 3 # opening vs. closing on recent results

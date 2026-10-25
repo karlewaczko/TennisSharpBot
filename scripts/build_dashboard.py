@@ -29,6 +29,10 @@ below one). That part needs no rating, so it also covers ITF matches the
 model never scores. Each run appends its quotes to odds_snapshots.csv and
 its positive-EV sides to picks_log.csv, the raw material for measuring
 opening-vs-closing movement and closing-line value later.
+
+Last, `all_matches` lists every singles match of today and tomorrow, each
+joined with the weekly player table and whatever the run above learned
+about it -- the page's complete match list (see `all_matches_board`).
 """
 import _bootstrap  # noqa: F401
 import argparse
@@ -37,6 +41,7 @@ import importlib.util
 import json
 import time
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import joblib
 import pandas as pd
@@ -430,6 +435,277 @@ def _same_pair(ref_players, name_1, name_2):
     return orientation(ref_players, name_1, name_2)
 
 
+# ----------------------------------------------------------- every match ----
+#
+# The model table and the price board cover what can be scored or compared.
+# The match list covers the rest as well: every singles match on today's and
+# tomorrow's schedule (German dates), finished, running or still to come,
+# ITF, UTR and the site's "Futures" band included. It costs no request of its
+# own -- it joins what the run already read (schedule, match pages, model)
+# with the weekly player table.
+
+BERLIN = ZoneInfo("Europe/Berlin")
+# Of the books TennisExplorer lists, the one BetInAsia brokers. SBOBET, ISN
+# and Singbet are not on the page, and Betfair is not playable from Germany.
+BETINASIA_BOOKS = ("Pinnacle",)
+# Below this many matches on the surface, a player's overall 52-week line
+# stands in for the surface line.
+MIN_SURFACE_MATCHES = 5
+_ELO_COLUMN = {"hard": "helo", "clay": "celo", "grass": "gelo"}
+
+
+def category_of(tournament: str, url: str = "") -> str:
+    name = str(tournament).lower()
+    if "utr" in name:
+        return "UTR"
+    if "itf" in name or "futures" in name:
+        return "ITF"
+    if CHALLENGER_MARKER in name:
+        return "Challenger"
+    if "nationalliga" in name:
+        return "Liga"
+    return "WTA" if "-women/" in str(url) else "ATP"
+
+
+class ProfileBook:
+    """The weekly player table (player_profiles_{atp,wta}.csv), searchable by
+    the schedule's `Lastname F.` spelling.
+
+    resolve_name scans every candidate per call; indexing the table by each
+    reading's surname first hands it only the players who could match, so a
+    full schedule resolves in seconds rather than minutes."""
+
+    def __init__(self, frames: dict[str, pd.DataFrame]):
+        self.rows, self.index, self.matches, self.tour_avg = {}, {}, {}, {}
+        for tour, df in frames.items():
+            df = df.drop_duplicates("player").set_index("player", drop=False)
+            self.rows[tour] = df
+            self.matches[tour] = df["matches"].fillna(0).to_dict()
+            idx: dict[str, list[str]] = {}
+            for name in df.index:
+                for surname, _ in _am.name_readings(str(name)):
+                    idx.setdefault(surname, []).append(name)
+            self.index[tour] = idx
+            ok = df[df["matches_with_stats"].fillna(0) > 0]
+            w = ok["matches_with_stats"]
+            self.tour_avg[tour] = float((ok["spw"] * w).sum() / w.sum()) if len(ok) else 0.62
+
+    @classmethod
+    def load(cls, directory: Path | None = None) -> "ProfileBook":
+        directory = Path(directory or config.PROCESSED_DIR)
+        return cls({tour: pd.read_csv(directory / f"player_profiles_{tour}.csv")
+                    for tour in ("atp", "wta")
+                    if (directory / f"player_profiles_{tour}.csv").exists()})
+
+    def resolve(self, query: str, tour: str):
+        idx = self.index.get(tour) or {}
+        cands = {c for surname, _ in _am.name_readings(str(query)) for c in idx.get(surname, ())}
+        if not cands:
+            return None
+        hit = resolve_name(str(query), sorted(cands), weight=self.matches[tour].get)
+        return self.rows[tour].loc[hit] if hit else None
+
+
+def profile_side(row, surface: str | None) -> dict:
+    """The player-table line the match list shows: ratings, the 52-week
+    record and serve/return numbers -- on the match surface where the player
+    has played at least MIN_SURFACE_MATCHES there, else overall."""
+    def num(key, digits=3):
+        v = row.get(key) if key else None
+        return round(float(v), digits) if v is not None and pd.notna(v) else None
+
+    surf = str(surface or "").lower()
+    scope = surf if surf in _ELO_COLUMN and (num(f"{surf}_matches") or 0) >= MIN_SURFACE_MATCHES else None
+    pre = f"{scope}_" if scope else ""
+    form = row.get("form_last10")
+    last = row.get("last_match")
+    return {
+        "name": str(row["player"]),
+        "rank": num("official_rank", 0), "age": num("age", 1),
+        "elo": num("elo", 0), "elo_rank": num("elo_rank", 0),
+        "selo": num(_ELO_COLUMN.get(surf), 0), "yelo": num("yelo", 0),
+        "w": num(f"{pre}wins", 0), "l": num(f"{pre}losses", 0),
+        "n": num(f"{scope}_matches" if scope else "matches_with_stats", 0),
+        "spw": num(f"{pre}spw"), "rpw": num(f"{pre}rpw"),
+        "hold": num(f"{pre}hold_pct"), "brk": num(f"{pre}break_pct"),
+        "scope": scope,
+        "form": str(form) if pd.notna(form) else None,
+        "last": str(last)[:10] if pd.notna(last) else None,
+    }
+
+
+def profile_forecasts(a: dict | None, b: dict | None, tour_avg: float, best_of: int) -> dict:
+    """Two market-free opinions from the player table alone: Tennis
+    Abstract's Elo (surface Elo when both players have one) and the
+    Barnett-Clarke point model on the 52-week serve/return numbers, shrunk
+    toward the tour average like player_stats.blended_rates."""
+    out = {}
+    if not a or not b:
+        return out
+    both_surface = a["selo"] is not None and b["selo"] is not None
+    ra, rb = (a["selo"], b["selo"]) if both_surface else (a["elo"], b["elo"])
+    if ra is not None and rb is not None:
+        out["elo"] = round(_ta_elo_probability(ra, rb), 4)
+        out["elo_basis"] = "surface" if both_surface else "overall"
+    if None not in (a["spw"], a["rpw"], b["spw"], b["rpw"]):
+        def blend(side):
+            n = side["n"] or 0
+            w = n / (n + ps.SHRINK_MATCHES)
+            return (w * side["spw"] + (1 - w) * tour_avg,
+                    w * side["rpw"] + (1 - w) * (1.0 - tour_avg))
+        (sa, ra_), (sb, rb_) = blend(a), blend(b)
+        p, q = ps.point_probabilities(sa, ra_, sb, rb_, tour_avg)
+        out["stat"] = round(ps.match_probability(round(p, 4), round(q, 4), best_of), 4)
+    return out
+
+
+def _compact(value):
+    """Drops empty fields: most of the list is ITF and UTR matches with no
+    profile, model or book, and their nulls would be most of the payload."""
+    if isinstance(value, dict):
+        return {k: _compact(v) for k, v in value.items()
+                if v is not None and v != [] and v != [None, None]}
+    if isinstance(value, list):
+        return [_compact(v) for v in value]
+    return value
+
+
+def _score_text(m) -> str | None:
+    sets = [m.get("sets_won1"), m.get("sets_won2")]
+    out = f"{int(sets[0])}:{int(sets[1])}" if all(pd.notna(s) for s in sets) else ""
+    if isinstance(m.get("score"), str) and m["score"].strip():
+        out = f"{out} ({m['score'].strip()})" if out else m["score"].strip()
+    return out or None
+
+
+def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: list[dict],
+                      profiles: ProfileBook, threshold: float, surface_of=None,
+                      now=None, days: int = 2) -> dict:
+    """Every singles match of today and tomorrow (Berlin dates), each with
+    the player table, the market, every forecast this run has, and the
+    verdict for a BetInAsia bettor.
+
+    A signal is the model table's own signal (trained model, not stale,
+    sharp reference, EV past the threshold) priced at a BetInAsia book. Elo
+    and point-model gaps are shown, never signalled -- the same rule as the
+    model table, for the reasons given there."""
+    now = pd.Timestamp(now or pd.Timestamp.now(tz="UTC")).tz_convert("UTC")
+    first = now.tz_convert(BERLIN).date()
+    wanted = [(first + dt.timedelta(days=i)).isoformat() for i in range(days)]
+    by_id = {str(e["match_id"]): e for e in price_board}
+    scored = {str(m["match_id"]): m for m in matches}
+    starts = start_times(sched)
+    done = ~unplayed_mask(sched)
+    running = started_mask(sched, now)
+
+    rows = []
+    for i, m in sched.iterrows():
+        p1, p2 = str(m["player1"]), str(m["player2"])
+        if "/" in p1 or "/" in p2:
+            continue
+        st = starts.loc[i]
+        day = st.tz_convert(BERLIN).date().isoformat() if pd.notna(st) else str(m.get("date"))
+        if day not in wanted:
+            continue
+        mid = str(m["match_id"])
+        url = str(m.get("tournament_url", ""))
+        # The site's collective "Futures" band carries no tournament link, so
+        # no tour either: such a player is looked up in both tables and kept
+        # only when exactly one of them knows the name.
+        tours = ["wta"] if "-women/" in url else ["atp"] if "-men/" in url else ["atp", "wta"]
+        tour = tours[0]
+        entry, sc = by_id.get(mid) or {}, scored.get(mid) or {}
+        surface = entry.get("surface") or (surface_of(str(m["tournament"])) if surface_of else None)
+        best_of = entry.get("best_of") or best_of_for(str(m["tournament"]), tour)
+
+        sides, found = [], set()
+        for name in (p1, p2):
+            hits = [(t, r) for t in tours if (r := profiles.resolve(name, t)) is not None]
+            sides.append(profile_side(hits[0][1], surface) if len(hits) == 1 else None)
+            found.update(t for t, _ in hits[:1] if len(hits) == 1)
+        if len(found) == 1:
+            tour = found.pop()
+        elif found:
+            sides = [None, None]
+        if sides[0] and sides[1] and sides[0]["name"] == sides[1]["name"]:
+            sides = [None, None]
+        fc = profile_forecasts(sides[0], sides[1], profiles.tour_avg.get(tour, 0.62), best_of)
+
+        odds = ([round(float(m["odds1"]), 3), round(float(m["odds2"]), 3)]
+                if pd.notna(m.get("odds1")) and pd.notna(m.get("odds2")) else None)
+        books = {b: q for b, q in (entry.get("books") or {}).items() if b != "TennisExplorer"}
+        if entry:
+            fair, fair_source, quality = entry["fair"], entry["fair_source"], entry["fair_quality"]
+        elif odds and is_priced(odds):
+            fair = [round(x, 4) for x in odds_math.shin_devig(odds)]
+            fair_source, quality = "TennisExplorer", "soft"
+        else:
+            fair, fair_source, quality = None, None, None
+        pin = next((list(books[b]) for b in BETINASIA_BOOKS if b in books), None)
+        best = None
+        if books:
+            best = [max(((b, q[k]) for b, q in books.items()), key=lambda t: t[1]) for k in (0, 1)]
+            best = [[b, round(o, 3)] for b, o in best]
+
+        model_p = entry.get("model_prob_1")
+        ev_bia = ([round(model_p * pin[0] - 1, 4), round((1 - model_p) * pin[1] - 1, 4)]
+                  if model_p is not None and pin else None)
+        signal = None
+        if sc.get("signal") and sc.get("ref_book") in BETINASIA_BOOKS:
+            k = max((0, 1), key=lambda j: sc["sides"][j]["ev_at_ref"])
+            signal = {"side": k, "book": sc["ref_book"], "odds": sc["sides"][k]["ref_odds"],
+                      "ev": sc["sides"][k]["ev_at_ref"]}
+        # A soft book paying more than the sharp (or liquid exchange) fair
+        # value: real EV, but at a book BetInAsia does not carry -- shown as
+        # a hint, never as a signal.
+        soft = None
+        if quality in ("sharp", "exchange"):
+            cands = [v for v in entry.get("values") or []
+                     if v["kind"] == "book" and not v["is_sharp"] and not v["signal_only"]
+                     and v["venue"] not in BETINASIA_BOOKS and v["ev"] is not None
+                     and v["ev"] >= threshold]
+            if cands:
+                v = max(cands, key=lambda r: r["ev"])
+                soft = {"side": 0 if v["player"] == entry["players"][0] else 1,
+                        "book": v["venue"], "odds": v["odds"], "ev": v["ev"]}
+
+        status = "finished" if done.loc[i] else ("live" if running.loc[i] else "upcoming")
+        h2h = (entry.get("stats") or {}).get("h2h")
+        rows.append({
+            "id": mid, "day": day,
+            "time": st.tz_convert(BERLIN).strftime("%H:%M") if pd.notna(st) else None,
+            "tournament": str(m["tournament"]), "cat": category_of(m["tournament"], url),
+            "tour": tour, "surface": surface, "best_of": best_of, "round": entry.get("round"),
+            "status": status, "score": _score_text(m) if status != "upcoming" else None,
+            "players": [p1, p2], "profiles": sides, "odds": odds,
+            "fair": fair, "fair_source": fair_source, "fair_quality": quality,
+            "pinnacle": pin, "best": best,
+            "model": model_p, "method": sc.get("method") or entry.get("method"),
+            "stale": sc.get("stale_players") or [],
+            "elo": fc.get("elo"), "elo_basis": fc.get("elo_basis"), "stat": fc.get("stat"),
+            "ta_forecast": (entry.get("ta_forecast") or {}).get("prob_1"),
+            "h2h": [h2h["wins_a"], h2h["wins_b"]] if h2h else None,
+            "ev_bia": ev_bia, "signal": signal, "soft": soft,
+        })
+
+    cat_rank = {c: k for k, c in enumerate(("ATP", "WTA", "Challenger", "ITF", "UTR", "Liga"))}
+    rows.sort(key=lambda r: (r["day"], cat_rank.get(r["cat"], 9), r["tournament"],
+                             r["time"] or "99:99", r["players"][0]))
+    summary = []
+    for d in wanted:
+        sub = [r for r in rows if r["day"] == d]
+        summary.append({
+            "date": d, "n": len(sub),
+            "n_upcoming": sum(r["status"] == "upcoming" for r in sub),
+            "n_profiled": sum(1 for r in sub if r["profiles"][0] and r["profiles"][1]),
+            "n_model": sum(r["model"] is not None for r in sub),
+            "n_pinnacle": sum(r["pinnacle"] is not None for r in sub),
+            "n_signals": sum(r["signal"] is not None for r in sub),
+        })
+    return {"days": summary, "matches": [_compact(r) for r in rows], "threshold": threshold,
+            "books": list(BETINASIA_BOOKS), "n_signals": sum(s["n_signals"] for s in summary)}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("-o", "--out", type=Path, default=config.PROCESSED_DIR / "dashboard.json")
@@ -461,6 +737,7 @@ def main() -> None:
 
     sched = pd.read_csv(config.PROCESSED_DIR / "tennisexplorer_upcoming.csv",
                         dtype={"match_id": str})
+    sched_all = sched.copy()
     # ITF stays in for the price board; the model filter is applied further
     # down. The remaining exclusions are events no venue prices seriously.
     sched = sched[~sched["tournament"].str.contains(PRICE_BOARD_EXCLUDE, na=False,
@@ -852,6 +1129,9 @@ def main() -> None:
 
     matches.sort(key=lambda x: x["best_edge"], reverse=True)
     boards = build_boards(price_board)
+    every = all_matches_board(
+        sched_all, price_board, matches, ProfileBook.load(), args.threshold,
+        surface_of=lambda t: surface_by_name.get(tourney_matching.normalize_tourney_name(t)))
     generated_at = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     payload = {
         "generated_at": generated_at,
@@ -887,6 +1167,7 @@ def main() -> None:
             "stats_players": len(book.players) if book is not None else 0,
         },
         **boards,
+        "all_matches": every,
     }
     args.out.write_text(json.dumps(payload, indent=1, default=str))
     if not args.no_snapshots:
@@ -900,6 +1181,10 @@ def main() -> None:
           f"({payload['prediction_markets']['n_matched']} Partien mit Polymarket/Kalshi-Preis, "
           f"{payload['prediction_markets']['n_itf_added']} ITF dazu)")
     print("Referenzbuecher:", payload["ref_books"])
+    print("Alle Partien:", ", ".join(
+        f"{d['date']} {d['n']} ({d['n_upcoming']} offen, {d['n_profiled']} mit Profil, "
+        f"{d['n_model']} Modell, {d['n_pinnacle']} Pinnacle, {d['n_signals']} Signale)"
+        for d in every["days"]))
 
 
 def build_boards(price_board: list[dict]) -> dict:

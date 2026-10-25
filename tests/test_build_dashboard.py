@@ -268,3 +268,96 @@ def test_a_match_past_its_listed_start_counts_as_started(bd):
 def test_a_schedule_without_a_time_column_is_never_marked_started(bd):
     sched = pd.DataFrame([{"date": "2026-10-23", "player1": "A", "player2": "B"}])
     assert not bd.started_mask(sched, pd.Timestamp("2026-10-24", tz="UTC")).any()
+
+
+# ------------------------------------------------------------ every match ----
+
+def _profile(name, elo, helo, spw, rpw, n=40):
+    return {"player": name, "official_rank": 1.0, "age": 25.0, "elo": elo, "elo_rank": 1.0,
+            "helo": helo, "yelo": elo, "wins": 30, "losses": 10, "matches": n,
+            "matches_with_stats": n, "spw": spw, "rpw": rpw, "hold_pct": 0.85, "break_pct": 0.3,
+            "hard_matches": n, "hard_wins": 25, "hard_losses": 8, "hard_spw": spw,
+            "hard_rpw": rpw, "hard_hold_pct": 0.86, "hard_break_pct": 0.31,
+            "form_last10": "8-2", "last_match": "2026-10-20"}
+
+
+@pytest.fixture()
+def board_inputs(bd):
+    profiles = bd.ProfileBook({
+        "atp": pd.DataFrame([_profile("Jannik Sinner", 2200, 2180, 0.69, 0.42),
+                             _profile("Alexander Zverev", 2000, 1990, 0.67, 0.38)]),
+        "wta": pd.DataFrame([_profile("Iga Swiatek", 2100, 2050, 0.60, 0.48)]),
+    })
+    url = "https://www.tennisexplorer.com/vienna/2026/atp-men/"
+    row = {"tournament": "Vienna", "tournament_url": url, "odds1": 1.5, "odds2": 2.6,
+           "score": None, "sets_won1": None, "sets_won2": None}
+    sched = pd.DataFrame([
+        {**row, "match_id": "1", "date": "2026-10-25", "time": "14:00",
+         "player1": "Sinner J.", "player2": "Zverev A."},
+        {**row, "match_id": "2", "date": "2026-10-25", "time": "06:00", "player1": "Zverev A.",
+         "player2": "Sinner J.", "score": "6-4, 6-3", "sets_won1": 2, "sets_won2": 0},
+        # 23:30 UTC is already the next day in Germany.
+        {**row, "match_id": "3", "date": "2026-10-25", "time": "23:30",
+         "player1": "Sinner J.", "player2": "Zverev A."},
+        {**row, "match_id": "4", "date": "2026-10-27", "time": "10:00",
+         "player1": "Sinner J.", "player2": "Zverev A."},
+        {**row, "match_id": "5", "date": "2026-10-25", "time": "15:00",
+         "player1": "Sinner J./Zverev A.", "player2": "Swiatek I./Doe J."},
+        {**row, "match_id": "6", "date": "2026-10-26", "time": "09:00", "tournament": "Futures 2026",
+         "tournament_url": None, "player1": "Swiatek I.", "player2": "Nobody X.",
+         "odds1": None, "odds2": None},
+    ])
+    entry = {"match_id": "1", "surface": "Hard", "best_of": 3, "round": "final",
+             "players": ["Jannik Sinner", "Alexander Zverev"],
+             "fair": [0.64, 0.36], "fair_source": "Pinnacle", "fair_quality": "sharp",
+             "books": {"Pinnacle": [1.55, 2.6], "bet365": [1.70, 2.4], "TennisExplorer": [1.5, 2.6]},
+             "values": [{"player": "Jannik Sinner", "venue": "bet365", "kind": "book",
+                         "odds": 1.70, "ev": 0.088, "is_sharp": False, "signal_only": False}],
+             "model_prob_1": 0.70, "method": "model"}
+    scored = {"match_id": "1", "method": "model", "signal": True, "ref_book": "Pinnacle",
+              "stale_players": [],
+              "sides": [{"ev_at_ref": 0.085, "ref_odds": 1.55},
+                        {"ev_at_ref": -0.22, "ref_odds": 2.6}]}
+    return sched, [entry], [scored], profiles
+
+
+def _board(bd, sched, price_board, matches, profiles):
+    return bd.all_matches_board(sched, price_board, matches, profiles, 0.05,
+                                now=pd.Timestamp("2026-10-25 08:00", tz="UTC"))
+
+
+def test_match_list_covers_today_and_tomorrow_in_german_time(bd, board_inputs):
+    board = _board(bd, *board_inputs)
+    by_id = {m["id"]: m for m in board["matches"]}
+    assert set(by_id) == {"1", "2", "3", "6"}           # no day after tomorrow, no doubles
+    assert by_id["3"]["day"] == "2026-10-26" and by_id["3"]["time"] == "00:30"
+    assert by_id["1"]["time"] == "15:00"                  # CET after the October switch
+    assert by_id["2"]["status"] == "finished" and by_id["2"]["score"] == "2:0 (6-4, 6-3)"
+    assert [d["n"] for d in board["days"]] == [2, 2]
+
+
+def test_signal_needs_the_model_signal_at_a_betinasia_book(bd, board_inputs):
+    sched, price_board, matches, profiles = board_inputs
+    m = next(r for r in _board(bd, sched, price_board, matches, profiles)["matches"] if r["id"] == "1")
+    assert m["signal"] == {"side": 0, "book": "Pinnacle", "odds": 1.55, "ev": 0.085}
+    assert m["pinnacle"] == [1.55, 2.6] and m["ev_bia"][0] == pytest.approx(0.085)
+    assert m["best"] == [["bet365", 1.7], ["Pinnacle", 2.6]]   # the schedule's own quote never counts
+    assert m["soft"] == {"side": 0, "book": "bet365", "odds": 1.7, "ev": 0.088}
+
+    # The same disagreement priced at Betfair is not a bet from Germany.
+    matches = [{**matches[0], "ref_book": "Betfair"}]
+    m = next(r for r in _board(bd, sched, price_board, matches, profiles)["matches"] if r["id"] == "1")
+    assert "signal" not in m
+
+
+def test_player_table_feeds_ratings_and_market_free_forecasts(bd, board_inputs):
+    m = next(r for r in _board(bd, *board_inputs)["matches"] if r["id"] == "1")
+    assert [p["name"] for p in m["profiles"]] == ["Jannik Sinner", "Alexander Zverev"]
+    assert m["profiles"][0]["scope"] == "hard" and m["profiles"][0]["selo"] == 2180
+    assert m["elo_basis"] == "surface" and m["elo"] > 0.5 and m["stat"] > 0.5
+
+
+def test_tourless_rows_take_a_profile_only_when_one_table_knows_the_name(bd, board_inputs):
+    m = next(r for r in _board(bd, *board_inputs)["matches"] if r["id"] == "6")
+    assert m["profiles"][0]["name"] == "Iga Swiatek" and m["profiles"][1] is None
+    assert m["tour"] == "wta" and "fair" not in m

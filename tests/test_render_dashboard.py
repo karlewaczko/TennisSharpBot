@@ -259,3 +259,63 @@ def test_main_draw_rounds_are_shown_without_the_qualifying_style(rd):
 def test_a_row_without_a_round_still_renders(rd):
     html = rd.render(_payload())
     assert re.findall(r"__[A-Z_]+__", html) == []
+
+
+# ------------------------------------------------------------ every match ----
+
+def _all_matches(signal=True):
+    rich = {"id": "1", "day": "2026-10-25", "time": "15:00", "tournament": "Vienna", "cat": "ATP",
+            "tour": "atp", "surface": "Hard", "status": "upcoming",
+            "players": ["Sinner J.", "Zverev A."],
+            "profiles": [{"name": "Jannik Sinner", "rank": 1.0, "elo": 2200.0, "selo": 2180.0,
+                          "form": "8-2", "w": 30.0, "l": 5.0, "spw": 0.69, "rpw": 0.42,
+                          "hold": 0.9, "brk": 0.3, "scope": "hard"},
+                         {"name": "Alexander Zverev", "rank": 3.0, "elo": 2000.0}],
+            "fair": [0.64, 0.36], "fair_source": "Pinnacle", "pinnacle": [1.55, 2.6],
+            "model": 0.70, "elo": 0.78, "stat": 0.66, "ev_bia": [0.085, -0.22]}
+    if signal:
+        rich["signal"] = {"side": 0, "book": "Pinnacle", "odds": 1.55, "ev": 0.085}
+    bare = {"id": "2", "day": "2026-10-26", "time": "09:00", "tournament": "Monastir ITF",
+            "cat": "ITF", "tour": "atp", "status": "upcoming",
+            "players": ["Doe J.", "Roe R."], "odds": [1.8, 1.95], "fair": [0.52, 0.48]}
+    done = {"id": "3", "day": "2026-10-25", "time": "10:00", "tournament": "Vienna", "cat": "ATP",
+            "tour": "atp", "status": "finished", "score": "2:0 (6-4, 6-3)",
+            "players": ["Rune H.", "Fils A."], "odds": [1.9, 1.9]}
+    return {"threshold": 0.05, "books": ["Pinnacle"], "n_signals": int(signal),
+            "matches": [rich, done, bare],
+            "days": [{"date": "2026-10-25", "n": 2, "n_upcoming": 1, "n_profiled": 1, "n_model": 1,
+                      "n_pinnacle": 1, "n_signals": int(signal)},
+                     {"date": "2026-10-26", "n": 1, "n_upcoming": 1, "n_profiled": 0, "n_model": 0,
+                      "n_pinnacle": 0, "n_signals": 0}]}
+
+
+def test_match_list_shows_every_match_by_day(rd):
+    html = rd.render(_payload(all_matches=_all_matches()))
+    assert 'id="alle-partien"' in html and not re.findall(r"__[A-Z_]+__", html)
+    assert "Heute &middot; Sonntag, 25. Oktober" in html
+    assert "Morgen &middot; Montag, 26. Oktober" in html
+    for name in ("Sinner J.", "Zverev A.", "Doe J.", "Roe R.", "Rune H.", "Fils A."):
+        assert name in html
+    assert "2:0 (6-4, 6-3)" in html          # finished matches keep their result
+
+
+def test_match_list_signal_names_the_betinasia_price(rd):
+    html = rd.all_matches_section(_payload(all_matches=_all_matches()))
+    assert "Signal:</b> Sinner J. bei Pinnacle (BetInAsia) zu 1.55" in html
+    assert "+8.5&thinsp;%" in html
+    quiet = rd.all_matches_section(_payload(all_matches=_all_matches(signal=False)))
+    assert "Signal:</b>" not in quiet and "Bestes EV bei BetInAsia: +8.5&thinsp;%" in quiet
+
+
+def test_match_list_marks_rating_gaps_as_hints_not_signals(rd):
+    html = rd.all_matches_section(_payload(all_matches=_all_matches(signal=False)))
+    assert "Elo gibt Sinner J. 14 Punkte mehr als der Markt &mdash; Hinweis, kein Signal." in html
+
+
+def test_bare_and_finished_matches_take_one_line(rd):
+    html = rd.all_matches_section(_payload(all_matches=_all_matches()))
+    assert html.count('class="am-m am-c') == 2 and html.count("Spielerprofile") == 1
+
+
+def test_page_without_match_list_omits_the_section(rd):
+    assert 'id="alle-partien"' not in rd.render(_payload())

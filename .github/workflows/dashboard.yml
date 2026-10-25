@@ -42,7 +42,7 @@ jobs:
 
       - name: Rebuild the card (schedule, books, Polymarket, Kalshi, Tennis Abstract)
         run: |
-          python scripts/build_dashboard.py --refresh-schedule --limit 120 --itf-limit 40
+          python scripts/build_dashboard.py --refresh-schedule --limit 250 --itf-limit 40
           python scripts/render_dashboard.py -o docs/index.html
           cp docs/index.html data/reports/dashboard.html
 

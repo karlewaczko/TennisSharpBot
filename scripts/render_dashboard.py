@@ -206,6 +206,65 @@ h1 { font-size:29px; font-weight:700; letter-spacing:-.02em; line-height:1.1; }
 footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
          font-size:12px; color:var(--faint); }
 
+/* ---- all matches ---- */
+.am-legend { font-size:12.5px; line-height:1.55; color:var(--muted); margin:-2px 0 6px; }
+.am-day { font-family:Archivo,sans-serif; font-size:17px; font-weight:600; margin:22px 0 10px;
+          display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; }
+.am-day .n, details.am-tn > summary .n { font-size:11.5px; font-weight:400; color:var(--faint);
+          font-family:"IBM Plex Mono",monospace; }
+details.am-tn { border:1px solid var(--border); border-radius:10px; background:var(--surface);
+                box-shadow:var(--shadow); margin-bottom:8px; overflow:hidden; }
+details.am-tn > summary { cursor:pointer; list-style:none; display:flex; flex-wrap:wrap;
+                gap:6px 10px; align-items:center; padding:9px 14px; }
+details.am-tn > summary::-webkit-details-marker { display:none; }
+details.am-tn > summary::before { content:"▸"; color:var(--faint); font-size:11px; }
+details.am-tn[open] > summary::before { content:"▾"; }
+.am-p { display:grid; grid-template-columns:48px minmax(0,1fr) 50px 54px 46px 50px 56px 70px;
+        gap:8px; align-items:center; padding:3px 14px; font-size:13px; }
+.am-h { font-size:10px; letter-spacing:.07em; text-transform:uppercase; font-weight:600;
+        color:var(--faint); background:var(--surface-2); border-top:1px solid var(--border);
+        padding-top:6px; padding-bottom:6px; }
+.am-p .num { text-align:right; font-family:"IBM Plex Mono",monospace;
+             font-variant-numeric:tabular-nums; font-size:12.5px; }
+.am-p .num.soft { color:var(--faint); }
+.am-p .num.dev { color:var(--warn); font-weight:600; }
+.am-p .t { font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); }
+.am-p .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.am-p .meta { margin-left:8px; font-size:11px; color:var(--faint); font-family:"IBM Plex Mono",monospace; }
+.am-p .edge { padding:1px 5px; }
+.am-m { border-top:1px solid var(--border); padding:5px 0 6px; }
+.am-m.sig { background:var(--pos-soft); }
+.am-m.done, .am-m.live { opacity:.6; }
+.am-note { padding:2px 14px 0 70px; font-size:12px; line-height:1.5; color:var(--muted); }
+.am-note .pos, .am-p .pos { color:var(--pos); }
+details.am-more { padding:2px 14px 0 70px; font-size:12px; }
+details.am-more > summary { cursor:pointer; color:var(--accent); }
+details.am-more p { margin:4px 0 2px; color:var(--muted); }
+.am-cmp { border-collapse:collapse; margin-top:4px; }
+.am-cmp th, .am-cmp td { padding:2px 14px 2px 0; text-align:right; font-size:11.5px;
+                         font-family:"IBM Plex Mono",monospace; font-weight:400; }
+.am-cmp th { color:var(--text); font-weight:600; font-family:inherit; }
+.am-cmp td:first-child { text-align:left; color:var(--muted); font-family:inherit; }
+.am-c { display:grid; grid-template-columns:48px minmax(0,1fr) 64px 92px minmax(0,170px);
+        gap:8px; align-items:center; padding:5px 14px; font-size:13px; }
+.am-c .num { text-align:right; font-family:"IBM Plex Mono",monospace; font-size:12.5px; }
+.am-c .num.soft { color:var(--faint); }
+.am-c .t { font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); }
+.am-c .nm, .am-c .st { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.am-c .st { font-size:11.5px; color:var(--muted); font-family:"IBM Plex Mono",monospace; }
+.chip.sig { color:var(--pos); border-color:var(--pos); background:var(--pos-soft); }
+.chip.live { color:var(--warn); border-color:var(--warn); background:var(--warn-soft); }
+@media (max-width:720px) {
+  .am-p { grid-template-columns:40px minmax(0,1fr) 38px 46px 58px; gap:6px; padding:3px 10px; }
+  .am-p .x { display:none; }
+  .am-c { grid-template-columns:40px minmax(0,1fr) 88px; gap:6px; padding:5px 10px; }
+  .am-c > :nth-child(3) { display:none; }
+  .am-c .st { grid-column:2 / -1; }
+  .am-c .st:empty { display:none; }
+  .am-p .nm { white-space:normal; }
+  .am-p .meta { display:block; margin-left:0; }
+  .am-note, details.am-more { padding-left:10px; padding-right:10px; }
+}
 @media (max-width:720px) {
   .thead { display:none; }
   .row > .side { grid-template-columns:1fr 1fr; gap:6px 10px; }
@@ -227,7 +286,7 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
       </svg>
       <div>
         <h1>Value Radar</h1>
-        <div class="sub">Modell gegen Sharp-Markt &middot; Preisvergleich B&uuml;cher, Polymarket, Kalshi &middot; ATP, WTA, Challenger, ITF</div>
+        <div class="sub">Modell gegen Sharp-Markt &middot; Preisvergleich B&uuml;cher, Polymarket, Kalshi &middot; ATP, WTA, Challenger, ITF &middot; alle Partien heute &amp; morgen</div>
       </div>
     </div>
     <div class="stamp">
@@ -239,6 +298,8 @@ footer { margin-top:40px; padding-top:18px; border-top:1px solid var(--border);
   <div class="strip">__STRIP__</div>
 
   __VERDICT__
+
+  __ALLMATCHES__
 
   <div class="sec"><h2>Modellbewertung</h2><span class="rule"></span>
     <span class="count">__NMODEL__ Partien</span></div>
@@ -672,6 +733,284 @@ def fair_chip(match: dict) -> str:
             f'Fair: {esc(src)}</span>')
 
 
+# ------------------------------------------------------------ every match ----
+
+_DAYS_LONG = ("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag")
+_MONTHS = ("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August",
+           "September", "Oktober", "November", "Dezember")
+_SURFACE_DE = {"hard": "Hart", "clay": "Sand", "grass": "Rasen", "carpet": "Teppich"}
+# Collapsed by default: ITF, UTR and the "Futures" band fill most of the
+# list and rarely carry anything but a quote.
+_OPEN_CATS = ("ATP", "WTA", "Challenger")
+# A pure rating this far from the market is worth a line in the analysis.
+_GAP_NOTE = 0.10
+
+
+def _pp(x) -> str:
+    return f"{x * 100:.0f}" if x is not None else "&ndash;"
+
+
+def _join(words) -> str:
+    words = list(words)
+    return words[0] if len(words) == 1 else ", ".join(words[:-1]) + " und " + words[-1]
+
+
+def _am_meta(prof: dict | None) -> str:
+    if not prof:
+        return '<span class="meta">kein Profil</span>'
+    bits = []
+    if prof.get("rank"):
+        bits.append(f'#{prof["rank"]:.0f}')
+    if prof.get("elo"):
+        selo = f' ({prof["selo"]:.0f})' if prof.get("selo") else ""
+        bits.append(f'Elo {prof["elo"]:.0f}{selo}')
+    if prof.get("form"):
+        bits.append(f'Form {esc(prof["form"])}')
+    return f'<span class="meta">{" &middot; ".join(bits)}</span>'
+
+
+def _am_note(m: dict, thresh: str) -> str:
+    """One or two sentences a bettor can act on: the signal if there is one,
+    else who the market favours, whether the market-free opinions agree, and
+    what BetInAsia's price is worth against the model."""
+    a, b = m["players"]
+    if m["status"] == "finished":
+        return f'Beendet{": " + esc(m["score"]) if m.get("score") else ""}.'
+    if m["status"] == "live":
+        return ('L&auml;uft' + (f': {esc(m["score"])}' if m.get("score") else "")
+                + ' &mdash; die Vorab-Analyse gilt nicht mehr.')
+    sig = m.get("signal")
+    if sig:
+        return (f'<b class="pos">Signal:</b> {esc(m["players"][sig["side"]])} bei {sig["book"]} '
+                f'(BetInAsia) zu {sig["odds"]:.2f}, EV {pct(sig["ev"], 1, sign=True)} gegen das '
+                f'Modell. Vor der Wette den aktuellen Preis bei BetInAsia pr&uuml;fen.')
+    fair = m.get("fair")
+    if not fair:
+        return 'Keine belastbare Quote &mdash; keine Bewertung.'
+    fav = 0 if fair[0] >= fair[1] else 1
+    parts = [f'Favorit laut Markt: <b>{esc(m["players"][fav])}</b> ({_pp(fair[fav])}&thinsp;%).']
+    have = {k: v for k, v in (("Modell", m.get("model")), ("Elo", m.get("elo")),
+                              ("Statistik", m.get("stat"))) if v is not None}
+    against = [k for k, v in have.items() if (v >= 0.5) != (fav == 0)]
+    agree = [k for k in have if k not in against]
+    if against:
+        parts.append(f'{_join(against)} {"sieht" if len(against) == 1 else "sehen"} '
+                     f'{esc(m["players"][1 - fav])} vorn.')
+    elif agree:
+        parts.append(f'{_join(agree)} {"stimmt" if len(agree) == 1 else "stimmen"} zu.')
+    gaps = [(k, v - fair[0]) for k, v in have.items() if k != "Modell"]
+    if gaps:
+        k, g = max(gaps, key=lambda t: abs(t[1]))
+        if abs(g) >= _GAP_NOTE:
+            parts.append(f'{k} gibt {esc(a if g > 0 else b)} {abs(g) * 100:.0f} Punkte mehr als '
+                         f'der Markt &mdash; Hinweis, kein Signal.')
+    ev = m.get("ev_bia")
+    if ev:
+        k = 0 if ev[0] >= ev[1] else 1
+        parts.append(f'Bestes EV bei BetInAsia: {pct(ev[k], 1, sign=True)} '
+                     f'({esc(m["players"][k])} zu {m["pinnacle"][k]:.2f}), Schwelle {thresh}.')
+    elif m.get("model") is not None:
+        parts.append('Pinnacle quotiert noch nicht &mdash; kein BetInAsia-Preis zum Pr&uuml;fen.')
+    elif m.get("pinnacle"):
+        parts.append('Pinnacle-Preis da, aber kein Modellwert &mdash; kein Signal m&ouml;glich.')
+    elif not any(m.get("profiles") or []):
+        parts.append('Keine Spielerdaten, kein Modell, kein Pinnacle-Preis.')
+    else:
+        parts.append('Kein Modellwert, kein Pinnacle-Preis.')
+    if m.get("stale"):
+        parts.append(f'Daten veraltet: {esc(", ".join(m["stale"]))}.')
+    soft = m.get("soft")
+    if soft:
+        parts.append(f'{esc(soft["book"])} zahlt {soft["odds"]:.2f} auf '
+                     f'{esc(m["players"][soft["side"]])} ({pct(soft["ev"], 1, sign=True)} gegen '
+                     f'fair) &mdash; nicht bei BetInAsia.')
+    return " ".join(parts)
+
+
+def _am_details(m: dict) -> str:
+    profs = m.get("profiles") or []
+    if not any(profs):
+        return ""
+    profs = (profs + [None, None])[:2]
+
+    def cell(prof, fn):
+        try:
+            return fn(prof) if prof else "&ndash;"
+        except (KeyError, TypeError):
+            return "&ndash;"
+
+    surf = _SURFACE_DE.get(str(m.get("surface") or "").lower())
+    lines = [
+        ("Weltrangliste", lambda p: f'#{p["rank"]:.0f}'),
+        ("Elo (Rang)", lambda p: f'{p["elo"]:.0f} ({p["elo_rank"]:.0f})'),
+        (f"Elo {surf}" if surf else "Belag-Elo", lambda p: f'{p["selo"]:.0f}'),
+        ("yElo 2026", lambda p: f'{p["yelo"]:.0f}'),
+        ("Bilanz 52 Wochen", lambda p: f'{p["w"]:.0f}-{p["l"]:.0f}'
+                                       + (f' ({_SURFACE_DE.get(p["scope"], p["scope"])})'
+                                          if p.get("scope") else "")),
+        ("Form (letzte 10)", lambda p: esc(p["form"])),
+        ("Aufschlagpunkte", lambda p: pct(p["spw"], 1)),
+        ("Returnpunkte", lambda p: pct(p["rpw"], 1)),
+        ("Hold / Break", lambda p: f'{p["hold"] * 100:.0f} / {p["brk"] * 100:.0f}&thinsp;%'),
+        ("Letztes Match", lambda p: esc(p["last"])),
+        ("Alter", lambda p: f'{p["age"]:.1f}'.replace(".", ",")),
+    ]
+    body = "".join(f'<tr><td>{lbl}</td><td>{cell(profs[0], fn)}</td><td>{cell(profs[1], fn)}</td></tr>'
+                   for lbl, fn in lines)
+    head = (f'<tr><th></th><th>{esc(m["players"][0])}</th><th>{esc(m["players"][1])}</th></tr>')
+    extra = []
+    if m.get("h2h"):
+        extra.append(f'H2H (52 Wochen) {m["h2h"][0]}:{m["h2h"][1]}')
+    if m.get("ta_forecast") is not None:
+        extra.append(f'TA-Turnierprognose {_pp(m["ta_forecast"])}&thinsp;% f&uuml;r {esc(m["players"][0])}')
+    if m.get("fair_source"):
+        extra.append(f'Markt aus {esc(m["fair_source"])}')
+    if m.get("best"):
+        extra.append("Beste Quote " + " / ".join(f'{esc(bk)} {o:.2f}' for bk, o in m["best"]))
+    return (f'<details class="am-more"><summary>Spielerprofile</summary>'
+            f'<table class="am-cmp">{head}{body}</table>'
+            f'{"<p>" + " &middot; ".join(extra) + "</p>" if extra else ""}</details>')
+
+
+def _is_rich(m: dict) -> bool:
+    """An upcoming match with anything beyond a quote gets the full block;
+    the rest -- no profile, model or Pinnacle price, or already under way --
+    one line."""
+    return m["status"] == "upcoming" and bool(
+        any(m.get("profiles") or []) or m.get("model") is not None or m.get("pinnacle"))
+
+
+def _am_line(m: dict) -> str:
+    fair, best, odds = m.get("fair"), m.get("best"), m.get("odds")
+    names = [esc(n) for n in m["players"]]
+    if fair:
+        fav = 0 if fair[0] >= fair[1] else 1
+        names[fav] = f"<b>{names[fav]}</b>"
+    price = [best[0][1], best[1][1]] if best else odds
+    tail = {"finished": esc(m.get("score") or "beendet"),
+            "live": '<span class="chip live">live</span> ' + esc(m.get("score") or "")}.get(m["status"], "")
+    cls = "am-m am-c" + {"live": " live", "finished": " done"}.get(m["status"], "")
+    return (f'<div class="{cls}"><span class="t">{m.get("time") or "&ndash;"}</span>'
+            f'<span class="nm">{names[0]} &ndash; {names[1]}</span>'
+            f'<span class="num">{_pp(fair[0]) + " / " + _pp(fair[1]) if fair else "&ndash;"}</span>'
+            f'<span class="num soft">{odds_fmt(price[0]) + " / " + odds_fmt(price[1]) if price else "&ndash;"}</span>'
+            f'<span class="st">{tail}</span></div>')
+
+
+_RICH_HEAD = ('<div class="am-p am-h"><span>Zeit</span><span>Spieler</span><span class="num">Markt</span>'
+              '<span class="num x">Modell</span><span class="num x">Elo</span>'
+              '<span class="num x">Stat.</span><span class="num">Quote</span>'
+              '<span class="num">EV BiA</span></div>')
+_FLAT_HEAD = ('<div class="am-c am-h"><span>Zeit</span><span>Partie</span><span class="num">Markt</span>'
+              '<span class="num">Quote</span><span>Stand</span></div>')
+_STATUS_ORDER = {"upcoming": 0, "live": 1, "finished": 2}
+
+
+def _am_match(m: dict, thresh: str) -> str:
+    fair, pin, best, odds = m.get("fair"), m.get("pinnacle"), m.get("best"), m.get("odds")
+    ev = m.get("ev_bia")
+    profs = ((m.get("profiles") or []) + [None, None])[:2]
+    fav = (0 if fair[0] >= fair[1] else 1) if fair else None
+    sig = m.get("signal")
+    status_word = {"live": '<span class="chip live">live</span>', "finished": "Ende"}.get(m["status"], "")
+    lines = []
+    for i in (0, 1):
+        def side(p):
+            return None if p is None else (p if i == 0 else 1 - p)
+
+        def gap_cls(p):
+            mk = side(fair[0]) if fair else None
+            return " dev" if p is not None and mk is not None and abs(side(p) - mk) >= _GAP_NOTE else ""
+
+        if pin:
+            price, src, cls = pin[i], "Pinnacle (BetInAsia)", "num"
+        elif best:
+            price, src, cls = best[i][1], f"{best[i][0]} (nicht BetInAsia)", "num soft"
+        else:
+            price, src, cls = (odds[i] if odds else None), "Spielplan-Quote", "num soft"
+        ev_i = ev[i] if ev else None
+        ecls = "p" if ev_i is not None and ev_i > 0.005 else ("n" if ev_i is not None and ev_i < -0.005 else "z")
+        ev_html = f'<span class="edge {ecls}">{pct(ev_i, 1, sign=True)}</span>' if ev_i is not None else "&ndash;"
+        name = esc(m["players"][i])
+        if sig and sig["side"] == i:
+            name = f'<b class="pos">&#9650; {name}</b>'
+        elif fav == i:
+            name = f"<b>{name}</b>"
+        lines.append(
+            f'<div class="am-p">'
+            f'<span class="t">{(m.get("time") or "&ndash;") if i == 0 else status_word}</span>'
+            f'<span class="nm">{name}{_am_meta(profs[i])}</span>'
+            f'<span class="num">{_pp(side(fair[0])) if fair else "&ndash;"}</span>'
+            f'<span class="num x">{_pp(side(m.get("model")))}</span>'
+            f'<span class="num x{gap_cls(m.get("elo"))}">{_pp(side(m.get("elo")))}</span>'
+            f'<span class="num x{gap_cls(m.get("stat"))}">{_pp(side(m.get("stat")))}</span>'
+            f'<span class="{cls}" title="{src}">{odds_fmt(price)}</span>'
+            f'<span class="num">{ev_html}</span></div>')
+    cls = "am-m" + (" sig" if sig else "") + {"live": " live", "finished": " done"}.get(m["status"], "")
+    return (f'<div class="{cls}">{"".join(lines)}'
+            f'<div class="am-note">{_am_note(m, thresh)}</div>{_am_details(m)}</div>')
+
+
+def all_matches_section(data: dict) -> str:
+    board = data.get("all_matches")
+    if not board or not board.get("days"):
+        return ""
+    thresh = pct(board.get("threshold", data["threshold"]), 0)
+    books = " / ".join(board.get("books") or ["Pinnacle"])
+    out = [
+        f'<div class="sec" id="alle-partien"><h2>Alle Partien &middot; heute &amp; morgen</h2>'
+        f'<span class="rule"></span><span class="count">{len(board["matches"])} Partien</span></div>',
+        f'<p class="am-legend">Zeiten in deutscher Zeit, Wahrscheinlichkeiten in Prozent f&uuml;r den '
+        f'jeweiligen Spieler. <b>Markt</b> = fairer Preis ohne Marge (Pinnacle, sonst Betfair oder '
+        f'liquider Polymarket/Kalshi-Mittelkurs, sonst die Spielplan-Quote). <b>Modell</b> = '
+        f'trainiertes Modell mit Marktpreis, <b>Elo</b> = Tennis-Abstract-Elo (Belag, wo bekannt), '
+        f'<b>Stat.</b> = Punktmodell aus Aufschlag und Return der letzten 52 Wochen. <b>Quote</b>: '
+        f'schwarz = {books}, bei BetInAsia spielbar; grau = anderes Buch oder Spielplan-Quote. '
+        f'Partien ohne Spielerdaten, Modell und Pinnacle-Preis sowie laufende und beendete stehen '
+        f'einzeilig. <b>Signal</b> nur ab {thresh} EV des Modells zum {books}-Preis. Elo- und '
+        f'Statistik-Abweichungen sind Hinweise, keine Signale: Beide kennen den Markt nicht, und '
+        f'der Markt liegt im Mittel n&auml;her an den Ergebnissen.</p>',
+    ]
+    for k, day in enumerate(board["days"]):
+        d = dt.date.fromisoformat(day["date"])
+        label = ("Heute", "Morgen")[k] + " &middot; " if k < 2 else ""
+        out.append(
+            f'<h3 class="am-day">{label}{_DAYS_LONG[d.weekday()]}, {d.day}. {_MONTHS[d.month - 1]}'
+            f'<span class="n">{day["n"]} Partien &middot; {day["n_upcoming"]} offen &middot; '
+            f'{day["n_profiled"]} mit Spielerprofil &middot; {day["n_model"]} mit Modell &middot; '
+            f'{day["n_pinnacle"]} mit Pinnacle &middot; {day["n_signals"]} Signal(e)</span></h3>')
+        groups: dict = {}
+        for m in board["matches"]:
+            if m["day"] == day["date"]:
+                groups.setdefault((m["cat"], m["tournament"]), []).append(m)
+        if not groups:
+            out.append('<p class="am-legend">Noch kein Spielplan ver&ouml;ffentlicht &mdash; '
+                       'der n&auml;chste Lauf liest ihn neu.</p>')
+        for (cat, tn), ms in groups.items():
+            n_open = sum(m["status"] == "upcoming" for m in ms)
+            n_sig = sum(1 for m in ms if m.get("signal"))
+            surface = next((m["surface"] for m in ms if m.get("surface")), None)
+            chips = f'<span class="chip">{esc(cat)}</span>'
+            if surface:
+                chips += f'<span class="chip">{_SURFACE_DE.get(surface.lower(), esc(surface))}</span>'
+            if n_sig:
+                chips += f'<span class="chip sig">{n_sig} Signal</span>'
+            is_open = n_sig or (cat in _OPEN_CATS and n_open)
+            rich = [m for m in ms if _is_rich(m)]
+            flat = sorted((m for m in ms if not _is_rich(m)),
+                          key=lambda m: (_STATUS_ORDER[m["status"]], m.get("time") or ""))
+            out.append(
+                f'<details class="am-tn"{" open" if is_open else ""}><summary>'
+                f'<span class="tour">{esc(tn)}</span>{chips}'
+                f'<span class="n">{len(ms)} {"Partie" if len(ms) == 1 else "Partien"}'
+                f'{f" &middot; {n_open} offen" if n_open != len(ms) else ""}'
+                f'</span></summary>'
+                + (_RICH_HEAD + "".join(_am_match(m, thresh) for m in rich) if rich else "")
+                + (_FLAT_HEAD + "".join(_am_line(m) for m in flat) if flat else "")
+                + '</details>')
+    return "".join(out)
+
+
 def render(data: dict) -> str:
     thresh = pct(data["threshold"], 0)
 
@@ -690,6 +1029,12 @@ def render(data: dict) -> str:
          "Partien mit Polymarket/Kalshi"),
         ("Arbitrage", str(len(data.get("arbs") or [])), "sichere Paare"),
     ]
+    board = data.get("all_matches") or {}
+    if board.get("days"):
+        strip.insert(0, ("Alle Partien", str(sum(d["n"] for d in board["days"])),
+                         f'heute &amp; morgen, {sum(d["n_upcoming"] for d in board["days"])} offen'))
+        strip.insert(2, ("BetInAsia-Signale", str(board.get("n_signals", 0)),
+                         f"EV ab {thresh} bei Pinnacle"))
     strip_html = "".join(
         f'<div class="stat"><div class="k">{k}</div><div class="v">{v}</div>'
         f'<div class="n">{n}</div></div>' for k, v, n in strip)
@@ -701,7 +1046,10 @@ def render(data: dict) -> str:
                    f'<p>Das Modell weicht bei diesen Partien um mehr als {thresh} vom fairen '
                    f'Marktpreis ab. Vor einer Wette gegen den tatsächlich verfügbaren Preis '
                    f'prüfen &mdash; ein Edge gegen den Fairwert ist noch kein positiver '
-                   f'Erwartungswert.</p></div></div>')
+                   f'Erwartungswert.'
+                   + (f' Bei BetInAsia (Pinnacle-Preis) spielbar: {board.get("n_signals", 0)}.'
+                      if board.get("days") else "")
+                   + '</p></div></div>')
     else:
         verdict = ('<div class="verdict none"><div class="icon">&#9675;</div><div>'
                    '<h2>Kein Signal auf dieser Karte</h2>'
@@ -810,6 +1158,7 @@ def render(data: dict) -> str:
         "__VERDICT__": verdict, "__ROWS__": "".join(rows), "__SKIPPED__": skipped,
         "__TAROWS__": ta_html, "__NSCORED__": str(data["n_scored"]),
         "__FORECASTS__": forecast_section(data),
+        "__ALLMATCHES__": all_matches_section(data),
         "__SOFTVALUE__": soft_value_section(data), "__PMBOARD__": pm_section(data),
         "__ARBS__": arb_section(data), "__PRICEBOARD__": price_board_section(data),
         "__NMATCHES__": str(len(data["matches"])),
