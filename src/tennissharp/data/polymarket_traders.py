@@ -44,9 +44,10 @@ PAGE = 500
 MAX_TRADES_PER_MARKET = 6000
 PAUSE = 0.1
 TRADE_PAGE = 10000
-MIN_PRE_MARKETS = 10       # pre-match markets a wallet needs to be ranked
+MIN_PRE_MARKETS = 20       # pre-match markets a wallet needs to be ranked
 MIN_STAKE = 2000.0         # USDC staked over the window
-MIN_DIRECTIONAL = 0.5      # below this a wallet trades like a market maker
+MIN_DIRECTIONAL = 0.7      # below this a wallet trades like a market maker
+MAX_LIVE_SHARE = 0.5       # above this a wallet is an in-play trader
 _HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; TennisSharpBot research script)"}
 
 
@@ -253,14 +254,17 @@ LEADER_COLUMNS = ["rank", "name", "wallet", "markets", "pre_markets", "stake", "
 
 def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS,
                 min_stake: float = MIN_STAKE,
-                min_directional: float = MIN_DIRECTIONAL) -> pd.DataFrame:
+                min_directional: float = MIN_DIRECTIONAL,
+                max_live_share: float = MAX_LIVE_SHARE) -> pd.DataFrame:
     """One row per wallet over the window, ranked by closing-line t-statistic.
 
     Wallets that end their pre-match trading close to flat are market
     makers: their closing-line value is the spread they earn, steady enough
     to top a t-statistic, and their holdings are inventory rather than
     opinions. `directional` (mean |net| / gross pre-match shares) keeps
-    them out of the ranking."""
+    them out of the ranking. So does a mostly in-play book: nine dollars in
+    ten on Polymarket's tennis trade during the match, much of it bots on
+    the live score, whose holdings last seconds and are no tip to follow."""
     if per_market.empty:
         return pd.DataFrame(columns=LEADER_COLUMNS)
     rows = []
@@ -282,10 +286,47 @@ def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS
                      "directional": float(pre["directional"].mean()) if n else None})
     lb = pd.DataFrame(rows)
     lb = lb[(lb["pre_markets"] >= min_pre_markets) & (lb["stake"] >= min_stake) & lb["clv_t"].notna()
-            & (lb["directional"] >= min_directional)]
+            & (lb["directional"] >= min_directional) & (lb["live_share"] <= max_live_share)]
     lb = lb.sort_values(["clv_t", "pnl"], ascending=[False, False]).reset_index(drop=True)
     lb.insert(0, "rank", range(1, len(lb) + 1))
     return lb.reindex(columns=LEADER_COLUMNS)
+
+
+def market_structure(per_market: pd.DataFrame) -> dict:
+    """Where the money is: total stake, the share traded in play, and how
+    much of it the 20 biggest wallets move."""
+    if per_market.empty:
+        return {}
+    g = per_market.groupby("wallet")[["stake", "pre_stake", "live_stake"]].sum()
+    total, pre = float(g["stake"].sum()), float(g["pre_stake"].sum())
+    return {"stake_usd": round(total), "in_play_share": round(float(g["live_stake"].sum()) / total, 3),
+            "top20_share": round(float(g["stake"].nlargest(20).sum()) / total, 3),
+            "top20_pre_match_share": round(float(g["pre_stake"].nlargest(20).sum()) / pre, 3) if pre else None}
+
+
+def persistence(per_market: pd.DataFrame, markets: pd.DataFrame, min_each: int = 10) -> dict:
+    """Does beating the close carry over? The window is cut in two at the
+    median start, and a wallet's mean pre-match CLV in the first half is
+    set against its mean in the second, for wallets with `min_each`
+    pre-match markets in both halves."""
+    if per_market.empty or markets.empty:
+        return {"wallets": 0}
+    cut = markets["start_ts"].median()
+    pre = per_market[per_market["clv"].notna()].merge(markets[["slug", "start_ts"]], on="slug")
+    pre = pre.assign(half=(pre["start_ts"] >= cut).astype(int))
+    h = pre.groupby(["wallet", "half"])["clv"].agg(["mean", "size"]).unstack()
+    if ("size", 1) not in h.columns:
+        return {"wallets": 0}
+    both = h[(h[("size", 0)] >= min_each) & (h[("size", 1)] >= min_each)]
+    if len(both) < 20:
+        return {"wallets": int(len(both))}
+    first, second = both[("mean", 0)], both[("mean", 1)]
+    top, bottom = first >= first.quantile(0.9), first <= first.quantile(0.1)
+    return {"wallets": int(len(both)), "corr": round(float(first.corr(second)), 3),
+            "rank_corr": round(float(first.rank().corr(second.rank())), 3),
+            "top_decile_next": round(float(second[top].mean()), 4),
+            "bottom_decile_next": round(float(second[bottom].mean()), 4),
+            "all_next": round(float(second.mean()), 4)}
 
 
 def calibration(markets: pd.DataFrame) -> dict:

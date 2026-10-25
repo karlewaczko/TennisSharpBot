@@ -549,6 +549,23 @@ def _usd(x) -> str:
         return "&ndash;"
 
 
+def _cents(x) -> str:
+    try:
+        return f"{float(x) * 100:+.1f}&thinsp;¢"
+    except (TypeError, ValueError):
+        return "&ndash;"
+
+
+def _pro_link(name, wallet) -> str:
+    """The profile's chosen name (or its short wallet when it kept the
+    default), linked to its public Polymarket page."""
+    w = str(wallet)
+    name = name if isinstance(name, str) else ""
+    if not name or (name.startswith("0x") and "-" in name):
+        name = f"{w[:6]}…{w[-4:]}"
+    return f'<a href="https://polymarket.com/profile/{esc(w)}" target="_blank" rel="noopener">{esc(name)}</a>'
+
+
 def pm_pros_section(data: dict) -> str:
     """Polymarket's best-ranked tennis wallets and what they hold."""
     pros = data.get("pm_pros") or {}
@@ -556,38 +573,50 @@ def pm_pros_section(data: dict) -> str:
     pos = pros.get("positions") or []
     sh = data.get("pm_sharpness") or {}
     cal = sh.get("polymarket_closing_calibration") or {}
+    ms = sh.get("market_structure") or {}
+    sp = sh.get("skill_persistence") or {}
     gaps = sh.get("gap_to_sharp") or {}
     facts = []
-    if cal.get("n"):
-        facts.append(f'Polymarkets Schlusskurse vor Spielbeginn: Brier {cal["brier"]:.3f} über '
-                     f'{cal["n"]} entschiedene ATP- und WTA-Matches, der Favorit gewann in '
-                     f'{cal["favourite_won"] * 100:.0f}&thinsp;%.')
     for venue in ("Polymarket", "Kalshi"):
         g = gaps.get(venue)
         if g:
             facts.append(f'{venue}-Mittelkurs gegen den Pinnacle- oder Betfair-Fairwert: im Median '
-                         f'{g["median_gap_pp"]:.2f} Punkte daneben, {g["share_within_1pp"] * 100:.0f}&thinsp;% '
-                         f'der {g["sides"]} Seiten innerhalb eines Punktes.')
-    intro = ('<p class="note"><b>Wie die Rangliste entsteht:</b> Jeder Polymarket-Trade ist öffentlich '
-             'mit Wallet und Profilnamen. Bewertet wird jede Wallet daran, ob ihre Käufe vor '
-             'Spielbeginn den Schlusskurs geschlagen haben (Closing Line Value, CLV), über die '
-             'entschiedenen ATP- und WTA-Matches des letzten Monats, mindestens zehn Matches und '
-             '2&thinsp;000&nbsp;$ Einsatz; sortiert nach der t-Statistik, damit Glück über wenige '
-             'Matches nicht oben landet. <b>Vorsicht:</b> Große Wallets sind oft Market Maker, deren '
-             'Position Lagerbestand ist und kein Tipp, und ein guter Monat ist kein Beweis. Kalshi '
-             'veröffentlicht keine Trader-Daten. ' + " ".join(facts) + '</p>')
+                         f'{g["median_gap_pp"]:.1f} Prozentpunkte daneben, '
+                         f'{g["share_within_1pp"] * 100:.0f}&thinsp;% der {g["sides"]} Seiten innerhalb eines Punktes.')
+    if cal.get("n"):
+        dev = max((abs(b["price"] - b["won"]) for b in cal.get("bins") or []), default=0)
+        facts.append(f'Polymarkets letzter Kurs vor dem Start, {cal["n"]} entschiedene ATP- und WTA-Matches: '
+                     f'Brier {cal["brier"]:.3f}, größte Abweichung zwischen Kurs und Siegquote in einem '
+                     f'Preisband {dev * 100:.1f} Punkte.')
+    if ms.get("stake_usd"):
+        facts.append(f'Umsatz in {sh.get("window_days", 30)} Tagen: {ms["stake_usd"] / 1e6:.0f}&nbsp;Mio.&nbsp;$, '
+                     f'davon {ms["in_play_share"] * 100:.0f}&thinsp;% während des Matches; die 20 größten '
+                     f'Wallets bewegen {ms["top20_share"] * 100:.0f}&thinsp;%.')
+    if sp.get("corr") is not None:
+        facts.append(f'Hält der Vorsprung? Das beste Zehntel der ersten Monatshälfte schlug den Schlusskurs '
+                     f'in der zweiten um {_cents(sp["top_decile_next"])}, der Schnitt lag bei '
+                     f'{_cents(sp["all_next"])} (Korrelation {sp["corr"]:.2f} über {sp["wallets"]} Wallets): '
+                     f'echtes, aber kleines Können.')
+    intro = ('<p class="note"><b>Wie die Rangliste entsteht:</b> Jeder Polymarket-Trade ist öffentlich, mit '
+             'Wallet und Profilnamen. Für jede Wallet wird über die entschiedenen ATP- und WTA-Matches des '
+             'letzten Monats gemessen, ob ihre Käufe vor Spielbeginn den letzten Kurs vor dem Start '
+             'geschlagen haben (Closing Line Value, CLV, in Cent je Anteil); sortiert nach der t-Statistik, '
+             'damit ein paar Glückstreffer nicht oben landen. Aufgenommen werden nur Wallets mit mindestens '
+             '20&nbsp;Matches und 2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer '
+             'Richtung setzen: Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Kalshi '
+             'veröffentlicht keine Trader-Daten.</p>'
+             + (f'<p class="note">{" ".join(facts)}</p>' if facts else ""))
     if not lb:
         note = pros.get("note") or "keine Daten"
         return (f'<div class="sec"><h2>Profis auf Polymarket</h2><span class="rule"></span></div>'
                 f'{intro}<p class="note">Rangliste: {esc(note)}.</p>')
     trs = []
     for r in lb:
-        name = r.get("name") if isinstance(r.get("name"), str) and r.get("name") else str(r["wallet"])[:10]
-        trs.append(f'<tr><td class="num">{int(r["rank"])}</td><td class="m">{esc(name)}</td>'
+        trs.append(f'<tr><td class="num">{int(r["rank"])}</td><td class="m">{_pro_link(r.get("name"), r["wallet"])}</td>'
                    f'<td class="num">{int(r["pre_markets"])}</td><td class="num">{_usd(r["stake"])}</td>'
                    f'<td class="num">{_usd(r["pnl"])}</td>'
                    f'<td class="num">{pct(r.get("roi"), 1, sign=True)}</td>'
-                   f'<td class="num">{pct(r.get("clv_mean"), 2, sign=True)}</td>'
+                   f'<td class="num">{_cents(r.get("clv_mean"))}</td>'
                    f'<td class="num">{float(r["clv_t"]):.1f}</td>'
                    f'<td class="num">{pct(r.get("live_share"), 0)}</td></tr>')
     table = _table([("#", "num"), ("Profil", ""), ("Matches vor Start", "num"), ("Einsatz", "num"),
@@ -597,11 +626,10 @@ def pm_pros_section(data: dict) -> str:
     if on_card:
         prs = []
         for p in on_card[:25]:
-            name = p.get("name") or str(p["wallet"])[:10]
             ev = p.get("ev_best")
             ecls = "p" if ev is not None and ev > 0.005 else ("n" if ev is not None and ev < -0.005 else "z")
             prs.append(f'<tr><td>{_match_cell({"players": p["players"], "tournament": p["tournament"], "date": p.get("date")})}</td>'
-                       f'<td>{esc(name)} <span class="s">#{int(p["rank"])}</span></td>'
+                       f'<td>{_pro_link(p.get("name"), p["wallet"])} <span class="s">#{int(p["rank"])}</span></td>'
                        f'<td class="m">{esc(p["side"])}</td>'
                        f'<td class="num">{p["avg_price"]:.2f} &rarr; {p["cur_price"]:.2f}</td>'
                        f'<td class="num">{_usd(p.get("initial_value"))}</td>'
@@ -611,15 +639,19 @@ def pm_pros_section(data: dict) -> str:
         ptable = _table([("Partie", ""), ("Profil", ""), ("Seite", ""), ("Einstieg &rarr; jetzt", "num"),
                          ("Einsatz", "num"), ("Fair", "num"), ("Beste Buchquote", "num"), ("EV", "num")],
                         "".join(prs))
-        pos_html = (f'<p class="note" style="margin-top:14px">Offene Positionen dieser Profile auf Partien '
+        pos_html = (f'<p class="note" style="margin-top:14px">Offene Positionen der Top-{PRO_SHOWN} auf Partien '
                     f'dieser Karte. EV ist die beste Buchquote gegen den fairen Preis, nicht gegen die '
                     f'Meinung des Profils.</p>{ptable}')
     else:
-        pos_html = ('<p class="note" style="margin-top:14px">Keines der Top-Profile hält gerade eine '
+        pos_html = (f'<p class="note" style="margin-top:14px">Keines der Top-{PRO_SHOWN}-Profile hält gerade eine '
                     f'Position auf einer Partie dieser Karte ({len(pos)} offene Tennis-Positionen insgesamt).</p>')
+    total = sh.get("ranked_wallets") or len(lb)
     return (f'<div class="sec"><h2>Profis auf Polymarket</h2><span class="rule"></span>'
-            f'<span class="count">{len(lb)} Profile, {len(on_card)} Positionen auf der Karte</span></div>'
+            f'<span class="count">Top {len(lb)} von {total}, {len(on_card)} Positionen auf der Karte</span></div>'
             f'{intro}{table}{pos_html}')
+
+
+PRO_SHOWN = 20
 
 
 def arb_section(data: dict) -> str:

@@ -1,30 +1,68 @@
 {
- "measured_at": "2026-10-25T20:58:04+00:00",
+ "measured_at": "2026-10-25T21:48:16+00:00",
  "window_days": 30,
  "tours": [
   "atp",
   "wta"
  ],
- "markets": 5,
- "wallets": 136,
- "ranked_wallets": 0,
+ "markets": 2053,
+ "wallets": 20556,
+ "ranked_wallets": 236,
+ "market_structure": {
+  "stake_usd": 412723830,
+  "in_play_share": 0.897,
+  "top20_share": 0.453,
+  "top20_pre_match_share": 0.399
+ },
+ "skill_persistence": {
+  "wallets": 632,
+  "corr": 0.204,
+  "rank_corr": 0.245,
+  "top_decile_next": 0.0033,
+  "bottom_decile_next": -0.0046,
+  "all_next": -0.0008
+ },
  "polymarket_closing_calibration": {
-  "n": 3,
-  "brier": 0.1934,
-  "log_loss": 0.5628,
-  "favourite_won": 0.667,
+  "n": 2049,
+  "brier": 0.2007,
+  "log_loss": 0.5801,
+  "favourite_won": 0.673,
   "bins": [
    {
     "range": "(-0.001, 0.2]",
-    "n": 1,
-    "price": 0.195,
-    "won": 0.0
+    "n": 169,
+    "price": 0.116,
+    "won": 0.112
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 2,
-    "price": 0.301,
-    "won": 0.5
+    "n": 308,
+    "price": 0.283,
+    "won": 0.279
+   },
+   {
+    "range": "(0.35, 0.5]",
+    "n": 484,
+    "price": 0.427,
+    "won": 0.45
+   },
+   {
+    "range": "(0.5, 0.65]",
+    "n": 496,
+    "price": 0.582,
+    "won": 0.55
+   },
+   {
+    "range": "(0.65, 0.8]",
+    "n": 361,
+    "price": 0.723,
+    "won": 0.687
+   },
+   {
+    "range": "(0.8, 1.0]",
+    "n": 231,
+    "price": 0.884,
+    "won": 0.931
    }
   ]
  },
@@ -50,5 +88,166 @@
   "first_logged": "2026-10-22T22:02:17+00:00",
   "last_logged": "2026-10-25T18:28:03+00:00"
  },
- "leader_preview": []
+ "leader_preview": [
+  {
+   "rank": 1,
+   "name": "UNEB3154s4f251",
+   "wallet": "0x04641b57f332c15ecaa497799c55026d521967da",
+   "markets": 579,
+   "pre_markets": 566,
+   "stake": 35782.4843,
+   "pnl": 2325.9102,
+   "roi": 0.065,
+   "clv_mean": 0.0136,
+   "clv_t": 5.1485,
+   "win_share": 0.6097,
+   "live_share": 0.0084,
+   "two_sided_share": 0.0622,
+   "directional": 0.9866
+  },
+  {
+   "rank": 2,
+   "name": "0x99F0d31fdced5B3A0e5Ee2867730A6644a6C9495-1779037126382",
+   "wallet": "0x99f0d31fdced5b3a0e5ee2867730a6644a6c9495",
+   "markets": 1096,
+   "pre_markets": 1000,
+   "stake": 282806.7553,
+   "pnl": 74036.6453,
+   "roi": 0.2618,
+   "clv_mean": 0.0074,
+   "clv_t": 4.5712,
+   "win_share": 0.3485,
+   "live_share": 0.0869,
+   "two_sided_share": 0.0511,
+   "directional": 0.9768
+  },
+  {
+   "rank": 3,
+   "name": "bahn-cuon-baby",
+   "wallet": "0x5cdc4e820fe30f22f3cf2581796d6e5abedc1f6b",
+   "markets": 534,
+   "pre_markets": 509,
+   "stake": 14349.6146,
+   "pnl": 873.1804,
+   "roi": 0.0609,
+   "clv_mean": 0.0087,
+   "clv_t": 4.5142,
+   "win_share": 0.6873,
+   "live_share": 0.0762,
+   "two_sided_share": 0.0599,
+   "directional": 0.9662
+  },
+  {
+   "rank": 4,
+   "name": "LeLynxMalynx",
+   "wallet": "0x200ffb575b936d297fcf39076ddf2b476ae07a96",
+   "markets": 919,
+   "pre_markets": 919,
+   "stake": 59879.6233,
+   "pnl": 4058.5742,
+   "roi": 0.0678,
+   "clv_mean": 0.0076,
+   "clv_t": 3.6683,
+   "win_share": 0.4342,
+   "live_share": 0.0026,
+   "two_sided_share": 0.197,
+   "directional": 0.9002
+  },
+  {
+   "rank": 5,
+   "name": "arbbf",
+   "wallet": "0x775efa2139f4c4706d56f077f2393b590411e94a",
+   "markets": 227,
+   "pre_markets": 227,
+   "stake": 3236.3691,
+   "pnl": 284.7688,
+   "roi": 0.088,
+   "clv_mean": 0.0126,
+   "clv_t": 3.6655,
+   "win_share": 0.7181,
+   "live_share": 0.0016,
+   "two_sided_share": 0.0441,
+   "directional": 0.9726
+  },
+  {
+   "rank": 6,
+   "name": "MeistersApprenticeship",
+   "wallet": "0xdc4f58a48ed4467743609fdce11eea483c759804",
+   "markets": 503,
+   "pre_markets": 501,
+   "stake": 63766.24,
+   "pnl": 8916.5856,
+   "roi": 0.1398,
+   "clv_mean": 0.0076,
+   "clv_t": 3.4757,
+   "win_share": 0.5447,
+   "live_share": 0.0064,
+   "two_sided_share": 0.3042,
+   "directional": 0.8447
+  },
+  {
+   "rank": 7,
+   "name": "mouzsynapse",
+   "wallet": "0xa6ded03ba993d58d265dc8fa3f6ddda3d926256c",
+   "markets": 268,
+   "pre_markets": 215,
+   "stake": 131956.4911,
+   "pnl": -1001.2773,
+   "roi": -0.0076,
+   "clv_mean": 0.0135,
+   "clv_t": 3.3879,
+   "win_share": 0.4478,
+   "live_share": 0.1857,
+   "two_sided_share": 0.0597,
+   "directional": 0.9709
+  },
+  {
+   "rank": 8,
+   "name": "atlantis.",
+   "wallet": "0xa51c4289ad50956046dda8cd36afc25e33a72fde",
+   "markets": 41,
+   "pre_markets": 32,
+   "stake": 3606.2753,
+   "pnl": -105.62,
+   "roi": -0.0293,
+   "clv_mean": 0.01,
+   "clv_t": 3.2584,
+   "win_share": 0.6829,
+   "live_share": 0.1526,
+   "two_sided_share": 0.0,
+   "directional": 1.0
+  },
+  {
+   "rank": 9,
+   "name": "capitalpiston2",
+   "wallet": "0x5e020e19bc4cc2cd24ab9b406604ee9df02ab178",
+   "markets": 839,
+   "pre_markets": 765,
+   "stake": 33466.2958,
+   "pnl": 2532.9566,
+   "roi": 0.0757,
+   "clv_mean": 0.0067,
+   "clv_t": 3.2282,
+   "win_share": 0.4017,
+   "live_share": 0.1091,
+   "two_sided_share": 0.1073,
+   "directional": 0.955
+  },
+  {
+   "rank": 10,
+   "name": "RadioFreeZerg",
+   "wallet": "0x521070c99db06e54af5e8e4a91d6858decdfbd53",
+   "markets": 692,
+   "pre_markets": 692,
+   "stake": 3141.229,
+   "pnl": 33.7267,
+   "roi": 0.0107,
+   "clv_mean": 0.0065,
+   "clv_t": 3.0628,
+   "win_share": 0.4624,
+   "live_share": 0.0,
+   "two_sided_share": 0.2876,
+   "directional": 0.7926
+  }
+ ]
 }

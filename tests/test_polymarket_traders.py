@@ -101,14 +101,14 @@ def test_closing_price_converts_the_other_outcome():
 
 def test_leaderboard_needs_enough_markets_and_stake_and_ranks_by_t():
     rows = []
-    for i in range(12):   # steady small edge
+    for i in range(22):   # steady small edge
         rows.append({"wallet": "steady", "name": "Steady", "pnl": 50, "stake": 500, "pre_stake": 500,
                      "live_stake": 0, "clv": 0.02 + 0.001 * (i % 3), "both_sides": False, "slug": f"m{i}",
                      "directional": 1.0})
         rows.append({"wallet": "maker", "name": "Maker", "pnl": 10, "stake": 900, "pre_stake": 900,
                      "live_stake": 0, "clv": 0.010 + 0.0001 * (i % 2), "both_sides": True,
                      "slug": f"m{i}", "directional": 0.1})
-    for i in range(12):   # big but noisy
+    for i in range(22):   # big but noisy
         rows.append({"wallet": "noisy", "name": "Noisy", "pnl": 400 if i % 2 else -300, "stake": 2000,
                      "pre_stake": 2000, "live_stake": 0, "clv": 0.10 if i % 2 else -0.08,
                      "both_sides": True, "slug": f"m{i}", "directional": 0.8})
@@ -122,6 +122,24 @@ def test_leaderboard_needs_enough_markets_and_stake_and_ranks_by_t():
     assert lb.iloc[1]["two_sided_share"] == 1.0
     assert pt.leaderboard(pd.DataFrame()).empty
     assert "maker" in pt.leaderboard(pd.DataFrame(rows), min_directional=0)["wallet"].tolist()
+
+
+def test_skill_persistence_and_market_structure():
+    rows, markets = [], []
+    for k in range(24):
+        markets.append({"slug": f"m{k}", "start_ts": START + k * 3600})
+    for w in range(30):
+        skill = (w - 15) / 1000
+        for k in range(24):
+            rows.append({"wallet": f"w{w}", "slug": f"m{k}", "clv": skill + (0.001 if k % 2 else -0.001),
+                         "stake": 100.0, "pre_stake": 100.0 if w else 10.0, "live_stake": 0.0 if w else 90.0})
+    per, mk = pd.DataFrame(rows), pd.DataFrame(markets)
+    got = pt.persistence(per, mk)
+    assert got["wallets"] == 30 and got["corr"] > 0.99
+    assert got["top_decile_next"] > got["all_next"] > got["bottom_decile_next"]
+    assert pt.persistence(per[per.wallet == "w1"], mk) == {"wallets": 1}
+    ms = pt.market_structure(per)
+    assert ms["stake_usd"] == 72_000 and ms["in_play_share"] == round(90 * 24 / 72_000, 3)
 
 
 def test_calibration_reports_brier_and_bins():

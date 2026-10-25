@@ -88,23 +88,29 @@ def main() -> None:
     if args.per_market_out:
         pm.to_csv(args.per_market_out, index=False)
         pd.DataFrame(mrows).to_csv(args.per_market_out.with_suffix(".markets.csv"), index=False)
+    lb, report = write_outputs(pm, pd.DataFrame(mrows), args.days, tours)
+    print(json.dumps({k: v for k, v in report.items() if k != "leader_preview"}, indent=1, default=str))
+    print(lb.head(15).round(3).to_string(index=False))
+
+
+def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours) -> tuple[pd.DataFrame, dict]:
+    """The ranking (pm_tennis_traders.csv) and the sharpness report."""
     lb = pt.leaderboard(pm)
     lb.to_csv(config.PROCESSED_DIR / "pm_tennis_traders.csv", index=False)
-    mk = pd.DataFrame(mrows)
     report = {
         "measured_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "window_days": args.days, "tours": list(tours),
+        "window_days": days, "tours": list(tours),
         "markets": int(len(mk)), "wallets": int(pm["wallet"].nunique()) if len(pm) else 0,
         "ranked_wallets": int(len(lb)),
+        "market_structure": pt.market_structure(pm),
+        "skill_persistence": pt.persistence(pm, mk),
         "polymarket_closing_calibration": pt.calibration(mk) if len(mk) else {"n": 0},
         "gap_to_sharp": gap_summary(config.PROCESSED_DIR / "pm_gap_log.csv"),
         "leader_preview": lb.head(10).round(4).to_dict("records"),
     }
     (config.REPORTS_DIR / "prediction_market_sharpness.json").write_text(
         json.dumps(report, indent=1, default=str))
-    print(json.dumps({k: v for k, v in report.items() if k != "leader_preview"}, indent=1, default=str))
-    print(lb.head(15).round(3).to_string(index=False))
-
+    return lb, report
 
 if __name__ == "__main__":
     main()

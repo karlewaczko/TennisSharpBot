@@ -315,6 +315,29 @@ python scripts/report_clv.py --results        # CLV + settlement of everything l
 python scripts/study_line_movement.py --days 3 # opening vs. closing on recent results
 ```
 
+## Polymarket's tennis traders: who beats the close, and what they hold
+
+Every Polymarket trade is public with the wallet and its profile name; Kalshi publishes trades without any trader identity, so only Polymarket can be ranked.
+
+- `scripts/update_pm_traders.py` (weekly in the Tuesday workflow, about 35 minutes) walks every decided ATP and WTA moneyline of the last 30 days (about 2,000 matches), downloads all fills and computes, per wallet, the profit and the **closing-line value** of its pre-match fills against the last price before the start. Wallets are ranked by the CLV t-statistic. Only wallets that meet all of these are ranked:
+  - 20+ pre-match markets
+  - $2,000+ staked
+  - at most half of their stake in play
+  - directional before the start (market makers end flat and are left out)
+- Outputs:
+  - `data/processed/pm_tennis_traders.csv`, the ranking
+  - `data/reports/prediction_market_sharpness.json`, which holds:
+    - calibration of Polymarket's last pre-start price
+    - where the money is
+    - split-half persistence of CLV
+    - the gap between prediction-market mids and the sharp fair value, from `pm_gap_log.csv`
+- The dashboard section **Profis auf Polymarket** shows the top 10. It also lists the top 20's open positions on matches of the card, next to the sharp fair value and the best book price. Every run appends those positions to `pm_pro_positions_log.csv` and the prediction-market mids to `pm_gap_log.csv`.
+- First measurement (25 Oct 2026):
+  - Polymarket and Kalshi mids sit at a median 0.81 / 0.51 points from Pinnacle's fair value.
+  - Polymarket's pre-start price has a Brier score of 0.201 over 2,049 matches. Both are about as sharp as Pinnacle.
+  - 90% of the $413M staked is traded in play.
+  - CLV skill persists, but barely: split-half correlation 0.20. The first half's top decile beat the close by +0.3¢ in the second half, against an average of -0.1¢.
+
 ## Telegram bot & REST API
 
 **Fastest path:** run `./quickstart.sh` (macOS/Linux) or `./quickstart.ps1`

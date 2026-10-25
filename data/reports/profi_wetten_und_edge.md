@@ -288,6 +288,42 @@ Elo noch Markt kennt.
 zurück und bewertete Lyon im Oktober auf Sand. Hallentennis ist Hartplatz;
 das ist korrigiert.
 
+## 4c. Polymarket und Kalshi: wie sharp — und wer dort gewinnt (25. Oktober 2026)
+
+**Wie sharp die Kurse sind.** Jeder Dashboard-Lauf schreibt jetzt den Mittelkurs beider Börsen neben den fairen Pinnacle- oder Betfair-Preis (`data/processed/pm_gap_log.csv`, nachgetragen ab 22. Oktober). Über 408 Seiten liegt Polymarket im Median 0,8 Prozentpunkte daneben, Kalshi 0,5. In liquiden Märkten sind es bei beiden etwa 0,5 Punkte, die Spanne zwischen Geld und Brief beträgt typisch 2 Cent. Nach der Taker-Gebühr (Polymarket 5 % × p × (1−p), Kalshi 7 % × p × (1−p)) blieb keine Seite mit positivem Erwartungswert gegen den fairen Preis.
+
+Polymarkets letzter Kurs vor dem Start, 2,049 entschiedene ATP- und WTA-Matches der letzten 30 Tage: Brier 0,201, der Favorit gewann 67 %. In keinem Preisband weicht die Siegquote mehr als 4,7 Punkte vom Kurs ab. Der größte Ausreißer betrifft Favoriten über 80 % auf der ersten Position: Kurs 88,4 %, gewonnen 93,1 % (n = 231). Auf der zweiten Position passt es genau (88,4 % gegen 88,8 %), es ist also eher Zufall als ein Muster. **Fazit: Beide Börsen sind bei ATP und WTA ungefähr so sharp wie Pinnacle.** Ihr Kurs hängt am Kurs der scharfen Buchmacher.
+
+**Wo das Geld ist.** 413 Mio. $ Einsatz in 30 Tagen auf ATP- und WTA-Matches, davon 90 % während des Matches. Die 20 größten Wallets bewegen 45 % davon, und die allergrößten sind Live-Händler: RN1 setzte 18 Mio. $, 95 % davon live. Solche Positionen halten Sekunden und taugen nicht als Tipp.
+
+**Wer die besten Tennis-Wetter sind.** Polymarket veröffentlicht jeden Trade mit Wallet und Profilnamen. `scripts/update_pm_traders.py` lädt alle Fills der entschiedenen Matches (2,053 Märkte, 20,556 Wallets) und misst für jede Wallet den Gewinn sowie den Closing Line Value ihrer Käufe vor dem Start, also den Abstand zum letzten Kurs vor Spielbeginn in Cent je Anteil. Sortiert wird nach der t-Statistik des CLV. Aufgenommen werden nur Wallets, die diese Bedingungen erfüllen:
+
+- mindestens 20 Matches vor dem Start
+- mindestens 2.000 $ Einsatz
+- höchstens die Hälfte des Einsatzes live
+- vor dem Start klar auf eine Seite (Market Maker enden flach und fliegen raus)
+
+Das erfüllen 236 Wallets. Die zehn besten:
+
+| # | Profil | Matches | Einsatz | Gewinn | ROI | CLV Ø | t |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 1 | [UNEB3154s4f251](https://polymarket.com/profile/0x04641b57f332c15ecaa497799c55026d521967da) | 566 | 35.782 $ | +2.326 $ | 6,5 % | 1,4 ¢ | 5,1 |
+| 2 | [0x99f0…9495](https://polymarket.com/profile/0x99f0d31fdced5b3a0e5ee2867730a6644a6c9495) | 1000 | 282.807 $ | +74.037 $ | 26,2 % | 0,7 ¢ | 4,6 |
+| 3 | [bahn-cuon-baby](https://polymarket.com/profile/0x5cdc4e820fe30f22f3cf2581796d6e5abedc1f6b) | 509 | 14.350 $ | +873 $ | 6,1 % | 0,9 ¢ | 4,5 |
+| 4 | [LeLynxMalynx](https://polymarket.com/profile/0x200ffb575b936d297fcf39076ddf2b476ae07a96) | 919 | 59.880 $ | +4.059 $ | 6,8 % | 0,8 ¢ | 3,7 |
+| 5 | [arbbf](https://polymarket.com/profile/0x775efa2139f4c4706d56f077f2393b590411e94a) | 227 | 3.236 $ | +285 $ | 8,8 % | 1,3 ¢ | 3,7 |
+| 6 | [MeistersApprenticeship](https://polymarket.com/profile/0xdc4f58a48ed4467743609fdce11eea483c759804) | 501 | 63.766 $ | +8.917 $ | 14,0 % | 0,8 ¢ | 3,5 |
+| 7 | [mouzsynapse](https://polymarket.com/profile/0xa6ded03ba993d58d265dc8fa3f6ddda3d926256c) | 215 | 131.956 $ | −1.001 $ | −0,8 % | 1,3 ¢ | 3,4 |
+| 8 | [atlantis.](https://polymarket.com/profile/0xa51c4289ad50956046dda8cd36afc25e33a72fde) | 32 | 3.606 $ | −106 $ | −2,9 % | 1,0 ¢ | 3,3 |
+| 9 | [capitalpiston2](https://polymarket.com/profile/0x5e020e19bc4cc2cd24ab9b406604ee9df02ab178) | 765 | 33.466 $ | +2.533 $ | 7,6 % | 0,7 ¢ | 3,2 |
+| 10 | [RadioFreeZerg](https://polymarket.com/profile/0x521070c99db06e54af5e8e4a91d6858decdfbd53) | 692 | 3.141 $ | +34 $ | 1,1 % | 0,6 ¢ | 3,1 |
+
+Viele davon handeln Hunderte Matches im Monat mit kleinen Beträgen. Das sieht nach Modellen und Bots aus, nicht nach Bauchgefühl.
+
+**Hält das Können?** Dafür wurde der Monat in zwei Hälften geteilt. Bei 632 Wallets mit je mindestens zehn Matches pro Hälfte korreliert der CLV der ersten Hälfte mit dem der zweiten zu 0,20. Das beste Zehntel der ersten Hälfte schlug den Schlusskurs danach um 0,3 Cent, der Durchschnitt lag bei -0,1 Cent. Die 20 Besten der ersten Hälfte kamen in der zweiten im Schnitt auf +1,4 Cent CLV je Wallet (+0,4 Cent nach Einsatz gewichtet) und gewannen zusammen 73.000 $ auf 253.000 $ Einsatz. Das ermutigt, aber eine Monatshälfte mit wenigen großen Wallets ist eine dünne Basis. Das Können ist echt, aber klein.
+
+**Was das für uns heißt.** Den Profis blind zu folgen bringt nichts. Ihre offenen Positionen auf Partien der aktuellen Karte stehen jetzt im Dashboard, mit dem fairen Preis und der besten Buchquote daneben. Beim ersten Lauf (42 Positionen) lag der Erwartungswert der besten Buchquote im Median bei −4,0 %. Bei keiner der 25 Positionen mit Buchquote war er positiv. Wenn ein Profi drin ist, zahlt kein Buchmacher mehr als den fairen Preis. Jeder Lauf schreibt die Positionen der Top 20 nach `data/processed/pm_pro_positions_log.csv`. Mit den Schlussquoten aus `odds_snapshots.csv` lässt sich nach einigen Wochen messen, ob ihre Seite den Pinnacle-Schlusskurs schlägt. Erst dann wäre es ein Signal. **Kalshi** veröffentlicht Trades ohne Trader-Kennung, dort lässt sich niemand verfolgen.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |
