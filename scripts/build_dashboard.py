@@ -49,8 +49,9 @@ import pandas as pd
 from tennissharp import config, market_compare as mc, odds_math, player_stats as ps, tourney_matching
 from tennissharp.elo import normalize_surface
 from tennissharp.backtest import DEFAULT_EDGE_THRESHOLD, MIN_MATCHES_PLAYED
-from tennissharp.data import (kalshi, polymarket, tennisabstract_forecast as taf,
-                              tennisexplorer as te, tennismylife as tml)
+from tennissharp.data import (kalshi, polymarket, polymarket_traders as pt,
+                              tennisabstract_forecast as taf, tennisexplorer as te,
+                              tennismylife as tml)
 from tennissharp.value_finder import matchup_probability
 
 _spec = importlib.util.spec_from_file_location(
@@ -424,6 +425,70 @@ def stats_summary(book, name_1: str, name_2: str, surface: str, tour: str, best_
             "tour_avg_spw": round(tour_avg, 4), "h2h": book.head_to_head(full_1, full_2)}
 
 
+PRO_WALLETS = 20
+
+
+def _slug_of(url) -> str | None:
+    return str(url).rstrip("/").rsplit("/", 1)[-1] if url else None
+
+
+def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
+                  fetch=None) -> dict:
+    """Open tennis positions of the best-ranked Polymarket wallets, each
+    placed on the card where the match is on it: the side, the price the
+    wallet paid, the price now, and the sharp fair value next to it.
+
+    The ranking is scripts/update_pm_traders.py's (closing-line value over
+    the last month, weekly). A position is information, not a tip: a
+    market maker's position is inventory, and a wallet that beat the close
+    last month can still be wrong on this match."""
+    fetch = fetch or pt.positions
+    try:
+        lb = pd.read_csv(config.PROCESSED_DIR / "pm_tennis_traders.csv")
+    except (OSError, ValueError):
+        return {"leaderboard": [], "positions": [], "note": "noch keine Rangliste"}
+    if lb.empty:
+        return {"leaderboard": [], "positions": [], "note": "Rangliste leer"}
+    by_slug = {}
+    for e in price_board:
+        for q in e.get("prediction_markets") or []:
+            if q.get("venue") == "Polymarket" and _slug_of(q.get("url")):
+                by_slug[_slug_of(q.get("url"))] = e
+    rows = []
+    for r in lb.head(max_wallets).itertuples(index=False):
+        try:
+            held = fetch(r.wallet)
+        except Exception:
+            continue
+        for p in held:
+            row = {"rank": int(r.rank), "name": r.name if isinstance(r.name, str) else "",
+                   "wallet": r.wallet, "clv_mean": r.clv_mean, "clv_t": r.clv_t,
+                   "slug": p["slug"], "title": p.get("title"), "outcome": p.get("outcome"),
+                   "avg_price": p["avg_price"], "cur_price": p["cur_price"], "size": p["size"],
+                   "initial_value": p.get("initial_value")}
+            e = by_slug.get(p["slug"])
+            idx = None
+            if e:
+                idx = next((i for i, pl in enumerate(e["players"])
+                            if mc.name_matches(str(pl), str(p.get("outcome")))), None)
+            if e and idx is not None:
+                books = {b: q[idx] for b, q in (e.get("books") or {}).items()
+                         if b not in mc.UNNAMED_VENUES and q and q[idx]}
+                best = max(books, key=books.get) if books else None
+                fair = e["fair"][idx]
+                row.update({"match_id": e["match_id"], "date": e.get("date"),
+                            "tournament": e["tournament"], "players": e["players"],
+                            "side": e["players"][idx], "fair": fair,
+                            "fair_source": e.get("fair_source", e["ref_book"]),
+                            "fair_quality": e.get("fair_quality"),
+                            "best_book": best, "best_odds": books.get(best) if best else None,
+                            "ev_best": (round(fair * books[best] - 1, 4) if best else None)})
+            rows.append(row)
+        time.sleep(0.1)
+    rows.sort(key=lambda x: (x.get("match_id") is None, x["rank"]))
+    return {"leaderboard": lb.head(10).to_dict("records"), "positions": rows}
+
+
 def _same_pair(ref_players, name_1, name_2):
     """Fast path for the price-only rows: the odds table usually spells the
     players exactly as the schedule does."""
@@ -730,6 +795,8 @@ def main() -> None:
                     help="skip Tennis Abstract's tournament forecast pages")
     ap.add_argument("--no-stats", action="store_true",
                     help="skip the TennisMyLife serve/return profiles and the point model")
+    ap.add_argument("--no-pm-pros", action="store_true",
+                    help="skip the open positions of the ranked Polymarket tennis wallets")
     args = ap.parse_args()
 
     if args.refresh_schedule:
@@ -1129,6 +1196,13 @@ def main() -> None:
 
     matches.sort(key=lambda x: x["best_edge"], reverse=True)
     boards = build_boards(price_board)
+    pros = ({"leaderboard": [], "positions": [], "note": "abgeschaltet"} if args.no_pm_pros
+            else pro_positions(price_board))
+    try:
+        sharpness = json.loads((config.REPORTS_DIR / "prediction_market_sharpness.json").read_text())
+        sharpness.pop("leader_preview", None)
+    except (OSError, ValueError):
+        sharpness = {}
     every = all_matches_board(
         sched_all, price_board, matches, ProfileBook.load(), args.threshold,
         surface_of=lambda t: surface_by_name.get(tourney_matching.normalize_tourney_name(t)))
@@ -1167,11 +1241,13 @@ def main() -> None:
             "stats_players": len(book.players) if book is not None else 0,
         },
         **boards,
+        "pm_pros": pros,
+        "pm_sharpness": sharpness,
         "all_matches": every,
     }
     args.out.write_text(json.dumps(payload, indent=1, default=str))
     if not args.no_snapshots:
-        n_snap = record_snapshots(price_board, matches, generated_at)
+        n_snap = record_snapshots(price_board, matches, generated_at, pros)
         print(f"{n_snap} Quoten-Snapshots angehaengt")
     print(f"{payload['n_scored']} Partien bewertet, {payload['n_signals']} Signale, "
           f"{len(skipped)} uebersprungen, {n_finished} bereits gespielt, "
@@ -1253,7 +1329,44 @@ def forecast_rows(price_board: list[dict], taken_at: str) -> list[dict]:
     return rows
 
 
-def record_snapshots(price_board: list[dict], matches: list[dict], taken_at: str) -> int:
+GAP_COLUMNS = ["taken_at", "match_id", "date", "tournament", "circuit", "player", "venue", "mid",
+               "fair", "fair_source", "spread", "liquidity"]
+PRO_COLUMNS = ["taken_at", "rank", "name", "wallet", "clv_mean", "clv_t", "slug", "title", "outcome",
+               "avg_price", "cur_price", "size", "match_id", "side", "fair", "fair_source",
+               "best_book", "best_odds", "ev_best"]
+
+
+def _append(path, rows, columns) -> None:
+    if not rows:
+        return
+    header = not path.exists() or path.stat().st_size == 0
+    pd.DataFrame(rows, columns=columns).to_csv(path, mode="a", header=header, index=False)
+
+
+def gap_rows(price_board: list[dict], taken_at: str) -> list[dict]:
+    """Prediction-market mids next to a sharp book's fair value -- the
+    running record behind the 'how sharp are they' measurement."""
+    rows = []
+    for e in price_board:
+        if e.get("fair_quality") != "sharp":
+            continue
+        for q in e.get("prediction_markets") or []:
+            for i in range(2):
+                if q["mid"][i] is None:
+                    continue
+                spread = (q["ask"][i] - q["bid"][i]) if None not in (q["ask"][i], q["bid"][i]) else None
+                rows.append({"taken_at": taken_at, "match_id": e["match_id"], "date": e["date"],
+                             "tournament": e["tournament"], "circuit": e["circuit"],
+                             "player": e["players"][i], "venue": q["venue"],
+                             "mid": round(q["mid"][i], 4), "fair": e["fair"][i],
+                             "fair_source": e.get("fair_source"),
+                             "spread": round(spread, 4) if spread is not None else None,
+                             "liquidity": q.get("liquidity")})
+    return rows
+
+
+def record_snapshots(price_board: list[dict], matches: list[dict], taken_at: str,
+                     pros: dict | None = None) -> int:
     """Append this run's quotes and its positive-EV sides to the two logs
     that make opening-vs-closing and closing-line-value measurable later.
     Nothing here is a bet; it is the record against which one would be judged."""
@@ -1285,6 +1398,9 @@ def record_snapshots(price_board: list[dict], matches: list[dict], taken_at: str
         path = config.PROCESSED_DIR / "picks_log.csv"
         header = not path.exists() or path.stat().st_size == 0
         pd.DataFrame(picks, columns=PICK_COLUMNS).to_csv(path, mode="a", header=header, index=False)
+    _append(config.PROCESSED_DIR / "pm_gap_log.csv", gap_rows(price_board, taken_at), GAP_COLUMNS)
+    _append(config.PROCESSED_DIR / "pm_pro_positions_log.csv",
+            [{**r, "taken_at": taken_at} for r in (pros or {}).get("positions", [])], PRO_COLUMNS)
     fc_rows = forecast_rows(price_board, taken_at)
     if fc_rows:
         path = config.PROCESSED_DIR / "forecasts_log.csv"

@@ -25,7 +25,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       # The branch, not the triggering commit: a run that waited in the
       # concurrency queue must start from what the previous run pushed.
@@ -63,6 +63,13 @@ jobs:
       - name: Walk-forward backtest report
         if: ${{ !cancelled() }}
         run: python scripts/run_backtest.py --min-train-seasons 5
+
+      # Ranks Polymarket's tennis wallets by closing-line value over the last
+      # month and measures how sharp Polymarket's and Kalshi's prices are.
+      - name: Polymarket tennis traders and prediction-market sharpness
+        if: ${{ !cancelled() }}
+        timeout-minutes: 60
+        run: python scripts/update_pm_traders.py --days 30
 
       - name: Rebuild value dashboard
         if: ${{ !cancelled() }}

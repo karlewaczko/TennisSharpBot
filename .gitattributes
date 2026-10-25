@@ -6,3 +6,5 @@ data/processed/odds_snapshots.csv merge=union
 data/processed/picks_log.csv merge=union
 data/processed/forecasts_log.csv merge=union
 data/processed/ta_elo_history.csv merge=union
+data/processed/pm_gap_log.csv merge=union
+data/processed/pm_pro_positions_log.csv merge=union

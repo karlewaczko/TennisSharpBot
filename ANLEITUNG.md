@@ -69,6 +69,10 @@ Dashboard jetzt ein **Preisbrett**:
 
 Ausführlich, mit Quellen und Messwerten: `data/reports/profi_wetten_und_edge.md`.
 
+### Profis auf Polymarket
+
+Im Dashboard steht jetzt eine Rangliste der Wallets, die bei Polymarket vor Spielbeginn am verlässlichsten den Schlusskurs schlagen. Daneben stehen ihre offenen Positionen auf Partien der aktuellen Karte. Das ist Information, kein Tipp. Polymarket und Kalshi liegen im Median weniger als einen Prozentpunkt neben Pinnacle, und das Können der Besten beträgt etwa ein Drittel Cent je Anteil. Wenn ein Profi drin ist, zahlt meist kein Buchmacher mehr als den fairen Preis. Kalshi zeigt keine Trader, dort gibt es keine Rangliste.
+
 ## Was du am Ende hast
 
 Einen Telegram-Bot, den du wie einen Chat-Partner fragen kannst:
