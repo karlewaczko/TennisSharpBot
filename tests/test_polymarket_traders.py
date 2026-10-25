@@ -19,19 +19,26 @@ def _t(wallet, side, outcome, size, price, ts, name=""):
             "price": price, "timestamp": ts, "name": name}
 
 
-def test_closed_market_row_reads_the_winner_and_skips_voids_and_doubles():
-    ev = {"slug": "atp-fritz-altmaie-2026-10-23", "title": "Lyon Open: Taylor Fritz vs Daniel Altmaier",
-          "markets": [{"sportsMarketType": "moneyline", "conditionId": "0xabc",
-                       "outcomes": json.dumps(["Taylor Fritz", "Daniel Altmaier"]),
-                       "outcomePrices": json.dumps(["1", "0"]), "gameStartTime": "2026-10-23 15:00:00+00",
-                       "volumeNum": 1000}]}
-    row = pt.closed_market_row(ev)
+def _market(slug, outcomes, prices, start="2026-10-23 15:00:00+00", cid="0xabc", volume=1000,
+            question="Lyon Open: Taylor Fritz vs Daniel Altmaier", group=None):
+    return {"conditionId": cid, "question": question, "groupItemTitle": group, "events": [{"slug": slug}],
+            "outcomes": json.dumps(outcomes), "outcomePrices": json.dumps(prices),
+            "gameStartTime": start, "volumeNum": volume, "sportsMarketType": "moneyline"}
+
+
+def test_market_row_reads_the_winner_and_skips_voids_outrights_and_doubles():
+    m = _market("atp-fritz-altmaie-2026-10-23", ["Taylor Fritz", "Daniel Altmaier"], ["1", "0"])
+    row = pt.market_row(m)
     assert row["winner"] == 0 and row["tour"] == "atp" and row["tournament"] == "Lyon Open"
-    void = json.loads(json.dumps(ev)); void["markets"][0]["outcomePrices"] = json.dumps(["0.5", "0.5"])
-    assert pt.closed_market_row(void) is None
-    dbl = dict(ev, slug="atp-doubles-ab-cd-2026-10-23")
-    assert pt.closed_market_row(dbl) is None
-    assert pt.closed_market_row(dict(ev, slug="atp-tournament-winner-2026-135005")) is None
+    assert pt.market_row(_market("atp-fritz-altmaie-2026-10-23", ["A", "B"], ["0.5", "0.5"])) is None
+    assert pt.market_row(_market("atp-doubles-ab-cd-2026-10-23", ["A", "B"], ["1", "0"])) is None
+    assert pt.market_row(_market("atp-tournament-winner-2026-135005", ["Yes", "No"], ["1", "0"])) is None
+    draw = _market("epl-ars-che-2026-10-18", ["Yes", "No"], ["0", "1"], question="Will it be a draw?",
+                   group="Draw (Arsenal vs. Chelsea)")
+    assert pt.market_row(draw) is None                                   # not tennis
+    row = pt.market_row(draw, "soccer")
+    assert row["winner"] == 1 and row["tour"] == "epl" and row["label"].startswith("Draw")
+    assert row["tournament"] == ""
 
 
 class _Resp:
@@ -47,28 +54,73 @@ class _Resp:
         pass
 
 
-def test_closed_markets_walks_creation_windows_on_the_tennis_tag():
+def test_closed_markets_walks_creation_windows_and_tags():
     now = 1_800_000_000.0
     asked = []
 
-    def ev(slug, start, cid):
-        when = dt.datetime.fromtimestamp(start, dt.timezone.utc).strftime("%Y-%m-%d %H:%M:%S+00")
-        return {"slug": slug, "title": "Paris: A vs B",
-                "markets": [{"sportsMarketType": "moneyline", "conditionId": cid,
-                             "outcomes": json.dumps(["A", "B"]), "outcomePrices": json.dumps(["0", "1"]),
-                             "gameStartTime": when, "volumeNum": 5000}]}
+    def when(ts):
+        return dt.datetime.fromtimestamp(ts, dt.timezone.utc).strftime("%Y-%m-%d %H:%M:%S+00")
 
     class Http:
         def get(self, url, params=None, headers=None, timeout=None):
             asked.append(params)
-            return _Resp([ev("atp-a-b-2027-01-15", now - 3600, "0x1"), ev("itf-a-b-2027-01-15", now - 3600, "0x2"),
-                          ev("wta-c-d-2026-12-06", now - 40 * 86400, "0x3"), ev("atp-a-b-2027-01-15", now - 3600, "0x1")])
+            return _Resp([_market("atp-a-b-2027-01-15", ["A", "B"], ["0", "1"], when(now - 3600), "0x1", 5000),
+                          _market("itf-a-b-2027-01-15", ["A", "B"], ["0", "1"], when(now - 3600), "0x2", 5000),
+                          _market("wta-c-d-2026-12-06", ["C", "D"], ["0", "1"], when(now - 40 * 86400), "0x3", 5000),
+                          _market("nba-mia-cha-2027-01-15", ["Heat", "Hornets"], ["0", "1"], when(now - 3600), "0x4", 5000)])
 
-    got = pt.closed_markets(days=2, http=Http(), sleep=lambda s: None, now=now)
-    assert [r["condition_id"] for r in got] == ["0x1"]     # ITF, too old and the repeat are dropped
-    assert {a["tag_id"] for a in asked} == {pt.TENNIS_TAG}
-    assert len(asked) == 5                                  # two days plus three of slack, a day at a time
+    got = pt.closed_markets(days=2, http=Http(), sleep=lambda s: None, now=now, lead_days=3)
+    assert [r["condition_id"] for r in got] == ["0x1"]     # ITF, too old and other sports are dropped
+    assert {a["tag_id"] for a in asked} == set(pt.SPORT_TAGS["tennis"])
+    assert {a["sports_market_types"] for a in asked} == {"moneyline"}
+    assert len(asked) == 5                                  # two days plus three of lead, a day at a time
+    asked.clear()
     assert pt.closed_markets(days=2, http=Http(), sleep=lambda s: None, now=now, min_volume=10_000) == []
+    assert asked[0]["volume_num_min"] == 10_000
+    got = pt.closed_markets(days=2, sport="basketball", tours=None, http=Http(), sleep=lambda s: None, now=now)
+    assert [r["condition_id"] for r in got] == ["0x1", "0x2", "0x4"]   # once, though asked under every tag
+
+
+def test_market_trades_fall_back_to_bigger_trades_when_a_market_is_too_busy():
+    asked = []
+
+    class Http:
+        def get(self, url, params=None, headers=None, timeout=None):
+            asked.append(params)
+            if "filterAmount" not in params or params["filterAmount"] < 100:
+                return _Resp([{"price": 0.5}] * pt.TRADE_PAGE)          # always a full page
+            return _Resp([{"price": 0.5}] * 1200 if params["offset"] == 0 else [])
+
+    trades, floor = pt.market_trades("0xbusy", http=Http(), sleep=lambda s: None)
+    assert floor == 100 and len(trades) == 1200
+    assert [a.get("filterAmount") for a in asked] == [None, None, 50, 50, 100]
+
+    class Small:
+        def get(self, url, params=None, headers=None, timeout=None):
+            return _Resp([{"price": 0.5}] * 30)
+
+    assert pt.market_trades("0xquiet", http=Small(), sleep=lambda s: None)[1] == 0.0
+
+
+def test_a_football_match_counts_once_per_wallet():
+    rows = [  # home Yes, draw No and away No: one opinion on the home side
+        {"wallet": "W", "name": "", "slug": "epl-ars-che-2026-10-18", "pnl": 30.0, "stake": 100.0, "pre_stake": 100.0,
+         "live_stake": 0.0, "clv": 0.02, "both_sides": False, "trades": 2, "directional": 1.0},
+        {"wallet": "W", "name": "Wally", "slug": "epl-ars-che-2026-10-18", "pnl": 10.0, "stake": 300.0, "pre_stake": 200.0,
+         "live_stake": 100.0, "clv": 0.05, "both_sides": True, "trades": 3, "directional": 0.5},
+        {"wallet": "W", "name": "", "slug": "epl-ars-che-2026-10-18", "pnl": -5.0, "stake": 50.0, "pre_stake": 0.0,
+         "live_stake": 50.0, "clv": None, "both_sides": False, "trades": 1, "directional": None},
+        {"wallet": "V", "name": "", "slug": "epl-ars-che-2026-10-18", "pnl": 1.0, "stake": 10.0, "pre_stake": 10.0,
+         "live_stake": 0.0, "clv": -0.01, "both_sides": False, "trades": 1, "directional": 1.0},
+    ]
+    ev = pt.by_event(pd.DataFrame(rows))
+    w = ev.set_index("wallet").loc["W"]
+    assert len(ev) == 2 and w["name"] == "Wally" and w["trades"] == 6 and bool(w["both_sides"])
+    assert w["pnl"] == pytest.approx(35.0) and w["stake"] == pytest.approx(450.0)
+    assert w["clv"] == pytest.approx((0.02 * 100 + 0.05 * 200) / 300)
+    assert w["directional"] == pytest.approx((1.0 * 100 + 0.5 * 200) / 300)
+    tennis = pd.DataFrame(rows[:1])
+    assert pt.by_event(tennis) is tennis                    # one market a match: nothing to merge
 
 
 def test_profit_and_closing_line_value_per_wallet():
@@ -138,6 +190,8 @@ def test_skill_persistence_and_market_structure():
     assert got["wallets"] == 30 and got["corr"] > 0.99
     assert got["top_decile_next"] > got["all_next"] > got["bottom_decile_next"]
     assert pt.persistence(per[per.wallet == "w1"], mk) == {"wallets": 1}
+    three_way = pd.concat([mk, mk, mk])                     # a football match lists its start three times
+    assert pt.persistence(per, three_way) == got
     ms = pt.market_structure(per)
     assert ms["stake_usd"] == 72_000 and ms["in_play_share"] == round(90 * 24 / 72_000, 3)
 
