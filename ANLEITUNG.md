@@ -62,8 +62,10 @@ Dashboard jetzt ein **Preisbrett**:
   Break-Werten der letzten 52 Wochen, gesamt und je Belag. Auf GitHub lässt
   sich die Datei direkt im Browser als Tabelle öffnen und durchsuchen.
   Tennis Abstract sperrt die Server von GitHub; die Elo-Werte holt deshalb
-  ein geplanter Claude-Code-Lauf jeden Dienstag um 05:53 UTC und legt sie im
-  Repository ab, kurz bevor der GitHub-Lauf um 06:41 UTC die Tabelle baut.
+  der Claude-Code-Chat des Projekts jeden Dienstag um 05:53 UTC mit
+  `bash scripts/weekly_ta_refresh.sh` und legt sie im Repository ab, kurz
+  bevor der GitHub-Lauf um 06:41 UTC die Tabelle baut. Derselbe Befehl
+  funktioniert auch von Hand.
 
 Ausführlich, mit Quellen und Messwerten: `data/reports/profi_wetten_und_edge.md`.
 

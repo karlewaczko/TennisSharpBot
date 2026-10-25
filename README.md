@@ -181,12 +181,14 @@ Two scheduled workflows:
 - **A Claude Code scheduled task, every Tuesday 05:53 UTC**, for Tennis
   Abstract. The site answers GitHub's runners with HTTP 403 (measured on
   the first run, 2026-10-24) while accepting the Claude Code cloud
-  environment. The task wakes a dedicated session that runs
-  `scripts/update_player_data.py --surface-speed` (Elo, yElo, surface
-  speed, history, player table) and pushes the result to `main`, 48
-  minutes before the GitHub job, which then rebuilds everything around the
-  fresh ratings. Its schedule and prompt are managed at claude.ai/code
-  under scheduled tasks; deleting it stops the Tennis Abstract refresh.
+  environment. The task wakes the project's Claude Code chat, which runs
+  `bash scripts/weekly_ta_refresh.sh`: a separate checkout of `main`,
+  `update_player_data.py --surface-speed` (Elo, yElo, surface speed,
+  history, player table), a commit of `data/processed` only, pushed to
+  `main` 48 minutes before the GitHub job, which then rebuilds everything
+  around the fresh ratings. The same command works by hand from any
+  checkout that can reach Tennis Abstract. The schedule is managed at
+  claude.ai/code under scheduled tasks; deleting it stops the refresh.
 
 The GitHub job treats a refused Tennis Abstract read as a warning. It turns
 red only when the stored ratings are more than 8 days old -- that is, when
