@@ -319,6 +319,8 @@ details.am-more p { margin:4px 0 2px; color:var(--muted); }
 
   __PMBOARD__
 
+  __PMPROS__
+
   __ARBS__
 
   __PRICEBOARD__
@@ -538,6 +540,86 @@ def pm_section(data: dict) -> str:
                        ("EV Taker", "num"), ("EV Maker", "num"), ("Liquidität", "num")], "".join(trs))
     return (f'<div class="sec"><h2>Polymarket &amp; Kalshi gegen den Sharp-Markt</h2><span class="rule"></span>'
             f'<span class="count">{len(rows)} Seiten verglichen</span></div>{intro}{body}')
+
+
+def _usd(x) -> str:
+    try:
+        return f"{float(x):,.0f}&nbsp;$".replace(",", "&thinsp;")
+    except (TypeError, ValueError):
+        return "&ndash;"
+
+
+def pm_pros_section(data: dict) -> str:
+    """Polymarket's best-ranked tennis wallets and what they hold."""
+    pros = data.get("pm_pros") or {}
+    lb = pros.get("leaderboard") or []
+    pos = pros.get("positions") or []
+    sh = data.get("pm_sharpness") or {}
+    cal = sh.get("polymarket_closing_calibration") or {}
+    gaps = sh.get("gap_to_sharp") or {}
+    facts = []
+    if cal.get("n"):
+        facts.append(f'Polymarkets Schlusskurse vor Spielbeginn: Brier {cal["brier"]:.3f} über '
+                     f'{cal["n"]} entschiedene ATP- und WTA-Matches, der Favorit gewann in '
+                     f'{cal["favourite_won"] * 100:.0f}&thinsp;%.')
+    for venue in ("Polymarket", "Kalshi"):
+        g = gaps.get(venue)
+        if g:
+            facts.append(f'{venue}-Mittelkurs gegen den Pinnacle- oder Betfair-Fairwert: im Median '
+                         f'{g["median_gap_pp"]:.2f} Punkte daneben, {g["share_within_1pp"] * 100:.0f}&thinsp;% '
+                         f'der {g["sides"]} Seiten innerhalb eines Punktes.')
+    intro = ('<p class="note"><b>Wie die Rangliste entsteht:</b> Jeder Polymarket-Trade ist öffentlich '
+             'mit Wallet und Profilnamen. Bewertet wird jede Wallet daran, ob ihre Käufe vor '
+             'Spielbeginn den Schlusskurs geschlagen haben (Closing Line Value, CLV), über die '
+             'entschiedenen ATP- und WTA-Matches des letzten Monats, mindestens zehn Matches und '
+             '2&thinsp;000&nbsp;$ Einsatz; sortiert nach der t-Statistik, damit Glück über wenige '
+             'Matches nicht oben landet. <b>Vorsicht:</b> Große Wallets sind oft Market Maker, deren '
+             'Position Lagerbestand ist und kein Tipp, und ein guter Monat ist kein Beweis. Kalshi '
+             'veröffentlicht keine Trader-Daten. ' + " ".join(facts) + '</p>')
+    if not lb:
+        note = pros.get("note") or "keine Daten"
+        return (f'<div class="sec"><h2>Profis auf Polymarket</h2><span class="rule"></span></div>'
+                f'{intro}<p class="note">Rangliste: {esc(note)}.</p>')
+    trs = []
+    for r in lb:
+        name = r.get("name") if isinstance(r.get("name"), str) and r.get("name") else str(r["wallet"])[:10]
+        trs.append(f'<tr><td class="num">{int(r["rank"])}</td><td class="m">{esc(name)}</td>'
+                   f'<td class="num">{int(r["pre_markets"])}</td><td class="num">{_usd(r["stake"])}</td>'
+                   f'<td class="num">{_usd(r["pnl"])}</td>'
+                   f'<td class="num">{pct(r.get("roi"), 1, sign=True)}</td>'
+                   f'<td class="num">{pct(r.get("clv_mean"), 2, sign=True)}</td>'
+                   f'<td class="num">{float(r["clv_t"]):.1f}</td>'
+                   f'<td class="num">{pct(r.get("live_share"), 0)}</td></tr>')
+    table = _table([("#", "num"), ("Profil", ""), ("Matches vor Start", "num"), ("Einsatz", "num"),
+                    ("Gewinn", "num"), ("ROI", "num"), ("CLV &Oslash;", "num"), ("t", "num"),
+                    ("Live-Anteil", "num")], "".join(trs))
+    on_card = [p for p in pos if p.get("match_id")]
+    if on_card:
+        prs = []
+        for p in on_card[:25]:
+            name = p.get("name") or str(p["wallet"])[:10]
+            ev = p.get("ev_best")
+            ecls = "p" if ev is not None and ev > 0.005 else ("n" if ev is not None and ev < -0.005 else "z")
+            prs.append(f'<tr><td>{_match_cell({"players": p["players"], "tournament": p["tournament"], "date": p.get("date")})}</td>'
+                       f'<td>{esc(name)} <span class="s">#{int(p["rank"])}</span></td>'
+                       f'<td class="m">{esc(p["side"])}</td>'
+                       f'<td class="num">{p["avg_price"]:.2f} &rarr; {p["cur_price"]:.2f}</td>'
+                       f'<td class="num">{_usd(p.get("initial_value"))}</td>'
+                       f'<td class="num">{pct(p.get("fair"))} <span class="s">{esc(p.get("fair_source") or "")}</span></td>'
+                       f'<td class="num">{odds_fmt(p.get("best_odds"))} <span class="s">{esc(p.get("best_book") or "")}</span></td>'
+                       f'<td class="num"><span class="edge {ecls}">{pct(ev, 1, sign=True) if ev is not None else "&ndash;"}</span></td></tr>')
+        ptable = _table([("Partie", ""), ("Profil", ""), ("Seite", ""), ("Einstieg &rarr; jetzt", "num"),
+                         ("Einsatz", "num"), ("Fair", "num"), ("Beste Buchquote", "num"), ("EV", "num")],
+                        "".join(prs))
+        pos_html = (f'<p class="note" style="margin-top:14px">Offene Positionen dieser Profile auf Partien '
+                    f'dieser Karte. EV ist die beste Buchquote gegen den fairen Preis, nicht gegen die '
+                    f'Meinung des Profils.</p>{ptable}')
+    else:
+        pos_html = ('<p class="note" style="margin-top:14px">Keines der Top-Profile hält gerade eine '
+                    f'Position auf einer Partie dieser Karte ({len(pos)} offene Tennis-Positionen insgesamt).</p>')
+    return (f'<div class="sec"><h2>Profis auf Polymarket</h2><span class="rule"></span>'
+            f'<span class="count">{len(lb)} Profile, {len(on_card)} Positionen auf der Karte</span></div>'
+            f'{intro}{table}{pos_html}')
 
 
 def arb_section(data: dict) -> str:
@@ -1160,6 +1242,7 @@ def render(data: dict) -> str:
         "__FORECASTS__": forecast_section(data),
         "__ALLMATCHES__": all_matches_section(data),
         "__SOFTVALUE__": soft_value_section(data), "__PMBOARD__": pm_section(data),
+        "__PMPROS__": pm_pros_section(data),
         "__ARBS__": arb_section(data), "__PRICEBOARD__": price_board_section(data),
         "__NMATCHES__": str(len(data["matches"])),
         "__NMODEL__": str(len(model_matches)),

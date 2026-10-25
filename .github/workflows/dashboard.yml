@@ -53,7 +53,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs data/reports/dashboard.html data/processed/dashboard.json \
                   data/processed/tennisexplorer_upcoming.csv data/processed/odds_snapshots.csv \
-                  data/processed/picks_log.csv data/processed/forecasts_log.csv
+                  data/processed/picks_log.csv data/processed/forecasts_log.csv \
+                  data/processed/pm_gap_log.csv data/processed/pm_pro_positions_log.csv
           if git diff --cached --quiet; then
             echo "No changes."
             exit 0

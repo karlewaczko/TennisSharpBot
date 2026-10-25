@@ -1,0 +1,203 @@
+"""Polymarket tennis wallets: per-market profit, closing-line value, the
+ranking, and the positions shown on the card."""
+import datetime as dt
+import importlib.util
+import json
+import sys
+from pathlib import Path
+
+import pandas as pd
+import pytest
+
+from tennissharp.data import polymarket_traders as pt
+
+START = 1_000_000.0
+
+
+def _t(wallet, side, outcome, size, price, ts, name=""):
+    return {"proxyWallet": wallet, "side": side, "outcomeIndex": outcome, "size": size,
+            "price": price, "timestamp": ts, "name": name}
+
+
+def test_closed_market_row_reads_the_winner_and_skips_voids_and_doubles():
+    ev = {"slug": "atp-fritz-altmaie-2026-10-23", "title": "Lyon Open: Taylor Fritz vs Daniel Altmaier",
+          "markets": [{"sportsMarketType": "moneyline", "conditionId": "0xabc",
+                       "outcomes": json.dumps(["Taylor Fritz", "Daniel Altmaier"]),
+                       "outcomePrices": json.dumps(["1", "0"]), "gameStartTime": "2026-10-23 15:00:00+00",
+                       "volumeNum": 1000}]}
+    row = pt.closed_market_row(ev)
+    assert row["winner"] == 0 and row["tour"] == "atp" and row["tournament"] == "Lyon Open"
+    void = json.loads(json.dumps(ev)); void["markets"][0]["outcomePrices"] = json.dumps(["0.5", "0.5"])
+    assert pt.closed_market_row(void) is None
+    dbl = dict(ev, slug="atp-doubles-ab-cd-2026-10-23")
+    assert pt.closed_market_row(dbl) is None
+    assert pt.closed_market_row(dict(ev, slug="atp-tournament-winner-2026-135005")) is None
+
+
+class _Resp:
+    status_code = 200
+
+    def __init__(self, data):
+        self._d = data
+
+    def json(self):
+        return self._d
+
+    def raise_for_status(self):
+        pass
+
+
+def test_closed_markets_walks_creation_windows_on_the_tennis_tag():
+    now = 1_800_000_000.0
+    asked = []
+
+    def ev(slug, start, cid):
+        when = dt.datetime.fromtimestamp(start, dt.timezone.utc).strftime("%Y-%m-%d %H:%M:%S+00")
+        return {"slug": slug, "title": "Paris: A vs B",
+                "markets": [{"sportsMarketType": "moneyline", "conditionId": cid,
+                             "outcomes": json.dumps(["A", "B"]), "outcomePrices": json.dumps(["0", "1"]),
+                             "gameStartTime": when, "volumeNum": 5000}]}
+
+    class Http:
+        def get(self, url, params=None, headers=None, timeout=None):
+            asked.append(params)
+            return _Resp([ev("atp-a-b-2027-01-15", now - 3600, "0x1"), ev("itf-a-b-2027-01-15", now - 3600, "0x2"),
+                          ev("wta-c-d-2026-12-06", now - 40 * 86400, "0x3"), ev("atp-a-b-2027-01-15", now - 3600, "0x1")])
+
+    got = pt.closed_markets(days=2, http=Http(), sleep=lambda s: None, now=now)
+    assert [r["condition_id"] for r in got] == ["0x1"]     # ITF, too old and the repeat are dropped
+    assert {a["tag_id"] for a in asked} == {pt.TENNIS_TAG}
+    assert len(asked) == 5                                  # two days plus three of slack, a day at a time
+    assert pt.closed_markets(days=2, http=Http(), sleep=lambda s: None, now=now, min_volume=10_000) == []
+
+
+def test_profit_and_closing_line_value_per_wallet():
+    trades = [
+        _t("A", "BUY", 0, 100, 0.40, START - 3600, "sharp"),     # bought at 40c
+        _t("B", "SELL", 0, 100, 0.40, START - 3600),             # the other side of it
+        _t("C", "BUY", 0, 10, 0.50, START - 60),                 # last fill before start: close 0.50
+        _t("A", "BUY", 1, 20, 0.30, START + 600),                # in-play, does not count for CLV
+    ]
+    close, rows = pt.account_market(trades, winner=0, start_ts=START)
+    by = {r["wallet"]: r for r in rows}
+    assert close == pytest.approx(0.50)
+    assert by["A"]["pnl"] == pytest.approx(-40 + 100 - 6)        # 20 shares of the loser at 30c
+    assert by["A"]["clv"] == pytest.approx(0.10)
+    assert by["A"]["live_stake"] == pytest.approx(6.0) and by["A"]["both_sides"]
+    assert by["B"]["pnl"] == pytest.approx(40 - 100)
+    assert by["B"]["clv"] == pytest.approx(-0.10)
+    assert by["C"]["clv"] == pytest.approx(0.0)
+    assert by["A"]["directional"] == pytest.approx(1.0)     # only the pre-match buy counts
+    maker = [_t("M", "BUY", 0, 50, 0.48, START - 900), _t("M", "BUY", 1, 50, 0.48, START - 800)]
+    assert pt.account_market(maker + trades, 0, START)[1][0]["directional"] == pytest.approx(0.0)
+
+
+def test_closing_price_converts_the_other_outcome():
+    trades = [_t("X", "BUY", 1, 5, 0.70, START - 10)]
+    assert pt.closing_price(trades, START) == pytest.approx(0.30)
+    assert pt.closing_price(trades, None) is None
+    assert pt.closing_price([_t("X", "BUY", 0, 5, 0.7, START + 10)], START) is None
+
+
+def test_leaderboard_needs_enough_markets_and_stake_and_ranks_by_t():
+    rows = []
+    for i in range(12):   # steady small edge
+        rows.append({"wallet": "steady", "name": "Steady", "pnl": 50, "stake": 500, "pre_stake": 500,
+                     "live_stake": 0, "clv": 0.02 + 0.001 * (i % 3), "both_sides": False, "slug": f"m{i}",
+                     "directional": 1.0})
+        rows.append({"wallet": "maker", "name": "Maker", "pnl": 10, "stake": 900, "pre_stake": 900,
+                     "live_stake": 0, "clv": 0.010 + 0.0001 * (i % 2), "both_sides": True,
+                     "slug": f"m{i}", "directional": 0.1})
+    for i in range(12):   # big but noisy
+        rows.append({"wallet": "noisy", "name": "Noisy", "pnl": 400 if i % 2 else -300, "stake": 2000,
+                     "pre_stake": 2000, "live_stake": 0, "clv": 0.10 if i % 2 else -0.08,
+                     "both_sides": True, "slug": f"m{i}", "directional": 0.8})
+    for i in range(3):    # too few markets
+        rows.append({"wallet": "lucky", "name": "Lucky", "pnl": 5000, "stake": 5000, "pre_stake": 5000,
+                     "live_stake": 0, "clv": 0.3, "both_sides": False, "slug": f"m{i}",
+                     "directional": 1.0})
+    lb = pt.leaderboard(pd.DataFrame(rows))
+    assert lb["wallet"].tolist() == ["steady", "noisy"]
+    assert lb.iloc[0]["rank"] == 1 and lb.iloc[0]["clv_t"] > lb.iloc[1]["clv_t"]
+    assert lb.iloc[1]["two_sided_share"] == 1.0
+    assert pt.leaderboard(pd.DataFrame()).empty
+    assert "maker" in pt.leaderboard(pd.DataFrame(rows), min_directional=0)["wallet"].tolist()
+
+
+def test_calibration_reports_brier_and_bins():
+    mk = pd.DataFrame({"close_a": [0.8, 0.7, 0.3, 0.6], "winner": [0, 0, 1, 1]})
+    cal = pt.calibration(mk)
+    assert cal["n"] == 4
+    assert cal["brier"] == pytest.approx(((0.2) ** 2 + 0.3 ** 2 + 0.3 ** 2 + 0.6 ** 2) / 4, abs=1e-4)
+    assert cal["favourite_won"] == 0.75
+    assert pt.calibration(pd.DataFrame({"close_a": [None], "winner": [0]}))["n"] == 0
+
+
+def test_positions_keep_open_singles_only():
+    class Resp:
+        status_code = 200
+        def __init__(self, data): self._d = data
+        def json(self): return self._d
+        def raise_for_status(self): pass
+
+    data = [
+        {"eventSlug": "atp-fritz-altmaie-2026-10-23", "outcome": "Taylor Fritz", "avgPrice": 0.7,
+         "curPrice": 0.75, "size": 100, "initialValue": 70, "currentValue": 75, "redeemable": False},
+        {"eventSlug": "atp-doubles-ab-cd-2026-10-23", "curPrice": 0.5, "size": 10},
+        {"eventSlug": "nba-lakers", "curPrice": 0.5, "size": 10},
+        {"eventSlug": "atp-tournament-winner-2026-135011", "curPrice": 0.3, "size": 10},
+        {"eventSlug": "wta-a-b-2026-10-20", "curPrice": 1.0, "size": 10, "redeemable": True},
+    ]
+
+    class Http:
+        def get(self, url, params=None, headers=None, timeout=None):
+            return Resp(data)
+
+    got = pt.positions("0xW", http=Http(), sleep=lambda s: None)
+    assert [p["slug"] for p in got] == ["atp-fritz-altmaie-2026-10-23"]
+    assert got[0]["avg_price"] == 0.7
+
+
+@pytest.fixture(scope="module")
+def bd():
+    scripts = Path(__file__).parent.parent / "scripts"
+    spec = importlib.util.spec_from_file_location("build_dashboard", scripts / "build_dashboard.py")
+    sys.path.insert(0, str(scripts))
+    try:
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+    finally:
+        sys.path.remove(str(scripts))
+
+
+def test_pro_positions_land_on_the_card_with_the_fair_value(bd, tmp_path, monkeypatch):
+    from tennissharp import config
+    monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
+    pd.DataFrame([{"rank": 1, "name": "Pro", "wallet": "0xW", "markets": 20, "pre_markets": 15,
+                   "stake": 9000, "pnl": 800, "roi": 0.09, "clv_mean": 0.03, "clv_t": 3.1,
+                   "win_share": 0.6, "live_share": 0.1, "two_sided_share": 0.2}]
+                 ).to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
+    board = [{"match_id": "7", "date": "2026-10-23", "tournament": "Lyon", "players": ["Fritz T.", "Altmaier D."],
+              "fair": [0.78, 0.22], "fair_source": "Pinnacle", "fair_quality": "sharp", "ref_book": "Pinnacle",
+              "books": {"Pinnacle": [1.25, 4.3], "bet365": [1.22, 4.5], "TennisExplorer": [1.3, 4.9]},
+              "prediction_markets": [{"venue": "Polymarket",
+                                      "url": "https://polymarket.com/event/atp-fritz-altmaie-2026-10-23"}]}]
+    held = [{"wallet": "0xW", "slug": "atp-fritz-altmaie-2026-10-23", "title": "Lyon", "outcome": "Daniel Altmaier",
+             "avg_price": 0.2, "cur_price": 0.24, "size": 500, "initial_value": 100, "current_value": 120}]
+    out = bd.pro_positions(board, fetch=lambda w: held)
+    p = out["positions"][0]
+    assert p["side"] == "Altmaier D." and p["fair"] == 0.22
+    assert p["best_book"] == "bet365" and p["best_odds"] == 4.5    # the anonymous schedule quote is left out
+    assert p["ev_best"] == pytest.approx(0.22 * 4.5 - 1, abs=1e-4)
+    assert out["leaderboard"][0]["name"] == "Pro"
+    rows = bd.gap_rows([{**board[0], "circuit": "Tour",
+                         "prediction_markets": [{"venue": "Kalshi", "mid": [0.77, 0.23], "ask": [0.78, 0.24],
+                                                 "bid": [0.76, 0.22], "liquidity": 9000}]}], "t")
+    assert len(rows) == 2 and rows[0]["spread"] == pytest.approx(0.02)
+
+
+def test_no_ranking_yet_is_said_plainly(bd, tmp_path, monkeypatch):
+    from tennissharp import config
+    monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
+    assert bd.pro_positions([])["note"] == "noch keine Rangliste"

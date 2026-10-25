@@ -1,0 +1,54 @@
+{
+ "measured_at": "2026-10-25T20:58:04+00:00",
+ "window_days": 30,
+ "tours": [
+  "atp",
+  "wta"
+ ],
+ "markets": 5,
+ "wallets": 136,
+ "ranked_wallets": 0,
+ "polymarket_closing_calibration": {
+  "n": 3,
+  "brier": 0.1934,
+  "log_loss": 0.5628,
+  "favourite_won": 0.667,
+  "bins": [
+   {
+    "range": "(-0.001, 0.2]",
+    "n": 1,
+    "price": 0.195,
+    "won": 0.0
+   },
+   {
+    "range": "(0.2, 0.35]",
+    "n": 2,
+    "price": 0.301,
+    "won": 0.5
+   }
+  ]
+ },
+ "gap_to_sharp": {
+  "Kalshi": {
+   "sides": 138,
+   "matches": 35,
+   "median_gap_pp": 0.51,
+   "mean_gap_pp": 1.14,
+   "share_within_1pp": 0.681,
+   "liquid_median_gap_pp": 0.45,
+   "median_spread_c": 2.0
+  },
+  "Polymarket": {
+   "sides": 270,
+   "matches": 60,
+   "median_gap_pp": 0.81,
+   "mean_gap_pp": 1.35,
+   "share_within_1pp": 0.533,
+   "liquid_median_gap_pp": 0.47,
+   "median_spread_c": 2.0
+  },
+  "first_logged": "2026-10-22T22:02:17+00:00",
+  "last_logged": "2026-10-25T18:28:03+00:00"
+ },
+ "leader_preview": []
+}
