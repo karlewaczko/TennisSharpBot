@@ -407,3 +407,71 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-10-22T22:02:17+00:00,3356949,2026-10-23,Sydney 3 ITF,ITF,Chaudhari V.,Polymarket,0.305,0.2985,Pinnacle,0.03,4610.6023
 2026-10-22T22:02:17+00:00,3356949,2026-10-23,Sydney 3 ITF,ITF,Kokkinis T.,Kalshi,0.695,0.7015,Pinnacle,0.03,76.5955
 2026-10-22T22:02:17+00:00,3356949,2026-10-23,Sydney 3 ITF,ITF,Chaudhari V.,Kalshi,0.3,0.2985,Pinnacle,0.02,76.5955
+2026-10-25T23:21:09+00:00,3360121,2026-10-26,Vienna,Tour,Machac T.,Polymarket,0.25,0.2611,Betfair,0.08,725.3685
+2026-10-25T23:21:09+00:00,3360121,2026-10-26,Vienna,Tour,De Minaur A.,Polymarket,0.75,0.7389,Betfair,0.08,725.3685
+2026-10-25T23:21:09+00:00,3360121,2026-10-26,Vienna,Tour,Machac T.,Kalshi,0.23,0.2611,Betfair,0.04,52.0094
+2026-10-25T23:21:09+00:00,3360121,2026-10-26,Vienna,Tour,De Minaur A.,Kalshi,0.755,0.7389,Betfair,0.03,52.0094
+2026-10-25T23:21:09+00:00,3358355,2026-10-26,Basel,Tour,Vacherot V.,Polymarket,0.635,0.6453,Betfair,0.01,24854.64
+2026-10-25T23:21:09+00:00,3358355,2026-10-26,Basel,Tour,Navone M.,Polymarket,0.365,0.3547,Betfair,0.01,24854.64
+2026-10-25T23:21:09+00:00,3358355,2026-10-26,Basel,Tour,Vacherot V.,Kalshi,0.64,0.6453,Betfair,0.02,22760.6656
+2026-10-25T23:21:09+00:00,3358355,2026-10-26,Basel,Tour,Navone M.,Kalshi,0.36,0.3547,Betfair,0.02,22760.6656
+2026-10-25T23:21:09+00:00,3359151,2026-10-26,Basel,Tour,Stricker D.,Polymarket,0.28,0.2771,Pinnacle,0.02,18707.4278
+2026-10-25T23:21:09+00:00,3359151,2026-10-26,Basel,Tour,Ruud C.,Polymarket,0.72,0.7229,Pinnacle,0.02,18707.4278
+2026-10-25T23:21:09+00:00,3359151,2026-10-26,Basel,Tour,Stricker D.,Kalshi,0.275,0.2771,Pinnacle,0.01,11475.562
+2026-10-25T23:21:09+00:00,3359151,2026-10-26,Basel,Tour,Ruud C.,Kalshi,0.72,0.7229,Pinnacle,0.02,11475.562
+2026-10-25T23:21:09+00:00,3358265,2026-10-26,Guangzhou,Tour,Snigur D.,Polymarket,0.655,0.6544,Pinnacle,0.01,56696.2934
+2026-10-25T23:21:09+00:00,3358265,2026-10-26,Guangzhou,Tour,Bondar A.,Polymarket,0.345,0.3456,Pinnacle,0.01,56696.2934
+2026-10-25T23:21:09+00:00,3358265,2026-10-26,Guangzhou,Tour,Snigur D.,Kalshi,0.66,0.6544,Pinnacle,0.02,8830.3065
+2026-10-25T23:21:09+00:00,3358265,2026-10-26,Guangzhou,Tour,Bondar A.,Kalshi,0.325,0.3456,Pinnacle,0.01,8830.3065
+2026-10-25T23:21:09+00:00,3360135,2026-10-26,Curitiba,Tour,Luisina Giovannini,Polymarket,0.445,0.4295,Betfair,0.03,1423.7506
+2026-10-25T23:21:09+00:00,3360135,2026-10-26,Curitiba,Tour,Lucia Bronzetti,Polymarket,0.555,0.5705,Betfair,0.03,1423.7506
+2026-10-25T23:21:09+00:00,3358307,2026-10-27,Vienna,Tour,Griekspoor T.,Polymarket,0.335,0.3223,Betfair,0.01,17948.4178
+2026-10-25T23:21:09+00:00,3358307,2026-10-27,Vienna,Tour,Nakashima B.,Polymarket,0.665,0.6777,Betfair,0.01,17948.4178
+2026-10-25T23:21:09+00:00,3358309,2026-10-27,Vienna,Tour,Musetti L.,Polymarket,0.505,0.5055,Betfair,0.01,34450.4792
+2026-10-25T23:21:09+00:00,3358309,2026-10-27,Vienna,Tour,Tiafoe F.,Polymarket,0.495,0.4945,Betfair,0.01,34450.4792
+2026-10-25T23:21:09+00:00,3358317,2026-10-27,Vienna,Tour,Norrie C.,Polymarket,0.335,0.3401,Betfair,0.01,22378.0398
+2026-10-25T23:21:09+00:00,3358317,2026-10-27,Vienna,Tour,Cerundolo F.,Polymarket,0.665,0.6599,Betfair,0.01,22378.0398
+2026-10-25T23:21:09+00:00,3358323,2026-10-27,Vienna,Tour,Rodionov J.,Polymarket,0.445,0.4281,Pinnacle,0.01,34309.2634
+2026-10-25T23:21:09+00:00,3358323,2026-10-27,Vienna,Tour,Basilashvili N.,Polymarket,0.555,0.5719,Pinnacle,0.01,34309.2634
+2026-10-25T23:21:09+00:00,3358325,2026-10-27,Vienna,Tour,Khachanov K.,Polymarket,0.205,0.1854,Betfair,0.01,13175.9863
+2026-10-25T23:21:09+00:00,3358325,2026-10-27,Vienna,Tour,Alcaraz C.,Polymarket,0.795,0.8146,Betfair,0.01,13175.9863
+2026-10-25T23:21:09+00:00,3360125,2026-10-27,Vienna,Tour,Mannarino A.,Polymarket,0.495,0.6034,Betfair,0.95,65.61
+2026-10-25T23:21:09+00:00,3360125,2026-10-27,Vienna,Tour,Buse I.,Polymarket,0.505,0.3966,Betfair,0.95,65.61
+2026-10-25T23:21:09+00:00,3358343,2026-10-27,Basel,Tour,Jerome Kym,Polymarket,0.55,0.5482,Betfair,0.02,16409.0476
+2026-10-25T23:21:09+00:00,3358343,2026-10-27,Basel,Tour,Arthur Rinderknech,Polymarket,0.45,0.4518,Betfair,0.02,16409.0476
+2026-10-25T23:21:09+00:00,3358361,2026-10-27,Basel,Tour,Michelsen A.,Polymarket,0.645,0.6475,Betfair,0.01,15910.0424
+2026-10-25T23:21:09+00:00,3358361,2026-10-27,Basel,Tour,Van De Zandschulp B.,Polymarket,0.355,0.3525,Betfair,0.01,15910.0424
+2026-10-25T23:21:09+00:00,3360163,2026-10-27,Basel,Tour,Shelton B.,Polymarket,0.5,0.8316,Betfair,0.94,66.6795
+2026-10-25T23:21:09+00:00,3360163,2026-10-27,Basel,Tour,Kovacevic A.,Polymarket,0.5,0.1684,Betfair,0.94,66.6795
+2026-10-25T23:21:09+00:00,3358243,2026-10-27,Tokyo,Tour,Parry D.,Polymarket,0.495,0.481,Betfair,0.01,26395.439
+2026-10-25T23:21:09+00:00,3358243,2026-10-27,Tokyo,Tour,Bucsa C.,Polymarket,0.505,0.519,Betfair,0.01,26395.439
+2026-10-25T23:21:09+00:00,3358247,2026-10-27,Tokyo,Tour,Osaka N.,Polymarket,0.74,0.7403,Pinnacle,0.02,15872.6191
+2026-10-25T23:21:09+00:00,3358247,2026-10-27,Tokyo,Tour,Paolini J.,Polymarket,0.26,0.2597,Pinnacle,0.02,15872.6191
+2026-10-25T23:21:09+00:00,3359737,2026-10-27,Guangzhou,Tour,Yastremska D.,Polymarket,0.43,0.4094,Betfair,0.02,4875.2477
+2026-10-25T23:21:09+00:00,3359737,2026-10-27,Guangzhou,Tour,Volynets K.,Polymarket,0.57,0.5906,Betfair,0.02,4875.2477
+2026-10-25T23:21:09+00:00,3359661,2026-10-26,Sioux Falls challenger,Challenger,Alexis Galarneau,Polymarket,0.375,0.3435,Betfair,0.07,1284.8269
+2026-10-25T23:21:09+00:00,3359661,2026-10-26,Sioux Falls challenger,Challenger,Mees Rottgering,Polymarket,0.625,0.6565,Betfair,0.07,1284.8269
+2026-10-25T23:21:09+00:00,3358587,2026-10-26,Brest challenger,Challenger,Matteo Martineau,Polymarket,0.315,0.3086,Betfair,0.05,209.1554
+2026-10-25T23:21:09+00:00,3358587,2026-10-26,Brest challenger,Challenger,Otto Virtanen,Polymarket,0.685,0.6914,Betfair,0.05,209.1554
+2026-10-25T23:21:09+00:00,3358581,2026-10-26,Brest challenger,Challenger,Diallo G.,Polymarket,0.44,0.4157,Betfair,0.06,1188.8637
+2026-10-25T23:21:09+00:00,3358581,2026-10-26,Brest challenger,Challenger,Basavareddy N.,Polymarket,0.56,0.5843,Betfair,0.06,1188.8637
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Challenger,Luca Castelnuovo,Polymarket,0.715,0.7314,Betfair,0.09,2390.5214
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Challenger,Filip Peliwo,Polymarket,0.285,0.2686,Betfair,0.09,2390.5214
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Challenger,Luca Castelnuovo,Kalshi,0.73,0.7314,Betfair,0.1,6.57
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Challenger,Filip Peliwo,Kalshi,0.255,0.2686,Betfair,0.15,6.57
+2026-10-25T23:21:09+00:00,3358577,2026-10-27,Brest challenger,Challenger,Hugo Gaston,Polymarket,0.66,0.67,Betfair,0.04,737.4855
+2026-10-25T23:21:09+00:00,3358577,2026-10-27,Brest challenger,Challenger,Daniil Glinka,Polymarket,0.34,0.33,Betfair,0.04,737.4855
+2026-10-25T23:21:09+00:00,3358591,2026-10-27,Brest challenger,Challenger,Clement Tabur,Polymarket,0.745,0.7541,Betfair,0.07,401.6425
+2026-10-25T23:21:09+00:00,3358591,2026-10-27,Brest challenger,Challenger,Filippo Romano,Polymarket,0.255,0.2459,Betfair,0.07,401.6425
+2026-10-25T23:21:09+00:00,3358597,2026-10-27,Brest challenger,Challenger,Michele Ribecai,Polymarket,0.3,0.2716,Betfair,0.06,200.5385
+2026-10-25T23:21:09+00:00,3358597,2026-10-27,Brest challenger,Challenger,Nicolai Budkov Kjaer,Polymarket,0.7,0.7284,Betfair,0.06,200.5385
+2026-10-25T23:21:09+00:00,3359561,2026-10-27,Guayaquil challenger,Challenger,Franco Roncadelli,Polymarket,0.61,0.6789,Betfair,0.08,226.4155
+2026-10-25T23:21:09+00:00,3359561,2026-10-27,Guayaquil challenger,Challenger,Valerio Aboian,Polymarket,0.39,0.3211,Betfair,0.08,226.4155
+2026-10-25T23:21:09+00:00,3359563,2026-10-27,Guayaquil challenger,Challenger,Ugo Carabelli C.,Polymarket,0.82,0.8586,Betfair,0.04,763.5711
+2026-10-25T23:21:09+00:00,3359563,2026-10-27,Guayaquil challenger,Challenger,Coria F.,Polymarket,0.18,0.1414,Betfair,0.04,763.5711
+2026-10-25T23:21:09+00:00,3359581,2026-10-27,Guayaquil challenger,Challenger,Jarry N.,Polymarket,0.47,0.4538,Betfair,0.04,1242.4151
+2026-10-25T23:21:09+00:00,3359581,2026-10-27,Guayaquil challenger,Challenger,Dellien H.,Polymarket,0.53,0.5462,Betfair,0.04,1242.4151
+2026-10-25T23:21:09+00:00,3358517,2026-10-27,Ningbo challenger,Challenger,Tristan Schoolkate,Polymarket,0.835,0.894,Betfair,0.07,403.6945
+2026-10-25T23:21:09+00:00,3358517,2026-10-27,Ningbo challenger,Challenger,Masamichi Imamura,Polymarket,0.165,0.106,Betfair,0.07,403.6945
+2026-10-25T23:21:09+00:00,3358527,2026-10-27,Ningbo challenger,Challenger,Charles Broom,Polymarket,0.645,0.6603,Betfair,0.09,183.2588
+2026-10-25T23:21:09+00:00,3358527,2026-10-27,Ningbo challenger,Challenger,Akira Santillan,Polymarket,0.355,0.3397,Betfair,0.09,183.2588

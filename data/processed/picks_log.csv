@@ -64,3 +64,16 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-25T18:28:03+00:00,3358319,2026-10-27,Vienna,Medvedev D.,Polymarket,prediction,value,1.284,0.7944,0.0199,Betfair
 2026-10-25T18:28:03+00:00,3358271,2026-10-27,Guangzhou,Sonmez Z.,Unibet,book,value,1.42,0.705,0.0011,Polymarket Mid
 2026-10-25T18:28:03+00:00,3359661,2026-10-26,Sioux Falls challenger,Mees Rottgering,Polymarket,prediction,value,1.558,0.6603,0.0291,Betfair
+2026-10-25T23:21:09+00:00,3358265,2026-10-26,Guangzhou,Bondar A.,Kalshi,prediction,value,2.895,0.3456,0.0003,Pinnacle
+2026-10-25T23:21:09+00:00,3358319,2026-10-27,Vienna,Merida Aguilar D.,bwin,book,value,4.33,0.235,0.0175,Polymarket Mid
+2026-10-25T23:21:09+00:00,3358325,2026-10-27,Vienna,Alcaraz C.,Polymarket,prediction,value,1.238,0.8146,0.0082,Betfair
+2026-10-25T23:21:09+00:00,3360125,2026-10-27,Vienna,Mannarino A.,Betway,book,value,1.73,0.6034,0.0438,Betfair
+2026-10-25T23:21:09+00:00,3360125,2026-10-27,Vienna,Mannarino A.,bet-at-home,book,value,1.68,0.6034,0.0136,Betfair
+2026-10-25T23:21:09+00:00,3358271,2026-10-27,Guangzhou,Sonmez Z.,Unibet,book,value,1.42,0.705,0.0011,Polymarket Mid
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Filip Peliwo,Betsson,book,value,3.75,0.2686,0.0072,Betfair
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Filip Peliwo,Betway,book,value,3.8,0.2686,0.0207,Betfair
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Filip Peliwo,Interwetten,book,value,3.8,0.2686,0.0207,Betfair
+2026-10-25T23:21:09+00:00,3359561,2026-10-27,Guayaquil challenger,Franco Roncadelli,Polymarket,prediction,value,1.512,0.6789,0.0264,Betfair
+2026-10-25T23:21:09+00:00,3359563,2026-10-27,Guayaquil challenger,Ugo Carabelli C.,Polymarket,prediction,value,1.181,0.8586,0.0141,Betfair
+2026-10-25T23:21:09+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,bet-at-home,book,value,1.12,0.894,0.0013,Betfair
+2026-10-25T23:21:09+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,Polymarket,prediction,value,1.142,0.894,0.021,Betfair
