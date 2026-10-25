@@ -51,3 +51,15 @@ def test_append_only_logs_merge_by_union():
     attrs = (WF.parent.parent / ".gitattributes").read_text()
     for log in ("odds_snapshots.csv", "picks_log.csv", "forecasts_log.csv", "ta_elo_history.csv"):
         assert f"data/processed/{log} merge=union" in attrs
+
+
+def test_weekly_refresh_script_touches_only_data_and_main():
+    """The Tuesday command run from the Claude Code chat: a separate checkout
+    of main, the player-data refresh with surface speed, a commit of
+    data/processed only, pushed to main."""
+    script = (WF.parent.parent / "scripts" / "weekly_ta_refresh.sh").read_text()
+    assert "worktree add" in script and "origin/main" in script
+    assert "update_player_data.py --surface-speed" in script
+    assert "git add data/processed" in script
+    assert "git push -q origin HEAD:main" in script
+    assert "-X theirs" in script
