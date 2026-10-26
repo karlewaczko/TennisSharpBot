@@ -331,6 +331,7 @@ Every Polymarket trade is public with the wallet and its profile name; Kalshi pu
     - where the money is
     - split-half persistence of CLV
     - the gap between prediction-market mids and the sharp fair value, from `pm_gap_log.csv`
+- `--sport soccer` or `--sport basketball` ranks football (all leagues) and basketball (NBA, EuroLeague and others) the same way. A football match's three Yes/No markets count as one opinion per wallet. These runs are one-off, not scheduled. Their output goes to `pm_<sport>_traders.csv` and `data/reports/pm_<sport>_traders.json`.
 - The dashboard section **Profis auf Polymarket** shows the top 10. It also lists the top 20's open positions on matches of the card, next to the sharp fair value and the best book price. Every run appends those positions to `pm_pro_positions_log.csv` and the prediction-market mids to `pm_gap_log.csv`.
 - First measurement (25 Oct 2026):
   - Polymarket and Kalshi mids sit at a median 0.81 / 0.51 points from Pinnacle's fair value.
