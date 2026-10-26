@@ -83,3 +83,18 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-26T09:01:28+00:00,3358587,2026-10-26,Brest challenger,Otto Virtanen,Polymarket,prediction,value,1.447,0.6914,0.0008,Betfair
 2026-10-26T09:01:28+00:00,3359905,2026-10-26,Brest challenger,Vadym Ursu,Kalshi,prediction,value,6.737,0.155,0.0443,Polymarket Mid
 2026-10-26T09:01:28+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,Polymarket,prediction,value,1.13,0.894,0.0099,Betfair
+2026-10-26T16:11:48+00:00,3360177,2026-10-27,Basel,Giovanni Mpetshi Perricard,Kalshi,prediction,value,5.903,0.175,0.033,Polymarket Mid
+2026-10-26T16:11:48+00:00,3360163,2026-10-27,Basel,Shelton B.,1xBet,book,value,1.23,0.8171,0.005,Pinnacle
+2026-10-26T16:11:48+00:00,3360057,2026-10-27,Courmayeur WTA,Victoria Jimenez Kasintseva,1xBet,book,value,2.11,0.481,0.015,Betfair
+2026-10-26T16:11:48+00:00,3360057,2026-10-27,Courmayeur WTA,Victoria Jimenez Kasintseva,bet-at-home,book,value,2.1,0.481,0.0102,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,1xBet,book,value,3.31,0.3142,0.0399,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,Betsson,book,value,3.3,0.3142,0.0368,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,Betway,book,value,3.3,0.3142,0.0368,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,Interwetten,book,value,3.3,0.3142,0.0368,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,William Hill,book,value,3.3,0.3142,0.0368,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,bet-at-home,book,value,3.25,0.3142,0.0211,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,Polymarket,prediction,value,3.447,0.3142,0.0831,Betfair
+2026-10-26T16:11:48+00:00,3360871,2026-10-27,Seoul challenger,Wong C.,Polymarket,prediction,value,1.209,0.8441,0.0202,Betfair
+2026-10-26T16:11:48+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,William Hill,book,value,1.12,0.894,0.0013,Betfair
+2026-10-26T16:11:48+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,Polymarket,prediction,value,1.13,0.894,0.0099,Betfair
+2026-10-26T16:11:48+00:00,3360163,2026-10-27,Basel,Kovacevic A.,Pinnacle,model,model_signal,5.02,0.1829,0.0581,Pinnacle
