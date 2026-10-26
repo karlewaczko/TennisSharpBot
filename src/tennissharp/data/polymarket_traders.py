@@ -91,26 +91,37 @@ def _json_list(raw):
         return []
 
 
-# A singles match: "atp-brooksb-maloney-2026-10-23". The circuits' outrights
-# ("atp-tournament-winner-2026-135005") and doubles share the prefix.
-MATCH_SLUG = re.compile(r"^(atp|wta|itf)-.+-\d{4}-\d{2}-\d{2}$")
+# A match's event slug ends in its date: "atp-brooksb-maloney-2026-10-23",
+# "epl-ars-che-2026-10-18", "nba-mia-cha-2026-10-24". Outrights
+# ("atp-tournament-winner-2026-135005") and doubles do not count.
+DATED_SLUG = re.compile(r"-\d{4}-\d{2}-\d{2}$")
+TENNIS_PREFIXES = ("atp", "wta", "itf")
+
+# Gamma tags whose decided moneylines are walked. Football is one tag over
+# all leagues; basketball's leagues are spread over several.
+SPORT_TAGS = {
+    "tennis": (864,),
+    "soccer": (100350,),
+    "basketball": (28, 745, 100149, 102669, 100254, 101178),
+}
 
 
-def is_match_slug(slug: str) -> bool:
-    return bool(MATCH_SLUG.match(slug)) and "-doubles-" not in slug
+def is_match_slug(slug: str, sport: str = "tennis") -> bool:
+    if not DATED_SLUG.search(slug) or "-doubles-" in slug:
+        return False
+    return sport != "tennis" or slug.split("-", 1)[0] in TENNIS_PREFIXES
 
 
-def closed_market_row(event: dict) -> dict | None:
-    """A resolved singles moneyline with its winner, or None."""
-    slug = str(event.get("slug") or "")
-    tour = slug.split("-", 1)[0]
-    if not is_match_slug(slug):
+def market_row(market: dict, sport: str = "tennis") -> dict | None:
+    """A resolved moneyline market with its winner, or None. A tennis or
+    basketball match is one market, its outcomes the two sides; a football
+    match is three Yes/No markets (home, draw, away), each its own row."""
+    ev = (market.get("events") or [{}])[0]
+    slug = str(ev.get("slug") or market.get("slug") or "")
+    if not is_match_slug(slug, sport):
         return None
-    m = next((x for x in event.get("markets", []) if x.get("sportsMarketType") == "moneyline"), None)
-    if not m:
-        return None
-    outcomes = _json_list(m.get("outcomes"))
-    prices = [float(p) for p in _json_list(m.get("outcomePrices")) if p not in (None, "")]
+    outcomes = _json_list(market.get("outcomes"))
+    prices = [float(p) for p in _json_list(market.get("outcomePrices")) if p not in (None, "")]
     if len(outcomes) != 2 or len(prices) != 2:
         return None
     if prices[0] > 0.98 and prices[1] < 0.02:
@@ -119,72 +130,95 @@ def closed_market_row(event: dict) -> dict | None:
         winner = 1
     else:
         return None                      # void, 50/50 or unresolved
-    start = _ts(m.get("gameStartTime") or event.get("gameStartTime"))
-    title = str(event.get("title") or "")
-    return {"slug": slug, "tour": tour, "condition_id": m.get("conditionId"),
-            "tournament": title.split(":", 1)[0].strip() if ":" in title else "",
+    question = str(market.get("question") or "")
+    return {"slug": slug, "tour": slug.split("-", 1)[0], "condition_id": market.get("conditionId"),
+            "tournament": question.split(":", 1)[0].strip() if ":" in question else "",
+            "label": str(market.get("groupItemTitle") or ""),
             "player_a": str(outcomes[0]).strip(), "player_b": str(outcomes[1]).strip(),
-            "winner": winner, "start_ts": start, "volume": float(m.get("volumeNum") or 0.0)}
-
-
-# Finished matches are listed under the shared Tennis tag only; the circuit
-# tags (ATP 101232, WTA 102123, ITF 104923) hold the outrights.
-TENNIS_TAG = 864
+            "winner": winner, "start_ts": _ts(market.get("gameStartTime") or ev.get("gameStartTime")),
+            "volume": float(market.get("volumeNum") or 0.0)}
 
 
 def _iso(ts: float) -> str:
     return dt.datetime.fromtimestamp(ts, dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def closed_markets(days: int = 30, tours=("atp", "wta"), http=requests, sleep=time.sleep,
-                   now: float | None = None, min_volume: float = 0.0,
-                   window_days: float = 1.0) -> list[dict]:
-    """Decided singles moneylines whose match started in the last `days` days.
+def closed_markets(days: int = 30, tours=("atp", "wta"), sport: str = "tennis", http=requests,
+                   sleep=time.sleep, now: float | None = None, min_volume: float = 0.0,
+                   window_days: float = 1.0, lead_days: float = 16.0) -> list[dict]:
+    """Decided moneyline markets whose match started in the last `days`
+    days; `tours` keeps tennis to some circuits (None keeps all).
 
-    Finished matches sit under the shared Tennis tag only (the circuit tags
-    hold the outrights), and Gamma refuses offsets past about 2000, so the
-    events' creation dates are walked one window at a time."""
+    Gamma refuses offsets past about 2000, so the markets' creation dates
+    are walked one window at a time."""
     now = now or time.time()
     since = now - days * 86400
     out, seen = [], set()
-    lo = since - 3 * 86400            # events are created a day or so before play
-    while lo < now:
-        hi = min(lo + window_days * 86400, now)
-        for offset in range(0, 2000, 100):
-            try:
-                batch = _get(http, f"{GAMMA_API}/events",
-                             {"tag_id": TENNIS_TAG, "closed": "true", "limit": 100, "offset": offset,
-                              "start_date_min": _iso(lo), "start_date_max": _iso(hi)}, sleep=sleep)
-            except requests.HTTPError as exc:
-                if getattr(exc.response, "status_code", None) == 422:
+    params = {"closed": "true", "sports_market_types": "moneyline", "limit": 100}
+    if min_volume:
+        params["volume_num_min"] = min_volume
+    for tag in SPORT_TAGS[sport]:
+        lo = since - lead_days * 86400   # top football opens ~13 days ahead, NBA ~7
+        while lo < now:
+            hi = min(lo + window_days * 86400, now)
+            for offset in range(0, 2000, 100):
+                try:
+                    batch = _get(http, f"{GAMMA_API}/markets",
+                                 {**params, "tag_id": tag, "offset": offset,
+                                  "start_date_min": _iso(lo), "start_date_max": _iso(hi)}, sleep=sleep)
+                except requests.HTTPError as exc:
+                    if getattr(exc.response, "status_code", None) == 422:
+                        break
+                    raise
+                for m in batch or []:
+                    row = market_row(m, sport)
+                    if (row and (tours is None or row["tour"] in tours) and row["start_ts"]
+                            and since <= row["start_ts"] <= now and row["volume"] >= min_volume
+                            and row["condition_id"] not in seen):
+                        seen.add(row["condition_id"])
+                        out.append(row)
+                if not batch or len(batch) < 100:
                     break
-                raise
-            for e in batch or []:
-                row = closed_market_row(e)
-                if (row and row["tour"] in tours and row["start_ts"] and since <= row["start_ts"] <= now
-                        and (row.get("volume") or 0) >= min_volume and row["condition_id"] not in seen):
-                    seen.add(row["condition_id"])
-                    out.append(row)
-            if not batch or len(batch) < 100:
-                break
-            sleep(PAUSE)
-        else:
-            logging.getLogger(__name__).warning("window from %s has 2000+ events; narrow window_days", _iso(lo))
-        lo = hi
+                sleep(PAUSE)
+            else:
+                logging.getLogger(__name__).warning("tag %s: window from %s has 2000+ markets", tag, _iso(lo))
+            lo = hi
     return out
 
 
-def market_trades(condition_id: str, http=requests, sleep=time.sleep) -> list[dict]:
-    """Every fill of one market, newest first. One request holds a whole
-    match: the API takes up to 10000 rows and returns nothing past that
-    offset, so a market that fills the page has lost its oldest
-    (pre-match) trades and is flagged."""
-    trades = _get(http, f"{DATA_API}/trades",
-                  {"market": condition_id, "limit": TRADE_PAGE, "offset": 0, "takerOnly": "false"},
-                  sleep=sleep) or []
-    if len(trades) >= TRADE_PAGE:
-        logging.getLogger(__name__).warning("%s: %d trades, the oldest are cut off", condition_id, len(trades))
-    return trades
+TRADE_FLOORS = (50, 100, 250, 500, 1000, 2500)
+
+
+def market_trades(condition_id: str, http=requests, sleep=time.sleep) -> tuple[list[dict], float]:
+    """Every fill of one market, newest first, and the smallest trade size
+    that was kept (0: all of them).
+
+    The API hands out 10000 rows a call from offsets up to 10000, so a
+    market of up to 20000 fills comes whole. A bigger one (a busy NBA game)
+    is fetched again for trades of at least 50, 100, 250 ... dollars until
+    it fits, which keeps its pre-match trading whole above that size."""
+    def fetch(extra):
+        rows = []
+        for offset in (0, TRADE_PAGE):
+            batch = _get(http, f"{DATA_API}/trades",
+                         {"market": condition_id, "limit": TRADE_PAGE, "offset": offset,
+                          "takerOnly": "false", **extra}, sleep=sleep) or []
+            rows.extend(batch)
+            if len(batch) < TRADE_PAGE:
+                return rows, True
+            sleep(PAUSE)
+        return rows, False
+
+    trades, whole = fetch({})
+    if whole:
+        return trades, 0.0
+    for floor in TRADE_FLOORS:
+        trades, whole = fetch({"filterType": "CASH", "filterAmount": floor})
+        if whole:
+            return trades, float(floor)
+    logging.getLogger(__name__).warning("%s: over 20000 trades of %d$ and more, the oldest are cut off",
+                                        condition_id, TRADE_FLOORS[-1])
+    return trades, float(TRADE_FLOORS[-1])
 
 
 def closing_price(trades: list[dict], start_ts: float | None) -> float | None:
@@ -292,6 +326,30 @@ def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS
     return lb.reindex(columns=LEADER_COLUMNS)
 
 
+def by_event(per_market: pd.DataFrame) -> pd.DataFrame:
+    """One row per wallet and match. A football match is three markets
+    (home, draw, away), and a wallet's trades in them are one opinion:
+    profit and stakes add up, CLV and direction are weighted by the
+    pre-match stake."""
+    if per_market.empty or not per_market.duplicated(["wallet", "slug"]).any():
+        return per_market
+    names = per_market["name"].fillna("").astype(str)
+    pm = per_market.assign(
+        name=names.where(names != ""),          # so the last *given* name wins
+        _cw=per_market["pre_stake"].where(per_market["clv"].notna(), 0.0),
+        _dw=per_market["pre_stake"].where(per_market["directional"].notna(), 0.0))
+    pm = pm.assign(_c=pm["clv"].fillna(0) * pm["_cw"], _d=pm["directional"].fillna(0) * pm["_dw"])
+    out = pm.groupby(["wallet", "slug"], sort=False).agg(
+        name=("name", "last"), pnl=("pnl", "sum"), stake=("stake", "sum"),
+        pre_stake=("pre_stake", "sum"), live_stake=("live_stake", "sum"),
+        both_sides=("both_sides", "max"), trades=("trades", "sum"),
+        _c=("_c", "sum"), _cw=("_cw", "sum"), _d=("_d", "sum"), _dw=("_dw", "sum")).reset_index()
+    out["name"] = out["name"].fillna("")
+    out["clv"] = (out["_c"] / out["_cw"]).where(out["_cw"] > 0)
+    out["directional"] = (out["_d"] / out["_dw"]).where(out["_dw"] > 0)
+    return out.drop(columns=["_c", "_cw", "_d", "_dw"])
+
+
 def market_structure(per_market: pd.DataFrame) -> dict:
     """Where the money is: total stake, the share traded in play, and how
     much of it the 20 biggest wallets move."""
@@ -312,7 +370,8 @@ def persistence(per_market: pd.DataFrame, markets: pd.DataFrame, min_each: int =
     if per_market.empty or markets.empty:
         return {"wallets": 0}
     cut = markets["start_ts"].median()
-    pre = per_market[per_market["clv"].notna()].merge(markets[["slug", "start_ts"]], on="slug")
+    starts = markets.drop_duplicates("slug")[["slug", "start_ts"]]
+    pre = per_market[per_market["clv"].notna()].merge(starts, on="slug")
     pre = pre.assign(half=(pre["start_ts"] >= cut).astype(int))
     h = pre.groupby(["wallet", "half"])["clv"].agg(["mean", "size"]).unstack()
     if ("size", 1) not in h.columns:

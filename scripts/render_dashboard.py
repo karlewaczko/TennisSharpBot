@@ -561,7 +561,7 @@ def _pro_link(name, wallet) -> str:
     default), linked to its public Polymarket page."""
     w = str(wallet)
     name = name if isinstance(name, str) else ""
-    if not name or (name.startswith("0x") and "-" in name):
+    if not name or (name.startswith("0x") and ("-" in name or len(name) >= 40)):
         name = f"{w[:6]}…{w[-4:]}"
     return f'<a href="https://polymarket.com/profile/{esc(w)}" target="_blank" rel="noopener">{esc(name)}</a>'
 

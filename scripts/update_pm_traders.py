@@ -55,29 +55,36 @@ def gap_summary(path) -> dict:
     return out
 
 
+DEFAULT_MIN_VOLUME = {"tennis": 1000.0, "soccer": 10000.0, "basketball": 5000.0}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--sport", choices=sorted(pt.SPORT_TAGS), default="tennis")
     ap.add_argument("--days", type=int, default=30)
-    ap.add_argument("--tours", default="atp,wta")
-    ap.add_argument("--min-volume", type=float, default=1000.0,
-                    help="skip markets that traded less than this many dollars")
+    ap.add_argument("--tours", default="atp,wta", help="tennis only: the circuits to rank")
+    ap.add_argument("--min-volume", type=float,
+                    help="skip markets that traded less than this many dollars "
+                         "(default 1000 tennis, 10000 football, 5000 basketball)")
     ap.add_argument("--per-market-out", type=Path,
                     help="also write every wallet-market row there (large; for analysis)")
     args = ap.parse_args()
-    tours = tuple(t.strip() for t in args.tours.split(",") if t.strip())
+    tours = (tuple(t.strip() for t in args.tours.split(",") if t.strip())
+             if args.sport == "tennis" else None)
+    min_volume = DEFAULT_MIN_VOLUME[args.sport] if args.min_volume is None else args.min_volume
 
     t0 = time.time()
-    markets = pt.closed_markets(days=args.days, tours=tours, min_volume=args.min_volume)
-    logger.info("Closed tennis moneylines in window: %d", len(markets))
+    markets = pt.closed_markets(days=args.days, tours=tours, sport=args.sport, min_volume=min_volume)
+    logger.info("Closed %s moneylines in window: %d", args.sport, len(markets))
     per_market, mrows = [], []
     for i, m in enumerate(markets, 1):
         try:
-            trades = pt.market_trades(m["condition_id"])
+            trades, floor = pt.market_trades(m["condition_id"])
         except Exception as exc:
             logger.warning("trades for %s failed: %s", m["slug"], exc)
             continue
         close_a, rows = pt.account_market(trades, m["winner"], m["start_ts"])
-        mrows.append({**m, "close_a": close_a, "trades": len(trades)})
+        mrows.append({**m, "close_a": close_a, "trades": len(trades), "min_trade_usd": floor})
         for r in rows:
             per_market.append({**r, "slug": m["slug"]})
         if i % 100 == 0:
@@ -88,28 +95,38 @@ def main() -> None:
     if args.per_market_out:
         pm.to_csv(args.per_market_out, index=False)
         pd.DataFrame(mrows).to_csv(args.per_market_out.with_suffix(".markets.csv"), index=False)
-    lb, report = write_outputs(pm, pd.DataFrame(mrows), args.days, tours)
+    lb, report = write_outputs(pm, pd.DataFrame(mrows), args.days, tours, args.sport)
     print(json.dumps({k: v for k, v in report.items() if k != "leader_preview"}, indent=1, default=str))
     print(lb.head(15).round(3).to_string(index=False))
 
 
-def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours) -> tuple[pd.DataFrame, dict]:
-    """The ranking (pm_tennis_traders.csv) and the sharpness report."""
-    lb = pt.leaderboard(pm)
-    lb.to_csv(config.PROCESSED_DIR / "pm_tennis_traders.csv", index=False)
+def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours,
+                  sport: str = "tennis") -> tuple[pd.DataFrame, dict]:
+    """The ranking (pm_<sport>_traders.csv) and its report: for tennis
+    prediction_market_sharpness.json, with the gap to the sharp books that
+    the dashboard logs; otherwise pm_<sport>_traders.json."""
+    ev = pt.by_event(pm)
+    lb = pt.leaderboard(ev)
+    lb.to_csv(config.PROCESSED_DIR / f"pm_{sport}_traders.csv", index=False)
     report = {
         "measured_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "window_days": days, "tours": list(tours),
-        "markets": int(len(mk)), "wallets": int(pm["wallet"].nunique()) if len(pm) else 0,
+        "sport": sport, "window_days": days, "tours": list(tours) if tours else None,
+        "markets": int(len(mk)), "matches": int(mk["slug"].nunique()) if len(mk) else 0,
+        "wallets": int(pm["wallet"].nunique()) if len(pm) else 0,
         "ranked_wallets": int(len(lb)),
-        "market_structure": pt.market_structure(pm),
-        "skill_persistence": pt.persistence(pm, mk),
+        "markets_trimmed_to_bigger_trades": (int((mk["min_trade_usd"] > 0).sum())
+                                             if "min_trade_usd" in mk.columns else 0),
+        "market_structure": pt.market_structure(ev),
+        "skill_persistence": pt.persistence(ev, mk),
         "polymarket_closing_calibration": pt.calibration(mk) if len(mk) else {"n": 0},
-        "gap_to_sharp": gap_summary(config.PROCESSED_DIR / "pm_gap_log.csv"),
         "leader_preview": lb.head(10).round(4).to_dict("records"),
     }
-    (config.REPORTS_DIR / "prediction_market_sharpness.json").write_text(
-        json.dumps(report, indent=1, default=str))
+    if sport == "tennis":
+        report["gap_to_sharp"] = gap_summary(config.PROCESSED_DIR / "pm_gap_log.csv")
+        path = config.REPORTS_DIR / "prediction_market_sharpness.json"
+    else:
+        path = config.REPORTS_DIR / f"pm_{sport}_traders.json"
+    path.write_text(json.dumps(report, indent=1, default=str))
     return lb, report
 
 if __name__ == "__main__":

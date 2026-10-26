@@ -324,6 +324,52 @@ Viele davon handeln Hunderte Matches im Monat mit kleinen Beträgen. Das sieht n
 
 **Was das für uns heißt.** Den Profis blind zu folgen bringt nichts. Ihre offenen Positionen auf Partien der aktuellen Karte stehen jetzt im Dashboard, mit dem fairen Preis und der besten Buchquote daneben. Beim ersten Lauf (42 Positionen) lag der Erwartungswert der besten Buchquote im Median bei −4,0 %. Bei keiner der 25 Positionen mit Buchquote war er positiv. Wenn ein Profi drin ist, zahlt kein Buchmacher mehr als den fairen Preis. Jeder Lauf schreibt die Positionen der Top 20 nach `data/processed/pm_pro_positions_log.csv`. Mit den Schlussquoten aus `odds_snapshots.csv` lässt sich nach einigen Wochen messen, ob ihre Seite den Pinnacle-Schlusskurs schlägt. Erst dann wäre es ein Signal. **Kalshi** veröffentlicht Trades ohne Trader-Kennung, dort lässt sich niemand verfolgen.
 
+## 4d. Fußball und Basketball (26. Oktober 2026)
+
+Die Methode ist dieselbe wie beim Tennis: 30 Tage, Märkte ab 10.000 $ Volumen im Fußball und ab 5.000 $ im Basketball (`scripts/update_pm_traders.py --sport soccer|basketball`). Ein Fußballspiel besteht aus drei Ja/Nein-Märkten (Heim, Remis, Auswärts). Sie werden je Wallet zu einer Meinung über das Spiel zusammengefasst. Für die Rangliste gelten dieselben Bedingungen: 20 Spiele vor dem Anpfiff, 2.000 $ Einsatz, höchstens die Hälfte live und klare Richtung.
+
+| | Fußball | Basketball |
+|---|---:|---:|
+| Spiele | 1.689 | 490 |
+| Märkte | 3.576 | 490 |
+| Wallets | 40.143 | 17.939 |
+| Einsatz | 520 Mio. $ | 130 Mio. $ |
+| davon live | 54 % | 69 % |
+| Anteil der 20 größten Wallets | 37 % | 44 % |
+| Wallets in der Rangliste | 817 | 143 |
+| CLV-Korrelation zwischen den Monatshälften | 0,29 | 0,23 |
+| bestes Zehntel in der zweiten Hälfte | +0,2 ¢ | +0,3 ¢ |
+| Schnitt in der zweiten Hälfte | −0,2 ¢ | −0,3 ¢ |
+
+**Fußball, die fünf besten:**
+
+| # | Profil | Spiele | Einsatz | Gewinn | CLV Ø |
+|---|---|---:|---:|---:|---:|
+| 1 | [Kyn008](https://polymarket.com/profile/0xd29312e2446a746bbd94408e1c475f1ec6d7d683) | 174 | 1.411.523 $ | +12.527 $ | +1,2 ¢ |
+| 2 | [omnibus-076daa](https://polymarket.com/profile/0x076daa87c4fe1a85402a9b6b8e0a866224388d4c) | 815 | 1.991.247 $ | −145.458 $ | +0,8 ¢ |
+| 3 | [Takon88](https://polymarket.com/profile/0xa96274cc1b321afc8cbdc1ba07f7e2d471e6f7c8) | 40 | 1.254.758 $ | +166.241 $ | +2,4 ¢ |
+| 4 | [Ne8om](https://polymarket.com/profile/0xbeb1c94b4260398f93f418e349a15a40b2ae4687) | 76 | 857.790 $ | −41.837 $ | +1,7 ¢ |
+| 5 | [plonker2026](https://polymarket.com/profile/0x0a39b3b29ab3b7dd753aa96fde4ecab3f2dbb0b9) | 40 | 1.697.563 $ | −117.746 $ | +1,3 ¢ |
+
+**Basketball, die fünf besten:**
+
+| # | Profil | Spiele | Einsatz | Gewinn | CLV Ø |
+|---|---|---:|---:|---:|---:|
+| 1 | [BreakTheBank](https://polymarket.com/profile/0xf0318c32136c2db7fec88b84869aee6a1106c80c) | 22 | 5.136.992 $ | +968.777 $ | +0,7 ¢ |
+| 2 | [TheComboConnoisseur](https://polymarket.com/profile/0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e) | 37 | 14.382 $ | +2.966 $ | +3,5 ¢ |
+| 3 | [bahn-cuon-baby](https://polymarket.com/profile/0x5cdc4e820fe30f22f3cf2581796d6e5abedc1f6b) | 134 | 2.742 $ | +2 $ | +1,3 ¢ |
+| 4 | [0x9f15…bdb3](https://polymarket.com/profile/0x9f15613ebf1f36d4bc679e1211d1fc567cf9bdb3) | 23 | 65.334 $ | +32.260 $ | +1,8 ¢ |
+| 5 | [monkeymashingkeyboard](https://polymarket.com/profile/0x684baa57c338c2549aec0aa3f034f695d72a8409) | 35 | 1.511.509 $ | +1.823 $ | +1,2 ¢ |
+
+Was auffällt:
+
+- **Hohe Einsätze vor dem Anpfiff.** Im Fußball setzen die Besten groß und fast nur vor dem Spiel: Kyn008 1,4 Mio. $ auf 174 Spiele, Takon88 1,25 Mio. $ auf 40.
+- **Gewinn schwankt stark.** Mehrere Wallets mit klar positivem CLV haben im Monat sechsstellig verloren (omnibus-076daa −145.000 $, plonker2026 −118.000 $). Für den Gewinn ist ein Monat zu kurz, der CLV ist das bessere Maß.
+- **Der größte Einzelwetter sitzt im Basketball.** BreakTheBank setzte 5,1 Mio. $ auf 22 Spiele und gewann 969.000 $.
+- **Einige Profile tauchen in mehreren Sportarten oben auf:** TheComboConnoisseur, bahn-cuon-baby, Notradecopy, Deliles und no1dodgersfan. Das spricht für Modelle, die mehrere Sportarten abdecken.
+- **Fazit wie beim Tennis.** Das Können ist echt und hält über den Monat, ist aber klein: Das beste Zehntel liegt danach etwa 0,4 bis 0,6 Cent je Anteil über dem Schnitt.
+- **Keine Kalibrierung.** Für Fußball und Basketball steht hier keine Kalibrierung der Schlusskurse. Der Volumen-Filter zählt den Live-Handel mit, und der ist in Märkten, deren Ausgang eintritt, größer. Die Auswahl ist dadurch verzerrt.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |
