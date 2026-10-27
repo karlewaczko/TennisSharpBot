@@ -331,6 +331,15 @@ Every Polymarket trade is public with the wallet and its profile name; Kalshi pu
     - where the money is
     - split-half persistence of CLV
     - the gap between prediction-market mids and the sharp fair value, from `pm_gap_log.csv`
+- **Fees and luck (corrected 27 Oct 2026).** Polymarket charges sports takers `0.05 × p × (1 − p)` per share, about 1.25 ¢ at even money. Each market's taker fills come from the API's `takerOnly` listing. Fees come off profit and CLV, and the ranking runs on the CLV t-statistic after fees.
+
+  A Benjamini–Hochberg check marks `significant` wallets, with at most 10 % of them lucky. Only `elite` wallets reach the dashboard and the radar. Elite means all of these:
+  - significant after fees
+  - ahead of the close in both halves of the window
+  - in profit after fees over the window
+  - in profit on Polymarket over all time, from the leaderboard API
+
+  First run: Tennis 6 of 225 · Fußball 3 of 812 · Basketball 2 of 162 ranked wallets.
 - `--sport soccer` or `--sport basketball` ranks football (all leagues) and basketball (NBA, EuroLeague and others) the same way. A football match's three Yes/No markets count as one opinion per wallet. All three rankings run daily at 04:23 UTC (`.github/workflows/pm-traders.yml`). Their output goes to `pm_<sport>_traders.csv` and `data/reports/pm_<sport>_traders.json`.
 - **Live page `docs/profis.html` (Profi-Radar)**: what the watched wallets bet right now, read from Polymarket's public APIs in the viewer's browser every 90 seconds. It shows:
   - per match, how much they hold on which side, with entry and current price

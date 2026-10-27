@@ -91,7 +91,7 @@ footer p { margin: 0; }
 <div class="wrap">
   <header>
     <h1>Polymarket <span>Profi-Radar</span></h1>
-    <p class="lede">Was die Wallets, die bei Tennis, Fußball und Basketball am verlässlichsten den Schlusskurs schlagen, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
+    <p class="lede">Was die Wallets, die bei Tennis, Fußball und Basketball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
     <div class="status" id="status" aria-live="polite"><span><i class="dot"></i>Lädt die Positionen…</span></div>
     <div class="controls">
       <button class="chip" type="button" data-sport="all" aria-pressed="true">Alle</button>
@@ -99,6 +99,7 @@ footer p { margin: 0; }
       <button class="chip" type="button" data-sport="soccer" aria-pressed="false">Fußball</button>
       <button class="chip" type="button" data-sport="basketball" aria-pressed="false">Basketball</button>
       <label class="field" for="pre"><input type="checkbox" id="pre"> nur vor Spielbeginn</label>
+      <label class="field" for="own" title="Nur Wetten in der Sportart, in der das Profil alle Kriterien erfüllt"><input type="checkbox" id="own" checked> nur in ihrer Sportart</label>
       <label class="field" for="min">ab
         <select id="min"><option value="0">0 $</option><option value="100" selected>100 $</option><option value="1000">1.000 $</option><option value="10000">10.000 $</option></select>
       </label>
@@ -109,13 +110,13 @@ footer p { margin: 0; }
   <section>
     <div class="sechead"><h2>Wo die Profis stehen</h2>
       <label class="field" for="sort">sortiert nach <select id="sort"><option value="stake">größtem Einsatz</option><option value="start">nächstem Anpfiff</option></select></label></div>
-    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt. Neben dem Kurs steht, wie weit er sich seit ihrem Einstieg bewegt hat, neben jedem Profil seine CLV in dieser Sportart.</p>
+    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt. Neben dem Kurs steht, wie weit er sich seit ihrem Einstieg bewegt hat, neben jedem Profil seine CLV nach Gebühren in dieser Sportart.</p>
     <div class="scroll" id="consensus"><p class="empty">Lädt die Positionen…</p></div>
   </section>
 
   <section>
     <div class="sechead"><h2>Neueste Wetten</h2></div>
-    <p class="sub">Käufe und Verkäufe der letzten 48&nbsp;Stunden, mit der CLV des Profils in der Sportart der Wette. Teilausführungen derselben Order innerhalb von zehn Minuten sind zu einer Wette zusammengefasst. „Seither“: wie sich der Kurs seit der Wette zu ihren Gunsten bewegt hat, solange das Spiel nicht begonnen hat.</p>
+    <p class="sub">Käufe und Verkäufe der letzten 48&nbsp;Stunden, mit der CLV des Profils nach Gebühren in der Sportart der Wette. Teilausführungen derselben Order innerhalb von zehn Minuten sind zu einer Wette zusammengefasst. „Seither“: wie sich der Kurs seit der Wette zu ihren Gunsten bewegt hat, solange das Spiel nicht begonnen hat.</p>
     <div class="scroll" id="feed"><p class="empty">Lädt die Wetten…</p></div>
   </section>
 
@@ -126,7 +127,7 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> je Sportart die besten Wallets der Rangliste nach Closing Line Value: Sie kauften vor Spielbeginn im Schnitt besser als der letzte Polymarket-Kurs vor dem Start, über die letzten 30&nbsp;Tage, mit mindestens 20&nbsp;Spielen, 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite. Market Maker und Live-Bots sind herausgefiltert. Rangliste und CLV-Werte werden täglich neu berechnet.</p>
+    <p><b>Wer hier steht:</b> nur Wallets, die alle fünf Kriterien erfüllen. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage. (3) In diesen 30&nbsp;Tagen nach Gebühren im Gewinn. (4) Auf Polymarket über alle Märkte seit Kontoeröffnung im Gewinn. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verschwindet von der Liste.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
     <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
@@ -141,7 +142,7 @@ footer p { margin: 0; }
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
   const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball" };
-  const S = { sport: "all", pre: false, min: 100, sort: "stake", pos: new Map(), trades: new Map(), events: new Map(),
+  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", pos: new Map(), trades: new Map(), events: new Map(),
               loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
 
   const $ = (id) => document.getElementById(id);
@@ -179,6 +180,8 @@ footer p { margin: 0; }
   // outrights ("epl-2027-champion") are left out.
   const isMatch = (slug) => /-\d{4}-\d{2}-\d{2}(?:-more-markets)?$/.test(String(slug || ""));
   const passSport = (slug) => { const s = sportOf(slug); return s !== "other" && isMatch(slug) && (S.sport === "all" || S.sport === s); };
+  // A wallet counts as a pro only in the sport where it meets every criterion.
+  const provenIn = (w, slug) => !S.own || Boolean(w.ranks[sportOf(slug)]);
   const shortName = (w) => {
     const n = w.name || "";
     return !n || (n.startsWith("0x") && (n.includes("-") || n.length >= 40)) ? `${w.wallet.slice(0, 6)}…${w.wallet.slice(-4)}` : n;
@@ -192,11 +195,24 @@ footer p { margin: 0; }
   };
   const fmtClv = (x) => `${signed(x * 100, (v) => nf1.format(v))}\u00a0¢`;
   function clvTip(sport, c) {
-    return `Closing Line Value ${LABEL[sport]}: Käufe vor dem Start im Schnitt ${fmtClv(c.clv)} je Anteil ` +
-      `${c.clv >= 0 ? "besser" : "schlechter"} als der letzte Kurs vor Spielbeginn, über ${c.matches} Spiele in 30 Tagen` +
-      (c.t != null ? ` (t = ${nf1.format(c.t)})` : "") +
+    return `Closing Line Value ${LABEL[sport]} nach Gebühren: Käufe vor dem Start im Schnitt ${fmtClv(c.clv)} je Anteil ` +
+      `${c.clv >= 0 ? "besser" : "schlechter"} als der letzte Kurs vor Spielbeginn` +
+      (c.gross != null && c.gross !== c.clv ? ` (vor Gebühren ${fmtClv(c.gross)})` : "") +
+      `, über ${c.matches} Spiele in 30 Tagen` + (c.t != null ? `, t = ${nf1.format(c.t)}` : "") +
       (c.rank ? `, Rang ${c.rank} von ${D.sports[sport].ranked}` : ", nicht in der Rangliste") +
-      `. Einsatz ${usd(c.stake)}, Gewinn ${signed(c.pnl, (v) => usd(v))}.`;
+      (c.elite === true ? ", erfüllt alle fünf Kriterien" : c.sig === true ? ", statistisch abgesichert" :
+        c.sig === false ? ", vom Zufall nicht zu unterscheiden" : "") +
+      `. Einsatz ${usd(c.stake)}, Gewinn nach Gebühren ${signed(c.pnl, (v) => usd(v))}` +
+      (c.fees != null ? `, Gebühren ${usd(c.fees)}` : "") +
+      (c.taker != null ? `, ${nf0.format(c.taker * 100)} % des Einsatzes als Taker` : "") + ".";
+  }
+  const big = (v) => (Math.abs(v) >= 1e6 ? `${nf1.format(v / 1e6)}\u00a0Mio\u00a0$` : usd(v));
+  function allTime(w) {
+    const a = w.alltime;
+    if (!a) return '<td class="num"><span class="meta">\u2013</span></td>';
+    const roi = a.vol ? a.pnl / a.vol : 0;
+    return `<td class="num"><b class="${a.pnl >= 0 ? "buy" : "sell"}">${signed(a.pnl, big)}</b><br>` +
+           `<span class="meta">${big(a.vol)} Volumen · ${signed(roi * 100, (v) => nf1.format(v))}\u00a0%</span></td>`;
   }
   function clvTag(w, sport, withLabel) {
     if (!LABEL[sport]) return "";
@@ -306,7 +322,7 @@ footer p { margin: 0; }
     const groups = new Map(), now = Date.now();
     for (const w of D.wallets) {
       for (const p of S.pos.get(w.wallet) || []) {
-        if (!passSport(p.eventSlug) || +p.initialValue < S.min) continue;
+        if (!passSport(p.eventSlug) || +p.initialValue < S.min || !provenIn(w, p.eventSlug)) continue;
         const key = baseSlug(p.eventSlug), ev = S.events.get(p.eventSlug) || S.events.get(key) || {};
         if (ev.start && ev.start < now - 24 * 3600e3) continue;   // long over, just not settled
         if (S.pre && (!ev.start || ev.start <= now)) continue;
@@ -373,7 +389,7 @@ footer p { margin: 0; }
     const since = Date.now() / 1000 - FEED_HOURS * 3600, rows = [];
     for (const w of D.wallets) {
       for (const b of bets(w)) {
-        if (b.last < since || !passSport(b.t.eventSlug) || b.cost < S.min) continue;
+        if (b.last < since || !passSport(b.t.eventSlug) || b.cost < S.min || !provenIn(b.w, b.t.eventSlug)) continue;
         const ev = S.events.get(b.t.eventSlug) || {};
         const phase = ev.start ? (b.first * 1000 < ev.start ? "pre" : "live") : "";
         if (S.pre && phase !== "pre") continue;
@@ -410,7 +426,7 @@ footer p { margin: 0; }
     const sports = Object.keys(D.sports);
     const rankIn = (w) => (S.sport !== "all" ? w.ranks[S.sport] : Math.min(...Object.values(w.ranks)));
     const rows = D.wallets.filter((w) => S.sport === "all" || w.ranks[S.sport]).map((w) => {
-      const ps = (S.pos.get(w.wallet) || []).filter((p) => passSport(p.eventSlug));
+      const ps = (S.pos.get(w.wallet) || []).filter((p) => passSport(p.eventSlug) && provenIn(w, p.eventSlug));
       const last = (S.trades.get(w.wallet) || []).reduce((m, t) => Math.max(m, t.timestamp * 1000), 0);
       return { w, rank: rankIn(w), open: ps.reduce((a, p) => a + (+p.initialValue || 0), 0), n: ps.length, last };
     }).sort((a, b) => a.rank - b.rank);
@@ -418,22 +434,26 @@ footer p { margin: 0; }
       const c = (w.clv || {})[sport], hl = S.sport === sport ? " hl" : "";
       if (!c) return `<td class="num${hl}"><span class="meta">\u2013<br>unter 10 Spielen</span></td>`;
       return `<td class="num${hl}" title="${esc(clvTip(sport, c))}"><b class="${c.clv >= 0 ? "buy" : "sell"}">${fmtClv(c.clv)}</b><br>` +
-             `<span class="meta">${c.rank ? `#${c.rank}` : "ohne Rang"} · ${nf0.format(c.matches)} Spiele</span></td>`;
+             `<span class="meta">${c.rank ? `#${c.rank}` : "ohne Rang"} · ${nf0.format(c.matches)} Spiele` +
+             `${c.rank && c.sig === false ? " · nicht signifikant" : ""}</span></td>`;
     };
     let html = `<table><thead><tr><th>Profil</th>${sports.map((s) => `<th class="num${S.sport === s ? " hl" : ""}">CLV ${esc(LABEL[s])}</th>`).join("")}` +
+               '<th class="num" title="Gewinn oder Verlust über alle Polymarket-Märkte seit Kontoeröffnung, wie auf dem Profil">Polymarket gesamt</th>' +
                '<th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
     for (const x of rows) {
       const ready = S.loaded.has(x.w.wallet);
-      html += `<tr><td>${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}` +
+      html += `<tr><td>${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}${allTime(x.w)}` +
               `<td class="num">${ready ? `${usd(x.open)}<br><span class="meta">${x.n} Positionen</span>` : "…"}</td>` +
               `<td class="nowrap">${x.last ? esc(ago(x.last)) : ready ? "\u2013" : "…"}</td>` +
               `<td class="nowrap"><code title="${esc(x.w.wallet)}">${esc(x.w.wallet.slice(0, 10))}…</code> <button class="copy" type="button" data-addr="${esc(x.w.wallet)}">kopieren</button></td></tr>`;
     }
     $("profiles").innerHTML = html + "</tbody></table>";
-    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.ranked} Wallets in der Rangliste, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
-    $("profiles-sub").textContent = `Die besten ${D.top_n} je Sportart. CLV: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren ` +
-      `als der letzte Kurs vor dem Start, je Sportart über die letzten 30 Tage und täglich neu berechnet. Rang: Platz in der Rangliste der Sportart; ` +
-      `„ohne Rang“ heißt zu viel live, zu wenig Einsatz oder ein Market Maker. ${parts.join(" · ")}.`;
+    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.elite ?? v.significant ?? v.ranked} von ${v.ranked} Wallets der Rangliste erfüllen alle Kriterien, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
+    $("profiles-sub").textContent = `Nur die allerbesten: je Sportart höchstens ${D.top_n} Wallets, die alle fünf Kriterien erfüllen ` +
+      `(siehe unten). CLV nach Gebühren: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs ` +
+      `vor dem Start, nach Polymarkets Taker-Gebühr, je Sportart über die letzten 30 Tage und täglich neu berechnet. Rang: Platz in der ` +
+      `Rangliste der Sportart; „ohne Rang“ heißt zu viel live, zu wenig Einsatz oder ein Market Maker. Polymarket gesamt: Gewinn über ` +
+      `alle Märkte seit Kontoeröffnung, wie auf dem Profil. ${parts.join(" · ")}.`;
   }
 
   function renderStatus() {
@@ -454,17 +474,19 @@ footer p { margin: 0; }
     const saved = JSON.parse(localStorage.getItem("profi-radar") || "{}");
     if (["all", "tennis", "soccer", "basketball"].includes(saved.sport)) S.sport = saved.sport;
     if (typeof saved.pre === "boolean") S.pre = saved.pre;
+    if (typeof saved.own === "boolean") S.own = saved.own;
     if ([0, 100, 1000, 10000].includes(saved.min)) S.min = saved.min;
     if (["stake", "start"].includes(saved.sort)) S.sort = saved.sort;
   } catch (e) { /* defaults */ }
-  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, min: S.min, sort: S.sort })); } catch (e) { /* not kept */ } };
+  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, own: S.own, min: S.min, sort: S.sort })); } catch (e) { /* not kept */ } };
   const chips = document.querySelectorAll(".chip[data-sport]");
   const syncControls = () => {
     chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.sport === S.sport)));
-    $("pre").checked = S.pre; $("min").value = String(S.min); $("sort").value = S.sort;
+    $("pre").checked = S.pre; $("own").checked = S.own; $("min").value = String(S.min); $("sort").value = S.sort;
   };
   chips.forEach((c) => c.addEventListener("click", () => { S.sport = c.dataset.sport; syncControls(); save(); render(); }));
   $("pre").addEventListener("change", (e) => { S.pre = e.target.checked; save(); render(); });
+  $("own").addEventListener("change", (e) => { S.own = e.target.checked; save(); render(); });
   $("min").addEventListener("change", (e) => { S.min = Number(e.target.value); save(); render(); });
   $("sort").addEventListener("change", (e) => { S.sort = e.target.value; save(); renderConsensus(); });
   $("reload").addEventListener("click", () => refresh());

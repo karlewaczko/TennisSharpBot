@@ -14,6 +14,7 @@ tennissharp/data/polymarket_traders.py for the method.
 """
 import _bootstrap  # noqa: F401
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import datetime as dt
 import json
@@ -56,6 +57,7 @@ def gap_summary(path) -> dict:
 
 
 DEFAULT_MIN_VOLUME = {"tennis": 1000.0, "soccer": 10000.0, "basketball": 5000.0}
+WORKERS = 3
 
 
 def main() -> None:
@@ -77,19 +79,28 @@ def main() -> None:
     markets = pt.closed_markets(days=args.days, tours=tours, sport=args.sport, min_volume=min_volume)
     logger.info("Closed %s moneylines in window: %d", args.sport, len(markets))
     per_market, mrows = [], []
-    for i, m in enumerate(markets, 1):
-        try:
-            trades, floor = pt.market_trades(m["condition_id"])
-        except Exception as exc:
-            logger.warning("trades for %s failed: %s", m["slug"], exc)
-            continue
-        close_a, rows = pt.account_market(trades, m["winner"], m["start_ts"])
-        mrows.append({**m, "close_a": close_a, "trades": len(trades), "min_trade_usd": floor})
-        for r in rows:
-            per_market.append({**r, "slug": m["slug"]})
-        if i % 100 == 0:
-            logger.info("  %d/%d markets, %.0fs", i, len(markets), time.time() - t0)
-        time.sleep(pt.PAUSE)
+
+    def work(m):
+        trades, floor, takers = pt.market_trades(m["condition_id"])
+        close_a, rows = pt.account_market(trades, m["winner"], m["start_ts"], m.get("fee_rate", 0.0), takers)
+        return m, close_a, rows, len(trades), floor, len(takers)
+
+    # Three markets at a time: the run takes a third as long and stays well
+    # inside the API's rate limits (it backs off on 429 anyway).
+    with ThreadPoolExecutor(WORKERS) as pool:
+        futures = [pool.submit(work, m) for m in markets]
+        for i, fut in enumerate(as_completed(futures), 1):
+            try:
+                m, close_a, rows, n_trades, floor, n_takers = fut.result()
+            except Exception as exc:
+                logger.warning("trades failed: %s", exc)
+                continue
+            mrows.append({**m, "close_a": close_a, "trades": n_trades, "taker_fills": n_takers,
+                          "min_trade_usd": floor})
+            for r in rows:
+                per_market.append({**r, "slug": m["slug"]})
+            if i % 100 == 0:
+                logger.info("  %d/%d markets, %.0fs", i, len(markets), time.time() - t0)
 
     pm = pd.DataFrame(per_market)
     if args.per_market_out:
@@ -106,7 +117,7 @@ def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours,
     prediction_market_sharpness.json, with the gap to the sharp books that
     the dashboard logs; otherwise pm_<sport>_traders.json."""
     ev = pt.by_event(pm)
-    lb = pt.leaderboard(ev)
+    lb = pt.mark_elite(pt.leaderboard(ev, mk)).reindex(columns=pt.LEADER_COLUMNS)
     lb.to_csv(config.PROCESSED_DIR / f"pm_{sport}_traders.csv", index=False)
     # Every wallet's CLV in this sport, ranked or not, so the live page can
     # show a watched account's figure in each sport. Regenerated each run,
@@ -122,12 +133,14 @@ def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours,
         "markets": int(len(mk)), "matches": int(mk["slug"].nunique()) if len(mk) else 0,
         "wallets": int(pm["wallet"].nunique()) if len(pm) else 0,
         "ranked_wallets": int(len(lb)),
+        "significant_wallets": int(lb["significant"].astype(bool).sum()) if len(lb) else 0,
+        "elite_wallets": int(lb["elite"].astype(bool).sum()) if len(lb) else 0,
         "markets_trimmed_to_bigger_trades": (int((mk["min_trade_usd"] > 0).sum())
                                              if "min_trade_usd" in mk.columns else 0),
         "market_structure": pt.market_structure(ev),
         "skill_persistence": pt.persistence(ev, mk),
         "polymarket_closing_calibration": pt.calibration(mk) if len(mk) else {"n": 0},
-        "leader_preview": lb.head(10).round(4).to_dict("records"),
+        "leader_preview": lb[lb["elite"].astype(bool)].head(10).round(4).to_dict("records") if len(lb) else [],
     }
     if sport == "tennis":
         report["gap_to_sharp"] = gap_summary(config.PROCESSED_DIR / "pm_gap_log.csv")

@@ -2,9 +2,11 @@ name: Daily Polymarket rankings - tennis, football and basketball
 
 # Ranks the wallets of all three sports by closing-line value over the last
 # 30 days and rebuilds docs/profis.html, the live page of what the ranked
-# wallets bet, with each account's CLV per sport. About two hours; on a
+# wallets bet, with each account's CLV per sport. About two and a half
+# hours (every market is read twice, all fills and the taker fills); on a
 # public repository the minutes cost nothing. 04:23 UTC: after the 03:17
-# dashboard run and done before the 06:41 Tuesday job and the 09:17 run.
+# dashboard run and done before the 09:17 one; on Tuesdays the 06:41 job
+# waits for it in the shared concurrency group.
 on:
   schedule:
     - cron: "23 4 * * *"
@@ -22,7 +24,7 @@ concurrency:
 jobs:
   rank:
     runs-on: ubuntu-latest
-    timeout-minutes: 240
+    timeout-minutes: 300
     steps:
       # The branch, not the triggering commit: a run that waited in the
       # concurrency queue must start from what the previous run pushed.
@@ -39,12 +41,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Tennis wallets and prediction-market sharpness
-        timeout-minutes: 60
+        timeout-minutes: 90
         run: python scripts/update_pm_traders.py --days 30
 
       - name: Football wallets
         if: ${{ !cancelled() }}
-        timeout-minutes: 110
+        timeout-minutes: 120
         run: python scripts/update_pm_traders.py --sport soccer --days 30
 
       - name: Basketball wallets

@@ -6,6 +6,7 @@ import json
 import sys
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -83,23 +84,50 @@ def test_closed_markets_walks_creation_windows_and_tags():
 
 def test_market_trades_fall_back_to_bigger_trades_when_a_market_is_too_busy():
     asked = []
+    taker = {"transactionHash": "0xt", "proxyWallet": "0xW", "side": "BUY", "outcomeIndex": 0, "size": 5}
 
     class Http:
         def get(self, url, params=None, headers=None, timeout=None):
             asked.append(params)
             if "filterAmount" not in params or params["filterAmount"] < 100:
                 return _Resp([{"price": 0.5}] * pt.TRADE_PAGE)          # always a full page
+            if params["takerOnly"] == "true":
+                return _Resp([taker] if params["offset"] == 0 else [])
             return _Resp([{"price": 0.5}] * 1200 if params["offset"] == 0 else [])
 
-    trades, floor = pt.market_trades("0xbusy", http=Http(), sleep=lambda s: None)
+    trades, floor, takers = pt.market_trades("0xbusy", http=Http(), sleep=lambda s: None)
     assert floor == 100 and len(trades) == 1200
-    assert [a.get("filterAmount") for a in asked] == [None, None, 50, 50, 100]
+    assert [a.get("filterAmount") for a in asked] == [None, None, 50, 50, 100, 100]
+    assert asked[-1]["takerOnly"] == "true" and takers == {("0xt", "0xw", 0, "BUY", 5.0)}
 
     class Small:
         def get(self, url, params=None, headers=None, timeout=None):
             return _Resp([{"price": 0.5}] * 30)
 
     assert pt.market_trades("0xquiet", http=Small(), sleep=lambda s: None)[1] == 0.0
+
+
+def test_taker_fees_come_off_profit_and_closing_line_value():
+    trades = [{**_t("T", "BUY", 0, 100, 0.40, START - 3600), "transactionHash": "0x1"},   # the taker
+              {**_t("M", "SELL", 0, 100, 0.40, START - 3600), "transactionHash": "0x1"},  # its maker
+              _t("C", "BUY", 0, 10, 0.50, START - 60)]
+    close, rows = pt.account_market(trades, winner=0, start_ts=START, fee_rate=0.05,
+                                    takers={pt.taker_key(trades[0])})
+    by = {r["wallet"]: r for r in rows}
+    fee = 0.05 * 0.40 * 0.60                                            # per share
+    assert by["T"]["fees"] == pytest.approx(100 * fee) and by["T"]["taker_stake"] == pytest.approx(40.0)
+    assert by["T"]["pnl"] == pytest.approx(-40 + 100 - 100 * fee)
+    assert by["T"]["clv"] == pytest.approx(0.10) and by["T"]["clv_net"] == pytest.approx(0.10 - fee)
+    assert by["M"]["fees"] == 0 and by["M"]["clv_net"] == pytest.approx(by["M"]["clv"])
+    free = pt.account_market(trades, winner=0, start_ts=START, fee_rate=0.0, takers={pt.taker_key(trades[0])})[1]
+    assert free[0]["fees"] == 0                                          # a market without fees
+
+
+def test_only_edges_beyond_luck_count_as_significant():
+    t = pd.Series(list(np.linspace(-2.0, 2.5, 297)) + [6.0, 6.5, 7.0])
+    flags = pt.significant(t, pd.Series([30] * 300))
+    assert flags.sum() == 3 and flags.iloc[-3:].all()                   # 2.5 alone is luck among 300
+    assert not pt.significant(pd.Series([1.0, 0.5]), pd.Series([30, 30])).any()
 
 
 def test_a_football_match_counts_once_per_wallet():
@@ -176,6 +204,7 @@ def test_leaderboard_needs_enough_markets_and_stake_and_ranks_by_t():
     assert "maker" in pt.leaderboard(pd.DataFrame(rows), min_directional=0)["wallet"].tolist()
     every = pt.wallet_table(pd.DataFrame(rows))                         # the unfiltered figures behind it
     assert set(every["wallet"]) == {"steady", "noisy", "maker", "lucky"} and "rank" not in every
+    assert lb["significant"].tolist() == [True, False]                 # noisy's edge is within luck
 
 
 def test_skill_persistence_and_market_structure():
@@ -275,3 +304,35 @@ def test_no_ranking_yet_is_said_plainly(bd, tmp_path, monkeypatch):
     from tennissharp import config
     monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
     assert bd.pro_positions([])["note"] == "noch keine Rangliste"
+
+
+def test_consistency_needs_an_edge_in_both_halves():
+    markets = pd.DataFrame({"slug": [f"m{k}" for k in range(20)], "start_ts": [START + k * 3600 for k in range(20)]})
+    rows = []
+    for k in range(20):
+        rows.append({"wallet": "both", "slug": f"m{k}", "clv": 0.02, "clv_net": 0.01})
+        rows.append({"wallet": "early", "slug": f"m{k}", "clv": 0.02, "clv_net": 0.03 if k < 10 else -0.01})
+    h = pt.halves(pd.DataFrame(rows), markets)
+    assert h.loc["both", "clv_net_first"] > 0 and h.loc["both", "clv_net_second"] > 0
+    assert h.loc["early", "clv_net_second"] < 0 and h.loc["early", "matches_first"] == 10
+
+
+def test_the_elite_meets_every_criterion():
+    lb = pd.DataFrame([
+        {"wallet": "0xA", "significant": True, "consistent": True, "pnl": 500.0},    # all good, ahead all-time
+        {"wallet": "0xB", "significant": True, "consistent": True, "pnl": 300.0},    # loses all-time
+        {"wallet": "0xC", "significant": True, "consistent": False, "pnl": 900.0},   # one good half only
+        {"wallet": "0xD", "significant": False, "consistent": True, "pnl": 100.0},   # within luck
+        {"wallet": "0xE", "significant": True, "consistent": True, "pnl": -50.0},    # lost money in the window
+    ])
+    asked = []
+
+    class Http:
+        def get(self, url, params=None, headers=None, timeout=None):
+            asked.append(params["user"])
+            return _Resp([{"pnl": 25000.0 if params["user"] == "0xA" else -1969623.0, "vol": 1e6}])
+
+    out = pt.mark_elite(lb, http=Http(), sleep=lambda s: None)
+    assert out["elite"].tolist() == [True, False, False, False, False]
+    assert asked == ["0xA", "0xB"]                                   # all-time looked up only where the rest holds
+    assert out.loc[1, "alltime_pnl"] == -1969623.0
