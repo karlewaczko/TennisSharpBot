@@ -604,7 +604,8 @@ def pm_pros_section(data: dict) -> str:
              'damit ein paar Glückstreffer nicht oben landen. Aufgenommen werden nur Wallets mit mindestens '
              '20&nbsp;Matches und 2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer '
              'Richtung setzen: Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Kalshi '
-             'veröffentlicht keine Trader-Daten.</p>'
+             'veröffentlicht keine Trader-Daten. <a href="profis.html">Profi-Radar: was die Profile '
+             'bei Tennis, Fußball und Basketball gerade setzen, live</a>.</p>'
              + (f'<p class="note">{" ".join(facts)}</p>' if facts else ""))
     if not lb:
         note = pros.get("note") or "keine Daten"

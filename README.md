@@ -331,7 +331,13 @@ Every Polymarket trade is public with the wallet and its profile name; Kalshi pu
     - where the money is
     - split-half persistence of CLV
     - the gap between prediction-market mids and the sharp fair value, from `pm_gap_log.csv`
-- `--sport soccer` or `--sport basketball` ranks football (all leagues) and basketball (NBA, EuroLeague and others) the same way. A football match's three Yes/No markets count as one opinion per wallet. These runs are one-off, not scheduled. Their output goes to `pm_<sport>_traders.csv` and `data/reports/pm_<sport>_traders.json`.
+- `--sport soccer` or `--sport basketball` ranks football (all leagues) and basketball (NBA, EuroLeague and others) the same way. A football match's three Yes/No markets count as one opinion per wallet. They run every Wednesday (`.github/workflows/pm-traders.yml`). Their output goes to `pm_<sport>_traders.csv` and `data/reports/pm_<sport>_traders.json`.
+- **Live page `docs/profis.html` (Profi-Radar)**: what the watched wallets bet right now, read from Polymarket's public APIs in the viewer's browser every 90 seconds. It shows:
+  - per match, how much they hold on which side, with entry and current price
+  - their latest bets, with the fills of one order merged
+  - the profiles, with addresses to copy
+
+  `scripts/build_pros_live.py` embeds the top 12 wallets per sport and the league codes. Two jobs rebuild it: the Tuesday job after the tennis ranking, and `pm-traders.yml` (Wednesday) after the football and basketball rankings. GitHub Pages serves it at https://karlewaczko.github.io/TennisSharpBot/profis.html once Pages is on: Settings → Pages → Deploy from a branch → `main`, `/docs`.
 - The dashboard section **Profis auf Polymarket** shows the top 10. It also lists the top 20's open positions on matches of the card, next to the sharp fair value and the best book price. Every run appends those positions to `pm_pro_positions_log.csv` and the prediction-market mids to `pm_gap_log.csv`.
 - First measurement (25 Oct 2026):
   - Polymarket and Kalshi mids sit at a median 0.81 / 0.51 points from Pinnacle's fair value.

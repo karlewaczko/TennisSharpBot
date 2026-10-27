@@ -26,7 +26,7 @@ def test_dashboard_runs_four_times_a_day():
 
 
 def test_both_jobs_share_one_concurrency_group():
-    for name in ("update-data.yml", "dashboard.yml"):
+    for name in ("update-data.yml", "dashboard.yml", "pm-traders.yml"):
         assert "group: data-commits" in (WF / name).read_text()
 
 
@@ -40,7 +40,7 @@ def test_queued_runs_start_from_the_branch_tip():
     """A run waiting in the concurrency queue keeps the SHA it was triggered
     on; checking that out made the dashboard run of 2026-10-24 rebuild on a
     stale commit and fail its push."""
-    for name in ("update-data.yml", "dashboard.yml"):
+    for name in ("update-data.yml", "dashboard.yml", "pm-traders.yml"):
         text = (WF / name).read_text()
         assert "ref: ${{ github.ref_name }}" in text
         assert "pull --rebase -X theirs" in text
@@ -63,3 +63,11 @@ def test_weekly_refresh_script_touches_only_data_and_main():
     assert "git add data/processed" in script
     assert "git push -q origin HEAD:main" in script
     assert "-X theirs" in script
+
+
+def test_rankings_refresh_weekly_and_rebuild_the_live_page():
+    assert _cron("pm-traders.yml") == ["23 4 * * 3"]
+    weekly = (WF / "pm-traders.yml").read_text()
+    assert "--sport soccer" in weekly and "--sport basketball" in weekly
+    for name in ("update-data.yml", "pm-traders.yml"):
+        assert "scripts/build_pros_live.py" in (WF / name).read_text()

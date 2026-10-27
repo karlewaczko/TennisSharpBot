@@ -73,6 +73,18 @@ Ausführlich, mit Quellen und Messwerten: `data/reports/profi_wetten_und_edge.md
 
 Im Dashboard steht jetzt eine Rangliste der Wallets, die bei Polymarket vor Spielbeginn am verlässlichsten den Schlusskurs schlagen. Daneben stehen ihre offenen Positionen auf Partien der aktuellen Karte. Das ist Information, kein Tipp. Polymarket und Kalshi liegen im Median weniger als einen Prozentpunkt neben Pinnacle, und das Können der Besten beträgt etwa ein Drittel Cent je Anteil. Wenn ein Profi drin ist, zahlt meist kein Buchmacher mehr als den fairen Preis. Kalshi zeigt keine Trader, dort gibt es keine Rangliste.
 
+### Profi-Radar (live)
+
+Unter **https://karlewaczko.github.io/TennisSharpBot/profis.html** siehst du live, was die bestplatzierten Polymarket-Profile bei Tennis, Fußball und Basketball gerade setzen und mit wie viel Geld. Die Seite zeigt je Spiel, wie viel Profi-Geld auf welcher Seite liegt, dazu die neuesten Wetten der Profile und ihre Adressen. Sie lädt die Daten alle 90 Sekunden direkt von Polymarket und funktioniert am Handy wie am PC.
+
+Einmalig einschalten:
+
+1. Im GitHub-Repo **Settings → Pages** öffnen.
+2. Bei „Source“ **Deploy from a branch** wählen.
+3. Branch **main** und Ordner **/docs** wählen, dann **Save**.
+
+Nach ein bis zwei Minuten ist die Seite erreichbar. Die Liste der Profile wird jeden Dienstag (Tennis) und Mittwoch (Fußball, Basketball) neu berechnet.
+
 ## Was du am Ende hast
 
 Einen Telegram-Bot, den du wie einen Chat-Partner fragen kannst:
