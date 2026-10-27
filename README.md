@@ -340,6 +340,7 @@ Every Polymarket trade is public with the wallet and its profile name; Kalshi pu
   - in profit on Polymarket over all time, from the leaderboard API
 
   First run: Tennis 6 of 225 · Fußball 3 of 812 · Basketball 2 of 162 ranked wallets.
+- **Second source: PolyInsider** (`src/tennissharp/data/polyinsider.py`). polyinsider.io is an independent Polymarket analytics site built on the same public data. Each trader page embeds tracked P&L, volume and win rate (all time and last month). Its robots.txt allows the pages and disallows `/api/`, so only pages are read, one every two seconds, under a user agent naming this project. An elite candidate must also be in profit there; an unreadable page rules nobody out. The radar shows PolyInsider's win rate per account and links each match to PolyInsider's market page, with whale bets ($5,000+) and fresh-wallet bets ($500+ first bets of new wallets).
 - `--sport soccer` or `--sport basketball` ranks football (all leagues) and basketball (NBA, EuroLeague and others) the same way. A football match's three Yes/No markets count as one opinion per wallet. All three rankings run daily at 04:23 UTC (`.github/workflows/pm-traders.yml`). Their output goes to `pm_<sport>_traders.csv` and `data/reports/pm_<sport>_traders.json`.
 - **Live page `docs/profis.html` (Profi-Radar)**: what the watched wallets bet right now, read from Polymarket's public APIs in the viewer's browser every 90 seconds. It shows:
   - per match, how much they hold on which side, with entry and current price

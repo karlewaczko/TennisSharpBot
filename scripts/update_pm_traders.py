@@ -24,7 +24,7 @@ import time
 import pandas as pd
 
 from tennissharp import config
-from tennissharp.data import polymarket_traders as pt
+from tennissharp.data import polyinsider, polymarket_traders as pt
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
@@ -117,7 +117,7 @@ def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours,
     prediction_market_sharpness.json, with the gap to the sharp books that
     the dashboard logs; otherwise pm_<sport>_traders.json."""
     ev = pt.by_event(pm)
-    lb = pt.mark_elite(pt.leaderboard(ev, mk)).reindex(columns=pt.LEADER_COLUMNS)
+    lb = pt.mark_elite(pt.leaderboard(ev, mk), second_opinion=polyinsider.trader).reindex(columns=pt.LEADER_COLUMNS)
     lb.to_csv(config.PROCESSED_DIR / f"pm_{sport}_traders.csv", index=False)
     # Every wallet's CLV in this sport, ranked or not, so the live page can
     # show a watched account's figure in each sport. Regenerated each run,

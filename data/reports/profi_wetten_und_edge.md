@@ -414,6 +414,18 @@ Was die Korrektur zeigt:
 - **purplegatto** liegt nach Gebühren nirgends signifikant vorn: Basketball +0,27 Cent (t 0,75), Tennis −0,17 Cent, Fußball −0,66 Cent (t −3,5).
 - **Abschnitte 4c und 4d** wurden vor dieser Korrektur gemessen. Ihre CLV-Werte sind vor Gebühren und ihre Listen ohne Signifikanzprüfung.
 
+**Zweite Quelle: PolyInsider (27. Oktober 2026).** polyinsider.io wertet dieselben öffentlichen Polymarket-Daten unabhängig aus. Es zeigt je Trader den Gewinn über alle Märkte, das Volumen und die Trefferquote, dazu je Markt Wal-Wetten ab 5.000 $ und frische Wallets: Konten, deren erster Trade weniger als 24 Stunden alt ist, die nur diesen einen Markt gehandelt haben und dort mindestens 500 $ setzen.
+
+Für die Elite-Liste muss ein Wallet seit diesem Tag auch bei PolyInsider insgesamt im Gewinn sein. Alle zehn sind es, und die Beträge stimmen mit Polymarket überein. Ein paar Beispiele:
+
+- Kyn008: +76.000 $, Trefferquote 50 % über 420 Märkte
+- monkeymashingkeyboard: +785.000 $, 53,8 % über 1.074 Märkte
+- purplegatto zum Vergleich: −2,0 Mio. $, 48,9 % über 14.247 Märkte, im letzten Monat 44,5 %
+
+Eine Trefferquote um 50 % ist bei Wetten nahe dem Münzwurf normal; was zählt, ist der Kurs, zu dem gekauft wird. Deshalb bleibt die CLV das Hauptkriterium.
+
+Die PolyInsider-Seiten werden höflich gelesen: eine Seite alle zwei Sekunden, mit Projektnamen als Absender und nie die von robots.txt gesperrte `/api/`.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |

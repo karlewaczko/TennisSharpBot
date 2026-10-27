@@ -126,3 +126,13 @@ def test_all_time_profit_comes_from_polymarket(live):
     wallets = [{"wallet": "0xa"}, {"wallet": "0xb"}]
     live.alltime(wallets, Http())
     assert wallets[0]["alltime"] == {"pnl": -1969624, "vol": 69436313} and "alltime" not in wallets[1]
+
+
+def test_each_watched_account_gets_polyinsiders_view(live):
+    wallets = [{"wallet": "0xa"}, {"wallet": "0xb"}]
+    figures = {"0xa": {"pnl": 75700.0, "volume": 5.5e6, "winRate": 57.5, "closedPredictions": 1200,
+                       "winningPredictions": 690, "winRate_1m": 61.2, "closedPredictions_1m": 170}}
+    live.second_opinion(wallets, fetch=figures.get)
+    assert wallets[0]["pi"] == {"pnl": 75700.0, "volume": 5.5e6, "win_rate": 57.5, "closed": 1200, "won": 690,
+                                "win_rate_1m": 61.2, "closed_1m": 170}
+    assert "pi" not in wallets[1]

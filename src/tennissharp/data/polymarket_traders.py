@@ -335,7 +335,8 @@ def account_market(trades: list[dict], winner: int, start_ts: float | None, fee_
 
 LEADER_COLUMNS = ["rank", "name", "wallet", "elite", "markets", "pre_markets", "stake", "pnl", "roi", "fees",
                   "clv_net_mean", "clv_net_t", "significant", "clv_net_first", "clv_net_second", "consistent",
-                  "alltime_pnl", "alltime_vol", "clv_mean", "clv_t", "win_share", "live_share", "taker_share",
+                  "alltime_pnl", "alltime_vol", "pi_pnl", "pi_win_rate", "pi_closed", "clv_mean", "clv_t",
+                  "win_share", "live_share", "taker_share",
                   "two_sided_share", "directional"]
 TABLE_COLUMNS = ["name", "wallet", "markets", "pre_markets", "stake", "pnl", "roi", "fees", "clv_net_mean",
                  "clv_net_t", "clv_mean", "clv_t", "win_share", "live_share", "taker_share", "two_sided_share",
@@ -422,18 +423,20 @@ def alltime(wallet: str, http=requests, sleep=time.sleep) -> tuple[float, float]
         return None
 
 
-def mark_elite(lb: pd.DataFrame, http=requests, sleep=time.sleep) -> pd.DataFrame:
+def mark_elite(lb: pd.DataFrame, http=requests, sleep=time.sleep, second_opinion=None) -> pd.DataFrame:
     """The very best, the only wallets worth watching: an edge after fees
     beyond luck (`significant`), ahead of the close in both halves of the
-    window (`consistent`), in profit after fees over it, and in profit on
-    Polymarket over all time. The all-time figures are fetched for the
-    wallets that pass the rest."""
+    window (`consistent`), in profit after fees over it, and in profit over
+    all time on Polymarket's own leaderboard and, where `second_opinion`
+    (wallet -> dict or None, e.g. polyinsider.trader) has figures, there
+    too. The all-time figures are fetched only for the wallets that pass
+    the rest; a second opinion that cannot be read rules nobody out."""
     lb = lb.copy()
     if lb.empty:
         lb["elite"] = pd.Series(dtype=bool)
         return lb
     lb["elite"] = False
-    for col in ("alltime_pnl", "alltime_vol"):
+    for col in ("alltime_pnl", "alltime_vol", "pi_pnl", "pi_win_rate", "pi_closed"):
         if col not in lb:
             lb[col] = np.nan
     ahead = lb["significant"].astype(bool) & lb["consistent"].astype(bool) & (lb["pnl"] > 0)
@@ -443,6 +446,14 @@ def mark_elite(lb: pd.DataFrame, http=requests, sleep=time.sleep) -> pd.DataFram
             lb.at[i, "alltime_pnl"], lb.at[i, "alltime_vol"] = figures
             lb.at[i, "elite"] = figures[0] > 0
         sleep(PAUSE)
+        if lb.at[i, "elite"] and second_opinion is not None:
+            other = second_opinion(lb.at[i, "wallet"])
+            if other:
+                lb.at[i, "pi_pnl"] = other.get("pnl")
+                lb.at[i, "pi_win_rate"] = other.get("winRate")
+                lb.at[i, "pi_closed"] = other.get("closedPredictions")
+                if other.get("pnl") is not None and other["pnl"] <= 0:
+                    lb.at[i, "elite"] = False
     return lb
 
 
