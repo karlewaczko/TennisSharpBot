@@ -108,6 +108,14 @@ def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours,
     ev = pt.by_event(pm)
     lb = pt.leaderboard(ev)
     lb.to_csv(config.PROCESSED_DIR / f"pm_{sport}_traders.csv", index=False)
+    # Every wallet's CLV in this sport, ranked or not, so the live page can
+    # show a watched account's figure in each sport. Regenerated each run,
+    # under data/raw and not committed.
+    stats = pt.wallet_table(ev)
+    stats = stats[stats["pre_markets"] >= pt.STATS_MIN_PRE_MARKETS]
+    cache = config.RAW_DIR / "pm"
+    cache.mkdir(parents=True, exist_ok=True)
+    stats.round(4).to_csv(cache / f"pm_{sport}_wallet_stats.csv", index=False)
     report = {
         "measured_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "sport": sport, "window_days": days, "tours": list(tours) if tours else None,

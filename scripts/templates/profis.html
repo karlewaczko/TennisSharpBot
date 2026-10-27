@@ -75,6 +75,8 @@ tbody tr:first-child td { border-top: 0; }
 .meta { color: var(--muted); font-size: .82rem; }
 .badge { display: inline-block; font: 600 .7rem/1 var(--display); letter-spacing: .07em; text-transform: uppercase; padding: 3px 6px; border-radius: 4px; background: var(--chip); color: var(--muted); white-space: nowrap; margin: 2px 4px 0 0; }
 .buy { color: var(--buy); } .sell { color: var(--sell); } .live { color: var(--live); }
+.clv { font: 500 .78rem/1.35 var(--mono); white-space: nowrap; }
+th.hl, td.hl { background: color-mix(in srgb, var(--accent) 8%, transparent); }
 .bar { height: 7px; border-radius: 4px; background: var(--chip); overflow: hidden; width: 90px; margin-top: 6px; }
 .bar i { display: block; height: 100%; background: var(--accent); }
 .empty { color: var(--muted); margin: 6px 0; }
@@ -107,13 +109,13 @@ footer p { margin: 0; }
   <section>
     <div class="sechead"><h2>Wo die Profis stehen</h2>
       <label class="field" for="sort">sortiert nach <select id="sort"><option value="stake">größtem Einsatz</option><option value="start">nächstem Anpfiff</option></select></label></div>
-    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt.</p>
+    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt. Neben dem Kurs steht, wie weit er sich seit ihrem Einstieg bewegt hat, neben jedem Profil seine CLV in dieser Sportart.</p>
     <div class="scroll" id="consensus"><p class="empty">Lädt die Positionen…</p></div>
   </section>
 
   <section>
     <div class="sechead"><h2>Neueste Wetten</h2></div>
-    <p class="sub">Käufe und Verkäufe der letzten 48&nbsp;Stunden. Teilausführungen derselben Order innerhalb von zehn Minuten sind zu einer Wette zusammengefasst.</p>
+    <p class="sub">Käufe und Verkäufe der letzten 48&nbsp;Stunden, mit der CLV des Profils in der Sportart der Wette. Teilausführungen derselben Order innerhalb von zehn Minuten sind zu einer Wette zusammengefasst. „Seither“: wie sich der Kurs seit der Wette zu ihren Gunsten bewegt hat, solange das Spiel nicht begonnen hat.</p>
     <div class="scroll" id="feed"><p class="empty">Lädt die Wetten…</p></div>
   </section>
 
@@ -124,7 +126,7 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> je Sportart die besten Wallets der Rangliste nach Closing Line Value: Sie kauften vor Spielbeginn im Schnitt besser als der letzte Polymarket-Kurs vor dem Start, über die letzten 30&nbsp;Tage, mit mindestens 20&nbsp;Spielen, 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite. Market Maker und Live-Bots sind herausgefiltert. Die Rangliste wird wöchentlich erneuert.</p>
+    <p><b>Wer hier steht:</b> je Sportart die besten Wallets der Rangliste nach Closing Line Value: Sie kauften vor Spielbeginn im Schnitt besser als der letzte Polymarket-Kurs vor dem Start, über die letzten 30&nbsp;Tage, mit mindestens 20&nbsp;Spielen, 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite. Market Maker und Live-Bots sind herausgefiltert. Rangliste und CLV-Werte werden täglich neu berechnet.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
     <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
@@ -182,8 +184,26 @@ footer p { margin: 0; }
     return !n || (n.startsWith("0x") && (n.includes("-") || n.length >= 40)) ? `${w.wallet.slice(0, 6)}…${w.wallet.slice(-4)}` : n;
   };
   const proLink = (w) => `<a href="https://polymarket.com/profile/${esc(w.wallet)}" target="_blank" rel="noopener">${esc(shortName(w))}</a>`;
-  const badges = (w) => Object.entries(w.ranks).sort((a, b) => a[1].rank - b[1].rank)
-    .map(([s, r]) => `<span class="badge">${esc(LABEL[s] || s)} #${r.rank}</span>`).join("");
+  const badges = (w) => Object.entries(w.ranks).sort((a, b) => a[1] - b[1])
+    .map(([s, r]) => `<span class="badge">${esc(LABEL[s] || s)} #${r}</span>`).join("");
+  const moveTag = (m, unit) => {
+    const c = Math.round((m || 0) * 100);
+    return c === 0 ? `<span class="meta">±0${unit}</span>` : `<span class="${c > 0 ? "buy" : "sell"}">${c > 0 ? "+" : "\u2212"}${nf0.format(Math.abs(c))}${unit}</span>`;
+  };
+  const fmtClv = (x) => `${signed(x * 100, (v) => nf1.format(v))}\u00a0¢`;
+  function clvTip(sport, c) {
+    return `Closing Line Value ${LABEL[sport]}: Käufe vor dem Start im Schnitt ${fmtClv(c.clv)} je Anteil ` +
+      `${c.clv >= 0 ? "besser" : "schlechter"} als der letzte Kurs vor Spielbeginn, über ${c.matches} Spiele in 30 Tagen` +
+      (c.t != null ? ` (t = ${nf1.format(c.t)})` : "") +
+      (c.rank ? `, Rang ${c.rank} von ${D.sports[sport].ranked}` : ", nicht in der Rangliste") +
+      `. Einsatz ${usd(c.stake)}, Gewinn ${signed(c.pnl, (v) => usd(v))}.`;
+  }
+  function clvTag(w, sport, withLabel) {
+    if (!LABEL[sport]) return "";
+    const c = (w.clv || {})[sport], label = withLabel ? `${LABEL[sport]}: ` : "";
+    if (!c) return `<span class="clv meta" title="Weniger als 10 Spiele vor dem Start in dieser Sportart: kein CLV-Wert">${esc(label)}CLV \u2013</span>`;
+    return `<span class="clv ${c.clv >= 0 ? "buy" : "sell"}" title="${esc(clvTip(sport, c))}">${esc(label)}CLV ${fmtClv(c.clv)}${c.rank ? ` · #${c.rank}` : ""}</span>`;
+  }
   const yesNo = (o) => (o === "Yes" ? "Ja" : o === "No" ? "Nein" : o);
   function sideLabel(x) {
     const t = String(x.title || ""), o = String(x.outcome || "");
@@ -227,17 +247,25 @@ footer p { margin: 0; }
   const isOpen = (p) => !p.redeemable && +p.size >= 1 && +p.curPrice > 0.01 && +p.curPrice < 0.99;
 
   async function loadEvents(slugs) {
+    const now = Date.now();
     const want = [...new Set(slugs)].filter((s) => {
       const e = S.events.get(s);
-      return !e || Date.now() - e.fetched > 10 * 60e3;
+      if (!e) return true;
+      // Upcoming matches every cycle (their prices feed "Seither"), the rest every ten minutes.
+      const upcoming = e.start && e.start > now && !s.endsWith("-more-markets");
+      return now - e.fetched > (upcoming ? 60e3 : 10 * 60e3);
     });
     for (let i = 0; i < want.length; i += 20) {
       const part = want.slice(i, i + 20);
       try {
         const evs = await getJSON(`${GAMMA}/events?limit=${part.length}&` + part.map((s) => "slug=" + encodeURIComponent(s)).join("&"));
         for (const e of Array.isArray(evs) ? evs : []) {
+          const prices = {};
+          for (const m of Array.isArray(e.markets) ? e.markets : []) {
+            try { prices[m.conditionId] = JSON.parse(m.outcomePrices || "[]").map(Number); } catch (err) { /* no price */ }
+          }
           S.events.set(e.slug, { title: String(e.title || "").replace(/ - More Markets$/, ""),
-                                 start: Date.parse(e.startTime || e.eventDate || "") || null, fetched: Date.now() });
+                                 start: Date.parse(e.startTime || e.eventDate || "") || null, prices, fetched: Date.now() });
         }
       } catch (e) { /* titles fall back to the market's own */ }
       for (const s of part) if (!S.events.has(s)) S.events.set(s, { title: null, start: null, fetched: Date.now() });
@@ -308,16 +336,18 @@ footer p { margin: 0; }
       const sides = [...g.sides.values()].sort((a, b) => b.invested - a.invested);
       sides.forEach((s, i) => {
         const share = g.total ? s.invested / g.total : 0;
+        const avg = s.shares ? s.invested / s.shares : 0, move = s.cur - avg;
         const pros = s.pros.sort((a, b) => b.invested - a.invested)
-          .map((p) => `${proLink(p.w)} <span class="meta">${usd(p.invested)}</span>`).join("<br>");
+          .map((p) => `${proLink(p.w)} <span class="meta">${usd(p.invested)}</span> ${clvTag(p.w, g.sport, false)}`).join("<br>");
         html += `<tr${i === 0 ? ' class="grp"' : ""}>`;
         if (i === 0) {
           html += `<td rowspan="${sides.length}"><div class="match">${esc(g.title)}</div><span class="badge">${esc(LABEL[g.sport])}</span>` +
                   `<span class="meta">${usd(g.total)} Profi-Geld</span></td><td rowspan="${sides.length}" class="nowrap">${kickoff(g.start)}</td>`;
         }
         html += `<td class="side">${esc(s.label)}<div class="bar" title="${nf0.format(share * 100)} % des Profi-Geldes auf diesem Spiel"><i style="width:${(share * 100).toFixed(1)}%"></i></div></td>` +
-                `<td class="num">${usd(s.invested)}</td><td class="num">${cents(s.shares ? s.invested / s.shares : 0)}</td>` +
-                `<td class="num">${cents(s.cur)}<br><span class="meta">Quote ${odds(s.cur)}</span></td><td>${pros}</td></tr>`;
+                `<td class="num">${usd(s.invested)}</td><td class="num">${cents(avg)}</td>` +
+                `<td class="num">${cents(s.cur)} <span title="Bewegung seit ihrem Einstieg in Cent">${moveTag(move, "")}</span>` +
+                `<br><span class="meta">Quote ${odds(s.cur)}</span></td><td>${pros}</td></tr>`;
       });
     }
     el.innerHTML = html + "</tbody></table>";
@@ -359,42 +389,51 @@ footer p { margin: 0; }
       el.innerHTML = `<p class="empty">Keine Wetten ab ${usd(S.min)} in den letzten ${FEED_HOURS} Stunden in dieser Auswahl.</p>`;
       return;
     }
-    let html = '<table><thead><tr><th>Wann</th><th>Profil</th><th>Spiel</th><th>Wette</th><th></th><th class="num">Betrag</th><th class="num">Kurs</th></tr></thead><tbody>';
+    let html = '<table><thead><tr><th>Wann</th><th>Profil</th><th>Spiel</th><th>Wette</th><th></th><th class="num">Betrag</th><th class="num">Kurs</th><th class="num" title="Kurs jetzt und Bewegung seit der Wette zu ihren Gunsten, solange das Spiel nicht begonnen hat">Seither</th></tr></thead><tbody>';
     for (const { b, ev, phase } of rows) {
       const buy = b.t.side === "BUY", price = b.size ? b.cost / b.size : 0;
+      const quotes = (ev.prices || {})[b.t.conditionId], now = quotes ? quotes[b.t.outcomeIndex] : undefined;
+      const move = now != null && !Number.isNaN(now) && ev.start && ev.start > Date.now() ? (buy ? now - price : price - now) : null;
       html += `<tr><td class="nowrap">${esc(ago(b.last * 1000))}<br><span class="meta">${esc(when.format(b.last * 1000))}</span></td>` +
-              `<td>${proLink(b.w)}<br>${badges(b.w)}</td>` +
+              `<td>${proLink(b.w)}<br>${clvTag(b.w, sportOf(b.t.eventSlug), true)}</td>` +
               `<td><div class="match">${esc(ev.title || b.t.title)}</div>` +
               (phase ? `<span class="meta${phase === "live" ? " live" : ""}">${phase === "live" ? "während des Spiels" : "vor dem Start"}</span>` : "") + "</td>" +
               `<td class="side">${esc(sideLabel(b.t))}</td><td class="${buy ? "buy" : "sell"}">${buy ? "Kauf" : "Verkauf"}</td>` +
-              `<td class="num">${usd(b.cost)}</td><td class="num">${cents(price)}<br><span class="meta">Quote ${odds(price)}</span></td></tr>`;
+              `<td class="num">${usd(b.cost)}</td><td class="num">${cents(price)}<br><span class="meta">Quote ${odds(price)}</span></td>` +
+              `<td class="num">${move == null ? '<span class="meta">\u2013</span>' : `${cents(now)}<br>${moveTag(move, "\u00a0¢")}`}</td></tr>`;
     }
     el.innerHTML = html + "</tbody></table>";
   }
 
   // ---------- the watched profiles
   function renderProfiles() {
-    const shown = D.wallets.filter((w) => S.sport === "all" || w.ranks[S.sport]);
-    const rows = shown.map((w) => {
-      const sport = S.sport !== "all" ? S.sport : Object.keys(w.ranks).sort((a, b) => w.ranks[a].rank - w.ranks[b].rank)[0];
+    const sports = Object.keys(D.sports);
+    const rankIn = (w) => (S.sport !== "all" ? w.ranks[S.sport] : Math.min(...Object.values(w.ranks)));
+    const rows = D.wallets.filter((w) => S.sport === "all" || w.ranks[S.sport]).map((w) => {
       const ps = (S.pos.get(w.wallet) || []).filter((p) => passSport(p.eventSlug));
       const last = (S.trades.get(w.wallet) || []).reduce((m, t) => Math.max(m, t.timestamp * 1000), 0);
-      return { w, r: w.ranks[sport], open: ps.reduce((a, p) => a + (+p.initialValue || 0), 0), n: ps.length, last };
-    }).sort((a, b) => a.r.rank - b.r.rank || b.r.t - a.r.t);
-    let html = '<table><thead><tr><th>Profil</th><th>Rang</th><th class="num">CLV Ø</th><th class="num">t</th><th class="num">Spiele</th><th class="num">Einsatz 30&nbsp;T</th><th class="num">Gewinn 30&nbsp;T</th><th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
+      return { w, rank: rankIn(w), open: ps.reduce((a, p) => a + (+p.initialValue || 0), 0), n: ps.length, last };
+    }).sort((a, b) => a.rank - b.rank);
+    const cell = (w, sport) => {
+      const c = (w.clv || {})[sport], hl = S.sport === sport ? " hl" : "";
+      if (!c) return `<td class="num${hl}"><span class="meta">\u2013<br>unter 10 Spielen</span></td>`;
+      return `<td class="num${hl}" title="${esc(clvTip(sport, c))}"><b class="${c.clv >= 0 ? "buy" : "sell"}">${fmtClv(c.clv)}</b><br>` +
+             `<span class="meta">${c.rank ? `#${c.rank}` : "ohne Rang"} · ${nf0.format(c.matches)} Spiele</span></td>`;
+    };
+    let html = `<table><thead><tr><th>Profil</th>${sports.map((s) => `<th class="num${S.sport === s ? " hl" : ""}">CLV ${esc(LABEL[s])}</th>`).join("")}` +
+               '<th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
     for (const x of rows) {
       const ready = S.loaded.has(x.w.wallet);
-      html += `<tr><td>${proLink(x.w)}</td><td>${badges(x.w)}</td>` +
-              `<td class="num">${signed(x.r.clv * 100, (v) => nf1.format(v))}&nbsp;¢</td><td class="num">${nf1.format(x.r.t)}</td>` +
-              `<td class="num">${nf0.format(x.r.matches)}</td><td class="num">${usd(x.r.stake)}</td>` +
-              `<td class="num ${x.r.pnl >= 0 ? "buy" : "sell"}">${signed(x.r.pnl, (v) => usd(v))}</td>` +
+      html += `<tr><td>${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}` +
               `<td class="num">${ready ? `${usd(x.open)}<br><span class="meta">${x.n} Positionen</span>` : "…"}</td>` +
-              `<td class="nowrap">${x.last ? esc(ago(x.last)) : ready ? "–" : "…"}</td>` +
+              `<td class="nowrap">${x.last ? esc(ago(x.last)) : ready ? "\u2013" : "…"}</td>` +
               `<td class="nowrap"><code title="${esc(x.w.wallet)}">${esc(x.w.wallet.slice(0, 10))}…</code> <button class="copy" type="button" data-addr="${esc(x.w.wallet)}">kopieren</button></td></tr>`;
     }
     $("profiles").innerHTML = html + "</tbody></table>";
-    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.ranked} Wallets in der Rangliste, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "–"}`);
-    $("profiles-sub").textContent = `Die besten ${D.top_n} je Sportart. CLV, Spiele, Einsatz und Gewinn aus den letzten 30 Tagen. ${parts.join(" · ")}.`;
+    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.ranked} Wallets in der Rangliste, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
+    $("profiles-sub").textContent = `Die besten ${D.top_n} je Sportart. CLV: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren ` +
+      `als der letzte Kurs vor dem Start, je Sportart über die letzten 30 Tage und täglich neu berechnet. Rang: Platz in der Rangliste der Sportart; ` +
+      `„ohne Rang“ heißt zu viel live, zu wenig Einsatz oder ein Market Maker. ${parts.join(" · ")}.`;
   }
 
   function renderStatus() {

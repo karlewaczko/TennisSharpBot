@@ -65,9 +65,10 @@ def test_weekly_refresh_script_touches_only_data_and_main():
     assert "-X theirs" in script
 
 
-def test_rankings_refresh_weekly_and_rebuild_the_live_page():
-    assert _cron("pm-traders.yml") == ["23 4 * * 3"]
-    weekly = (WF / "pm-traders.yml").read_text()
-    assert "--sport soccer" in weekly and "--sport basketball" in weekly
-    for name in ("update-data.yml", "pm-traders.yml"):
-        assert "scripts/build_pros_live.py" in (WF / name).read_text()
+def test_rankings_refresh_daily_and_rebuild_the_live_page():
+    assert _cron("pm-traders.yml") == ["23 4 * * *"]
+    daily = (WF / "pm-traders.yml").read_text()
+    assert "update_pm_traders.py --days 30" in daily               # tennis
+    assert "--sport soccer" in daily and "--sport basketball" in daily
+    assert "scripts/build_pros_live.py" in daily
+    assert "update_pm_traders" not in (WF / "update-data.yml").read_text()

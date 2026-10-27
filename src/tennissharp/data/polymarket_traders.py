@@ -48,6 +48,7 @@ MIN_PRE_MARKETS = 20       # pre-match markets a wallet needs to be ranked
 MIN_STAKE = 2000.0         # USDC staked over the window
 MIN_DIRECTIONAL = 0.7      # below this a wallet trades like a market maker
 MAX_LIVE_SHARE = 0.5       # above this a wallet is an in-play trader
+STATS_MIN_PRE_MARKETS = 10  # enough pre-match matches to show a wallet's CLV at all
 _HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; TennisSharpBot research script)"}
 
 
@@ -286,21 +287,10 @@ LEADER_COLUMNS = ["rank", "name", "wallet", "markets", "pre_markets", "stake", "
                   "clv_mean", "clv_t", "win_share", "live_share", "two_sided_share", "directional"]
 
 
-def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS,
-                min_stake: float = MIN_STAKE,
-                min_directional: float = MIN_DIRECTIONAL,
-                max_live_share: float = MAX_LIVE_SHARE) -> pd.DataFrame:
-    """One row per wallet over the window, ranked by closing-line t-statistic.
-
-    Wallets that end their pre-match trading close to flat are market
-    makers: their closing-line value is the spread they earn, steady enough
-    to top a t-statistic, and their holdings are inventory rather than
-    opinions. `directional` (mean |net| / gross pre-match shares) keeps
-    them out of the ranking. So does a mostly in-play book: nine dollars in
-    ten on Polymarket's tennis trade during the match, much of it bots on
-    the live score, whose holdings last seconds and are no tip to follow."""
+def wallet_table(per_market: pd.DataFrame) -> pd.DataFrame:
+    """Every wallet's figures over the window, before any filter or rank."""
     if per_market.empty:
-        return pd.DataFrame(columns=LEADER_COLUMNS)
+        return pd.DataFrame(columns=LEADER_COLUMNS[1:])
     rows = []
     for w, g in per_market.groupby("wallet"):
         pre = g[g["clv"].notna()]
@@ -318,7 +308,25 @@ def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS
                      "live_share": float(g["live_stake"].sum()) / stake if stake else None,
                      "two_sided_share": float(g["both_sides"].mean()),
                      "directional": float(pre["directional"].mean()) if n else None})
-    lb = pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=LEADER_COLUMNS[1:])
+
+
+def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS,
+                min_stake: float = MIN_STAKE,
+                min_directional: float = MIN_DIRECTIONAL,
+                max_live_share: float = MAX_LIVE_SHARE) -> pd.DataFrame:
+    """One row per wallet over the window, ranked by closing-line t-statistic.
+
+    Wallets that end their pre-match trading close to flat are market
+    makers: their closing-line value is the spread they earn, steady enough
+    to top a t-statistic, and their holdings are inventory rather than
+    opinions. `directional` (mean |net| / gross pre-match shares) keeps
+    them out of the ranking. So does a mostly in-play book: nine dollars in
+    ten on Polymarket's tennis trade during the match, much of it bots on
+    the live score, whose holdings last seconds and are no tip to follow."""
+    if per_market.empty:
+        return pd.DataFrame(columns=LEADER_COLUMNS)
+    lb = wallet_table(per_market)
     lb = lb[(lb["pre_markets"] >= min_pre_markets) & (lb["stake"] >= min_stake) & lb["clv_t"].notna()
             & (lb["directional"] >= min_directional) & (lb["live_share"] <= max_live_share)]
     lb = lb.sort_values(["clv_t", "pnl"], ascending=[False, False]).reset_index(drop=True)
