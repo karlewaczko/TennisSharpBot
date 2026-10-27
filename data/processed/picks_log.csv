@@ -64,3 +64,60 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-25T18:28:03+00:00,3358319,2026-10-27,Vienna,Medvedev D.,Polymarket,prediction,value,1.284,0.7944,0.0199,Betfair
 2026-10-25T18:28:03+00:00,3358271,2026-10-27,Guangzhou,Sonmez Z.,Unibet,book,value,1.42,0.705,0.0011,Polymarket Mid
 2026-10-25T18:28:03+00:00,3359661,2026-10-26,Sioux Falls challenger,Mees Rottgering,Polymarket,prediction,value,1.558,0.6603,0.0291,Betfair
+2026-10-25T23:21:09+00:00,3358265,2026-10-26,Guangzhou,Bondar A.,Kalshi,prediction,value,2.895,0.3456,0.0003,Pinnacle
+2026-10-25T23:21:09+00:00,3358319,2026-10-27,Vienna,Merida Aguilar D.,bwin,book,value,4.33,0.235,0.0175,Polymarket Mid
+2026-10-25T23:21:09+00:00,3358325,2026-10-27,Vienna,Alcaraz C.,Polymarket,prediction,value,1.238,0.8146,0.0082,Betfair
+2026-10-25T23:21:09+00:00,3360125,2026-10-27,Vienna,Mannarino A.,Betway,book,value,1.73,0.6034,0.0438,Betfair
+2026-10-25T23:21:09+00:00,3360125,2026-10-27,Vienna,Mannarino A.,bet-at-home,book,value,1.68,0.6034,0.0136,Betfair
+2026-10-25T23:21:09+00:00,3358271,2026-10-27,Guangzhou,Sonmez Z.,Unibet,book,value,1.42,0.705,0.0011,Polymarket Mid
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Filip Peliwo,Betsson,book,value,3.75,0.2686,0.0072,Betfair
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Filip Peliwo,Betway,book,value,3.8,0.2686,0.0207,Betfair
+2026-10-25T23:21:09+00:00,3359913,2026-10-26,Ningbo challenger,Filip Peliwo,Interwetten,book,value,3.8,0.2686,0.0207,Betfair
+2026-10-25T23:21:09+00:00,3359561,2026-10-27,Guayaquil challenger,Franco Roncadelli,Polymarket,prediction,value,1.512,0.6789,0.0264,Betfair
+2026-10-25T23:21:09+00:00,3359563,2026-10-27,Guayaquil challenger,Ugo Carabelli C.,Polymarket,prediction,value,1.181,0.8586,0.0141,Betfair
+2026-10-25T23:21:09+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,bet-at-home,book,value,1.12,0.894,0.0013,Betfair
+2026-10-25T23:21:09+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,Polymarket,prediction,value,1.142,0.894,0.021,Betfair
+2026-10-26T09:01:28+00:00,3360143,2026-10-26,Curitiba,Victoria Bosio,Kalshi,prediction,value,3.956,0.2539,0.0044,Betfair
+2026-10-26T09:01:28+00:00,3360177,2026-10-27,Basel,Giovanni Mpetshi Perricard,Betway,book,value,6.0,0.1874,0.1244,Betfair
+2026-10-26T09:01:28+00:00,3358595,2026-10-26,Brest challenger,Mochizuki S.,Kalshi,prediction,value,2.236,0.455,0.0175,Polymarket Mid
+2026-10-26T09:01:28+00:00,3358587,2026-10-26,Brest challenger,Otto Virtanen,Polymarket,prediction,value,1.447,0.6914,0.0008,Betfair
+2026-10-26T09:01:28+00:00,3359905,2026-10-26,Brest challenger,Vadym Ursu,Kalshi,prediction,value,6.737,0.155,0.0443,Polymarket Mid
+2026-10-26T09:01:28+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,Polymarket,prediction,value,1.13,0.894,0.0099,Betfair
+2026-10-26T16:11:48+00:00,3360177,2026-10-27,Basel,Giovanni Mpetshi Perricard,Kalshi,prediction,value,5.903,0.175,0.033,Polymarket Mid
+2026-10-26T16:11:48+00:00,3360163,2026-10-27,Basel,Shelton B.,1xBet,book,value,1.23,0.8171,0.005,Pinnacle
+2026-10-26T16:11:48+00:00,3360057,2026-10-27,Courmayeur WTA,Victoria Jimenez Kasintseva,1xBet,book,value,2.11,0.481,0.015,Betfair
+2026-10-26T16:11:48+00:00,3360057,2026-10-27,Courmayeur WTA,Victoria Jimenez Kasintseva,bet-at-home,book,value,2.1,0.481,0.0102,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,1xBet,book,value,3.31,0.3142,0.0399,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,Betsson,book,value,3.3,0.3142,0.0368,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,Betway,book,value,3.3,0.3142,0.0368,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,Interwetten,book,value,3.3,0.3142,0.0368,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,William Hill,book,value,3.3,0.3142,0.0368,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,bet-at-home,book,value,3.25,0.3142,0.0211,Betfair
+2026-10-26T16:11:48+00:00,3360877,2026-10-28,Tokyo,Gibson T.,Polymarket,prediction,value,3.447,0.3142,0.0831,Betfair
+2026-10-26T16:11:48+00:00,3360871,2026-10-27,Seoul challenger,Wong C.,Polymarket,prediction,value,1.209,0.8441,0.0202,Betfair
+2026-10-26T16:11:48+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,William Hill,book,value,1.12,0.894,0.0013,Betfair
+2026-10-26T16:11:48+00:00,3358517,2026-10-27,Ningbo challenger,Tristan Schoolkate,Polymarket,prediction,value,1.13,0.894,0.0099,Betfair
+2026-10-26T16:11:48+00:00,3360163,2026-10-27,Basel,Kovacevic A.,Pinnacle,model,model_signal,5.02,0.1829,0.0581,Pinnacle
+2026-10-27T00:30:36+00:00,3359737,2026-10-27,Guangzhou,Yastremska D.,bet365,book,value,2.2,0.4554,0.0019,Pinnacle
+2026-10-27T00:30:36+00:00,3360883,2026-10-28,Guangzhou,Kraus S.,Betway,book,value,3.5,0.3025,0.0588,Betfair
+2026-10-27T00:30:36+00:00,3360883,2026-10-28,Guangzhou,Kraus S.,Coral,book,value,3.4,0.3025,0.0286,Betfair
+2026-10-27T00:30:36+00:00,3360883,2026-10-28,Guangzhou,Kraus S.,Ladbrokes,book,value,3.4,0.3025,0.0286,Betfair
+2026-10-27T00:30:36+00:00,3360883,2026-10-28,Guangzhou,Kraus S.,bwin,book,value,3.4,0.3025,0.0286,Betfair
+2026-10-27T00:30:36+00:00,3360883,2026-10-28,Guangzhou,Kraus S.,Polymarket,prediction,value,3.33,0.3025,0.0074,Betfair
+2026-10-27T00:30:36+00:00,3360871,2026-10-27,Seoul challenger,Zhukayev B.,10Bet,book,value,5.5,0.185,0.0175,Polymarket Mid
+2026-10-27T00:30:36+00:00,3360871,2026-10-27,Seoul challenger,Zhukayev B.,Coral,book,value,5.5,0.185,0.0175,Polymarket Mid
+2026-10-27T00:30:36+00:00,3360871,2026-10-27,Seoul challenger,Zhukayev B.,Interwetten,book,value,5.5,0.185,0.0175,Polymarket Mid
+2026-10-27T00:30:36+00:00,3360871,2026-10-27,Seoul challenger,Zhukayev B.,Ladbrokes,book,value,5.5,0.185,0.0175,Polymarket Mid
+2026-10-27T00:30:36+00:00,3360871,2026-10-27,Seoul challenger,Zhukayev B.,Kalshi,prediction,value,5.559,0.185,0.0285,Polymarket Mid
+2026-10-27T00:30:36+00:00,3360659,2026-10-27,Sydney 4 ITF,Hosoki Y.,bet-at-home,book,value,2.95,0.835,1.4632,Polymarket Mid
+2026-10-27T00:30:36+00:00,3361183,2026-10-27,Istanbul ITF,Cengiz B.,1xBet,book,value,1.42,0.7081,0.0055,Betfair
+2026-10-27T00:30:36+00:00,3361183,2026-10-27,Istanbul ITF,Cengiz B.,William Hill,book,value,1.44,0.7081,0.0197,Betfair
+2026-10-27T00:30:36+00:00,3361183,2026-10-27,Istanbul ITF,Cengiz B.,Polymarket,prediction,value,1.468,0.7081,0.0397,Betfair
+2026-10-27T00:30:36+00:00,3361183,2026-10-27,Istanbul ITF,Cengiz B.,Kalshi,prediction,value,1.438,0.7081,0.0185,Betfair
+2026-10-27T00:30:36+00:00,3359891,2026-10-27,Sydney 4 ITF,Kitahara Y.,Kalshi,prediction,value,2.095,0.484,0.0139,Betfair
+2026-10-27T09:30:07+00:00,3361403,2026-10-27,Brest challenger,Tom Paris,Kalshi,prediction,value,4.125,0.245,0.0107,Polymarket Mid
+2026-10-27T09:30:07+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Polymarket,prediction,value,1.512,0.6753,0.0211,Betfair
+2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Betway,book,value,1.5,0.6753,0.013,Betfair
+2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Coral,book,value,1.5,0.6753,0.013,Betfair
+2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Ladbrokes,book,value,1.5,0.6753,0.013,Betfair
+2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,William Hill,book,value,1.5,0.6753,0.013,Betfair
