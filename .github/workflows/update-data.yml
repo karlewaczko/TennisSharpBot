@@ -71,6 +71,13 @@ jobs:
         timeout-minutes: 60
         run: python scripts/update_pm_traders.py --days 30
 
+      # docs/profis.html: the live page of what the ranked wallets bet. It
+      # reads Polymarket in the viewer's browser; this only embeds whom to
+      # watch.
+      - name: Live page of the ranked Polymarket wallets
+        if: ${{ !cancelled() }}
+        run: python scripts/build_pros_live.py
+
       - name: Rebuild value dashboard
         if: ${{ !cancelled() }}
         run: |

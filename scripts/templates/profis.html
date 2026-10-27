@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polymarket Profi-Radar</title>
+<meta name="description" content="Was die Polymarket-Wallets, die bei Tennis, Fußball und Basketball am verlässlichsten den Schlusskurs schlagen, gerade setzen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: a scoreboard header (live status, filters), then three stacked panels: money per match, the bet feed, the watched profiles. */
+:root {
+  --bg: #f1f4f6; --panel: #ffffff; --ink: #13202a; --muted: #5a6a77; --line: #d9e1e7; --chip: #e6edf1;
+  --accent: #0a6c88; --on-accent: #ffffff; --buy: #127a38; --sell: #b42318; --live: #9a4d08;
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d141a; --panel: #141e26; --ink: #e4ecf1; --muted: #93a4b1; --line: #25333e; --chip: #1c2933;
+    --accent: #55c3e0; --on-accent: #0d141a; --buy: #4fd17f; --sell: #f47b73; --live: #f0b54c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d141a; --panel: #141e26; --ink: #e4ecf1; --muted: #93a4b1; --line: #25333e; --chip: #1c2933;
+  --accent: #55c3e0; --on-accent: #0d141a; --buy: #4fd17f; --sell: #f47b73; --live: #f0b54c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: max(20px, env(safe-area-inset-top, 0px)) max(40px, env(safe-area-inset-bottom, 0px));
+}
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 20px; }
+header { display: grid; gap: 12px; }
+h1 { font: 700 2.1rem/1 var(--display); letter-spacing: .01em; margin: 0; text-wrap: balance; }
+h1 span { color: var(--accent); }
+.lede { margin: 0; color: var(--muted); max-width: 70ch; }
+.status { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; font: 500 .82rem/1.3 var(--mono); color: var(--muted); }
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: 7px; vertical-align: 1px; background: var(--live); }
+.dot.ok { background: var(--buy); animation: pulse 2.4s ease-out infinite; }
+.dot.err { background: var(--sell); }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--buy) 55%, transparent); } 70%, 100% { box-shadow: 0 0 0 7px transparent; } }
+@media (prefers-reduced-motion: reduce) { .dot.ok { animation: none; } }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
+.chip {
+  font: 600 .88rem/1 var(--display); letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 9px 13px; border-radius: 999px;
+}
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.chip.ghost { border-style: dashed; }
+.field { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: .9rem; }
+select { font: 500 .9rem var(--body); background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; }
+:is(button, select, input, a):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 10px; min-width: 0; }
+.sechead { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; justify-content: space-between; }
+h2 { font: 700 1.3rem/1.1 var(--display); letter-spacing: .04em; text-transform: uppercase; margin: 0; }
+.sub { margin: 0; color: var(--muted); font-size: .9rem; max-width: 80ch; }
+.scroll { overflow-x: auto; min-width: 0; }
+table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+#consensus table { min-width: 860px; } #feed table { min-width: 760px; } #profiles table { min-width: 900px; }
+th { font: 600 .74rem/1.2 var(--display); letter-spacing: .09em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr.grp td { border-top: 2px solid var(--line); }
+tbody tr:first-child td { border-top: 0; }
+.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nowrap { white-space: nowrap; }
+.match { font-weight: 600; }
+.side { font-weight: 600; }
+.meta { color: var(--muted); font-size: .82rem; }
+.badge { display: inline-block; font: 600 .7rem/1 var(--display); letter-spacing: .07em; text-transform: uppercase; padding: 3px 6px; border-radius: 4px; background: var(--chip); color: var(--muted); white-space: nowrap; margin: 2px 4px 0 0; }
+.buy { color: var(--buy); } .sell { color: var(--sell); } .live { color: var(--live); }
+.bar { height: 7px; border-radius: 4px; background: var(--chip); overflow: hidden; width: 90px; margin-top: 6px; }
+.bar i { display: block; height: 100%; background: var(--accent); }
+.empty { color: var(--muted); margin: 6px 0; }
+code { font: .8rem var(--mono); }
+button.copy { font: 500 .76rem var(--mono); border: 1px solid var(--line); background: var(--chip); color: var(--ink); border-radius: 6px; padding: 3px 7px; cursor: pointer; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+footer { color: var(--muted); font-size: .86rem; display: grid; gap: 6px; max-width: 86ch; }
+footer p { margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Polymarket <span>Profi-Radar</span></h1>
+    <p class="lede">Was die Wallets, die bei Tennis, Fußball und Basketball am verlässlichsten den Schlusskurs schlagen, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
+    <div class="status" id="status" aria-live="polite"><span><i class="dot"></i>Lädt die Positionen…</span></div>
+    <div class="controls">
+      <button class="chip" type="button" data-sport="all" aria-pressed="true">Alle</button>
+      <button class="chip" type="button" data-sport="tennis" aria-pressed="false">Tennis</button>
+      <button class="chip" type="button" data-sport="soccer" aria-pressed="false">Fußball</button>
+      <button class="chip" type="button" data-sport="basketball" aria-pressed="false">Basketball</button>
+      <label class="field" for="pre"><input type="checkbox" id="pre"> nur vor Spielbeginn</label>
+      <label class="field" for="min">ab
+        <select id="min"><option value="0">0 $</option><option value="100" selected>100 $</option><option value="1000">1.000 $</option><option value="10000">10.000 $</option></select>
+      </label>
+      <button class="chip ghost" type="button" id="reload">Jetzt aktualisieren</button>
+    </div>
+  </header>
+
+  <section>
+    <div class="sechead"><h2>Wo die Profis stehen</h2>
+      <label class="field" for="sort">sortiert nach <select id="sort"><option value="stake">größtem Einsatz</option><option value="start">nächstem Anpfiff</option></select></label></div>
+    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt.</p>
+    <div class="scroll" id="consensus"><p class="empty">Lädt die Positionen…</p></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Neueste Wetten</h2></div>
+    <p class="sub">Käufe und Verkäufe der letzten 48&nbsp;Stunden. Teilausführungen derselben Order innerhalb von zehn Minuten sind zu einer Wette zusammengefasst.</p>
+    <div class="scroll" id="feed"><p class="empty">Lädt die Wetten…</p></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Die beobachteten Profile</h2></div>
+    <p class="sub" id="profiles-sub"></p>
+    <div class="scroll" id="profiles"></div>
+  </section>
+
+  <footer>
+    <p><b>Wer hier steht:</b> je Sportart die besten Wallets der Rangliste nach Closing Line Value: Sie kauften vor Spielbeginn im Schnitt besser als der letzte Polymarket-Kurs vor dem Start, über die letzten 30&nbsp;Tage, mit mindestens 20&nbsp;Spielen, 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite. Market Maker und Live-Bots sind herausgefiltert. Die Rangliste wird wöchentlich erneuert.</p>
+    <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
+    <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
+  </footer>
+</div>
+
+<script id="pros-data" type="application/json">__PROS_DATA__</script>
+<script>
+(() => {
+  "use strict";
+  const D = JSON.parse(document.getElementById("pros-data").textContent);
+  const API = "https://data-api.polymarket.com";
+  const GAMMA = "https://gamma-api.polymarket.com";
+  const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
+  const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball" };
+  const S = { sport: "all", pre: false, min: 100, sort: "stake", pos: new Map(), trades: new Map(), events: new Map(),
+              loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const nf0 = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
+  const nf1 = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const nf2 = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const usd = (x) => nf0.format(Math.round(x || 0)) + " $";
+  const signed = (x, f) => (x > 0 ? "+" : x < 0 ? "−" : "") + f(Math.abs(x));
+  const cents = (p) => nf0.format(Math.round((p || 0) * 100)) + " ¢";
+  const odds = (p) => (p > 0 ? nf2.format(1 / p) : "–");
+  const when = new Intl.DateTimeFormat("de-DE", { weekday: "short", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+  const clock = new Intl.DateTimeFormat("de-DE", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  const day = new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit" });
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  function ago(ms) {
+    const s = Math.max(0, Math.round((Date.now() - ms) / 1000));
+    if (s < 60) return "gerade eben";
+    const m = Math.round(s / 60);
+    if (m < 60) return `vor ${m} min`;
+    const h = Math.round(m / 60);
+    return h < 48 ? `vor ${h} h` : `vor ${Math.round(h / 24)} Tagen`;
+  }
+  function until(ms) {
+    const m = Math.round((ms - Date.now()) / 60000);
+    if (m < 60) return `in ${Math.max(m, 1)} min`;
+    const h = Math.round(m / 60);
+    return h < 48 ? `in ${h} h` : `in ${Math.round(h / 24)} Tagen`;
+  }
+
+  const baseSlug = (s) => String(s || "").replace(/-more-markets$/, "");
+  const sportOf = (slug) => D.prefixes[String(slug || "").split("-")[0]] || "other";
+  // A match's event slug ends in its date ("epl-ars-che-2026-10-18"); season
+  // outrights ("epl-2027-champion") are left out.
+  const isMatch = (slug) => /-\d{4}-\d{2}-\d{2}(?:-more-markets)?$/.test(String(slug || ""));
+  const passSport = (slug) => { const s = sportOf(slug); return s !== "other" && isMatch(slug) && (S.sport === "all" || S.sport === s); };
+  const shortName = (w) => {
+    const n = w.name || "";
+    return !n || (n.startsWith("0x") && (n.includes("-") || n.length >= 40)) ? `${w.wallet.slice(0, 6)}…${w.wallet.slice(-4)}` : n;
+  };
+  const proLink = (w) => `<a href="https://polymarket.com/profile/${esc(w.wallet)}" target="_blank" rel="noopener">${esc(shortName(w))}</a>`;
+  const badges = (w) => Object.entries(w.ranks).sort((a, b) => a[1].rank - b[1].rank)
+    .map(([s, r]) => `<span class="badge">${esc(LABEL[s] || s)} #${r.rank}</span>`).join("");
+  const yesNo = (o) => (o === "Yes" ? "Ja" : o === "No" ? "Nein" : o);
+  function sideLabel(x) {
+    const t = String(x.title || ""), o = String(x.outcome || "");
+    const win = t.match(/^Will (.+?) win on \d{4}-\d{2}-\d{2}\?$/);
+    if (win) return `${win[1]} gewinnt: ${yesNo(o)}`;
+    if (/end in a draw\?$/i.test(t)) return `Unentschieden: ${yesNo(o)}`;
+    const moneyline = / vs\.? /.test(t) && o && t.includes(o) && !/(spread|o\/u|total|set \d|game \d|handicap|half|quarter|1h|map \d)/i.test(t);
+    return moneyline ? o : `${yesNo(o)} · ${t}`;
+  }
+  function kickoff(start) {
+    if (!start) return '<span class="meta">–</span>';
+    if (start > Date.now()) return `${esc(when.format(start))}<br><span class="meta">${esc(until(start))}</span>`;
+    return `<span class="live">läuft oder vorbei</span><br><span class="meta">Start ${esc(when.format(start))}</span>`;
+  }
+
+  async function getJSON(url) {
+    for (let i = 0; i < 3; i++) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (r.status === 429 || r.status >= 500) { await sleep(1500 * (i + 1)); continue; }
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return await r.json();
+      } catch (e) {
+        if (i === 2) throw e;
+        await sleep(800 * (i + 1));
+      }
+    }
+    throw new Error("Polymarket antwortet nicht");
+  }
+  async function pool(items, n, fn) {
+    const out = new Array(items.length);
+    let next = 0;
+    await Promise.all(Array.from({ length: Math.min(n, items.length) }, async () => {
+      while (next < items.length) {
+        const k = next++;
+        try { out[k] = await fn(items[k]); } catch (e) { out[k] = e instanceof Error ? e : new Error(String(e)); }
+      }
+    }));
+    return out;
+  }
+  const isOpen = (p) => !p.redeemable && +p.size >= 1 && +p.curPrice > 0.01 && +p.curPrice < 0.99;
+
+  async function loadEvents(slugs) {
+    const want = [...new Set(slugs)].filter((s) => {
+      const e = S.events.get(s);
+      return !e || Date.now() - e.fetched > 10 * 60e3;
+    });
+    for (let i = 0; i < want.length; i += 20) {
+      const part = want.slice(i, i + 20);
+      try {
+        const evs = await getJSON(`${GAMMA}/events?limit=${part.length}&` + part.map((s) => "slug=" + encodeURIComponent(s)).join("&"));
+        for (const e of Array.isArray(evs) ? evs : []) {
+          S.events.set(e.slug, { title: String(e.title || "").replace(/ - More Markets$/, ""),
+                                 start: Date.parse(e.startTime || e.eventDate || "") || null, fetched: Date.now() });
+        }
+      } catch (e) { /* titles fall back to the market's own */ }
+      for (const s of part) if (!S.events.has(s)) S.events.set(s, { title: null, start: null, fetched: Date.now() });
+    }
+  }
+
+  async function refresh() {
+    if (S.loading) return;
+    S.loading = true;
+    renderStatus();
+    const res = await pool(D.wallets, POOL, async (w) => {
+      const [pos, tr] = await Promise.all([
+        getJSON(`${API}/positions?user=${w.wallet}&sizeThreshold=1&limit=200&sortBy=CURRENT`),
+        getJSON(`${API}/trades?user=${w.wallet}&limit=200&takerOnly=false`)]);
+      return { w, pos, tr };
+    });
+    let failed = 0;
+    for (const r of res) {
+      if (!r || r instanceof Error) { failed++; continue; }
+      S.pos.set(r.w.wallet, (Array.isArray(r.pos) ? r.pos : []).filter(isOpen));
+      S.trades.set(r.w.wallet, Array.isArray(r.tr) ? r.tr : []);
+      S.loaded.add(r.w.wallet);
+    }
+    const since = Date.now() / 1000 - FEED_HOURS * 3600, slugs = [];
+    for (const ps of S.pos.values()) for (const p of ps) slugs.push(p.eventSlug);
+    for (const ts of S.trades.values()) for (const t of ts) if (t.timestamp >= since) slugs.push(t.eventSlug);
+    await loadEvents(slugs.filter(Boolean));
+    S.failed = failed;
+    S.error = failed === D.wallets.length ? "Polymarket ist gerade nicht erreichbar. Der nächste Versuch läuft automatisch." : "";
+    if (!S.error) S.updated = Date.now();
+    S.next = Date.now() + REFRESH_S * 1000;
+    S.loading = false;
+    render();
+  }
+
+  // ---------- where the money is, per match
+  function consensus() {
+    const groups = new Map(), now = Date.now();
+    for (const w of D.wallets) {
+      for (const p of S.pos.get(w.wallet) || []) {
+        if (!passSport(p.eventSlug) || +p.initialValue < S.min) continue;
+        const key = baseSlug(p.eventSlug), ev = S.events.get(p.eventSlug) || S.events.get(key) || {};
+        if (ev.start && ev.start < now - 24 * 3600e3) continue;   // long over, just not settled
+        if (S.pre && (!ev.start || ev.start <= now)) continue;
+        let g = groups.get(key);
+        if (!g) groups.set(key, (g = { sport: sportOf(key), title: ev.title || p.title, start: ev.start, total: 0, sides: new Map() }));
+        const sk = `${p.conditionId}:${p.outcomeIndex}`;
+        let s = g.sides.get(sk);
+        if (!s) g.sides.set(sk, (s = { label: sideLabel(p), cur: +p.curPrice, invested: 0, shares: 0, pros: [] }));
+        s.invested += +p.initialValue; s.shares += +p.size; s.cur = +p.curPrice;
+        s.pros.push({ w, invested: +p.initialValue });
+        g.total += +p.initialValue;
+      }
+    }
+    const list = [...groups.values()];
+    list.sort(S.sort === "start" ? (a, b) => (a.start || Infinity) - (b.start || Infinity) : (a, b) => b.total - a.total);
+    return list;
+  }
+  function renderConsensus() {
+    if (!S.updated) return;
+    const groups = consensus(), el = $("consensus");
+    if (!groups.length) {
+      el.innerHTML = `<p class="empty">Keine offenen Positionen${S.pre ? " vor Spielbeginn" : ""} ab ${usd(S.min)} in dieser Auswahl.</p>`;
+      return;
+    }
+    let html = '<table><thead><tr><th>Spiel</th><th>Anpfiff</th><th>Wette</th><th class="num">Einsatz</th><th class="num">Ø Einstieg</th><th class="num">Kurs jetzt</th><th>Profis</th></tr></thead><tbody>';
+    for (const g of groups.slice(0, 60)) {
+      const sides = [...g.sides.values()].sort((a, b) => b.invested - a.invested);
+      sides.forEach((s, i) => {
+        const share = g.total ? s.invested / g.total : 0;
+        const pros = s.pros.sort((a, b) => b.invested - a.invested)
+          .map((p) => `${proLink(p.w)} <span class="meta">${usd(p.invested)}</span>`).join("<br>");
+        html += `<tr${i === 0 ? ' class="grp"' : ""}>`;
+        if (i === 0) {
+          html += `<td rowspan="${sides.length}"><div class="match">${esc(g.title)}</div><span class="badge">${esc(LABEL[g.sport])}</span>` +
+                  `<span class="meta">${usd(g.total)} Profi-Geld</span></td><td rowspan="${sides.length}" class="nowrap">${kickoff(g.start)}</td>`;
+        }
+        html += `<td class="side">${esc(s.label)}<div class="bar" title="${nf0.format(share * 100)} % des Profi-Geldes auf diesem Spiel"><i style="width:${(share * 100).toFixed(1)}%"></i></div></td>` +
+                `<td class="num">${usd(s.invested)}</td><td class="num">${cents(s.shares ? s.invested / s.shares : 0)}</td>` +
+                `<td class="num">${cents(s.cur)}<br><span class="meta">Quote ${odds(s.cur)}</span></td><td>${pros}</td></tr>`;
+      });
+    }
+    el.innerHTML = html + "</tbody></table>";
+  }
+
+  // ---------- the feed: fills of one order merged into one bet
+  function bets(w) {
+    const fills = (S.trades.get(w.wallet) || []).slice().sort((a, b) => a.timestamp - b.timestamp);
+    const open = new Map(), out = [];
+    for (const t of fills) {
+      const key = `${t.conditionId}:${t.outcomeIndex}:${t.side}`;
+      let b = open.get(key);
+      if (!b || t.timestamp - b.last > MERGE_GAP_S) {
+        b = { w, t, first: t.timestamp, last: t.timestamp, size: 0, cost: 0 };
+        open.set(key, b);
+        out.push(b);
+      }
+      b.size += +t.size || 0; b.cost += (+t.size || 0) * (+t.price || 0); b.last = t.timestamp;
+    }
+    return out;
+  }
+  function feedRows() {
+    const since = Date.now() / 1000 - FEED_HOURS * 3600, rows = [];
+    for (const w of D.wallets) {
+      for (const b of bets(w)) {
+        if (b.last < since || !passSport(b.t.eventSlug) || b.cost < S.min) continue;
+        const ev = S.events.get(b.t.eventSlug) || {};
+        const phase = ev.start ? (b.first * 1000 < ev.start ? "pre" : "live") : "";
+        if (S.pre && phase !== "pre") continue;
+        rows.push({ b, ev, phase });
+      }
+    }
+    return rows.sort((a, b) => b.b.last - a.b.last).slice(0, 150);
+  }
+  function renderFeed() {
+    if (!S.updated) return;
+    const rows = feedRows(), el = $("feed");
+    if (!rows.length) {
+      el.innerHTML = `<p class="empty">Keine Wetten ab ${usd(S.min)} in den letzten ${FEED_HOURS} Stunden in dieser Auswahl.</p>`;
+      return;
+    }
+    let html = '<table><thead><tr><th>Wann</th><th>Profil</th><th>Spiel</th><th>Wette</th><th></th><th class="num">Betrag</th><th class="num">Kurs</th></tr></thead><tbody>';
+    for (const { b, ev, phase } of rows) {
+      const buy = b.t.side === "BUY", price = b.size ? b.cost / b.size : 0;
+      html += `<tr><td class="nowrap">${esc(ago(b.last * 1000))}<br><span class="meta">${esc(when.format(b.last * 1000))}</span></td>` +
+              `<td>${proLink(b.w)}<br>${badges(b.w)}</td>` +
+              `<td><div class="match">${esc(ev.title || b.t.title)}</div>` +
+              (phase ? `<span class="meta${phase === "live" ? " live" : ""}">${phase === "live" ? "während des Spiels" : "vor dem Start"}</span>` : "") + "</td>" +
+              `<td class="side">${esc(sideLabel(b.t))}</td><td class="${buy ? "buy" : "sell"}">${buy ? "Kauf" : "Verkauf"}</td>` +
+              `<td class="num">${usd(b.cost)}</td><td class="num">${cents(price)}<br><span class="meta">Quote ${odds(price)}</span></td></tr>`;
+    }
+    el.innerHTML = html + "</tbody></table>";
+  }
+
+  // ---------- the watched profiles
+  function renderProfiles() {
+    const shown = D.wallets.filter((w) => S.sport === "all" || w.ranks[S.sport]);
+    const rows = shown.map((w) => {
+      const sport = S.sport !== "all" ? S.sport : Object.keys(w.ranks).sort((a, b) => w.ranks[a].rank - w.ranks[b].rank)[0];
+      const ps = (S.pos.get(w.wallet) || []).filter((p) => passSport(p.eventSlug));
+      const last = (S.trades.get(w.wallet) || []).reduce((m, t) => Math.max(m, t.timestamp * 1000), 0);
+      return { w, r: w.ranks[sport], open: ps.reduce((a, p) => a + (+p.initialValue || 0), 0), n: ps.length, last };
+    }).sort((a, b) => a.r.rank - b.r.rank || b.r.t - a.r.t);
+    let html = '<table><thead><tr><th>Profil</th><th>Rang</th><th class="num">CLV Ø</th><th class="num">t</th><th class="num">Spiele</th><th class="num">Einsatz 30&nbsp;T</th><th class="num">Gewinn 30&nbsp;T</th><th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
+    for (const x of rows) {
+      const ready = S.loaded.has(x.w.wallet);
+      html += `<tr><td>${proLink(x.w)}</td><td>${badges(x.w)}</td>` +
+              `<td class="num">${signed(x.r.clv * 100, (v) => nf1.format(v))}&nbsp;¢</td><td class="num">${nf1.format(x.r.t)}</td>` +
+              `<td class="num">${nf0.format(x.r.matches)}</td><td class="num">${usd(x.r.stake)}</td>` +
+              `<td class="num ${x.r.pnl >= 0 ? "buy" : "sell"}">${signed(x.r.pnl, (v) => usd(v))}</td>` +
+              `<td class="num">${ready ? `${usd(x.open)}<br><span class="meta">${x.n} Positionen</span>` : "…"}</td>` +
+              `<td class="nowrap">${x.last ? esc(ago(x.last)) : ready ? "–" : "…"}</td>` +
+              `<td class="nowrap"><code title="${esc(x.w.wallet)}">${esc(x.w.wallet.slice(0, 10))}…</code> <button class="copy" type="button" data-addr="${esc(x.w.wallet)}">kopieren</button></td></tr>`;
+    }
+    $("profiles").innerHTML = html + "</tbody></table>";
+    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.ranked} Wallets in der Rangliste, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "–"}`);
+    $("profiles-sub").textContent = `Die besten ${D.top_n} je Sportart. CLV, Spiele, Einsatz und Gewinn aus den letzten 30 Tagen. ${parts.join(" · ")}.`;
+  }
+
+  function renderStatus() {
+    let dot = "", text = "Lädt die Positionen…";
+    if (S.error) { dot = "err"; text = S.error; }
+    else if (S.updated) {
+      dot = S.loading ? "" : "ok";
+      const left = Math.max(0, Math.round((S.next - Date.now()) / 1000));
+      text = `Live · Stand ${clock.format(S.updated)} · ${S.loading ? "aktualisiert…" : `nächste Aktualisierung in ${left} s`}`;
+      if (S.failed) text += ` · ${S.failed} von ${D.wallets.length} Profilen gerade nicht geladen`;
+    }
+    $("status").innerHTML = `<span><i class="dot ${dot}"></i>${esc(text)}</span><span>${D.wallets.length} Profile beobachtet</span>`;
+  }
+  function render() { renderStatus(); renderConsensus(); renderFeed(); renderProfiles(); }
+
+  // ---------- controls
+  try {
+    const saved = JSON.parse(localStorage.getItem("profi-radar") || "{}");
+    if (["all", "tennis", "soccer", "basketball"].includes(saved.sport)) S.sport = saved.sport;
+    if (typeof saved.pre === "boolean") S.pre = saved.pre;
+    if ([0, 100, 1000, 10000].includes(saved.min)) S.min = saved.min;
+    if (["stake", "start"].includes(saved.sort)) S.sort = saved.sort;
+  } catch (e) { /* defaults */ }
+  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, min: S.min, sort: S.sort })); } catch (e) { /* not kept */ } };
+  const chips = document.querySelectorAll(".chip[data-sport]");
+  const syncControls = () => {
+    chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.sport === S.sport)));
+    $("pre").checked = S.pre; $("min").value = String(S.min); $("sort").value = S.sort;
+  };
+  chips.forEach((c) => c.addEventListener("click", () => { S.sport = c.dataset.sport; syncControls(); save(); render(); }));
+  $("pre").addEventListener("change", (e) => { S.pre = e.target.checked; save(); render(); });
+  $("min").addEventListener("change", (e) => { S.min = Number(e.target.value); save(); render(); });
+  $("sort").addEventListener("change", (e) => { S.sort = e.target.value; save(); renderConsensus(); });
+  $("reload").addEventListener("click", () => refresh());
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("button.copy");
+    if (!btn) return;
+    const addr = btn.dataset.addr;
+    const done = () => { btn.textContent = "kopiert"; setTimeout(() => { btn.textContent = "kopieren"; }, 1500); };
+    const fallback = () => {
+      const code = btn.previousElementSibling;
+      code.textContent = addr;
+      const range = document.createRange(); range.selectNodeContents(code);
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      btn.textContent = "markiert";
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(addr).then(done, fallback);
+    else fallback();
+  });
+  setInterval(() => {
+    renderStatus();
+    if (!S.loading && !document.hidden && S.next && Date.now() >= S.next) refresh();
+  }, 1000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && !S.loading && S.next && Date.now() >= S.next) refresh(); });
+
+  syncControls();
+  render();
+  refresh();
+})();
+</script>
+</body>
+</html>
