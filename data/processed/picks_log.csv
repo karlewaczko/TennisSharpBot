@@ -117,3 +117,7 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-27T00:30:36+00:00,3359891,2026-10-27,Sydney 4 ITF,Kitahara Y.,Kalshi,prediction,value,2.095,0.484,0.0139,Betfair
 2026-10-27T09:30:07+00:00,3361403,2026-10-27,Brest challenger,Tom Paris,Kalshi,prediction,value,4.125,0.245,0.0107,Polymarket Mid
 2026-10-27T09:30:07+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Polymarket,prediction,value,1.512,0.6753,0.0211,Betfair
+2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Betway,book,value,1.5,0.6753,0.013,Betfair
+2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Coral,book,value,1.5,0.6753,0.013,Betfair
+2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Ladbrokes,book,value,1.5,0.6753,0.013,Betfair
+2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,William Hill,book,value,1.5,0.6753,0.013,Betfair
