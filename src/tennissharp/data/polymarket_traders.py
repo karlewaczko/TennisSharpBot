@@ -26,14 +26,17 @@ this is information about the market, not a place to bet.
 from __future__ import annotations
 
 import datetime as dt
+import json
 import logging
 import math
 import re
 import time
 from collections import defaultdict
 
+import numpy as np
 import pandas as pd
 import requests
+from scipy.stats import t as student_t
 
 logger = logging.getLogger(__name__)
 
@@ -113,6 +116,25 @@ def is_match_slug(slug: str, sport: str = "tennis") -> bool:
     return sport != "tennis" or slug.split("-", 1)[0] in TENNIS_PREFIXES
 
 
+SPORTS_FEE_RATE = 0.05     # Polymarket's sports schedule: rate x p x (1 - p) per share, takers only
+
+
+def fee_rate(market: dict) -> float:
+    """The taker fee rate a market charges (0 where fees are off)."""
+    if not market.get("feesEnabled"):
+        return 0.0
+    sched = market.get("feeSchedule") or {}
+    if isinstance(sched, str):
+        try:
+            sched = json.loads(sched)
+        except ValueError:
+            sched = {}
+    try:
+        return float(sched.get("rate", SPORTS_FEE_RATE))
+    except (TypeError, ValueError, AttributeError):
+        return SPORTS_FEE_RATE
+
+
 def market_row(market: dict, sport: str = "tennis") -> dict | None:
     """A resolved moneyline market with its winner, or None. A tennis or
     basketball match is one market, its outcomes the two sides; a football
@@ -137,7 +159,7 @@ def market_row(market: dict, sport: str = "tennis") -> dict | None:
             "label": str(market.get("groupItemTitle") or ""),
             "player_a": str(outcomes[0]).strip(), "player_b": str(outcomes[1]).strip(),
             "winner": winner, "start_ts": _ts(market.get("gameStartTime") or ev.get("gameStartTime")),
-            "volume": float(market.get("volumeNum") or 0.0)}
+            "volume": float(market.get("volumeNum") or 0.0), "fee_rate": fee_rate(market)}
 
 
 def _iso(ts: float) -> str:
@@ -190,14 +212,16 @@ def closed_markets(days: int = 30, tours=("atp", "wta"), sport: str = "tennis", 
 TRADE_FLOORS = (50, 100, 250, 500, 1000, 2500)
 
 
-def market_trades(condition_id: str, http=requests, sleep=time.sleep) -> tuple[list[dict], float]:
-    """Every fill of one market, newest first, and the smallest trade size
-    that was kept (0: all of them).
+def market_trades(condition_id: str, http=requests, sleep=time.sleep) -> tuple[list[dict], float, set]:
+    """Every fill of one market, newest first; the smallest trade size that
+    was kept (0: all of them); and the taker_key of every taker fill.
 
     The API hands out 10000 rows a call from offsets up to 10000, so a
     market of up to 20000 fills comes whole. A bigger one (a busy NBA game)
     is fetched again for trades of at least 50, 100, 250 ... dollars until
-    it fits, which keeps its pre-match trading whole above that size."""
+    it fits, which keeps its pre-match trading whole above that size. The
+    taker fills come from the same listing with takerOnly, under the same
+    size floor."""
     def fetch(extra):
         rows = []
         for offset in (0, TRADE_PAGE):
@@ -211,15 +235,19 @@ def market_trades(condition_id: str, http=requests, sleep=time.sleep) -> tuple[l
         return rows, False
 
     trades, whole = fetch({})
-    if whole:
-        return trades, 0.0
-    for floor in TRADE_FLOORS:
-        trades, whole = fetch({"filterType": "CASH", "filterAmount": floor})
-        if whole:
-            return trades, float(floor)
-    logging.getLogger(__name__).warning("%s: over 20000 trades of %d$ and more, the oldest are cut off",
-                                        condition_id, TRADE_FLOORS[-1])
-    return trades, float(TRADE_FLOORS[-1])
+    floor = 0.0
+    if not whole:
+        for f in TRADE_FLOORS:
+            trades, whole = fetch({"filterType": "CASH", "filterAmount": f})
+            floor = float(f)
+            if whole:
+                break
+        else:
+            logging.getLogger(__name__).warning("%s: over 20000 trades of %d$ and more, the oldest are cut off",
+                                                condition_id, TRADE_FLOORS[-1])
+    size_floor = {"filterType": "CASH", "filterAmount": floor} if floor else {}
+    taker_fills, _ = fetch({**size_floor, "takerOnly": "true"})
+    return trades, floor, {taker_key(t) for t in taker_fills}
 
 
 def closing_price(trades: list[dict], start_ts: float | None) -> float | None:
@@ -234,12 +262,26 @@ def closing_price(trades: list[dict], start_ts: float | None) -> float | None:
     return p if int(last.get("outcomeIndex", 0)) == 0 else 1.0 - p
 
 
-def account_market(trades: list[dict], winner: int, start_ts: float | None) -> tuple[float | None, list[dict]]:
-    """(closing probability of outcome 0, per-wallet rows for this market)."""
+def taker_key(t: dict) -> tuple:
+    """One fill, recognisable in both the full and the taker-only listing."""
+    return (t.get("transactionHash"), str(t.get("proxyWallet") or "").lower(), int(t.get("outcomeIndex", 0)),
+            str(t.get("side", "")).upper(), round(float(t.get("size") or 0), 4))
+
+
+def account_market(trades: list[dict], winner: int, start_ts: float | None, fee_rate: float = 0.0,
+                   takers=frozenset()) -> tuple[float | None, list[dict]]:
+    """(closing probability of outcome 0, per-wallet rows for this market).
+
+    A taker pays `fee_rate` x p x (1 - p) per share, Polymarket's sports fee
+    (makers pay nothing; their rebates are left out). It comes off the
+    profit and off the closing-line value of the fill: `clv_net` is what a
+    wallet's pre-match fills beat the close by after costs, `clv` the same
+    before them. `takers` holds the taker_key of every taker fill."""
     close0 = closing_price(trades, start_ts)
     acc = defaultdict(lambda: {"cash": 0.0, "net": [0.0, 0.0], "stake": 0.0, "pre_stake": 0.0,
-                               "live_stake": 0.0, "clv_w": 0.0, "w": 0.0, "n": 0,
-                               "sides": set(), "name": "", "pre_net": 0.0, "pre_gross": 0.0})
+                               "live_stake": 0.0, "taker_stake": 0.0, "fees": 0.0, "clv_w": 0.0,
+                               "clvn_w": 0.0, "w": 0.0, "n": 0, "sides": set(), "name": "",
+                               "pre_net": 0.0, "pre_gross": 0.0})
     for t in trades:
         w = str(t.get("proxyWallet") or "")
         if not w:
@@ -250,10 +292,15 @@ def account_market(trades: list[dict], winner: int, start_ts: float | None) -> t
         buy = str(t.get("side", "")).upper() == "BUY"
         pre = start_ts is not None and float(t.get("timestamp", 0)) < start_ts
         risk = size * price if buy else size * (1.0 - price)
+        fee_share = fee_rate * price * (1.0 - price) if takers and taker_key(t) in takers else 0.0
         a["n"] += 1
         a["stake"] += risk
         a["name"] = t.get("name") or t.get("pseudonym") or a["name"]
         a["sides"].add(o if buy else 1 - o)
+        if fee_share:
+            a["taker_stake"] += risk
+            a["fees"] += fee_share * size
+            a["cash"] -= fee_share * size
         if buy:
             a["cash"] -= size * price
             a["net"][o] += size
@@ -270,6 +317,7 @@ def account_market(trades: list[dict], winner: int, start_ts: float | None) -> t
                 close_o = close0 if o == 0 else 1.0 - close0
                 clv = (close_o - price) if buy else (price - close_o)
                 a["clv_w"] += clv * risk
+                a["clvn_w"] += (clv - fee_share) * risk
                 a["w"] += risk
         else:
             a["live_stake"] += risk
@@ -277,45 +325,75 @@ def account_market(trades: list[dict], winner: int, start_ts: float | None) -> t
     for w, a in acc.items():
         rows.append({"wallet": w, "name": a["name"], "pnl": a["cash"] + a["net"][winner],
                      "stake": a["stake"], "pre_stake": a["pre_stake"], "live_stake": a["live_stake"],
+                     "taker_stake": a["taker_stake"], "fees": a["fees"],
                      "clv": (a["clv_w"] / a["w"]) if a["w"] > 0 else None,
+                     "clv_net": (a["clvn_w"] / a["w"]) if a["w"] > 0 else None,
                      "both_sides": len(a["sides"]) > 1, "trades": a["n"],
                      "directional": (abs(a["pre_net"]) / a["pre_gross"]) if a["pre_gross"] else None})
     return close0, rows
 
 
-LEADER_COLUMNS = ["rank", "name", "wallet", "markets", "pre_markets", "stake", "pnl", "roi",
-                  "clv_mean", "clv_t", "win_share", "live_share", "two_sided_share", "directional"]
+LEADER_COLUMNS = ["rank", "name", "wallet", "markets", "pre_markets", "stake", "pnl", "roi", "fees",
+                  "clv_net_mean", "clv_net_t", "significant", "clv_mean", "clv_t", "win_share",
+                  "live_share", "taker_share", "two_sided_share", "directional"]
+TABLE_COLUMNS = [c for c in LEADER_COLUMNS if c not in ("rank", "significant")]
+FDR_Q = 0.10   # share of lucky wallets tolerated among those marked significant
+
+
+def _mean_t(x: pd.Series) -> tuple[float | None, float | None]:
+    n = len(x)
+    if not n:
+        return None, None
+    mean, sd = float(x.mean()), (float(x.std(ddof=1)) if n > 1 else 0.0)
+    return mean, (mean / (sd / math.sqrt(n)) if n > 1 and sd > 0 else None)
 
 
 def wallet_table(per_market: pd.DataFrame) -> pd.DataFrame:
     """Every wallet's figures over the window, before any filter or rank."""
     if per_market.empty:
-        return pd.DataFrame(columns=LEADER_COLUMNS[1:])
+        return pd.DataFrame(columns=TABLE_COLUMNS)
+    pm = per_market
+    if "clv_net" not in pm:                 # rows from before fees were counted
+        pm = pm.assign(clv_net=pm["clv"], fees=0.0, taker_stake=0.0)
     rows = []
-    for w, g in per_market.groupby("wallet"):
+    for w, g in pm.groupby("wallet"):
         pre = g[g["clv"].notna()]
         n = len(pre)
-        mean = float(pre["clv"].mean()) if n else None
-        sd = float(pre["clv"].std(ddof=1)) if n > 1 else None
-        t = (mean / (sd / math.sqrt(n))) if (n > 1 and sd and sd > 0) else None
-        stake = float(g["stake"].sum())
-        names = [x for x in g["name"].tolist() if x]
+        gross, gross_t = _mean_t(pre["clv"])
+        net, net_t = _mean_t(pre["clv_net"])
+        stake, pnl = float(g["stake"].sum()), float(g["pnl"].sum())
+        names = [x for x in g["name"].tolist() if isinstance(x, str) and x]
         rows.append({"name": names[-1] if names else "", "wallet": w, "markets": int(len(g)),
-                     "pre_markets": n, "stake": stake, "pnl": float(g["pnl"].sum()),
-                     "roi": float(g["pnl"].sum()) / stake if stake else None,
-                     "clv_mean": mean, "clv_t": t,
-                     "win_share": float((g["pnl"] > 0).mean()),
+                     "pre_markets": n, "stake": stake, "pnl": pnl, "roi": pnl / stake if stake else None,
+                     "fees": float(g["fees"].sum()), "clv_net_mean": net, "clv_net_t": net_t,
+                     "clv_mean": gross, "clv_t": gross_t, "win_share": float((g["pnl"] > 0).mean()),
                      "live_share": float(g["live_stake"].sum()) / stake if stake else None,
+                     "taker_share": float(g["taker_stake"].sum()) / stake if stake else None,
                      "two_sided_share": float(g["both_sides"].mean()),
                      "directional": float(pre["directional"].mean()) if n else None})
-    return pd.DataFrame(rows, columns=LEADER_COLUMNS[1:])
+    return pd.DataFrame(rows, columns=TABLE_COLUMNS)
+
+
+def significant(t: pd.Series, n: pd.Series, q: float = FDR_Q) -> pd.Series:
+    """Benjamini-Hochberg over the one-sided p-values of the CLV
+    t-statistics: which wallets beat the close by more than luck explains
+    among this many wallets, with at most a share q of them lucky."""
+    if t.empty:
+        return pd.Series(dtype=bool)
+    p = pd.Series(student_t.sf(t.astype(float), (n.astype(float) - 1).clip(lower=1)), index=t.index)
+    ordered = np.sort(p.values)
+    under = ordered <= q * np.arange(1, len(ordered) + 1) / len(ordered)
+    if not under.any():
+        return pd.Series(False, index=t.index)
+    return p <= ordered[np.nonzero(under)[0].max()]
 
 
 def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS,
                 min_stake: float = MIN_STAKE,
                 min_directional: float = MIN_DIRECTIONAL,
                 max_live_share: float = MAX_LIVE_SHARE) -> pd.DataFrame:
-    """One row per wallet over the window, ranked by closing-line t-statistic.
+    """One row per wallet over the window, ranked by the t-statistic of its
+    closing-line value after fees.
 
     Wallets that end their pre-match trading close to flat are market
     makers: their closing-line value is the spread they earn, steady enough
@@ -323,13 +401,18 @@ def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS
     opinions. `directional` (mean |net| / gross pre-match shares) keeps
     them out of the ranking. So does a mostly in-play book: nine dollars in
     ten on Polymarket's tennis trade during the match, much of it bots on
-    the live score, whose holdings last seconds and are no tip to follow."""
+    the live score, whose holdings last seconds and are no tip to follow.
+
+    Among hundreds of wallets some beat the close by luck alone, so
+    `significant` marks the ones whose edge after fees survives a
+    false-discovery check (FDR_Q); only those are worth watching."""
     if per_market.empty:
         return pd.DataFrame(columns=LEADER_COLUMNS)
     lb = wallet_table(per_market)
-    lb = lb[(lb["pre_markets"] >= min_pre_markets) & (lb["stake"] >= min_stake) & lb["clv_t"].notna()
-            & (lb["directional"] >= min_directional) & (lb["live_share"] <= max_live_share)]
-    lb = lb.sort_values(["clv_t", "pnl"], ascending=[False, False]).reset_index(drop=True)
+    lb = lb[(lb["pre_markets"] >= min_pre_markets) & (lb["stake"] >= min_stake) & lb["clv_net_t"].notna()
+            & (lb["directional"] >= min_directional) & (lb["live_share"] <= max_live_share)].copy()
+    lb["significant"] = significant(lb["clv_net_t"], lb["pre_markets"])
+    lb = lb.sort_values(["clv_net_t", "pnl"], ascending=[False, False]).reset_index(drop=True)
     lb.insert(0, "rank", range(1, len(lb) + 1))
     return lb.reindex(columns=LEADER_COLUMNS)
 
@@ -337,7 +420,7 @@ def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS
 def by_event(per_market: pd.DataFrame) -> pd.DataFrame:
     """One row per wallet and match. A football match is three markets
     (home, draw, away), and a wallet's trades in them are one opinion:
-    profit and stakes add up, CLV and direction are weighted by the
+    profit, stakes and fees add up, CLV and direction are weighted by the
     pre-match stake."""
     if per_market.empty or not per_market.duplicated(["wallet", "slug"]).any():
         return per_market
@@ -347,15 +430,21 @@ def by_event(per_market: pd.DataFrame) -> pd.DataFrame:
         _cw=per_market["pre_stake"].where(per_market["clv"].notna(), 0.0),
         _dw=per_market["pre_stake"].where(per_market["directional"].notna(), 0.0))
     pm = pm.assign(_c=pm["clv"].fillna(0) * pm["_cw"], _d=pm["directional"].fillna(0) * pm["_dw"])
+    extra = {}
+    if "clv_net" in pm:
+        pm = pm.assign(_n=pm["clv_net"].fillna(0) * pm["_cw"])
+        extra = {"_n": ("_n", "sum"), "fees": ("fees", "sum"), "taker_stake": ("taker_stake", "sum")}
     out = pm.groupby(["wallet", "slug"], sort=False).agg(
         name=("name", "last"), pnl=("pnl", "sum"), stake=("stake", "sum"),
         pre_stake=("pre_stake", "sum"), live_stake=("live_stake", "sum"),
         both_sides=("both_sides", "max"), trades=("trades", "sum"),
-        _c=("_c", "sum"), _cw=("_cw", "sum"), _d=("_d", "sum"), _dw=("_dw", "sum")).reset_index()
+        _c=("_c", "sum"), _cw=("_cw", "sum"), _d=("_d", "sum"), _dw=("_dw", "sum"), **extra).reset_index()
     out["name"] = out["name"].fillna("")
     out["clv"] = (out["_c"] / out["_cw"]).where(out["_cw"] > 0)
+    if "_n" in out:
+        out["clv_net"] = (out["_n"] / out["_cw"]).where(out["_cw"] > 0)
     out["directional"] = (out["_d"] / out["_dw"]).where(out["_dw"] > 0)
-    return out.drop(columns=["_c", "_cw", "_d", "_dw"])
+    return out.drop(columns=[c for c in ("_c", "_cw", "_d", "_dw", "_n") if c in out])
 
 
 def market_structure(per_market: pd.DataFrame) -> dict:
@@ -378,10 +467,11 @@ def persistence(per_market: pd.DataFrame, markets: pd.DataFrame, min_each: int =
     if per_market.empty or markets.empty:
         return {"wallets": 0}
     cut = markets["start_ts"].median()
+    col = "clv_net" if "clv_net" in per_market else "clv"
     starts = markets.drop_duplicates("slug")[["slug", "start_ts"]]
-    pre = per_market[per_market["clv"].notna()].merge(starts, on="slug")
+    pre = per_market[per_market[col].notna()].merge(starts, on="slug")
     pre = pre.assign(half=(pre["start_ts"] >= cut).astype(int))
-    h = pre.groupby(["wallet", "half"])["clv"].agg(["mean", "size"]).unstack()
+    h = pre.groupby(["wallet", "half"])[col].agg(["mean", "size"]).unstack()
     if ("size", 1) not in h.columns:
         return {"wallets": 0}
     both = h[(h[("size", 0)] >= min_each) & (h[("size", 1)] >= min_each)]

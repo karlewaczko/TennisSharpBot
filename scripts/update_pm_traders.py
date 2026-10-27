@@ -14,6 +14,7 @@ tennissharp/data/polymarket_traders.py for the method.
 """
 import _bootstrap  # noqa: F401
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import datetime as dt
 import json
@@ -56,6 +57,7 @@ def gap_summary(path) -> dict:
 
 
 DEFAULT_MIN_VOLUME = {"tennis": 1000.0, "soccer": 10000.0, "basketball": 5000.0}
+WORKERS = 3
 
 
 def main() -> None:
@@ -77,19 +79,28 @@ def main() -> None:
     markets = pt.closed_markets(days=args.days, tours=tours, sport=args.sport, min_volume=min_volume)
     logger.info("Closed %s moneylines in window: %d", args.sport, len(markets))
     per_market, mrows = [], []
-    for i, m in enumerate(markets, 1):
-        try:
-            trades, floor = pt.market_trades(m["condition_id"])
-        except Exception as exc:
-            logger.warning("trades for %s failed: %s", m["slug"], exc)
-            continue
-        close_a, rows = pt.account_market(trades, m["winner"], m["start_ts"])
-        mrows.append({**m, "close_a": close_a, "trades": len(trades), "min_trade_usd": floor})
-        for r in rows:
-            per_market.append({**r, "slug": m["slug"]})
-        if i % 100 == 0:
-            logger.info("  %d/%d markets, %.0fs", i, len(markets), time.time() - t0)
-        time.sleep(pt.PAUSE)
+
+    def work(m):
+        trades, floor, takers = pt.market_trades(m["condition_id"])
+        close_a, rows = pt.account_market(trades, m["winner"], m["start_ts"], m.get("fee_rate", 0.0), takers)
+        return m, close_a, rows, len(trades), floor, len(takers)
+
+    # Three markets at a time: the run takes a third as long and stays well
+    # inside the API's rate limits (it backs off on 429 anyway).
+    with ThreadPoolExecutor(WORKERS) as pool:
+        futures = [pool.submit(work, m) for m in markets]
+        for i, fut in enumerate(as_completed(futures), 1):
+            try:
+                m, close_a, rows, n_trades, floor, n_takers = fut.result()
+            except Exception as exc:
+                logger.warning("trades failed: %s", exc)
+                continue
+            mrows.append({**m, "close_a": close_a, "trades": n_trades, "taker_fills": n_takers,
+                          "min_trade_usd": floor})
+            for r in rows:
+                per_market.append({**r, "slug": m["slug"]})
+            if i % 100 == 0:
+                logger.info("  %d/%d markets, %.0fs", i, len(markets), time.time() - t0)
 
     pm = pd.DataFrame(per_market)
     if args.per_market_out:

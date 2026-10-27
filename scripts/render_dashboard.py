@@ -600,10 +600,11 @@ def pm_pros_section(data: dict) -> str:
     intro = ('<p class="note"><b>Wie die Rangliste entsteht:</b> Jeder Polymarket-Trade ist öffentlich, mit '
              'Wallet und Profilnamen. Für jede Wallet wird über die entschiedenen ATP- und WTA-Matches des '
              'letzten Monats gemessen, ob ihre Käufe vor Spielbeginn den letzten Kurs vor dem Start '
-             'geschlagen haben (Closing Line Value, CLV, in Cent je Anteil); sortiert nach der t-Statistik, '
-             'damit ein paar Glückstreffer nicht oben landen. Aufgenommen werden nur Wallets mit mindestens '
-             '20&nbsp;Matches und 2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer '
-             'Richtung setzen: Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Kalshi '
+             'geschlagen haben, nach Polymarkets Taker-Gebühren (Closing Line Value, CLV, in Cent je Anteil); '
+             'sortiert nach der t-Statistik. Aufgenommen werden nur Wallets mit mindestens 20&nbsp;Matches und '
+             '2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer Richtung setzen, und deren '
+             'Vorsprung eine Signifikanzprüfung besteht (höchstens 10&nbsp;% Glückstreffer unter den Gelisteten): '
+             'Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Kalshi '
              'veröffentlicht keine Trader-Daten. <a href="profis.html">Profi-Radar: was die Profile '
              'bei Tennis, Fußball und Basketball gerade setzen, live</a>.</p>'
              + (f'<p class="note">{" ".join(facts)}</p>' if facts else ""))
@@ -621,7 +622,7 @@ def pm_pros_section(data: dict) -> str:
                    f'<td class="num">{float(r["clv_t"]):.1f}</td>'
                    f'<td class="num">{pct(r.get("live_share"), 0)}</td></tr>')
     table = _table([("#", "num"), ("Profil", ""), ("Matches vor Start", "num"), ("Einsatz", "num"),
-                    ("Gewinn", "num"), ("ROI", "num"), ("CLV &Oslash;", "num"), ("t", "num"),
+                    ("Gewinn", "num"), ("ROI", "num"), ("CLV &Oslash; n. Geb.", "num"), ("t", "num"),
                     ("Live-Anteil", "num")], "".join(trs))
     on_card = [p for p in pos if p.get("match_id")]
     if on_card:

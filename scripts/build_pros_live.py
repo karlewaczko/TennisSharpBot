@@ -69,11 +69,25 @@ def _table(path: Path) -> pd.DataFrame | None:
     return None if df.empty else df.drop_duplicates("wallet").set_index("wallet")
 
 
+FIGURES = ["rank", "clv", "gross", "t", "matches", "stake", "pnl", "fees", "taker", "sig"]
+
+
+def _num(r, col, digits=None):
+    v = r[col] if col in r.index else None
+    if v is None or pd.isna(v):
+        return None
+    return round(float(v), digits) if digits is not None else round(float(v))
+
+
 def _figures(r, rank) -> dict:
-    t = r["clv_t"]
-    return {"rank": rank, "clv": round(float(r["clv_mean"]), 4),
-            "t": round(float(t), 2) if pd.notna(t) else None, "matches": int(r["pre_markets"]),
-            "stake": round(float(r["stake"])), "pnl": round(float(r["pnl"]))}
+    """A wallet's 30-day figures in one sport: CLV after fees (`clv`; the
+    gross figure where a table predates fees), before fees (`gross`)."""
+    net = _num(r, "clv_net_mean", 4)
+    t = _num(r, "clv_net_t", 2) if net is not None else _num(r, "clv_t", 2)
+    sig = r["significant"] if "significant" in r.index and pd.notna(r["significant"]) else None
+    return {"rank": rank, "clv": net if net is not None else _num(r, "clv_mean", 4), "gross": _num(r, "clv_mean", 4),
+            "t": t, "matches": int(r["pre_markets"]), "stake": _num(r, "stake"), "pnl": _num(r, "pnl"),
+            "fees": _num(r, "fees"), "taker": _num(r, "taker_share", 3), "sig": bool(sig) if sig is not None else None}
 
 
 def _previous() -> dict:
@@ -84,11 +98,26 @@ def _previous() -> dict:
     except (OSError, ValueError):
         return {}
     out = {}
-    for r in df.itertuples(index=False):
-        out[(r.wallet, r.sport)] = {"rank": int(r.rank) if pd.notna(r.rank) else None, "clv": float(r.clv),
-                                    "t": float(r.t) if pd.notna(r.t) else None, "matches": int(r.matches),
-                                    "stake": int(r.stake), "pnl": int(r.pnl)}
+    for _, r in df.iterrows():
+        fig = {k: (None if k not in r.index or pd.isna(r[k]) else r[k]) for k in FIGURES}
+        for k in ("rank", "matches", "stake", "pnl", "fees"):
+            fig[k] = int(fig[k]) if fig[k] is not None else None
+        fig["sig"] = bool(fig["sig"]) if fig["sig"] is not None else None
+        out[(r["wallet"], r["sport"])] = fig
     return out
+
+
+def alltime(wallets: list[dict], http=requests) -> None:
+    """Each watched account's all-time profit and volume on Polymarket, as
+    its profile page shows them: the check on a 30-day figure."""
+    for w in wallets:
+        try:
+            rows = http.get(f"{pt.DATA_API}/v1/leaderboard", timeout=30,
+                            params={"user": w["wallet"], "timePeriod": "ALL", "orderBy": "PNL",
+                                    "category": "OVERALL"}).json()
+            w["alltime"] = {"pnl": round(float(rows[0]["pnl"])), "vol": round(float(rows[0]["vol"]))}
+        except (requests.RequestException, ValueError, KeyError, TypeError, IndexError):
+            continue
 
 
 def collect(top_n: int = TOP_N) -> dict:
@@ -106,9 +135,12 @@ def collect(top_n: int = TOP_N) -> dict:
         if table is not None:
             stats[sport] = table
         rep = _report(sport)
+        # Only edges that survive the significance check are watched.
+        watch = lb[lb["significant"].astype(bool)] if "significant" in lb.columns else lb
         sports[sport] = {"label": label, "measured_at": rep.get("measured_at"),
-                         "window_days": rep.get("window_days"), "ranked": int(len(lb))}
-        for wallet, r in lb.head(top_n).iterrows():
+                         "window_days": rep.get("window_days"), "ranked": int(len(lb)),
+                         "significant": int(len(watch))}
+        for wallet, r in watch.head(top_n).iterrows():
             w = wallets.setdefault(wallet, {"wallet": wallet, "name": "", "ranks": {}, "clv": {}})
             if isinstance(r["name"], str) and r["name"] and not w["name"]:
                 w["name"] = r["name"]
@@ -129,11 +161,13 @@ def collect(top_n: int = TOP_N) -> dict:
 def write_watched(data: dict, path: Path = None) -> None:
     """The embedded figures as a table: the record of what the page showed."""
     rows = [{"wallet": w["wallet"], "name": w["name"], "sport": sport, **fig,
-             "watched_in": ",".join(sorted(w["ranks"]))}
+             "watched_in": ",".join(sorted(w["ranks"])),
+             "alltime_pnl": (w.get("alltime") or {}).get("pnl"), "alltime_vol": (w.get("alltime") or {}).get("vol")}
             for w in data["wallets"] for sport, fig in w["clv"].items()]
-    cols = ["wallet", "name", "sport", "rank", "clv", "t", "matches", "stake", "pnl", "watched_in"]
+    cols = ["wallet", "name", "sport", *FIGURES, "watched_in", "alltime_pnl", "alltime_vol"]
     df = pd.DataFrame(rows, columns=cols)
-    df["rank"] = df["rank"].astype("Int64")             # blank where a wallet is not ranked in that sport
+    for col in ("rank", "alltime_pnl", "alltime_vol"):
+        df[col] = df[col].astype("Int64")                # blank where there is no figure
     df.to_csv(path or WATCHED, index=False)
 
 
@@ -150,6 +184,7 @@ def main() -> None:
     ap.add_argument("-o", "--out", type=Path, default=OUT)
     args = ap.parse_args()
     data = collect(args.top)
+    alltime(data["wallets"])
     data["prefixes"] = sport_prefixes()
     data["generated_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     args.out.parent.mkdir(parents=True, exist_ok=True)

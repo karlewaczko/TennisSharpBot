@@ -91,7 +91,7 @@ footer p { margin: 0; }
 <div class="wrap">
   <header>
     <h1>Polymarket <span>Profi-Radar</span></h1>
-    <p class="lede">Was die Wallets, die bei Tennis, Fußball und Basketball am verlässlichsten den Schlusskurs schlagen, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
+    <p class="lede">Was die Wallets, die bei Tennis, Fußball und Basketball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
     <div class="status" id="status" aria-live="polite"><span><i class="dot"></i>Lädt die Positionen…</span></div>
     <div class="controls">
       <button class="chip" type="button" data-sport="all" aria-pressed="true">Alle</button>
@@ -109,13 +109,13 @@ footer p { margin: 0; }
   <section>
     <div class="sechead"><h2>Wo die Profis stehen</h2>
       <label class="field" for="sort">sortiert nach <select id="sort"><option value="stake">größtem Einsatz</option><option value="start">nächstem Anpfiff</option></select></label></div>
-    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt. Neben dem Kurs steht, wie weit er sich seit ihrem Einstieg bewegt hat, neben jedem Profil seine CLV in dieser Sportart.</p>
+    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt. Neben dem Kurs steht, wie weit er sich seit ihrem Einstieg bewegt hat, neben jedem Profil seine CLV nach Gebühren in dieser Sportart.</p>
     <div class="scroll" id="consensus"><p class="empty">Lädt die Positionen…</p></div>
   </section>
 
   <section>
     <div class="sechead"><h2>Neueste Wetten</h2></div>
-    <p class="sub">Käufe und Verkäufe der letzten 48&nbsp;Stunden, mit der CLV des Profils in der Sportart der Wette. Teilausführungen derselben Order innerhalb von zehn Minuten sind zu einer Wette zusammengefasst. „Seither“: wie sich der Kurs seit der Wette zu ihren Gunsten bewegt hat, solange das Spiel nicht begonnen hat.</p>
+    <p class="sub">Käufe und Verkäufe der letzten 48&nbsp;Stunden, mit der CLV des Profils nach Gebühren in der Sportart der Wette. Teilausführungen derselben Order innerhalb von zehn Minuten sind zu einer Wette zusammengefasst. „Seither“: wie sich der Kurs seit der Wette zu ihren Gunsten bewegt hat, solange das Spiel nicht begonnen hat.</p>
     <div class="scroll" id="feed"><p class="empty">Lädt die Wetten…</p></div>
   </section>
 
@@ -126,7 +126,7 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> je Sportart die besten Wallets der Rangliste nach Closing Line Value: Sie kauften vor Spielbeginn im Schnitt besser als der letzte Polymarket-Kurs vor dem Start, über die letzten 30&nbsp;Tage, mit mindestens 20&nbsp;Spielen, 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite. Market Maker und Live-Bots sind herausgefiltert. Rangliste und CLV-Werte werden täglich neu berechnet.</p>
+    <p><b>Wer hier steht:</b> je Sportart die Wallets, die vor Spielbeginn am verlässlichsten besser kauften als der letzte Polymarket-Kurs vor dem Start, nach Polymarkets Taker-Gebühr (Closing Line Value), über die letzten 30&nbsp;Tage, mit mindestens 20&nbsp;Spielen, 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite. Aufgenommen wird nur, wessen Vorsprung eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, und unter den Gelisteten sollen es höchstens 10&nbsp;% sein. Market Maker und Live-Bots sind herausgefiltert. Rangliste und CLV-Werte werden täglich neu berechnet.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
     <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
@@ -192,11 +192,23 @@ footer p { margin: 0; }
   };
   const fmtClv = (x) => `${signed(x * 100, (v) => nf1.format(v))}\u00a0¢`;
   function clvTip(sport, c) {
-    return `Closing Line Value ${LABEL[sport]}: Käufe vor dem Start im Schnitt ${fmtClv(c.clv)} je Anteil ` +
-      `${c.clv >= 0 ? "besser" : "schlechter"} als der letzte Kurs vor Spielbeginn, über ${c.matches} Spiele in 30 Tagen` +
-      (c.t != null ? ` (t = ${nf1.format(c.t)})` : "") +
+    return `Closing Line Value ${LABEL[sport]} nach Gebühren: Käufe vor dem Start im Schnitt ${fmtClv(c.clv)} je Anteil ` +
+      `${c.clv >= 0 ? "besser" : "schlechter"} als der letzte Kurs vor Spielbeginn` +
+      (c.gross != null && c.gross !== c.clv ? ` (vor Gebühren ${fmtClv(c.gross)})` : "") +
+      `, über ${c.matches} Spiele in 30 Tagen` + (c.t != null ? `, t = ${nf1.format(c.t)}` : "") +
       (c.rank ? `, Rang ${c.rank} von ${D.sports[sport].ranked}` : ", nicht in der Rangliste") +
-      `. Einsatz ${usd(c.stake)}, Gewinn ${signed(c.pnl, (v) => usd(v))}.`;
+      (c.sig === true ? ", statistisch abgesichert" : c.sig === false ? ", vom Zufall nicht zu unterscheiden" : "") +
+      `. Einsatz ${usd(c.stake)}, Gewinn nach Gebühren ${signed(c.pnl, (v) => usd(v))}` +
+      (c.fees != null ? `, Gebühren ${usd(c.fees)}` : "") +
+      (c.taker != null ? `, ${nf0.format(c.taker * 100)} % des Einsatzes als Taker` : "") + ".";
+  }
+  const big = (v) => (Math.abs(v) >= 1e6 ? `${nf1.format(v / 1e6)}\u00a0Mio\u00a0$` : usd(v));
+  function allTime(w) {
+    const a = w.alltime;
+    if (!a) return '<td class="num"><span class="meta">\u2013</span></td>';
+    const roi = a.vol ? a.pnl / a.vol : 0;
+    return `<td class="num"><b class="${a.pnl >= 0 ? "buy" : "sell"}">${signed(a.pnl, big)}</b><br>` +
+           `<span class="meta">${big(a.vol)} Volumen · ${signed(roi * 100, (v) => nf1.format(v))}\u00a0%</span></td>`;
   }
   function clvTag(w, sport, withLabel) {
     if (!LABEL[sport]) return "";
@@ -418,22 +430,26 @@ footer p { margin: 0; }
       const c = (w.clv || {})[sport], hl = S.sport === sport ? " hl" : "";
       if (!c) return `<td class="num${hl}"><span class="meta">\u2013<br>unter 10 Spielen</span></td>`;
       return `<td class="num${hl}" title="${esc(clvTip(sport, c))}"><b class="${c.clv >= 0 ? "buy" : "sell"}">${fmtClv(c.clv)}</b><br>` +
-             `<span class="meta">${c.rank ? `#${c.rank}` : "ohne Rang"} · ${nf0.format(c.matches)} Spiele</span></td>`;
+             `<span class="meta">${c.rank ? `#${c.rank}` : "ohne Rang"} · ${nf0.format(c.matches)} Spiele` +
+             `${c.rank && c.sig === false ? " · nicht signifikant" : ""}</span></td>`;
     };
     let html = `<table><thead><tr><th>Profil</th>${sports.map((s) => `<th class="num${S.sport === s ? " hl" : ""}">CLV ${esc(LABEL[s])}</th>`).join("")}` +
+               '<th class="num" title="Gewinn oder Verlust über alle Polymarket-Märkte seit Kontoeröffnung, wie auf dem Profil">Polymarket gesamt</th>' +
                '<th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
     for (const x of rows) {
       const ready = S.loaded.has(x.w.wallet);
-      html += `<tr><td>${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}` +
+      html += `<tr><td>${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}${allTime(x.w)}` +
               `<td class="num">${ready ? `${usd(x.open)}<br><span class="meta">${x.n} Positionen</span>` : "…"}</td>` +
               `<td class="nowrap">${x.last ? esc(ago(x.last)) : ready ? "\u2013" : "…"}</td>` +
               `<td class="nowrap"><code title="${esc(x.w.wallet)}">${esc(x.w.wallet.slice(0, 10))}…</code> <button class="copy" type="button" data-addr="${esc(x.w.wallet)}">kopieren</button></td></tr>`;
     }
     $("profiles").innerHTML = html + "</tbody></table>";
-    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.ranked} Wallets in der Rangliste, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
-    $("profiles-sub").textContent = `Die besten ${D.top_n} je Sportart. CLV: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren ` +
-      `als der letzte Kurs vor dem Start, je Sportart über die letzten 30 Tage und täglich neu berechnet. Rang: Platz in der Rangliste der Sportart; ` +
-      `„ohne Rang“ heißt zu viel live, zu wenig Einsatz oder ein Market Maker. ${parts.join(" · ")}.`;
+    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.significant ?? v.ranked} von ${v.ranked} Wallets der Rangliste signifikant, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
+    $("profiles-sub").textContent = `Je Sportart höchstens ${D.top_n} Wallets, und nur solche, deren Vorsprung die Signifikanzprüfung besteht. ` +
+      `CLV nach Gebühren: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs vor dem Start, ` +
+      `nach Polymarkets Taker-Gebühr, je Sportart über die letzten 30 Tage und täglich neu berechnet. Rang: Platz in der Rangliste der Sportart; ` +
+      `„ohne Rang“ heißt zu viel live, zu wenig Einsatz oder ein Market Maker. Polymarket gesamt: Gewinn über alle Märkte seit Kontoeröffnung, ` +
+      `wie auf dem Profil. ${parts.join(" · ")}.`;
   }
 
   function renderStatus() {

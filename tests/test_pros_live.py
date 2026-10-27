@@ -48,8 +48,11 @@ def test_every_watched_account_gets_its_clv_in_each_sport(live, tmp_path, monkey
     by = {w["wallet"]: w for w in data["wallets"]}
     assert set(by) == {"0xa", "0xb", "0xc"}                             # 0xd ranks third: not watched
     assert by["0xb"]["ranks"] == {"tennis": 2, "basketball": 1}
-    assert by["0xb"]["clv"]["tennis"] == {"rank": 2, "clv": 0.012, "t": 3.2, "matches": 30, "stake": 5000, "pnl": 100}
-    assert by["0xc"]["clv"]["tennis"] == {"rank": None, "clv": -0.003, "t": -0.4, "matches": 14, "stake": 900, "pnl": -20}
+    none = {"fees": None, "taker": None, "sig": None}                   # a table from before fees were counted
+    assert by["0xb"]["clv"]["tennis"] == {"rank": 2, "clv": 0.012, "gross": 0.012, "t": 3.2, "matches": 30,
+                                          "stake": 5000, "pnl": 100, **none}
+    assert by["0xc"]["clv"]["tennis"] == {"rank": None, "clv": -0.003, "gross": -0.003, "t": -0.4, "matches": 14,
+                                          "stake": 900, "pnl": -20, **none}
     assert "basketball" not in by["0xa"]["clv"]                          # too few basketball matches
     live.write_watched(data)
     (tmp_path / "raw" / "pm_tennis_wallet_stats.csv").unlink()          # a rebuild without this run's tables
@@ -90,3 +93,34 @@ def test_embedded_data_cannot_close_the_script_block(live):
     assert "alert(1)</script>" not in block
     with pytest.raises(AssertionError):
         live.render({}, "no placeholder here")
+
+
+def test_only_edges_beyond_luck_are_watched_and_counted_after_fees(live, tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
+    monkeypatch.setattr(config, "REPORTS_DIR", tmp_path)
+    monkeypatch.setattr(live, "STATS_DIR", tmp_path / "raw")
+    monkeypatch.setattr(live, "WATCHED", tmp_path / "pm_watched_clv.csv")
+    _ranking(tmp_path / "pm_tennis_traders.csv", [("Real", "0xr"), ("Luck", "0xl")])
+    lb = pd.read_csv(tmp_path / "pm_tennis_traders.csv").assign(
+        significant=[True, False], clv_net_mean=[0.008, 0.001], clv_net_t=[3.9, 0.4], fees=[120.0, 80.0],
+        taker_share=[0.25, 1.0])
+    lb.to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
+    data = live.collect(top_n=5)
+    assert [w["wallet"] for w in data["wallets"]] == ["0xr"] and data["sports"]["tennis"]["significant"] == 1
+    fig = data["wallets"][0]["clv"]["tennis"]
+    assert (fig["clv"], fig["gross"], fig["t"], fig["fees"], fig["taker"], fig["sig"]) == (0.008, 0.012, 3.9, 120, 0.25, True)
+
+
+def test_all_time_profit_comes_from_polymarket(live):
+    class Resp:
+        def __init__(self, data): self._d = data
+        def json(self): return self._d
+
+    class Http:
+        def get(self, url, params=None, timeout=None):
+            assert url.endswith("/v1/leaderboard") and params["timePeriod"] == "ALL"
+            return Resp([{"pnl": -1969623.78, "vol": 69436312.9}] if params["user"] == "0xa" else [])
+
+    wallets = [{"wallet": "0xa"}, {"wallet": "0xb"}]
+    live.alltime(wallets, Http())
+    assert wallets[0]["alltime"] == {"pnl": -1969624, "vol": 69436313} and "alltime" not in wallets[1]

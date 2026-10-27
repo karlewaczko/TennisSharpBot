@@ -447,8 +447,12 @@ def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
         lb = pd.read_csv(config.PROCESSED_DIR / "pm_tennis_traders.csv")
     except (OSError, ValueError):
         return {"leaderboard": [], "positions": [], "note": "noch keine Rangliste"}
+    if "significant" in lb.columns:              # edges that survive the significance check
+        lb = lb[lb["significant"].astype(bool)]
     if lb.empty:
         return {"leaderboard": [], "positions": [], "note": "Rangliste leer"}
+    if "clv_net_mean" in lb.columns:             # CLV after fees where the ranking has it
+        lb = lb.assign(clv_mean=lb["clv_net_mean"], clv_t=lb["clv_net_t"])
     by_slug = {}
     for e in price_board:
         for q in e.get("prediction_markets") or []:
