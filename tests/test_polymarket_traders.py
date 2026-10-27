@@ -336,3 +336,17 @@ def test_the_elite_meets_every_criterion():
     assert out["elite"].tolist() == [True, False, False, False, False]
     assert asked == ["0xA", "0xB"]                                   # all-time looked up only where the rest holds
     assert out.loc[1, "alltime_pnl"] == -1969623.0
+
+
+def test_a_second_source_in_the_red_rules_a_wallet_out():
+    lb = pd.DataFrame([{"wallet": w, "significant": True, "consistent": True, "pnl": 500.0} for w in ("0xA", "0xB", "0xC")])
+
+    class Http:
+        def get(self, url, params=None, headers=None, timeout=None):
+            return _Resp([{"pnl": 10000.0, "vol": 1e6}])                    # all three ahead on Polymarket
+
+    opinions = {"0xA": {"pnl": 75700.0, "winRate": 57.5, "closedPredictions": 1200},
+                "0xB": {"pnl": -99504.6, "winRate": 50.4, "closedPredictions": 24749}}
+    out = pt.mark_elite(lb, http=Http(), sleep=lambda s: None, second_opinion=opinions.get)
+    assert out["elite"].tolist() == [True, False, True]                      # 0xC: page unreadable, no verdict
+    assert out.loc[0, "pi_win_rate"] == 57.5 and out.loc[1, "pi_pnl"] == -99504.6

@@ -88,10 +88,10 @@ Nach ein bis zwei Minuten ist die Seite erreichbar. Auf der Liste stehen nur die
 1. Vorsprung auf den Schlusskurs nach Polymarkets Gebühren, statistisch abgesichert
 2. Vorsprung in beiden Hälften des letzten Monats
 3. Gewinn in diesen 30 Tagen
-4. Gewinn auf Polymarket insgesamt
+4. Gewinn insgesamt, laut Polymarket und laut PolyInsider (polyinsider.io) als zweiter, unabhängiger Quelle
 5. Echte Wetten vor dem Anpfiff, keine Market Maker oder Live-Bots
 
-Bei jedem Profil steht seine CLV je Sportart nach Gebühren: um wie viele Cent je Anteil seine Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs vor dem Start. Daneben steht sein Gesamtergebnis auf Polymarket. Standardmäßig zeigt die Seite Wetten nur in der Sportart, in der ein Profil die Kriterien erfüllt. Die Profil-Liste und die CLV-Werte werden jeden Morgen neu berechnet.
+Bei jedem Profil steht seine CLV je Sportart nach Gebühren: um wie viele Cent je Anteil seine Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs vor dem Start. Daneben stehen sein Gesamtergebnis auf Polymarket und seine Trefferquote laut PolyInsider. Bei jedem Spiel führt „PolyInsider ↗“ zu den Wal-Wetten (ab 5.000 $) und frischen Wallets (neue Konten mit einer ersten Wette ab 500 $, ein mögliches Insider-Muster) auf genau diesem Spiel. Standardmäßig zeigt die Seite Wetten nur in der Sportart, in der ein Profil die Kriterien erfüllt. Die Profil-Liste und die CLV-Werte werden jeden Morgen neu berechnet.
 
 ## Was du am Ende hast
 

@@ -18,7 +18,7 @@ import pandas as pd
 import requests
 
 from tennissharp import config
-from tennissharp.data import polymarket_traders as pt
+from tennissharp.data import polyinsider, polymarket_traders as pt
 
 SPORTS = {"tennis": "Tennis", "soccer": "Fußball", "basketball": "Basketball"}
 TOP_N = 12
@@ -110,6 +110,20 @@ def _previous() -> dict:
     return out
 
 
+def second_opinion(wallets: list[dict], fetch=None) -> None:
+    """Each watched account as PolyInsider sees it: tracked P&L and volume
+    over all time, win rate over all settled markets and the last month."""
+    fetch = fetch or polyinsider.trader
+    for w in wallets:
+        figures = fetch(w["wallet"])
+        if not figures:
+            continue
+        w["pi"] = {"pnl": figures.get("pnl"), "volume": figures.get("volume"),
+                   "win_rate": figures.get("winRate"), "closed": figures.get("closedPredictions"),
+                   "won": figures.get("winningPredictions"), "win_rate_1m": figures.get("winRate_1m"),
+                   "closed_1m": figures.get("closedPredictions_1m")}
+
+
 def alltime(wallets: list[dict], http=requests) -> None:
     """Each watched account's all-time profit and volume on Polymarket, as
     its profile page shows them, fetched fresh for the page."""
@@ -166,9 +180,10 @@ def write_watched(data: dict, path: Path = None) -> None:
     """The embedded figures as a table: the record of what the page showed."""
     rows = [{"wallet": w["wallet"], "name": w["name"], "sport": sport, **fig,
              "watched_in": ",".join(sorted(w["ranks"])),
-             "alltime_pnl": (w.get("alltime") or {}).get("pnl"), "alltime_vol": (w.get("alltime") or {}).get("vol")}
+             "alltime_pnl": (w.get("alltime") or {}).get("pnl"), "alltime_vol": (w.get("alltime") or {}).get("vol"),
+             "pi_pnl": (w.get("pi") or {}).get("pnl"), "pi_win_rate": (w.get("pi") or {}).get("win_rate")}
             for w in data["wallets"] for sport, fig in w["clv"].items()]
-    cols = ["wallet", "name", "sport", *FIGURES, "watched_in", "alltime_pnl", "alltime_vol"]
+    cols = ["wallet", "name", "sport", *FIGURES, "watched_in", "alltime_pnl", "alltime_vol", "pi_pnl", "pi_win_rate"]
     df = pd.DataFrame(rows, columns=cols)
     for col in ("rank", "alltime_pnl", "alltime_vol"):
         df[col] = df[col].astype("Int64")                # blank where there is no figure
@@ -189,6 +204,7 @@ def main() -> None:
     args = ap.parse_args()
     data = collect(args.top)
     alltime(data["wallets"])
+    second_opinion(data["wallets"])
     data["prefixes"] = sport_prefixes()
     data["generated_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     args.out.parent.mkdir(parents=True, exist_ok=True)

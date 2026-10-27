@@ -127,9 +127,9 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> nur Wallets, die alle fünf Kriterien erfüllen. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage. (3) In diesen 30&nbsp;Tagen nach Gebühren im Gewinn. (4) Auf Polymarket über alle Märkte seit Kontoeröffnung im Gewinn. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verschwindet von der Liste.</p>
+    <p><b>Wer hier steht:</b> nur Wallets, die alle fünf Kriterien erfüllen. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage. (3) In diesen 30&nbsp;Tagen nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarket und laut PolyInsider. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verschwindet von der Liste.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
-    <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
+    <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Zweite Quelle für die Profile: PolyInsider (Trefferquote, Gewinn über alle Märkte; täglich gelesen). Die Links „PolyInsider ↗“ führen zu Wal-Wetten ab 5.000&nbsp;$ und frischen Wallets auf dem jeweiligen Spiel. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
 </div>
 
@@ -187,6 +187,8 @@ footer p { margin: 0; }
     return !n || (n.startsWith("0x") && (n.includes("-") || n.length >= 40)) ? `${w.wallet.slice(0, 6)}…${w.wallet.slice(-4)}` : n;
   };
   const proLink = (w) => `<a href="https://polymarket.com/profile/${esc(w.wallet)}" target="_blank" rel="noopener">${esc(shortName(w))}</a>`;
+  const PI = "https://polyinsider.io/en";
+  const piMarket = (slug) => `<a class="meta" href="${PI}/markets/${esc(baseSlug(slug))}" target="_blank" rel="noopener" title="Wal-Wetten ab 5.000 $ und frische Wallets auf diesem Spiel bei PolyInsider">PolyInsider ↗</a>`;
   const badges = (w) => Object.entries(w.ranks).sort((a, b) => a[1] - b[1])
     .map(([s, r]) => `<span class="badge">${esc(LABEL[s] || s)} #${r}</span>`).join("");
   const moveTag = (m, unit) => {
@@ -205,6 +207,13 @@ footer p { margin: 0; }
       `. Einsatz ${usd(c.stake)}, Gewinn nach Gebühren ${signed(c.pnl, (v) => usd(v))}` +
       (c.fees != null ? `, Gebühren ${usd(c.fees)}` : "") +
       (c.taker != null ? `, ${nf0.format(c.taker * 100)} % des Einsatzes als Taker` : "") + ".";
+  }
+  function piCell(w) {
+    const p = w.pi, link = `<a href="${PI}/trader/${esc(w.wallet)}" target="_blank" rel="noopener">Profil ↗</a>`;
+    if (!p || p.win_rate == null) return `<td class="num"><span class="meta">\u2013</span><br>${link}</td>`;
+    const month = p.win_rate_1m != null ? ` · Monat ${nf0.format(p.win_rate_1m)}\u00a0%` : "";
+    return `<td class="num" title="PolyInsider: ${esc(nf0.format(p.won || 0))} von ${esc(nf0.format(p.closed || 0))} abgeschlossenen Märkten im Gewinn; P&L ${esc(p.pnl != null ? signed(p.pnl, big) : "\u2013")} bei ${esc(p.volume != null ? big(p.volume) : "\u2013")} Volumen">` +
+           `<b>${nf1.format(p.win_rate)}\u00a0%</b> Treffer<br><span class="meta">${nf0.format(p.closed || 0)} Märkte${month}</span><br>${link}</td>`;
   }
   const big = (v) => (Math.abs(v) >= 1e6 ? `${nf1.format(v / 1e6)}\u00a0Mio\u00a0$` : usd(v));
   function allTime(w) {
@@ -327,7 +336,7 @@ footer p { margin: 0; }
         if (ev.start && ev.start < now - 24 * 3600e3) continue;   // long over, just not settled
         if (S.pre && (!ev.start || ev.start <= now)) continue;
         let g = groups.get(key);
-        if (!g) groups.set(key, (g = { sport: sportOf(key), title: ev.title || p.title, start: ev.start, total: 0, sides: new Map() }));
+        if (!g) groups.set(key, (g = { key, sport: sportOf(key), title: ev.title || p.title, start: ev.start, total: 0, sides: new Map() }));
         const sk = `${p.conditionId}:${p.outcomeIndex}`;
         let s = g.sides.get(sk);
         if (!s) g.sides.set(sk, (s = { label: sideLabel(p), cur: +p.curPrice, invested: 0, shares: 0, pros: [] }));
@@ -358,7 +367,7 @@ footer p { margin: 0; }
         html += `<tr${i === 0 ? ' class="grp"' : ""}>`;
         if (i === 0) {
           html += `<td rowspan="${sides.length}"><div class="match">${esc(g.title)}</div><span class="badge">${esc(LABEL[g.sport])}</span>` +
-                  `<span class="meta">${usd(g.total)} Profi-Geld</span></td><td rowspan="${sides.length}" class="nowrap">${kickoff(g.start)}</td>`;
+                  `<span class="meta">${usd(g.total)} Profi-Geld</span><br>${piMarket(g.key)}</td><td rowspan="${sides.length}" class="nowrap">${kickoff(g.start)}</td>`;
         }
         html += `<td class="side">${esc(s.label)}<div class="bar" title="${nf0.format(share * 100)} % des Profi-Geldes auf diesem Spiel"><i style="width:${(share * 100).toFixed(1)}%"></i></div></td>` +
                 `<td class="num">${usd(s.invested)}</td><td class="num">${cents(avg)}</td>` +
@@ -413,7 +422,8 @@ footer p { margin: 0; }
       html += `<tr><td class="nowrap">${esc(ago(b.last * 1000))}<br><span class="meta">${esc(when.format(b.last * 1000))}</span></td>` +
               `<td>${proLink(b.w)}<br>${clvTag(b.w, sportOf(b.t.eventSlug), true)}</td>` +
               `<td><div class="match">${esc(ev.title || b.t.title)}</div>` +
-              (phase ? `<span class="meta${phase === "live" ? " live" : ""}">${phase === "live" ? "während des Spiels" : "vor dem Start"}</span>` : "") + "</td>" +
+              (phase ? `<span class="meta${phase === "live" ? " live" : ""}">${phase === "live" ? "während des Spiels" : "vor dem Start"}</span> ` : "") +
+              `${piMarket(b.t.eventSlug)}</td>` +
               `<td class="side">${esc(sideLabel(b.t))}</td><td class="${buy ? "buy" : "sell"}">${buy ? "Kauf" : "Verkauf"}</td>` +
               `<td class="num">${usd(b.cost)}</td><td class="num">${cents(price)}<br><span class="meta">Quote ${odds(price)}</span></td>` +
               `<td class="num">${move == null ? '<span class="meta">\u2013</span>' : `${cents(now)}<br>${moveTag(move, "\u00a0¢")}`}</td></tr>`;
@@ -439,10 +449,11 @@ footer p { margin: 0; }
     };
     let html = `<table><thead><tr><th>Profil</th>${sports.map((s) => `<th class="num${S.sport === s ? " hl" : ""}">CLV ${esc(LABEL[s])}</th>`).join("")}` +
                '<th class="num" title="Gewinn oder Verlust über alle Polymarket-Märkte seit Kontoeröffnung, wie auf dem Profil">Polymarket gesamt</th>' +
+               '<th class="num" title="Zweite Quelle: PolyInsider, Trefferquote über alle abgeschlossenen Märkte und den letzten Monat">PolyInsider</th>' +
                '<th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
     for (const x of rows) {
       const ready = S.loaded.has(x.w.wallet);
-      html += `<tr><td>${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}${allTime(x.w)}` +
+      html += `<tr><td>${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}${allTime(x.w)}${piCell(x.w)}` +
               `<td class="num">${ready ? `${usd(x.open)}<br><span class="meta">${x.n} Positionen</span>` : "…"}</td>` +
               `<td class="nowrap">${x.last ? esc(ago(x.last)) : ready ? "\u2013" : "…"}</td>` +
               `<td class="nowrap"><code title="${esc(x.w.wallet)}">${esc(x.w.wallet.slice(0, 10))}…</code> <button class="copy" type="button" data-addr="${esc(x.w.wallet)}">kopieren</button></td></tr>`;
