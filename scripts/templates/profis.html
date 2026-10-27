@@ -126,7 +126,7 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> je Sportart die Wallets, die vor Spielbeginn am verlässlichsten besser kauften als der letzte Polymarket-Kurs vor dem Start, nach Polymarkets Taker-Gebühr (Closing Line Value), über die letzten 30&nbsp;Tage, mit mindestens 20&nbsp;Spielen, 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite. Aufgenommen wird nur, wessen Vorsprung eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, und unter den Gelisteten sollen es höchstens 10&nbsp;% sein. Market Maker und Live-Bots sind herausgefiltert. Rangliste und CLV-Werte werden täglich neu berechnet.</p>
+    <p><b>Wer hier steht:</b> nur Wallets, die alle fünf Kriterien erfüllen. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage. (3) In diesen 30&nbsp;Tagen nach Gebühren im Gewinn. (4) Auf Polymarket über alle Märkte seit Kontoeröffnung im Gewinn. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verschwindet von der Liste.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
     <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
@@ -197,7 +197,8 @@ footer p { margin: 0; }
       (c.gross != null && c.gross !== c.clv ? ` (vor Gebühren ${fmtClv(c.gross)})` : "") +
       `, über ${c.matches} Spiele in 30 Tagen` + (c.t != null ? `, t = ${nf1.format(c.t)}` : "") +
       (c.rank ? `, Rang ${c.rank} von ${D.sports[sport].ranked}` : ", nicht in der Rangliste") +
-      (c.sig === true ? ", statistisch abgesichert" : c.sig === false ? ", vom Zufall nicht zu unterscheiden" : "") +
+      (c.elite === true ? ", erfüllt alle fünf Kriterien" : c.sig === true ? ", statistisch abgesichert" :
+        c.sig === false ? ", vom Zufall nicht zu unterscheiden" : "") +
       `. Einsatz ${usd(c.stake)}, Gewinn nach Gebühren ${signed(c.pnl, (v) => usd(v))}` +
       (c.fees != null ? `, Gebühren ${usd(c.fees)}` : "") +
       (c.taker != null ? `, ${nf0.format(c.taker * 100)} % des Einsatzes als Taker` : "") + ".";
@@ -444,12 +445,12 @@ footer p { margin: 0; }
               `<td class="nowrap"><code title="${esc(x.w.wallet)}">${esc(x.w.wallet.slice(0, 10))}…</code> <button class="copy" type="button" data-addr="${esc(x.w.wallet)}">kopieren</button></td></tr>`;
     }
     $("profiles").innerHTML = html + "</tbody></table>";
-    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.significant ?? v.ranked} von ${v.ranked} Wallets der Rangliste signifikant, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
-    $("profiles-sub").textContent = `Je Sportart höchstens ${D.top_n} Wallets, und nur solche, deren Vorsprung die Signifikanzprüfung besteht. ` +
-      `CLV nach Gebühren: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs vor dem Start, ` +
-      `nach Polymarkets Taker-Gebühr, je Sportart über die letzten 30 Tage und täglich neu berechnet. Rang: Platz in der Rangliste der Sportart; ` +
-      `„ohne Rang“ heißt zu viel live, zu wenig Einsatz oder ein Market Maker. Polymarket gesamt: Gewinn über alle Märkte seit Kontoeröffnung, ` +
-      `wie auf dem Profil. ${parts.join(" · ")}.`;
+    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.elite ?? v.significant ?? v.ranked} von ${v.ranked} Wallets der Rangliste erfüllen alle Kriterien, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
+    $("profiles-sub").textContent = `Nur die allerbesten: je Sportart höchstens ${D.top_n} Wallets, die alle fünf Kriterien erfüllen ` +
+      `(siehe unten). CLV nach Gebühren: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs ` +
+      `vor dem Start, nach Polymarkets Taker-Gebühr, je Sportart über die letzten 30 Tage und täglich neu berechnet. Rang: Platz in der ` +
+      `Rangliste der Sportart; „ohne Rang“ heißt zu viel live, zu wenig Einsatz oder ein Market Maker. Polymarket gesamt: Gewinn über ` +
+      `alle Märkte seit Kontoeröffnung, wie auf dem Profil. ${parts.join(" · ")}.`;
   }
 
   function renderStatus() {

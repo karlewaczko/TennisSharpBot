@@ -48,7 +48,7 @@ def test_every_watched_account_gets_its_clv_in_each_sport(live, tmp_path, monkey
     by = {w["wallet"]: w for w in data["wallets"]}
     assert set(by) == {"0xa", "0xb", "0xc"}                             # 0xd ranks third: not watched
     assert by["0xb"]["ranks"] == {"tennis": 2, "basketball": 1}
-    none = {"fees": None, "taker": None, "sig": None}                   # a table from before fees were counted
+    none = {"fees": None, "taker": None, "sig": None, "elite": None}    # a table from before fees were counted
     assert by["0xb"]["clv"]["tennis"] == {"rank": 2, "clv": 0.012, "gross": 0.012, "t": 3.2, "matches": 30,
                                           "stake": 5000, "pnl": 100, **none}
     assert by["0xc"]["clv"]["tennis"] == {"rank": None, "clv": -0.003, "gross": -0.003, "t": -0.4, "matches": 14,
@@ -113,11 +113,13 @@ def test_only_edges_beyond_luck_are_watched_and_counted_after_fees(live, tmp_pat
 
 def test_all_time_profit_comes_from_polymarket(live):
     class Resp:
+        status_code = 200
         def __init__(self, data): self._d = data
         def json(self): return self._d
+        def raise_for_status(self): pass
 
     class Http:
-        def get(self, url, params=None, timeout=None):
+        def get(self, url, params=None, headers=None, timeout=None):
             assert url.endswith("/v1/leaderboard") and params["timePeriod"] == "ALL"
             return Resp([{"pnl": -1969623.78, "vol": 69436312.9}] if params["user"] == "0xa" else [])
 

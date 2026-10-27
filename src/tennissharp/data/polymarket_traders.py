@@ -333,10 +333,14 @@ def account_market(trades: list[dict], winner: int, start_ts: float | None, fee_
     return close0, rows
 
 
-LEADER_COLUMNS = ["rank", "name", "wallet", "markets", "pre_markets", "stake", "pnl", "roi", "fees",
-                  "clv_net_mean", "clv_net_t", "significant", "clv_mean", "clv_t", "win_share",
-                  "live_share", "taker_share", "two_sided_share", "directional"]
-TABLE_COLUMNS = [c for c in LEADER_COLUMNS if c not in ("rank", "significant")]
+LEADER_COLUMNS = ["rank", "name", "wallet", "elite", "markets", "pre_markets", "stake", "pnl", "roi", "fees",
+                  "clv_net_mean", "clv_net_t", "significant", "clv_net_first", "clv_net_second", "consistent",
+                  "alltime_pnl", "alltime_vol", "clv_mean", "clv_t", "win_share", "live_share", "taker_share",
+                  "two_sided_share", "directional"]
+TABLE_COLUMNS = ["name", "wallet", "markets", "pre_markets", "stake", "pnl", "roi", "fees", "clv_net_mean",
+                 "clv_net_t", "clv_mean", "clv_t", "win_share", "live_share", "taker_share", "two_sided_share",
+                 "directional"]
+MIN_HALF_MATCHES = 5   # pre-match matches in each half of the window for the consistency check
 FDR_Q = 0.10   # share of lucky wallets tolerated among those marked significant
 
 
@@ -388,7 +392,62 @@ def significant(t: pd.Series, n: pd.Series, q: float = FDR_Q) -> pd.Series:
     return p <= ordered[np.nonzero(under)[0].max()]
 
 
-def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS,
+def halves(per_market: pd.DataFrame, markets: pd.DataFrame) -> pd.DataFrame:
+    """Each wallet's CLV after fees in the first and in the second half of
+    the window (split at the median start). A real edge shows in both."""
+    cols = ["clv_net_first", "clv_net_second", "matches_first", "matches_second"]
+    col = "clv_net" if "clv_net" in per_market else "clv"
+    if per_market.empty or markets is None or markets.empty:
+        return pd.DataFrame(columns=cols)
+    starts = markets.drop_duplicates("slug")[["slug", "start_ts"]]
+    pre = per_market[per_market[col].notna()].merge(starts, on="slug")
+    if pre.empty:
+        return pd.DataFrame(columns=cols)
+    pre = pre.assign(second=pre["start_ts"] >= starts["start_ts"].median())
+    g = pre.groupby(["wallet", "second"])[col].agg(["mean", "size"]).unstack()
+    pick = lambda stat, half: g[(stat, half)] if (stat, half) in g.columns else np.nan  # noqa: E731
+    return pd.DataFrame({"clv_net_first": pick("mean", False), "clv_net_second": pick("mean", True),
+                         "matches_first": pick("size", False), "matches_second": pick("size", True)},
+                        index=g.index)
+
+
+def alltime(wallet: str, http=requests, sleep=time.sleep) -> tuple[float, float] | None:
+    """A wallet's all-time profit and volume over every Polymarket market,
+    the figures its profile shows."""
+    try:
+        rows = _get(http, f"{DATA_API}/v1/leaderboard",
+                    {"user": wallet, "timePeriod": "ALL", "orderBy": "PNL", "category": "OVERALL"}, sleep=sleep)
+        return float(rows[0]["pnl"]), float(rows[0]["vol"])
+    except (requests.RequestException, ValueError, KeyError, TypeError, IndexError):
+        return None
+
+
+def mark_elite(lb: pd.DataFrame, http=requests, sleep=time.sleep) -> pd.DataFrame:
+    """The very best, the only wallets worth watching: an edge after fees
+    beyond luck (`significant`), ahead of the close in both halves of the
+    window (`consistent`), in profit after fees over it, and in profit on
+    Polymarket over all time. The all-time figures are fetched for the
+    wallets that pass the rest."""
+    lb = lb.copy()
+    if lb.empty:
+        lb["elite"] = pd.Series(dtype=bool)
+        return lb
+    lb["elite"] = False
+    for col in ("alltime_pnl", "alltime_vol"):
+        if col not in lb:
+            lb[col] = np.nan
+    ahead = lb["significant"].astype(bool) & lb["consistent"].astype(bool) & (lb["pnl"] > 0)
+    for i in lb.index[ahead]:
+        figures = alltime(lb.at[i, "wallet"], http, sleep)
+        if figures:
+            lb.at[i, "alltime_pnl"], lb.at[i, "alltime_vol"] = figures
+            lb.at[i, "elite"] = figures[0] > 0
+        sleep(PAUSE)
+    return lb
+
+
+def leaderboard(per_market: pd.DataFrame, markets: pd.DataFrame | None = None,
+                min_pre_markets: int = MIN_PRE_MARKETS,
                 min_stake: float = MIN_STAKE,
                 min_directional: float = MIN_DIRECTIONAL,
                 max_live_share: float = MAX_LIVE_SHARE) -> pd.DataFrame:
@@ -412,6 +471,10 @@ def leaderboard(per_market: pd.DataFrame, min_pre_markets: int = MIN_PRE_MARKETS
     lb = lb[(lb["pre_markets"] >= min_pre_markets) & (lb["stake"] >= min_stake) & lb["clv_net_t"].notna()
             & (lb["directional"] >= min_directional) & (lb["live_share"] <= max_live_share)].copy()
     lb["significant"] = significant(lb["clv_net_t"], lb["pre_markets"])
+    h = halves(per_market, markets)
+    lb = lb.merge(h, left_on="wallet", right_index=True, how="left")
+    lb["consistent"] = ((lb["clv_net_first"] > 0) & (lb["clv_net_second"] > 0)
+                        & (lb["matches_first"] >= MIN_HALF_MATCHES) & (lb["matches_second"] >= MIN_HALF_MATCHES))
     lb = lb.sort_values(["clv_net_t", "pnl"], ascending=[False, False]).reset_index(drop=True)
     lb.insert(0, "rank", range(1, len(lb) + 1))
     return lb.reindex(columns=LEADER_COLUMNS)

@@ -304,3 +304,35 @@ def test_no_ranking_yet_is_said_plainly(bd, tmp_path, monkeypatch):
     from tennissharp import config
     monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
     assert bd.pro_positions([])["note"] == "noch keine Rangliste"
+
+
+def test_consistency_needs_an_edge_in_both_halves():
+    markets = pd.DataFrame({"slug": [f"m{k}" for k in range(20)], "start_ts": [START + k * 3600 for k in range(20)]})
+    rows = []
+    for k in range(20):
+        rows.append({"wallet": "both", "slug": f"m{k}", "clv": 0.02, "clv_net": 0.01})
+        rows.append({"wallet": "early", "slug": f"m{k}", "clv": 0.02, "clv_net": 0.03 if k < 10 else -0.01})
+    h = pt.halves(pd.DataFrame(rows), markets)
+    assert h.loc["both", "clv_net_first"] > 0 and h.loc["both", "clv_net_second"] > 0
+    assert h.loc["early", "clv_net_second"] < 0 and h.loc["early", "matches_first"] == 10
+
+
+def test_the_elite_meets_every_criterion():
+    lb = pd.DataFrame([
+        {"wallet": "0xA", "significant": True, "consistent": True, "pnl": 500.0},    # all good, ahead all-time
+        {"wallet": "0xB", "significant": True, "consistent": True, "pnl": 300.0},    # loses all-time
+        {"wallet": "0xC", "significant": True, "consistent": False, "pnl": 900.0},   # one good half only
+        {"wallet": "0xD", "significant": False, "consistent": True, "pnl": 100.0},   # within luck
+        {"wallet": "0xE", "significant": True, "consistent": True, "pnl": -50.0},    # lost money in the window
+    ])
+    asked = []
+
+    class Http:
+        def get(self, url, params=None, headers=None, timeout=None):
+            asked.append(params["user"])
+            return _Resp([{"pnl": 25000.0 if params["user"] == "0xA" else -1969623.0, "vol": 1e6}])
+
+    out = pt.mark_elite(lb, http=Http(), sleep=lambda s: None)
+    assert out["elite"].tolist() == [True, False, False, False, False]
+    assert asked == ["0xA", "0xB"]                                   # all-time looked up only where the rest holds
+    assert out.loc[1, "alltime_pnl"] == -1969623.0

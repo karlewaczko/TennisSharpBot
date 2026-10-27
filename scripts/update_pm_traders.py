@@ -117,7 +117,7 @@ def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours,
     prediction_market_sharpness.json, with the gap to the sharp books that
     the dashboard logs; otherwise pm_<sport>_traders.json."""
     ev = pt.by_event(pm)
-    lb = pt.leaderboard(ev)
+    lb = pt.mark_elite(pt.leaderboard(ev, mk)).reindex(columns=pt.LEADER_COLUMNS)
     lb.to_csv(config.PROCESSED_DIR / f"pm_{sport}_traders.csv", index=False)
     # Every wallet's CLV in this sport, ranked or not, so the live page can
     # show a watched account's figure in each sport. Regenerated each run,
@@ -133,12 +133,14 @@ def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours,
         "markets": int(len(mk)), "matches": int(mk["slug"].nunique()) if len(mk) else 0,
         "wallets": int(pm["wallet"].nunique()) if len(pm) else 0,
         "ranked_wallets": int(len(lb)),
+        "significant_wallets": int(lb["significant"].astype(bool).sum()) if len(lb) else 0,
+        "elite_wallets": int(lb["elite"].astype(bool).sum()) if len(lb) else 0,
         "markets_trimmed_to_bigger_trades": (int((mk["min_trade_usd"] > 0).sum())
                                              if "min_trade_usd" in mk.columns else 0),
         "market_structure": pt.market_structure(ev),
         "skill_persistence": pt.persistence(ev, mk),
         "polymarket_closing_calibration": pt.calibration(mk) if len(mk) else {"n": 0},
-        "leader_preview": lb.head(10).round(4).to_dict("records"),
+        "leader_preview": lb[lb["elite"].astype(bool)].head(10).round(4).to_dict("records") if len(lb) else [],
     }
     if sport == "tennis":
         report["gap_to_sharp"] = gap_summary(config.PROCESSED_DIR / "pm_gap_log.csv")

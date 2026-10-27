@@ -69,7 +69,7 @@ def _table(path: Path) -> pd.DataFrame | None:
     return None if df.empty else df.drop_duplicates("wallet").set_index("wallet")
 
 
-FIGURES = ["rank", "clv", "gross", "t", "matches", "stake", "pnl", "fees", "taker", "sig"]
+FIGURES = ["rank", "clv", "gross", "t", "matches", "stake", "pnl", "fees", "taker", "sig", "elite"]
 
 
 def _num(r, col, digits=None):
@@ -85,9 +85,11 @@ def _figures(r, rank) -> dict:
     net = _num(r, "clv_net_mean", 4)
     t = _num(r, "clv_net_t", 2) if net is not None else _num(r, "clv_t", 2)
     sig = r["significant"] if "significant" in r.index and pd.notna(r["significant"]) else None
+    elite = r["elite"] if "elite" in r.index and pd.notna(r["elite"]) else None
     return {"rank": rank, "clv": net if net is not None else _num(r, "clv_mean", 4), "gross": _num(r, "clv_mean", 4),
             "t": t, "matches": int(r["pre_markets"]), "stake": _num(r, "stake"), "pnl": _num(r, "pnl"),
-            "fees": _num(r, "fees"), "taker": _num(r, "taker_share", 3), "sig": bool(sig) if sig is not None else None}
+            "fees": _num(r, "fees"), "taker": _num(r, "taker_share", 3), "sig": bool(sig) if sig is not None else None,
+            "elite": bool(elite) if elite is not None else None}
 
 
 def _previous() -> dict:
@@ -102,22 +104,19 @@ def _previous() -> dict:
         fig = {k: (None if k not in r.index or pd.isna(r[k]) else r[k]) for k in FIGURES}
         for k in ("rank", "matches", "stake", "pnl", "fees"):
             fig[k] = int(fig[k]) if fig[k] is not None else None
-        fig["sig"] = bool(fig["sig"]) if fig["sig"] is not None else None
+        for k in ("sig", "elite"):
+            fig[k] = bool(fig[k]) if fig.get(k) is not None else None
         out[(r["wallet"], r["sport"])] = fig
     return out
 
 
 def alltime(wallets: list[dict], http=requests) -> None:
     """Each watched account's all-time profit and volume on Polymarket, as
-    its profile page shows them: the check on a 30-day figure."""
+    its profile page shows them, fetched fresh for the page."""
     for w in wallets:
-        try:
-            rows = http.get(f"{pt.DATA_API}/v1/leaderboard", timeout=30,
-                            params={"user": w["wallet"], "timePeriod": "ALL", "orderBy": "PNL",
-                                    "category": "OVERALL"}).json()
-            w["alltime"] = {"pnl": round(float(rows[0]["pnl"])), "vol": round(float(rows[0]["vol"]))}
-        except (requests.RequestException, ValueError, KeyError, TypeError, IndexError):
-            continue
+        figures = pt.alltime(w["wallet"], http, sleep=lambda s: None)
+        if figures:
+            w["alltime"] = {"pnl": round(figures[0]), "vol": round(figures[1])}
 
 
 def collect(top_n: int = TOP_N) -> dict:
@@ -135,11 +134,16 @@ def collect(top_n: int = TOP_N) -> dict:
         if table is not None:
             stats[sport] = table
         rep = _report(sport)
-        # Only edges that survive the significance check are watched.
-        watch = lb[lb["significant"].astype(bool)] if "significant" in lb.columns else lb
+        # Only the very best are watched: the wallets that meet every
+        # criterion (pt.mark_elite), or at least an edge beyond luck in an
+        # older ranking.
+        flag = "elite" if "elite" in lb.columns else "significant" if "significant" in lb.columns else None
+        watch = lb[lb[flag].fillna(False).astype(bool)] if flag else lb
         sports[sport] = {"label": label, "measured_at": rep.get("measured_at"),
                          "window_days": rep.get("window_days"), "ranked": int(len(lb)),
-                         "significant": int(len(watch))}
+                         "significant": int(lb["significant"].fillna(False).astype(bool).sum())
+                         if "significant" in lb.columns else int(len(lb)),
+                         "elite": int(len(watch))}
         for wallet, r in watch.head(top_n).iterrows():
             w = wallets.setdefault(wallet, {"wallet": wallet, "name": "", "ranks": {}, "clv": {}})
             if isinstance(r["name"], str) and r["name"] and not w["name"]:
