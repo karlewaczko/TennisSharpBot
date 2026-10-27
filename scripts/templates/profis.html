@@ -77,6 +77,7 @@ tbody tr:first-child td { border-top: 0; }
 .buy { color: var(--buy); } .sell { color: var(--sell); } .live { color: var(--live); }
 .clv { font: 500 .78rem/1.35 var(--mono); white-space: nowrap; }
 th.hl, td.hl { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+tr.new td { background: color-mix(in srgb, var(--live) 14%, transparent); }
 .bar { height: 7px; border-radius: 4px; background: var(--chip); overflow: hidden; width: 90px; margin-top: 6px; }
 .bar i { display: block; height: 100%; background: var(--accent); }
 .empty { color: var(--muted); margin: 6px 0; }
@@ -91,7 +92,7 @@ footer p { margin: 0; }
 <div class="wrap">
   <header>
     <h1>Polymarket <span>Profi-Radar</span></h1>
-    <p class="lede">Was die Wallets, die bei Tennis, Fußball, Basketball, American Football und Baseball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
+    <p class="lede">Was die Wallets, die bei Tennis, Fußball, Basketball, American Football und Baseball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Dazu neue Konten, die gleich groß einsteigen. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
     <div class="status" id="status" aria-live="polite"><span><i class="dot"></i>Lädt die Positionen…</span></div>
     <div class="controls">
       <button class="chip" type="button" data-sport="all" aria-pressed="true">Alle</button>
@@ -108,6 +109,17 @@ footer p { margin: 0; }
       <button class="chip ghost" type="button" id="reload">Jetzt aktualisieren</button>
     </div>
   </header>
+
+  <section>
+    <div class="sechead"><h2>Frische Wallets</h2>
+      <div class="controls">
+        <label class="field" for="fmin">ab <select id="fmin"><option value="10000" selected>10.000 $</option><option value="25000">25.000 $</option><option value="50000">50.000 $</option><option value="100000">100.000 $</option></select></label>
+        <label class="field" for="fall"><input type="checkbox" id="fall"> auch Märkte außerhalb des Sports</label>
+        <button class="chip ghost" type="button" id="fnotify">Benachrichtigen</button>
+      </div></div>
+    <p class="sub">Neue Konten, deren erster Polymarket-Trade weniger als 24&nbsp;Stunden vor der Wette lag und die bisher nur diesen einen Markt gehandelt haben, mit mindestens <b id="fmin-label">10.000&nbsp;$</b> auf eine Seite in den letzten 24&nbsp;Stunden (Käufe zusammengezählt). Ein mögliches Insider-Muster, kein Beweis: Auch gewöhnliche Neukunden setzen manchmal groß. Neue Einträge sind farbig markiert.</p>
+    <div class="scroll" id="fresh"><p class="empty">Sucht frische Wallets…</p></div>
+  </section>
 
   <section>
     <div class="sechead"><h2>Wo die Profis stehen</h2>
@@ -144,7 +156,7 @@ footer p { margin: 0; }
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
   const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball", football: "American Football", baseball: "Baseball" };
-  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", pos: new Map(), trades: new Map(), events: new Map(),
+  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", freshMin: 10000, freshAll: false, pos: new Map(), trades: new Map(), events: new Map(),
               loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
 
   const $ = (id) => document.getElementById(id);
@@ -326,6 +338,125 @@ footer p { margin: 0; }
     S.next = Date.now() + REFRESH_S * 1000;
     S.loading = false;
     render();
+    refreshFresh();
+  }
+
+  // ---------- fresh wallets: new accounts that bet big on one market
+  // Every buy of 2,500 $ or more of the last 24 hours (one request lists
+  // about a day of them; later cycles fetch only the newest), summed per
+  // wallet and side; a wallet counts as fresh while Polymarket lists one
+  // traded market for it and its first activity came under 24 hours
+  // before the bet (PolyInsider's definition, with a 10,000 $ floor).
+  const FRESH_FILL = 2500, DAY = 86400;
+  const F = { fills: new Map(), age: new Map(), loaded: false, busy: false, checking: 0, seen: new Map(), notify: false, shown: false };
+  let oldWallets = new Set();
+  try { oldWallets = new Set(JSON.parse(localStorage.getItem("profi-radar-old") || "[]")); } catch (e) { /* none kept */ }
+  const keepOld = () => { try { localStorage.setItem("profi-radar-old", JSON.stringify([...oldWallets].slice(-20000))); } catch (e) { /* not kept */ } };
+
+  function freshGroups() {
+    const groups = new Map();
+    for (const t of F.fills.values()) {
+      const key = `${t.proxyWallet}:${t.conditionId}:${t.outcomeIndex}`;
+      let g = groups.get(key);
+      if (!g) groups.set(key, (g = { key, wallet: t.proxyWallet, t, first: t.timestamp, last: t.timestamp, size: 0, cost: 0, fills: 0 }));
+      g.size += +t.size || 0; g.cost += (+t.size || 0) * (+t.price || 0); g.fills++;
+      g.first = Math.min(g.first, t.timestamp); g.last = Math.max(g.last, t.timestamp);
+    }
+    return [...groups.values()].filter((g) => g.cost >= S.freshMin);
+  }
+
+  async function refreshFresh() {
+    if (F.busy) return;
+    F.busy = true;
+    try {
+      const batch = await getJSON(`${API}/trades?filterType=CASH&filterAmount=${FRESH_FILL}&takerOnly=false&limit=${F.loaded ? 500 : 10000}`);
+      const cutoff = Date.now() / 1000 - DAY;
+      for (const t of Array.isArray(batch) ? batch : []) {
+        if (t.side === "BUY" && t.timestamp >= cutoff) F.fills.set(`${t.transactionHash}:${t.proxyWallet}:${t.asset}:${t.size}`, t);
+      }
+      for (const [k, t] of F.fills) if (t.timestamp < cutoff) F.fills.delete(k);
+      F.loaded = true;
+      // Only wallets in view are checked, so the first load stays light;
+      // widening the view checks the rest.
+      const groups = freshGroups().filter((g) => freshInView(g.t.eventSlug)), now = Date.now();
+      const todo = [...new Set(groups.map((g) => g.wallet))]
+        .filter((w) => !oldWallets.has(w) && (!F.age.has(w) || now - F.age.get(w).checked > 10 * 60e3));
+      F.checking = todo.length;
+      renderFresh();
+      await pool(todo, 4, async (w) => {
+        try {
+          const tr = await getJSON(`${API}/traded?user=${w}`);
+          const markets = +(tr && tr.traded) || 0;
+          if (markets > 1) { oldWallets.add(w); F.age.delete(w); return; }
+          const act = await getJSON(`${API}/activity?user=${w}&limit=1&sortBy=TIMESTAMP&sortDirection=ASC`);
+          F.age.set(w, { first: Array.isArray(act) && act[0] ? +act[0].timestamp : null, markets, checked: Date.now() });
+        } finally { F.checking--; }
+      });
+      keepOld();
+      await loadEvents(groups.filter((g) => F.age.has(g.wallet)).map((g) => g.t.eventSlug).filter(Boolean));
+    } catch (e) { /* the next cycle tries again */ }
+    F.busy = false;
+    renderFresh();
+  }
+
+  function freshInView(slug) {
+    return S.freshAll ? (S.sport === "all" || sportOf(slug) === S.sport) : passSport(slug);
+  }
+
+  function freshRows() {
+    const out = [];
+    for (const g of freshGroups()) {
+      const a = F.age.get(g.wallet);
+      if (!a || !a.first || g.first - a.first > DAY) continue;
+      const slug = g.t.eventSlug, sport = sportOf(slug);
+      if (!freshInView(slug)) continue;
+      const ev = S.events.get(slug) || {};
+      // Only a game has a kickoff; other events' start is when they were listed.
+      const phase = LABEL[sport] && ev.start ? (g.first * 1000 < ev.start ? "pre" : "live") : "";
+      if (S.pre && phase !== "pre") continue;
+      out.push({ g, a, ev, phase, sport });
+    }
+    return out.sort((x, y) => y.g.last - x.g.last);
+  }
+
+  function renderFresh() {
+    $("fmin-label").textContent = usd(S.freshMin);
+    if (!F.loaded) return;
+    const rows = freshRows(), el = $("fresh"), now = Date.now();
+    const busy = F.checking > 0 ? ` Prüft noch ${F.checking} Konten…` : "";
+    for (const r of rows) {
+      if (!F.seen.has(r.g.key)) {
+        F.seen.set(r.g.key, F.shown ? now : 0);           // 0: already there when the page opened
+        if (F.shown && F.notify) {
+          try {
+            new Notification(`Frisches Wallet: ${usd(r.g.cost)}`, { body: `${sideLabel(r.g.t)} · ${r.ev.title || r.g.t.title}` });
+          } catch (e) { /* the page still shows it */ }
+        }
+      }
+    }
+    if (!F.checking) F.shown = true;
+    if (!rows.length) {
+      el.innerHTML = `<p class="empty">Gerade kein frisches Wallet mit mindestens ${usd(S.freshMin)} in den letzten 24 Stunden in dieser Auswahl.${busy}</p>`;
+      return;
+    }
+    const age = (sec) => (sec < 3600 ? `${Math.max(1, Math.round(sec / 60))} min` : `${nf0.format(Math.round(sec / 3600))} h`);
+    let html = '<table><thead><tr><th>Wann</th><th>Konto</th><th>Markt</th><th>Wette</th><th class="num">Einsatz</th><th class="num">Ø Kurs</th><th class="num">Jetzt</th></tr></thead><tbody>';
+    for (const r of rows.slice(0, 50)) {
+      const g = r.g, t = g.t, price = g.size ? g.cost / g.size : 0;
+      const quotes = (r.ev.prices || {})[t.conditionId], cur = quotes ? quotes[t.outcomeIndex] : undefined;
+      const fresh = F.seen.get(g.key) > 0 && now - F.seen.get(g.key) < 10 * 60e3;
+      const w = { wallet: g.wallet, name: t.name || t.pseudonym || "" };
+      html += `<tr${fresh ? ' class="new"' : ""}><td class="nowrap">${esc(ago(g.last * 1000))}<br><span class="meta">${esc(when.format(g.last * 1000))}</span></td>` +
+              `<td>${proLink(w)}<br><span class="meta">${g.first - r.a.first <= 120 ? "erste Wette des Kontos" : `Konto ${esc(age(g.first - r.a.first))} alt beim Einsatz`} · ${r.a.markets} Markt</span><br>` +
+              `<a class="meta" href="${PI}/trader/${esc(g.wallet)}" target="_blank" rel="noopener">PolyInsider ↗</a></td>` +
+              `<td><div class="match">${esc(r.ev.title || t.title)}</div>${LABEL[r.sport] ? `<span class="badge">${esc(LABEL[r.sport])}</span>` : ""}` +
+              `${r.phase ? `<span class="meta${r.phase === "live" ? " live" : ""}">${r.phase === "live" ? "während des Spiels" : "vor dem Start"}</span> ` : ""}` +
+              `${r.ev.start && r.ev.start > now ? `<span class="meta">Start ${esc(until(r.ev.start))}</span> ` : ""}${piMarket(t.eventSlug)}</td>` +
+              `<td class="side">${esc(sideLabel(t))}</td><td class="num">${usd(g.cost)}<br><span class="meta">${g.fills} ${g.fills === 1 ? "Kauf" : "Käufe"}</span></td>` +
+              `<td class="num">${cents(price)}<br><span class="meta">Quote ${odds(price)}</span></td>` +
+              `<td class="num">${cur == null || Number.isNaN(cur) ? '<span class="meta">\u2013</span>' : `${cents(cur)}<br>${moveTag(cur - price, "\u00a0¢")}`}</td></tr>`;
+    }
+    el.innerHTML = html + "</tbody></table>" + (busy ? `<p class="meta">${busy.trim()}</p>` : "");
   }
 
   // ---------- where the money is, per match
@@ -480,7 +611,7 @@ footer p { margin: 0; }
     }
     $("status").innerHTML = `<span><i class="dot ${dot}"></i>${esc(text)}</span><span>${D.wallets.length} Profile beobachtet</span>`;
   }
-  function render() { renderStatus(); renderConsensus(); renderFeed(); renderProfiles(); }
+  function render() { renderStatus(); renderFresh(); renderConsensus(); renderFeed(); renderProfiles(); }
 
   // ---------- controls
   try {
@@ -490,19 +621,30 @@ footer p { margin: 0; }
     if (typeof saved.own === "boolean") S.own = saved.own;
     if ([0, 100, 1000, 10000].includes(saved.min)) S.min = saved.min;
     if (["stake", "start"].includes(saved.sort)) S.sort = saved.sort;
+    if ([10000, 25000, 50000, 100000].includes(saved.freshMin)) S.freshMin = saved.freshMin;
+    if (typeof saved.freshAll === "boolean") S.freshAll = saved.freshAll;
   } catch (e) { /* defaults */ }
-  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, own: S.own, min: S.min, sort: S.sort })); } catch (e) { /* not kept */ } };
+  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, own: S.own, min: S.min, sort: S.sort, freshMin: S.freshMin, freshAll: S.freshAll })); } catch (e) { /* not kept */ } };
   const chips = document.querySelectorAll(".chip[data-sport]");
   const syncControls = () => {
     chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.sport === S.sport)));
     $("pre").checked = S.pre; $("own").checked = S.own; $("min").value = String(S.min); $("sort").value = S.sort;
+    $("fmin").value = String(S.freshMin); $("fall").checked = S.freshAll;
   };
-  chips.forEach((c) => c.addEventListener("click", () => { S.sport = c.dataset.sport; syncControls(); save(); render(); }));
+  chips.forEach((c) => c.addEventListener("click", () => { S.sport = c.dataset.sport; syncControls(); save(); render(); refreshFresh(); }));
   $("pre").addEventListener("change", (e) => { S.pre = e.target.checked; save(); render(); });
   $("own").addEventListener("change", (e) => { S.own = e.target.checked; save(); render(); });
   $("min").addEventListener("change", (e) => { S.min = Number(e.target.value); save(); render(); });
   $("sort").addEventListener("change", (e) => { S.sort = e.target.value; save(); renderConsensus(); });
   $("reload").addEventListener("click", () => refresh());
+  $("fmin").addEventListener("change", (e) => { S.freshMin = Number(e.target.value); save(); renderFresh(); });
+  $("fall").addEventListener("change", (e) => { S.freshAll = e.target.checked; save(); renderFresh(); refreshFresh(); });
+  $("fnotify").addEventListener("click", async () => {
+    const btn = $("fnotify");
+    if (!("Notification" in window)) { btn.textContent = "Dieser Browser kann nicht benachrichtigen"; return; }
+    try { F.notify = (await Notification.requestPermission()) === "granted"; } catch (e) { F.notify = false; }
+    btn.textContent = F.notify ? "Benachrichtigung an" : "Benachrichtigung abgelehnt";
+  });
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("button.copy");
     if (!btn) return;

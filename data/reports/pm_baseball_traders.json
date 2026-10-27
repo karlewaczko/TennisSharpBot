@@ -1,0 +1,103 @@
+{
+ "measured_at": "2026-10-27T23:37:23+00:00",
+ "sport": "baseball",
+ "window_days": 60,
+ "tours": null,
+ "markets": 645,
+ "matches": 645,
+ "wallets": 30918,
+ "ranked_wallets": 285,
+ "significant_wallets": 2,
+ "elite_wallets": 1,
+ "markets_trimmed_to_bigger_trades": 0,
+ "market_structure": {
+  "stake_usd": 232983003,
+  "in_play_share": 0.629,
+  "top20_share": 0.463,
+  "top20_pre_match_share": 0.574
+ },
+ "skill_persistence": {
+  "wallets": 526,
+  "corr": 0.46,
+  "rank_corr": 0.647,
+  "top_decile_next": 0.0014,
+  "bottom_decile_next": -0.0165,
+  "all_next": -0.0108
+ },
+ "polymarket_closing_calibration": {
+  "n": 645,
+  "brier": 0.2318,
+  "log_loss": 0.6596,
+  "favourite_won": 0.606,
+  "bins": [
+   {
+    "range": "(-0.001, 0.2]",
+    "n": 5,
+    "price": 0.069,
+    "won": 0.2
+   },
+   {
+    "range": "(0.2, 0.35]",
+    "n": 67,
+    "price": 0.312,
+    "won": 0.239
+   },
+   {
+    "range": "(0.35, 0.5]",
+    "n": 337,
+    "price": 0.436,
+    "won": 0.43
+   },
+   {
+    "range": "(0.5, 0.65]",
+    "n": 211,
+    "price": 0.568,
+    "won": 0.592
+   },
+   {
+    "range": "(0.65, 0.8]",
+    "n": 24,
+    "price": 0.697,
+    "won": 0.792
+   },
+   {
+    "range": "(0.8, 1.0]",
+    "n": 1,
+    "price": 0.982,
+    "won": 1.0
+   }
+  ]
+ },
+ "leader_preview": [
+  {
+   "rank": 2,
+   "name": "forecastication4",
+   "wallet": "0x885ffdf360e5b0b6e6acb963fb3f8ba2344c8ed9",
+   "elite": true,
+   "markets": 47,
+   "pre_markets": 47,
+   "stake": 29457.7913,
+   "pnl": 31760.6794,
+   "roi": 1.0782,
+   "fees": 1.2511,
+   "clv_net_mean": 0.0183,
+   "clv_net_t": 3.5293,
+   "significant": true,
+   "clv_net_first": 0.027,
+   "clv_net_second": 0.016,
+   "consistent": true,
+   "alltime_pnl": 112347.1151,
+   "alltime_vol": 3705941.846,
+   "pi_pnl": 112000.0,
+   "pi_win_rate": 50.4117,
+   "pi_closed": 4979.0,
+   "clv_mean": 0.0184,
+   "clv_t": 3.5329,
+   "win_share": 0.5957,
+   "live_share": 0.0,
+   "taker_share": 0.0014,
+   "two_sided_share": 0.1702,
+   "directional": 0.9354
+  }
+ ]
+}

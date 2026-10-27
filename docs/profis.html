@@ -77,6 +77,7 @@ tbody tr:first-child td { border-top: 0; }
 .buy { color: var(--buy); } .sell { color: var(--sell); } .live { color: var(--live); }
 .clv { font: 500 .78rem/1.35 var(--mono); white-space: nowrap; }
 th.hl, td.hl { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+tr.new td { background: color-mix(in srgb, var(--live) 14%, transparent); }
 .bar { height: 7px; border-radius: 4px; background: var(--chip); overflow: hidden; width: 90px; margin-top: 6px; }
 .bar i { display: block; height: 100%; background: var(--accent); }
 .empty { color: var(--muted); margin: 6px 0; }
@@ -91,13 +92,15 @@ footer p { margin: 0; }
 <div class="wrap">
   <header>
     <h1>Polymarket <span>Profi-Radar</span></h1>
-    <p class="lede">Was die Wallets, die bei Tennis, Fußball und Basketball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
+    <p class="lede">Was die Wallets, die bei Tennis, Fußball, Basketball, American Football und Baseball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Dazu neue Konten, die gleich groß einsteigen. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
     <div class="status" id="status" aria-live="polite"><span><i class="dot"></i>Lädt die Positionen…</span></div>
     <div class="controls">
       <button class="chip" type="button" data-sport="all" aria-pressed="true">Alle</button>
       <button class="chip" type="button" data-sport="tennis" aria-pressed="false">Tennis</button>
       <button class="chip" type="button" data-sport="soccer" aria-pressed="false">Fußball</button>
       <button class="chip" type="button" data-sport="basketball" aria-pressed="false">Basketball</button>
+      <button class="chip" type="button" data-sport="football" aria-pressed="false">American Football</button>
+      <button class="chip" type="button" data-sport="baseball" aria-pressed="false">Baseball</button>
       <label class="field" for="pre"><input type="checkbox" id="pre"> nur vor Spielbeginn</label>
       <label class="field" for="own" title="Nur Wetten in der Sportart, in der das Profil alle Kriterien erfüllt"><input type="checkbox" id="own" checked> nur in ihrer Sportart</label>
       <label class="field" for="min">ab
@@ -106,6 +109,17 @@ footer p { margin: 0; }
       <button class="chip ghost" type="button" id="reload">Jetzt aktualisieren</button>
     </div>
   </header>
+
+  <section>
+    <div class="sechead"><h2>Frische Wallets</h2>
+      <div class="controls">
+        <label class="field" for="fmin">ab <select id="fmin"><option value="10000" selected>10.000 $</option><option value="25000">25.000 $</option><option value="50000">50.000 $</option><option value="100000">100.000 $</option></select></label>
+        <label class="field" for="fall"><input type="checkbox" id="fall"> auch Märkte außerhalb des Sports</label>
+        <button class="chip ghost" type="button" id="fnotify">Benachrichtigen</button>
+      </div></div>
+    <p class="sub">Neue Konten, deren erster Polymarket-Trade weniger als 24&nbsp;Stunden vor der Wette lag und die bisher nur diesen einen Markt gehandelt haben, mit mindestens <b id="fmin-label">10.000&nbsp;$</b> auf eine Seite in den letzten 24&nbsp;Stunden (Käufe zusammengezählt). Ein mögliches Insider-Muster, kein Beweis: Auch gewöhnliche Neukunden setzen manchmal groß. Neue Einträge sind farbig markiert.</p>
+    <div class="scroll" id="fresh"><p class="empty">Sucht frische Wallets…</p></div>
+  </section>
 
   <section>
     <div class="sechead"><h2>Wo die Profis stehen</h2>
@@ -127,13 +141,13 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> nur Wallets, die alle fünf Kriterien erfüllen. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage. (3) In diesen 30&nbsp;Tagen nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarket und laut PolyInsider. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verschwindet von der Liste.</p>
+    <p><b>Wer hier steht:</b> nur Wallets, die alle fünf Kriterien erfüllen. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage (Baseball: 60). (3) In diesem Zeitraum nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarket und laut PolyInsider. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verschwindet von der Liste.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
     <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Zweite Quelle für die Profile: PolyInsider (Trefferquote, Gewinn über alle Märkte; täglich gelesen). Die Links „PolyInsider ↗“ führen zu Wal-Wetten ab 5.000&nbsp;$ und frischen Wallets auf dem jeweiligen Spiel. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
 </div>
 
-<script id="pros-data" type="application/json">{"sports":{"tennis":{"label":"Tennis","measured_at":"2026-10-27T22:30:22+00:00","window_days":30,"ranked":225,"significant":11,"elite":6},"soccer":{"label":"Fußball","measured_at":"2026-10-27T22:31:41+00:00","window_days":30,"ranked":812,"significant":4,"elite":3},"basketball":{"label":"Basketball","measured_at":"2026-10-27T22:32:13+00:00","window_days":30,"ranked":162,"significant":4,"elite":2}},"wallets":[{"wallet":"0x200ffb575b936d297fcf39076ddf2b476ae07a96","name":"LeLynxMalynx","ranks":{"tennis":2},"clv":{"tennis":{"rank":2,"clv":0.0071,"gross":0.0071,"t":3.57,"matches":932,"stake":60565,"pnl":3324,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":743,"clv":-0.0044,"gross":-0.0044,"t":-6.54,"matches":1096,"stake":230897,"pnl":-3211,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":null,"clv":-0.0004,"gross":-0.0004,"t":-0.25,"matches":160,"stake":11974,"pnl":719,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":43168,"vol":10785348},"pi":{"pnl":43000.0,"volume":10800000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0xdc4f58a48ed4467743609fdce11eea483c759804","name":"MeistersApprenticeship","ranks":{"tennis":5},"clv":{"tennis":{"rank":5,"clv":0.0063,"gross":0.0063,"t":3.14,"matches":509,"stake":64394,"pnl":8681,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":92,"clv":-0.0001,"gross":-0.0001,"t":-0.18,"matches":922,"stake":412491,"pnl":-14308,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":null,"clv":-0.0001,"gross":-0.0001,"t":-0.08,"matches":106,"stake":5130,"pnl":363,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":23763,"vol":5117776},"pi":{"pnl":24000.0,"volume":5100000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x5e020e19bc4cc2cd24ab9b406604ee9df02ab178","name":"capitalpiston2","ranks":{"tennis":6},"clv":{"tennis":{"rank":6,"clv":0.0062,"gross":0.0062,"t":3.14,"matches":767,"stake":32779,"pnl":2975,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":null,"clv":-0.0014,"gross":-0.0014,"t":-1.56,"matches":395,"stake":85888,"pnl":24,"fees":0,"taker":0.0,"sig":null,"elite":null},"basketball":{"rank":null,"clv":-0.0019,"gross":-0.0019,"t":-0.6,"matches":14,"stake":1397,"pnl":217,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":12989,"vol":2471102},"pi":{"pnl":13000.0,"volume":2500000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x49b68438ae7db43a03d7ddaaceaef5581ac7d152","name":"TuttyFruity","ranks":{"tennis":8},"clv":{"tennis":{"rank":8,"clv":0.0099,"gross":0.0099,"t":3.06,"matches":250,"stake":11247,"pnl":382,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":141,"clv":-0.0034,"gross":-0.0034,"t":-0.79,"matches":147,"stake":5652,"pnl":198,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":118,"clv":-0.0153,"gross":-0.0153,"t":-1.72,"matches":51,"stake":2482,"pnl":-718,"fees":0,"taker":0.0,"sig":false,"elite":false}},"alltime":{"pnl":466,"vol":88467},"pi":{"pnl":466.0,"volume":88000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x52d93dcf81444f793dda7fedc370f7a35101fb1a","name":"LuckyLoo","ranks":{"tennis":10},"clv":{"tennis":{"rank":10,"clv":0.0181,"gross":0.0181,"t":2.81,"matches":66,"stake":10229,"pnl":20912,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":363,"clv":-0.0031,"gross":-0.0031,"t":-2.29,"matches":612,"stake":2111483,"pnl":-71507,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":66,"clv":-0.0017,"gross":-0.0017,"t":-0.67,"matches":225,"stake":81405,"pnl":-81,"fees":0,"taker":0.0,"sig":false,"elite":false}},"alltime":{"pnl":65604,"vol":52413517},"pi":{"pnl":66000.0,"volume":52400000.0,"win_rate":47.50985634658087,"closed":88268,"won":41936,"win_rate_1m":45.39458721855811,"closed_1m":26382}},{"wallet":"0xc2494b32d65dea3a3a80712589d10bc5733f8a61","name":"0xc2494b32d65DeA3a3A80712589d10bC5733f8a61-1774333132835","ranks":{"tennis":11},"clv":{"tennis":{"rank":11,"clv":0.0188,"gross":0.0188,"t":2.65,"matches":123,"stake":19798,"pnl":1424,"fees":0,"taker":0.0,"sig":true,"elite":true},"basketball":{"rank":null,"clv":-0.016,"gross":-0.016,"t":-0.96,"matches":14,"stake":6675,"pnl":-1257,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":130465,"vol":7407073},"pi":{"pnl":130000.0,"volume":7400000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0xd29312e2446a746bbd94408e1c475f1ec6d7d683","name":"Kyn008","ranks":{"soccer":1},"clv":{"soccer":{"rank":1,"clv":0.0123,"gross":0.0123,"t":7.52,"matches":186,"stake":1537891,"pnl":55151,"fees":0,"taker":0.0,"sig":true,"elite":true}},"alltime":{"pnl":75715,"vol":5496991},"pi":{"pnl":76000.0,"volume":5500000.0,"win_rate":50,"closed":420,"won":210,"win_rate_1m":50.11933174224343,"closed_1m":419}},{"wallet":"0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e","name":"TheComboConnoisseur","ranks":{"soccer":3,"basketball":4},"clv":{"soccer":{"rank":3,"clv":0.0365,"gross":0.0413,"t":3.79,"matches":54,"stake":21951,"pnl":1779,"fees":214,"taker":0.442,"sig":true,"elite":true},"basketball":{"rank":4,"clv":0.0316,"gross":0.0339,"t":3.24,"matches":40,"stake":15212,"pnl":2111,"fees":78,"taker":0.228,"sig":true,"elite":true}},"alltime":{"pnl":51034,"vol":1900675},"pi":{"pnl":51000.0,"volume":1900000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x10ff111022291d97966b415a779698312293ff77","name":"dacthenuac","ranks":{"soccer":4},"clv":{"tennis":{"rank":33,"clv":0.0128,"gross":0.0129,"t":1.31,"matches":86,"stake":4676,"pnl":891,"fees":13,"taker":0.134,"sig":false,"elite":false},"soccer":{"rank":4,"clv":0.0106,"gross":0.0106,"t":3.43,"matches":174,"stake":6236,"pnl":371,"fees":0,"taker":0.0,"sig":true,"elite":true}},"alltime":{"pnl":544,"vol":2164837},"pi":{"pnl":544.0,"volume":2200000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x684baa57c338c2549aec0aa3f034f695d72a8409","name":"monkeymashingkeyboard","ranks":{"basketball":3},"clv":{"tennis":{"rank":93,"clv":-0.0019,"gross":0.0001,"t":-0.35,"matches":27,"stake":135104,"pnl":-25981,"fees":247,"taker":0.073,"sig":false,"elite":false},"basketball":{"rank":3,"clv":0.0136,"gross":0.0142,"t":3.52,"matches":48,"stake":2046749,"pnl":414476,"fees":455,"taker":0.01,"sig":true,"elite":true}},"alltime":{"pnl":784599,"vol":28939013},"pi":{"pnl":785000.0,"volume":28900000.0,"win_rate":53.81750465549349,"closed":1074,"won":578,"win_rate_1m":53.73134328358209,"closed_1m":335}}],"top_n":12,"prefixes":{"atp":"tennis","wta":"tennis","itf":"tennis","epl":"soccer","lal":"soccer","bun":"soccer","sea":"soccer","fl1":"soccer","ucl":"soccer","uel":"soccer","mls":"soccer","ere":"soccer","por":"soccer","elc":"soccer","nba":"basketball","wnba":"basketball","ncaab":"basketball","cbb":"basketball","euroleague":"basketball","kor":"soccer","gsc":"soccer","weuq":"soccer","cof":"soccer","col":"soccer","conl":"soccer","el1":"soccer","pol":"soccer","qat1":"soccer","uru1":"soccer","daviscup":"tennis","bkfibaw":"basketball","ecu1":"soccer","euc":"soccer","el2":"soccer","enl":"soccer","es2":"soccer","sui":"soccer","ewq":"soccer","tur":"soccer","fin1":"soccer","isl1":"soccer","irl1":"soccer","bjkcup":"tennis","afcq":"soccer","pt2":"soccer","kaz1":"soccer","bra3":"soccer","den":"soccer","nor2":"soccer","efl":"soccer","cwc":"soccer","uwec":"soccer","acl2":"soccer","mex2":"soccer","uzb1":"soccer","swe2":"soccer","est1":"soccer","aut":"soccer","fro1":"soccer","canch":"soccer","dfb":"soccer","bkcl":"basketball","fifwc":"soccer","bkfr1":"basketball","bkligend":"basketball","blr1":"soccer","chi2":"soccer","fif":"soccer","kor2":"soccer","bkvtb":"basketball","lva1":"soccer","es3":"soccer","bl3":"soccer","nln":"soccer","nls":"soccer","ltu1":"soccer","geo1":"soccer","ja3":"soccer","efa":"soccer","col2":"soccer","chl2":"soccer","uslc":"soccer","usoc":"soccer","isc":"soccer","hun":"soccer","saf1":"soccer","u20wwc":"soccer","wsl2":"soccer","serc":"soccer","grc":"soccer","chfa":"soccer","hr1":"soccer","fpd":"soccer","ire":"soccer","fr2":"soccer","frtc":"soccer","gtm":"soccer","icwq":"soccer","itc":"soccer","ned2":"soccer","bul":"soccer","slo":"soccer","sclc":"soccer","uae1":"soccer","gre1":"soccer","isr":"soccer","ptsc":"soccer","ecs":"soccer","par1":"soccer","bkjpn":"basketball","bkarg":"basketball","bknbl":"basketball","brco":"soccer","jap":"soccer","bkseriea":"basketball","caf":"soccer","bkcba":"basketball","brcm":"soccer","ccc":"soccer","cdr":"soccer","cde":"soccer","bkaba":"basketball","bkbbl":"basketball","bkbsl":"basketball","bkfibaqaf":"basketball","bkfibaqam":"basketball","bkgr1":"basketball","bkkbl":"basketball","wsl":"soccer","tha1":"soccer","argcopa":"soccer","idn1":"soccer","idn2":"soccer","srb":"soccer","mex":"soccer","lec":"soccer","lib":"soccer","usc":"soccer","bl2":"soccer","atc":"soccer","bkbsn":"basketball","bkcebl":"basketball","usl1":"soccer","bklnbp":"basketball","bkeurocup":"basketball","ven1":"soccer","tur2":"soccer","cafcl":"soccer","aze1":"soccer","aze2":"soccer","azec":"soccer","aseanw":"soccer","bra":"soccer","bkibl":"basketball","chi":"soccer","copaam":"soccer","afwq":"soccer","aswq":"soccer","clf":"soccer","ccup":"soccer","nirl1":"soccer","canpl":"soccer","tpe1":"soccer","tpew":"soccer","asean":"soccer","argpn":"soccer","bel1":"soccer","bel2":"soccer","acle":"soccer","aseanc":"soccer","bkisrsl":"basketball","con":"soccer","ptc":"soccer","bklkl":"basketball","rus":"soccer","itsb":"soccer","sawq":"soccer","skc":"soccer","sud":"soccer","swe":"soccer","ncag":"soccer","nlc":"soccer","ja2":"soccer","nawq":"soccer","nor":"soccer","spl":"soccer","ssc":"soccer","svk1":"soccer","trsk":"soccer","bkplk":"basketball","bkkls":"basketball","bkvensl":"basketball","bknznbl":"basketball","bkligarg":"basketball","bknbb":"basketball","ofc":"soccer","owq":"soccer","uef":"soccer","j2100":"soccer","scoc":"soccer","scop":"soccer","bkbul":"basketball","bkfi2":"basketball","bkfr2":"basketball","wimbledon":"tennis","ueq":"soccer","ukr1":"soccer","unl":"soccer","afcl":"soccer","bkaut":"basketball","bkblr":"basketball","bkcyp":"basketball","bkden":"basketball","bkes2":"basketball","bkest":"basketball","bkcze":"basketball","arg":"soccer","bksvk":"basketball","auc":"soccer","aus":"soccer","bkmkd":"basketball","bknor":"basketball","bksvn":"basketball","bkukr":"basketball","afc":"soccer","bkbel":"basketball","bkfibaqas":"basketball","bkfibaqeu":"basketball","bkcro":"basketball","bkfin":"basketball","bkrus":"basketball","bkgr2":"basketball","bkit2":"basketball","bkkaz":"basketball","bkkz2":"basketball","bklat":"basketball","bkgbr":"basketball","bkhun":"basketball","bkmex":"basketball","bkned":"basketball","cwbb":"basketball","fifaw":"soccer","nwsl":"soccer","bra2":"soccer","chi1":"soccer","mar1":"soccer","egy1":"soccer","cze1":"soccer","bol1":"soccer","atp-doubles":"tennis","isp":"soccer","per1":"soccer","rou1":"soccer","uwcl":"soccer","wta-doubles":"tennis","wwcquefa":"soccer","col1":"soccer","weuc":"soccer","j1100":"soccer"},"generated_at":"2026-10-27T22:32:56+00:00"}</script>
+<script id="pros-data" type="application/json">{"sports":{"tennis":{"label":"Tennis","measured_at":"2026-10-27T22:30:22+00:00","window_days":30,"ranked":225,"significant":11,"elite":6},"soccer":{"label":"Fußball","measured_at":"2026-10-27T22:31:41+00:00","window_days":30,"ranked":812,"significant":4,"elite":3},"basketball":{"label":"Basketball","measured_at":"2026-10-27T22:32:13+00:00","window_days":30,"ranked":162,"significant":4,"elite":2},"football":{"label":"American Football","measured_at":"2026-10-27T23:35:07+00:00","window_days":30,"ranked":101,"significant":1,"elite":1}},"wallets":[{"wallet":"0x200ffb575b936d297fcf39076ddf2b476ae07a96","name":"LeLynxMalynx","ranks":{"tennis":2},"clv":{"tennis":{"rank":2,"clv":0.0071,"gross":0.0071,"t":3.57,"matches":932,"stake":60565,"pnl":3324,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":743,"clv":-0.0044,"gross":-0.0044,"t":-6.54,"matches":1096,"stake":230897,"pnl":-3211,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":null,"clv":-0.0004,"gross":-0.0004,"t":-0.25,"matches":160,"stake":11974,"pnl":719,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":36,"clv":-0.001,"gross":-0.001,"t":-0.88,"matches":170,"stake":8917,"pnl":412,"fees":0,"taker":0.0,"sig":false,"elite":false}},"alltime":{"pnl":43168,"vol":10785348},"pi":{"pnl":43000.0,"volume":10800000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0xdc4f58a48ed4467743609fdce11eea483c759804","name":"MeistersApprenticeship","ranks":{"tennis":5},"clv":{"tennis":{"rank":5,"clv":0.0063,"gross":0.0063,"t":3.14,"matches":509,"stake":64394,"pnl":8681,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":92,"clv":-0.0001,"gross":-0.0001,"t":-0.18,"matches":922,"stake":412491,"pnl":-14308,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":null,"clv":-0.0001,"gross":-0.0001,"t":-0.08,"matches":106,"stake":5130,"pnl":363,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":null,"clv":-0.0007,"gross":-0.0007,"t":-0.43,"matches":47,"stake":465,"pnl":-114,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":23763,"vol":5117776},"pi":{"pnl":24000.0,"volume":5100000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x5e020e19bc4cc2cd24ab9b406604ee9df02ab178","name":"capitalpiston2","ranks":{"tennis":6},"clv":{"tennis":{"rank":6,"clv":0.0062,"gross":0.0062,"t":3.14,"matches":767,"stake":32779,"pnl":2975,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":null,"clv":-0.0014,"gross":-0.0014,"t":-1.56,"matches":395,"stake":85888,"pnl":24,"fees":0,"taker":0.0,"sig":null,"elite":null},"basketball":{"rank":null,"clv":-0.0019,"gross":-0.0019,"t":-0.6,"matches":14,"stake":1397,"pnl":217,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":12989,"vol":2471102},"pi":{"pnl":13000.0,"volume":2500000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x49b68438ae7db43a03d7ddaaceaef5581ac7d152","name":"TuttyFruity","ranks":{"tennis":8},"clv":{"tennis":{"rank":8,"clv":0.0099,"gross":0.0099,"t":3.06,"matches":250,"stake":11247,"pnl":382,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":141,"clv":-0.0034,"gross":-0.0034,"t":-0.79,"matches":147,"stake":5652,"pnl":198,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":118,"clv":-0.0153,"gross":-0.0153,"t":-1.72,"matches":51,"stake":2482,"pnl":-718,"fees":0,"taker":0.0,"sig":false,"elite":false}},"alltime":{"pnl":466,"vol":88467},"pi":{"pnl":466.0,"volume":88000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x52d93dcf81444f793dda7fedc370f7a35101fb1a","name":"LuckyLoo","ranks":{"tennis":10},"clv":{"tennis":{"rank":10,"clv":0.0181,"gross":0.0181,"t":2.81,"matches":66,"stake":10229,"pnl":20912,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":363,"clv":-0.0031,"gross":-0.0031,"t":-2.29,"matches":612,"stake":2111483,"pnl":-71507,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":66,"clv":-0.0017,"gross":-0.0017,"t":-0.67,"matches":225,"stake":81405,"pnl":-81,"fees":0,"taker":0.0,"sig":false,"elite":false},"football":{"rank":26,"clv":-0.0004,"gross":-0.0004,"t":-0.21,"matches":84,"stake":81285,"pnl":-33171,"fees":0,"taker":0.0,"sig":false,"elite":false}},"alltime":{"pnl":65604,"vol":52413517},"pi":{"pnl":66000.0,"volume":52400000.0,"win_rate":47.50985634658087,"closed":88268,"won":41936,"win_rate_1m":45.39458721855811,"closed_1m":26382}},{"wallet":"0xc2494b32d65dea3a3a80712589d10bc5733f8a61","name":"0xc2494b32d65DeA3a3A80712589d10bC5733f8a61-1774333132835","ranks":{"tennis":11},"clv":{"tennis":{"rank":11,"clv":0.0188,"gross":0.0188,"t":2.65,"matches":123,"stake":19798,"pnl":1424,"fees":0,"taker":0.0,"sig":true,"elite":true},"basketball":{"rank":null,"clv":-0.016,"gross":-0.016,"t":-0.96,"matches":14,"stake":6675,"pnl":-1257,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":23,"clv":0.0026,"gross":0.0026,"t":0.15,"matches":25,"stake":4316,"pnl":-1668,"fees":0,"taker":0.0,"sig":false,"elite":false}},"alltime":{"pnl":130465,"vol":7407073},"pi":{"pnl":130000.0,"volume":7400000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0xd29312e2446a746bbd94408e1c475f1ec6d7d683","name":"Kyn008","ranks":{"soccer":1},"clv":{"soccer":{"rank":1,"clv":0.0123,"gross":0.0123,"t":7.52,"matches":186,"stake":1537891,"pnl":55151,"fees":0,"taker":0.0,"sig":true,"elite":true}},"alltime":{"pnl":75715,"vol":5496991},"pi":{"pnl":76000.0,"volume":5500000.0,"win_rate":50,"closed":420,"won":210,"win_rate_1m":50.11933174224343,"closed_1m":419}},{"wallet":"0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e","name":"TheComboConnoisseur","ranks":{"soccer":3,"basketball":4},"clv":{"soccer":{"rank":3,"clv":0.0365,"gross":0.0413,"t":3.79,"matches":54,"stake":21951,"pnl":1779,"fees":214,"taker":0.442,"sig":true,"elite":true},"basketball":{"rank":4,"clv":0.0316,"gross":0.0339,"t":3.24,"matches":40,"stake":15212,"pnl":2111,"fees":78,"taker":0.228,"sig":true,"elite":true}},"alltime":{"pnl":51034,"vol":1900675},"pi":{"pnl":51000.0,"volume":1900000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x10ff111022291d97966b415a779698312293ff77","name":"dacthenuac","ranks":{"soccer":4},"clv":{"tennis":{"rank":33,"clv":0.0128,"gross":0.0129,"t":1.31,"matches":86,"stake":4676,"pnl":891,"fees":13,"taker":0.134,"sig":false,"elite":false},"soccer":{"rank":4,"clv":0.0106,"gross":0.0106,"t":3.43,"matches":174,"stake":6236,"pnl":371,"fees":0,"taker":0.0,"sig":true,"elite":true}},"alltime":{"pnl":544,"vol":2164837},"pi":{"pnl":544.0,"volume":2200000.0,"win_rate":null,"closed":null,"won":null,"win_rate_1m":null,"closed_1m":null}},{"wallet":"0x684baa57c338c2549aec0aa3f034f695d72a8409","name":"monkeymashingkeyboard","ranks":{"basketball":3},"clv":{"tennis":{"rank":93,"clv":-0.0019,"gross":0.0001,"t":-0.35,"matches":27,"stake":135104,"pnl":-25981,"fees":247,"taker":0.073,"sig":false,"elite":false},"basketball":{"rank":3,"clv":0.0136,"gross":0.0142,"t":3.52,"matches":48,"stake":2046749,"pnl":414476,"fees":455,"taker":0.01,"sig":true,"elite":true},"football":{"rank":13,"clv":0.0054,"gross":0.0066,"t":0.92,"matches":31,"stake":634516,"pnl":26691,"fees":221,"taker":0.024,"sig":false,"elite":false}},"alltime":{"pnl":784599,"vol":28939013},"pi":{"pnl":785000.0,"volume":28900000.0,"win_rate":53.81750465549349,"closed":1074,"won":578,"win_rate_1m":53.73134328358209,"closed_1m":335}},{"wallet":"0xf0318c32136c2db7fec88b84869aee6a1106c80c","name":"BreakTheBank","ranks":{"football":1},"clv":{"soccer":{"rank":25,"clv":0.0018,"gross":0.0026,"t":1.39,"matches":55,"stake":9684129,"pnl":-1534052,"fees":3120,"taker":0.015,"sig":false,"elite":false},"basketball":{"rank":12,"clv":0.0043,"gross":0.0043,"t":1.4,"matches":31,"stake":7711664,"pnl":2567504,"fees":0,"taker":0.0,"sig":false,"elite":false},"football":{"rank":1,"clv":0.0041,"gross":0.0057,"t":3.46,"matches":38,"stake":10815219,"pnl":5063252,"fees":57820,"taker":0.392,"sig":true,"elite":true}},"alltime":{"pnl":12123905,"vol":348313638},"pi":{"pnl":12100000.0,"volume":348300000.0,"win_rate":42.76778733385457,"closed":1279,"won":547,"win_rate_1m":47.1563981042654,"closed_1m":422}}],"top_n":12,"prefixes":{"atp":"tennis","wta":"tennis","itf":"tennis","epl":"soccer","lal":"soccer","bun":"soccer","sea":"soccer","fl1":"soccer","ucl":"soccer","uel":"soccer","mls":"soccer","ere":"soccer","por":"soccer","elc":"soccer","nba":"basketball","wnba":"basketball","ncaab":"basketball","cbb":"basketball","euroleague":"basketball","ufl":"football","lmp":"baseball","kor":"soccer","gsc":"soccer","weuq":"soccer","cof":"soccer","col":"soccer","conl":"soccer","el1":"soccer","pol":"soccer","qat1":"soccer","uru1":"soccer","daviscup":"tennis","bkfibaw":"basketball","ecu1":"soccer","euc":"soccer","el2":"soccer","enl":"soccer","es2":"soccer","sui":"soccer","ewq":"soccer","tur":"soccer","lmb":"baseball","fin1":"soccer","isl1":"soccer","ncaabaseball":"baseball","irl1":"soccer","bjkcup":"tennis","afcq":"soccer","pt2":"soccer","kaz1":"soccer","bra3":"soccer","den":"soccer","nor2":"soccer","efl":"soccer","cwc":"soccer","uwec":"soccer","acl2":"soccer","mex2":"soccer","uzb1":"soccer","swe2":"soccer","est1":"soccer","aut":"soccer","fro1":"soccer","cfb":"football","canch":"soccer","dfb":"soccer","bkcl":"basketball","fifwc":"soccer","bkfr1":"basketball","bkligend":"basketball","blr1":"soccer","chi2":"soccer","fif":"soccer","kor2":"soccer","bkvtb":"basketball","lva1":"soccer","es3":"soccer","bl3":"soccer","nln":"soccer","nls":"soccer","ltu1":"soccer","geo1":"soccer","ja3":"soccer","efa":"soccer","col2":"soccer","chl2":"soccer","uslc":"soccer","usoc":"soccer","isc":"soccer","hun":"soccer","saf1":"soccer","u20wwc":"soccer","wsl2":"soccer","serc":"soccer","grc":"soccer","chfa":"soccer","hr1":"soccer","fpd":"soccer","ire":"soccer","fr2":"soccer","frtc":"soccer","gtm":"soccer","icwq":"soccer","itc":"soccer","ned2":"soccer","bul":"soccer","slo":"soccer","sclc":"soccer","uae1":"soccer","gre1":"soccer","isr":"soccer","ptsc":"soccer","ecs":"soccer","par1":"soccer","bkjpn":"basketball","bkarg":"basketball","bknbl":"basketball","brco":"soccer","jap":"soccer","bkseriea":"basketball","caf":"soccer","bkcba":"basketball","brcm":"soccer","ccc":"soccer","cdr":"soccer","cde":"soccer","bkaba":"basketball","bkbbl":"basketball","bkbsl":"basketball","bkfibaqaf":"basketball","bkfibaqam":"basketball","bkgr1":"basketball","bkkbl":"basketball","wsl":"soccer","tha1":"soccer","argcopa":"soccer","idn1":"soccer","idn2":"soccer","srb":"soccer","mex":"soccer","lec":"soccer","lib":"soccer","usc":"soccer","bl2":"soccer","atc":"soccer","bkbsn":"basketball","bkcebl":"basketball","usl1":"soccer","bklnbp":"basketball","bkeurocup":"basketball","ven1":"soccer","tur2":"soccer","cafcl":"soccer","aze1":"soccer","aze2":"soccer","azec":"soccer","aseanw":"soccer","bra":"soccer","bkibl":"basketball","chi":"soccer","copaam":"soccer","afwq":"soccer","aswq":"soccer","clf":"soccer","ccup":"soccer","nirl1":"soccer","canpl":"soccer","tpe1":"soccer","tpew":"soccer","asean":"soccer","argpn":"soccer","bel1":"soccer","bel2":"soccer","acle":"soccer","aseanc":"soccer","bkisrsl":"basketball","con":"soccer","ptc":"soccer","bklkl":"basketball","rus":"soccer","itsb":"soccer","sawq":"soccer","skc":"soccer","sud":"soccer","swe":"soccer","ncag":"soccer","nlc":"soccer","ja2":"soccer","nawq":"soccer","nor":"soccer","spl":"soccer","ssc":"soccer","svk1":"soccer","trsk":"soccer","bkplk":"basketball","bkkls":"basketball","bkvensl":"basketball","bknznbl":"basketball","bkligarg":"basketball","bknbb":"basketball","ofc":"soccer","owq":"soccer","uef":"soccer","j2100":"soccer","scoc":"soccer","scop":"soccer","bkbul":"basketball","bkfi2":"basketball","bkfr2":"basketball","wimbledon":"tennis","ueq":"soccer","ukr1":"soccer","unl":"soccer","afcl":"soccer","bkaut":"basketball","bkblr":"basketball","bkcyp":"basketball","bkden":"basketball","bkes2":"basketball","bkest":"basketball","bkcze":"basketball","arg":"soccer","bksvk":"basketball","auc":"soccer","aus":"soccer","bkmkd":"basketball","bknor":"basketball","bksvn":"basketball","bkukr":"basketball","afc":"soccer","bkbel":"basketball","bkfibaqas":"basketball","bkfibaqeu":"basketball","bkcro":"basketball","bkfin":"basketball","bkrus":"basketball","cpbl":"baseball","bkgr2":"basketball","bkit2":"basketball","bkkaz":"basketball","bkkz2":"basketball","bklat":"basketball","bkgbr":"basketball","bkhun":"basketball","bkmex":"basketball","bkned":"basketball","cwbb":"basketball","cuba":"baseball","nfl":"football","mlb":"baseball","fifaw":"soccer","kbo":"baseball","lidom":"baseball","lvbp":"baseball","nwsl":"soccer","npb":"baseball","bra2":"soccer","chi1":"soccer","mar1":"soccer","egy1":"soccer","cze1":"soccer","bol1":"soccer","atp-doubles":"tennis","isp":"soccer","per1":"soccer","rou1":"soccer","uwcl":"soccer","wta-doubles":"tennis","wwcquefa":"soccer","cfl":"football","col1":"soccer","weuc":"soccer","j1100":"soccer"},"generated_at":"2026-10-27T23:36:57+00:00"}</script>
 <script>
 (() => {
   "use strict";
@@ -141,8 +155,8 @@ footer p { margin: 0; }
   const API = "https://data-api.polymarket.com";
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
-  const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball" };
-  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", pos: new Map(), trades: new Map(), events: new Map(),
+  const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball", football: "American Football", baseball: "Baseball" };
+  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", freshMin: 10000, freshAll: false, pos: new Map(), trades: new Map(), events: new Map(),
               loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
 
   const $ = (id) => document.getElementById(id);
@@ -324,6 +338,125 @@ footer p { margin: 0; }
     S.next = Date.now() + REFRESH_S * 1000;
     S.loading = false;
     render();
+    refreshFresh();
+  }
+
+  // ---------- fresh wallets: new accounts that bet big on one market
+  // Every buy of 2,500 $ or more of the last 24 hours (one request lists
+  // about a day of them; later cycles fetch only the newest), summed per
+  // wallet and side; a wallet counts as fresh while Polymarket lists one
+  // traded market for it and its first activity came under 24 hours
+  // before the bet (PolyInsider's definition, with a 10,000 $ floor).
+  const FRESH_FILL = 2500, DAY = 86400;
+  const F = { fills: new Map(), age: new Map(), loaded: false, busy: false, checking: 0, seen: new Map(), notify: false, shown: false };
+  let oldWallets = new Set();
+  try { oldWallets = new Set(JSON.parse(localStorage.getItem("profi-radar-old") || "[]")); } catch (e) { /* none kept */ }
+  const keepOld = () => { try { localStorage.setItem("profi-radar-old", JSON.stringify([...oldWallets].slice(-20000))); } catch (e) { /* not kept */ } };
+
+  function freshGroups() {
+    const groups = new Map();
+    for (const t of F.fills.values()) {
+      const key = `${t.proxyWallet}:${t.conditionId}:${t.outcomeIndex}`;
+      let g = groups.get(key);
+      if (!g) groups.set(key, (g = { key, wallet: t.proxyWallet, t, first: t.timestamp, last: t.timestamp, size: 0, cost: 0, fills: 0 }));
+      g.size += +t.size || 0; g.cost += (+t.size || 0) * (+t.price || 0); g.fills++;
+      g.first = Math.min(g.first, t.timestamp); g.last = Math.max(g.last, t.timestamp);
+    }
+    return [...groups.values()].filter((g) => g.cost >= S.freshMin);
+  }
+
+  async function refreshFresh() {
+    if (F.busy) return;
+    F.busy = true;
+    try {
+      const batch = await getJSON(`${API}/trades?filterType=CASH&filterAmount=${FRESH_FILL}&takerOnly=false&limit=${F.loaded ? 500 : 10000}`);
+      const cutoff = Date.now() / 1000 - DAY;
+      for (const t of Array.isArray(batch) ? batch : []) {
+        if (t.side === "BUY" && t.timestamp >= cutoff) F.fills.set(`${t.transactionHash}:${t.proxyWallet}:${t.asset}:${t.size}`, t);
+      }
+      for (const [k, t] of F.fills) if (t.timestamp < cutoff) F.fills.delete(k);
+      F.loaded = true;
+      // Only wallets in view are checked, so the first load stays light;
+      // widening the view checks the rest.
+      const groups = freshGroups().filter((g) => freshInView(g.t.eventSlug)), now = Date.now();
+      const todo = [...new Set(groups.map((g) => g.wallet))]
+        .filter((w) => !oldWallets.has(w) && (!F.age.has(w) || now - F.age.get(w).checked > 10 * 60e3));
+      F.checking = todo.length;
+      renderFresh();
+      await pool(todo, 4, async (w) => {
+        try {
+          const tr = await getJSON(`${API}/traded?user=${w}`);
+          const markets = +(tr && tr.traded) || 0;
+          if (markets > 1) { oldWallets.add(w); F.age.delete(w); return; }
+          const act = await getJSON(`${API}/activity?user=${w}&limit=1&sortBy=TIMESTAMP&sortDirection=ASC`);
+          F.age.set(w, { first: Array.isArray(act) && act[0] ? +act[0].timestamp : null, markets, checked: Date.now() });
+        } finally { F.checking--; }
+      });
+      keepOld();
+      await loadEvents(groups.filter((g) => F.age.has(g.wallet)).map((g) => g.t.eventSlug).filter(Boolean));
+    } catch (e) { /* the next cycle tries again */ }
+    F.busy = false;
+    renderFresh();
+  }
+
+  function freshInView(slug) {
+    return S.freshAll ? (S.sport === "all" || sportOf(slug) === S.sport) : passSport(slug);
+  }
+
+  function freshRows() {
+    const out = [];
+    for (const g of freshGroups()) {
+      const a = F.age.get(g.wallet);
+      if (!a || !a.first || g.first - a.first > DAY) continue;
+      const slug = g.t.eventSlug, sport = sportOf(slug);
+      if (!freshInView(slug)) continue;
+      const ev = S.events.get(slug) || {};
+      // Only a game has a kickoff; other events' start is when they were listed.
+      const phase = LABEL[sport] && ev.start ? (g.first * 1000 < ev.start ? "pre" : "live") : "";
+      if (S.pre && phase !== "pre") continue;
+      out.push({ g, a, ev, phase, sport });
+    }
+    return out.sort((x, y) => y.g.last - x.g.last);
+  }
+
+  function renderFresh() {
+    $("fmin-label").textContent = usd(S.freshMin);
+    if (!F.loaded) return;
+    const rows = freshRows(), el = $("fresh"), now = Date.now();
+    const busy = F.checking > 0 ? ` Prüft noch ${F.checking} Konten…` : "";
+    for (const r of rows) {
+      if (!F.seen.has(r.g.key)) {
+        F.seen.set(r.g.key, F.shown ? now : 0);           // 0: already there when the page opened
+        if (F.shown && F.notify) {
+          try {
+            new Notification(`Frisches Wallet: ${usd(r.g.cost)}`, { body: `${sideLabel(r.g.t)} · ${r.ev.title || r.g.t.title}` });
+          } catch (e) { /* the page still shows it */ }
+        }
+      }
+    }
+    if (!F.checking) F.shown = true;
+    if (!rows.length) {
+      el.innerHTML = `<p class="empty">Gerade kein frisches Wallet mit mindestens ${usd(S.freshMin)} in den letzten 24 Stunden in dieser Auswahl.${busy}</p>`;
+      return;
+    }
+    const age = (sec) => (sec < 3600 ? `${Math.max(1, Math.round(sec / 60))} min` : `${nf0.format(Math.round(sec / 3600))} h`);
+    let html = '<table><thead><tr><th>Wann</th><th>Konto</th><th>Markt</th><th>Wette</th><th class="num">Einsatz</th><th class="num">Ø Kurs</th><th class="num">Jetzt</th></tr></thead><tbody>';
+    for (const r of rows.slice(0, 50)) {
+      const g = r.g, t = g.t, price = g.size ? g.cost / g.size : 0;
+      const quotes = (r.ev.prices || {})[t.conditionId], cur = quotes ? quotes[t.outcomeIndex] : undefined;
+      const fresh = F.seen.get(g.key) > 0 && now - F.seen.get(g.key) < 10 * 60e3;
+      const w = { wallet: g.wallet, name: t.name || t.pseudonym || "" };
+      html += `<tr${fresh ? ' class="new"' : ""}><td class="nowrap">${esc(ago(g.last * 1000))}<br><span class="meta">${esc(when.format(g.last * 1000))}</span></td>` +
+              `<td>${proLink(w)}<br><span class="meta">${g.first - r.a.first <= 120 ? "erste Wette des Kontos" : `Konto ${esc(age(g.first - r.a.first))} alt beim Einsatz`} · ${r.a.markets} Markt</span><br>` +
+              `<a class="meta" href="${PI}/trader/${esc(g.wallet)}" target="_blank" rel="noopener">PolyInsider ↗</a></td>` +
+              `<td><div class="match">${esc(r.ev.title || t.title)}</div>${LABEL[r.sport] ? `<span class="badge">${esc(LABEL[r.sport])}</span>` : ""}` +
+              `${r.phase ? `<span class="meta${r.phase === "live" ? " live" : ""}">${r.phase === "live" ? "während des Spiels" : "vor dem Start"}</span> ` : ""}` +
+              `${r.ev.start && r.ev.start > now ? `<span class="meta">Start ${esc(until(r.ev.start))}</span> ` : ""}${piMarket(t.eventSlug)}</td>` +
+              `<td class="side">${esc(sideLabel(t))}</td><td class="num">${usd(g.cost)}<br><span class="meta">${g.fills} ${g.fills === 1 ? "Kauf" : "Käufe"}</span></td>` +
+              `<td class="num">${cents(price)}<br><span class="meta">Quote ${odds(price)}</span></td>` +
+              `<td class="num">${cur == null || Number.isNaN(cur) ? '<span class="meta">\u2013</span>' : `${cents(cur)}<br>${moveTag(cur - price, "\u00a0¢")}`}</td></tr>`;
+    }
+    el.innerHTML = html + "</tbody></table>" + (busy ? `<p class="meta">${busy.trim()}</p>` : "");
   }
 
   // ---------- where the money is, per match
@@ -478,29 +611,40 @@ footer p { margin: 0; }
     }
     $("status").innerHTML = `<span><i class="dot ${dot}"></i>${esc(text)}</span><span>${D.wallets.length} Profile beobachtet</span>`;
   }
-  function render() { renderStatus(); renderConsensus(); renderFeed(); renderProfiles(); }
+  function render() { renderStatus(); renderFresh(); renderConsensus(); renderFeed(); renderProfiles(); }
 
   // ---------- controls
   try {
     const saved = JSON.parse(localStorage.getItem("profi-radar") || "{}");
-    if (["all", "tennis", "soccer", "basketball"].includes(saved.sport)) S.sport = saved.sport;
+    if (["all", "tennis", "soccer", "basketball", "football", "baseball"].includes(saved.sport)) S.sport = saved.sport;
     if (typeof saved.pre === "boolean") S.pre = saved.pre;
     if (typeof saved.own === "boolean") S.own = saved.own;
     if ([0, 100, 1000, 10000].includes(saved.min)) S.min = saved.min;
     if (["stake", "start"].includes(saved.sort)) S.sort = saved.sort;
+    if ([10000, 25000, 50000, 100000].includes(saved.freshMin)) S.freshMin = saved.freshMin;
+    if (typeof saved.freshAll === "boolean") S.freshAll = saved.freshAll;
   } catch (e) { /* defaults */ }
-  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, own: S.own, min: S.min, sort: S.sort })); } catch (e) { /* not kept */ } };
+  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, own: S.own, min: S.min, sort: S.sort, freshMin: S.freshMin, freshAll: S.freshAll })); } catch (e) { /* not kept */ } };
   const chips = document.querySelectorAll(".chip[data-sport]");
   const syncControls = () => {
     chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.sport === S.sport)));
     $("pre").checked = S.pre; $("own").checked = S.own; $("min").value = String(S.min); $("sort").value = S.sort;
+    $("fmin").value = String(S.freshMin); $("fall").checked = S.freshAll;
   };
-  chips.forEach((c) => c.addEventListener("click", () => { S.sport = c.dataset.sport; syncControls(); save(); render(); }));
+  chips.forEach((c) => c.addEventListener("click", () => { S.sport = c.dataset.sport; syncControls(); save(); render(); refreshFresh(); }));
   $("pre").addEventListener("change", (e) => { S.pre = e.target.checked; save(); render(); });
   $("own").addEventListener("change", (e) => { S.own = e.target.checked; save(); render(); });
   $("min").addEventListener("change", (e) => { S.min = Number(e.target.value); save(); render(); });
   $("sort").addEventListener("change", (e) => { S.sort = e.target.value; save(); renderConsensus(); });
   $("reload").addEventListener("click", () => refresh());
+  $("fmin").addEventListener("change", (e) => { S.freshMin = Number(e.target.value); save(); renderFresh(); });
+  $("fall").addEventListener("change", (e) => { S.freshAll = e.target.checked; save(); renderFresh(); refreshFresh(); });
+  $("fnotify").addEventListener("click", async () => {
+    const btn = $("fnotify");
+    if (!("Notification" in window)) { btn.textContent = "Dieser Browser kann nicht benachrichtigen"; return; }
+    try { F.notify = (await Notification.requestPermission()) === "granted"; } catch (e) { F.notify = false; }
+    btn.textContent = F.notify ? "Benachrichtigung an" : "Benachrichtigung abgelehnt";
+  });
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("button.copy");
     if (!btn) return;
