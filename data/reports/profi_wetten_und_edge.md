@@ -426,6 +426,42 @@ Eine Trefferquote um 50 % ist bei Wetten nahe dem Münzwurf normal; was zählt, 
 
 Die PolyInsider-Seiten werden höflich gelesen: eine Seite alle zwei Sekunden, mit Projektnamen als Absender und nie die von robots.txt gesperrte `/api/`.
 
+## 4f. PolyInsiders Rangliste geprüft (27. Oktober 2026)
+
+**Was sie misst.** https://polyinsider.io/en/traders zeigt zwei Ranglisten, je die besten 25 nach Gewinn (vor Gebühren), für 24 Stunden, 7 Tage, 30 Tage und „all time“. „All time“ meint die Zeit, seit PolyInsider mitschreibt.
+
+- **Whales:** Gewinn aus den Käufen ab 5.000 $ jedes Wallets.
+- **Fresh wallets:** Gewinn aus den Wetten, die ein Wallet in seinen ersten 24 Stunden platziert hat.
+
+**Die Whale-Liste der letzten 30 Tage:**
+
+- **Geld:** +31,0 Mio. $ Gewinn auf 206 Mio. $ Einsatz.
+- **Sportarten:** NFL 7, E-Sport 6, Fußball 5, Politik 3, Tennis 2, College-Football 1, NBA 1.
+- **Überschneidung mit unserer Elite:** nur monkeymashingkeyboard (Basketball). Er steht dort in 24 Stunden auf Platz 4 (+310.000 $) und in 7 Tagen auf Platz 8 (+487.000 $).
+
+**Warum die Liste keine Qualitätsliste ist.** Sie ist nach Gewinn sortiert und wählt damit die aus, die gewonnen haben. 55 der 59 Wallets auf den Whale-Listen gewannen öfter, als ihre Einstiegskurse erwarten ließen. Das folgt aus der Sortierung und ist für sich kein Beleg für Können. Zwei Beispiele:
+
+- **joseph00677:** +5,8 Mio. $ aus 17 Wetten, gewann aber seltener, als die Kurse erwarten ließen (47 % gegenüber 56 %). Dazu kommen der größte Einzelverlust der Liste (−1,58 Mio. $ auf Chelsea) und, als frisches Wallet, ein Einzelgewinn von 1,2 Mio. $ auf Arsenal.
+- **BreakTheBank:** +10,1 Mio. $ aus 224 Wetten, vor allem NFL und NBA, Trefferquote 56 % gegenüber 51 % Kurs. Im Basketball schlägt er den Schlusskurs nach Gebühren nur um 0,43 Cent (t 1,4); das reicht nicht als Nachweis.
+
+**Die zwölf Whales aus Tennis, Fußball und Basketball nach unseren Kriterien.** Keiner besteht. Es gibt drei Gruppen:
+
+- **Live-Händler:** ferrariChampions2026 (Tennis, 94 % live), RN1 (Tennis, 95 % live) und Flaznorp (Fußball, 80 % live und Market Maker). Ihr Vorteil entsteht während des Spiels und lässt sich nicht als Tipp vor dem Spiel nachspielen. RN1 hat vor dem Spiel sogar einen echten Vorsprung (+0,89 Cent nach Gebühren, t 4,1), setzt dort aber nur 5 % seines Geldes.
+- **Gewinn trotz schlechter Kurse:** RichieRicher (−0,69 Cent, t −4,2) und nb1985 (−1,81 Cent, t −5,1) kaufen deutlich schlechter als der Schlusskurs. Ihr Gewinn ist Glück.
+- **Zu wenig Siegwetten vor dem Anpfiff:** joseph00677, SmartPredictOrNot, raybanman, keeptheblueflagflyinghigh und Jsram (17 Spiele). Wir messen nur Siegwetten; Handicap- und Über/Unter-Wetten bleiben außen vor.
+
+**Frische Wallets im Tennis, ein auffälliges Muster.** Fünf neue Konten setzten in ihren ersten 24 Stunden je eine große Wette auf eines von vier Matches unterer ATP-Ebenen, meist auf den Außenseiter, und gewannen alle:
+
+| Wallet | Match | Einsatz | Kurs | Gewinn |
+|---|---|---:|---:|---:|
+| kalmal | Broady – Santillan (Guangzhou 2) | 33.800 $ | 34 % | +65.700 $ |
+| lsiflsliggjriek | Cerundolo – Mensik (Shanghai) | 87.600 $ | 55 % | +71.800 $ |
+| Frail-Ecosystem-Anagram | Domingues – Gakhov (Lissabon) | 34.700 $ | 35 % | +65.200 $ |
+| Grigoralep | Domingues – Gakhov (Lissabon) | 17.800 $ | 25 % | +53.000 $ |
+| kdvlklkvlsklkfs | Vallejo – Faria (Tokio, Quali) | 34.300 $ | 44 % | +43.700 $ |
+
+Zwei der neuen Konten setzten auf dasselbe Challenger-Match in Lissabon, beide auf den Außenseiter. Das ist ein Muster und kein Beweis, wie PolyInsider selbst schreibt. Für diese Wallets taugt keine Rangliste, denn sie haben nur je eine Wette. Interessant wäre ein Alarm, sobald ein frisches Wallet auf ein anstehendes Match setzt; die Radar-Links führen zu PolyInsiders Marktseiten, wo solche Wetten erscheinen.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |
