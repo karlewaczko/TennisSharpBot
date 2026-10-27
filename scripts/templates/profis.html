@@ -91,13 +91,15 @@ footer p { margin: 0; }
 <div class="wrap">
   <header>
     <h1>Polymarket <span>Profi-Radar</span></h1>
-    <p class="lede">Was die Wallets, die bei Tennis, Fußball und Basketball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
+    <p class="lede">Was die Wallets, die bei Tennis, Fußball, Basketball, American Football und Baseball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
     <div class="status" id="status" aria-live="polite"><span><i class="dot"></i>Lädt die Positionen…</span></div>
     <div class="controls">
       <button class="chip" type="button" data-sport="all" aria-pressed="true">Alle</button>
       <button class="chip" type="button" data-sport="tennis" aria-pressed="false">Tennis</button>
       <button class="chip" type="button" data-sport="soccer" aria-pressed="false">Fußball</button>
       <button class="chip" type="button" data-sport="basketball" aria-pressed="false">Basketball</button>
+      <button class="chip" type="button" data-sport="football" aria-pressed="false">American Football</button>
+      <button class="chip" type="button" data-sport="baseball" aria-pressed="false">Baseball</button>
       <label class="field" for="pre"><input type="checkbox" id="pre"> nur vor Spielbeginn</label>
       <label class="field" for="own" title="Nur Wetten in der Sportart, in der das Profil alle Kriterien erfüllt"><input type="checkbox" id="own" checked> nur in ihrer Sportart</label>
       <label class="field" for="min">ab
@@ -127,7 +129,7 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> nur Wallets, die alle fünf Kriterien erfüllen. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage. (3) In diesen 30&nbsp;Tagen nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarket und laut PolyInsider. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verschwindet von der Liste.</p>
+    <p><b>Wer hier steht:</b> nur Wallets, die alle fünf Kriterien erfüllen. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage (Baseball: 60). (3) In diesem Zeitraum nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarket und laut PolyInsider. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verschwindet von der Liste.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
     <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Zweite Quelle für die Profile: PolyInsider (Trefferquote, Gewinn über alle Märkte; täglich gelesen). Die Links „PolyInsider ↗“ führen zu Wal-Wetten ab 5.000&nbsp;$ und frischen Wallets auf dem jeweiligen Spiel. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
@@ -141,7 +143,7 @@ footer p { margin: 0; }
   const API = "https://data-api.polymarket.com";
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
-  const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball" };
+  const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball", football: "American Football", baseball: "Baseball" };
   const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", pos: new Map(), trades: new Map(), events: new Map(),
               loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
 
@@ -483,7 +485,7 @@ footer p { margin: 0; }
   // ---------- controls
   try {
     const saved = JSON.parse(localStorage.getItem("profi-radar") || "{}");
-    if (["all", "tennis", "soccer", "basketball"].includes(saved.sport)) S.sport = saved.sport;
+    if (["all", "tennis", "soccer", "basketball", "football", "baseball"].includes(saved.sport)) S.sport = saved.sport;
     if (typeof saved.pre === "boolean") S.pre = saved.pre;
     if (typeof saved.own === "boolean") S.own = saved.own;
     if ([0, 100, 1000, 10000].includes(saved.min)) S.min = saved.min;

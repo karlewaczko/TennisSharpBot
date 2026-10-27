@@ -1,4 +1,4 @@
-name: Daily Polymarket rankings - tennis, football and basketball
+name: Daily Polymarket rankings - tennis, football, basketball, American football, baseball
 
 # Ranks the wallets of all three sports by closing-line value over the last
 # 30 days and rebuilds docs/profis.html, the live page of what the ranked
@@ -24,7 +24,7 @@ concurrency:
 jobs:
   rank:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 360
     steps:
       # The branch, not the triggering commit: a run that waited in the
       # concurrency queue must start from what the previous run pushed.
@@ -54,6 +54,16 @@ jobs:
         timeout-minutes: 45
         run: python scripts/update_pm_traders.py --sport basketball --days 30
 
+      - name: American football wallets
+        if: ${{ !cancelled() }}
+        timeout-minutes: 45
+        run: python scripts/update_pm_traders.py --sport football
+
+      - name: Baseball wallets (60 days)
+        if: ${{ !cancelled() }}
+        timeout-minutes: 45
+        run: python scripts/update_pm_traders.py --sport baseball
+
       - name: Live page of the ranked Polymarket wallets
         if: ${{ !cancelled() }}
         run: python scripts/build_pros_live.py
@@ -68,7 +78,7 @@ jobs:
             echo "No ranking changes to commit."
             exit 0
           fi
-          git commit -m "Daily Polymarket rankings ($(date -u +%Y-%m-%d)): tennis, football, basketball"
+          git commit -m "Daily Polymarket rankings ($(date -u +%Y-%m-%d)): five sports"
           for attempt in 1 2 3; do
             if git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push; then
               exit 0

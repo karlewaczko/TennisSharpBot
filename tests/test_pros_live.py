@@ -71,11 +71,12 @@ def test_league_codes_map_to_their_sport(live):
                          {"sport": "bkcba", "tags": "1,100639,28,103097"},
                          {"sport": "nba", "tags": "1,745,100639"},
                          {"sport": "wta", "tags": "1,864,100639,102123"},
-                         {"sport": "nfl", "tags": "1,450,100639"}])
+                         {"sport": "nfl", "tags": "1,450,100639"},
+                         {"sport": "nhl", "tags": "1,899,100639"}])
 
     got = live.sport_prefixes(Http())
     assert (got["epl"], got["bkcba"], got["nba"], got["wta"]) == ("soccer", "basketball", "basketball", "tennis")
-    assert "nfl" not in got
+    assert got["nfl"] == "football" and "nhl" not in got                # ice hockey is not covered
 
     class Down:
         def get(self, url, timeout=None):

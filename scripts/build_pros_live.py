@@ -20,7 +20,8 @@ import requests
 from tennissharp import config
 from tennissharp.data import polyinsider, polymarket_traders as pt
 
-SPORTS = {"tennis": "Tennis", "soccer": "Fußball", "basketball": "Basketball"}
+SPORTS = {"tennis": "Tennis", "soccer": "Fußball", "basketball": "Basketball", "football": "American Football",
+          "baseball": "Baseball"}
 TOP_N = 12
 TEMPLATE = Path(__file__).parent / "templates" / "profis.html"
 OUT = config.REPO_ROOT / "docs" / "profis.html"
