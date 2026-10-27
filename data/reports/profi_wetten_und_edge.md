@@ -490,6 +490,25 @@ Diese beiden erfüllen alle fünf Kriterien:
 
 **Frische Wallets im Radar.** Ein neuer Bereich zeigt live neue Konten, die mindestens 10.000 $ auf eine Seite setzen (umschaltbar auf 25.000, 50.000 oder 100.000 $). Als frisch gilt ein Konto, dessen erster Polymarket-Trade weniger als 24 Stunden vor der Wette lag und das nur diesen einen Markt gehandelt hat, wie bei PolyInsider. Die Daten kommen direkt aus Polymarkets Trade-Feed: alle Käufe ab 2.500 $ der letzten 24 Stunden, je Konto und Seite zusammengezählt. Zum Start am 27. Oktober abends gab es 504 Konten mit mindestens 10.000 $ auf einer Seite. Nur 11 davon hatten einen einzigen Markt; 9 dieser Einsätze kamen von frischen Konten, alle auf die Wahl in Israel und keiner im Sport.
 
+## 4h. Wer bewegt den Kurs zuerst? Polymarket, Kalshi, Pinnacle (28. Oktober 2026)
+
+**Polymarket gegen Kalshi, minutengenau.** Gemessen an 39 Tennis-Matches, die am 27. Oktober auf beiden Plattformen liefen: Polymarkets Kursverlauf (`prices-history`, je Minute) gegen Kalshis Minuten-Kerzen (Mittelkurs), je acht Stunden vor bis fünf Stunden nach Spielbeginn.
+
+- Die Kursänderungen beider Plattformen korrelieren am stärksten in derselben Minute (0,55). Eine Minute früher oder später sind es nur 0,09 bis 0,11. Keine Plattform führt.
+- Bei rund 1.700 großen Sprüngen (mindestens 3 Punkte in 3 Minuten) während des Spiels hatte die jeweils andere Plattform im selben Moment schon rund 90 % des Sprungs mitgemacht.
+- Beide reagieren also praktisch gleichzeitig, vermutlich über dieselben Bots und Live-Daten.
+
+**Gegen Pinnacle und Betfair.** Pinnacle veröffentlicht keine kostenlosen Minutenverläufe. Deshalb dienen die Schnappschüsse des Dashboards als Grundlage: 354 Paare aufeinanderfolgender Schnappschüsse, im Median 5,3 Stunden auseinander. Gemessen wurde, wer eine Lücke zwischen Marktpreis und fairem Pinnacle- bzw. Betfair-Preis bis zum nächsten Schnappschuss schließt.
+
+| | Plattform schließt die Lücke | Pinnacle/Betfair bewegt sich hin | Anteil an der Preisfindung |
+|---|---:|---:|---:|
+| Polymarket (200 Paare) | 70 % (±3) | 19 % (±3) | etwa 20 % |
+| Kalshi (34 Paare) | 65 % (±11) | 0 % (±9) | etwa 0 % |
+
+- **Die scharfen Buchmacher führen.** Weicht Polymarket ab, kehrt meist Polymarket zurück. Etwa ein Fünftel der Preisfindung kommt aber von Polymarket: Pinnacle und Betfair bewegen sich messbar in Polymarkets Richtung. Kalshi folgt vollständig.
+- **Grenzen.** Die Auflösung beträgt Stunden, nicht Minuten. Ob Polymarket bei einer einzelnen Nachricht (Verletzung, Aufgabe) Sekunden oder Minuten schneller ist, lässt sich damit nicht sagen. Rauschen im Mittelkurs lässt außerdem die verrauschte Seite etwas mehr „zurückkehren“.
+- **Für Wetten bei Pinnacle über BetInAsia.** Eine Abweichung Polymarkets ist allenfalls ein Hinweis: Pinnacle schließt im Schnitt nur ein Fünftel davon, und die Marge liegt höher. Belastbar wäre das erst mit dichteren Pinnacle-Daten.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |
