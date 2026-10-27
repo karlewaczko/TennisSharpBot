@@ -370,6 +370,50 @@ Was auffällt:
 - **Fazit wie beim Tennis.** Das Können ist echt und hält über den Monat, ist aber klein: Das beste Zehntel liegt danach etwa 0,4 bis 0,6 Cent je Anteil über dem Schnitt.
 - **Keine Kalibrierung.** Für Fußball und Basketball steht hier keine Kalibrierung der Schlusskurse. Der Volumen-Filter zählt den Live-Handel mit, und der ist in Märkten, deren Ausgang eintritt, größer. Die Auswahl ist dadurch verzerrt.
 
+## 4e. Korrektur: Gebühren, Glück und nur die Besten (27. Oktober 2026)
+
+**Anlass.** Der Nutzer hat purplegatto geprüft, Platz 10 der Basketball-Liste im Profi-Radar. Auf Polymarket steht dieser Account insgesamt bei −1,97 Mio. $ bei 69 Mio. $ Volumen. Die Nachprüfung fand zwei Fehler in der Rangliste.
+
+1. **Die Taker-Gebühr fehlte.** Polymarket berechnet Takern im Sport 0,05 × p × (1 − p) je Anteil, bei 50:50 also 1,25 Cent. purplegatto handelt nur als Taker. An einem NBA-Spiel lag unsere Rechnung um 232 $ unter Polymarkets eigener Positionsrechnung, und das waren genau die Gebühren. Ansonsten stimmte die Gewinnrechnung je Spiel mit Polymarket überein.
+2. **Kein Schutz gegen Glück.** Unter Tausenden Wallets liegen einige allein durch Zufall vorn. Ein t-Wert von 2,4 reichte für Platz 10.
+
+**Neu.** Für jeden Markt kommen die Taker-Fills aus Polymarkets `takerOnly`-Liste. Die Gebühr geht von Gewinn und CLV ab, gerankt wird nach dem t-Wert der CLV nach Gebühren. Beobachtet wird nur, wer **alle fünf Kriterien** erfüllt:
+
+1. Vorsprung nach Gebühren, der eine Signifikanzprüfung besteht (Benjamini-Hochberg, höchstens 10 % Glückstreffer unter den Gelisteten)
+2. Vorsprung in beiden Hälften der 30 Tage
+3. Gewinn nach Gebühren in den 30 Tagen
+4. Gewinn auf Polymarket über alle Märkte und die ganze Zeit (Leaderboard-API)
+5. Mindestens 20 Spiele, 2.000 $ Einsatz, überwiegend vor dem Anpfiff und auf eine Seite
+
+| | Rangliste | signifikant | + beide Hälften | + 30-Tage-Gewinn | + Gesamtgewinn |
+|---|---:|---:|---:|---:|---:|
+| Tennis | 225 | 11 | 11 | 7 | **6** |
+| Fußball | 812 | 4 | 3 | 3 | **3** |
+| Basketball | 162 | 4 | 2 | 2 | **2** |
+
+**Die verbliebenen Wallets** (CLV nach Gebühren je Anteil, Gewinn nach Gebühren in 30 Tagen):
+
+| Sportart | Profil | Spiele | CLV | t | Gewinn | Taker-Anteil | Polymarket gesamt |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Tennis | [LeLynxMalynx](https://polymarket.com/profile/0x200ffb575b936d297fcf39076ddf2b476ae07a96) | 932 | +0,7 ¢ | 3,6 | +3.324 $ | 0 % | +43.274 $ / 10,8 Mio. $ |
+| Tennis | [MeistersApprenticeship](https://polymarket.com/profile/0xdc4f58a48ed4467743609fdce11eea483c759804) | 509 | +0,6 ¢ | 3,1 | +8.681 $ | 0 % | +23.097 $ / 5,1 Mio. $ |
+| Tennis | [capitalpiston2](https://polymarket.com/profile/0x5e020e19bc4cc2cd24ab9b406604ee9df02ab178) | 767 | +0,6 ¢ | 3,1 | +2.975 $ | 0 % | +13.076 $ / 2,5 Mio. $ |
+| Tennis | [TuttyFruity](https://polymarket.com/profile/0x49b68438ae7db43a03d7ddaaceaef5581ac7d152) | 250 | +1,0 ¢ | 3,1 | +382 $ | 0 % | +401 $ / 0,1 Mio. $ |
+| Tennis | [LuckyLoo](https://polymarket.com/profile/0x52d93dcf81444f793dda7fedc370f7a35101fb1a) | 66 | +1,8 ¢ | 2,8 | +20.912 $ | 0 % | +61.586 $ / 52,3 Mio. $ |
+| Tennis | [0xc249…8a61](https://polymarket.com/profile/0xc2494b32d65dea3a3a80712589d10bc5733f8a61) | 123 | +1,9 ¢ | 2,6 | +1.424 $ | 0 % | +131.190 $ / 7,4 Mio. $ |
+| Fußball | [Kyn008](https://polymarket.com/profile/0xd29312e2446a746bbd94408e1c475f1ec6d7d683) | 186 | +1,2 ¢ | 7,5 | +55.151 $ | 0 % | +75.715 $ / 5,5 Mio. $ |
+| Fußball | [TheComboConnoisseur](https://polymarket.com/profile/0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e) | 54 | +3,7 ¢ | 3,8 | +1.779 $ | 44 % | +50.800 $ / 1,9 Mio. $ |
+| Fußball | [dacthenuac](https://polymarket.com/profile/0x10ff111022291d97966b415a779698312293ff77) | 174 | +1,1 ¢ | 3,4 | +371 $ | 0 % | +544 $ / 2,2 Mio. $ |
+| Basketball | [monkeymashingkeyboard](https://polymarket.com/profile/0x684baa57c338c2549aec0aa3f034f695d72a8409) | 48 | +1,4 ¢ | 3,5 | +414.476 $ | 1 % | +784.599 $ / 28,6 Mio. $ |
+| Basketball | [TheComboConnoisseur](https://polymarket.com/profile/0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e) | 40 | +3,2 ¢ | 3,2 | +2.111 $ | 23 % | +50.800 $ / 1,9 Mio. $ |
+
+Was die Korrektur zeigt:
+
+- **Nach Gebühren verliert der Durchschnitt gegen den Schlusskurs.** Selbst das beste Zehntel der ersten Monatshälfte kommt in der zweiten nur auf etwa null (Tennis: Korrelation 0,35, bestes Zehntel danach +0,03 ¢, Schnitt −0,77 ¢ · Fußball: Korrelation 0,56, bestes Zehntel danach −0,23 ¢, Schnitt −1,09 ¢ · Basketball: Korrelation 0,20, bestes Zehntel danach −0,01 ¢, Schnitt −0,61 ¢).
+- **Die meisten verbliebenen Profis sind Maker.** Sie stellen limitierte Orders ein und zahlen keine Gebühr. Ihr Vorteil entsteht beim Einstellen der Order. Wer ihnen später als Taker oder beim Buchmacher folgt, hat ihn nicht.
+- **purplegatto** liegt nach Gebühren nirgends signifikant vorn: Basketball +0,27 Cent (t 0,75), Tennis −0,17 Cent, Fußball −0,66 Cent (t −3,5).
+- **Abschnitte 4c und 4d** wurden vor dieser Korrektur gemessen. Ihre CLV-Werte sind vor Gebühren und ihre Listen ohne Signifikanzprüfung.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |

@@ -99,6 +99,7 @@ footer p { margin: 0; }
       <button class="chip" type="button" data-sport="soccer" aria-pressed="false">Fußball</button>
       <button class="chip" type="button" data-sport="basketball" aria-pressed="false">Basketball</button>
       <label class="field" for="pre"><input type="checkbox" id="pre"> nur vor Spielbeginn</label>
+      <label class="field" for="own" title="Nur Wetten in der Sportart, in der das Profil alle Kriterien erfüllt"><input type="checkbox" id="own" checked> nur in ihrer Sportart</label>
       <label class="field" for="min">ab
         <select id="min"><option value="0">0 $</option><option value="100" selected>100 $</option><option value="1000">1.000 $</option><option value="10000">10.000 $</option></select>
       </label>
@@ -141,7 +142,7 @@ footer p { margin: 0; }
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
   const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball" };
-  const S = { sport: "all", pre: false, min: 100, sort: "stake", pos: new Map(), trades: new Map(), events: new Map(),
+  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", pos: new Map(), trades: new Map(), events: new Map(),
               loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
 
   const $ = (id) => document.getElementById(id);
@@ -179,6 +180,8 @@ footer p { margin: 0; }
   // outrights ("epl-2027-champion") are left out.
   const isMatch = (slug) => /-\d{4}-\d{2}-\d{2}(?:-more-markets)?$/.test(String(slug || ""));
   const passSport = (slug) => { const s = sportOf(slug); return s !== "other" && isMatch(slug) && (S.sport === "all" || S.sport === s); };
+  // A wallet counts as a pro only in the sport where it meets every criterion.
+  const provenIn = (w, slug) => !S.own || Boolean(w.ranks[sportOf(slug)]);
   const shortName = (w) => {
     const n = w.name || "";
     return !n || (n.startsWith("0x") && (n.includes("-") || n.length >= 40)) ? `${w.wallet.slice(0, 6)}…${w.wallet.slice(-4)}` : n;
@@ -319,7 +322,7 @@ footer p { margin: 0; }
     const groups = new Map(), now = Date.now();
     for (const w of D.wallets) {
       for (const p of S.pos.get(w.wallet) || []) {
-        if (!passSport(p.eventSlug) || +p.initialValue < S.min) continue;
+        if (!passSport(p.eventSlug) || +p.initialValue < S.min || !provenIn(w, p.eventSlug)) continue;
         const key = baseSlug(p.eventSlug), ev = S.events.get(p.eventSlug) || S.events.get(key) || {};
         if (ev.start && ev.start < now - 24 * 3600e3) continue;   // long over, just not settled
         if (S.pre && (!ev.start || ev.start <= now)) continue;
@@ -386,7 +389,7 @@ footer p { margin: 0; }
     const since = Date.now() / 1000 - FEED_HOURS * 3600, rows = [];
     for (const w of D.wallets) {
       for (const b of bets(w)) {
-        if (b.last < since || !passSport(b.t.eventSlug) || b.cost < S.min) continue;
+        if (b.last < since || !passSport(b.t.eventSlug) || b.cost < S.min || !provenIn(b.w, b.t.eventSlug)) continue;
         const ev = S.events.get(b.t.eventSlug) || {};
         const phase = ev.start ? (b.first * 1000 < ev.start ? "pre" : "live") : "";
         if (S.pre && phase !== "pre") continue;
@@ -423,7 +426,7 @@ footer p { margin: 0; }
     const sports = Object.keys(D.sports);
     const rankIn = (w) => (S.sport !== "all" ? w.ranks[S.sport] : Math.min(...Object.values(w.ranks)));
     const rows = D.wallets.filter((w) => S.sport === "all" || w.ranks[S.sport]).map((w) => {
-      const ps = (S.pos.get(w.wallet) || []).filter((p) => passSport(p.eventSlug));
+      const ps = (S.pos.get(w.wallet) || []).filter((p) => passSport(p.eventSlug) && provenIn(w, p.eventSlug));
       const last = (S.trades.get(w.wallet) || []).reduce((m, t) => Math.max(m, t.timestamp * 1000), 0);
       return { w, rank: rankIn(w), open: ps.reduce((a, p) => a + (+p.initialValue || 0), 0), n: ps.length, last };
     }).sort((a, b) => a.rank - b.rank);
@@ -471,17 +474,19 @@ footer p { margin: 0; }
     const saved = JSON.parse(localStorage.getItem("profi-radar") || "{}");
     if (["all", "tennis", "soccer", "basketball"].includes(saved.sport)) S.sport = saved.sport;
     if (typeof saved.pre === "boolean") S.pre = saved.pre;
+    if (typeof saved.own === "boolean") S.own = saved.own;
     if ([0, 100, 1000, 10000].includes(saved.min)) S.min = saved.min;
     if (["stake", "start"].includes(saved.sort)) S.sort = saved.sort;
   } catch (e) { /* defaults */ }
-  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, min: S.min, sort: S.sort })); } catch (e) { /* not kept */ } };
+  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, own: S.own, min: S.min, sort: S.sort })); } catch (e) { /* not kept */ } };
   const chips = document.querySelectorAll(".chip[data-sport]");
   const syncControls = () => {
     chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.sport === S.sport)));
-    $("pre").checked = S.pre; $("min").value = String(S.min); $("sort").value = S.sort;
+    $("pre").checked = S.pre; $("own").checked = S.own; $("min").value = String(S.min); $("sort").value = S.sort;
   };
   chips.forEach((c) => c.addEventListener("click", () => { S.sport = c.dataset.sport; syncControls(); save(); render(); }));
   $("pre").addEventListener("change", (e) => { S.pre = e.target.checked; save(); render(); });
+  $("own").addEventListener("change", (e) => { S.own = e.target.checked; save(); render(); });
   $("min").addEventListener("change", (e) => { S.min = Number(e.target.value); save(); render(); });
   $("sort").addEventListener("change", (e) => { S.sort = e.target.value; save(); renderConsensus(); });
   $("reload").addEventListener("click", () => refresh());
