@@ -102,11 +102,15 @@ DATED_SLUG = re.compile(r"-\d{4}-\d{2}-\d{2}$")
 TENNIS_PREFIXES = ("atp", "wta", "itf")
 
 # Gamma tags whose decided moneylines are walked. Football is one tag over
-# all leagues; basketball's leagues are spread over several.
+# all leagues; basketball's leagues are spread over several. American
+# football: NFL, college football and the tag CFL and UFL share; baseball:
+# MLB and the tag of every other league (NPB, KBO, CPBL, winter leagues).
 SPORT_TAGS = {
     "tennis": (864,),
     "soccer": (100350,),
     "basketball": (28, 745, 100149, 102669, 100254, 101178),
+    "football": (450, 100351, 1186),
+    "baseball": (100381, 678),
 }
 
 
@@ -168,12 +172,14 @@ def _iso(ts: float) -> str:
 
 def closed_markets(days: int = 30, tours=("atp", "wta"), sport: str = "tennis", http=requests,
                    sleep=time.sleep, now: float | None = None, min_volume: float = 0.0,
-                   window_days: float = 1.0, lead_days: float = 16.0) -> list[dict]:
+                   window_days: float = 1.0, ahead_days: float = 8.0) -> list[dict]:
     """Decided moneyline markets whose match started in the last `days`
     days; `tours` keeps tennis to some circuits (None keeps all).
 
-    Gamma refuses offsets past about 2000, so the markets' creation dates
-    are walked one window at a time."""
+    A moneyline's end date is its start or a week after it, while it can
+    be listed weeks ahead (the NFL season in August), so the end dates are
+    walked from the window's start to `ahead_days` past now, one window at
+    a time: Gamma refuses offsets past about 2000."""
     now = now or time.time()
     since = now - days * 86400
     out, seen = [], set()
@@ -181,14 +187,14 @@ def closed_markets(days: int = 30, tours=("atp", "wta"), sport: str = "tennis", 
     if min_volume:
         params["volume_num_min"] = min_volume
     for tag in SPORT_TAGS[sport]:
-        lo = since - lead_days * 86400   # top football opens ~13 days ahead, NBA ~7
-        while lo < now:
-            hi = min(lo + window_days * 86400, now)
+        lo, last = since, now + ahead_days * 86400
+        while lo < last:
+            hi = min(lo + window_days * 86400, last)
             for offset in range(0, 2000, 100):
                 try:
                     batch = _get(http, f"{GAMMA_API}/markets",
                                  {**params, "tag_id": tag, "offset": offset,
-                                  "start_date_min": _iso(lo), "start_date_max": _iso(hi)}, sleep=sleep)
+                                  "end_date_min": _iso(lo), "end_date_max": _iso(hi)}, sleep=sleep)
                 except requests.HTTPError as exc:
                     if getattr(exc.response, "status_code", None) == 422:
                         break

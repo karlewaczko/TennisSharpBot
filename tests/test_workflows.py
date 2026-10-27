@@ -69,6 +69,7 @@ def test_rankings_refresh_daily_and_rebuild_the_live_page():
     assert _cron("pm-traders.yml") == ["23 4 * * *"]
     daily = (WF / "pm-traders.yml").read_text()
     assert "update_pm_traders.py --days 30" in daily               # tennis
-    assert "--sport soccer" in daily and "--sport basketball" in daily
+    for sport in ("soccer", "basketball", "football", "baseball"):
+        assert f"--sport {sport}" in daily
     assert "scripts/build_pros_live.py" in daily
     assert "update_pm_traders" not in (WF / "update-data.yml").read_text()

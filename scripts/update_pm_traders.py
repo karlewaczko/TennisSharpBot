@@ -56,14 +56,18 @@ def gap_summary(path) -> dict:
     return out
 
 
-DEFAULT_MIN_VOLUME = {"tennis": 1000.0, "soccer": 10000.0, "basketball": 5000.0}
+DEFAULT_MIN_VOLUME = {"tennis": 1000.0, "soccer": 10000.0, "basketball": 5000.0, "football": 5000.0,
+                      "baseball": 5000.0}
+# Baseball's major league ends in October: sixty days keep a month of the
+# regular season in view through the play-offs.
+DEFAULT_DAYS = {"baseball": 60}
 WORKERS = 3
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sport", choices=sorted(pt.SPORT_TAGS), default="tennis")
-    ap.add_argument("--days", type=int, default=30)
+    ap.add_argument("--days", type=int, help="window in days (default 30, baseball 60)")
     ap.add_argument("--tours", default="atp,wta", help="tennis only: the circuits to rank")
     ap.add_argument("--min-volume", type=float,
                     help="skip markets that traded less than this many dollars "
@@ -74,6 +78,7 @@ def main() -> None:
     tours = (tuple(t.strip() for t in args.tours.split(",") if t.strip())
              if args.sport == "tennis" else None)
     min_volume = DEFAULT_MIN_VOLUME[args.sport] if args.min_volume is None else args.min_volume
+    args.days = args.days or DEFAULT_DAYS.get(args.sport, 30)
 
     t0 = time.time()
     markets = pt.closed_markets(days=args.days, tours=tours, sport=args.sport, min_volume=min_volume)

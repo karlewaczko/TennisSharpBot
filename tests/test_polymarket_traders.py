@@ -70,15 +70,17 @@ def test_closed_markets_walks_creation_windows_and_tags():
                           _market("wta-c-d-2026-12-06", ["C", "D"], ["0", "1"], when(now - 40 * 86400), "0x3", 5000),
                           _market("nba-mia-cha-2027-01-15", ["Heat", "Hornets"], ["0", "1"], when(now - 3600), "0x4", 5000)])
 
-    got = pt.closed_markets(days=2, http=Http(), sleep=lambda s: None, now=now, lead_days=3)
+    got = pt.closed_markets(days=2, http=Http(), sleep=lambda s: None, now=now, ahead_days=3)
     assert [r["condition_id"] for r in got] == ["0x1"]     # ITF, too old and other sports are dropped
     assert {a["tag_id"] for a in asked} == set(pt.SPORT_TAGS["tennis"])
     assert {a["sports_market_types"] for a in asked} == {"moneyline"}
-    assert len(asked) == 5                                  # two days plus three of lead, a day at a time
+    assert len(asked) == 5                                  # two days back, three ahead, a day at a time
+    assert asked[0]["end_date_min"] == pt._iso(now - 2 * 86400)          # walked by end date, not listing date
     asked.clear()
     assert pt.closed_markets(days=2, http=Http(), sleep=lambda s: None, now=now, min_volume=10_000) == []
     assert asked[0]["volume_num_min"] == 10_000
     got = pt.closed_markets(days=2, sport="basketball", tours=None, http=Http(), sleep=lambda s: None, now=now)
+    assert set(pt.SPORT_TAGS) >= {"football", "baseball"}
     assert [r["condition_id"] for r in got] == ["0x1", "0x2", "0x4"]   # once, though asked under every tag
 
 

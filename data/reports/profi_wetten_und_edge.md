@@ -462,6 +462,34 @@ Die PolyInsider-Seiten werden höflich gelesen: eine Seite alle zwei Sekunden, m
 
 Zwei der neuen Konten setzten auf dasselbe Challenger-Match in Lissabon, beide auf den Außenseiter. Das ist ein Muster und kein Beweis, wie PolyInsider selbst schreibt. Für diese Wallets taugt keine Rangliste, denn sie haben nur je eine Wette. Interessant wäre ein Alarm, sobald ein frisches Wallet auf ein anstehendes Match setzt; die Radar-Links führen zu PolyInsiders Marktseiten, wo solche Wetten erscheinen.
 
+## 4g. American Football und Baseball, frische Wallets (27. Oktober 2026)
+
+**Neue Sportarten.** Die Wallet-Rangliste deckt jetzt fünf Sportarten ab. Neu sind American Football (NFL, College Football, CFL/UFL; 30 Tage) und Baseball (MLB, NPB, KBO, CPBL und Winterligen; 60 Tage, damit die reguläre MLB-Saison vor den Play-offs im Blick bleibt). Gesucht wird jetzt nach dem Spieldatum statt nach dem Datum, an dem der Markt angelegt wurde. NFL-Märkte stehen schon Wochen vorher bereit und wären sonst übersehen worden.
+
+| | American Football | Baseball |
+|---|---:|---:|
+| Spiele | 381 | 645 |
+| Wallets | 18.063 | 30.918 |
+| Anteil live | 70 % | 63 % |
+| Rangliste | 101 | 285 |
+| signifikant nach Gebühren | 1 | 2 |
+| alle fünf Kriterien | **1** | **1** |
+
+Diese beiden erfüllen alle fünf Kriterien:
+
+- **American Football: BreakTheBank** (`0xf0318c32136c2db7fec88b84869aee6a1106c80c`)
+  - 38 Spiele, 10,8 Mio. $ Einsatz, +5,06 Mio. $ in 30 Tagen
+  - CLV nach Gebühren +0,41 Cent (t 3,5)
+  - insgesamt +12,1 Mio. $ laut Polymarket und laut PolyInsider
+  - Er führt auch PolyInsiders Whale-Liste an. Im Basketball reicht sein Vorsprung dagegen nicht für einen Nachweis.
+- **Baseball: forecastication4** (`0x885ffdf360e5b0b6e6acb963fb3f8ba2344c8ed9`)
+  - 47 Spiele, 29.500 $ Einsatz, +31.800 $
+  - CLV nach Gebühren +1,83 Cent (t 3,5); setzt fast nur über eigene Kaufangebote, zahlt also kaum Gebühren
+  - insgesamt +112.000 $
+- **Knapp gescheitert:** Der Baseball-Erste nach t-Wert, lpcapital1 (t 4,1), fällt raus, weil er auf Polymarket insgesamt 203.000 $ im Minus liegt.
+
+**Frische Wallets im Radar.** Ein neuer Bereich zeigt live neue Konten, die mindestens 10.000 $ auf eine Seite setzen (umschaltbar auf 25.000, 50.000 oder 100.000 $). Als frisch gilt ein Konto, dessen erster Polymarket-Trade weniger als 24 Stunden vor der Wette lag und das nur diesen einen Markt gehandelt hat, wie bei PolyInsider. Die Daten kommen direkt aus Polymarkets Trade-Feed: alle Käufe ab 2.500 $ der letzten 24 Stunden, je Konto und Seite zusammengezählt. Zum Start am 27. Oktober abends gab es 504 Konten mit mindestens 10.000 $ auf einer Seite. Nur 11 davon hatten einen einzigen Markt; 9 dieser Einsätze kamen von frischen Konten, alle auf die Wahl in Israel und keiner im Sport.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |
