@@ -174,6 +174,8 @@ def test_leaderboard_needs_enough_markets_and_stake_and_ranks_by_t():
     assert lb.iloc[1]["two_sided_share"] == 1.0
     assert pt.leaderboard(pd.DataFrame()).empty
     assert "maker" in pt.leaderboard(pd.DataFrame(rows), min_directional=0)["wallet"].tolist()
+    every = pt.wallet_table(pd.DataFrame(rows))                         # the unfiltered figures behind it
+    assert set(every["wallet"]) == {"steady", "noisy", "maker", "lucky"} and "rank" not in every
 
 
 def test_skill_persistence_and_market_structure():

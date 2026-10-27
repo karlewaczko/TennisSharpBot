@@ -32,21 +32,29 @@ def _ranking(path, rows):
                    "roi": 0.02, "clv_mean": 0.012, "clv_t": 4.2 - i} for i, (n, w) in enumerate(rows)]).to_csv(path, index=False)
 
 
-def test_a_wallet_ranked_in_two_sports_is_watched_once(live, tmp_path, monkeypatch):
+def test_every_watched_account_gets_its_clv_in_each_sport(live, tmp_path, monkeypatch):
     monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
     monkeypatch.setattr(config, "REPORTS_DIR", tmp_path)
-    _ranking(tmp_path / "pm_tennis_traders.csv", [("Ace", "0xa"), ("Both", "0xb")])
+    monkeypatch.setattr(live, "STATS_DIR", tmp_path / "raw")
+    monkeypatch.setattr(live, "WATCHED", tmp_path / "pm_watched_clv.csv")
+    _ranking(tmp_path / "pm_tennis_traders.csv", [("Ace", "0xa"), ("Both", "0xb"), ("Deep", "0xd")])
     _ranking(tmp_path / "pm_basketball_traders.csv", [("Both", "0xb"), ("", "0xc")])
     (tmp_path / "pm_basketball_traders.json").write_text(json.dumps({"measured_at": "2026-10-26T00:00:00+00:00"}))
+    (tmp_path / "raw").mkdir()
+    pd.DataFrame([{"wallet": "0xc", "pre_markets": 14, "stake": 900.0, "pnl": -20.0, "clv_mean": -0.003, "clv_t": -0.4}]
+                 ).to_csv(tmp_path / "raw" / "pm_tennis_wallet_stats.csv", index=False)
     data = live.collect(top_n=2)
     assert set(data["sports"]) == {"tennis", "basketball"}               # no football ranking yet
-    assert data["sports"]["basketball"]["measured_at"].startswith("2026-10-26")
     by = {w["wallet"]: w for w in data["wallets"]}
-    assert len(by) == 3 and by["0xb"]["ranks"] == {"tennis": {"rank": 2, "clv": 0.012, "t": 3.2, "matches": 30,
-                                                              "stake": 5000, "pnl": 100},
-                                                   "basketball": {"rank": 1, "clv": 0.012, "t": 4.2, "matches": 30,
-                                                                  "stake": 5000, "pnl": 100}}
-    assert by["0xc"]["name"] == ""
+    assert set(by) == {"0xa", "0xb", "0xc"}                             # 0xd ranks third: not watched
+    assert by["0xb"]["ranks"] == {"tennis": 2, "basketball": 1}
+    assert by["0xb"]["clv"]["tennis"] == {"rank": 2, "clv": 0.012, "t": 3.2, "matches": 30, "stake": 5000, "pnl": 100}
+    assert by["0xc"]["clv"]["tennis"] == {"rank": None, "clv": -0.003, "t": -0.4, "matches": 14, "stake": 900, "pnl": -20}
+    assert "basketball" not in by["0xa"]["clv"]                          # too few basketball matches
+    live.write_watched(data)
+    (tmp_path / "raw" / "pm_tennis_wallet_stats.csv").unlink()          # a rebuild without this run's tables
+    again = {w["wallet"]: w for w in live.collect(top_n=2)["wallets"]}
+    assert again["0xc"]["clv"]["tennis"] == by["0xc"]["clv"]["tennis"]  # falls back to what the page showed
 
 
 def test_league_codes_map_to_their_sport(live):

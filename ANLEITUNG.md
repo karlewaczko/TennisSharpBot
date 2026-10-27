@@ -83,7 +83,7 @@ Einmalig einschalten:
 2. Bei „Source“ **Deploy from a branch** wählen.
 3. Branch **main** und Ordner **/docs** wählen, dann **Save**.
 
-Nach ein bis zwei Minuten ist die Seite erreichbar. Die Liste der Profile wird jeden Dienstag (Tennis) und Mittwoch (Fußball, Basketball) neu berechnet.
+Nach ein bis zwei Minuten ist die Seite erreichbar. Bei jedem Profil steht seine CLV je Sportart: um wie viele Cent je Anteil seine Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs vor dem Start, über die letzten 30 Tage. Die Profil-Liste und die CLV-Werte werden jeden Morgen neu berechnet.
 
 ## Was du am Ende hast
 

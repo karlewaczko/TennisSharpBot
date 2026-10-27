@@ -1,13 +1,13 @@
-name: Weekly Polymarket rankings (Wednesday) - football and basketball
+name: Daily Polymarket rankings - tennis, football and basketball
 
-# The tennis ranking runs in the Tuesday job. Football (all leagues) and
-# basketball take about 75 minutes together, so they get their own run a day
-# later, before the first dashboard run of the morning; on a public
-# repository the minutes cost nothing. Rebuilds docs/profis.html, the live
-# page of what the ranked wallets bet.
+# Ranks the wallets of all three sports by closing-line value over the last
+# 30 days and rebuilds docs/profis.html, the live page of what the ranked
+# wallets bet, with each account's CLV per sport. About two hours; on a
+# public repository the minutes cost nothing. 04:23 UTC: after the 03:17
+# dashboard run and done before the 06:41 Tuesday job and the 09:17 run.
 on:
   schedule:
-    - cron: "23 4 * * 3"
+    - cron: "23 4 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -22,7 +22,7 @@ concurrency:
 jobs:
   rank:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     steps:
       # The branch, not the triggering commit: a run that waited in the
       # concurrency queue must start from what the previous run pushed.
@@ -38,7 +38,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Tennis wallets and prediction-market sharpness
+        timeout-minutes: 60
+        run: python scripts/update_pm_traders.py --days 30
+
       - name: Football wallets
+        if: ${{ !cancelled() }}
         timeout-minutes: 110
         run: python scripts/update_pm_traders.py --sport soccer --days 30
 
@@ -61,7 +66,7 @@ jobs:
             echo "No ranking changes to commit."
             exit 0
           fi
-          git commit -m "Weekly Polymarket rankings ($(date -u +%Y-%m-%d)): football and basketball"
+          git commit -m "Daily Polymarket rankings ($(date -u +%Y-%m-%d)): tennis, football, basketball"
           for attempt in 1 2 3; do
             if git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push; then
               exit 0
