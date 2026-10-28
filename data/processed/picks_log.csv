@@ -134,3 +134,6 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,William Hill,book,value,2.1,0.875,0.8375,Kalshi Mid
 2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,bet-at-home,book,value,2.15,0.875,0.8812,Kalshi Mid
 2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,bwin,book,value,2.1,0.875,0.8375,Kalshi Mid
+2026-10-28T09:45:24+00:00,3362391,2026-10-29,Tokyo,Rybakina E.,Polymarket,prediction,value,1.142,0.8791,0.004,Pinnacle
+2026-10-28T09:45:24+00:00,3361235,2026-10-28,Poitiers ITF,Leonard M.,Kalshi,prediction,value,1.362,0.7343,0.0002,Pinnacle
+2026-10-28T09:45:24+00:00,3362283,2026-10-28,Toronto ITF,Arseneault A.,Polymarket,prediction,value,1.81,0.5554,0.0054,Betfair
