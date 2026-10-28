@@ -787,3 +787,37 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-10-27T15:25:58+00:00,3361673,2026-10-27,Neuquén ITF,ITF,Markus C.,Polymarket,0.245,0.2417,Pinnacle,0.03,2477.1737
 2026-10-27T15:25:58+00:00,3361673,2026-10-27,Neuquén ITF,ITF,Zornada E.,Kalshi,0.75,0.7583,Pinnacle,0.06,129.69250000000002
 2026-10-27T15:25:58+00:00,3361673,2026-10-27,Neuquén ITF,ITF,Markus C.,Kalshi,0.235,0.2417,Pinnacle,0.03,129.69250000000002
+2026-10-28T00:34:45+00:00,3362309,2026-10-28,Tokyo,Tour,Bucsa C.,Polymarket,0.455,0.4527,Pinnacle,0.01,139529.4775
+2026-10-28T00:34:45+00:00,3362309,2026-10-28,Tokyo,Tour,Joint M.,Polymarket,0.545,0.5473,Pinnacle,0.01,139529.4775
+2026-10-28T00:34:45+00:00,3362309,2026-10-28,Tokyo,Tour,Bucsa C.,Kalshi,0.455,0.4527,Pinnacle,0.01,26681.6617
+2026-10-28T00:34:45+00:00,3362309,2026-10-28,Tokyo,Tour,Joint M.,Kalshi,0.545,0.5473,Pinnacle,0.01,26681.6617
+2026-10-28T00:34:45+00:00,3360883,2026-10-28,Guangzhou,Tour,Badosa P.,Kalshi,0.705,0.7144,Pinnacle,0.01,8166.492299999999
+2026-10-28T00:34:45+00:00,3360883,2026-10-28,Guangzhou,Tour,Kraus S.,Kalshi,0.295,0.2856,Pinnacle,0.01,8166.492299999999
+2026-10-28T00:34:45+00:00,3362617,2026-10-28,Courmayeur WTA,Tour,Elizara Yaneva,Polymarket,0.615,0.6344,Pinnacle,0.01,16814.9637
+2026-10-28T00:34:45+00:00,3362617,2026-10-28,Courmayeur WTA,Tour,Oksana Selekhmeteva,Polymarket,0.385,0.3656,Pinnacle,0.01,16814.9637
+2026-10-28T00:34:45+00:00,3362427,2026-10-28,Courmayeur WTA,Tour,Lucrezia Stefanini,Polymarket,0.69,0.6925,Betfair,0.02,2184.1265
+2026-10-28T00:34:45+00:00,3362427,2026-10-28,Courmayeur WTA,Tour,Ayla Aksu,Polymarket,0.31,0.3075,Betfair,0.02,2184.1265
+2026-10-28T00:34:45+00:00,3362565,2026-10-28,Basel,Tour,Hurkacz H.,Polymarket,0.635,0.6324,Betfair,0.01,42152.6907
+2026-10-28T00:34:45+00:00,3362565,2026-10-28,Basel,Tour,Rune H.,Polymarket,0.365,0.3676,Betfair,0.01,42152.6907
+2026-10-28T00:34:45+00:00,3362565,2026-10-28,Basel,Tour,Hurkacz H.,Kalshi,0.625,0.6324,Betfair,0.01,12596.706
+2026-10-28T00:34:45+00:00,3362565,2026-10-28,Basel,Tour,Rune H.,Kalshi,0.37,0.3676,Betfair,0.02,12596.706
+2026-10-28T00:34:45+00:00,3362391,2026-10-29,Tokyo,Tour,Rybakina E.,Polymarket,0.87,0.8739,Betfair,0.02,6024.5882
+2026-10-28T00:34:45+00:00,3362391,2026-10-29,Tokyo,Tour,Putintseva Y.,Polymarket,0.13,0.1261,Betfair,0.02,6024.5882
+2026-10-28T00:34:45+00:00,3362597,2026-10-29,Vienna,Tour,Paul T.,Polymarket,0.775,0.7636,Betfair,0.07,2927.2533
+2026-10-28T00:34:45+00:00,3362597,2026-10-29,Vienna,Tour,Darderi L.,Polymarket,0.225,0.2364,Betfair,0.07,2927.2533
+2026-10-28T00:34:45+00:00,3360873,2026-10-28,Seoul challenger,Challenger,Zhizhen Zhang,Polymarket,0.335,0.3288,Pinnacle,0.01,46983.9704
+2026-10-28T00:34:45+00:00,3360873,2026-10-28,Seoul challenger,Challenger,Rei Sakamoto,Polymarket,0.665,0.6712,Pinnacle,0.01,46983.9704
+2026-10-28T00:34:45+00:00,3360873,2026-10-28,Seoul challenger,Challenger,Zhizhen Zhang,Kalshi,0.325,0.3288,Pinnacle,0.01,326.67
+2026-10-28T00:34:45+00:00,3360873,2026-10-28,Seoul challenger,Challenger,Rei Sakamoto,Kalshi,0.665,0.6712,Pinnacle,0.01,326.67
+2026-10-28T00:34:45+00:00,3362359,2026-10-28,Ningbo challenger,Challenger,Yuta Shimizu,Polymarket,0.455,0.4551,Pinnacle,0.01,30334.5308
+2026-10-28T00:34:45+00:00,3362359,2026-10-28,Ningbo challenger,Challenger,Yu Hsiou Hsu,Polymarket,0.545,0.5449,Pinnacle,0.01,30334.5308
+2026-10-28T00:34:45+00:00,3362359,2026-10-28,Ningbo challenger,Challenger,Yuta Shimizu,Kalshi,0.455,0.4551,Pinnacle,0.01,1782.7445
+2026-10-28T00:34:45+00:00,3362359,2026-10-28,Ningbo challenger,Challenger,Yu Hsiou Hsu,Kalshi,0.54,0.5449,Pinnacle,0.02,1782.7445
+2026-10-28T00:34:45+00:00,3362355,2026-10-29,Ningbo challenger,Challenger,Petr Bar Biryukov,Polymarket,0.345,0.348,Betfair,0.03,8817.9412
+2026-10-28T00:34:45+00:00,3362355,2026-10-29,Ningbo challenger,Challenger,Fajing Sun,Polymarket,0.655,0.652,Betfair,0.03,8817.9412
+2026-10-28T00:34:45+00:00,3362567,2026-10-29,Ningbo challenger,Challenger,Tristan Schoolkate,Polymarket,0.63,0.6261,Betfair,0.06,932.5846
+2026-10-28T00:34:45+00:00,3362567,2026-10-29,Ningbo challenger,Challenger,Jie Cui,Polymarket,0.37,0.3739,Betfair,0.06,932.5846
+2026-10-28T00:34:45+00:00,3361547,2026-10-28,Glasgow 2 ITF,ITF,Vedder E.,Polymarket,0.225,0.2397,Betfair,0.07,208.8908
+2026-10-28T00:34:45+00:00,3361547,2026-10-28,Glasgow 2 ITF,ITF,Klugman H.,Polymarket,0.775,0.7603,Betfair,0.07,208.8908
+2026-10-28T00:34:45+00:00,3361547,2026-10-28,Glasgow 2 ITF,ITF,Vedder E.,Kalshi,0.23,0.2397,Betfair,0.04,67.75489999999999
+2026-10-28T00:34:45+00:00,3361547,2026-10-28,Glasgow 2 ITF,ITF,Klugman H.,Kalshi,0.76,0.7603,Betfair,0.06,67.75489999999999
