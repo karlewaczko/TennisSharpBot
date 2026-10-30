@@ -23,6 +23,14 @@ odds history (current odds plus every recorded change, oldest one marked
 inside table cells, so `fetch_match_odds_history()` depth-counts
 `<table>`/`</table>` tags to isolate it rather than using a non-greedy regex
 (which would stop at the first nested `</tr>`/`</table>` it hit).
+
+Two things about that history matter for any timing. Its times are on the
+site's own clock, Central European (Prague) time, whatever `timezone=` says:
+the parameter moves the schedule and the page header but not these entries
+-- a record stamped 00:45 appeared on a page polled at 23:51 UTC in late
+October. `odds_times_utc()` converts them. And the full history lasts only
+about a week: after that each bookmaker keeps just its opening and its
+closing price, so only recent matches can be timed minute by minute.
 """
 from __future__ import annotations
 
@@ -34,6 +42,7 @@ import pandas as pd
 import requests
 
 BASE_URL = "https://www.tennisexplorer.com"
+ODDS_CLOCK = "Europe/Prague"
 _HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; TennisSharpBot research script)"}
 
 _TOURNAMENT_RE = re.compile(r'<tr class="head flags">.*?<a href="([^"]+)"[^>]*>.*?<span[^>]*>&nbsp;</span>\s*'
@@ -324,6 +333,16 @@ def parse_odds_history_html(html: str, reference_date: dt.date | None = None) ->
 
     df = pd.DataFrame(rows)
     return df.sort_values(["bookmaker", "player", "timestamp"]).reset_index(drop=True) if not df.empty else df
+
+
+def odds_times_utc(stamps) -> pd.DatetimeIndex:
+    """The odds history's naive times (Prague clock) as UTC.
+
+    The hour the clocks go back exists twice and cannot be placed: NaT.
+    """
+    return (pd.DatetimeIndex(pd.to_datetime(stamps))
+            .tz_localize(ODDS_CLOCK, ambiguous="NaT", nonexistent="shift_forward")
+            .tz_convert("UTC"))
 
 
 # The match-detail header, e.g.

@@ -35,6 +35,11 @@ und reproduzierbar; alles Recherchierte ist mit Quelle verlinkt.
    bleibt, sind die Stunden dazwischen: acht Soft-Seiten im Plus auf der
    Karte vom 23. Oktober, eine Arbitrage von 1 % mit Polymarket-Bein. Zahlen
    in Abschnitt 4.
+6. **Polymarket ist nicht schneller als der scharfe Markt** (Abschnitt 4i):
+   Bei großen Tennis-Sprüngen vor dem Start bewegt es sich mit den
+   schnellsten Buchmachern, im Median eine Minute auseinander. Den alten
+   Kurs langsamer Buchmacher nach einem Sprung zu nehmen, schlug Pinnacles
+   Schlusskurs im Schnitt nicht.
 
 ## 1. Wie Profis wetten
 
@@ -509,12 +514,67 @@ Diese beiden erfüllen alle fünf Kriterien:
 - **Grenzen.** Die Auflösung beträgt Stunden, nicht Minuten. Ob Polymarket bei einer einzelnen Nachricht (Verletzung, Aufgabe) Sekunden oder Minuten schneller ist, lässt sich damit nicht sagen. Rauschen im Mittelkurs lässt außerdem die verrauschte Seite etwas mehr „zurückkehren“.
 - **Für Wetten bei Pinnacle über BetInAsia.** Eine Abweichung Polymarkets ist allenfalls ein Hinweis: Pinnacle schließt im Schnitt nur ein Fünftel davon, und die Marge liegt höher. Belastbar wäre das erst mit dichteren Pinnacle-Daten.
 
+## 4i. Kurssprünge vor Spielbeginn: Ist Polymarket schneller als Pinnacle? (30. Oktober 2026)
+
+Die Frage: Passt Polymarket den Kurs bei großen Bewegungen von mehreren Prozentpunkten, etwa nach einer Verletzungsnachricht, früher an als Pinnacle?
+
+**Messung.** Untersucht wurden alle Polymarket-Siegwetten im Tennis ab 2.000 $ Volumen, deren Match in den sechs Tagen bis 30. Oktober begann. Jede wurde dem Quotenverlauf bei TennisExplorer zugeordnet, also Pinnacle und 14 weiteren Buchmachern. 173 Matches haben beide Verläufe.
+
+- Ein großer Sprung: mindestens 3 Punkte binnen 30 Minuten vor dem Start, und der Kurs hält das.
+- Je Sprung zählt, wann jeder Markt die Hälfte seiner Bewegung erreicht hatte. Bezugspunkte sind sein Stand eine Stunde vorher und drei Stunden danach.
+- Skript: `scripts/study_pm_leadlag.py`, Ergebnis: `data/reports/pm_leadlag.json`.
+
+**Drei Fallstricke bei TennisExplorer.** Alle drei sind im Skript berücksichtigt.
+
+1. **Die Zeiten im Quotenverlauf sind Prager Zeit, nicht UTC.** Der Parameter `timezone=0` verschiebt nur Spielplan und Kopfzeile. Beleg: Ein Eintrag mit dem Stempel 00:45 stand auf einer Seite, die um 23:51 UTC abgerufen wurde. Ohne Korrektur sieht Polymarket eine Stunde schneller aus, als es ist. `tennisexplorer.odds_times_utc()` rechnet jetzt um.
+2. **Nach etwa einer Woche löscht TennisExplorer die Zwischenstände.** Je Buchmacher bleiben dann nur Eröffnungs- und Schlusskurs. Ein erster Versuch über 30 Tage taugte deshalb nicht zur Zeitmessung. Der Linienstudie (`study_line_movement.py`) schadet das nicht, sie braucht nur diese beiden Kurse.
+3. **TennisExplorer zeichnet Pinnacle verspätet auf.** Pinnacles Eintrag kam im Median 30 Minuten nach dem ersten anderen Buchmacher, in 90 % der Sprünge mehr als 5 Minuten danach. In Wirklichkeit kopieren die Buchmacher Pinnacle, nicht umgekehrt. Pinnacles Zeit im Verlauf taugt deshalb nicht als Messlatte. Verglichen wird mit den Buchmachern als Gruppe.
+
+**Ergebnis: 22 große Sprünge in 173 Matches.**
+
+| Polymarket gegen | Median | Polymarket früher (> 5 min) | gleichzeitig (± 5 min) | Polymarket später |
+|---|---:|---:|---:|---:|
+| den schnellsten Buchmacher | 1 min später | 15 % | 50 % | 35 % |
+| den mittleren Buchmacher | 8,5 min früher | 65 % | 25 % | 10 % |
+| Pinnacle laut TennisExplorer | 19,5 min früher | 80 % | 5 % | 15 % |
+
+Die letzte Zeile ist der Aufzeichnungsfehler aus Punkt 3, kein echter Vorsprung.
+
+Minuten hinter Polymarket im Median, so wie TennisExplorer sie aufzeichnet:
+
+| Abstand | Buchmacher |
+|---|---|
+| bis 3 min | William Hill, Betway, BetVictor, bet365 |
+| 6 bis 7 min | Coral, Interwetten, Ladbrokes, bwin, 10Bet |
+| 9 bis 13 min | 1xBet, Betsson, bet-at-home |
+
+In 20 der 22 Sprünge zogen Buchmacher mit. In 2 bewegte sich nur Polymarket und hielt den Kurs bis zum Start.
+
+**Lässt sich das ausnutzen?** Geprüft wurde, was der alte Kurs eine Minute nach Polymarkets Sprung wert war. Maßstab ist Pinnacles fairer Schlusskurs.
+
+- Bei Pinnacle laut TennisExplorer: +2,0 % im Schnitt (Median +1,0 %, 22 Fälle). Wegen der verspäteten Aufzeichnung war dieser Kurs aber vermutlich gar nicht mehr zu haben.
+- Bei den übrigen Buchmachern meist negativ, im Schnitt −1 bis −5 %. Am besten schnitten Betsson ab (+1,1 %, Median +0,7 %, 16 Fälle) und bet365 (+0,8 %, Median −1,1 %, 11 Fälle). Die Marge frisst den Vorsprung von ein paar Minuten auf.
+
+**Wie oft springt der Kurs?** Grundlage sind die Polymarket-Minutenkurse aus 30 Tagen, 312 Matches.
+
+- Ein Drittel (Sprünge ab 3 Punkten) bis zwei Drittel (ab 10 Punkten) fallen in die ersten zwei Stunden nach Markteröffnung. Das ist Preisfindung, keine Nachricht.
+- Lässt man diese Phase weg und zählt nur Sprünge, die eine Stunde halten, kommen je Match 0,6 Sprünge ab 3 Punkten, 0,21 ab 5 und 0,08 ab 10.
+- Deshalb blendet der neue Alarm im Profi-Radar die ersten zwei Stunden aus und steht auf 5 Punkten.
+
+**Fazit.**
+
+- **Polymarket ist bei großen Tennis-Bewegungen vor dem Start nicht messbar schneller als der scharfe Markt.** Es bewegt sich mit den schnellsten Buchmachern, im Median eine Minute auseinander. Einen Vorsprung vor Pinnacle selbst können die freien Daten nicht zeigen, eher das Gegenteil: Abschnitt 4h fand über Stunden, dass Pinnacle die Preisfindung führt.
+- **Gegenüber langsamen Buchmachern liegt Polymarket einige Minuten vorn.** Deren alter Kurs schlug Pinnacles Schlusskurs im Schnitt trotzdem nicht.
+- **Mannschaftssportarten.** Für den Ausfall wichtiger Spieler gibt es von hier keine freien Minutendaten von Pinnacle oder Buchmachern. Polymarket und Kalshi reagieren dort gleichzeitig (4h).
+- **Belastbar** wird die Pinnacle-Frage erst mit einer eigenen, minutengenauen Aufzeichnung, etwa über die PS3838-API mit eigenem Konto.
+- **Die Stichprobe ist klein:** 22 Sprünge. Die Zahlen zeigen Größenordnungen, keine genauen Werte.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |
 |---|---|---|
 | tennis-data.co.uk | Historie + Schlussquoten mehrerer Bücher (Training, Backtest) | im Einsatz; Cloudflare lieferte aus dieser Umgebung 403, GitHub Actions läuft mit `continue-on-error` |
-| TennisExplorer | Spielplan, Startzeiten, **Quotenhistorie je Buch mit Eröffnungskurs**, Ergebnisse | im Einsatz; jetzt auch Startzeit und Preisbrett |
+| TennisExplorer | Spielplan, Startzeiten, **Quotenhistorie je Buch mit Eröffnungskurs**, Ergebnisse | im Einsatz; jetzt auch Startzeit und Preisbrett. Quotenverlauf in Prager Zeit, Zwischenstände nur etwa eine Woche, Pinnacle verspätet aufgezeichnet (4i) |
 | Tennis Abstract | Elo (auch ITF 50K+), Belagstempo, Turnierprognosen | im Einsatz; Elo nur live, nicht für Training; Matchlogs und Leader-Quellen per robots.txt gesperrt |
 | TennisMyLife | Challenger/Quali/WTA-Ergebnisse mit Aufschlagstatistik | im Einsatz für den Aktivitätsindex; Serve-Features gemessen ohne Gewinn |
 | tennisratio.com | Druckpunkte je Match | gemessen: kein Effekt |
