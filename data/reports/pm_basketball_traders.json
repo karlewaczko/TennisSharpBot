@@ -1,34 +1,34 @@
 {
- "measured_at": "2026-10-29T11:39:49+00:00",
+ "measured_at": "2026-10-30T11:41:26+00:00",
  "sport": "basketball",
  "window_days": 30,
  "tours": null,
- "markets": 549,
- "matches": 549,
- "wallets": 20308,
- "ranked_wallets": 189,
- "significant_wallets": 4,
- "elite_wallets": 2,
+ "markets": 552,
+ "matches": 552,
+ "wallets": 20545,
+ "ranked_wallets": 190,
+ "significant_wallets": 3,
+ "elite_wallets": 1,
  "markets_trimmed_to_bigger_trades": 11,
  "market_structure": {
-  "stake_usd": 218894663,
-  "in_play_share": 0.653,
-  "top20_share": 0.469,
-  "top20_pre_match_share": 0.563
+  "stake_usd": 226682942,
+  "in_play_share": 0.656,
+  "top20_share": 0.467,
+  "top20_pre_match_share": 0.558
  },
  "skill_persistence": {
-  "wallets": 336,
-  "corr": 0.164,
-  "rank_corr": 0.208,
-  "top_decile_next": 0.0015,
-  "bottom_decile_next": -0.0051,
-  "all_next": -0.0049
+  "wallets": 330,
+  "corr": 0.296,
+  "rank_corr": 0.304,
+  "top_decile_next": 0.0019,
+  "bottom_decile_next": -0.0085,
+  "all_next": -0.0048
  },
  "polymarket_closing_calibration": {
-  "n": 549,
-  "brier": 0.2206,
-  "log_loss": 0.6273,
-  "favourite_won": 0.625,
+  "n": 552,
+  "brier": 0.221,
+  "log_loss": 0.628,
+  "favourite_won": 0.623,
   "bins": [
    {
     "range": "(-0.001, 0.2]",
@@ -38,39 +38,39 @@
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 86,
-    "price": 0.287,
-    "won": 0.372
+    "n": 89,
+    "price": 0.288,
+    "won": 0.382
    },
    {
     "range": "(0.35, 0.5]",
     "n": 134,
-    "price": 0.429,
+    "price": 0.428,
     "won": 0.507
    },
    {
     "range": "(0.5, 0.65]",
     "n": 138,
-    "price": 0.577,
+    "price": 0.576,
     "won": 0.514
    },
    {
     "range": "(0.65, 0.8]",
-    "n": 107,
+    "n": 106,
     "price": 0.721,
-    "won": 0.72
+    "won": 0.717
    },
    {
     "range": "(0.8, 1.0]",
-    "n": 52,
-    "price": 0.886,
-    "won": 0.865
+    "n": 53,
+    "price": 0.887,
+    "won": 0.868
    }
   ]
  },
  "leader_preview": [
   {
-   "rank": 2,
+   "rank": 3,
    "name": "TheComboConnoisseur",
    "wallet": "0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e",
    "elite": true,
@@ -83,11 +83,11 @@
    "clv_net_mean": 0.0293,
    "clv_net_t": 3.3831,
    "significant": true,
-   "clv_net_first": 0.0283,
-   "clv_net_second": 0.0305,
+   "clv_net_first": 0.0306,
+   "clv_net_second": 0.0274,
    "consistent": true,
-   "alltime_pnl": 53153.03,
-   "alltime_vol": 1973198.2191,
+   "alltime_pnl": 49412.835,
+   "alltime_vol": 2005524.8921,
    "pi_pnl": NaN,
    "pi_win_rate": NaN,
    "pi_closed": NaN,
@@ -98,36 +98,6 @@
    "taker_share": 0.2307,
    "two_sided_share": 0.0213,
    "directional": 0.9991
-  },
-  {
-   "rank": 5,
-   "name": "monkeymashingkeyboard",
-   "wallet": "0x684baa57c338c2549aec0aa3f034f695d72a8409",
-   "elite": true,
-   "markets": 61,
-   "pre_markets": 56,
-   "stake": 2655944.0139,
-   "pnl": 485618.7546,
-   "roi": 0.1828,
-   "fees": 455.4993,
-   "clv_net_mean": 0.0108,
-   "clv_net_t": 2.9918,
-   "significant": true,
-   "clv_net_first": 0.0205,
-   "clv_net_second": 0.0087,
-   "consistent": true,
-   "alltime_pnl": 841796.2836,
-   "alltime_vol": 30684729.0664,
-   "pi_pnl": NaN,
-   "pi_win_rate": NaN,
-   "pi_closed": NaN,
-   "clv_mean": 0.0113,
-   "clv_t": 3.1176,
-   "win_share": 0.541,
-   "live_share": 0.0892,
-   "taker_share": 0.0081,
-   "two_sided_share": 0.3115,
-   "directional": 0.7637
   }
  ]
 }
