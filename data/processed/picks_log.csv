@@ -160,3 +160,6 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-30T01:04:14+00:00,3364149,2026-10-30,La Marsa ITF,Lovric P.,Polymarket,prediction,value,1.49,0.6753,0.0061,Betfair
 2026-10-30T01:04:14+00:00,3364149,2026-10-30,La Marsa ITF,Lovric P.,Kalshi,prediction,value,1.502,0.6753,0.0141,Betfair
 2026-10-30T01:04:14+00:00,3364151,2026-10-30,La Marsa ITF,Urgesi F.,Polymarket,prediction,value,1.195,0.8516,0.0173,Betfair
+2026-10-30T10:05:40+00:00,3364149,2026-10-30,La Marsa ITF,Lovric P.,Polymarket,prediction,value,1.535,0.6571,0.0086,Betfair
+2026-10-30T10:05:40+00:00,3364149,2026-10-30,La Marsa ITF,Lovric P.,Kalshi,prediction,value,1.571,0.6571,0.0324,Betfair
+2026-10-30T10:05:40+00:00,3364383,2026-10-30,Neuquén ITF,Gobbi Monllau A.,Kalshi,prediction,value,7.251,0.145,0.0514,Polymarket Mid
