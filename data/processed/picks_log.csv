@@ -155,3 +155,8 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-29T20:21:55+00:00,3364197,2026-10-30,Basel,Rune H.,Unibet,book,value,1.75,0.575,0.0062,Kalshi Mid
 2026-10-29T20:21:55+00:00,3363305,2026-10-30,Seoul challenger,Billy Harris,Kalshi,prediction,value,4.31,0.235,0.0129,Polymarket Mid
 2026-10-29T20:21:55+00:00,3363699,2026-10-29,New Braunfels ITF,Brengle M.,Kalshi,prediction,value,1.48,0.6863,0.0156,Pinnacle
+2026-10-30T01:04:14+00:00,3363953,2026-10-30,Sydney 4 ITF,Sato H.,Polymarket,prediction,value,1.81,0.7765,0.4056,Betfair
+2026-10-30T01:04:14+00:00,3363953,2026-10-30,Sydney 4 ITF,Sato H.,Kalshi,prediction,value,1.703,0.7765,0.3225,Betfair
+2026-10-30T01:04:14+00:00,3364149,2026-10-30,La Marsa ITF,Lovric P.,Polymarket,prediction,value,1.49,0.6753,0.0061,Betfair
+2026-10-30T01:04:14+00:00,3364149,2026-10-30,La Marsa ITF,Lovric P.,Kalshi,prediction,value,1.502,0.6753,0.0141,Betfair
+2026-10-30T01:04:14+00:00,3364151,2026-10-30,La Marsa ITF,Urgesi F.,Polymarket,prediction,value,1.195,0.8516,0.0173,Betfair
