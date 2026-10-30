@@ -63,7 +63,7 @@ h2 { font: 700 1.3rem/1.1 var(--display); letter-spacing: .04em; text-transform:
 .sub { margin: 0; color: var(--muted); font-size: .9rem; max-width: 80ch; }
 .scroll { overflow-x: auto; min-width: 0; }
 table { border-collapse: collapse; width: 100%; font-size: .92rem; }
-#consensus table { min-width: 860px; } #feed table { min-width: 760px; } #profiles table { min-width: 900px; }
+#consensus table { min-width: 860px; } #feed table { min-width: 760px; } #profiles table { min-width: 900px; } #jumps table { min-width: 820px; }
 th { font: 600 .74rem/1.2 var(--display); letter-spacing: .09em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
 td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
 tr.grp td { border-top: 2px solid var(--line); }
@@ -75,6 +75,7 @@ tbody tr:first-child td { border-top: 0; }
 .meta { color: var(--muted); font-size: .82rem; }
 .badge { display: inline-block; font: 600 .7rem/1 var(--display); letter-spacing: .07em; text-transform: uppercase; padding: 3px 6px; border-radius: 4px; background: var(--chip); color: var(--muted); white-space: nowrap; margin: 2px 4px 0 0; }
 .buy { color: var(--buy); } .sell { color: var(--sell); } .live { color: var(--live); }
+.faded { opacity: .55; }
 .clv { font: 500 .78rem/1.35 var(--mono); white-space: nowrap; }
 th.hl, td.hl { background: color-mix(in srgb, var(--accent) 8%, transparent); }
 tr.new td { background: color-mix(in srgb, var(--live) 14%, transparent); }
@@ -92,7 +93,7 @@ footer p { margin: 0; }
 <div class="wrap">
   <header>
     <h1>Polymarket <span>Profi-Radar</span></h1>
-    <p class="lede">Was die Wallets, die bei Tennis, Fußball, Basketball, American Football und Baseball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Dazu neue Konten, die gleich groß einsteigen. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
+    <p class="lede">Was die Wallets, die bei Tennis, Fußball, Basketball, American Football und Baseball am verlässlichsten den Schlusskurs schlagen, auch nach Gebühren, gerade setzen und mit wie viel Geld. Dazu Kurssprünge vor Spielbeginn und neue Konten, die gleich groß einsteigen. Live von Polymarket, alle 90&nbsp;Sekunden neu.</p>
     <div class="status" id="status" aria-live="polite"><span><i class="dot"></i>Lädt die Positionen…</span></div>
     <div class="controls">
       <button class="chip" type="button" data-sport="all" aria-pressed="true">Alle</button>
@@ -109,6 +110,17 @@ footer p { margin: 0; }
       <button class="chip ghost" type="button" id="reload">Jetzt aktualisieren</button>
     </div>
   </header>
+
+  <section>
+    <div class="sechead"><h2>Kurssprünge vor Spielbeginn</h2>
+      <div class="controls">
+        <label class="field" for="jmin">ab <select id="jmin"><option value="0.03">3 Punkten</option><option value="0.05" selected>5 Punkten</option><option value="0.1">10 Punkten</option></select></label>
+        <label class="field" for="jvol">Volumen ab <select id="jvol"><option value="1000">1.000 $</option><option value="5000" selected>5.000 $</option><option value="25000">25.000 $</option><option value="100000">100.000 $</option></select></label>
+        <button class="chip ghost" type="button" id="jnotify">Benachrichtigen</button>
+      </div></div>
+    <p class="sub" id="jumps-sub"></p>
+    <div class="scroll" id="jumps"><p class="empty">Sucht Kurssprünge…</p></div>
+  </section>
 
   <section>
     <div class="sechead"><h2>Frische Wallets</h2>
@@ -147,7 +159,7 @@ footer p { margin: 0; }
   </footer>
 </div>
 
-<script id="pros-data" type="application/json">{"sports":{"tennis":{"label":"Tennis","measured_at":"2026-10-29T11:11:36+00:00","window_days":30,"ranked":233,"significant":8,"elite":4},"soccer":{"label":"Fußball","measured_at":"2026-10-29T11:33:54+00:00","window_days":30,"ranked":817,"significant":4,"elite":3},"basketball":{"label":"Basketball","measured_at":"2026-10-29T11:39:49+00:00","window_days":30,"ranked":189,"significant":4,"elite":2},"football":{"label":"American Football","measured_at":"2026-10-29T11:43:25+00:00","window_days":30,"ranked":102,"significant":0,"elite":0},"baseball":{"label":"Baseball","measured_at":"2026-10-29T11:49:46+00:00","window_days":60,"ranked":275,"significant":2,"elite":1}},"wallets":[{"wallet":"0xdc4f58a48ed4467743609fdce11eea483c759804","name":"MeistersApprenticeship","ranks":{"tennis":2},"clv":{"tennis":{"rank":2,"clv":0.007,"gross":0.007,"t":3.57,"matches":506,"stake":67327,"pnl":8838,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":134,"clv":-0.0003,"gross":-0.0003,"t":-0.63,"matches":946,"stake":401237,"pnl":-13563,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":null,"clv":0.0002,"gross":0.0002,"t":0.13,"matches":120,"stake":5696,"pnl":303,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":null,"clv":-0.0006,"gross":-0.0006,"t":-0.36,"matches":45,"stake":393,"pnl":-58,"fees":0,"taker":0.0,"sig":null,"elite":null},"baseball":{"rank":null,"clv":0.0017,"gross":0.0017,"t":1.89,"matches":224,"stake":1299,"pnl":-9,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":20329,"vol":5183723}},{"wallet":"0x200ffb575b936d297fcf39076ddf2b476ae07a96","name":"LeLynxMalynx","ranks":{"tennis":5},"clv":{"tennis":{"rank":5,"clv":0.0063,"gross":0.0063,"t":3.21,"matches":907,"stake":58529,"pnl":4066,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":733,"clv":-0.0042,"gross":-0.0042,"t":-6.01,"matches":1114,"stake":225670,"pnl":-3606,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":null,"clv":-0.0007,"gross":-0.0007,"t":-0.5,"matches":184,"stake":13244,"pnl":659,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":35,"clv":-0.0007,"gross":-0.0007,"t":-0.58,"matches":172,"stake":9111,"pnl":621,"fees":0,"taker":0.0,"sig":false,"elite":false},"baseball":{"rank":null,"clv":0.0029,"gross":0.0029,"t":2.31,"matches":70,"stake":4833,"pnl":-250,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":40906,"vol":10834772}},{"wallet":"0x49b68438ae7db43a03d7ddaaceaef5581ac7d152","name":"TuttyFruity","ranks":{"tennis":6},"clv":{"tennis":{"rank":6,"clv":0.0097,"gross":0.0097,"t":3.06,"matches":254,"stake":11844,"pnl":630,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":136,"clv":-0.0028,"gross":-0.0028,"t":-0.66,"matches":154,"stake":6395,"pnl":282,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":131,"clv":-0.0134,"gross":-0.0134,"t":-1.65,"matches":56,"stake":2769,"pnl":-489,"fees":0,"taker":0.0,"sig":false,"elite":false}},"alltime":{"pnl":1019,"vol":92731}},{"wallet":"0x521070c99db06e54af5e8e4a91d6858decdfbd53","name":"RadioFreeZerg","ranks":{"tennis":8},"clv":{"tennis":{"rank":8,"clv":0.0055,"gross":0.0057,"t":2.87,"matches":829,"stake":3779,"pnl":16,"fees":1,"taker":0.008,"sig":true,"elite":true},"soccer":{"rank":35,"clv":0.0028,"gross":0.0029,"t":1.05,"matches":523,"stake":3361,"pnl":-63,"fees":1,"taker":0.017,"sig":false,"elite":false},"basketball":{"rank":null,"clv":0.0076,"gross":0.0076,"t":1.3,"matches":228,"stake":977,"pnl":-61,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":null,"clv":0.0026,"gross":0.0027,"t":0.17,"matches":40,"stake":144,"pnl":-1,"fees":0,"taker":0.01,"sig":null,"elite":null},"baseball":{"rank":15,"clv":0.0083,"gross":0.0084,"t":1.67,"matches":272,"stake":4497,"pnl":-367,"fees":1,"taker":0.006,"sig":false,"elite":false}},"alltime":{"pnl":1502,"vol":5444923}},{"wallet":"0xd29312e2446a746bbd94408e1c475f1ec6d7d683","name":"Kyn008","ranks":{"soccer":1},"clv":{"soccer":{"rank":1,"clv":0.0126,"gross":0.0126,"t":7.9,"matches":200,"stake":1639329,"pnl":24146,"fees":0,"taker":0.0,"sig":true,"elite":true}},"alltime":{"pnl":57319,"vol":5775237}},{"wallet":"0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e","name":"TheComboConnoisseur","ranks":{"soccer":3,"basketball":2},"clv":{"soccer":{"rank":3,"clv":0.0351,"gross":0.0393,"t":4.21,"matches":65,"stake":26437,"pnl":3593,"fees":221,"taker":0.377,"sig":true,"elite":true},"basketball":{"rank":2,"clv":0.0293,"gross":0.0318,"t":3.38,"matches":46,"stake":17434,"pnl":883,"fees":89,"taker":0.231,"sig":true,"elite":true}},"alltime":{"pnl":53153,"vol":1973198}},{"wallet":"0x10ff111022291d97966b415a779698312293ff77","name":"dacthenuac","ranks":{"soccer":4},"clv":{"tennis":{"rank":16,"clv":0.0194,"gross":0.0194,"t":2.04,"matches":81,"stake":4587,"pnl":1071,"fees":13,"taker":0.136,"sig":false,"elite":false},"soccer":{"rank":4,"clv":0.0107,"gross":0.0107,"t":3.41,"matches":172,"stake":6243,"pnl":513,"fees":0,"taker":0.0,"sig":true,"elite":true}},"alltime":{"pnl":637,"vol":2166254}},{"wallet":"0x684baa57c338c2549aec0aa3f034f695d72a8409","name":"monkeymashingkeyboard","ranks":{"basketball":5},"clv":{"tennis":{"rank":76,"clv":0.0003,"gross":0.0022,"t":0.05,"matches":28,"stake":135709,"pnl":-24906,"fees":247,"taker":0.073,"sig":false,"elite":false},"basketball":{"rank":5,"clv":0.0108,"gross":0.0113,"t":2.99,"matches":56,"stake":2655944,"pnl":485619,"fees":455,"taker":0.008,"sig":true,"elite":true},"football":{"rank":12,"clv":0.0061,"gross":0.0074,"t":1.01,"matches":30,"stake":534416,"pnl":60773,"fees":221,"taker":0.029,"sig":false,"elite":false},"baseball":{"rank":6,"clv":0.0046,"gross":0.0066,"t":2.82,"matches":98,"stake":1703422,"pnl":353593,"fees":2630,"taker":0.071,"sig":false,"elite":false}},"alltime":{"pnl":841796,"vol":30684729}},{"wallet":"0x885ffdf360e5b0b6e6acb963fb3f8ba2344c8ed9","name":"forecastication4","ranks":{"baseball":2},"clv":{"soccer":{"rank":54,"clv":0.0022,"gross":0.0023,"t":0.45,"matches":69,"stake":130599,"pnl":-29138,"fees":91,"taker":0.04,"sig":false,"elite":false},"basketball":{"rank":22,"clv":0.0128,"gross":0.0128,"t":1.28,"matches":63,"stake":59172,"pnl":17842,"fees":0,"taker":0.0,"sig":false,"elite":false},"football":{"rank":null,"clv":-0.0155,"gross":-0.0155,"t":-1.69,"matches":18,"stake":20982,"pnl":-1128,"fees":1,"taker":0.005,"sig":null,"elite":null},"baseball":{"rank":2,"clv":0.0183,"gross":0.0184,"t":3.53,"matches":47,"stake":29458,"pnl":31761,"fees":1,"taker":0.001,"sig":true,"elite":true}},"alltime":{"pnl":121088,"vol":3865550}}],"top_n":12,"prefixes":{"atp":"tennis","wta":"tennis","itf":"tennis","epl":"soccer","lal":"soccer","bun":"soccer","sea":"soccer","fl1":"soccer","ucl":"soccer","uel":"soccer","mls":"soccer","ere":"soccer","por":"soccer","elc":"soccer","nba":"basketball","wnba":"basketball","ncaab":"basketball","cbb":"basketball","euroleague":"basketball","ufl":"football","lmp":"baseball","kor":"soccer","gsc":"soccer","weuq":"soccer","cof":"soccer","col":"soccer","conl":"soccer","el1":"soccer","pol":"soccer","qat1":"soccer","uru1":"soccer","daviscup":"tennis","bkfibaw":"basketball","ecu1":"soccer","euc":"soccer","el2":"soccer","enl":"soccer","es2":"soccer","sui":"soccer","ewq":"soccer","tur":"soccer","lmb":"baseball","fin1":"soccer","isl1":"soccer","ncaabaseball":"baseball","irl1":"soccer","bjkcup":"tennis","afcq":"soccer","pt2":"soccer","kaz1":"soccer","bra3":"soccer","den":"soccer","nor2":"soccer","efl":"soccer","cwc":"soccer","uwec":"soccer","acl2":"soccer","mex2":"soccer","uzb1":"soccer","swe2":"soccer","est1":"soccer","aut":"soccer","fro1":"soccer","cfb":"football","canch":"soccer","dfb":"soccer","bkcl":"basketball","fifwc":"soccer","bkfr1":"basketball","bkligend":"basketball","blr1":"soccer","chi2":"soccer","fif":"soccer","kor2":"soccer","bkvtb":"basketball","lva1":"soccer","es3":"soccer","bl3":"soccer","nln":"soccer","nls":"soccer","ltu1":"soccer","geo1":"soccer","ja3":"soccer","efa":"soccer","col2":"soccer","chl2":"soccer","uslc":"soccer","usoc":"soccer","isc":"soccer","hun":"soccer","saf1":"soccer","u20wwc":"soccer","wsl2":"soccer","serc":"soccer","grc":"soccer","chfa":"soccer","hr1":"soccer","fpd":"soccer","ire":"soccer","fr2":"soccer","frtc":"soccer","gtm":"soccer","icwq":"soccer","itc":"soccer","ned2":"soccer","bul":"soccer","slo":"soccer","sclc":"soccer","uae1":"soccer","gre1":"soccer","isr":"soccer","ptsc":"soccer","ecs":"soccer","par1":"soccer","bkjpn":"basketball","bkarg":"basketball","bknbl":"basketball","brco":"soccer","jap":"soccer","bkseriea":"basketball","caf":"soccer","bkcba":"basketball","brcm":"soccer","ccc":"soccer","cdr":"soccer","cde":"soccer","bkaba":"basketball","bkbbl":"basketball","bkbsl":"basketball","bkfibaqaf":"basketball","bkfibaqam":"basketball","bkgr1":"basketball","bkkbl":"basketball","wsl":"soccer","tha1":"soccer","argcopa":"soccer","idn1":"soccer","idn2":"soccer","srb":"soccer","mex":"soccer","lec":"soccer","lib":"soccer","usc":"soccer","bl2":"soccer","atc":"soccer","bkbsn":"basketball","bkcebl":"basketball","usl1":"soccer","bklnbp":"basketball","bkeurocup":"basketball","ven1":"soccer","tur2":"soccer","cafcl":"soccer","aze1":"soccer","aze2":"soccer","azec":"soccer","aseanw":"soccer","bra":"soccer","bkibl":"basketball","chi":"soccer","copaam":"soccer","afwq":"soccer","aswq":"soccer","clf":"soccer","ccup":"soccer","nirl1":"soccer","canpl":"soccer","tpe1":"soccer","tpew":"soccer","asean":"soccer","argpn":"soccer","bel1":"soccer","bel2":"soccer","acle":"soccer","aseanc":"soccer","bkisrsl":"basketball","con":"soccer","ptc":"soccer","bklkl":"basketball","rus":"soccer","itsb":"soccer","sawq":"soccer","skc":"soccer","sud":"soccer","swe":"soccer","ncag":"soccer","nlc":"soccer","ja2":"soccer","nawq":"soccer","nor":"soccer","spl":"soccer","ssc":"soccer","svk1":"soccer","trsk":"soccer","bkplk":"basketball","bkkls":"basketball","bkvensl":"basketball","bknznbl":"basketball","bkligarg":"basketball","bknbb":"basketball","ofc":"soccer","owq":"soccer","uef":"soccer","j2100":"soccer","scoc":"soccer","scop":"soccer","bkbul":"basketball","bkfi2":"basketball","bkfr2":"basketball","wimbledon":"tennis","ueq":"soccer","ukr1":"soccer","unl":"soccer","afcl":"soccer","bkaut":"basketball","bkblr":"basketball","bkcyp":"basketball","bkden":"basketball","bkes2":"basketball","bkest":"basketball","bkcze":"basketball","arg":"soccer","bksvk":"basketball","auc":"soccer","aus":"soccer","bkmkd":"basketball","bknor":"basketball","bksvn":"basketball","bkukr":"basketball","afc":"soccer","bkbel":"basketball","bkfibaqas":"basketball","bkfibaqeu":"basketball","bkcro":"basketball","bkfin":"basketball","bkrus":"basketball","cpbl":"baseball","bkgr2":"basketball","bkit2":"basketball","bkkaz":"basketball","bkkz2":"basketball","bklat":"basketball","bkgbr":"basketball","bkhun":"basketball","bkmex":"basketball","bkned":"basketball","cwbb":"basketball","cuba":"baseball","nfl":"football","mlb":"baseball","fifaw":"soccer","kbo":"baseball","lidom":"baseball","lvbp":"baseball","nwsl":"soccer","npb":"baseball","bra2":"soccer","chi1":"soccer","mar1":"soccer","egy1":"soccer","cze1":"soccer","bol1":"soccer","atp-doubles":"tennis","isp":"soccer","per1":"soccer","rou1":"soccer","uwcl":"soccer","wta-doubles":"tennis","wwcquefa":"soccer","cfl":"football","col1":"soccer","weuc":"soccer","j1100":"soccer"},"generated_at":"2026-10-29T11:50:07+00:00"}</script>
+<script id="pros-data" type="application/json">{"sports":{"tennis":{"label":"Tennis","measured_at":"2026-10-29T11:11:36+00:00","window_days":30,"ranked":233,"significant":8,"elite":4},"soccer":{"label":"Fußball","measured_at":"2026-10-29T11:33:54+00:00","window_days":30,"ranked":817,"significant":4,"elite":3},"basketball":{"label":"Basketball","measured_at":"2026-10-29T11:39:49+00:00","window_days":30,"ranked":189,"significant":4,"elite":2},"football":{"label":"American Football","measured_at":"2026-10-29T11:43:25+00:00","window_days":30,"ranked":102,"significant":0,"elite":0},"baseball":{"label":"Baseball","measured_at":"2026-10-29T11:49:46+00:00","window_days":60,"ranked":275,"significant":2,"elite":1}},"wallets":[{"wallet":"0xdc4f58a48ed4467743609fdce11eea483c759804","name":"MeistersApprenticeship","ranks":{"tennis":2},"clv":{"tennis":{"rank":2,"clv":0.007,"gross":0.007,"t":3.57,"matches":506,"stake":67327,"pnl":8838,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":134,"clv":-0.0003,"gross":-0.0003,"t":-0.63,"matches":946,"stake":401237,"pnl":-13563,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":null,"clv":0.0002,"gross":0.0002,"t":0.13,"matches":120,"stake":5696,"pnl":303,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":null,"clv":-0.0006,"gross":-0.0006,"t":-0.36,"matches":45,"stake":393,"pnl":-58,"fees":0,"taker":0.0,"sig":null,"elite":null},"baseball":{"rank":null,"clv":0.0017,"gross":0.0017,"t":1.89,"matches":224,"stake":1299,"pnl":-9,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":20329,"vol":5183723}},{"wallet":"0x200ffb575b936d297fcf39076ddf2b476ae07a96","name":"LeLynxMalynx","ranks":{"tennis":5},"clv":{"tennis":{"rank":5,"clv":0.0063,"gross":0.0063,"t":3.21,"matches":907,"stake":58529,"pnl":4066,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":733,"clv":-0.0042,"gross":-0.0042,"t":-6.01,"matches":1114,"stake":225670,"pnl":-3606,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":null,"clv":-0.0007,"gross":-0.0007,"t":-0.5,"matches":184,"stake":13244,"pnl":659,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":35,"clv":-0.0007,"gross":-0.0007,"t":-0.58,"matches":172,"stake":9111,"pnl":621,"fees":0,"taker":0.0,"sig":false,"elite":false},"baseball":{"rank":null,"clv":0.0029,"gross":0.0029,"t":2.31,"matches":70,"stake":4833,"pnl":-250,"fees":0,"taker":0.0,"sig":null,"elite":null}},"alltime":{"pnl":40906,"vol":10834772}},{"wallet":"0x49b68438ae7db43a03d7ddaaceaef5581ac7d152","name":"TuttyFruity","ranks":{"tennis":6},"clv":{"tennis":{"rank":6,"clv":0.0097,"gross":0.0097,"t":3.06,"matches":254,"stake":11844,"pnl":630,"fees":0,"taker":0.0,"sig":true,"elite":true},"soccer":{"rank":136,"clv":-0.0028,"gross":-0.0028,"t":-0.66,"matches":154,"stake":6395,"pnl":282,"fees":0,"taker":0.0,"sig":false,"elite":false},"basketball":{"rank":131,"clv":-0.0134,"gross":-0.0134,"t":-1.65,"matches":56,"stake":2769,"pnl":-489,"fees":0,"taker":0.0,"sig":false,"elite":false}},"alltime":{"pnl":1019,"vol":92731}},{"wallet":"0x521070c99db06e54af5e8e4a91d6858decdfbd53","name":"RadioFreeZerg","ranks":{"tennis":8},"clv":{"tennis":{"rank":8,"clv":0.0055,"gross":0.0057,"t":2.87,"matches":829,"stake":3779,"pnl":16,"fees":1,"taker":0.008,"sig":true,"elite":true},"soccer":{"rank":35,"clv":0.0028,"gross":0.0029,"t":1.05,"matches":523,"stake":3361,"pnl":-63,"fees":1,"taker":0.017,"sig":false,"elite":false},"basketball":{"rank":null,"clv":0.0076,"gross":0.0076,"t":1.3,"matches":228,"stake":977,"pnl":-61,"fees":0,"taker":0.0,"sig":null,"elite":null},"football":{"rank":null,"clv":0.0026,"gross":0.0027,"t":0.17,"matches":40,"stake":144,"pnl":-1,"fees":0,"taker":0.01,"sig":null,"elite":null},"baseball":{"rank":15,"clv":0.0083,"gross":0.0084,"t":1.67,"matches":272,"stake":4497,"pnl":-367,"fees":1,"taker":0.006,"sig":false,"elite":false}},"alltime":{"pnl":1502,"vol":5444923}},{"wallet":"0xd29312e2446a746bbd94408e1c475f1ec6d7d683","name":"Kyn008","ranks":{"soccer":1},"clv":{"soccer":{"rank":1,"clv":0.0126,"gross":0.0126,"t":7.9,"matches":200,"stake":1639329,"pnl":24146,"fees":0,"taker":0.0,"sig":true,"elite":true}},"alltime":{"pnl":57319,"vol":5775237}},{"wallet":"0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e","name":"TheComboConnoisseur","ranks":{"soccer":3,"basketball":2},"clv":{"soccer":{"rank":3,"clv":0.0351,"gross":0.0393,"t":4.21,"matches":65,"stake":26437,"pnl":3593,"fees":221,"taker":0.377,"sig":true,"elite":true},"basketball":{"rank":2,"clv":0.0293,"gross":0.0318,"t":3.38,"matches":46,"stake":17434,"pnl":883,"fees":89,"taker":0.231,"sig":true,"elite":true}},"alltime":{"pnl":53153,"vol":1973198}},{"wallet":"0x10ff111022291d97966b415a779698312293ff77","name":"dacthenuac","ranks":{"soccer":4},"clv":{"tennis":{"rank":16,"clv":0.0194,"gross":0.0194,"t":2.04,"matches":81,"stake":4587,"pnl":1071,"fees":13,"taker":0.136,"sig":false,"elite":false},"soccer":{"rank":4,"clv":0.0107,"gross":0.0107,"t":3.41,"matches":172,"stake":6243,"pnl":513,"fees":0,"taker":0.0,"sig":true,"elite":true}},"alltime":{"pnl":637,"vol":2166254}},{"wallet":"0x684baa57c338c2549aec0aa3f034f695d72a8409","name":"monkeymashingkeyboard","ranks":{"basketball":5},"clv":{"tennis":{"rank":76,"clv":0.0003,"gross":0.0022,"t":0.05,"matches":28,"stake":135709,"pnl":-24906,"fees":247,"taker":0.073,"sig":false,"elite":false},"basketball":{"rank":5,"clv":0.0108,"gross":0.0113,"t":2.99,"matches":56,"stake":2655944,"pnl":485619,"fees":455,"taker":0.008,"sig":true,"elite":true},"football":{"rank":12,"clv":0.0061,"gross":0.0074,"t":1.01,"matches":30,"stake":534416,"pnl":60773,"fees":221,"taker":0.029,"sig":false,"elite":false},"baseball":{"rank":6,"clv":0.0046,"gross":0.0066,"t":2.82,"matches":98,"stake":1703422,"pnl":353593,"fees":2630,"taker":0.071,"sig":false,"elite":false}},"alltime":{"pnl":841796,"vol":30684729}},{"wallet":"0x885ffdf360e5b0b6e6acb963fb3f8ba2344c8ed9","name":"forecastication4","ranks":{"baseball":2},"clv":{"soccer":{"rank":54,"clv":0.0022,"gross":0.0023,"t":0.45,"matches":69,"stake":130599,"pnl":-29138,"fees":91,"taker":0.04,"sig":false,"elite":false},"basketball":{"rank":22,"clv":0.0128,"gross":0.0128,"t":1.28,"matches":63,"stake":59172,"pnl":17842,"fees":0,"taker":0.0,"sig":false,"elite":false},"football":{"rank":null,"clv":-0.0155,"gross":-0.0155,"t":-1.69,"matches":18,"stake":20982,"pnl":-1128,"fees":1,"taker":0.005,"sig":null,"elite":null},"baseball":{"rank":2,"clv":0.0183,"gross":0.0184,"t":3.53,"matches":47,"stake":29458,"pnl":31761,"fees":1,"taker":0.001,"sig":true,"elite":true}},"alltime":{"pnl":121088,"vol":3865550}}],"top_n":12,"prefixes":{"atp":"tennis","wta":"tennis","itf":"tennis","epl":"soccer","lal":"soccer","bun":"soccer","sea":"soccer","fl1":"soccer","ucl":"soccer","uel":"soccer","mls":"soccer","ere":"soccer","por":"soccer","elc":"soccer","nba":"basketball","wnba":"basketball","ncaab":"basketball","cbb":"basketball","euroleague":"basketball","ufl":"football","lmp":"baseball","kor":"soccer","gsc":"soccer","weuq":"soccer","cof":"soccer","col":"soccer","conl":"soccer","el1":"soccer","pol":"soccer","qat1":"soccer","uru1":"soccer","daviscup":"tennis","bkfibaw":"basketball","ecu1":"soccer","euc":"soccer","el2":"soccer","enl":"soccer","es2":"soccer","sui":"soccer","ewq":"soccer","tur":"soccer","lmb":"baseball","fin1":"soccer","isl1":"soccer","ncaabaseball":"baseball","irl1":"soccer","bjkcup":"tennis","afcq":"soccer","pt2":"soccer","kaz1":"soccer","bra3":"soccer","den":"soccer","nor2":"soccer","efl":"soccer","cwc":"soccer","uwec":"soccer","acl2":"soccer","mex2":"soccer","uzb1":"soccer","swe2":"soccer","est1":"soccer","aut":"soccer","fro1":"soccer","cfb":"football","canch":"soccer","dfb":"soccer","bkcl":"basketball","fifwc":"soccer","bkfr1":"basketball","bkligend":"basketball","blr1":"soccer","chi2":"soccer","fif":"soccer","kor2":"soccer","bkvtb":"basketball","lva1":"soccer","es3":"soccer","bl3":"soccer","nln":"soccer","nls":"soccer","ltu1":"soccer","geo1":"soccer","ja3":"soccer","efa":"soccer","col2":"soccer","chl2":"soccer","uslc":"soccer","usoc":"soccer","isc":"soccer","hun":"soccer","saf1":"soccer","u20wwc":"soccer","wsl2":"soccer","serc":"soccer","grc":"soccer","chfa":"soccer","hr1":"soccer","fpd":"soccer","ire":"soccer","fr2":"soccer","frtc":"soccer","gtm":"soccer","icwq":"soccer","itc":"soccer","ned2":"soccer","bul":"soccer","slo":"soccer","sclc":"soccer","uae1":"soccer","gre1":"soccer","isr":"soccer","ptsc":"soccer","ecs":"soccer","par1":"soccer","bkjpn":"basketball","bkarg":"basketball","bknbl":"basketball","brco":"soccer","jap":"soccer","bkseriea":"basketball","caf":"soccer","bkcba":"basketball","brcm":"soccer","ccc":"soccer","cdr":"soccer","cde":"soccer","bkaba":"basketball","bkbbl":"basketball","bkbsl":"basketball","bkfibaqaf":"basketball","bkfibaqam":"basketball","bkgr1":"basketball","bkkbl":"basketball","wsl":"soccer","tha1":"soccer","argcopa":"soccer","idn1":"soccer","idn2":"soccer","srb":"soccer","mex":"soccer","lec":"soccer","lib":"soccer","usc":"soccer","bl2":"soccer","atc":"soccer","bkbsn":"basketball","bkcebl":"basketball","usl1":"soccer","bklnbp":"basketball","bkeurocup":"basketball","ven1":"soccer","tur2":"soccer","cafcl":"soccer","aze1":"soccer","aze2":"soccer","azec":"soccer","aseanw":"soccer","bra":"soccer","bkibl":"basketball","chi":"soccer","copaam":"soccer","afwq":"soccer","aswq":"soccer","clf":"soccer","ccup":"soccer","nirl1":"soccer","canpl":"soccer","tpe1":"soccer","tpew":"soccer","asean":"soccer","argpn":"soccer","bel1":"soccer","bel2":"soccer","acle":"soccer","aseanc":"soccer","bkisrsl":"basketball","con":"soccer","ptc":"soccer","bklkl":"basketball","rus":"soccer","itsb":"soccer","sawq":"soccer","skc":"soccer","sud":"soccer","swe":"soccer","ncag":"soccer","nlc":"soccer","ja2":"soccer","nawq":"soccer","nor":"soccer","spl":"soccer","ssc":"soccer","svk1":"soccer","trsk":"soccer","bkplk":"basketball","bkkls":"basketball","bkvensl":"basketball","bknznbl":"basketball","bkligarg":"basketball","bknbb":"basketball","ofc":"soccer","owq":"soccer","uef":"soccer","j2100":"soccer","scoc":"soccer","scop":"soccer","bkbul":"basketball","bkfi2":"basketball","bkfr2":"basketball","wimbledon":"tennis","ueq":"soccer","ukr1":"soccer","unl":"soccer","afcl":"soccer","bkaut":"basketball","bkblr":"basketball","bkcyp":"basketball","bkden":"basketball","bkes2":"basketball","bkest":"basketball","bkcze":"basketball","arg":"soccer","bksvk":"basketball","auc":"soccer","aus":"soccer","bkmkd":"basketball","bknor":"basketball","bksvn":"basketball","bkukr":"basketball","afc":"soccer","bkbel":"basketball","bkfibaqas":"basketball","bkfibaqeu":"basketball","bkcro":"basketball","bkfin":"basketball","bkrus":"basketball","cpbl":"baseball","bkgr2":"basketball","bkit2":"basketball","bkkaz":"basketball","bkkz2":"basketball","bklat":"basketball","bkgbr":"basketball","bkhun":"basketball","bkmex":"basketball","bkned":"basketball","cwbb":"basketball","cuba":"baseball","nfl":"football","mlb":"baseball","fifaw":"soccer","kbo":"baseball","lidom":"baseball","lvbp":"baseball","nwsl":"soccer","npb":"baseball","bra2":"soccer","chi1":"soccer","mar1":"soccer","egy1":"soccer","cze1":"soccer","bol1":"soccer","atp-doubles":"tennis","isp":"soccer","per1":"soccer","rou1":"soccer","uwcl":"soccer","wta-doubles":"tennis","wwcquefa":"soccer","cfl":"football","col1":"soccer","weuc":"soccer","j1100":"soccer"},"generated_at":"2026-10-29T11:50:07+00:00","tags":{"tennis":[864],"soccer":[100350],"basketball":[28,745,100149,102669,100254,101178],"football":[450,100351,1186],"baseball":[100381,678]}}</script>
 <script>
 (() => {
   "use strict";
@@ -156,7 +168,8 @@ footer p { margin: 0; }
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
   const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball", football: "American Football", baseball: "Baseball" };
-  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", freshMin: 10000, freshAll: false, pos: new Map(), trades: new Map(), events: new Map(),
+  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", freshMin: 10000, freshAll: false, jumpMin: 0.05, jumpVol: 5000,
+              pos: new Map(), trades: new Map(), events: new Map(),
               loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
 
   const $ = (id) => document.getElementById(id);
@@ -339,6 +352,148 @@ footer p { margin: 0; }
     S.loading = false;
     render();
     refreshFresh();
+    refreshJumps();
+  }
+
+  // ---------- big pre-match moves on the moneylines of the five sports
+  // Gamma's oneHourPriceChange is the midpoint now against an hour ago (it
+  // agrees with the CLOB minute history to half a cent), so it flags a market
+  // without a history of our own; the minute history then dates the jump.
+  // On the first load the day's movers are dated too, so a jump from two
+  // hours ago still shows after opening the page. A market's first two
+  // hours are left out: in 30 days of tennis a third to two thirds of all
+  // jumps fell there, the opening price finding its level, not news.
+  const CLOB = "https://clob.polymarket.com";
+  const JUMP_WINDOW_S = 1800, JUMP_LOOK_S = 3 * 3600, JUMP_KEEP_MS = 6 * 3600e3, JUMP_FLOOR = 1000, JUMP_SETTLE_S = 2 * 3600;
+  const J = { markets: new Map(), alerts: new Map(), checked: new Map(), seen: new Map(), loaded: false, busy: false, notify: false, shown: false, error: false };
+  const gameStart = (s) => Date.parse(String(s || "").trim().replace(" ", "T").replace(/([+-]\d\d)$/, "$1:00")) || null;
+  const isoUTC = (ms) => new Date(ms).toISOString().replace(/\.\d+Z$/, "Z");
+
+  // The latest run of minutes from `since` on in which the price stood
+  // `thr` or more away from where it was half an hour earlier: its first
+  // minute, the price half an hour before it, and the furthest it went since.
+  function findJump(pts, thr, since) {
+    let j = 0, cur = null;
+    for (let i = 1; i < pts.length; i++) {
+      if (pts[i][0] < since) continue;
+      while (j + 1 < i && pts[j + 1][0] <= pts[i][0] - JUMP_WINDOW_S) j++;
+      if (pts[j][0] > pts[i][0] - JUMP_WINDOW_S) continue;          // not half an hour of history yet
+      const d = pts[i][1] - pts[j][1];
+      if (Math.abs(d) < thr - 1e-9) continue;
+      const dir = Math.sign(d);
+      if (!cur || dir !== cur.dir || pts[i][0] - cur.last > JUMP_WINDOW_S) cur = { t: pts[i][0], before: pts[j][1], dir, last: pts[i][0], peak: pts[i][1] };
+      cur.last = pts[i][0];
+    }
+    if (cur) for (const [t, p] of pts) if (t >= cur.t && (p - cur.peak) * cur.dir > 0) cur.peak = p;
+    return cur;
+  }
+
+  async function refreshJumps() {
+    if (J.busy) return;
+    J.busy = true;
+    try {
+      const now = Date.now();
+      const tags = Object.entries(D.tags || {}).flatMap(([sport, ids]) => ids.map((id) => ({ sport, id })));
+      const lists = await pool(tags, 4, async ({ sport, id }) => {
+        const out = [];
+        for (let off = 0; off < 1000; off += 100) {
+          const rows = await getJSON(`${GAMMA}/markets?tag_id=${id}&closed=false&sports_market_types=moneyline&limit=100&offset=${off}` +
+            `&end_date_min=${isoUTC(now)}&end_date_max=${isoUTC(now + 9 * 86400e3)}&volume_num_min=${JUMP_FLOOR}`);
+          if (!Array.isArray(rows)) break;
+          for (const m of rows) out.push({ m, sport });
+          if (rows.length < 100) break;
+        }
+        return out;
+      });
+      J.error = lists.length > 0 && lists.every((l) => l instanceof Error);
+      for (const list of lists) {
+        if (!Array.isArray(list)) continue;
+        for (const { m, sport } of list) {
+          let outcomes, prices, tokens;
+          try { outcomes = JSON.parse(m.outcomes); prices = JSON.parse(m.outcomePrices).map(Number); tokens = JSON.parse(m.clobTokenIds); } catch (e) { continue; }
+          const start = gameStart(m.gameStartTime), ev = Array.isArray(m.events) && m.events[0] ? m.events[0] : {};
+          if (!start || outcomes.length !== 2 || !tokens.length || Number.isNaN(prices[0])) continue;
+          const own = sportOf(ev.slug || m.slug);
+          const opened = Date.parse(m.acceptingOrdersTimestamp || m.startDate || m.createdAt || "") || 0;
+          J.markets.set(m.conditionId, { cid: m.conditionId, sport: own !== "other" ? own : sport, eventSlug: ev.slug || m.slug,
+            title: ev.title || m.question, question: m.question, outcomes, token: tokens[0], p: prices[0], start, opened,
+            volume: +m.volumeNum || 0, liquidity: +m.liquidityNum || 0, seen: now,
+            h1: m.oneHourPriceChange == null ? null : +m.oneHourPriceChange, d1: m.oneDayPriceChange == null ? null : +m.oneDayPriceChange });
+        }
+      }
+      for (const [cid, x] of J.markets) if (x.start <= now || now - x.seen > 30 * 60e3) J.markets.delete(cid);
+      const thr = S.jumpMin, todo = [];
+      for (const x of J.markets.values()) {
+        const hot = x.h1 != null && Math.abs(x.h1) >= thr - 1e-9;
+        const warm = !J.loaded && x.d1 != null && Math.abs(x.d1) >= thr - 1e-9;
+        if ((hot || warm) && now - (J.checked.get(x.cid) || 0) > 3 * 60e3) todo.push(x);
+      }
+      todo.sort((a, b) => Math.abs(b.h1 || 0) - Math.abs(a.h1 || 0) || Math.abs(b.d1 || 0) - Math.abs(a.d1 || 0));
+      await pool(todo.slice(0, 40), 4, async (x) => {
+        J.checked.set(x.cid, Date.now());
+        const end = Math.floor(Date.now() / 1000);
+        const h = await getJSON(`${CLOB}/prices-history?market=${x.token}&startTs=${end - JUMP_LOOK_S}&endTs=${end}&fidelity=1`);
+        const pts = (h && Array.isArray(h.history) ? h.history : []).map((q) => [+q.t, +q.p]).filter((q) => q[0] > 0 && !Number.isNaN(q[1]));
+        const jump = findJump(pts, thr, x.opened / 1000 + JUMP_SETTLE_S);
+        if (jump) J.alerts.set(x.cid, { cid: x.cid, t: jump.t, before: jump.before, dir: jump.dir, peak: jump.peak });
+      });
+      for (const [cid, a] of J.alerts) if (!J.markets.has(cid) || now - a.t * 1000 > JUMP_KEEP_MS) J.alerts.delete(cid);
+      J.loaded = true;
+    } catch (e) { /* the next cycle tries again */ }
+    J.busy = false;
+    renderJumps();
+  }
+
+  function jumpRows() {
+    const out = [];
+    for (const a of J.alerts.values()) {
+      const x = J.markets.get(a.cid);
+      if (!x || x.volume < S.jumpVol || (S.sport !== "all" && x.sport !== S.sport)) continue;
+      // the side that rose, priced before the jump and now
+      const up = a.dir > 0, pb = up ? a.before : 1 - a.before, pn = up ? x.p : 1 - x.p, top = up ? a.peak : 1 - a.peak;
+      out.push({ a, x, label: sideLabel({ title: x.question, outcome: x.outcomes[up ? 0 : 1] }), pb, pn, top: Math.max(top, pn), held: pn - pb >= S.jumpMin / 2 });
+    }
+    return out.sort((p, q) => q.a.t - p.a.t);
+  }
+
+  function renderJumps() {
+    $("jumps-sub").innerHTML = `Siegwetten der fünf Sportarten, deren Polymarket-Kurs vor dem Anpfiff binnen 30&nbsp;Minuten um mindestens ` +
+      `<b>${nf0.format(S.jumpMin * 100)}&nbsp;Punkte</b> gesprungen ist (1&nbsp;Cent = 1&nbsp;Prozentpunkt Siegchance), aus Polymarkets Minutenverlauf der ` +
+      `letzten Stunden, ohne die ersten zwei Stunden eines neuen Marktes (da findet der Eröffnungskurs erst seinen Platz). Vorher: der Kurs eine halbe Stunde vor dem Sprung. Quote = 1&nbsp;/ Kurs, also ohne Buchmacher-Marge. ` +
+      `Blass: Der Sprung hat sich mehr als zur Hälfte zurückgebildet. <b>Was ein Sprung bedeutet:</b> Im Tennis bewegte sich Polymarket in unserer Messung (173 Matches, 22 große Sprünge) praktisch gleichzeitig mit den schnellsten Buchmachern, im Median 1&nbsp;Minute auseinander, und gut 8&nbsp;Minuten vor dem mittleren. Ein Sprung zeigt also, dass gerade etwas passiert. Pinnacle hat ihn aber meist schon, und der alte Kurs langsamer Buchmacher schlug danach Pinnacles Schlusskurs im Schnitt nicht (Bericht, Abschnitt 4i).`;
+    if (!J.loaded) return;
+    const rows = jumpRows(), el = $("jumps"), now = Date.now();
+    for (const r of rows) {
+      if (J.seen.has(r.a.cid + ":" + r.a.t)) continue;
+      J.seen.set(r.a.cid + ":" + r.a.t, J.shown ? now : 0);           // 0: already there when the page opened
+      if (J.shown && J.notify) {
+        try {
+          new Notification(`Kurssprung: ${r.label} ${signed((r.pn - r.pb) * 100, nf0.format)} Punkte`,
+                           { body: `${r.x.title} · Start ${until(r.x.start)} · ${cents(r.pb)} → ${cents(r.pn)}` });
+        } catch (e) { /* the page still shows it */ }
+      }
+    }
+    J.shown = true;
+    if (!rows.length) {
+      el.innerHTML = `<p class="empty">${J.error ? "Polymarket ist gerade nicht erreichbar. Der nächste Versuch läuft automatisch." :
+        `Gerade kein Kurssprung ab ${nf0.format(S.jumpMin * 100)} Punkten vor Spielbeginn in dieser Auswahl (Märkte ab ${usd(S.jumpVol)} Volumen, ${J.markets.size} beobachtet).`}</p>`;
+      return;
+    }
+    let html = '<table><thead><tr><th>Sprung</th><th>Spiel</th><th>Steigt</th><th class="num">Vorher</th><th class="num">Jetzt</th><th class="num">Volumen</th></tr></thead><tbody>';
+    for (const r of rows.slice(0, 40)) {
+      const x = r.x, at = r.a.t * 1000, fresh = J.seen.get(r.a.cid + ":" + r.a.t) > 0 && now - J.seen.get(r.a.cid + ":" + r.a.t) < 10 * 60e3;
+      const cls = [fresh ? "new" : "", r.held ? "" : "faded"].filter(Boolean).join(" ");
+      html += `<tr${cls ? ` class="${cls}"` : ""}><td class="nowrap">${esc(ago(at))}<br><span class="meta">${esc(when.format(at))}</span></td>` +
+              `<td><div class="match">${esc(x.title)}</div><span class="badge">${esc(LABEL[x.sport] || x.sport)}</span>` +
+              `<span class="meta">Start ${esc(until(x.start))}</span><br>` +
+              `<a class="meta" href="https://polymarket.com/event/${esc(baseSlug(x.eventSlug))}" target="_blank" rel="noopener">Polymarket ↗</a> ${piMarket(x.eventSlug)}</td>` +
+              `<td class="side">${esc(r.label)}${r.held ? "" : '<br><span class="meta">wieder zurück</span>'}</td>` +
+              `<td class="num">${cents(r.pb)}<br><span class="meta">Quote ${odds(r.pb)}</span></td>` +
+              `<td class="num">${cents(r.pn)} ${moveTag(r.pn - r.pb, " ¢")}<br><span class="meta">Quote ${odds(r.pn)}` +
+              `${Math.round(r.top * 100) > Math.round(r.pn * 100) ? ` · Spitze ${cents(r.top)}` : ""}</span></td>` +
+              `<td class="num">${usd(x.volume)}<br><span class="meta">Liquidität ${usd(x.liquidity)}</span></td></tr>`;
+    }
+    el.innerHTML = html + "</tbody></table>";
   }
 
   // ---------- fresh wallets: new accounts that bet big on one market
@@ -611,7 +766,7 @@ footer p { margin: 0; }
     }
     $("status").innerHTML = `<span><i class="dot ${dot}"></i>${esc(text)}</span><span>${D.wallets.length} Profile beobachtet</span>`;
   }
-  function render() { renderStatus(); renderFresh(); renderConsensus(); renderFeed(); renderProfiles(); }
+  function render() { renderStatus(); renderJumps(); renderFresh(); renderConsensus(); renderFeed(); renderProfiles(); }
 
   // ---------- controls
   try {
@@ -623,13 +778,16 @@ footer p { margin: 0; }
     if (["stake", "start"].includes(saved.sort)) S.sort = saved.sort;
     if ([10000, 25000, 50000, 100000].includes(saved.freshMin)) S.freshMin = saved.freshMin;
     if (typeof saved.freshAll === "boolean") S.freshAll = saved.freshAll;
+    if ([0.03, 0.05, 0.1].includes(saved.jumpMin)) S.jumpMin = saved.jumpMin;
+    if ([1000, 5000, 25000, 100000].includes(saved.jumpVol)) S.jumpVol = saved.jumpVol;
   } catch (e) { /* defaults */ }
-  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, own: S.own, min: S.min, sort: S.sort, freshMin: S.freshMin, freshAll: S.freshAll })); } catch (e) { /* not kept */ } };
+  const save = () => { try { localStorage.setItem("profi-radar", JSON.stringify({ sport: S.sport, pre: S.pre, own: S.own, min: S.min, sort: S.sort, freshMin: S.freshMin, freshAll: S.freshAll, jumpMin: S.jumpMin, jumpVol: S.jumpVol })); } catch (e) { /* not kept */ } };
   const chips = document.querySelectorAll(".chip[data-sport]");
   const syncControls = () => {
     chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.sport === S.sport)));
     $("pre").checked = S.pre; $("own").checked = S.own; $("min").value = String(S.min); $("sort").value = S.sort;
     $("fmin").value = String(S.freshMin); $("fall").checked = S.freshAll;
+    $("jmin").value = String(S.jumpMin); $("jvol").value = String(S.jumpVol);
   };
   chips.forEach((c) => c.addEventListener("click", () => { S.sport = c.dataset.sport; syncControls(); save(); render(); refreshFresh(); }));
   $("pre").addEventListener("change", (e) => { S.pre = e.target.checked; save(); render(); });
@@ -639,6 +797,15 @@ footer p { margin: 0; }
   $("reload").addEventListener("click", () => refresh());
   $("fmin").addEventListener("change", (e) => { S.freshMin = Number(e.target.value); save(); renderFresh(); });
   $("fall").addEventListener("change", (e) => { S.freshAll = e.target.checked; save(); renderFresh(); refreshFresh(); });
+  // A new threshold dates the jumps afresh: what counts as one has changed.
+  $("jmin").addEventListener("change", (e) => { S.jumpMin = Number(e.target.value); save(); J.alerts.clear(); J.checked.clear(); J.loaded = false; renderJumps(); refreshJumps(); });
+  $("jvol").addEventListener("change", (e) => { S.jumpVol = Number(e.target.value); save(); renderJumps(); });
+  $("jnotify").addEventListener("click", async () => {
+    const btn = $("jnotify");
+    if (!("Notification" in window)) { btn.textContent = "Dieser Browser kann nicht benachrichtigen"; return; }
+    try { J.notify = (await Notification.requestPermission()) === "granted"; } catch (e) { J.notify = false; }
+    btn.textContent = J.notify ? "Benachrichtigung an" : "Benachrichtigung abgelehnt";
+  });
   $("fnotify").addEventListener("click", async () => {
     const btn = $("fnotify");
     if (!("Notification" in window)) { btn.textContent = "Dieser Browser kann nicht benachrichtigen"; return; }

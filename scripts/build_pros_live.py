@@ -207,6 +207,7 @@ def main() -> None:
     alltime(data["wallets"])
     second_opinion(data["wallets"])
     data["prefixes"] = sport_prefixes()
+    data["tags"] = {sport: list(tags) for sport, tags in pt.SPORT_TAGS.items()}   # the jump alarm lists each sport's moneylines by tag
     data["generated_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(render(data, TEMPLATE.read_text()))

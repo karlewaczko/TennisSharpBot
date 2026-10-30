@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from tennissharp.data.tennisexplorer import (
+    odds_times_utc,
     day_for_offset, day_url, head_to_head_summary, parse_head_to_head_html, parse_matches_html,
     parse_odds_history_html,
 )
@@ -271,3 +272,14 @@ def test_schedule_rows_carry_their_start_time():
     times = df["time"].dropna()
     assert len(times) > 0
     assert times.str.fullmatch(r"\d{1,2}:\d{2}").all()
+
+
+def test_odds_history_times_are_prague_time():
+    # Summer time until the last Sunday of October, then UTC+1.
+    got = odds_times_utc(["2026-10-24 12:00", "2026-10-26 12:00", "2026-01-15 00:30"])
+    assert [str(t) for t in got] == ["2026-10-24 10:00:00+00:00", "2026-10-26 11:00:00+00:00", "2026-01-14 23:30:00+00:00"]
+
+
+def test_odds_history_times_in_the_doubled_hour_are_left_out():
+    got = odds_times_utc(["2026-10-25 02:30", "2026-10-25 04:00"])
+    assert got.isna().tolist() == [True, False]

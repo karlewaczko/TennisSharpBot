@@ -1,0 +1,171 @@
+{
+  "generated_at": "2026-10-30T00:55:42+00:00",
+  "days": 6,
+  "jump": 0.03,
+  "min_volume": 2000,
+  "matches": 173,
+  "moves": 22,
+  "moved_in": {
+    "polymarket_and_books": 20,
+    "polymarket_alone": 2,
+    "books_alone": 0
+  },
+  "polymarket_vs_first_bookmaker": {
+    "n": 20,
+    "median_min": -1.0,
+    "pm_first": 0.15,
+    "same_time": 0.5,
+    "pm_later": 0.35
+  },
+  "polymarket_vs_median_bookmaker": {
+    "n": 20,
+    "median_min": 8.5,
+    "pm_first": 0.65,
+    "same_time": 0.25,
+    "pm_later": 0.1
+  },
+  "polymarket_vs_pinnacle_as_recorded": {
+    "n": 20,
+    "median_min": 19.5,
+    "pm_first": 0.8,
+    "same_time": 0.05,
+    "pm_later": 0.15
+  },
+  "pinnacle_as_recorded_after_first_bookmaker": {
+    "n": 20,
+    "median_min": 29.5,
+    "later_than_5_min": 0.9
+  },
+  "minutes_after_polymarket_by_book": {
+    "William Hill": {
+      "n": 14,
+      "median": -0.5
+    },
+    "Betway": {
+      "n": 10,
+      "median": 0.0
+    },
+    "BetVictor": {
+      "n": 8,
+      "median": 2.5
+    },
+    "bet365": {
+      "n": 7,
+      "median": 3.0
+    },
+    "Coral": {
+      "n": 16,
+      "median": 6.0
+    },
+    "Interwetten": {
+      "n": 11,
+      "median": 6.0
+    },
+    "Ladbrokes": {
+      "n": 16,
+      "median": 6.0
+    },
+    "bwin": {
+      "n": 16,
+      "median": 7.0
+    },
+    "10Bet": {
+      "n": 9,
+      "median": 7.0
+    },
+    "1xBet": {
+      "n": 13,
+      "median": 9.0
+    },
+    "Betsson": {
+      "n": 10,
+      "median": 11.5
+    },
+    "bet-at-home": {
+      "n": 15,
+      "median": 13.0
+    },
+    "Pinnacle": {
+      "n": 20,
+      "median": 19.5
+    }
+  },
+  "stale_price_value_vs_pinnacle_close": {
+    "Pinnacle": {
+      "n": 22,
+      "mean": 0.0195,
+      "median": 0.0095
+    },
+    "Betsson": {
+      "n": 16,
+      "mean": 0.0107,
+      "median": 0.0072
+    },
+    "Unibet": {
+      "n": 9,
+      "mean": 0.0095,
+      "median": -0.0173
+    },
+    "10Bet": {
+      "n": 12,
+      "mean": 0.0095,
+      "median": -0.0148
+    },
+    "bet365": {
+      "n": 11,
+      "mean": 0.0084,
+      "median": -0.0112
+    },
+    "Betfair": {
+      "n": 6,
+      "mean": -0.0091,
+      "median": -0.0198
+    },
+    "1xBet": {
+      "n": 17,
+      "mean": -0.014,
+      "median": -0.0225
+    },
+    "Coral": {
+      "n": 19,
+      "mean": -0.0143,
+      "median": -0.0199
+    },
+    "Ladbrokes": {
+      "n": 20,
+      "mean": -0.0165,
+      "median": -0.0203
+    },
+    "Interwetten": {
+      "n": 19,
+      "mean": -0.0175,
+      "median": -0.0265
+    },
+    "Betway": {
+      "n": 12,
+      "mean": -0.0183,
+      "median": -0.0443
+    },
+    "bet-at-home": {
+      "n": 20,
+      "mean": -0.0199,
+      "median": -0.0343
+    },
+    "bwin": {
+      "n": 21,
+      "mean": -0.0229,
+      "median": -0.0188
+    },
+    "BetVictor": {
+      "n": 13,
+      "mean": -0.0259,
+      "median": -0.0266
+    },
+    "William Hill": {
+      "n": 15,
+      "mean": -0.0502,
+      "median": -0.0497
+    }
+  },
+  "polymarket_alone_kept_to_start": 1.0
+}

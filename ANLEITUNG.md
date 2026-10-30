@@ -75,7 +75,7 @@ Im Dashboard steht jetzt eine Rangliste der Wallets, die bei Polymarket vor Spie
 
 ### Profi-Radar (live)
 
-Unter **https://karlewaczko.github.io/TennisSharpBot/profis.html** siehst du live, was die bestplatzierten Polymarket-Profile bei Tennis, Fußball und Basketball gerade setzen und mit wie viel Geld. Die Seite zeigt je Spiel, wie viel Profi-Geld auf welcher Seite liegt, dazu die neuesten Wetten der Profile und ihre Adressen. Sie lädt die Daten alle 90 Sekunden direkt von Polymarket und funktioniert am Handy wie am PC.
+Unter **https://karlewaczko.github.io/TennisSharpBot/profis.html** siehst du live, was die bestplatzierten Polymarket-Profile bei Tennis, Fußball, Basketball, American Football und Baseball gerade setzen und mit wie viel Geld. Die Seite zeigt je Spiel, wie viel Profi-Geld auf welcher Seite liegt, dazu die neuesten Wetten der Profile und ihre Adressen. Sie lädt die Daten alle 90 Sekunden direkt von Polymarket und funktioniert am Handy wie am PC.
 
 Einmalig einschalten:
 
@@ -93,7 +93,19 @@ Nach ein bis zwei Minuten ist die Seite erreichbar. Auf der Liste stehen nur die
 
 Bei jedem Profil steht seine CLV je Sportart nach Gebühren: um wie viele Cent je Anteil seine Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs vor dem Start. Daneben stehen sein Gesamtergebnis auf Polymarket und seine Trefferquote laut PolyInsider. Bei jedem Spiel führt „PolyInsider ↗“ zu den Wal-Wetten (ab 5.000 $) und frischen Wallets (neue Konten mit einer ersten Wette ab 500 $, ein mögliches Insider-Muster) auf genau diesem Spiel. Standardmäßig zeigt die Seite Wetten nur in der Sportart, in der ein Profil die Kriterien erfüllt. Die Profil-Liste und die CLV-Werte werden jeden Morgen neu berechnet, für Tennis, Fußball, Basketball, American Football und Baseball.
 
-Ganz oben auf der Seite steht der Bereich **Frische Wallets**. Er zeigt neue Konten, die in ihren ersten 24 Stunden mindestens 10.000 $ auf eine Seite setzen und bisher nur diesen einen Markt gehandelt haben. Den Mindestbetrag kannst du auf 25.000, 50.000 oder 100.000 $ hochsetzen. Mit „auch Märkte außerhalb des Sports“ siehst du zusätzlich Politik und Co. Neue Einträge werden farbig markiert. Mit „Benachrichtigen“ meldet sich der Browser, solange die Seite offen ist; am iPhone geht das nicht in einem normalen Safari-Tab. Das ist ein mögliches Insider-Muster, kein Beweis.
+Ganz oben steht der Bereich **Kurssprünge vor Spielbeginn**. Er zeigt Siegwetten aus allen fünf Sportarten, deren Polymarket-Kurs vor dem Anpfiff binnen 30 Minuten um mindestens 5 Punkte gesprungen ist. Ein Punkt ist ein Cent, also ein Prozentpunkt Siegchance. Du kannst die Schwelle auf 3 oder 10 Punkte stellen. Gezählt werden nur Märkte ab 5.000 $ Volumen, auch das ist einstellbar.
+
+Je Sprung siehst du:
+
+- wann er kam und welche Seite gestiegen ist
+- den Kurs vorher und jetzt, jeweils mit fairer Quote (1 / Kurs, ohne Marge)
+- wie weit er zwischendurch ging („Spitze“)
+
+Blass heißt: Der Sprung hat sich schon mehr als zur Hälfte zurückgebildet. Die ersten zwei Stunden eines neuen Marktes bleiben außen vor, denn da sucht der Eröffnungskurs erst seinen Platz. Mit „Benachrichtigen“ meldet sich der Browser bei jedem neuen Sprung, solange die Seite offen ist.
+
+Was ein Sprung bedeutet, steht im Bericht (Abschnitt 4i). Kurz: Im Tennis bewegt sich Polymarket praktisch gleichzeitig mit den schnellsten Buchmachern. Ein Sprung zeigt also, dass gerade etwas passiert. Ein sicherer Vorsprung ist er nicht. Rechne nicht damit, dass Pinnacle oder PS3838 danach noch den alten Kurs anbieten.
+
+Darunter folgt der Bereich **Frische Wallets**. Er zeigt neue Konten, die in ihren ersten 24 Stunden mindestens 10.000 $ auf eine Seite setzen und bisher nur diesen einen Markt gehandelt haben. Den Mindestbetrag kannst du auf 25.000, 50.000 oder 100.000 $ hochsetzen. Mit „auch Märkte außerhalb des Sports“ siehst du zusätzlich Politik und Co. Neue Einträge werden farbig markiert. Mit „Benachrichtigen“ meldet sich der Browser, solange die Seite offen ist; am iPhone geht das nicht in einem normalen Safari-Tab. Das ist ein mögliches Insider-Muster, kein Beweis.
 
 ## Was du am Ende hast
 
