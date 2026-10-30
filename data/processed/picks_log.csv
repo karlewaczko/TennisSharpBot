@@ -121,3 +121,37 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Coral,book,value,1.5,0.6753,0.013,Betfair
 2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,Ladbrokes,book,value,1.5,0.6753,0.013,Betfair
 2026-10-27T13:09:55+00:00,3361601,2026-10-27,La Marsa ITF,Guth M.,William Hill,book,value,1.5,0.6753,0.013,Betfair
+2026-10-27T15:25:58+00:00,3362391,2026-10-29,Tokyo,Rybakina E.,Betsson,book,value,1.15,0.875,0.0062,Polymarket Mid
+2026-10-27T15:25:58+00:00,3362391,2026-10-29,Tokyo,Rybakina E.,Interwetten,book,value,1.15,0.875,0.0062,Polymarket Mid
+2026-10-27T15:25:58+00:00,3360163,2026-10-27,Basel,Kovacevic A.,Pinnacle,model,model_signal,5.08,0.1818,0.0708,Pinnacle
+2026-10-28T00:34:45+00:00,3362617,2026-10-28,Courmayeur WTA,Elizara Yaneva,Polymarket,prediction,value,1.583,0.6344,0.0041,Pinnacle
+2026-10-28T00:34:45+00:00,3362393,2026-10-29,Tokyo,Mertens E.,bet365,book,value,1.91,0.525,0.0028,Polymarket Mid
+2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,1xBet,book,value,2.18,0.875,0.9075,Kalshi Mid
+2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,BetVictor,book,value,2.1,0.875,0.8375,Kalshi Mid
+2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,Betsson,book,value,2.15,0.875,0.8812,Kalshi Mid
+2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,Coral,book,value,2.1,0.875,0.8375,Kalshi Mid
+2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,Ladbrokes,book,value,2.1,0.875,0.8375,Kalshi Mid
+2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,William Hill,book,value,2.1,0.875,0.8375,Kalshi Mid
+2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,bet-at-home,book,value,2.15,0.875,0.8812,Kalshi Mid
+2026-10-28T00:34:45+00:00,3359577,2026-10-28,Guayaquil challenger,Gonzalo Bueno,bwin,book,value,2.1,0.875,0.8375,Kalshi Mid
+2026-10-28T09:45:24+00:00,3362391,2026-10-29,Tokyo,Rybakina E.,Polymarket,prediction,value,1.142,0.8791,0.004,Pinnacle
+2026-10-28T09:45:24+00:00,3361235,2026-10-28,Poitiers ITF,Leonard M.,Kalshi,prediction,value,1.362,0.7343,0.0002,Pinnacle
+2026-10-28T09:45:24+00:00,3362283,2026-10-28,Toronto ITF,Arseneault A.,Polymarket,prediction,value,1.81,0.5554,0.0054,Betfair
+2026-10-28T20:19:20+00:00,3363569,2026-10-29,Courmayeur WTA,Elsa Jacquemot,Polymarket,prediction,value,1.878,0.5376,0.0097,Betfair
+2026-10-28T20:19:20+00:00,3363395,2026-10-29,Istanbul ITF,Encheva L.,1xBet,book,value,1.41,0.7093,0.0001,Betfair
+2026-10-28T20:19:20+00:00,3363345,2026-10-29,Kunshan ITF,Yang Y.,Polymarket,prediction,value,1.468,0.694,0.0191,Betfair
+2026-10-28T20:19:20+00:00,3363345,2026-10-29,Kunshan ITF,Yang Y.,Kalshi,prediction,value,1.524,0.694,0.0578,Betfair
+2026-10-29T01:01:52+00:00,3363737,2026-10-29,Basel,Shapovalov D.,Kalshi,prediction,value,3.285,0.3106,0.0204,Betfair
+2026-10-29T01:01:52+00:00,3363241,2026-10-29,Queretaro,Bulgaru M.,Polymarket,prediction,value,4.375,0.2553,0.1169,Betfair
+2026-10-29T01:01:52+00:00,3363449,2026-10-30,Tokyo,Eala A.,bet365,book,value,2.38,0.4222,0.0048,Betfair
+2026-10-29T01:01:52+00:00,3363199,2026-10-29,Sydney 4 ITF,Chaudhari V.,1xBet,book,value,1.05,0.9995,0.0495,Polymarket Mid
+2026-10-29T01:01:52+00:00,3363199,2026-10-29,Sydney 4 ITF,Chaudhari V.,Interwetten,book,value,1.05,0.9995,0.0495,Polymarket Mid
+2026-10-29T01:01:52+00:00,3363201,2026-10-29,Sydney 4 ITF,Alame R.,Polymarket,prediction,value,52.955,0.025,0.3239,Kalshi Mid
+2026-10-29T10:02:59+00:00,3363241,2026-10-29,Queretaro,Bulgaru M.,Polymarket,prediction,value,3.855,0.2747,0.059,Betfair
+2026-10-29T10:02:59+00:00,3363241,2026-10-29,Queretaro,Bulgaru M.,Kalshi,prediction,value,3.8,0.2747,0.0439,Betfair
+2026-10-29T10:02:59+00:00,3363817,2026-10-29,New Braunfels ITF,Urhobo A.,Polymarket,prediction,value,1.3,0.7701,0.0013,Betfair
+2026-10-29T10:02:59+00:00,3363719,2026-10-29,New Braunfels ITF,Palicova B.,Kalshi,prediction,value,3.178,0.315,0.001,Polymarket Mid
+2026-10-29T20:21:55+00:00,3363775,2026-10-30,Guangzhou,Badosa P.,Kalshi,prediction,value,1.344,0.745,0.0016,Polymarket Mid
+2026-10-29T20:21:55+00:00,3364197,2026-10-30,Basel,Rune H.,Unibet,book,value,1.75,0.575,0.0062,Kalshi Mid
+2026-10-29T20:21:55+00:00,3363305,2026-10-30,Seoul challenger,Billy Harris,Kalshi,prediction,value,4.31,0.235,0.0129,Polymarket Mid
+2026-10-29T20:21:55+00:00,3363699,2026-10-29,New Braunfels ITF,Brengle M.,Kalshi,prediction,value,1.48,0.6863,0.0156,Pinnacle
