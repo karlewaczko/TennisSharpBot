@@ -205,3 +205,9 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-31T09:43:12+00:00,3364793,2026-11-02,Paris,Van De Zandschulp B.,William Hill,book,value,2.38,0.4216,0.0035,Betfair
 2026-10-31T09:43:12+00:00,3364495,2026-10-31,New Braunfels ITF,Dolehide C.,Kalshi,prediction,value,1.278,0.7919,0.0121,Pinnacle
 2026-10-31T09:43:12+00:00,3364713,2026-10-31,Poitiers ITF,Podrez V.,Kalshi,prediction,value,1.571,0.641,0.0071,Betfair
+2026-10-31T19:21:04+00:00,3365069,2026-11-02,Hong Kong WTA,Boulter K.,Betsson,book,value,1.59,0.6297,0.0012,Betfair
+2026-10-31T19:21:04+00:00,3365069,2026-11-02,Hong Kong WTA,Boulter K.,Betway,book,value,1.6,0.6297,0.0075,Betfair
+2026-10-31T19:21:04+00:00,3365069,2026-11-02,Hong Kong WTA,Boulter K.,Polymarket,prediction,value,1.608,0.6297,0.0126,Betfair
+2026-10-31T19:21:04+00:00,3365079,2026-11-02,Hong Kong WTA,Eala A.,1xBet,book,value,1.21,0.8328,0.0077,Betfair
+2026-10-31T19:21:04+00:00,3365079,2026-11-02,Hong Kong WTA,Eala A.,Betway,book,value,1.22,0.8328,0.0161,Betfair
+2026-10-31T19:21:04+00:00,3365079,2026-11-02,Hong Kong WTA,Eala A.,Polymarket,prediction,value,1.253,0.8328,0.0433,Betfair
