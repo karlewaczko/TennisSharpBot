@@ -163,3 +163,25 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-30T10:05:40+00:00,3364149,2026-10-30,La Marsa ITF,Lovric P.,Polymarket,prediction,value,1.535,0.6571,0.0086,Betfair
 2026-10-30T10:05:40+00:00,3364149,2026-10-30,La Marsa ITF,Lovric P.,Kalshi,prediction,value,1.571,0.6571,0.0324,Betfair
 2026-10-30T10:05:40+00:00,3364383,2026-10-30,Neuquén ITF,Gobbi Monllau A.,Kalshi,prediction,value,7.251,0.145,0.0514,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364719,2026-10-31,Vienna,Medvedev D.,Betsson,book,value,2.85,0.355,0.0117,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364719,2026-10-31,Vienna,Medvedev D.,Interwetten,book,value,2.9,0.355,0.0295,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364719,2026-10-31,Vienna,Medvedev D.,bet-at-home,book,value,2.9,0.355,0.0295,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364885,2026-10-31,Vienna,De Minaur A.,Betsson,book,value,3.35,0.315,0.0553,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364885,2026-10-31,Vienna,De Minaur A.,Coral,book,value,3.4,0.315,0.071,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364885,2026-10-31,Vienna,De Minaur A.,Ladbrokes,book,value,3.4,0.315,0.071,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364885,2026-10-31,Vienna,De Minaur A.,bet-at-home,book,value,3.35,0.315,0.0553,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364885,2026-10-31,Vienna,De Minaur A.,bwin,book,value,3.4,0.315,0.071,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364885,2026-10-31,Vienna,De Minaur A.,Kalshi,prediction,value,3.285,0.315,0.0348,Polymarket Mid
+2026-10-31T00:50:33+00:00,3364853,2026-10-31,Paris,Hijikata R.,Kalshi,prediction,value,1.932,0.5192,0.0032,Betfair
+2026-10-31T00:50:33+00:00,3364855,2026-10-31,Paris,Kopriva V.,10Bet,book,value,2.7,0.3739,0.0096,Betfair
+2026-10-31T00:50:33+00:00,3364855,2026-10-31,Paris,Kopriva V.,Betsson,book,value,2.7,0.3739,0.0096,Betfair
+2026-10-31T00:50:33+00:00,3364855,2026-10-31,Paris,Kopriva V.,Interwetten,book,value,2.75,0.3739,0.0283,Betfair
+2026-10-31T00:50:33+00:00,3364855,2026-10-31,Paris,Kopriva V.,Polymarket,prediction,value,2.692,0.3739,0.0065,Betfair
+2026-10-31T00:50:33+00:00,3364855,2026-10-31,Paris,Kopriva V.,Kalshi,prediction,value,2.733,0.3739,0.0219,Betfair
+2026-10-31T00:50:33+00:00,3364843,2026-10-31,Paris,Altmaier D.,1xBet,book,value,2.13,0.4818,0.0263,Betfair
+2026-10-31T00:50:33+00:00,3364843,2026-10-31,Paris,Altmaier D.,bet-at-home,book,value,2.1,0.4818,0.0119,Betfair
+2026-10-31T00:50:33+00:00,3364843,2026-10-31,Paris,Altmaier D.,Kalshi,prediction,value,2.187,0.4818,0.0538,Betfair
+2026-10-31T00:50:33+00:00,3364841,2026-10-31,Paris,Borges N.,Kalshi,prediction,value,1.571,0.6389,0.0038,Betfair
+2026-10-31T00:50:33+00:00,3364685,2026-10-31,Hong Kong WTA,Hong Yi Cody Wong,Interwetten,book,value,5.5,0.1832,0.0074,Kalshi Mid
+2026-10-31T00:50:33+00:00,3364789,2026-11-02,Paris,Bergs Z.,1xBet,book,value,1.41,0.7276,0.0259,Betfair
+2026-10-31T00:50:33+00:00,3364793,2026-11-02,Paris,Van De Zandschulp B.,1xBet,book,value,2.73,0.431,0.1766,Betfair
