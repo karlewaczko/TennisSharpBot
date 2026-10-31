@@ -185,3 +185,23 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-10-31T00:50:33+00:00,3364685,2026-10-31,Hong Kong WTA,Hong Yi Cody Wong,Interwetten,book,value,5.5,0.1832,0.0074,Kalshi Mid
 2026-10-31T00:50:33+00:00,3364789,2026-11-02,Paris,Bergs Z.,1xBet,book,value,1.41,0.7276,0.0259,Betfair
 2026-10-31T00:50:33+00:00,3364793,2026-11-02,Paris,Van De Zandschulp B.,1xBet,book,value,2.73,0.431,0.1766,Betfair
+2026-10-31T09:43:12+00:00,3364839,2026-10-31,Paris,Bellucci M.,Kalshi,prediction,value,1.596,0.6294,0.0043,Pinnacle
+2026-10-31T09:43:12+00:00,3364829,2026-10-31,Paris,Dzumhur D.,Polymarket,prediction,value,1.558,0.6431,0.0022,Betfair
+2026-10-31T09:43:12+00:00,3364849,2026-10-31,Paris,Grigor Dimitrov,10Bet,book,value,1.95,0.515,0.0043,Polymarket Mid
+2026-10-31T09:43:12+00:00,3364767,2026-11-02,Paris,Tien L.,Betway,book,value,1.73,0.6033,0.0438,Betfair
+2026-10-31T09:43:12+00:00,3364767,2026-11-02,Paris,Tien L.,bet-at-home,book,value,1.68,0.6033,0.0136,Betfair
+2026-10-31T09:43:12+00:00,3364773,2026-11-02,Paris,Norrie C.,10Bet,book,value,1.57,0.6523,0.0241,Betfair
+2026-10-31T09:43:12+00:00,3364773,2026-11-02,Paris,Norrie C.,BetVictor,book,value,1.57,0.6523,0.0241,Betfair
+2026-10-31T09:43:12+00:00,3364773,2026-11-02,Paris,Norrie C.,Betway,book,value,1.6,0.6523,0.0437,Betfair
+2026-10-31T09:43:12+00:00,3364773,2026-11-02,Paris,Norrie C.,bet-at-home,book,value,1.55,0.6523,0.0111,Betfair
+2026-10-31T09:43:12+00:00,3364791,2026-11-02,Paris,Nakashima B.,10Bet,book,value,1.7,0.616,0.0472,Betfair
+2026-10-31T09:43:12+00:00,3364791,2026-11-02,Paris,Nakashima B.,1xBet,book,value,1.7,0.616,0.0472,Betfair
+2026-10-31T09:43:12+00:00,3364791,2026-11-02,Paris,Nakashima B.,BetVictor,book,value,1.67,0.616,0.0287,Betfair
+2026-10-31T09:43:12+00:00,3364791,2026-11-02,Paris,Nakashima B.,Betsson,book,value,1.71,0.616,0.0534,Betfair
+2026-10-31T09:43:12+00:00,3364791,2026-11-02,Paris,Nakashima B.,Betway,book,value,1.65,0.616,0.0164,Betfair
+2026-10-31T09:43:12+00:00,3364791,2026-11-02,Paris,Nakashima B.,Interwetten,book,value,1.7,0.616,0.0472,Betfair
+2026-10-31T09:43:12+00:00,3364791,2026-11-02,Paris,Nakashima B.,bet-at-home,book,value,1.68,0.616,0.0349,Betfair
+2026-10-31T09:43:12+00:00,3364793,2026-11-02,Paris,Van De Zandschulp B.,1xBet,book,value,2.39,0.4216,0.0077,Betfair
+2026-10-31T09:43:12+00:00,3364793,2026-11-02,Paris,Van De Zandschulp B.,William Hill,book,value,2.38,0.4216,0.0035,Betfair
+2026-10-31T09:43:12+00:00,3364495,2026-10-31,New Braunfels ITF,Dolehide C.,Kalshi,prediction,value,1.278,0.7919,0.0121,Pinnacle
+2026-10-31T09:43:12+00:00,3364713,2026-10-31,Poitiers ITF,Podrez V.,Kalshi,prediction,value,1.571,0.641,0.0071,Betfair
