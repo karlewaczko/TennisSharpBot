@@ -1,34 +1,34 @@
 {
- "measured_at": "2026-10-31T11:19:02+00:00",
+ "measured_at": "2026-11-01T12:06:16+00:00",
  "sport": "baseball",
  "window_days": 60,
  "tours": null,
- "markets": 584,
- "matches": 584,
- "wallets": 25782,
- "ranked_wallets": 259,
+ "markets": 566,
+ "matches": 566,
+ "wallets": 25029,
+ "ranked_wallets": 253,
  "significant_wallets": 2,
  "elite_wallets": 1,
  "markets_trimmed_to_bigger_trades": 0,
  "market_structure": {
-  "stake_usd": 216505770,
-  "in_play_share": 0.639,
-  "top20_share": 0.469,
-  "top20_pre_match_share": 0.588
+  "stake_usd": 213008172,
+  "in_play_share": 0.643,
+  "top20_share": 0.471,
+  "top20_pre_match_share": 0.593
  },
  "skill_persistence": {
-  "wallets": 499,
-  "corr": 0.575,
-  "rank_corr": 0.678,
-  "top_decile_next": -0.0004,
-  "bottom_decile_next": -0.0182,
-  "all_next": -0.0111
+  "wallets": 488,
+  "corr": 0.553,
+  "rank_corr": 0.666,
+  "top_decile_next": 0.0,
+  "bottom_decile_next": -0.0181,
+  "all_next": -0.0112
  },
  "polymarket_closing_calibration": {
-  "n": 584,
-  "brier": 0.2332,
-  "log_loss": 0.6633,
-  "favourite_won": 0.603,
+  "n": 566,
+  "brier": 0.2329,
+  "log_loss": 0.6628,
+  "favourite_won": 0.604,
   "bins": [
    {
     "range": "(-0.001, 0.2]",
@@ -38,21 +38,21 @@
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 60,
-    "price": 0.311,
-    "won": 0.267
+    "n": 58,
+    "price": 0.31,
+    "won": 0.259
    },
    {
     "range": "(0.35, 0.5]",
-    "n": 309,
-    "price": 0.437,
+    "n": 302,
+    "price": 0.436,
     "won": 0.427
    },
    {
     "range": "(0.5, 0.65]",
-    "n": 188,
+    "n": 179,
     "price": 0.569,
-    "won": 0.59
+    "won": 0.592
    },
    {
     "range": "(0.65, 0.8]",
@@ -70,7 +70,7 @@
  },
  "leader_preview": [
   {
-   "rank": 2,
+   "rank": 1,
    "name": "forecastication4",
    "wallet": "0x885ffdf360e5b0b6e6acb963fb3f8ba2344c8ed9",
    "elite": true,
