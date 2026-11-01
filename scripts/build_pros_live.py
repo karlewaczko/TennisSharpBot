@@ -5,7 +5,11 @@ The page reads Polymarket from the viewer's browser every 90 seconds (both
 public APIs answer any origin); this script only embeds whom to watch: the
 top of each sport's ranking from scripts/update_pm_traders.py, and which
 sport each league code at the start of an event slug belongs to. GitHub
-Pages serves the docs folder of main."""
+Pages serves the docs folder of main.
+
+Each sport's ten best are watched: the wallets that meet every criterion
+(pt.mark_elite) first, marked as such on the page, then the ranking's next
+places, so a sport without a proven wallet still shows its best."""
 from __future__ import annotations
 
 import _bootstrap  # noqa: F401
@@ -22,7 +26,7 @@ from tennissharp.data import polyinsider, polymarket_traders as pt
 
 SPORTS = {"tennis": "Tennis", "soccer": "Fußball", "basketball": "Basketball", "football": "American Football",
           "baseball": "Baseball"}
-TOP_N = 12
+TOP_N = 10
 TEMPLATE = Path(__file__).parent / "templates" / "profis.html"
 OUT = config.REPO_ROOT / "docs" / "profis.html"
 PLACEHOLDER = "__PROS_DATA__"
@@ -134,6 +138,16 @@ def alltime(wallets: list[dict], http=requests) -> None:
             w["alltime"] = {"pnl": round(figures[0]), "vol": round(figures[1])}
 
 
+def best_first(lb: pd.DataFrame, top_n: int) -> tuple[pd.DataFrame, int]:
+    """A sport's `top_n` best: the proven ones (every criterion met, or an
+    edge beyond luck in an older ranking) by rank, then the rest by rank;
+    and how many of the whole ranking are proven."""
+    flag = "elite" if "elite" in lb.columns else "significant" if "significant" in lb.columns else None
+    proven = lb[flag].fillna(False).astype(bool) if flag else pd.Series(False, index=lb.index)
+    order = lb.assign(_proven=proven).sort_values(["_proven", "rank"], ascending=[False, True])
+    return order.drop(columns="_proven").head(top_n), int(proven.sum())
+
+
 def collect(top_n: int = TOP_N) -> dict:
     """The watched wallets (the top of each sport's ranking), once each, with
     their closing-line value in every sport they have enough matches in:
@@ -149,17 +163,13 @@ def collect(top_n: int = TOP_N) -> dict:
         if table is not None:
             stats[sport] = table
         rep = _report(sport)
-        # Only the very best are watched: the wallets that meet every
-        # criterion (pt.mark_elite), or at least an edge beyond luck in an
-        # older ranking.
-        flag = "elite" if "elite" in lb.columns else "significant" if "significant" in lb.columns else None
-        watch = lb[lb[flag].fillna(False).astype(bool)] if flag else lb
+        watch, proven = best_first(lb, top_n)
         sports[sport] = {"label": label, "measured_at": rep.get("measured_at"),
                          "window_days": rep.get("window_days"), "ranked": int(len(lb)),
                          "significant": int(lb["significant"].fillna(False).astype(bool).sum())
                          if "significant" in lb.columns else int(len(lb)),
-                         "elite": int(len(watch))}
-        for wallet, r in watch.head(top_n).iterrows():
+                         "elite": proven}
+        for wallet, r in watch.iterrows():
             w = wallets.setdefault(wallet, {"wallet": wallet, "name": "", "ranks": {}, "clv": {}})
             if isinstance(r["name"], str) and r["name"] and not w["name"]:
                 w["name"] = r["name"]

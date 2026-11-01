@@ -361,3 +361,15 @@ def test_tourless_rows_take_a_profile_only_when_one_table_knows_the_name(bd, boa
     m = next(r for r in _board(bd, *board_inputs)["matches"] if r["id"] == "6")
     assert m["profiles"][0]["name"] == "Iga Swiatek" and m["profiles"][1] is None
     assert m["tour"] == "wta" and "fair" not in m
+
+
+def test_pro_positions_show_ten_and_always_the_proven(bd, tmp_path, monkeypatch):
+    from tennissharp import config
+    monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
+    pd.DataFrame({"rank": range(1, 13), "name": [f"w{i}" for i in range(12)], "wallet": [f"0x{i}" for i in range(12)],
+                  "elite": [False] * 11 + [True], "clv_net_mean": 0.01, "clv_net_t": 2.0}
+                 ).to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
+    asked = []
+    out = bd.pro_positions([], fetch=lambda w: asked.append(w) or [])
+    board = [r["wallet"] for r in out["leaderboard"]]
+    assert board == [f"0x{i}" for i in range(9)] + ["0x11"] and asked == board     # rank 12 is in: it meets every criterion

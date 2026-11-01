@@ -83,7 +83,7 @@ Einmalig einschalten:
 2. Bei „Source“ **Deploy from a branch** wählen.
 3. Branch **main** und Ordner **/docs** wählen, dann **Save**.
 
-Nach ein bis zwei Minuten ist die Seite erreichbar. Auf der Liste stehen nur die allerbesten Profile. Jedes muss alle fünf Kriterien erfüllen:
+Nach ein bis zwei Minuten ist die Seite erreichbar. Auf der Liste stehen je Sportart die zehn besten Profile der Rangliste. Ein ★ tragen die, die alle fünf Kriterien erfüllen. Sie sind immer dabei, auch wenn sie in der Rangliste weiter hinten stehen. Die Kriterien:
 
 1. Vorsprung auf den Schlusskurs nach Polymarkets Gebühren, statistisch abgesichert
 2. Vorsprung in beiden Hälften des letzten Monats
@@ -91,7 +91,7 @@ Nach ein bis zwei Minuten ist die Seite erreichbar. Auf der Liste stehen nur die
 4. Gewinn insgesamt, laut Polymarket und laut PolyInsider (polyinsider.io) als zweiter, unabhängiger Quelle
 5. Echte Wetten vor dem Anpfiff, keine Market Maker oder Live-Bots
 
-Bei jedem Profil steht seine CLV je Sportart nach Gebühren: um wie viele Cent je Anteil seine Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs vor dem Start. Daneben stehen sein Gesamtergebnis auf Polymarket und seine Trefferquote laut PolyInsider. Bei jedem Spiel führt „PolyInsider ↗“ zu den Wal-Wetten (ab 5.000 $) und frischen Wallets (neue Konten mit einer ersten Wette ab 500 $, ein mögliches Insider-Muster) auf genau diesem Spiel. Standardmäßig zeigt die Seite Wetten nur in der Sportart, in der ein Profil die Kriterien erfüllt. Die Profil-Liste und die CLV-Werte werden jeden Morgen neu berechnet, für Tennis, Fußball, Basketball, American Football und Baseball.
+Bei jedem Profil steht seine CLV je Sportart nach Gebühren: um wie viele Cent je Anteil seine Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs vor dem Start. Daneben stehen sein Gesamtergebnis auf Polymarket und seine Trefferquote laut PolyInsider. Bei jedem Spiel führt „PolyInsider ↗“ zu den Wal-Wetten (ab 5.000 $) und frischen Wallets (neue Konten mit einer ersten Wette ab 500 $, ein mögliches Insider-Muster) auf genau diesem Spiel. Standardmäßig zeigt die Seite Wetten nur in der Sportart, in der ein Profil zu den zehn besten gehört. Ohne ★ ist der Vorsprung eines Profils nicht abgesichert, er kann auch Glück sein. Die Profil-Liste und die CLV-Werte werden jeden Morgen neu berechnet, für Tennis, Fußball, Basketball, American Football und Baseball.
 
 Ganz oben steht der Bereich **Kurssprünge vor Spielbeginn**. Er zeigt Siegwetten aus allen fünf Sportarten, deren Polymarket-Kurs vor dem Anpfiff binnen 30 Minuten um mindestens 5 Punkte gesprungen ist. Ein Punkt ist ein Cent, also ein Prozentpunkt Siegchance. Du kannst die Schwelle auf 3 oder 10 Punkte stellen. Gezählt werden nur Märkte ab 5.000 $ Volumen, auch das ist einstellbar.
 

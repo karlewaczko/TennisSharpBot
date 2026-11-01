@@ -96,7 +96,7 @@ def test_embedded_data_cannot_close_the_script_block(live):
         live.render({}, "no placeholder here")
 
 
-def test_only_edges_beyond_luck_are_watched_and_counted_after_fees(live, tmp_path, monkeypatch):
+def test_each_sport_shows_its_best_and_counts_after_fees(live, tmp_path, monkeypatch):
     monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
     monkeypatch.setattr(config, "REPORTS_DIR", tmp_path)
     monkeypatch.setattr(live, "STATS_DIR", tmp_path / "raw")
@@ -107,9 +107,21 @@ def test_only_edges_beyond_luck_are_watched_and_counted_after_fees(live, tmp_pat
         taker_share=[0.25, 1.0])
     lb.to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
     data = live.collect(top_n=5)
-    assert [w["wallet"] for w in data["wallets"]] == ["0xr"] and data["sports"]["tennis"]["significant"] == 1
+    # an unproven wallet still shows when the sport has room: a sport without a proven one is not left empty
+    assert [w["wallet"] for w in data["wallets"]] == ["0xr", "0xl"]
+    assert (data["sports"]["tennis"]["significant"], data["sports"]["tennis"]["elite"]) == (1, 1)
     fig = data["wallets"][0]["clv"]["tennis"]
     assert (fig["clv"], fig["gross"], fig["t"], fig["fees"], fig["taker"], fig["sig"]) == (0.008, 0.012, 3.9, 120, 0.25, True)
+    assert data["wallets"][1]["clv"]["tennis"]["sig"] is False
+
+
+def test_the_proven_come_first_even_below_the_cut(live):
+    lb = pd.DataFrame({"rank": [1, 2, 3, 4], "elite": [False, None, True, False]},
+                      index=pd.Index(["0xa", "0xb", "0xc", "0xd"], name="wallet"))
+    watch, proven = live.best_first(lb, 2)
+    assert list(watch.index) == ["0xc", "0xa"] and proven == 1
+    watch, proven = live.best_first(lb.drop(columns="elite"), 3)          # a ranking without the flag: just the top
+    assert list(watch.index) == ["0xa", "0xb", "0xc"] and proven == 0
 
 
 def test_all_time_profit_comes_from_polymarket(live):
