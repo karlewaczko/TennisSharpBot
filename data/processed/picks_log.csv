@@ -229,3 +229,31 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-01T00:12:46+00:00,3364783,2026-11-02,Paris,Tabilo A.,bet365,book,value,4.33,0.235,0.0175,Polymarket Mid
 2026-11-01T00:12:46+00:00,3364783,2026-11-02,Paris,Tabilo A.,Kalshi,prediction,value,4.512,0.235,0.0604,Polymarket Mid
 2026-11-01T00:12:46+00:00,3364911,2026-11-01,Sydney 4 ITF,Swan K.,Kalshi,prediction,value,1.07,0.938,0.0037,Polymarket Mid
+2026-11-01T10:32:54+00:00,3365455,2026-11-01,Vienna,De Minaur A.,Kalshi,prediction,value,5.559,0.1948,0.0828,Pinnacle
+2026-11-01T10:32:54+00:00,3364773,2026-11-02,Paris,Arnaldi M.,bwin,book,value,2.9,0.3451,0.0007,Betfair
+2026-11-01T10:32:54+00:00,3364787,2026-11-02,Paris,Shapovalov D.,Betsson,book,value,2.42,0.4147,0.0035,Betfair
+2026-11-01T10:32:54+00:00,3364787,2026-11-02,Paris,Shapovalov D.,Polymarket,prediction,value,2.488,0.4147,0.0318,Betfair
+2026-11-01T10:32:54+00:00,3364787,2026-11-02,Paris,Shapovalov D.,Kalshi,prediction,value,2.459,0.4147,0.0197,Betfair
+2026-11-01T10:32:54+00:00,3364789,2026-11-02,Paris,Bergs Z.,1xBet,book,value,1.37,0.7314,0.002,Betfair
+2026-11-01T10:32:54+00:00,3364789,2026-11-02,Paris,Bergs Z.,Polymarket,prediction,value,1.37,0.7314,0.0018,Betfair
+2026-11-01T10:32:54+00:00,3364791,2026-11-02,Paris,Nakashima B.,1xBet,book,value,1.64,0.6155,0.0094,Betfair
+2026-11-01T10:32:54+00:00,3364791,2026-11-02,Paris,Nakashima B.,Betsson,book,value,1.63,0.6155,0.0032,Betfair
+2026-11-01T10:32:54+00:00,3364791,2026-11-02,Paris,Nakashima B.,Betway,book,value,1.65,0.6155,0.0155,Betfair
+2026-11-01T10:32:54+00:00,3364791,2026-11-02,Paris,Nakashima B.,Coral,book,value,1.65,0.6155,0.0155,Betfair
+2026-11-01T10:32:54+00:00,3364791,2026-11-02,Paris,Nakashima B.,Ladbrokes,book,value,1.65,0.6155,0.0155,Betfair
+2026-11-01T10:32:54+00:00,3364791,2026-11-02,Paris,Nakashima B.,bwin,book,value,1.65,0.6155,0.0155,Betfair
+2026-11-01T10:32:54+00:00,3364791,2026-11-02,Paris,Nakashima B.,Polymarket,prediction,value,1.661,0.6155,0.0222,Betfair
+2026-11-01T10:32:54+00:00,3364791,2026-11-02,Paris,Nakashima B.,Kalshi,prediction,value,1.648,0.6155,0.0141,Betfair
+2026-11-01T10:32:54+00:00,3365067,2026-11-03,Hong Kong WTA,Sonmez Z.,1xBet,book,value,1.99,0.5123,0.0195,Betfair
+2026-11-01T10:32:54+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,1xBet,book,value,2.27,0.442,0.0034,Betfair
+2026-11-01T10:32:54+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,Betsson,book,value,2.29,0.442,0.0122,Betfair
+2026-11-01T10:32:54+00:00,3365371,2026-11-02,Bratislava challenger,Borna Gojo,Polymarket,prediction,value,1.81,0.558,0.0101,Betfair
+2026-11-01T10:32:54+00:00,3365743,2026-11-02,Taipei challenger,Christian Langmo,1xBet,book,value,1.95,0.5357,0.0445,Betfair
+2026-11-01T10:32:54+00:00,3365743,2026-11-02,Taipei challenger,Christian Langmo,Interwetten,book,value,1.95,0.5357,0.0445,Betfair
+2026-11-01T10:32:54+00:00,3365743,2026-11-02,Taipei challenger,Christian Langmo,bet-at-home,book,value,1.95,0.5357,0.0445,Betfair
+2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,Coral,book,value,1.65,0.6114,0.0088,Betfair
+2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,Ladbrokes,book,value,1.65,0.6114,0.0088,Betfair
+2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,Unibet,book,value,1.64,0.6114,0.0027,Betfair
+2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,William Hill,book,value,1.67,0.6114,0.021,Betfair
+2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,Polymarket,prediction,value,1.661,0.6114,0.0154,Betfair
+2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,Kalshi,prediction,value,1.675,0.6114,0.024,Betfair
