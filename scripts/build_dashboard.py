@@ -425,7 +425,7 @@ def stats_summary(book, name_1: str, name_2: str, surface: str, tour: str, best_
             "tour_avg_spw": round(tour_avg, 4), "h2h": book.head_to_head(full_1, full_2)}
 
 
-PRO_WALLETS = 20
+PRO_WALLETS = 10
 
 
 def _slug_of(url) -> str | None:
@@ -448,8 +448,9 @@ def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
     except (OSError, ValueError):
         return {"leaderboard": [], "positions": [], "note": "noch keine Rangliste"}
     flag = "elite" if "elite" in lb.columns else "significant" if "significant" in lb.columns else None
-    if flag:                                     # only the very best (pt.mark_elite)
-        lb = lb[lb[flag].fillna(False).astype(bool)]
+    if flag:                                     # those meeting every criterion (pt.mark_elite) first
+        lb = (lb.assign(_proven=lb[flag].fillna(False).astype(bool))
+                .sort_values(["_proven", "rank"], ascending=[False, True]).drop(columns="_proven"))
     if lb.empty:
         return {"leaderboard": [], "positions": [], "note": "Rangliste leer"}
     if "clv_net_mean" in lb.columns:             # CLV after fees where the ranking has it
@@ -459,8 +460,9 @@ def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
         for q in e.get("prediction_markets") or []:
             if q.get("venue") == "Polymarket" and _slug_of(q.get("url")):
                 by_slug[_slug_of(q.get("url"))] = e
+    picked = lb.head(max_wallets).sort_values("rank")
     rows = []
-    for r in lb.head(max_wallets).itertuples(index=False):
+    for r in picked.itertuples(index=False):
         try:
             held = fetch(r.wallet)
         except Exception:
@@ -491,7 +493,7 @@ def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
             rows.append(row)
         time.sleep(0.1)
     rows.sort(key=lambda x: (x.get("match_id") is None, x["rank"]))
-    return {"leaderboard": lb.head(10).to_dict("records"), "positions": rows}
+    return {"leaderboard": picked.to_dict("records"), "positions": rows}
 
 
 def _same_pair(ref_players, name_1, name_2):

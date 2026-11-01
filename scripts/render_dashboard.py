@@ -601,12 +601,13 @@ def pm_pros_section(data: dict) -> str:
              'Wallet und Profilnamen. Für jede Wallet wird über die entschiedenen ATP- und WTA-Matches des '
              'letzten Monats gemessen, ob ihre Käufe vor Spielbeginn den letzten Kurs vor dem Start '
              'geschlagen haben, nach Polymarkets Taker-Gebühren (Closing Line Value, CLV, in Cent je Anteil); '
-             'sortiert nach der t-Statistik. Aufgenommen werden nur Wallets mit mindestens 20&nbsp;Matches und '
-             '2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer Richtung setzen, und deren '
-             'Vorsprung eine Signifikanzprüfung besteht (höchstens 10&nbsp;% Glückstreffer unter den Gelisteten): '
-             'Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Kalshi '
+             'sortiert nach der t-Statistik. In die Rangliste kommen nur Wallets mit mindestens 20&nbsp;Matches und '
+             '2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer Richtung setzen: '
+             'Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Gezeigt werden die zehn besten. '
+             '&#9733; markiert die, die alle fünf Kriterien erfüllen, darunter eine Signifikanzprüfung (höchstens '
+             '10&nbsp;% Glückstreffer unter den Gelisteten); sie sind immer dabei. Kalshi '
              'veröffentlicht keine Trader-Daten. <a href="profis.html">Profi-Radar: was die Profile '
-             'bei Tennis, Fußball und Basketball gerade setzen, live</a>.</p>'
+             'bei Tennis, Fußball, Basketball, American Football und Baseball gerade setzen, live</a>.</p>'
              + (f'<p class="note">{" ".join(facts)}</p>' if facts else ""))
     if not lb:
         note = pros.get("note") or "keine Daten"
@@ -614,7 +615,8 @@ def pm_pros_section(data: dict) -> str:
                 f'{intro}<p class="note">Rangliste: {esc(note)}.</p>')
     trs = []
     for r in lb:
-        trs.append(f'<tr><td class="num">{int(r["rank"])}</td><td class="m">{_pro_link(r.get("name"), r["wallet"])}</td>'
+        star = ' <span class="s" title="erfüllt alle fünf Kriterien">&#9733;</span>' if r.get("elite") is True else ""
+        trs.append(f'<tr><td class="num">{int(r["rank"])}</td><td class="m">{_pro_link(r.get("name"), r["wallet"])}{star}</td>'
                    f'<td class="num">{int(r["pre_markets"])}</td><td class="num">{_usd(r["stake"])}</td>'
                    f'<td class="num">{_usd(r["pnl"])}</td>'
                    f'<td class="num">{pct(r.get("roi"), 1, sign=True)}</td>'
