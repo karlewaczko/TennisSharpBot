@@ -257,3 +257,20 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,William Hill,book,value,1.67,0.6114,0.021,Betfair
 2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,Polymarket,prediction,value,1.661,0.6114,0.0154,Betfair
 2026-11-01T10:32:54+00:00,3365305,2026-11-01,Poitiers ITF,Podrez V.,Kalshi,prediction,value,1.675,0.6114,0.024,Betfair
+2026-11-01T19:45:19+00:00,3365083,2026-11-03,Hong Kong WTA,Fernandez L.A.,Polymarket,prediction,value,1.49,0.7213,0.0746,Betfair
+2026-11-01T19:45:19+00:00,3365573,2026-11-03,Luanda,Gina Feistel,1xBet,book,value,3.21,0.3141,0.0084,Betfair
+2026-11-01T19:45:19+00:00,3365573,2026-11-03,Luanda,Gina Feistel,Interwetten,book,value,3.2,0.3141,0.0052,Betfair
+2026-11-01T19:45:19+00:00,3365573,2026-11-03,Luanda,Gina Feistel,bet-at-home,book,value,3.2,0.3141,0.0052,Betfair
+2026-11-01T19:45:19+00:00,3365573,2026-11-03,Luanda,Gina Feistel,bwin,book,value,3.2,0.3141,0.0052,Betfair
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,1xBet,book,value,2.06,0.495,0.0197,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,BetVictor,book,value,2.05,0.495,0.0147,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,Betsson,book,value,2.03,0.495,0.0048,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,Betway,book,value,2.1,0.495,0.0395,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,Coral,book,value,2.05,0.495,0.0147,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,Interwetten,book,value,2.05,0.495,0.0147,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,Ladbrokes,book,value,2.05,0.495,0.0147,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,William Hill,book,value,2.1,0.495,0.0395,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365371,2026-11-02,Bratislava challenger,Zsombor Piros,bwin,book,value,2.05,0.495,0.0147,Polymarket Mid
+2026-11-01T19:45:19+00:00,3365717,2026-11-02,Charlottesville challenger,Nicolas Mejia,Polymarket,prediction,value,2.163,0.4932,0.0666,Betfair
+2026-11-01T19:45:19+00:00,3365255,2026-11-03,Taipei challenger,Harold Mayot,Polymarket,prediction,value,1.238,0.8243,0.0201,Betfair
+2026-11-01T19:45:19+00:00,3365419,2026-11-03,Taranto challenger,Georgii Kravchenko,Polymarket,prediction,value,2.031,0.5312,0.0787,Betfair
