@@ -274,3 +274,15 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-01T19:45:19+00:00,3365717,2026-11-02,Charlottesville challenger,Nicolas Mejia,Polymarket,prediction,value,2.163,0.4932,0.0666,Betfair
 2026-11-01T19:45:19+00:00,3365255,2026-11-03,Taipei challenger,Harold Mayot,Polymarket,prediction,value,1.238,0.8243,0.0201,Betfair
 2026-11-01T19:45:19+00:00,3365419,2026-11-03,Taranto challenger,Georgii Kravchenko,Polymarket,prediction,value,2.031,0.5312,0.0787,Betfair
+2026-11-02T00:49:13+00:00,3366879,2026-11-02,Paris,Ruud C.,Kalshi,prediction,value,1.344,0.745,0.0016,Polymarket Mid
+2026-11-02T00:49:13+00:00,3365083,2026-11-03,Hong Kong WTA,Kenin S.,Betsson,book,value,3.6,0.2859,0.0291,Betfair
+2026-11-02T00:49:13+00:00,3365083,2026-11-03,Hong Kong WTA,Kenin S.,Coral,book,value,3.7,0.2859,0.0577,Betfair
+2026-11-02T00:49:13+00:00,3365083,2026-11-03,Hong Kong WTA,Kenin S.,Interwetten,book,value,3.7,0.2859,0.0577,Betfair
+2026-11-02T00:49:13+00:00,3365083,2026-11-03,Hong Kong WTA,Kenin S.,Ladbrokes,book,value,3.7,0.2859,0.0577,Betfair
+2026-11-02T00:49:13+00:00,3365083,2026-11-03,Hong Kong WTA,Kenin S.,bet-at-home,book,value,3.55,0.2859,0.0149,Betfair
+2026-11-02T00:49:13+00:00,3365607,2026-11-02,Villa Maria challenger,Lucio Ratti,10Bet,book,value,2.5,0.418,0.0449,Betfair
+2026-11-02T00:49:13+00:00,3365607,2026-11-02,Villa Maria challenger,Lucio Ratti,1xBet,book,value,2.45,0.418,0.024,Betfair
+2026-11-02T00:49:13+00:00,3365607,2026-11-02,Villa Maria challenger,Lucio Ratti,BetVictor,book,value,2.5,0.418,0.0449,Betfair
+2026-11-02T00:49:13+00:00,3365607,2026-11-02,Villa Maria challenger,Lucio Ratti,Betsson,book,value,2.49,0.418,0.0407,Betfair
+2026-11-02T00:49:13+00:00,3365607,2026-11-02,Villa Maria challenger,Lucio Ratti,Interwetten,book,value,2.55,0.418,0.0658,Betfair
+2026-11-02T00:49:13+00:00,3365607,2026-11-02,Villa Maria challenger,Lucio Ratti,bet-at-home,book,value,2.5,0.418,0.0449,Betfair

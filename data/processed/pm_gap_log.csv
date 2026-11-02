@@ -1485,3 +1485,47 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-01T19:45:19+00:00,3365419,2026-11-03,Taranto challenger,Challenger,Georgii Kravchenko,Polymarket,0.475,0.5312,Betfair,0.01,400.4485
 2026-11-01T19:45:19+00:00,3365425,2026-11-03,Taranto challenger,Challenger,Jay Clarke,Polymarket,0.595,0.5915,Betfair,0.07,317.7619
 2026-11-01T19:45:19+00:00,3365425,2026-11-03,Taranto challenger,Challenger,Federico Bondioli,Polymarket,0.405,0.4085,Betfair,0.07,317.7619
+2026-11-02T00:49:13+00:00,3365155,2026-11-02,Chennai WTA,Tour,Uchijima M.,Kalshi,0.405,0.406,Betfair,0.01,940.0410999999999
+2026-11-02T00:49:13+00:00,3365155,2026-11-02,Chennai WTA,Tour,Sramkova R.,Kalshi,0.595,0.594,Betfair,0.01,940.0410999999999
+2026-11-02T00:49:13+00:00,3366865,2026-11-02,Chennai WTA,Tour,Mei Yamaguchi,Polymarket,0.61,0.5974,Betfair,0.02,4176.0948
+2026-11-02T00:49:13+00:00,3366865,2026-11-02,Chennai WTA,Tour,Zhibek Kulambayeva,Polymarket,0.39,0.4026,Betfair,0.02,4176.0948
+2026-11-02T00:49:13+00:00,3366865,2026-11-02,Chennai WTA,Tour,Mei Yamaguchi,Kalshi,0.605,0.5974,Betfair,0.03,702.4761000000001
+2026-11-02T00:49:13+00:00,3366865,2026-11-02,Chennai WTA,Tour,Zhibek Kulambayeva,Kalshi,0.38,0.4026,Betfair,0.02,702.4761000000001
+2026-11-02T00:49:13+00:00,3365069,2026-11-02,Hong Kong WTA,Tour,Golubic V.,Kalshi,0.415,0.4217,Pinnacle,0.01,39639.64169999999
+2026-11-02T00:49:13+00:00,3365069,2026-11-02,Hong Kong WTA,Tour,Boulter K.,Kalshi,0.585,0.5783,Pinnacle,0.01,39639.64169999999
+2026-11-02T00:49:13+00:00,3365763,2026-11-02,Hong Kong WTA,Tour,Volynets K.,Polymarket,0.435,0.4318,Pinnacle,0.01,32453.1547
+2026-11-02T00:49:13+00:00,3365763,2026-11-02,Hong Kong WTA,Tour,Sasnovich A.,Polymarket,0.565,0.5682,Pinnacle,0.01,32453.1547
+2026-11-02T00:49:13+00:00,3365763,2026-11-02,Hong Kong WTA,Tour,Volynets K.,Kalshi,0.435,0.4318,Pinnacle,0.01,3228.3041
+2026-11-02T00:49:13+00:00,3365763,2026-11-02,Hong Kong WTA,Tour,Sasnovich A.,Kalshi,0.565,0.5682,Pinnacle,0.01,3228.3041
+2026-11-02T00:49:13+00:00,3367147,2026-11-02,Cali,Tour,Jeanjean L.,Polymarket,0.545,0.5622,Betfair,0.09,1051.68
+2026-11-02T00:49:13+00:00,3367147,2026-11-02,Cali,Tour,Bronzetti L.,Polymarket,0.455,0.4378,Betfair,0.09,1051.68
+2026-11-02T00:49:13+00:00,3364763,2026-11-02,Paris,Tour,Musetti L.,Kalshi,0.505,0.5,Pinnacle,0.01,19626.2934
+2026-11-02T00:49:13+00:00,3364763,2026-11-02,Paris,Tour,Hurkacz H.,Kalshi,0.495,0.5,Pinnacle,0.01,19626.2934
+2026-11-02T00:49:13+00:00,3364787,2026-11-02,Paris,Tour,Shapovalov D.,Kalshi,0.385,0.395,Betfair,0.01,8048.9358999999995
+2026-11-02T00:49:13+00:00,3364787,2026-11-02,Paris,Tour,Khachanov K.,Kalshi,0.605,0.605,Betfair,0.01,8048.9358999999995
+2026-11-02T00:49:13+00:00,3364793,2026-11-02,Paris,Tour,Humbert U.,Kalshi,0.605,0.6092,Betfair,0.01,24693.115100000003
+2026-11-02T00:49:13+00:00,3364793,2026-11-02,Paris,Tour,Van De Zandschulp B.,Kalshi,0.395,0.3908,Betfair,0.01,24693.115100000003
+2026-11-02T00:49:13+00:00,3365157,2026-11-03,Chennai WTA,Tour,Anastasia Zakharova,Kalshi,0.615,0.6208,Pinnacle,0.01,2844.788
+2026-11-02T00:49:13+00:00,3365157,2026-11-03,Chennai WTA,Tour,Polina Iatcenko,Kalshi,0.38,0.3792,Pinnacle,0.02,2844.788
+2026-11-02T00:49:13+00:00,3365767,2026-11-03,Hong Kong WTA,Tour,Sakatsume H.,Polymarket,0.215,0.2097,Betfair,0.03,9367.4844
+2026-11-02T00:49:13+00:00,3365767,2026-11-03,Hong Kong WTA,Tour,Valentova T.,Polymarket,0.785,0.7903,Betfair,0.03,9367.4844
+2026-11-02T00:49:13+00:00,3366885,2026-11-03,Paris,Tour,Bonzi B.,Polymarket,0.21,0.1955,Betfair,0.04,1398.0291
+2026-11-02T00:49:13+00:00,3366885,2026-11-03,Paris,Tour,Fritz T.,Polymarket,0.79,0.8045,Betfair,0.04,1398.0291
+2026-11-02T00:49:13+00:00,3365591,2026-11-02,Costa do Sauipe challenger,Challenger,Zdenek Kolar,Polymarket,0.35,0.273,Betfair,0.24,482.7965
+2026-11-02T00:49:13+00:00,3365591,2026-11-02,Costa do Sauipe challenger,Challenger,Elmer Moller,Polymarket,0.65,0.727,Betfair,0.24,482.7965
+2026-11-02T00:49:13+00:00,3365599,2026-11-02,Costa do Sauipe challenger,Challenger,Gustavo Heide,Polymarket,0.74,0.7466,Betfair,0.08,299.5454
+2026-11-02T00:49:13+00:00,3365599,2026-11-02,Costa do Sauipe challenger,Challenger,Guido Ivan Justo,Polymarket,0.26,0.2534,Betfair,0.08,299.5454
+2026-11-02T00:49:13+00:00,3365247,2026-11-02,Taipei challenger,Challenger,Daniel Michalski,Kalshi,0.385,0.393,Betfair,0.01,2792.6924999999997
+2026-11-02T00:49:13+00:00,3365247,2026-11-02,Taipei challenger,Challenger,August Holmgren,Kalshi,0.61,0.607,Betfair,0.02,2792.6924999999997
+2026-11-02T00:49:13+00:00,3365717,2026-11-02,Charlottesville challenger,Challenger,Nicolas Mejia,Polymarket,0.475,0.4406,Betfair,0.05,1350.0025
+2026-11-02T00:49:13+00:00,3365717,2026-11-02,Charlottesville challenger,Challenger,Murphy Cassone,Polymarket,0.525,0.5594,Betfair,0.05,1350.0025
+2026-11-02T00:49:13+00:00,3367269,2026-11-02,Bratislava challenger,Challenger,Jonas Forejtek,Polymarket,0.63,0.6202,Betfair,0.1,227.6937
+2026-11-02T00:49:13+00:00,3367269,2026-11-02,Bratislava challenger,Challenger,Matthew William Donald,Polymarket,0.37,0.3798,Betfair,0.1,227.6937
+2026-11-02T00:49:13+00:00,3367269,2026-11-02,Bratislava challenger,Challenger,Jonas Forejtek,Kalshi,0.62,0.6202,Betfair,0.06,58.35
+2026-11-02T00:49:13+00:00,3367269,2026-11-02,Bratislava challenger,Challenger,Matthew William Donald,Kalshi,0.355,0.3798,Betfair,0.09,58.35
+2026-11-02T00:49:13+00:00,3365587,2026-11-03,Costa do Sauipe challenger,Challenger,Cecchinato M.,Polymarket,0.33,0.2984,Betfair,0.12,300.4335
+2026-11-02T00:49:13+00:00,3365587,2026-11-03,Costa do Sauipe challenger,Challenger,Comesana F.,Polymarket,0.67,0.7016,Betfair,0.12,300.4335
+2026-11-02T00:49:13+00:00,3365593,2026-11-03,Costa do Sauipe challenger,Challenger,Hugo Dellien,Polymarket,0.78,0.7644,Betfair,0.06,267.7243
+2026-11-02T00:49:13+00:00,3365593,2026-11-03,Costa do Sauipe challenger,Challenger,Gonzalo Bueno,Polymarket,0.22,0.2356,Betfair,0.06,267.7243
+2026-11-02T00:49:13+00:00,3365603,2026-11-03,Costa do Sauipe challenger,Challenger,Nikolas Sanchez Izquierdo,Polymarket,0.375,0.3709,Betfair,0.15,239.603
+2026-11-02T00:49:13+00:00,3365603,2026-11-03,Costa do Sauipe challenger,Challenger,Camilo Ugo Carabelli,Polymarket,0.625,0.6291,Betfair,0.15,239.603
