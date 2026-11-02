@@ -1,34 +1,34 @@
 {
- "measured_at": "2026-11-01T11:57:47+00:00",
+ "measured_at": "2026-11-02T13:17:39+00:00",
  "sport": "basketball",
  "window_days": 30,
  "tours": null,
- "markets": 587,
- "matches": 587,
- "wallets": 22758,
- "ranked_wallets": 210,
- "significant_wallets": 6,
+ "markets": 604,
+ "matches": 604,
+ "wallets": 23025,
+ "ranked_wallets": 221,
+ "significant_wallets": 5,
  "elite_wallets": 1,
  "markets_trimmed_to_bigger_trades": 12,
  "market_structure": {
-  "stake_usd": 266879763,
-  "in_play_share": 0.658,
-  "top20_share": 0.46,
-  "top20_pre_match_share": 0.552
+  "stake_usd": 270680238,
+  "in_play_share": 0.657,
+  "top20_share": 0.456,
+  "top20_pre_match_share": 0.548
  },
  "skill_persistence": {
-  "wallets": 334,
-  "corr": 0.262,
-  "rank_corr": 0.29,
-  "top_decile_next": 0.0022,
-  "bottom_decile_next": -0.0085,
-  "all_next": -0.004
+  "wallets": 352,
+  "corr": 0.263,
+  "rank_corr": 0.311,
+  "top_decile_next": 0.0026,
+  "bottom_decile_next": -0.005,
+  "all_next": -0.0035
  },
  "polymarket_closing_calibration": {
-  "n": 587,
-  "brier": 0.2189,
-  "log_loss": 0.6233,
-  "favourite_won": 0.629,
+  "n": 604,
+  "brier": 0.2182,
+  "log_loss": 0.6206,
+  "favourite_won": 0.632,
   "bins": [
    {
     "range": "(-0.001, 0.2]",
@@ -38,65 +38,65 @@
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 92,
-    "price": 0.29,
-    "won": 0.348
+    "n": 94,
+    "price": 0.288,
+    "won": 0.372
    },
    {
     "range": "(0.35, 0.5]",
-    "n": 138,
+    "n": 139,
     "price": 0.431,
-    "won": 0.478
+    "won": 0.453
    },
    {
     "range": "(0.5, 0.65]",
-    "n": 151,
-    "price": 0.577,
-    "won": 0.497
+    "n": 155,
+    "price": 0.576,
+    "won": 0.484
    },
    {
     "range": "(0.65, 0.8]",
-    "n": 118,
-    "price": 0.721,
-    "won": 0.703
+    "n": 121,
+    "price": 0.722,
+    "won": 0.702
    },
    {
     "range": "(0.8, 1.0]",
-    "n": 53,
-    "price": 0.888,
-    "won": 0.868
+    "n": 60,
+    "price": 0.893,
+    "won": 0.9
    }
   ]
  },
  "leader_preview": [
   {
-   "rank": 4,
+   "rank": 3,
    "name": "TheComboConnoisseur",
    "wallet": "0x8314fd1f002a4e9bbf4b5abb939e24949a4e0f1e",
    "elite": true,
-   "markets": 49,
-   "pre_markets": 48,
-   "stake": 18189.1233,
-   "pnl": 127.3808,
-   "roi": 0.007,
-   "fees": 89.5962,
-   "clv_net_mean": 0.0295,
-   "clv_net_t": 3.5574,
+   "markets": 51,
+   "pre_markets": 50,
+   "stake": 18195.5502,
+   "pnl": 623.625,
+   "roi": 0.0343,
+   "fees": 86.916,
+   "clv_net_mean": 0.0294,
+   "clv_net_t": 3.6496,
    "significant": true,
-   "clv_net_first": 0.0326,
-   "clv_net_second": 0.0247,
+   "clv_net_first": 0.0332,
+   "clv_net_second": 0.0241,
    "consistent": true,
    "alltime_pnl": 49412.835,
    "alltime_vol": 2013045.4605,
    "pi_pnl": NaN,
    "pi_win_rate": NaN,
    "pi_closed": NaN,
-   "clv_mean": 0.0319,
-   "clv_t": 3.8161,
-   "win_share": 0.4694,
+   "clv_mean": 0.0317,
+   "clv_t": 3.9112,
+   "win_share": 0.4706,
    "live_share": 0.0203,
-   "taker_share": 0.222,
-   "two_sided_share": 0.0204,
+   "taker_share": 0.1997,
+   "two_sided_share": 0.0196,
    "directional": 0.9991
   }
  ]
