@@ -319,7 +319,7 @@ python scripts/study_line_movement.py --days 3 # opening vs. closing on recent r
 
 Every Polymarket trade is public with the wallet and its profile name; Kalshi publishes trades without any trader identity, so only Polymarket can be ranked.
 
-- `scripts/update_pm_traders.py` (daily in `.github/workflows/pm-traders.yml`, about 35 minutes) walks every decided ATP and WTA moneyline of the last 30 days (about 2,000 matches), downloads all fills and computes, per wallet, the profit and the **closing-line value** of its pre-match fills against the last price before the start. Wallets are ranked by the CLV t-statistic. Only wallets that meet all of these are ranked:
+- `scripts/update_pm_traders.py` (daily in `.github/workflows/pm-traders.yml`, about 35 minutes) walks every decided ATP and WTA moneyline of the last 30 days (about 2,000 matches), downloads all fills (Polymarket's Data API v2; v1 answers 410 Gone since 2 November 2026, and the live radar reads v2 too) and computes, per wallet, the profit and the **closing-line value** of its pre-match fills against the last price before the start. Wallets are ranked by the CLV t-statistic. Only wallets that meet all of these are ranked:
   - 20+ pre-match markets
   - $2,000+ staked
   - at most half of their stake in play

@@ -164,7 +164,7 @@ footer p { margin: 0; }
 (() => {
   "use strict";
   const D = JSON.parse(document.getElementById("pros-data").textContent);
-  const API = "https://data-api.polymarket.com";
+  const API = "https://data-api.polymarket.com/v2";      // v1 answers 410 Gone since 2 November 2026
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
   const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball", football: "American Football", baseball: "Baseball" };
@@ -278,10 +278,10 @@ footer p { margin: 0; }
       try {
         const r = await fetch(url, { cache: "no-store" });
         if (r.status === 429 || r.status >= 500) { await sleep(1500 * (i + 1)); continue; }
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        if (!r.ok) { const e = new Error(`HTTP ${r.status}`); e.final = true; throw e; }    // a refusal does not change on retry
         return await r.json();
       } catch (e) {
-        if (i === 2) throw e;
+        if (e.final || i === 2) throw e;
         await sleep(800 * (i + 1));
       }
     }
@@ -296,6 +296,27 @@ footer p { margin: 0; }
         try { out[k] = await fn(items[k]); } catch (e) { out[k] = e instanceof Error ? e : new Error(String(e)); }
       }
     }));
+    return out;
+  }
+  // Data API v2 wraps rows in `data` and spells fields in snake_case; the
+  // page reads v1's names, so each row is renamed on arrival.
+  const rowsOf = (j) => (j && Array.isArray(j.data) ? j.data : []);
+  const asTrade = (t) => ({ proxyWallet: t.proxy_wallet, side: t.side, asset: t.token_id, conditionId: t.condition_id,
+    size: t.size, price: t.price, timestamp: t.timestamp, title: t.title, slug: t.slug, eventSlug: t.event_slug,
+    outcome: t.outcome, outcomeIndex: t.outcome_index, name: t.name, pseudonym: t.pseudonym, transactionHash: t.transaction_hash });
+  const asPosition = (p) => ({ conditionId: p.condition_id, eventSlug: p.event_slug, slug: p.slug, title: p.title,
+    outcome: p.outcome, outcomeIndex: p.outcome_index, size: p.current_size, avgPrice: p.avg_price, curPrice: p.current_price,
+    initialValue: (+p.current_size || 0) * (+p.avg_price || 0), redeemable: p.redeemable });
+  // Follows a listing's cursor (a thousand rows a page) until `enough(rows)` or its end.
+  async function pages(url, enough) {
+    const out = [];
+    let cursor = null;
+    for (let i = 0; i < 20; i++) {
+      const j = await getJSON(cursor ? `${url}&cursor=${encodeURIComponent(cursor)}` : `${url}&limit=1000`);
+      out.push(...rowsOf(j));
+      cursor = j && j.pagination ? j.pagination.next_cursor : null;
+      if (!cursor || enough(out)) break;
+    }
     return out;
   }
   const isOpen = (p) => !p.redeemable && +p.size >= 1 && +p.curPrice > 0.01 && +p.curPrice < 0.99;
@@ -332,9 +353,9 @@ footer p { margin: 0; }
     renderStatus();
     const res = await pool(D.wallets, POOL, async (w) => {
       const [pos, tr] = await Promise.all([
-        getJSON(`${API}/positions?user=${w.wallet}&sizeThreshold=1&limit=200&sortBy=CURRENT`),
-        getJSON(`${API}/trades?user=${w.wallet}&limit=200&takerOnly=false`)]);
-      return { w, pos, tr };
+        getJSON(`${API}/positions?user=${w.wallet}&filter_type=TOKENS&filter_amount=1&limit=200&sort_by=CURRENT_VALUE`),
+        getJSON(`${API}/trades?user=${w.wallet}&limit=200&taker_only=false`)]);
+      return { w, pos: rowsOf(pos).map(asPosition), tr: rowsOf(tr).map(asTrade) };
     });
     let failed = 0;
     for (const r of res) {
@@ -348,7 +369,11 @@ footer p { margin: 0; }
     for (const ts of S.trades.values()) for (const t of ts) if (t.timestamp >= since) slugs.push(t.eventSlug);
     await loadEvents(slugs.filter(Boolean));
     S.failed = failed;
-    S.error = failed === D.wallets.length ? "Polymarket ist gerade nicht erreichbar. Der nächste Versuch läuft automatisch." : "";
+    // Every call refused (not throttled, not down): Polymarket changed its interface, as when Data API v1 was retired.
+    const changed = res.length > 0 && res.every((r) => r instanceof Error && /^HTTP 4(?!29)\d\d$/.test(r.message));
+    S.error = failed === D.wallets.length ? (changed
+      ? "Polymarket hat seine Schnittstelle geändert, die Seite muss angepasst werden. Bis dahin bleibt sie leer."
+      : "Polymarket ist gerade nicht erreichbar. Der nächste Versuch läuft automatisch.") : "";
     if (!S.error) S.updated = Date.now();
     S.next = Date.now() + REFRESH_S * 1000;
     S.loading = false;
@@ -523,12 +548,14 @@ footer p { margin: 0; }
   }
 
   async function refreshFresh() {
-    if (F.busy) return;
+    if (F.busy) { F.again = true; return; }            // a wider view asked mid-check runs right after it
     F.busy = true;
     try {
-      const batch = await getJSON(`${API}/trades?filterType=CASH&filterAmount=${FRESH_FILL}&takerOnly=false&limit=${F.loaded ? 500 : 10000}`);
-      const cutoff = Date.now() / 1000 - DAY;
-      for (const t of Array.isArray(batch) ? batch : []) {
+      const cutoff = Date.now() / 1000 - DAY, feed = `${API}/trades?filter_type=CASH&filter_amount=${FRESH_FILL}&taker_only=false`;
+      // the first load pages back a day (about ten pages), later ones read the newest page
+      const batch = (F.loaded ? rowsOf(await getJSON(`${feed}&limit=500`))
+        : await pages(feed, (rows) => rows.length > 0 && rows[rows.length - 1].timestamp < cutoff)).map(asTrade);
+      for (const t of batch) {
         if (t.side === "BUY" && t.timestamp >= cutoff) F.fills.set(`${t.transactionHash}:${t.proxyWallet}:${t.asset}:${t.size}`, t);
       }
       for (const [k, t] of F.fills) if (t.timestamp < cutoff) F.fills.delete(k);
@@ -542,11 +569,11 @@ footer p { margin: 0; }
       renderFresh();
       await pool(todo, 4, async (w) => {
         try {
-          const tr = await getJSON(`${API}/traded?user=${w}`);
-          const markets = +(tr && tr.traded) || 0;
+          const st = await getJSON(`${API}/user-stats?user=${w}`);        // `trades`: the markets it has traded
+          const markets = +(st && st.data && st.data.trades) || 0;
           if (markets > 1) { oldWallets.add(w); F.age.delete(w); return; }
-          const act = await getJSON(`${API}/activity?user=${w}&limit=1&sortBy=TIMESTAMP&sortDirection=ASC`);
-          F.age.set(w, { first: Array.isArray(act) && act[0] ? +act[0].timestamp : null, markets, checked: Date.now() });
+          const act = rowsOf(await getJSON(`${API}/activity?user=${w}&limit=1&sort_by=TIMESTAMP&sort_direction=ASC&start=1`));
+          F.age.set(w, { first: act[0] ? +act[0].timestamp : null, markets, checked: Date.now() });
         } finally { F.checking--; }
       });
       keepOld();
@@ -554,6 +581,7 @@ footer p { margin: 0; }
     } catch (e) { /* the next cycle tries again */ }
     F.busy = false;
     renderFresh();
+    if (F.again) { F.again = false; refreshFresh(); }
   }
 
   function freshInView(slug) {

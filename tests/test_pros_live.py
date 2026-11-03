@@ -133,8 +133,8 @@ def test_all_time_profit_comes_from_polymarket(live):
 
     class Http:
         def get(self, url, params=None, headers=None, timeout=None):
-            assert url.endswith("/v1/leaderboard") and params["timePeriod"] == "ALL"
-            return Resp([{"pnl": -1969623.78, "vol": 69436312.9}] if params["user"] == "0xa" else [])
+            assert url.endswith("/v2/leaderboard") and params["time_period"] == "all"
+            return Resp({"data": {"pnl": -1969623.78, "volume": 69436312.9} if params["user"] == "0xa" else None})
 
     wallets = [{"wallet": "0xa"}, {"wallet": "0xb"}]
     live.alltime(wallets, Http())

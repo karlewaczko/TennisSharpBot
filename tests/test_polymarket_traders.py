@@ -84,29 +84,38 @@ def test_closed_markets_walks_creation_windows_and_tags():
     assert [r["condition_id"] for r in got] == ["0x1", "0x2", "0x4"]   # once, though asked under every tag
 
 
+def _page(rows, cursor=None):
+    """A Data API v2 answer: rows in `data`, the next page's cursor in `pagination`."""
+    return _Resp({"data": rows, "pagination": {"next_cursor": cursor, "has_more": cursor is not None}})
+
+
 def test_market_trades_fall_back_to_bigger_trades_when_a_market_is_too_busy():
     asked = []
-    taker = {"transactionHash": "0xt", "proxyWallet": "0xW", "side": "BUY", "outcomeIndex": 0, "size": 5}
+    taker = {"transaction_hash": "0xt", "proxy_wallet": "0xW", "side": "BUY", "outcome_index": 0, "size": 5}
 
     class Http:
         def get(self, url, params=None, headers=None, timeout=None):
             asked.append(params)
-            if "filterAmount" not in params or params["filterAmount"] < 100:
-                return _Resp([{"price": 0.5}] * pt.TRADE_PAGE)          # always a full page
-            if params["takerOnly"] == "true":
-                return _Resp([taker] if params["offset"] == 0 else [])
-            return _Resp([{"price": 0.5}] * 1200 if params["offset"] == 0 else [])
+            assert url.endswith("/v2/trades") and params["condition"] == "0xbusy" and "market" not in params
+            if "filter_amount" not in params or params["filter_amount"] < 100:
+                return _page([{"price": 0.5}] * pt.TRADE_PAGE, cursor="more")    # never ends
+            if params["taker_only"] == "true":
+                return _page([taker])
+            return _page([{"price": 0.5}] * 1200)
 
     trades, floor, takers = pt.market_trades("0xbusy", http=Http(), sleep=lambda s: None)
+    pages = pt.MAX_FILLS // pt.TRADE_PAGE
     assert floor == 100 and len(trades) == 1200
-    assert [a.get("filterAmount") for a in asked] == [None, None, 50, 50, 100, 100]
-    assert asked[-1]["takerOnly"] == "true" and takers == {("0xt", "0xw", 0, "BUY", 5.0)}
+    assert [a.get("filter_amount") for a in asked] == [None] * pages + [50] * pages + [100, 100]
+    assert "limit" in asked[0] and "cursor" not in asked[0] and asked[1]["cursor"] == "more" and "limit" not in asked[1]
+    assert asked[-1]["taker_only"] == "true" and takers == {("0xt", "0xw", 0, "BUY", 5.0)}
 
     class Small:
         def get(self, url, params=None, headers=None, timeout=None):
-            return _Resp([{"price": 0.5}] * 30)
+            return _page([{"price": 0.5, "proxy_wallet": "0xA", "outcome_index": 1}] * 30)
 
-    assert pt.market_trades("0xquiet", http=Small(), sleep=lambda s: None)[1] == 0.0
+    trades, floor, _ = pt.market_trades("0xquiet", http=Small(), sleep=lambda s: None)
+    assert floor == 0.0 and trades[0]["proxyWallet"] == "0xA" and trades[0]["outcomeIndex"] == 1
 
 
 def test_taker_fees_come_off_profit_and_closing_line_value():
@@ -246,21 +255,22 @@ def test_positions_keep_open_singles_only():
         def raise_for_status(self): pass
 
     data = [
-        {"eventSlug": "atp-fritz-altmaie-2026-10-23", "outcome": "Taylor Fritz", "avgPrice": 0.7,
-         "curPrice": 0.75, "size": 100, "initialValue": 70, "currentValue": 75, "redeemable": False},
-        {"eventSlug": "atp-doubles-ab-cd-2026-10-23", "curPrice": 0.5, "size": 10},
-        {"eventSlug": "nba-lakers", "curPrice": 0.5, "size": 10},
-        {"eventSlug": "atp-tournament-winner-2026-135011", "curPrice": 0.3, "size": 10},
-        {"eventSlug": "wta-a-b-2026-10-20", "curPrice": 1.0, "size": 10, "redeemable": True},
+        {"event_slug": "atp-fritz-altmaie-2026-10-23", "outcome": "Taylor Fritz", "avg_price": 0.7,
+         "current_price": 0.75, "current_size": 100, "current_value": 75, "redeemable": False},
+        {"event_slug": "atp-doubles-ab-cd-2026-10-23", "current_price": 0.5, "current_size": 10},
+        {"event_slug": "nba-lakers", "current_price": 0.5, "current_size": 10},
+        {"event_slug": "atp-tournament-winner-2026-135011", "current_price": 0.3, "current_size": 10},
+        {"event_slug": "wta-a-b-2026-10-20", "current_price": 1.0, "current_size": 10, "redeemable": True},
     ]
 
     class Http:
         def get(self, url, params=None, headers=None, timeout=None):
-            return Resp(data)
+            assert url.endswith("/v2/positions") and params["user"] == "0xW"
+            return Resp({"data": data, "pagination": {"next_cursor": None}})
 
     got = pt.positions("0xW", http=Http(), sleep=lambda s: None)
     assert [p["slug"] for p in got] == ["atp-fritz-altmaie-2026-10-23"]
-    assert got[0]["avg_price"] == 0.7
+    assert got[0]["avg_price"] == 0.7 and got[0]["initial_value"] == pytest.approx(70)    # what the shares held cost
 
 
 @pytest.fixture(scope="module")
@@ -332,7 +342,7 @@ def test_the_elite_meets_every_criterion():
     class Http:
         def get(self, url, params=None, headers=None, timeout=None):
             asked.append(params["user"])
-            return _Resp([{"pnl": 25000.0 if params["user"] == "0xA" else -1969623.0, "vol": 1e6}])
+            return _Resp({"data": {"pnl": 25000.0 if params["user"] == "0xA" else -1969623.0, "volume": 1e6}})
 
     out = pt.mark_elite(lb, http=Http(), sleep=lambda s: None)
     assert out["elite"].tolist() == [True, False, False, False, False]
@@ -345,7 +355,7 @@ def test_a_second_source_in_the_red_rules_a_wallet_out():
 
     class Http:
         def get(self, url, params=None, headers=None, timeout=None):
-            return _Resp([{"pnl": 10000.0, "vol": 1e6}])                    # all three ahead on Polymarket
+            return _Resp({"data": {"pnl": 10000.0, "volume": 1e6}})          # all three ahead on Polymarket
 
     opinions = {"0xA": {"pnl": 75700.0, "winRate": 57.5, "closedPredictions": 1200},
                 "0xB": {"pnl": -99504.6, "winRate": 50.4, "closedPredictions": 24749}}
