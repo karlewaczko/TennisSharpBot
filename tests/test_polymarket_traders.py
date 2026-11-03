@@ -118,6 +118,38 @@ def test_market_trades_fall_back_to_bigger_trades_when_a_market_is_too_busy():
     assert floor == 0.0 and trades[0]["proxyWallet"] == "0xA" and trades[0]["outcomeIndex"] == 1
 
 
+def test_track_record_follows_polyinsiders_method():
+    import requests
+    now = 1_800_000_000.0                                   # 15 Jan 2027: the last month starts 16 Dec
+    stats = {"data": {"all_time_pnl": {"realized_pnl": 900.0, "unrealized_pnl": -100.0, "volume": 50000.0}}}
+    closed = [{"condition_id": "0xa", "total_pnl": 50.0, "end_date": "2027-01-10"},     # won, this month
+              {"condition_id": "0xb", "total_pnl": -20.0, "end_date": "2026-10-01"},
+              {"condition_id": "0xc", "total_pnl": 30.0, "end_date": "2026-09-01"},     # one market, both outcomes:
+              {"condition_id": "0xc", "total_pnl": -40.0, "end_date": "2026-09-01"}]    # lost on balance
+    held = [{"condition_id": "0xd", "total_pnl": -10.0, "end_date": "2027-01-12"}]       # lost at resolution, still held
+    asked = []
+
+    class Http:
+        def get(self, url, params=None, headers=None, timeout=None):
+            asked.append((url.rsplit("/", 1)[-1], params.get("status")))
+            assert url.endswith("/user-stats") or params["sort_by"] == "TIMESTAMP"         # newest first, not by profit
+            if url.endswith("/user-stats"):
+                return _Resp(stats)
+            return _page(closed if params["status"] == "CLOSED" else held)
+
+    rec = pt.track_record("0xW", http=Http(), sleep=lambda s: None, now=now)
+    assert (rec["closedPredictions"], rec["winningPredictions"], rec["winRate"]) == (4, 1, 25.0)
+    assert (rec["closedPredictions_1m"], rec["winningPredictions_1m"], rec["winRate_1m"]) == (2, 1, 50.0)
+    assert (rec["pnl"], rec["volume"], rec["complete"]) == (800.0, 50000.0, True)   # realised plus unrealised
+    assert {("positions", "CLOSED"), ("positions", "REDEEMABLE")} <= set(asked)
+
+    class Down:
+        def get(self, url, params=None, headers=None, timeout=None):
+            raise requests.ConnectionError("down")
+
+    assert pt.track_record("0xW", http=Down(), sleep=lambda s: None) is None
+
+
 def test_taker_fees_come_off_profit_and_closing_line_value():
     trades = [{**_t("T", "BUY", 0, 100, 0.40, START - 3600), "transactionHash": "0x1"},   # the taker
               {**_t("M", "SELL", 0, 100, 0.40, START - 3600), "transactionHash": "0x1"},  # its maker

@@ -52,6 +52,7 @@ MAX_TRADES_PER_MARKET = 6000
 PAUSE = 0.1
 TRADE_PAGE = 1000          # v2's largest page
 MAX_FILLS = 20000          # a market comes whole up to this many fills
+RECORD_MAX_ROWS = 20000    # newest settled positions read per status; a few bots hold over 100,000
 MIN_PRE_MARKETS = 20       # pre-match markets a wallet needs to be ranked
 MIN_STAKE = 2000.0         # USDC staked over the window
 MIN_DIRECTIONAL = 0.7      # below this a wallet trades like a market maker
@@ -451,13 +452,62 @@ def alltime(wallet: str, http=requests, sleep=time.sleep) -> tuple[float, float]
         return None
 
 
+def track_record(wallet: str, http=requests, sleep=time.sleep, now: float | None = None) -> dict | None:
+    """A wallet's record by PolyInsider's published method, from Polymarket's
+    own data (PolyInsider refuses GitHub's servers with 403).
+
+    Two figures:
+    - Profit over its positions: realised plus unrealised.
+    - Win rate: the share of settled markets that finished in profit, over all
+      time and over the markets that ended in the last 30 days. A lost
+      resolution counts as a loss; open positions never count.
+
+    Positions are read newest first: by default Polymarket sorts settled ones
+    by profit, and a cut taken from that list would hold the winners. A
+    wallet with more than RECORD_MAX_ROWS settled positions of a kind is
+    measured on its newest ones (`complete` False).
+
+    The keys are named as polyinsider.trader names them. Returns None when
+    Polymarket cannot be read."""
+    now = time.time() if now is None else now
+    try:
+        stats = (_get(http, f"{DATA_API}/user-stats", {"user": wallet}, sleep=sleep) or {}).get("data") or {}
+        settled, whole = [], True
+        for status in ("CLOSED", "REDEEMABLE"):          # sold or redeemed, and resolved but still held
+            rows, done = _pages(http, "/positions", {"user": wallet, "status": status, "sort_by": "TIMESTAMP"},
+                                sleep=sleep, max_rows=RECORD_MAX_ROWS)
+            settled += rows
+            whole = whole and done
+    except (requests.RequestException, RuntimeError, ValueError, TypeError, AttributeError):
+        return None
+    markets = defaultdict(lambda: [0.0, 0.0])           # condition -> [profit, when the market ended]
+    for r in settled:
+        m = markets[r.get("condition_id")]
+        m[0] += float(r.get("total_pnl") or 0)
+        m[1] = max(m[1], _ts(r.get("end_date")) or float(r.get("last_event_at") or 0))
+
+    def rate(ms):
+        won = sum(1 for profit, _ in ms if profit > 0)
+        return (100.0 * won / len(ms) if ms else None), len(ms), won
+
+    out = {"complete": whole}
+    out["winRate"], out["closedPredictions"], out["winningPredictions"] = rate(list(markets.values()))
+    out["winRate_1m"], out["closedPredictions_1m"], out["winningPredictions_1m"] = rate(
+        [m for m in markets.values() if m[1] >= now - 30 * 86400])
+    pnl = stats.get("all_time_pnl") or {}
+    out["pnl"] = (float(pnl["realized_pnl"]) + float(pnl.get("unrealized_pnl") or 0)
+                  if pnl.get("realized_pnl") is not None else None)
+    out["volume"] = float(pnl["volume"]) if pnl.get("volume") is not None else None
+    return out
+
+
 def mark_elite(lb: pd.DataFrame, http=requests, sleep=time.sleep, second_opinion=None) -> pd.DataFrame:
     """The very best, the only wallets worth watching: an edge after fees
     beyond luck (`significant`), ahead of the close in both halves of the
     window (`consistent`), in profit after fees over it, and in profit over
     all time on Polymarket's own leaderboard and, where `second_opinion`
-    (wallet -> dict or None, e.g. polyinsider.trader) has figures, there
-    too. The all-time figures are fetched only for the wallets that pass
+    (wallet -> dict or None, e.g. track_record: the sum over its positions)
+    has figures, there too. The all-time figures are fetched only for the wallets that pass
     the rest; a second opinion that cannot be read rules nobody out."""
     lb = lb.copy()
     if lb.empty:
