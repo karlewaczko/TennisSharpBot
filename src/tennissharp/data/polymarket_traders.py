@@ -1,7 +1,8 @@
 """Who trades tennis well on Polymarket, and what they hold right now.
 
 Polymarket settles on a public blockchain, so every fill carries the
-trader's wallet and public profile name (data-api.polymarket.com/trades).
+trader's wallet and public profile name (Polymarket's Data API, v2 since
+v1 was retired on 2 November 2026).
 Kalshi publishes its trades without any trader identity -- nobody can be
 followed there.
 
@@ -40,13 +41,17 @@ from scipy.stats import t as student_t
 
 logger = logging.getLogger(__name__)
 
-DATA_API = "https://data-api.polymarket.com"
+# v1 answers 410 Gone since 2 November 2026. v2 wraps rows in `data`, pages
+# by cursor (`pagination.next_cursor`) at most 1000 rows a call, spells
+# fields in snake_case and names a market `condition`.
+DATA_API = "https://data-api.polymarket.com/v2"
 GAMMA_API = "https://gamma-api.polymarket.com"
 TENNIS_TAG = 864
 PAGE = 500
 MAX_TRADES_PER_MARKET = 6000
 PAUSE = 0.1
-TRADE_PAGE = 10000
+TRADE_PAGE = 1000          # v2's largest page
+MAX_FILLS = 20000          # a market comes whole up to this many fills
 MIN_PRE_MARKETS = 20       # pre-match markets a wallet needs to be ranked
 MIN_STAKE = 2000.0         # USDC staked over the window
 MIN_DIRECTIONAL = 0.7      # below this a wallet trades like a market maker
@@ -71,6 +76,31 @@ def _get(http, url, params=None, sleep=time.sleep, attempts=4):
         r.raise_for_status()
         return r.json()
     raise RuntimeError(f"{url} failed: {last}")
+
+
+def _pages(http, path: str, params: dict, sleep=time.sleep, max_rows: int | None = None) -> tuple[list[dict], bool]:
+    """Every row of a v2 listing, following its cursor; and whether that was
+    all of them (False when `max_rows` stopped it)."""
+    rows, cursor = [], None
+    while True:
+        # the page size goes with the first call only: the cursor carries it after that
+        page = _get(http, f"{DATA_API}{path}", {**params, **({"cursor": cursor} if cursor else {"limit": TRADE_PAGE})},
+                    sleep=sleep) or {}
+        rows.extend(page.get("data") or [])
+        cursor = (page.get("pagination") or {}).get("next_cursor")
+        if not cursor:
+            return rows, True
+        if max_rows and len(rows) >= max_rows:
+            return rows, False
+        sleep(PAUSE)
+
+
+def _trade(r: dict) -> dict:
+    """A v2 trade row under the names the accounting reads (v1's)."""
+    return {"proxyWallet": r.get("proxy_wallet"), "side": r.get("side"), "size": r.get("size"), "price": r.get("price"),
+            "timestamp": r.get("timestamp"), "outcomeIndex": r.get("outcome_index"), "outcome": r.get("outcome"),
+            "transactionHash": r.get("transaction_hash"), "conditionId": r.get("condition_id"),
+            "name": r.get("name"), "pseudonym": r.get("pseudonym")}
 
 
 def _ts(value) -> float | None:
@@ -222,37 +252,29 @@ def market_trades(condition_id: str, http=requests, sleep=time.sleep) -> tuple[l
     """Every fill of one market, newest first; the smallest trade size that
     was kept (0: all of them); and the taker_key of every taker fill.
 
-    The API hands out 10000 rows a call from offsets up to 10000, so a
-    market of up to 20000 fills comes whole. A bigger one (a busy NBA game)
-    is fetched again for trades of at least 50, 100, 250 ... dollars until
-    it fits, which keeps its pre-match trading whole above that size. The
-    taker fills come from the same listing with takerOnly, under the same
-    size floor."""
+    A market of up to MAX_FILLS fills comes whole, a thousand a call. A
+    bigger one is fetched again for trades of at least 50, 100, 250 ...
+    dollars until it fits, which keeps its pre-match trading whole above
+    that size. The taker fills come from the same listing with taker_only,
+    under the same size floor."""
     def fetch(extra):
-        rows = []
-        for offset in (0, TRADE_PAGE):
-            batch = _get(http, f"{DATA_API}/trades",
-                         {"market": condition_id, "limit": TRADE_PAGE, "offset": offset,
-                          "takerOnly": "false", **extra}, sleep=sleep) or []
-            rows.extend(batch)
-            if len(batch) < TRADE_PAGE:
-                return rows, True
-            sleep(PAUSE)
-        return rows, False
+        rows, whole = _pages(http, "/trades", {"condition": condition_id, "taker_only": "false", **extra},
+                             sleep=sleep, max_rows=MAX_FILLS)
+        return [_trade(r) for r in rows], whole
 
     trades, whole = fetch({})
     floor = 0.0
     if not whole:
         for f in TRADE_FLOORS:
-            trades, whole = fetch({"filterType": "CASH", "filterAmount": f})
+            trades, whole = fetch({"filter_type": "CASH", "filter_amount": f})
             floor = float(f)
             if whole:
                 break
         else:
-            logging.getLogger(__name__).warning("%s: over 20000 trades of %d$ and more, the oldest are cut off",
-                                                condition_id, TRADE_FLOORS[-1])
-    size_floor = {"filterType": "CASH", "filterAmount": floor} if floor else {}
-    taker_fills, _ = fetch({**size_floor, "takerOnly": "true"})
+            logging.getLogger(__name__).warning("%s: over %d trades of %d$ and more, the oldest are cut off",
+                                                condition_id, MAX_FILLS, TRADE_FLOORS[-1])
+    size_floor = {"filter_type": "CASH", "filter_amount": floor} if floor else {}
+    taker_fills, _ = fetch({**size_floor, "taker_only": "true"})
     return trades, floor, {taker_key(t) for t in taker_fills}
 
 
@@ -422,10 +444,10 @@ def alltime(wallet: str, http=requests, sleep=time.sleep) -> tuple[float, float]
     """A wallet's all-time profit and volume over every Polymarket market,
     the figures its profile shows."""
     try:
-        rows = _get(http, f"{DATA_API}/v1/leaderboard",
-                    {"user": wallet, "timePeriod": "ALL", "orderBy": "PNL", "category": "OVERALL"}, sleep=sleep)
-        return float(rows[0]["pnl"]), float(rows[0]["vol"])
-    except (requests.RequestException, ValueError, KeyError, TypeError, IndexError):
+        row = _get(http, f"{DATA_API}/leaderboard",
+                   {"user": wallet, "time_period": "all", "sort_by": "PNL", "category": "overall"}, sleep=sleep)["data"]
+        return float(row["pnl"]), float(row["volume"])
+    except (requests.RequestException, RuntimeError, ValueError, KeyError, TypeError):
         return None
 
 
@@ -586,19 +608,19 @@ def calibration(markets: pd.DataFrame) -> dict:
 
 def positions(wallet: str, http=requests, sleep=time.sleep) -> list[dict]:
     """A wallet's open tennis singles positions."""
-    data = _get(http, f"{DATA_API}/positions",
-                {"user": wallet, "limit": 500, "sizeThreshold": 1}, sleep=sleep) or []
+    data, _ = _pages(http, "/positions", {"user": wallet, "filter_type": "TOKENS", "filter_amount": 1},
+                     sleep=sleep, max_rows=5000)
     out = []
     for p in data:
-        slug = str(p.get("eventSlug") or p.get("slug") or "")
+        slug = str(p.get("event_slug") or p.get("slug") or "")
         if not is_match_slug(slug):
             continue
-        cur = float(p.get("curPrice") or 0)
+        cur = float(p.get("current_price") or 0)
         if p.get("redeemable") or not (0.02 < cur < 0.98):
             continue
+        size, avg = float(p.get("current_size") or 0), float(p.get("avg_price") or 0)
         out.append({"wallet": wallet, "slug": slug, "title": p.get("title"),
-                    "outcome": p.get("outcome"), "avg_price": float(p.get("avgPrice") or 0),
-                    "cur_price": cur, "size": float(p.get("size") or 0),
-                    "initial_value": float(p.get("initialValue") or 0),
-                    "current_value": float(p.get("currentValue") or 0)})
+                    "outcome": p.get("outcome"), "avg_price": avg, "cur_price": cur, "size": size,
+                    "initial_value": size * avg,           # what the shares still held cost
+                    "current_value": float(p.get("current_value") or 0)})
     return out
