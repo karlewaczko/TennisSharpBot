@@ -22,7 +22,7 @@ import pandas as pd
 import requests
 
 from tennissharp import config
-from tennissharp.data import polyinsider, polymarket_traders as pt
+from tennissharp.data import polymarket_traders as pt
 
 SPORTS = {"tennis": "Tennis", "soccer": "Fußball", "basketball": "Basketball", "football": "American Football",
           "baseball": "Baseball"}
@@ -116,9 +116,10 @@ def _previous() -> dict:
 
 
 def second_opinion(wallets: list[dict], fetch=None) -> None:
-    """Each watched account as PolyInsider sees it: tracked P&L and volume
+    """Each watched account's record by PolyInsider's method, computed from
+    Polymarket's own data (pt.track_record): tracked P&L and volume
     over all time, win rate over all settled markets and the last month."""
-    fetch = fetch or polyinsider.trader
+    fetch = fetch or pt.track_record
     for w in wallets:
         figures = fetch(w["wallet"])
         if not figures:
@@ -126,7 +127,7 @@ def second_opinion(wallets: list[dict], fetch=None) -> None:
         w["pi"] = {"pnl": figures.get("pnl"), "volume": figures.get("volume"),
                    "win_rate": figures.get("winRate"), "closed": figures.get("closedPredictions"),
                    "won": figures.get("winningPredictions"), "win_rate_1m": figures.get("winRate_1m"),
-                   "closed_1m": figures.get("closedPredictions_1m")}
+                   "closed_1m": figures.get("closedPredictions_1m"), "complete": figures.get("complete", True)}
 
 
 def alltime(wallets: list[dict], http=requests) -> None:

@@ -153,9 +153,9 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> je Sportart die zehn besten Wallets der Rangliste, sortiert danach, wie klar ihr Vorsprung auf den Schlusskurs nach Gebühren ist (t-Wert). In die Rangliste kommt nur, wer mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz hat und überwiegend vor dem Spiel und auf eine Seite setzt. Ein &#9733; tragen die, die alle fünf Kriterien erfüllen; sie sind immer dabei, auch hinter Platz zehn. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage (Baseball: 60). (3) In diesem Zeitraum nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarket und laut PolyInsider. (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verliert den Stern, und wer aus den besten zehn fällt, verschwindet von der Liste.</p>
+    <p><b>Wer hier steht:</b> je Sportart die zehn besten Wallets der Rangliste, sortiert danach, wie klar ihr Vorsprung auf den Schlusskurs nach Gebühren ist (t-Wert). In die Rangliste kommt nur, wer mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz hat und überwiegend vor dem Spiel und auf eine Seite setzt. Ein &#9733; tragen die, die alle fünf Kriterien erfüllen; sie sind immer dabei, auch hinter Platz zehn. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage (Baseball: 60). (3) In diesem Zeitraum nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarkets Rangliste und laut Summe aller Positionen (PolyInsiders Methode). (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verliert den Stern, und wer aus den besten zehn fällt, verschwindet von der Liste.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
-    <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Zweite Quelle für die Profile: PolyInsider (Trefferquote, Gewinn über alle Märkte; täglich gelesen). Die Links „PolyInsider ↗“ führen zu Wal-Wetten ab 5.000&nbsp;$ und frischen Wallets auf dem jeweiligen Spiel. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
+    <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Trefferquote und Gewinn aus allen Positionen werden täglich nach PolyInsiders veröffentlichter Methode aus Polymarkets eigenen Daten berechnet, denn PolyInsider lässt keine automatischen Abrufe von GitHub zu. Die Links „PolyInsider ↗“ führen zu Wal-Wetten ab 5.000&nbsp;$ und frischen Wallets auf dem jeweiligen Spiel. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
 </div>
 
@@ -237,11 +237,13 @@ footer p { margin: 0; }
       (c.fees != null ? `, Gebühren ${usd(c.fees)}` : "") +
       (c.taker != null ? `, ${nf0.format(c.taker * 100)} % des Einsatzes als Taker` : "") + ".";
   }
+  // The record by PolyInsider's published method, computed daily from Polymarket's own data.
   function piCell(w) {
-    const p = w.pi, link = `<a href="${PI}/trader/${esc(w.wallet)}" target="_blank" rel="noopener">Profil ↗</a>`;
+    const p = w.pi, link = `<a href="${PI}/trader/${esc(w.wallet)}" target="_blank" rel="noopener">PolyInsider ↗</a>`;
     if (!p || p.win_rate == null) return `<td class="num"><span class="meta">\u2013</span><br>${link}</td>`;
     const month = p.win_rate_1m != null ? ` · Monat ${nf0.format(p.win_rate_1m)}\u00a0%` : "";
-    return `<td class="num" title="PolyInsider: ${esc(nf0.format(p.won || 0))} von ${esc(nf0.format(p.closed || 0))} abgeschlossenen Märkten im Gewinn; P&L ${esc(p.pnl != null ? signed(p.pnl, big) : "\u2013")} bei ${esc(p.volume != null ? big(p.volume) : "\u2013")} Volumen">` +
+    return `<td class="num" title="${esc(nf0.format(p.won || 0))} von ${esc(nf0.format(p.closed || 0))} ${p.complete === false ? "zuletzt " : ""}abgeschlossenen Märkten im Gewinn (PolyInsiders Methode, aus Polymarkets Daten); ` +
+           `Gewinn aus allen Positionen, realisiert und offen: ${esc(p.pnl != null ? signed(p.pnl, big) : "\u2013")}">` +
            `<b>${nf1.format(p.win_rate)}\u00a0%</b> Treffer<br><span class="meta">${nf0.format(p.closed || 0)} Märkte${month}</span><br>${link}</td>`;
   }
   const big = (v) => (Math.abs(v) >= 1e6 ? `${nf1.format(v / 1e6)}\u00a0Mio\u00a0$` : usd(v));
@@ -767,7 +769,7 @@ footer p { margin: 0; }
     };
     let html = `<table><thead><tr><th>Profil</th>${sports.map((s) => `<th class="num${S.sport === s ? " hl" : ""}">CLV ${esc(LABEL[s])}</th>`).join("")}` +
                '<th class="num" title="Gewinn oder Verlust über alle Polymarket-Märkte seit Kontoeröffnung, wie auf dem Profil">Polymarket gesamt</th>' +
-               '<th class="num" title="Zweite Quelle: PolyInsider, Trefferquote über alle abgeschlossenen Märkte und den letzten Monat">PolyInsider</th>' +
+               '<th class="num" title="Anteil der abgeschlossenen Märkte, die im Gewinn endeten, insgesamt und im letzten Monat: nach PolyInsiders Methode täglich aus Polymarkets eigenen Daten berechnet">Trefferquote</th>' +
                '<th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
     for (const x of rows) {
       const ready = S.loaded.has(x.w.wallet);
