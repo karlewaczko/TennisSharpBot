@@ -315,3 +315,14 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-03T21:04:19+00:00,3369189,2026-11-05,Taipei challenger,Jake Delaney,Interwetten,book,value,2.55,0.3955,0.0085,Betfair
 2026-11-03T21:04:19+00:00,3369695,2026-11-05,Taranto challenger,Grenier H.,Polymarket,prediction,value,1.843,0.5475,0.0092,Betfair
 2026-11-03T21:04:19+00:00,3369269,2026-11-04,Incheon ITF,Swan K.,Kalshi,prediction,value,1.48,0.7365,0.0899,Betfair
+2026-11-04T01:26:35+00:00,3365603,2026-11-04,Costa do Sauipe challenger,Nikolas Sanchez Izquierdo,Kalshi,prediction,value,5.903,0.364,1.1489,Betfair
+2026-11-04T01:26:35+00:00,3365587,2026-11-04,Costa do Sauipe challenger,Comesana F.,Kalshi,prediction,value,2.895,0.6979,1.0201,Betfair
+2026-11-04T01:26:35+00:00,3369803,2026-11-04,Bratislava challenger,Coppejans K.,Polymarket,prediction,value,3.118,0.3326,0.0371,Betfair
+2026-11-04T01:26:35+00:00,3369695,2026-11-05,Taranto challenger,Grenier H.,Polymarket,prediction,value,1.843,0.5463,0.0072,Betfair
+2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,1xBet,book,value,1.26,0.8352,0.0524,Betfair
+2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,William Hill,book,value,1.25,0.8352,0.044,Betfair
+2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,bet-at-home,book,value,1.23,0.8352,0.0273,Betfair
+2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,bet365,book,value,1.28,0.8352,0.0691,Betfair
+2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,bwin,book,value,1.24,0.8352,0.0357,Betfair
+2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,Polymarket,prediction,value,1.284,0.8352,0.0723,Betfair
+2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,Kalshi,prediction,value,1.294,0.8352,0.0808,Betfair
