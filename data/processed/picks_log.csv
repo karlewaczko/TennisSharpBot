@@ -333,3 +333,9 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-04T11:00:50+00:00,3369941,2026-11-04,Orlando 3 ITF,Preston J.,Polymarket,prediction,value,1.094,0.9232,0.01,Pinnacle
 2026-11-04T11:00:50+00:00,3369941,2026-11-04,Orlando 3 ITF,Preston J.,Kalshi,prediction,value,1.103,0.9232,0.0187,Pinnacle
 2026-11-04T11:00:50+00:00,3368391,2026-11-04,Paris,Machac T.,Pinnacle,model,model_signal,2.52,0.382,0.0552,Pinnacle
+2026-11-04T21:22:56+00:00,3370595,2026-11-05,Cali,Alice Tubello,1xBet,book,value,2.01,0.5214,0.048,Betfair
+2026-11-04T21:22:56+00:00,3370595,2026-11-05,Cali,Alice Tubello,Betsson,book,value,2.05,0.5214,0.0688,Betfair
+2026-11-04T21:22:56+00:00,3370595,2026-11-05,Cali,Alice Tubello,Interwetten,book,value,2.05,0.5214,0.0688,Betfair
+2026-11-04T21:22:56+00:00,3370595,2026-11-05,Cali,Alice Tubello,bet-at-home,book,value,2.05,0.5214,0.0688,Betfair
+2026-11-04T21:22:56+00:00,3370085,2026-11-05,Hamamatsu ITF,Shimizu A.,Polymarket,prediction,value,1.3,0.7765,0.0096,Betfair
+2026-11-04T21:22:56+00:00,3370085,2026-11-05,Hamamatsu ITF,Shimizu A.,Kalshi,prediction,value,1.294,0.7765,0.0048,Betfair
