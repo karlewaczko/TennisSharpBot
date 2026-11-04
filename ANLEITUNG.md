@@ -105,6 +105,8 @@ Blass heißt: Der Sprung hat sich schon mehr als zur Hälfte zurückgebildet. Di
 
 Was ein Sprung bedeutet, steht im Bericht (Abschnitt 4i). Kurz: Im Tennis bewegt sich Polymarket praktisch gleichzeitig mit den schnellsten Buchmachern. Ein Sprung zeigt also, dass gerade etwas passiert. Ein sicherer Vorsprung ist er nicht. Rechne nicht damit, dass Pinnacle oder PS3838 danach noch den alten Kurs anbieten.
 
+Auf dem Handy erscheinen Spiele, Wetten und Profile als Karten statt als breite Tabellen. Jeder Bereich lässt sich über seine Überschrift zuklappen. Unter „Wo die Profis stehen“ klappt ein Tipp auf den Spielnamen ein einzelnes Spiel zu, und „alle zuklappen“ / „alle aufklappen“ wirkt auf alle Spiele. Zugeklappte Spiele zeigen nur noch Anstoß, Profi-Geld und die Seite mit dem meisten Geld. Dein Gerät merkt sich das, zugeklappte Spiele zwei Wochen lang. Die Erklärtexte sind am Handy auf zwei Zeilen gekürzt, ein Tipp zeigt den ganzen Text. Unter „Neueste Wetten“ stehen zuerst 30 Wetten, „weitere Wetten“ lädt jeweils 30 dazu.
+
 Darunter folgt der Bereich **Frische Wallets**. Er zeigt neue Konten, die in ihren ersten 24 Stunden mindestens 10.000 $ auf eine Seite setzen und bisher nur diesen einen Markt gehandelt haben. Den Mindestbetrag kannst du auf 25.000, 50.000 oder 100.000 $ hochsetzen. Mit „auch Märkte außerhalb des Sports“ siehst du zusätzlich Politik und Co. Neue Einträge werden farbig markiert. Mit „Benachrichtigen“ meldet sich der Browser, solange die Seite offen ist; am iPhone geht das nicht in einem normalen Safari-Tab. Das ist ein mögliches Insider-Muster, kein Beweis.
 
 ## Was du am Ende hast
