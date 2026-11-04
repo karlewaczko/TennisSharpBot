@@ -326,3 +326,10 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,bwin,book,value,1.24,0.8352,0.0357,Betfair
 2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,Polymarket,prediction,value,1.284,0.8352,0.0723,Betfair
 2026-11-04T01:26:35+00:00,3368375,2026-11-04,Petange 2 ITF,Podrez V.,Kalshi,prediction,value,1.294,0.8352,0.0808,Betfair
+2026-11-04T11:00:50+00:00,3369801,2026-11-04,Cali,Papamichail D.,Kalshi,prediction,value,5.559,0.1854,0.0306,Betfair
+2026-11-04T11:00:50+00:00,3369403,2026-11-05,Hong Kong WTA,Alexandra Shubladze,Kalshi,prediction,value,1.524,0.6596,0.0053,Betfair
+2026-11-04T11:00:50+00:00,3368877,2026-11-04,Villa Maria challenger,Carlos Maria Zarate,1xBet,book,value,1.8,0.5688,0.0238,Betfair
+2026-11-04T11:00:50+00:00,3369643,2026-11-04,Heraklion 9 ITF,Brancaccio N.,Polymarket,prediction,value,1.49,0.6773,0.0091,Betfair
+2026-11-04T11:00:50+00:00,3369941,2026-11-04,Orlando 3 ITF,Preston J.,Polymarket,prediction,value,1.094,0.9232,0.01,Pinnacle
+2026-11-04T11:00:50+00:00,3369941,2026-11-04,Orlando 3 ITF,Preston J.,Kalshi,prediction,value,1.103,0.9232,0.0187,Pinnacle
+2026-11-04T11:00:50+00:00,3368391,2026-11-04,Paris,Machac T.,Pinnacle,model,model_signal,2.52,0.382,0.0552,Pinnacle
