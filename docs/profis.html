@@ -85,8 +85,56 @@ tr.new td { background: color-mix(in srgb, var(--live) 14%, transparent); }
 code { font: .8rem var(--mono); }
 button.copy { font: 500 .76rem var(--mono); border: 1px solid var(--line); background: var(--chip); color: var(--ink); border-radius: 6px; padding: 3px 7px; cursor: pointer; }
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+/* Sections and games fold: the heading is the button, the state is kept per device. */
+.stoggle, .gtoggle { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
+  display: inline-flex; align-items: center; gap: 8px; text-transform: inherit; letter-spacing: inherit; }
+.stoggle::before, .gtoggle::before { content: ""; width: 7px; height: 7px; flex: none; border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor; transform: rotate(45deg); margin: -3px 2px 0 1px; transition: transform .15s; }
+.stoggle[aria-expanded="false"]::before, .gtoggle[aria-expanded="false"]::before { transform: rotate(-45deg); margin-top: 0; }
+@media (prefers-reduced-motion: reduce) { .stoggle::before, .gtoggle::before { transition: none; } }
+section.closed > :not(.sechead), section.closed .sechead > :not(h2) { display: none; }
+.game { border-top: 1px solid var(--line); padding: 10px 0; }
+.game:first-child { border-top: 0; }
+.ghead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.gtoggle { font-weight: 600; }
+.gmoney { font: 500 .86rem var(--mono); }
+.game:not(.closed) .gsum { display: none; }
+.game.closed .gbody { display: none; }
+.gside { display: grid; grid-template-columns: minmax(170px, 1.3fr) 105px 85px 140px minmax(220px, 2fr); gap: 2px 14px; padding: 8px 0 2px 17px; align-items: start; }
+.gside + .gside { border-top: 1px dashed var(--line); }
+.gside .num { text-align: right; }
+.gside .lbl { display: block; color: var(--muted); font: 600 .66rem/1.3 var(--display); letter-spacing: .08em; text-transform: uppercase; }
+.gtools { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.gtools .chip { padding: 6px 10px; font-size: .74rem; }
+.more { margin-top: 8px; }
 footer { color: var(--muted); font-size: .86rem; display: grid; gap: 6px; max-width: 86ch; }
 footer p { margin: 0; }
+/* Phones: every table row becomes a card, its cells labelled with their column; long explanations fold to two lines. */
+@media (max-width: 640px) {
+  body { font-size: 14px; }
+  .wrap { gap: 14px; }
+  h1 { font-size: 1.65rem; }
+  .lede { font-size: .9rem; }
+  section { padding: 12px; gap: 8px; }
+  h2 { font-size: 1.12rem; }
+  .chip { padding: 8px 11px; font-size: .8rem; }
+  .sechead .controls { gap: 6px 8px; }
+  .sechead select { padding: 4px 6px; font-size: .85rem; }
+  .sub { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
+  .sub.open { display: block; }
+  #jumps table, #fresh table, #feed table, #profiles table { min-width: 0; }
+  .cards table, .cards tbody { display: block; }
+  .cards thead { display: none; }
+  .cards tr { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; }
+  .cards td { display: block; position: relative; border: 0; padding: 3px 0 3px 38%; text-align: right; white-space: normal; min-height: 1.4em; }
+  .cards td::before { content: attr(data-label); position: absolute; left: 0; top: 4px; width: 36%; text-align: left;
+    color: var(--muted); font: 600 .68rem/1.3 var(--display); letter-spacing: .07em; text-transform: uppercase; }
+  .cards td.lead { order: -1; padding: 0 0 6px; margin-bottom: 4px; border-bottom: 1px solid var(--line); text-align: left; }
+  .cards td.lead::before, .cards td.na { display: none; }
+  .gside { grid-template-columns: 1fr 1fr 1fr; padding-left: 0; gap: 6px 10px; }
+  .gside .gwho, .gside .gpros { grid-column: 1 / -1; }
+  .gside .gwho { padding-left: 17px; }
+}
 </style>
 </head>
 <body>
@@ -111,45 +159,46 @@ footer p { margin: 0; }
     </div>
   </header>
 
-  <section>
-    <div class="sechead"><h2>Kurssprünge vor Spielbeginn</h2>
+  <section id="sec-jumps">
+    <div class="sechead"><h2><button class="stoggle" type="button" aria-expanded="true" data-sec="jumps">Kurssprünge vor Spielbeginn</button></h2>
       <div class="controls">
         <label class="field" for="jmin">ab <select id="jmin"><option value="0.03">3 Punkten</option><option value="0.05" selected>5 Punkten</option><option value="0.1">10 Punkten</option></select></label>
         <label class="field" for="jvol">Volumen ab <select id="jvol"><option value="1000">1.000 $</option><option value="5000" selected>5.000 $</option><option value="25000">25.000 $</option><option value="100000">100.000 $</option></select></label>
         <button class="chip ghost" type="button" id="jnotify">Benachrichtigen</button>
       </div></div>
     <p class="sub" id="jumps-sub"></p>
-    <div class="scroll" id="jumps"><p class="empty">Sucht Kurssprünge…</p></div>
+    <div class="scroll cards" id="jumps"><p class="empty">Sucht Kurssprünge…</p></div>
   </section>
 
-  <section>
-    <div class="sechead"><h2>Frische Wallets</h2>
+  <section id="sec-fresh">
+    <div class="sechead"><h2><button class="stoggle" type="button" aria-expanded="true" data-sec="fresh">Frische Wallets</button></h2>
       <div class="controls">
         <label class="field" for="fmin">ab <select id="fmin"><option value="10000" selected>10.000 $</option><option value="25000">25.000 $</option><option value="50000">50.000 $</option><option value="100000">100.000 $</option></select></label>
         <label class="field" for="fall"><input type="checkbox" id="fall"> auch Märkte außerhalb des Sports</label>
         <button class="chip ghost" type="button" id="fnotify">Benachrichtigen</button>
       </div></div>
     <p class="sub">Neue Konten, deren erster Polymarket-Trade weniger als 24&nbsp;Stunden vor der Wette lag und die bisher nur diesen einen Markt gehandelt haben, mit mindestens <b id="fmin-label">10.000&nbsp;$</b> auf eine Seite in den letzten 24&nbsp;Stunden (Käufe zusammengezählt). Ein mögliches Insider-Muster, kein Beweis: Auch gewöhnliche Neukunden setzen manchmal groß. Neue Einträge sind farbig markiert.</p>
-    <div class="scroll" id="fresh"><p class="empty">Sucht frische Wallets…</p></div>
+    <div class="scroll cards" id="fresh"><p class="empty">Sucht frische Wallets…</p></div>
   </section>
 
-  <section>
-    <div class="sechead"><h2>Wo die Profis stehen</h2>
-      <label class="field" for="sort">sortiert nach <select id="sort"><option value="stake">größtem Einsatz</option><option value="start">nächstem Anpfiff</option></select></label></div>
-    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt. Neben dem Kurs steht, wie weit er sich seit ihrem Einstieg bewegt hat, neben jedem Profil seine CLV nach Gebühren in dieser Sportart.</p>
-    <div class="scroll" id="consensus"><p class="empty">Lädt die Positionen…</p></div>
+  <section id="sec-consensus">
+    <div class="sechead"><h2><button class="stoggle" type="button" aria-expanded="true" data-sec="consensus">Wo die Profis stehen</button></h2>
+      <div class="controls"><label class="field" for="sort">sortiert nach <select id="sort"><option value="stake">größtem Einsatz</option><option value="start">nächstem Anpfiff</option></select></label>
+        <span class="gtools" id="gtools" hidden><button class="chip ghost" type="button" id="gclose">alle zuklappen</button><button class="chip ghost" type="button" id="gopen">alle aufklappen</button></span></div></div>
+    <p class="sub">Offene Positionen der beobachteten Profile, je Spiel (ohne Langzeitwetten wie Meister oder Turniersieger). Einsatz ist, was sie für ihre Anteile bezahlt haben; ein Anteil zahlt 1&nbsp;$, wenn die Wette gewinnt. Neben dem Kurs steht, wie weit er sich seit ihrem Einstieg bewegt hat, neben jedem Profil seine CLV nach Gebühren in dieser Sportart. Ein Tipp auf den Spielnamen klappt das Spiel zu oder auf; das Gerät merkt es sich.</p>
+    <div id="consensus"><p class="empty">Lädt die Positionen…</p></div>
   </section>
 
-  <section>
-    <div class="sechead"><h2>Neueste Wetten</h2></div>
+  <section id="sec-feed">
+    <div class="sechead"><h2><button class="stoggle" type="button" aria-expanded="true" data-sec="feed">Neueste Wetten</button></h2></div>
     <p class="sub">Käufe und Verkäufe der letzten 48&nbsp;Stunden, mit der CLV des Profils nach Gebühren in der Sportart der Wette. Teilausführungen derselben Order innerhalb von zehn Minuten sind zu einer Wette zusammengefasst. „Seither“: wie sich der Kurs seit der Wette zu ihren Gunsten bewegt hat, solange das Spiel nicht begonnen hat.</p>
-    <div class="scroll" id="feed"><p class="empty">Lädt die Wetten…</p></div>
+    <div class="scroll cards" id="feed"><p class="empty">Lädt die Wetten…</p></div>
   </section>
 
-  <section>
-    <div class="sechead"><h2>Die beobachteten Profile</h2></div>
+  <section id="sec-profiles">
+    <div class="sechead"><h2><button class="stoggle" type="button" aria-expanded="true" data-sec="profiles">Die beobachteten Profile</button></h2></div>
     <p class="sub" id="profiles-sub"></p>
-    <div class="scroll" id="profiles"></div>
+    <div class="scroll cards" id="profiles"></div>
   </section>
 
   <footer>
@@ -168,7 +217,7 @@ footer p { margin: 0; }
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
   const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball", football: "American Football", baseball: "Baseball" };
-  const S = { sport: "all", pre: false, own: true, min: 100, sort: "stake", freshMin: 10000, freshAll: false, jumpMin: 0.05, jumpVol: 5000,
+  const S = { feedShown: 30, sport: "all", pre: false, own: true, min: 100, sort: "stake", freshMin: 10000, freshAll: false, jumpMin: 0.05, jumpVol: 5000,
               pos: new Map(), trades: new Map(), events: new Map(),
               loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
 
@@ -269,10 +318,38 @@ footer p { margin: 0; }
     const moneyline = / vs\.? /.test(t) && o && t.includes(o) && !/(spread|o\/u|total|set \d|game \d|handicap|half|quarter|1h|map \d)/i.test(t);
     return moneyline ? o : `${yesNo(o)} · ${t}`;
   }
-  function kickoff(start) {
-    if (!start) return '<span class="meta">–</span>';
-    if (start > Date.now()) return `${esc(when.format(start))}<br><span class="meta">${esc(until(start))}</span>`;
-    return `<span class="live">läuft oder vorbei</span><br><span class="meta">Start ${esc(when.format(start))}</span>`;
+
+  // Phones read each table row as a card: every cell carries its column's heading.
+  function labelCells(el) {
+    const table = el.querySelector("table");
+    if (!table) return;
+    const heads = [...table.querySelectorAll("thead th")].map((th) => th.textContent.trim());
+    for (const tr of table.querySelectorAll("tbody tr")) [...tr.children].forEach((td, i) => { if (heads[i]) td.dataset.label = heads[i]; });
+  }
+
+  // What is folded: whole sections, and single games in "Wo die Profis stehen" (kept two weeks).
+  const UI = { sections: new Set(), games: new Map() };
+  try {
+    const kept = JSON.parse(localStorage.getItem("profi-radar-ui") || "{}");
+    for (const sec of Array.isArray(kept.sections) ? kept.sections : []) UI.sections.add(String(sec));
+    for (const [key, at] of Object.entries(kept.games || {})) if (Date.now() - at < 14 * 86400e3) UI.games.set(key, at);
+  } catch (e) { /* nothing folded */ }
+  const keepUI = () => {
+    try { localStorage.setItem("profi-radar-ui", JSON.stringify({ sections: [...UI.sections], games: Object.fromEntries(UI.games) })); } catch (e) { /* not kept */ }
+  };
+  function foldSection(sec, closed) {
+    const el = $(`sec-${sec}`), btn = el && el.querySelector(".stoggle");
+    if (!el) return;
+    el.classList.toggle("closed", closed);
+    btn.setAttribute("aria-expanded", String(!closed));
+    if (closed) UI.sections.add(sec); else UI.sections.delete(sec);
+  }
+  function foldGame(key, closed) {
+    if (closed) UI.games.set(key, Date.now()); else UI.games.delete(key);
+    const el = document.querySelector(`.game[data-key="${CSS.escape(key)}"]`);
+    if (!el) return;
+    el.classList.toggle("closed", closed);
+    el.querySelector(".gtoggle").setAttribute("aria-expanded", String(!closed));
   }
 
   async function getJSON(url) {
@@ -513,7 +590,7 @@ footer p { margin: 0; }
       const x = r.x, at = r.a.t * 1000, fresh = J.seen.get(r.a.cid + ":" + r.a.t) > 0 && now - J.seen.get(r.a.cid + ":" + r.a.t) < 10 * 60e3;
       const cls = [fresh ? "new" : "", r.held ? "" : "faded"].filter(Boolean).join(" ");
       html += `<tr${cls ? ` class="${cls}"` : ""}><td class="nowrap">${esc(ago(at))}<br><span class="meta">${esc(when.format(at))}</span></td>` +
-              `<td><div class="match">${esc(x.title)}</div><span class="badge">${esc(LABEL[x.sport] || x.sport)}</span>` +
+              `<td class="lead"><div class="match">${esc(x.title)}</div><span class="badge">${esc(LABEL[x.sport] || x.sport)}</span>` +
               `<span class="meta">Start ${esc(until(x.start))}</span><br>` +
               `<a class="meta" href="https://polymarket.com/event/${esc(baseSlug(x.eventSlug))}" target="_blank" rel="noopener">Polymarket ↗</a> ${piMarket(x.eventSlug)}</td>` +
               `<td class="side">${esc(r.label)}${r.held ? "" : '<br><span class="meta">wieder zurück</span>'}</td>` +
@@ -523,6 +600,7 @@ footer p { margin: 0; }
               `<td class="num">${usd(x.volume)}<br><span class="meta">Liquidität ${usd(x.liquidity)}</span></td></tr>`;
     }
     el.innerHTML = html + "</tbody></table>";
+    labelCells(el);
   }
 
   // ---------- fresh wallets: new accounts that bet big on one market
@@ -636,7 +714,7 @@ footer p { margin: 0; }
       html += `<tr${fresh ? ' class="new"' : ""}><td class="nowrap">${esc(ago(g.last * 1000))}<br><span class="meta">${esc(when.format(g.last * 1000))}</span></td>` +
               `<td>${proLink(w)}<br><span class="meta">${g.first - r.a.first <= 120 ? "erste Wette des Kontos" : `Konto ${esc(age(g.first - r.a.first))} alt beim Einsatz`} · ${r.a.markets} Markt</span><br>` +
               `<a class="meta" href="${PI}/trader/${esc(g.wallet)}" target="_blank" rel="noopener">PolyInsider ↗</a></td>` +
-              `<td><div class="match">${esc(r.ev.title || t.title)}</div>${LABEL[r.sport] ? `<span class="badge">${esc(LABEL[r.sport])}</span>` : ""}` +
+              `<td class="lead"><div class="match">${esc(r.ev.title || t.title)}</div>${LABEL[r.sport] ? `<span class="badge">${esc(LABEL[r.sport])}</span>` : ""}` +
               `${r.phase ? `<span class="meta${r.phase === "live" ? " live" : ""}">${r.phase === "live" ? "während des Spiels" : "vor dem Start"}</span> ` : ""}` +
               `${r.ev.start && r.ev.start > now ? `<span class="meta">Start ${esc(until(r.ev.start))}</span> ` : ""}${piMarket(t.eventSlug)}</td>` +
               `<td class="side">${esc(sideLabel(t))}</td><td class="num">${usd(g.cost)}<br><span class="meta">${g.fills} ${g.fills === 1 ? "Kauf" : "Käufe"}</span></td>` +
@@ -644,6 +722,7 @@ footer p { margin: 0; }
               `<td class="num">${cur == null || Number.isNaN(cur) ? '<span class="meta">\u2013</span>' : `${cents(cur)}<br>${moveTag(cur - price, "\u00a0¢")}`}</td></tr>`;
     }
     el.innerHTML = html + "</tbody></table>" + (busy ? `<p class="meta">${busy.trim()}</p>` : "");
+    labelCells(el);
   }
 
   // ---------- where the money is, per match
@@ -672,30 +751,39 @@ footer p { margin: 0; }
   function renderConsensus() {
     if (!S.updated) return;
     const groups = consensus(), el = $("consensus");
+    $("gtools").hidden = groups.length < 2;
     if (!groups.length) {
       el.innerHTML = `<p class="empty">Keine offenen Positionen${S.pre ? " vor Spielbeginn" : ""} ab ${usd(S.min)} in dieser Auswahl.</p>`;
       return;
     }
-    let html = '<table><thead><tr><th>Spiel</th><th>Anpfiff</th><th>Wette</th><th class="num">Einsatz</th><th class="num">Ø Einstieg</th><th class="num">Kurs jetzt</th><th>Profis</th></tr></thead><tbody>';
+    let html = "";
     for (const g of groups.slice(0, 60)) {
-      const sides = [...g.sides.values()].sort((a, b) => b.invested - a.invested);
-      sides.forEach((s, i) => {
+      const sides = [...g.sides.values()].sort((a, b) => b.invested - a.invested), closed = UI.games.has(g.key);
+      const top = sides[0], topShare = g.total ? top.invested / g.total : 0;
+      html += `<div class="game${closed ? " closed" : ""}" data-key="${esc(g.key)}"><div class="ghead">` +
+              `<button class="gtoggle" type="button" aria-expanded="${!closed}" data-key="${esc(g.key)}">${esc(g.title)}</button>` +
+              `<span class="badge">${esc(LABEL[g.sport])}</span><span class="meta">${kickoffLine(g.start)}</span>` +
+              `<span class="gmoney">${usd(g.total)} Profi-Geld</span>` +
+              `<span class="meta gsum">vorn: ${esc(top.label)} (${nf0.format(topShare * 100)}&nbsp;%)</span> ${piMarket(g.key)}</div><div class="gbody">`;
+      for (const s of sides) {
         const share = g.total ? s.invested / g.total : 0;
         const avg = s.shares ? s.invested / s.shares : 0, move = s.cur - avg;
         const pros = s.pros.sort((a, b) => b.invested - a.invested)
           .map((p) => `${proLink(p.w)} <span class="meta">${usd(p.invested)}</span> ${clvTag(p.w, g.sport, false)}`).join("<br>");
-        html += `<tr${i === 0 ? ' class="grp"' : ""}>`;
-        if (i === 0) {
-          html += `<td rowspan="${sides.length}"><div class="match">${esc(g.title)}</div><span class="badge">${esc(LABEL[g.sport])}</span>` +
-                  `<span class="meta">${usd(g.total)} Profi-Geld</span><br>${piMarket(g.key)}</td><td rowspan="${sides.length}" class="nowrap">${kickoff(g.start)}</td>`;
-        }
-        html += `<td class="side">${esc(s.label)}<div class="bar" title="${nf0.format(share * 100)} % des Profi-Geldes auf diesem Spiel"><i style="width:${(share * 100).toFixed(1)}%"></i></div></td>` +
-                `<td class="num">${usd(s.invested)}</td><td class="num">${cents(avg)}</td>` +
-                `<td class="num">${cents(s.cur)} <span title="Bewegung seit ihrem Einstieg in Cent">${moveTag(move, "")}</span>` +
-                `<br><span class="meta">Quote ${odds(s.cur)}</span></td><td>${pros}</td></tr>`;
-      });
+        html += `<div class="gside"><div class="side gwho">${esc(s.label)}<div class="bar" title="${nf0.format(share * 100)} % des Profi-Geldes auf diesem Spiel"><i style="width:${(share * 100).toFixed(1)}%"></i></div></div>` +
+                `<div class="num"><span class="lbl">Einsatz</span>${usd(s.invested)}</div>` +
+                `<div class="num"><span class="lbl">Ø Einstieg</span>${cents(avg)}</div>` +
+                `<div class="num"><span class="lbl">Kurs jetzt</span>${cents(s.cur)} <span title="Bewegung seit ihrem Einstieg in Cent">${moveTag(move, "")}</span>` +
+                `<br><span class="meta">Quote ${odds(s.cur)}</span></div><div class="gpros">${pros}</div></div>`;
+      }
+      html += "</div></div>";
     }
-    el.innerHTML = html + "</tbody></table>";
+    el.innerHTML = html;
+  }
+  // The kickoff on one line, for a game's heading.
+  function kickoffLine(start) {
+    if (!start) return "";
+    return start > Date.now() ? `${esc(when.format(start))} · ${esc(until(start))}` : `<span class="live">läuft oder vorbei</span>`;
   }
 
   // ---------- the feed: fills of one order merged into one bet
@@ -734,21 +822,23 @@ footer p { margin: 0; }
       el.innerHTML = `<p class="empty">Keine Wetten ab ${usd(S.min)} in den letzten ${FEED_HOURS} Stunden in dieser Auswahl.</p>`;
       return;
     }
-    let html = '<table><thead><tr><th>Wann</th><th>Profil</th><th>Spiel</th><th>Wette</th><th></th><th class="num">Betrag</th><th class="num">Kurs</th><th class="num" title="Kurs jetzt und Bewegung seit der Wette zu ihren Gunsten, solange das Spiel nicht begonnen hat">Seither</th></tr></thead><tbody>';
-    for (const { b, ev, phase } of rows) {
+    let html = '<table><thead><tr><th>Wann</th><th>Profil</th><th>Spiel</th><th>Wette</th><th>Art</th><th class="num">Betrag</th><th class="num">Kurs</th><th class="num" title="Kurs jetzt und Bewegung seit der Wette zu ihren Gunsten, solange das Spiel nicht begonnen hat">Seither</th></tr></thead><tbody>';
+    for (const { b, ev, phase } of rows.slice(0, S.feedShown)) {
       const buy = b.t.side === "BUY", price = b.size ? b.cost / b.size : 0;
       const quotes = (ev.prices || {})[b.t.conditionId], now = quotes ? quotes[b.t.outcomeIndex] : undefined;
       const move = now != null && !Number.isNaN(now) && ev.start && ev.start > Date.now() ? (buy ? now - price : price - now) : null;
       html += `<tr><td class="nowrap">${esc(ago(b.last * 1000))}<br><span class="meta">${esc(when.format(b.last * 1000))}</span></td>` +
               `<td>${proLink(b.w)}<br>${clvTag(b.w, sportOf(b.t.eventSlug), true)}</td>` +
-              `<td><div class="match">${esc(ev.title || b.t.title)}</div>` +
+              `<td class="lead"><div class="match">${esc(ev.title || b.t.title)}</div>` +
               (phase ? `<span class="meta${phase === "live" ? " live" : ""}">${phase === "live" ? "während des Spiels" : "vor dem Start"}</span> ` : "") +
               `${piMarket(b.t.eventSlug)}</td>` +
               `<td class="side">${esc(sideLabel(b.t))}</td><td class="${buy ? "buy" : "sell"}">${buy ? "Kauf" : "Verkauf"}</td>` +
               `<td class="num">${usd(b.cost)}</td><td class="num">${cents(price)}<br><span class="meta">Quote ${odds(price)}</span></td>` +
               `<td class="num">${move == null ? '<span class="meta">\u2013</span>' : `${cents(now)}<br>${moveTag(move, "\u00a0¢")}`}</td></tr>`;
     }
-    el.innerHTML = html + "</tbody></table>";
+    el.innerHTML = html + "</tbody></table>" +
+      (rows.length > S.feedShown ? `<button class="chip ghost more" type="button" id="feedmore">${nf0.format(Math.min(30, rows.length - S.feedShown))} weitere Wetten</button>` : "");
+    labelCells(el);
   }
 
   // ---------- the watched profiles
@@ -762,7 +852,7 @@ footer p { margin: 0; }
     }).sort((a, b) => a.rank - b.rank);
     const cell = (w, sport) => {
       const c = (w.clv || {})[sport], hl = S.sport === sport ? " hl" : "";
-      if (!c) return `<td class="num${hl}"><span class="meta">\u2013<br>unter 10 Spielen</span></td>`;
+      if (!c) return `<td class="num na${hl}"><span class="meta">\u2013<br>unter 10 Spielen</span></td>`;
       return `<td class="num${hl}" title="${esc(clvTip(sport, c))}"><b class="${c.clv >= 0 ? "buy" : "sell"}">${fmtClv(c.clv)}</b><br>` +
              `<span class="meta">${c.rank ? `#${c.rank}` : "ohne Rang"} · ${nf0.format(c.matches)} Spiele` +
              `${c.rank && c.sig === false ? " · nicht signifikant" : ""}</span></td>`;
@@ -773,12 +863,13 @@ footer p { margin: 0; }
                '<th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
     for (const x of rows) {
       const ready = S.loaded.has(x.w.wallet);
-      html += `<tr><td>${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}${allTime(x.w)}${piCell(x.w)}` +
+      html += `<tr><td class="lead">${proLink(x.w)}<br>${badges(x.w)}</td>${sports.map((s) => cell(x.w, s)).join("")}${allTime(x.w)}${piCell(x.w)}` +
               `<td class="num">${ready ? `${usd(x.open)}<br><span class="meta">${x.n} Positionen</span>` : "…"}</td>` +
               `<td class="nowrap">${x.last ? esc(ago(x.last)) : ready ? "\u2013" : "…"}</td>` +
               `<td class="nowrap"><code title="${esc(x.w.wallet)}">${esc(x.w.wallet.slice(0, 10))}…</code> <button class="copy" type="button" data-addr="${esc(x.w.wallet)}">kopieren</button></td></tr>`;
     }
     $("profiles").innerHTML = html + "</tbody></table>";
+    labelCells($("profiles"));
     const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.elite ?? v.significant ?? v.ranked} von ${v.ranked} Wallets der Rangliste erfüllen alle Kriterien, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
     $("profiles-sub").textContent = `Je Sportart die ${D.top_n} besten Wallets der Rangliste. Wer alle fünf Kriterien erfüllt (siehe unten), ` +
       `ist immer dabei und trägt ein \u2605; bei den übrigen ist der Vorsprung nicht abgesichert. CLV nach Gebühren: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs ` +
@@ -844,6 +935,18 @@ footer p { margin: 0; }
     try { F.notify = (await Notification.requestPermission()) === "granted"; } catch (e) { F.notify = false; }
     btn.textContent = F.notify ? "Benachrichtigung an" : "Benachrichtigung abgelehnt";
   });
+  for (const sec of UI.sections) foldSection(sec, true);
+  document.addEventListener("click", (e) => {
+    const st = e.target.closest(".stoggle");
+    if (st) { foldSection(st.dataset.sec, st.getAttribute("aria-expanded") === "true"); keepUI(); return; }
+    const gt = e.target.closest(".gtoggle");
+    if (gt) { foldGame(gt.dataset.key, gt.getAttribute("aria-expanded") === "true"); keepUI(); return; }
+    if (e.target.closest("#feedmore")) { S.feedShown += 30; renderFeed(); return; }
+    const sub = e.target.closest(".sub");
+    if (sub && !e.target.closest("a, button, select, input")) { sub.classList.toggle("open"); return; }
+  });
+  $("gclose").addEventListener("click", () => { document.querySelectorAll(".game").forEach((g) => foldGame(g.dataset.key, true)); keepUI(); });
+  $("gopen").addEventListener("click", () => { document.querySelectorAll(".game").forEach((g) => foldGame(g.dataset.key, false)); keepUI(); });
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("button.copy");
     if (!btn) return;
