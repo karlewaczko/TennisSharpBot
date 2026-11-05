@@ -341,3 +341,4 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-04T21:22:56+00:00,3370085,2026-11-05,Hamamatsu ITF,Shimizu A.,Kalshi,prediction,value,1.294,0.7765,0.0048,Betfair
 2026-11-05T11:00:33+00:00,3370727,2026-11-05,Paris,Alcaraz C.,Polymarket,prediction,value,1.195,0.8519,0.0177,Pinnacle
 2026-11-05T11:00:33+00:00,3370839,2026-11-06,Taipei challenger,Yuta Shimizu,bet-at-home,book,value,1.7,0.6059,0.03,Betfair
+2026-11-05T21:30:46+00:00,3370905,2026-11-06,Hong Kong WTA,Liu C.,Unibet,book,value,1.89,0.5305,0.0027,Betfair
