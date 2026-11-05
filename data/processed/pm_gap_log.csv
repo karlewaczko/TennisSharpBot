@@ -1939,3 +1939,33 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-04T21:22:56+00:00,3370085,2026-11-05,Hamamatsu ITF,ITF,Arakawa H.,Polymarket,0.25,0.2235,Betfair,0.02,1270.6112
 2026-11-04T21:22:56+00:00,3370085,2026-11-05,Hamamatsu ITF,ITF,Shimizu A.,Kalshi,0.75,0.7765,Betfair,0.02,158.5
 2026-11-04T21:22:56+00:00,3370085,2026-11-05,Hamamatsu ITF,ITF,Arakawa H.,Kalshi,0.245,0.2235,Betfair,0.01,158.5
+2026-11-05T11:00:33+00:00,3370335,2026-11-05,Paris,Tour,Musetti L.,Polymarket,0.725,0.729,Betfair,0.01,96519.8641
+2026-11-05T11:00:33+00:00,3370335,2026-11-05,Paris,Tour,Van Assche L.,Polymarket,0.275,0.271,Betfair,0.01,96519.8641
+2026-11-05T11:00:33+00:00,3370335,2026-11-05,Paris,Tour,Musetti L.,Kalshi,0.735,0.729,Betfair,0.01,146440.3161
+2026-11-05T11:00:33+00:00,3370335,2026-11-05,Paris,Tour,Van Assche L.,Kalshi,0.265,0.271,Betfair,0.01,146440.3161
+2026-11-05T11:00:33+00:00,3370727,2026-11-05,Paris,Tour,Berrettini M.,Polymarket,0.175,0.1481,Pinnacle,0.01,36368.5966
+2026-11-05T11:00:33+00:00,3370727,2026-11-05,Paris,Tour,Alcaraz C.,Polymarket,0.825,0.8519,Pinnacle,0.01,36368.5966
+2026-11-05T11:00:33+00:00,3370727,2026-11-05,Paris,Tour,Berrettini M.,Kalshi,0.155,0.1481,Pinnacle,0.01,26998.3628
+2026-11-05T11:00:33+00:00,3370727,2026-11-05,Paris,Tour,Alcaraz C.,Kalshi,0.845,0.8519,Pinnacle,0.01,26998.3628
+2026-11-05T11:00:33+00:00,3370723,2026-11-05,Paris,Tour,Fils A.,Polymarket,0.535,0.5408,Pinnacle,0.01,55923.3408
+2026-11-05T11:00:33+00:00,3370723,2026-11-05,Paris,Tour,Fritz T.,Polymarket,0.465,0.4592,Pinnacle,0.01,55923.3408
+2026-11-05T11:00:33+00:00,3370723,2026-11-05,Paris,Tour,Fils A.,Kalshi,0.545,0.5408,Pinnacle,0.01,55064.23040000001
+2026-11-05T11:00:33+00:00,3370723,2026-11-05,Paris,Tour,Fritz T.,Kalshi,0.455,0.4592,Pinnacle,0.01,55064.23040000001
+2026-11-05T11:00:33+00:00,3369681,2026-11-05,Hong Kong WTA,Tour,Valentova T.,Kalshi,0.365,0.3654,Betfair,0.01,21496.4401
+2026-11-05T11:00:33+00:00,3369681,2026-11-05,Hong Kong WTA,Tour,Eala A.,Kalshi,0.635,0.6346,Betfair,0.01,21496.4401
+2026-11-05T11:00:33+00:00,3370363,2026-11-06,Chennai WTA,Tour,Tjen J.,Polymarket,0.625,0.6232,Betfair,0.01,13795.9529
+2026-11-05T11:00:33+00:00,3370363,2026-11-06,Chennai WTA,Tour,Kudermetova P.,Polymarket,0.375,0.3768,Betfair,0.01,13795.9529
+2026-11-05T11:00:33+00:00,3370363,2026-11-06,Chennai WTA,Tour,Tjen J.,Kalshi,0.63,0.6232,Betfair,0.02,2338.7
+2026-11-05T11:00:33+00:00,3370363,2026-11-06,Chennai WTA,Tour,Kudermetova P.,Kalshi,0.375,0.3768,Betfair,0.01,2338.7
+2026-11-05T11:00:33+00:00,3370499,2026-11-06,Hong Kong WTA,Tour,Sasnovich A.,Polymarket,0.435,0.4314,Betfair,0.01,20446.7144
+2026-11-05T11:00:33+00:00,3370499,2026-11-06,Hong Kong WTA,Tour,Sakkari M.,Polymarket,0.565,0.5686,Betfair,0.01,20446.7144
+2026-11-05T11:00:33+00:00,3370499,2026-11-06,Hong Kong WTA,Tour,Sasnovich A.,Kalshi,0.43,0.4314,Betfair,0.02,3508.62
+2026-11-05T11:00:33+00:00,3370499,2026-11-06,Hong Kong WTA,Tour,Sakkari M.,Kalshi,0.57,0.5686,Betfair,0.02,3508.62
+2026-11-05T11:00:33+00:00,3370215,2026-11-06,Luanda,Tour,Sofya Lansere,Polymarket,0.345,0.3488,Betfair,0.03,5256.5597
+2026-11-05T11:00:33+00:00,3370215,2026-11-06,Luanda,Tour,Martyna Kubka,Polymarket,0.655,0.6512,Betfair,0.03,5256.5597
+2026-11-05T11:00:33+00:00,3369803,2026-11-05,Bratislava challenger,Challenger,Budkov Kjaer N.,Polymarket,0.735,0.7297,Betfair,0.01,16341.9915
+2026-11-05T11:00:33+00:00,3369803,2026-11-05,Bratislava challenger,Challenger,Coppejans K.,Polymarket,0.265,0.2703,Betfair,0.01,16341.9915
+2026-11-05T11:00:33+00:00,3369803,2026-11-05,Bratislava challenger,Challenger,Budkov Kjaer N.,Kalshi,0.725,0.7297,Betfair,0.01,399.44
+2026-11-05T11:00:33+00:00,3369803,2026-11-05,Bratislava challenger,Challenger,Coppejans K.,Kalshi,0.265,0.2703,Betfair,0.01,399.44
+2026-11-05T11:00:33+00:00,3370759,2026-11-06,Costa do Sauipe challenger,Challenger,Gonzalo Bueno,Polymarket,0.385,0.3596,Betfair,0.09,153.8582
+2026-11-05T11:00:33+00:00,3370759,2026-11-06,Costa do Sauipe challenger,Challenger,Lautaro Midon,Polymarket,0.615,0.6404,Betfair,0.09,153.8582
