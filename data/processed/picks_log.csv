@@ -346,3 +346,14 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-06T10:57:46+00:00,3370903,2026-11-06,Luanda,Ksenia Zaytseva,Kalshi,prediction,value,1.794,0.563,0.0101,Pinnacle
 2026-11-06T10:57:46+00:00,3371045,2026-11-06,Luanda,Noma Noha Akugue,Polymarket,prediction,value,1.195,0.8386,0.0018,Betfair
 2026-11-06T10:57:46+00:00,3370013,2026-11-08,Masters Cup WTA,Rybakina E.,1xBet,book,value,1.49,0.6753,0.0062,Betfair
+2026-11-06T20:56:35+00:00,3371483,2026-11-07,Stockholm,Inaki Montes De La Torre,1xBet,book,value,2.5,0.4239,0.0599,Betfair
+2026-11-06T20:56:35+00:00,3371483,2026-11-07,Stockholm,Inaki Montes De La Torre,Betsson,book,value,2.48,0.4239,0.0514,Betfair
+2026-11-06T20:56:35+00:00,3371483,2026-11-07,Stockholm,Inaki Montes De La Torre,bet-at-home,book,value,2.45,0.4239,0.0387,Betfair
+2026-11-06T20:56:35+00:00,3370013,2026-11-08,Masters Cup WTA,Rybakina E.,Polymarket,prediction,value,1.49,0.6728,0.0023,Betfair
+2026-11-06T20:56:35+00:00,3371415,2026-11-07,Taranto challenger,Matteo Martineau,10Bet,book,value,2.15,0.4862,0.0452,Betfair
+2026-11-06T20:56:35+00:00,3371415,2026-11-07,Taranto challenger,Matteo Martineau,BetVictor,book,value,2.1,0.4862,0.0209,Betfair
+2026-11-06T20:56:35+00:00,3371415,2026-11-07,Taranto challenger,Matteo Martineau,Coral,book,value,2.1,0.4862,0.0209,Betfair
+2026-11-06T20:56:35+00:00,3371415,2026-11-07,Taranto challenger,Matteo Martineau,Interwetten,book,value,2.1,0.4862,0.0209,Betfair
+2026-11-06T20:56:35+00:00,3371415,2026-11-07,Taranto challenger,Matteo Martineau,Ladbrokes,book,value,2.1,0.4862,0.0209,Betfair
+2026-11-06T20:56:35+00:00,3371415,2026-11-07,Taranto challenger,Matteo Martineau,bwin,book,value,2.1,0.4862,0.0209,Betfair
+2026-11-06T20:56:35+00:00,3371415,2026-11-07,Taranto challenger,Matteo Martineau,Polymarket,prediction,value,2.163,0.4862,0.0514,Betfair
