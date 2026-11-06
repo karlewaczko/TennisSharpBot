@@ -342,3 +342,7 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-05T11:00:33+00:00,3370727,2026-11-05,Paris,Alcaraz C.,Polymarket,prediction,value,1.195,0.8519,0.0177,Pinnacle
 2026-11-05T11:00:33+00:00,3370839,2026-11-06,Taipei challenger,Yuta Shimizu,bet-at-home,book,value,1.7,0.6059,0.03,Betfair
 2026-11-05T21:30:46+00:00,3370905,2026-11-06,Hong Kong WTA,Liu C.,Unibet,book,value,1.89,0.5305,0.0027,Betfair
+2026-11-06T10:57:46+00:00,3370903,2026-11-06,Luanda,Ksenia Zaytseva,Polymarket,prediction,value,1.778,0.563,0.0012,Pinnacle
+2026-11-06T10:57:46+00:00,3370903,2026-11-06,Luanda,Ksenia Zaytseva,Kalshi,prediction,value,1.794,0.563,0.0101,Pinnacle
+2026-11-06T10:57:46+00:00,3371045,2026-11-06,Luanda,Noma Noha Akugue,Polymarket,prediction,value,1.195,0.8386,0.0018,Betfair
+2026-11-06T10:57:46+00:00,3370013,2026-11-08,Masters Cup WTA,Rybakina E.,1xBet,book,value,1.49,0.6753,0.0062,Betfair
