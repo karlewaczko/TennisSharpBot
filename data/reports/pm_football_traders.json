@@ -1,33 +1,33 @@
 {
- "measured_at": "2026-11-05T13:15:29+00:00",
+ "measured_at": "2026-11-06T12:58:57+00:00",
  "sport": "football",
  "window_days": 30,
  "tours": null,
- "markets": 379,
- "matches": 379,
- "wallets": 16316,
- "ranked_wallets": 96,
+ "markets": 382,
+ "matches": 382,
+ "wallets": 16553,
+ "ranked_wallets": 101,
  "significant_wallets": 0,
  "elite_wallets": 0,
  "markets_trimmed_to_bigger_trades": 0,
  "market_structure": {
-  "stake_usd": 243504360,
-  "in_play_share": 0.747,
-  "top20_share": 0.533,
+  "stake_usd": 248137800,
+  "in_play_share": 0.743,
+  "top20_share": 0.534,
   "top20_pre_match_share": 0.604
  },
  "skill_persistence": {
-  "wallets": 199,
-  "corr": 0.329,
-  "rank_corr": 0.606,
-  "top_decile_next": 0.0012,
-  "bottom_decile_next": -0.0138,
-  "all_next": -0.0056
+  "wallets": 201,
+  "corr": 0.229,
+  "rank_corr": 0.591,
+  "top_decile_next": -0.0011,
+  "bottom_decile_next": -0.0142,
+  "all_next": -0.006
  },
  "polymarket_closing_calibration": {
-  "n": 379,
-  "brier": 0.2121,
-  "log_loss": 0.608,
+  "n": 382,
+  "brier": 0.2119,
+  "log_loss": 0.6074,
   "favourite_won": 0.668,
   "bins": [
    {
@@ -38,9 +38,9 @@
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 66,
-    "price": 0.278,
-    "won": 0.288
+    "n": 65,
+    "price": 0.279,
+    "won": 0.292
    },
    {
     "range": "(0.35, 0.5]",
@@ -56,15 +56,15 @@
    },
    {
     "range": "(0.65, 0.8]",
-    "n": 65,
-    "price": 0.73,
-    "won": 0.538
+    "n": 67,
+    "price": 0.731,
+    "won": 0.537
    },
    {
     "range": "(0.8, 1.0]",
-    "n": 22,
-    "price": 0.882,
-    "won": 0.955
+    "n": 24,
+    "price": 0.881,
+    "won": 0.958
    }
   ]
  },
