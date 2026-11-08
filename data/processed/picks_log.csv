@@ -391,3 +391,14 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-07T19:28:13+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,Interwetten,book,value,1.33,0.7579,0.008,Betfair
 2026-11-07T19:28:13+00:00,3371581,2026-11-07,Costa do Sauipe challenger,Seyboth Wild T.,Kalshi,prediction,value,1.732,0.5793,0.0035,Pinnacle
 2026-11-07T19:28:13+00:00,3371855,2026-11-09,Brisbane 4 challenger,Akira Santillan,Polymarket,prediction,value,1.661,0.6232,0.0351,Betfair
+2026-11-08T00:41:34+00:00,3371797,2026-11-09,Stockholm,Kecmanovic M.,10Bet,book,value,2.9,0.3718,0.0781,Betfair
+2026-11-08T00:41:34+00:00,3371797,2026-11-09,Stockholm,Kecmanovic M.,Betsson,book,value,2.95,0.3718,0.0967,Betfair
+2026-11-08T00:41:34+00:00,3371797,2026-11-09,Stockholm,Kecmanovic M.,Interwetten,book,value,3.0,0.3718,0.1153,Betfair
+2026-11-08T00:41:34+00:00,3371797,2026-11-09,Stockholm,Kecmanovic M.,bet-at-home,book,value,2.95,0.3718,0.0967,Betfair
+2026-11-08T00:41:34+00:00,3371797,2026-11-09,Stockholm,Kecmanovic M.,Polymarket,prediction,value,2.767,0.3718,0.0288,Betfair
+2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,10Bet,book,value,1.33,0.7629,0.0146,Betfair
+2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,1xBet,book,value,1.34,0.7629,0.0223,Betfair
+2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,Betsson,book,value,1.33,0.7629,0.0146,Betfair
+2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,Betway,book,value,1.33,0.7629,0.0146,Betfair
+2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,Interwetten,book,value,1.33,0.7629,0.0146,Betfair
+2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,Polymarket,prediction,value,1.317,0.7629,0.0046,Betfair
