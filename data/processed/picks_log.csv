@@ -414,3 +414,18 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,Polymarket,prediction,value,1.717,0.6188,0.0627,Betfair
 2026-11-08T10:28:17+00:00,3371853,2026-11-10,Brisbane 4 challenger,Tristan Schoolkate,Polymarket,prediction,value,1.317,0.76,0.0008,Betfair
 2026-11-08T10:28:17+00:00,3372177,2026-11-08,Petange 2 ITF,Podrez V.,Polymarket,prediction,value,1.49,0.6748,0.0053,Pinnacle
+2026-11-08T19:45:23+00:00,3373229,2026-11-09,Knoxville challenger,Aidan Mayo,1xBet,book,value,1.73,0.6072,0.0505,Betfair
+2026-11-08T19:45:23+00:00,3373229,2026-11-09,Knoxville challenger,Aidan Mayo,BetVictor,book,value,1.73,0.6072,0.0505,Betfair
+2026-11-08T19:45:23+00:00,3373229,2026-11-09,Knoxville challenger,Aidan Mayo,Betsson,book,value,1.74,0.6072,0.0566,Betfair
+2026-11-08T19:45:23+00:00,3373229,2026-11-09,Knoxville challenger,Aidan Mayo,Polymarket,prediction,value,1.778,0.6072,0.0798,Betfair
+2026-11-08T19:45:23+00:00,3373205,2026-11-09,Lima 3 challenger,Dellien H.,Polymarket,prediction,value,1.49,0.6859,0.0218,Betfair
+2026-11-08T19:45:23+00:00,3372237,2026-11-09,Hersonissos 5 challenger,Massimo Giunta,10Bet,book,value,1.75,0.5867,0.0268,Betfair
+2026-11-08T19:45:23+00:00,3372237,2026-11-09,Hersonissos 5 challenger,Massimo Giunta,BetVictor,book,value,1.75,0.5867,0.0268,Betfair
+2026-11-08T19:45:23+00:00,3372237,2026-11-09,Hersonissos 5 challenger,Massimo Giunta,Betway,book,value,1.85,0.5867,0.0855,Betfair
+2026-11-08T19:45:23+00:00,3372237,2026-11-09,Hersonissos 5 challenger,Massimo Giunta,Polymarket,prediction,value,1.747,0.5867,0.0252,Betfair
+2026-11-08T19:45:23+00:00,3371813,2026-11-10,Matsuyama challenger,Yuta Shimizu,Polymarket,prediction,value,1.468,0.6819,0.0013,Betfair
+2026-11-08T19:45:23+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,10Bet,book,value,2.25,0.4633,0.0425,Betfair
+2026-11-08T19:45:23+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,Betsson,book,value,2.25,0.4633,0.0425,Betfair
+2026-11-08T19:45:23+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,Interwetten,book,value,2.2,0.4633,0.0193,Betfair
+2026-11-08T19:45:23+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,William Hill,book,value,2.25,0.4633,0.0425,Betfair
+2026-11-08T19:45:23+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,bet-at-home,book,value,2.25,0.4633,0.0425,Betfair
