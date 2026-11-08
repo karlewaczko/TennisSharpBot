@@ -402,3 +402,15 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,Betway,book,value,1.33,0.7629,0.0146,Betfair
 2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,Interwetten,book,value,1.33,0.7629,0.0146,Betfair
 2026-11-08T00:41:34+00:00,3371811,2026-11-09,Stockholm,Michelsen A.,Polymarket,prediction,value,1.317,0.7629,0.0046,Betfair
+2026-11-08T10:28:17+00:00,3371797,2026-11-09,Stockholm,Kecmanovic M.,Polymarket,prediction,value,2.847,0.352,0.0021,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,10Bet,book,value,1.7,0.6188,0.0519,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,1xBet,book,value,1.71,0.6188,0.0581,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,BetVictor,book,value,1.67,0.6188,0.0333,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,Betway,book,value,1.73,0.6188,0.0705,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,Interwetten,book,value,1.7,0.6188,0.0519,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,William Hill,book,value,1.73,0.6188,0.0705,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,bet-at-home,book,value,1.65,0.6188,0.021,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,bet365,book,value,1.73,0.6188,0.0705,Betfair
+2026-11-08T10:28:17+00:00,3371799,2026-11-09,Stockholm,Rune H.,Polymarket,prediction,value,1.717,0.6188,0.0627,Betfair
+2026-11-08T10:28:17+00:00,3371853,2026-11-10,Brisbane 4 challenger,Tristan Schoolkate,Polymarket,prediction,value,1.317,0.76,0.0008,Betfair
+2026-11-08T10:28:17+00:00,3372177,2026-11-08,Petange 2 ITF,Podrez V.,Polymarket,prediction,value,1.49,0.6748,0.0053,Pinnacle
