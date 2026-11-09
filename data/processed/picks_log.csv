@@ -429,3 +429,39 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-08T19:45:23+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,Interwetten,book,value,2.2,0.4633,0.0193,Betfair
 2026-11-08T19:45:23+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,William Hill,book,value,2.25,0.4633,0.0425,Betfair
 2026-11-08T19:45:23+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,bet-at-home,book,value,2.25,0.4633,0.0425,Betfair
+2026-11-09T00:58:59+00:00,3373805,2026-11-10,Sopo WTA,Carole Monnet,bet-at-home,book,value,2.95,0.3506,0.0342,Betfair
+2026-11-09T00:58:59+00:00,3373239,2026-11-09,Knoxville challenger,Max Hans Rehberg,Betsson,book,value,1.73,0.5799,0.0032,Betfair
+2026-11-09T00:58:59+00:00,3373239,2026-11-09,Knoxville challenger,Max Hans Rehberg,Polymarket,prediction,value,1.747,0.5799,0.0132,Betfair
+2026-11-09T00:58:59+00:00,3373205,2026-11-09,Lima 3 challenger,Dellien H.,Polymarket,prediction,value,1.512,0.6859,0.037,Betfair
+2026-11-09T00:58:59+00:00,3372199,2026-11-09,Monastir challenger,Moise Kouame,Polymarket,prediction,value,1.168,0.877,0.0241,Betfair
+2026-11-09T00:58:59+00:00,3372239,2026-11-09,Hersonissos 5 challenger,Henry Searle,Polymarket,prediction,value,1.37,0.7322,0.0028,Pinnacle
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,10Bet,book,value,1.5,0.7507,0.126,Betfair
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,1xBet,book,value,1.53,0.7507,0.1485,Betfair
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,BetVictor,book,value,1.5,0.7507,0.126,Betfair
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,Betsson,book,value,1.5,0.7507,0.126,Betfair
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,Betway,book,value,1.5,0.7507,0.126,Betfair
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,Interwetten,book,value,1.5,0.7507,0.126,Betfair
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,William Hill,book,value,1.53,0.7507,0.1485,Betfair
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,bet-at-home,book,value,1.5,0.7507,0.126,Betfair
+2026-11-09T00:58:59+00:00,3372251,2026-11-10,Orleans challenger,Hugo Gaston,Polymarket,prediction,value,1.608,0.7507,0.207,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,10Bet,book,value,1.65,0.6265,0.0337,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,1xBet,book,value,1.66,0.6265,0.0399,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,BetVictor,book,value,1.62,0.6265,0.0149,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,Betway,book,value,1.6,0.6265,0.0024,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,Interwetten,book,value,1.65,0.6265,0.0337,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,bet-at-home,book,value,1.65,0.6265,0.0337,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,bet365,book,value,1.66,0.6265,0.0399,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,bwin,book,value,1.65,0.6265,0.0337,Betfair
+2026-11-09T00:58:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,Polymarket,prediction,value,1.634,0.6265,0.0236,Betfair
+2026-11-09T00:58:59+00:00,3373215,2026-11-10,Lima 3 challenger,Elmer Moller,Polymarket,prediction,value,1.447,0.6983,0.0108,Betfair
+2026-11-09T00:58:59+00:00,3373219,2026-11-10,Lima 3 challenger,Gonzalo Bueno,1xBet,book,value,5.65,0.1821,0.0287,Betfair
+2026-11-09T00:58:59+00:00,3373219,2026-11-10,Lima 3 challenger,Gonzalo Bueno,Betsson,book,value,5.6,0.1821,0.0196,Betfair
+2026-11-09T00:58:59+00:00,3373219,2026-11-10,Lima 3 challenger,Gonzalo Bueno,William Hill,book,value,5.5,0.1821,0.0014,Betfair
+2026-11-09T00:58:59+00:00,3373219,2026-11-10,Lima 3 challenger,Thiago Seyboth Wild,Polymarket,prediction,value,1.914,0.8179,0.5654,Betfair
+2026-11-09T00:58:59+00:00,3372203,2026-11-10,Monastir challenger,Eliakim Coulibaly,Polymarket,prediction,value,1.535,0.67,0.0284,Betfair
+2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,10Bet,book,value,2.25,0.4633,0.0425,Betfair
+2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,Betsson,book,value,2.25,0.4633,0.0425,Betfair
+2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,Interwetten,book,value,2.2,0.4633,0.0193,Betfair
+2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,William Hill,book,value,2.25,0.4633,0.0425,Betfair
+2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,bet-at-home,book,value,2.25,0.4633,0.0425,Betfair
+2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,Polymarket,prediction,value,2.163,0.4633,0.002,Betfair
