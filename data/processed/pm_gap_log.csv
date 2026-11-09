@@ -2323,3 +2323,77 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Challenger,Moez Echargui,Polymarket,0.56,0.5367,Betfair,0.02,997.1989
 2026-11-09T00:58:59+00:00,3372233,2026-11-10,Hersonissos 5 challenger,Challenger,Carlo Alberto Caniato,Polymarket,0.645,0.634,Betfair,0.07,1647.8924
 2026-11-09T00:58:59+00:00,3372233,2026-11-10,Hersonissos 5 challenger,Challenger,Gilles Arnaud Bailly,Polymarket,0.355,0.366,Betfair,0.07,1647.8924
+2026-11-09T11:39:48+00:00,3371809,2026-11-09,Stockholm,Tour,Duckworth J.,Kalshi,0.305,0.3072,Betfair,0.01,21834.9669
+2026-11-09T11:39:48+00:00,3371809,2026-11-09,Stockholm,Tour,Norrie C.,Kalshi,0.705,0.6928,Betfair,0.01,21834.9669
+2026-11-09T11:39:48+00:00,3373803,2026-11-09,Sopo WTA,Tour,Hercog P.,Polymarket,0.575,0.5581,Pinnacle,0.01,9090.4984
+2026-11-09T11:39:48+00:00,3373803,2026-11-09,Sopo WTA,Tour,Lepchenko V.,Polymarket,0.425,0.4419,Pinnacle,0.01,9090.4984
+2026-11-09T11:39:48+00:00,3373803,2026-11-09,Sopo WTA,Tour,Hercog P.,Kalshi,0.57,0.5581,Pinnacle,0.02,139.7884
+2026-11-09T11:39:48+00:00,3373803,2026-11-09,Sopo WTA,Tour,Lepchenko V.,Kalshi,0.425,0.4419,Pinnacle,0.01,139.7884
+2026-11-09T11:39:48+00:00,3373809,2026-11-09,Sopo WTA,Tour,Pigossi L.,Polymarket,0.7,0.7005,Betfair,0.02,12506.4861
+2026-11-09T11:39:48+00:00,3373809,2026-11-09,Sopo WTA,Tour,Jakupovic D.,Polymarket,0.3,0.2995,Betfair,0.02,12506.4861
+2026-11-09T11:39:48+00:00,3373809,2026-11-09,Sopo WTA,Tour,Pigossi L.,Kalshi,0.695,0.7005,Betfair,0.01,815.8073999999999
+2026-11-09T11:39:48+00:00,3373809,2026-11-09,Sopo WTA,Tour,Jakupovic D.,Kalshi,0.315,0.2995,Betfair,0.01,815.8073999999999
+2026-11-09T11:39:48+00:00,3373821,2026-11-09,Sopo WTA,Tour,Zidansek T.,Polymarket,0.5,0.5,Betfair,0.02,5424.1379
+2026-11-09T11:39:48+00:00,3373821,2026-11-09,Sopo WTA,Tour,Grabher J.,Polymarket,0.5,0.5,Betfair,0.02,5424.1379
+2026-11-09T11:39:48+00:00,3373821,2026-11-09,Sopo WTA,Tour,Zidansek T.,Kalshi,0.495,0.5,Betfair,0.01,194.8382
+2026-11-09T11:39:48+00:00,3373821,2026-11-09,Sopo WTA,Tour,Grabher J.,Kalshi,0.5,0.5,Betfair,0.02,194.8382
+2026-11-09T11:39:48+00:00,3371797,2026-11-10,Stockholm,Tour,Rinderknech A.,Kalshi,0.65,0.6515,Betfair,0.02,813.38
+2026-11-09T11:39:48+00:00,3371797,2026-11-10,Stockholm,Tour,Kecmanovic M.,Kalshi,0.34,0.3485,Betfair,0.02,813.38
+2026-11-09T11:39:48+00:00,3373429,2026-11-10,Stockholm,Tour,Sonego L.,Polymarket,0.455,0.4554,Betfair,0.01,45805.0535
+2026-11-09T11:39:48+00:00,3373429,2026-11-10,Stockholm,Tour,Halys Q.,Polymarket,0.545,0.5446,Betfair,0.01,45805.0535
+2026-11-09T11:39:48+00:00,3373429,2026-11-10,Stockholm,Tour,Sonego L.,Kalshi,0.455,0.4554,Betfair,0.01,6532.5812000000005
+2026-11-09T11:39:48+00:00,3373429,2026-11-10,Stockholm,Tour,Halys Q.,Kalshi,0.545,0.5446,Betfair,0.03,6532.5812000000005
+2026-11-09T11:39:48+00:00,3373431,2026-11-10,Stockholm,Tour,Van Assche L.,Polymarket,0.505,0.561,Betfair,0.01,114837.9265
+2026-11-09T11:39:48+00:00,3373431,2026-11-10,Stockholm,Tour,Shevchenko A.,Polymarket,0.495,0.439,Betfair,0.01,114837.9265
+2026-11-09T11:39:48+00:00,3373431,2026-11-10,Stockholm,Tour,Van Assche L.,Kalshi,0.57,0.561,Betfair,0.04,80.0925
+2026-11-09T11:39:48+00:00,3373431,2026-11-10,Stockholm,Tour,Shevchenko A.,Kalshi,0.435,0.439,Betfair,0.03,80.0925
+2026-11-09T11:39:48+00:00,3372301,2026-11-10,Masters Cup WTA,Tour,Kostyuk M.,Polymarket,0.365,0.4186,Betfair,0.01,12295.1521
+2026-11-09T11:39:48+00:00,3372301,2026-11-10,Masters Cup WTA,Tour,Pegula J.,Polymarket,0.635,0.5814,Betfair,0.01,12295.1521
+2026-11-09T11:39:48+00:00,3370033,2026-11-10,Masters Cup WTA,Tour,Gauff C.,Polymarket,0.625,0.6232,Betfair,0.01,12455.8556
+2026-11-09T11:39:48+00:00,3370033,2026-11-10,Masters Cup WTA,Tour,Noskova L.,Polymarket,0.375,0.3768,Betfair,0.01,12455.8556
+2026-11-09T11:39:48+00:00,3373805,2026-11-10,Sopo WTA,Tour,Carole Monnet,Polymarket,0.37,0.3216,Betfair,0.06,6978.1629
+2026-11-09T11:39:48+00:00,3373805,2026-11-10,Sopo WTA,Tour,Leyre Romero Gormaz,Polymarket,0.63,0.6784,Betfair,0.06,6978.1629
+2026-11-09T11:39:48+00:00,3373789,2026-11-09,Orleans challenger,Challenger,Max Houkes,Polymarket,0.315,0.3052,Pinnacle,0.01,17181.8221
+2026-11-09T11:39:48+00:00,3373789,2026-11-09,Orleans challenger,Challenger,Tom Gentzsch,Polymarket,0.685,0.6948,Pinnacle,0.01,17181.8221
+2026-11-09T11:39:48+00:00,3373789,2026-11-09,Orleans challenger,Challenger,Max Houkes,Kalshi,0.315,0.3052,Pinnacle,0.01,2706.4602999999997
+2026-11-09T11:39:48+00:00,3373789,2026-11-09,Orleans challenger,Challenger,Tom Gentzsch,Kalshi,0.685,0.6948,Pinnacle,0.01,2706.4602999999997
+2026-11-09T11:39:48+00:00,3373239,2026-11-09,Knoxville challenger,Challenger,Trevor Svajda,Polymarket,0.41,0.4116,Betfair,0.02,9390.6
+2026-11-09T11:39:48+00:00,3373239,2026-11-09,Knoxville challenger,Challenger,Max Hans Rehberg,Polymarket,0.59,0.5884,Betfair,0.02,9390.6
+2026-11-09T11:39:48+00:00,3373239,2026-11-09,Knoxville challenger,Challenger,Trevor Svajda,Kalshi,0.405,0.4116,Betfair,0.01,2542.2210999999998
+2026-11-09T11:39:48+00:00,3373239,2026-11-09,Knoxville challenger,Challenger,Max Hans Rehberg,Kalshi,0.595,0.5884,Betfair,0.01,2542.2210999999998
+2026-11-09T11:39:48+00:00,3373205,2026-11-09,Lima 3 challenger,Challenger,Dellien H.,Polymarket,0.64,0.6456,Betfair,0.02,27857.4958
+2026-11-09T11:39:48+00:00,3373205,2026-11-09,Lima 3 challenger,Challenger,Boyer T.,Polymarket,0.36,0.3544,Betfair,0.02,27857.4958
+2026-11-09T11:39:48+00:00,3373205,2026-11-09,Lima 3 challenger,Challenger,Dellien H.,Kalshi,0.645,0.6456,Betfair,0.01,1150.9662
+2026-11-09T11:39:48+00:00,3373205,2026-11-09,Lima 3 challenger,Challenger,Boyer T.,Kalshi,0.355,0.3544,Betfair,0.01,1150.9662
+2026-11-09T11:39:48+00:00,3372199,2026-11-09,Monastir challenger,Challenger,Moise Kouame,Polymarket,0.83,0.8401,Betfair,0.02,20194.0876
+2026-11-09T11:39:48+00:00,3372199,2026-11-09,Monastir challenger,Challenger,Robert Strombachs,Polymarket,0.17,0.1599,Betfair,0.02,20194.0876
+2026-11-09T11:39:48+00:00,3372199,2026-11-09,Monastir challenger,Challenger,Moise Kouame,Kalshi,0.835,0.8401,Betfair,0.01,1361.4699999999998
+2026-11-09T11:39:48+00:00,3372199,2026-11-09,Monastir challenger,Challenger,Robert Strombachs,Kalshi,0.165,0.1599,Betfair,0.01,1361.4699999999998
+2026-11-09T11:39:48+00:00,3372237,2026-11-09,Hersonissos 5 challenger,Challenger,Massimo Giunta,Polymarket,0.535,0.5471,Pinnacle,0.01,28787.8858
+2026-11-09T11:39:48+00:00,3372237,2026-11-09,Hersonissos 5 challenger,Challenger,Francesco Forti,Polymarket,0.465,0.4529,Pinnacle,0.01,28787.8858
+2026-11-09T11:39:48+00:00,3372237,2026-11-09,Hersonissos 5 challenger,Challenger,Massimo Giunta,Kalshi,0.545,0.5471,Pinnacle,0.01,7846.235700000001
+2026-11-09T11:39:48+00:00,3372237,2026-11-09,Hersonissos 5 challenger,Challenger,Francesco Forti,Kalshi,0.455,0.4529,Pinnacle,0.01,7846.235700000001
+2026-11-09T11:39:48+00:00,3372251,2026-11-10,Orleans challenger,Challenger,Matteo Martineau,Polymarket,0.375,0.3743,Betfair,0.01,9845.3399
+2026-11-09T11:39:48+00:00,3372251,2026-11-10,Orleans challenger,Challenger,Hugo Gaston,Polymarket,0.625,0.6257,Betfair,0.01,9845.3399
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Challenger,Aidan Mayo,Polymarket,0.56,0.5887,Betfair,0.02,647.5439
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Challenger,Michael Mmoh,Polymarket,0.44,0.4113,Betfair,0.02,647.5439
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Challenger,Aidan Mayo,Kalshi,0.555,0.5887,Betfair,0.01,116.88000000000002
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Challenger,Michael Mmoh,Kalshi,0.45,0.4113,Betfair,0.06,116.88000000000002
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Challenger,Braden Shick,Polymarket,0.57,0.5938,Betfair,0.08,1682.7921
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Challenger,Andres Andrade,Polymarket,0.43,0.4062,Betfair,0.08,1682.7921
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Challenger,Braden Shick,Kalshi,0.625,0.5938,Betfair,0.05,106.78850000000001
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Challenger,Andres Andrade,Kalshi,0.38,0.4062,Betfair,0.02,106.78850000000001
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Challenger,Cecchinato M.,Polymarket,0.425,0.3765,Betfair,0.01,2047.5821
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Challenger,Comesana F.,Polymarket,0.575,0.6235,Betfair,0.01,2047.5821
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Challenger,Cecchinato M.,Kalshi,0.43,0.3765,Betfair,0.04,73.44839999999999
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Challenger,Comesana F.,Kalshi,0.565,0.6235,Betfair,0.01,73.44839999999999
+2026-11-09T11:39:48+00:00,3373215,2026-11-10,Lima 3 challenger,Challenger,Elmer Moller,Polymarket,0.605,0.6923,Betfair,0.15,319.2719
+2026-11-09T11:39:48+00:00,3373215,2026-11-10,Lima 3 challenger,Challenger,Genaro Alberto Olivieri,Polymarket,0.395,0.3077,Betfair,0.15,319.2719
+2026-11-09T11:39:48+00:00,3373215,2026-11-10,Lima 3 challenger,Challenger,Elmer Moller,Kalshi,0.645,0.6923,Betfair,0.07,124.16080000000002
+2026-11-09T11:39:48+00:00,3373215,2026-11-10,Lima 3 challenger,Challenger,Genaro Alberto Olivieri,Kalshi,0.34,0.3077,Betfair,0.06,124.16080000000002
+2026-11-09T11:39:48+00:00,3372203,2026-11-10,Monastir challenger,Challenger,Mert Alkaya,Polymarket,0.355,0.3352,Betfair,0.09,173.4114
+2026-11-09T11:39:48+00:00,3372203,2026-11-10,Monastir challenger,Challenger,Eliakim Coulibaly,Polymarket,0.645,0.6648,Betfair,0.09,173.4114
+2026-11-09T11:39:48+00:00,3372215,2026-11-10,Monastir challenger,Challenger,Duje Ajdukovic,Polymarket,0.455,0.4441,Betfair,0.05,2135.0557
+2026-11-09T11:39:48+00:00,3372215,2026-11-10,Monastir challenger,Challenger,Moez Echargui,Polymarket,0.545,0.5559,Betfair,0.05,2135.0557
+2026-11-09T11:39:48+00:00,3372233,2026-11-10,Hersonissos 5 challenger,Challenger,Carlo Alberto Caniato,Polymarket,0.62,0.6367,Betfair,0.12,1485.5001
+2026-11-09T11:39:48+00:00,3372233,2026-11-10,Hersonissos 5 challenger,Challenger,Gilles Arnaud Bailly,Polymarket,0.38,0.3633,Betfair,0.12,1485.5001

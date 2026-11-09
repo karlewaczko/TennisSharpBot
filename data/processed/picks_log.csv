@@ -465,3 +465,29 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,William Hill,book,value,2.25,0.4633,0.0425,Betfair
 2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,bet-at-home,book,value,2.25,0.4633,0.0425,Betfair
 2026-11-09T00:58:59+00:00,3372215,2026-11-10,Monastir challenger,Duje Ajdukovic,Polymarket,prediction,value,2.163,0.4633,0.002,Betfair
+2026-11-09T11:39:48+00:00,3373431,2026-11-10,Stockholm,Van Assche L.,Polymarket,prediction,value,1.914,0.561,0.0736,Betfair
+2026-11-09T11:39:48+00:00,3372301,2026-11-10,Masters Cup WTA,Kostyuk M.,10Bet,book,value,2.55,0.4186,0.0674,Betfair
+2026-11-09T11:39:48+00:00,3372301,2026-11-10,Masters Cup WTA,Kostyuk M.,Betway,book,value,2.75,0.4186,0.1511,Betfair
+2026-11-09T11:39:48+00:00,3372301,2026-11-10,Masters Cup WTA,Kostyuk M.,bet-at-home,book,value,2.6,0.4186,0.0883,Betfair
+2026-11-09T11:39:48+00:00,3372301,2026-11-10,Masters Cup WTA,Kostyuk M.,Polymarket,prediction,value,2.62,0.4186,0.0967,Betfair
+2026-11-09T11:39:48+00:00,3373805,2026-11-10,Sopo WTA,Leyre Romero Gormaz,Polymarket,prediction,value,1.49,0.6784,0.0107,Betfair
+2026-11-09T11:39:48+00:00,3373843,2026-11-09,Lima 3 challenger,Alan Magadan,Kalshi,prediction,value,7.85,0.135,0.0597,Polymarket Mid
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Aidan Mayo,1xBet,book,value,1.72,0.5887,0.0125,Betfair
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Aidan Mayo,BetVictor,book,value,1.73,0.5887,0.0184,Betfair
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Aidan Mayo,Betsson,book,value,1.74,0.5887,0.0243,Betfair
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Aidan Mayo,Polymarket,prediction,value,1.717,0.5887,0.011,Betfair
+2026-11-09T11:39:48+00:00,3373229,2026-11-10,Knoxville challenger,Aidan Mayo,Kalshi,prediction,value,1.732,0.5887,0.0198,Betfair
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Andres Andrade,10Bet,book,value,2.5,0.4062,0.0154,Betfair
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Andres Andrade,1xBet,book,value,2.5,0.4062,0.0154,Betfair
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Andres Andrade,BetVictor,book,value,2.5,0.4062,0.0154,Betfair
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Andres Andrade,bet-at-home,book,value,2.5,0.4062,0.0154,Betfair
+2026-11-09T11:39:48+00:00,3373235,2026-11-10,Knoxville challenger,Andres Andrade,bet365,book,value,2.75,0.4062,0.117,Betfair
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,Betway,book,value,1.65,0.6235,0.0288,Betfair
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,Interwetten,book,value,1.65,0.6235,0.0288,Betfair
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,bet-at-home,book,value,1.65,0.6235,0.0288,Betfair
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,bet365,book,value,1.66,0.6235,0.035,Betfair
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,bwin,book,value,1.65,0.6235,0.0288,Betfair
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,Polymarket,prediction,value,1.689,0.6235,0.0529,Betfair
+2026-11-09T11:39:48+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,Kalshi,prediction,value,1.703,0.6235,0.0619,Betfair
+2026-11-09T11:39:48+00:00,3373215,2026-11-10,Lima 3 challenger,Elmer Moller,Polymarket,prediction,value,1.447,0.6923,0.002,Betfair
+2026-11-09T11:39:48+00:00,3374249,2026-11-10,Matsuyama challenger,Yi Zhou,Betsson,book,value,1.33,0.7743,0.0298,Betfair
