@@ -526,3 +526,6 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-10T01:12:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,bet365,book,value,1.66,0.6176,0.0251,Betfair
 2026-11-10T01:12:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,bwin,book,value,1.65,0.6176,0.019,Betfair
 2026-11-10T01:12:59+00:00,3373213,2026-11-10,Lima 3 challenger,Comesana F.,Kalshi,prediction,value,1.703,0.6176,0.0518,Betfair
+2026-11-10T11:18:04+00:00,3375771,2026-11-10,Chihuahua ITF,Hinojosa Gomez J.,Polymarket,prediction,value,1.37,0.7311,0.0014,Pinnacle
+2026-11-10T11:18:04+00:00,3375771,2026-11-10,Chihuahua ITF,Hinojosa Gomez J.,Kalshi,prediction,value,1.38,0.7311,0.0092,Pinnacle
+2026-11-10T11:18:04+00:00,3374205,2026-11-11,Brisbane ITF,Gadecki O.,Polymarket,prediction,value,1.689,0.5962,0.0069,Betfair
