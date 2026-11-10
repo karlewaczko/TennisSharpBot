@@ -533,3 +533,6 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-10T15:16:48+00:00,3375907,2026-11-12,Matsuyama challenger,Rei Sakamoto,Polymarket,prediction,value,1.142,0.8946,0.0217,Betfair
 2026-11-10T15:16:48+00:00,3375771,2026-11-10,Chihuahua ITF,Hinojosa Gomez J.,Polymarket,prediction,value,1.37,0.7304,0.0005,Pinnacle
 2026-11-10T15:16:48+00:00,3375771,2026-11-10,Chihuahua ITF,Hinojosa Gomez J.,Kalshi,prediction,value,1.38,0.7304,0.0083,Pinnacle
+2026-11-10T21:21:12+00:00,3375779,2026-11-10,Chihuahua ITF,Cherubini D.,Polymarket,prediction,value,2.62,0.417,0.0925,Betfair
+2026-11-10T21:21:12+00:00,3375779,2026-11-10,Chihuahua ITF,Cherubini D.,Kalshi,prediction,value,2.459,0.417,0.0253,Betfair
+2026-11-10T21:21:12+00:00,3374393,2026-11-11,Brisbane ITF,Garland J.,Polymarket,prediction,value,1.195,0.8386,0.0018,Betfair
