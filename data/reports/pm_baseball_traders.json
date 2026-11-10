@@ -1,50 +1,50 @@
 {
- "measured_at": "2026-11-09T13:50:16+00:00",
+ "measured_at": "2026-11-10T13:45:18+00:00",
  "sport": "baseball",
  "window_days": 60,
  "tours": null,
- "markets": 426,
- "matches": 426,
- "wallets": 21496,
- "ranked_wallets": 198,
- "significant_wallets": 0,
- "elite_wallets": 0,
+ "markets": 419,
+ "matches": 419,
+ "wallets": 21303,
+ "ranked_wallets": 196,
+ "significant_wallets": 2,
+ "elite_wallets": 1,
  "markets_trimmed_to_bigger_trades": 0,
  "market_structure": {
-  "stake_usd": 165046963,
-  "in_play_share": 0.63,
+  "stake_usd": 161605862,
+  "in_play_share": 0.627,
   "top20_share": 0.484,
   "top20_pre_match_share": 0.613
  },
  "skill_persistence": {
-  "wallets": 409,
-  "corr": 0.571,
-  "rank_corr": 0.663,
-  "top_decile_next": -0.0002,
-  "bottom_decile_next": -0.0199,
-  "all_next": -0.0113
+  "wallets": 398,
+  "corr": 0.584,
+  "rank_corr": 0.659,
+  "top_decile_next": 0.0006,
+  "bottom_decile_next": -0.0198,
+  "all_next": -0.0112
  },
  "polymarket_closing_calibration": {
-  "n": 426,
-  "brier": 0.2283,
-  "log_loss": 0.6475,
-  "favourite_won": 0.627,
+  "n": 419,
+  "brier": 0.2286,
+  "log_loss": 0.6483,
+  "favourite_won": 0.625,
   "bins": [
    {
     "range": "(-0.001, 0.2]",
-    "n": 2,
-    "price": 0.149,
+    "n": 1,
+    "price": 0.098,
     "won": 0.0
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 43,
+    "n": 42,
     "price": 0.311,
-    "won": 0.186
+    "won": 0.19
    },
    {
     "range": "(0.35, 0.5]",
-    "n": 223,
+    "n": 218,
     "price": 0.437,
     "won": 0.404
    },
@@ -68,5 +68,36 @@
    }
   ]
  },
- "leader_preview": []
+ "leader_preview": [
+  {
+   "rank": 2,
+   "name": "forecastication4",
+   "wallet": "0x885ffdf360e5b0b6e6acb963fb3f8ba2344c8ed9",
+   "elite": true,
+   "markets": 44,
+   "pre_markets": 44,
+   "stake": 29069.0716,
+   "pnl": 31243.2148,
+   "roi": 1.0748,
+   "fees": 1.2511,
+   "clv_net_mean": 0.015,
+   "clv_net_t": 3.4092,
+   "significant": true,
+   "clv_net_first": 0.0144,
+   "clv_net_second": 0.0152,
+   "consistent": true,
+   "alltime_pnl": 182708.9964,
+   "alltime_vol": 4775717.9315,
+   "pi_pnl": 180398.5869,
+   "pi_win_rate": 51.4458,
+   "pi_closed": 6294.0,
+   "clv_mean": 0.015,
+   "clv_t": 3.4142,
+   "win_share": 0.6136,
+   "live_share": 0.0,
+   "taker_share": 0.0014,
+   "two_sided_share": 0.2045,
+   "directional": 0.9153
+  }
+ ]
 }
