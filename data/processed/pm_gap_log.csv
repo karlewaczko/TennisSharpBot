@@ -2443,3 +2443,49 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-09T23:49:47+00:00,3374993,2026-11-10,Antalya 33 ITF,ITF,Prisacariu A.,Polymarket,0.645,0.7765,Betfair,0.23,263.5268
 2026-11-09T23:49:47+00:00,3374993,2026-11-10,Antalya 33 ITF,ITF,Nikolaieva A.,Kalshi,0.355,0.2235,Betfair,0.25,6.9826
 2026-11-09T23:49:47+00:00,3374993,2026-11-10,Antalya 33 ITF,ITF,Prisacariu A.,Kalshi,0.615,0.7765,Betfair,0.23,6.9826
+2026-11-10T01:12:59+00:00,3375191,2026-11-10,Stockholm,Tour,Mannarino A.,Polymarket,0.555,0.5412,Pinnacle,0.01,26613.0817
+2026-11-10T01:12:59+00:00,3375191,2026-11-10,Stockholm,Tour,Shevchenko A.,Polymarket,0.445,0.4588,Pinnacle,0.01,26613.0817
+2026-11-10T01:12:59+00:00,3375191,2026-11-10,Stockholm,Tour,Mannarino A.,Kalshi,0.545,0.5412,Pinnacle,0.01,7449.5235
+2026-11-10T01:12:59+00:00,3375191,2026-11-10,Stockholm,Tour,Shevchenko A.,Kalshi,0.455,0.4588,Pinnacle,0.01,7449.5235
+2026-11-10T01:12:59+00:00,3373429,2026-11-10,Stockholm,Tour,Sonego L.,Polymarket,0.465,0.468,Betfair,0.01,32901.7787
+2026-11-10T01:12:59+00:00,3373429,2026-11-10,Stockholm,Tour,Halys Q.,Polymarket,0.535,0.532,Betfair,0.01,32901.7787
+2026-11-10T01:12:59+00:00,3373429,2026-11-10,Stockholm,Tour,Sonego L.,Kalshi,0.455,0.468,Betfair,0.01,13528.864100000003
+2026-11-10T01:12:59+00:00,3373429,2026-11-10,Stockholm,Tour,Halys Q.,Kalshi,0.545,0.532,Betfair,0.01,13528.864100000003
+2026-11-10T01:12:59+00:00,3375299,2026-11-11,Sopo WTA,Tour,Irene Burillo Escorihuela,Polymarket,0.255,0.2309,Betfair,0.11,229.7018
+2026-11-10T01:12:59+00:00,3375299,2026-11-11,Sopo WTA,Tour,Julia Grabher,Polymarket,0.745,0.7691,Betfair,0.11,229.7018
+2026-11-10T01:12:59+00:00,3374621,2026-11-11,Stockholm,Tour,Fritz T.,Polymarket,0.73,0.7093,Betfair,0.06,16622.4051
+2026-11-10T01:12:59+00:00,3374621,2026-11-11,Stockholm,Tour,Norrie C.,Polymarket,0.27,0.2907,Betfair,0.06,16622.4051
+2026-11-10T01:12:59+00:00,3375217,2026-11-10,Orleans challenger,Challenger,Zsombor Piros,Polymarket,0.52,0.5235,Betfair,0.02,5569.5118
+2026-11-10T01:12:59+00:00,3375217,2026-11-10,Orleans challenger,Challenger,Luca Nardi,Polymarket,0.48,0.4765,Betfair,0.02,5569.5118
+2026-11-10T01:12:59+00:00,3375215,2026-11-10,Orleans challenger,Challenger,Grenier H.,Polymarket,0.21,0.1962,Betfair,0.04,293.0185
+2026-11-10T01:12:59+00:00,3375215,2026-11-10,Orleans challenger,Challenger,Jacquet K.,Polymarket,0.79,0.8038,Betfair,0.04,293.0185
+2026-11-10T01:12:59+00:00,3371855,2026-11-10,Brisbane 4 challenger,Challenger,Enzo Aguiard,Kalshi,0.42,0.4106,Pinnacle,0.02,477.11289999999997
+2026-11-10T01:12:59+00:00,3371855,2026-11-10,Brisbane 4 challenger,Challenger,Akira Santillan,Kalshi,0.575,0.5894,Pinnacle,0.01,477.11289999999997
+2026-11-10T01:12:59+00:00,3371853,2026-11-10,Brisbane 4 challenger,Challenger,Tristan Schoolkate,Kalshi,0.76,0.7546,Pinnacle,0.02,1144.0043
+2026-11-10T01:12:59+00:00,3371853,2026-11-10,Brisbane 4 challenger,Challenger,Cruz Hewitt,Kalshi,0.24,0.2454,Pinnacle,0.02,1144.0043
+2026-11-10T01:12:59+00:00,3375233,2026-11-10,Knoxville challenger,Challenger,Daniel Milavsky,Polymarket,0.52,0.5469,Betfair,0.12,351.2184
+2026-11-10T01:12:59+00:00,3375233,2026-11-10,Knoxville challenger,Challenger,Murphy Cassone,Polymarket,0.48,0.4531,Betfair,0.12,351.2184
+2026-11-10T01:12:59+00:00,3373229,2026-11-10,Knoxville challenger,Challenger,Aidan Mayo,Kalshi,0.54,0.5747,Betfair,0.02,1.1099999999999999
+2026-11-10T01:12:59+00:00,3373229,2026-11-10,Knoxville challenger,Challenger,Michael Mmoh,Kalshi,0.44,0.4253,Betfair,0.02,1.1099999999999999
+2026-11-10T01:12:59+00:00,3373235,2026-11-10,Knoxville challenger,Challenger,Braden Shick,Kalshi,0.64,0.6144,Betfair,0.04,9.9901
+2026-11-10T01:12:59+00:00,3373235,2026-11-10,Knoxville challenger,Challenger,Andres Andrade,Kalshi,0.345,0.3856,Betfair,0.01,9.9901
+2026-11-10T01:12:59+00:00,3373213,2026-11-10,Lima 3 challenger,Challenger,Cecchinato M.,Kalshi,0.415,0.3824,Betfair,0.05,0.7933
+2026-11-10T01:12:59+00:00,3373213,2026-11-10,Lima 3 challenger,Challenger,Comesana F.,Kalshi,0.56,0.6176,Betfair,0.02,0.7933
+2026-11-10T01:12:59+00:00,3371813,2026-11-10,Matsuyama challenger,Challenger,Kasidit Samrej,Kalshi,0.335,0.3423,Pinnacle,0.01,4555.6102
+2026-11-10T01:12:59+00:00,3371813,2026-11-10,Matsuyama challenger,Challenger,Yuta Shimizu,Kalshi,0.665,0.6577,Pinnacle,0.01,4555.6102
+2026-11-10T01:12:59+00:00,3374249,2026-11-10,Matsuyama challenger,Challenger,Takuya Kumasaka,Polymarket,0.225,0.2187,Pinnacle,0.01,30083.0273
+2026-11-10T01:12:59+00:00,3374249,2026-11-10,Matsuyama challenger,Challenger,Yi Zhou,Polymarket,0.775,0.7813,Pinnacle,0.01,30083.0273
+2026-11-10T01:12:59+00:00,3374249,2026-11-10,Matsuyama challenger,Challenger,Takuya Kumasaka,Kalshi,0.205,0.2187,Pinnacle,0.01,13853.008000000002
+2026-11-10T01:12:59+00:00,3374249,2026-11-10,Matsuyama challenger,Challenger,Yi Zhou,Kalshi,0.79,0.7813,Pinnacle,0.02,13853.008000000002
+2026-11-10T01:12:59+00:00,3372203,2026-11-10,Monastir challenger,Challenger,Mert Alkaya,Kalshi,0.33,0.3304,Betfair,0.04,72.4195
+2026-11-10T01:12:59+00:00,3372203,2026-11-10,Monastir challenger,Challenger,Eliakim Coulibaly,Kalshi,0.68,0.6696,Betfair,0.06,72.4195
+2026-11-10T01:12:59+00:00,3375311,2026-11-11,Lima 3 challenger,Challenger,Gonzalo Bueno,Polymarket,0.6,0.6603,Betfair,0.12,404.3769
+2026-11-10T01:12:59+00:00,3375311,2026-11-11,Lima 3 challenger,Challenger,Carlos Sanchez Jover,Polymarket,0.4,0.3397,Betfair,0.12,404.3769
+2026-11-10T01:12:59+00:00,3374201,2026-11-10,Brisbane ITF,ITF,Micic E.,Polymarket,0.48,0.4809,Betfair,0.02,3161.9448
+2026-11-10T01:12:59+00:00,3374201,2026-11-10,Brisbane ITF,ITF,Cabrera L.,Polymarket,0.52,0.5191,Betfair,0.02,3161.9448
+2026-11-10T01:12:59+00:00,3374201,2026-11-10,Brisbane ITF,ITF,Micic E.,Kalshi,0.465,0.4809,Betfair,0.01,225.89140000000003
+2026-11-10T01:12:59+00:00,3374201,2026-11-10,Brisbane ITF,ITF,Cabrera L.,Kalshi,0.525,0.5191,Betfair,0.03,225.89140000000003
+2026-11-10T01:12:59+00:00,3374993,2026-11-10,Antalya 33 ITF,ITF,Nikolaieva A.,Polymarket,0.285,0.2235,Betfair,0.17,267.0809
+2026-11-10T01:12:59+00:00,3374993,2026-11-10,Antalya 33 ITF,ITF,Prisacariu A.,Polymarket,0.715,0.7765,Betfair,0.17,267.0809
+2026-11-10T01:12:59+00:00,3374993,2026-11-10,Antalya 33 ITF,ITF,Nikolaieva A.,Kalshi,0.275,0.2235,Betfair,0.11,5.94
+2026-11-10T01:12:59+00:00,3374993,2026-11-10,Antalya 33 ITF,ITF,Prisacariu A.,Kalshi,0.705,0.7765,Betfair,0.13,5.94
