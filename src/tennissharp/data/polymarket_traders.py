@@ -452,6 +452,58 @@ def alltime(wallet: str, http=requests, sleep=time.sleep) -> tuple[float, float]
         return None
 
 
+ALLTIME_MISSES = 3     # all-time figures unreadable in a row before a run stops asking
+PROFIT_DEPTH = 50      # places of a ranking looked at for wallets in profit over all time
+
+
+def known_alltime(*tables: pd.DataFrame | None) -> dict:
+    """wallet -> (all-time profit, volume) from tables that carry them
+    (alltime_pnl and alltime_vol: a ranking, the radar's record of what it
+    showed); a later table wins."""
+    out = {}
+    for df in tables:
+        if df is None or not {"alltime_pnl", "alltime_vol"} <= set(df.columns):
+            continue
+        wallets = df["wallet"] if "wallet" in df.columns else df.index
+        for w, pnl, vol in zip(wallets, df["alltime_pnl"], df["alltime_vol"]):
+            if pd.notna(pnl) and pd.notna(vol):
+                out[w] = (float(pnl), float(vol))
+    return out
+
+
+def alltime_lookup(known: dict | None = None, http=requests, sleep=time.sleep):
+    """wallet -> (all-time profit, volume) or None, each wallet asked once.
+    Where Polymarket cannot be read, the last figure known (`known`) stands
+    in; after ALLTIME_MISSES misses in a row the run stops asking and only
+    the known figures answer, so an outage cannot stall it."""
+    known, seen, misses = known or {}, {}, 0
+
+    def figures(wallet: str) -> tuple[float, float] | None:
+        nonlocal misses
+        if wallet not in seen:
+            fresh = alltime(wallet, http, sleep) if misses < ALLTIME_MISSES else None
+            misses = 0 if fresh else misses + 1
+            seen[wallet] = fresh or known.get(wallet)
+        return seen[wallet]
+    return figures
+
+
+def in_profit(lb: pd.DataFrame, top_n: int, figures, depth: int = PROFIT_DEPTH) -> pd.DataFrame:
+    """The first `top_n` rows of a ranking, in its order, whose wallet is in
+    profit over all time on Polymarket (`figures`: wallet -> (profit,
+    volume) or None, e.g. alltime_lookup). A wallet whose figure is unknown
+    is left out, and at most `depth` rows are looked at."""
+    wallets = lb["wallet"] if "wallet" in lb.columns else lb.index.to_series(index=lb.index)
+    keep = []
+    for i, w in zip(lb.index[:depth], wallets.iloc[:depth]):
+        fig = figures(w)
+        if fig and fig[0] > 0:
+            keep.append(i)
+            if len(keep) == top_n:
+                break
+    return lb.loc[keep]
+
+
 def track_record(wallet: str, http=requests, sleep=time.sleep, now: float | None = None) -> dict | None:
     """A wallet's record by PolyInsider's published method, from Polymarket's
     own data (PolyInsider refuses GitHub's servers with 403).

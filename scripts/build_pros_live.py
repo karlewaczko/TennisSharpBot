@@ -7,9 +7,11 @@ top of each sport's ranking from scripts/update_pm_traders.py, and which
 sport each league code at the start of an event slug belongs to. GitHub
 Pages serves the docs folder of main.
 
-Each sport's ten best are watched: the wallets that meet every criterion
+Each sport's ten best among the wallets in profit over all time on
+Polymarket are watched: the wallets that meet every criterion
 (pt.mark_elite) first, marked as such on the page, then the ranking's next
-places, so a sport without a proven wallet still shows its best."""
+places, so a sport without a proven wallet still shows its best. A wallet
+whose all-time figure cannot be read is left out (pt.in_profit)."""
 from __future__ import annotations
 
 import _bootstrap  # noqa: F401
@@ -130,42 +132,39 @@ def second_opinion(wallets: list[dict], fetch=None) -> None:
                    "closed_1m": figures.get("closedPredictions_1m"), "complete": figures.get("complete", True)}
 
 
-def alltime(wallets: list[dict], http=requests) -> None:
-    """Each watched account's all-time profit and volume on Polymarket, as
-    its profile page shows them, fetched fresh for the page."""
-    for w in wallets:
-        figures = pt.alltime(w["wallet"], http, sleep=lambda s: None)
-        if figures:
-            w["alltime"] = {"pnl": round(figures[0]), "vol": round(figures[1])}
-
-
-def best_first(lb: pd.DataFrame, top_n: int) -> tuple[pd.DataFrame, int]:
-    """A sport's `top_n` best: the proven ones (every criterion met, or an
-    edge beyond luck in an older ranking) by rank, then the rest by rank;
-    and how many of the whole ranking are proven."""
+def best_first(lb: pd.DataFrame, top_n: int, figures=None) -> tuple[pd.DataFrame, int]:
+    """A sport's `top_n` best among the wallets in profit over all time
+    (`figures`: wallet -> (profit, volume) or None, see pt.alltime_lookup;
+    without it the ranking is taken as it is): the proven ones (every
+    criterion met, or an edge beyond luck in an older ranking) by rank,
+    then the rest by rank; and how many of the whole ranking are proven."""
     flag = "elite" if "elite" in lb.columns else "significant" if "significant" in lb.columns else None
     proven = lb[flag].fillna(False).astype(bool) if flag else pd.Series(False, index=lb.index)
-    order = lb.assign(_proven=proven).sort_values(["_proven", "rank"], ascending=[False, True])
-    return order.drop(columns="_proven").head(top_n), int(proven.sum())
+    order = lb.assign(_proven=proven).sort_values(["_proven", "rank"], ascending=[False, True]).drop(columns="_proven")
+    watch = pt.in_profit(order, top_n, figures) if figures else order.head(top_n)
+    return watch, int(proven.sum())
 
 
-def collect(top_n: int = TOP_N) -> dict:
-    """The watched wallets (the top of each sport's ranking), once each, with
-    their closing-line value in every sport they have enough matches in:
-    from the ranking where they are ranked, else from the run's table of
-    all wallets."""
-    sports, wallets, boards, stats = {}, {}, {}, {}
-    for sport, label in SPORTS.items():
-        lb = _table(config.PROCESSED_DIR / f"pm_{sport}_traders.csv")
-        if lb is None:
-            continue
-        boards[sport] = lb
+def collect(top_n: int = TOP_N, figures=None) -> dict:
+    """The watched wallets (the top of each sport's ranking among those in
+    profit over all time on Polymarket), once each, with their all-time
+    figures and their closing-line value in every sport they have enough
+    matches in: from the ranking where they are ranked, else from the run's
+    table of all wallets. `figures` (wallet -> (profit, volume) or None)
+    defaults to Polymarket's leaderboard, read fresh, with the figures the
+    last build and the rankings hold where it cannot be read."""
+    boards = {sport: lb for sport in SPORTS
+              if (lb := _table(config.PROCESSED_DIR / f"pm_{sport}_traders.csv")) is not None}
+    if figures is None:
+        figures = pt.alltime_lookup(pt.known_alltime(_table(WATCHED), *boards.values()))
+    sports, wallets, stats = {}, {}, {}
+    for sport, lb in boards.items():
         table = _table(STATS_DIR / f"pm_{sport}_wallet_stats.csv")
         if table is not None:
             stats[sport] = table
         rep = _report(sport)
-        watch, proven = best_first(lb, top_n)
-        sports[sport] = {"label": label, "measured_at": rep.get("measured_at"),
+        watch, proven = best_first(lb, top_n, figures)
+        sports[sport] = {"label": SPORTS[sport], "measured_at": rep.get("measured_at"),
                          "window_days": rep.get("window_days"), "ranked": int(len(lb)),
                          "significant": int(lb["significant"].fillna(False).astype(bool).sum())
                          if "significant" in lb.columns else int(len(lb)),
@@ -175,6 +174,8 @@ def collect(top_n: int = TOP_N) -> dict:
             if isinstance(r["name"], str) and r["name"] and not w["name"]:
                 w["name"] = r["name"]
             w["ranks"][sport] = int(r["rank"])
+            pnl, vol = figures(wallet)                   # known: only wallets in profit are watched
+            w["alltime"] = {"pnl": round(pnl), "vol": round(vol)}
     previous = _previous()
     for w in wallets.values():
         for sport in sports:
@@ -214,8 +215,7 @@ def main() -> None:
     ap.add_argument("--top", type=int, default=TOP_N, help="wallets watched per sport")
     ap.add_argument("-o", "--out", type=Path, default=OUT)
     args = ap.parse_args()
-    data = collect(args.top)
-    alltime(data["wallets"])
+    data = collect(args.top)                             # asks each candidate's all-time figures
     second_opinion(data["wallets"])
     data["prefixes"] = sport_prefixes()
     data["tags"] = {sport: list(tags) for sport, tags in pt.SPORT_TAGS.items()}   # the jump alarm lists each sport's moneylines by tag
@@ -223,8 +223,9 @@ def main() -> None:
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(render(data, TEMPLATE.read_text()))
     write_watched(data)
-    ranked = ", ".join(f"{sport} {info['ranked']}" for sport, info in data["sports"].items())
-    print(f"{args.out}: {len(data['wallets'])} wallets watched ({ranked} ranked), "
+    watched = {sport: sum(sport in w["ranks"] for w in data["wallets"]) for sport in data["sports"]}
+    ranked = ", ".join(f"{sport} {watched[sport]} of {info['ranked']}" for sport, info in data["sports"].items())
+    print(f"{args.out}: {len(data['wallets'])} wallets in profit over all time watched ({ranked} ranked), "
           f"{len(data['prefixes'])} league codes")
 
 

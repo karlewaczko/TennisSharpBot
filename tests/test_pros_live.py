@@ -27,6 +27,11 @@ def live():
         sys.path.remove(str(SCRIPTS))
 
 
+def in_profit(wallet):
+    """Every test wallet is in profit over all time unless a test says otherwise."""
+    return (1000.0, 50000.0)
+
+
 def _ranking(path, rows):
     pd.DataFrame([{"rank": i + 1, "name": n, "wallet": w, "pre_markets": 30, "stake": 5000.0, "pnl": 100.0,
                    "roi": 0.02, "clv_mean": 0.012, "clv_t": 4.2 - i} for i, (n, w) in enumerate(rows)]).to_csv(path, index=False)
@@ -43,7 +48,7 @@ def test_every_watched_account_gets_its_clv_in_each_sport(live, tmp_path, monkey
     (tmp_path / "raw").mkdir()
     pd.DataFrame([{"wallet": "0xc", "pre_markets": 14, "stake": 900.0, "pnl": -20.0, "clv_mean": -0.003, "clv_t": -0.4}]
                  ).to_csv(tmp_path / "raw" / "pm_tennis_wallet_stats.csv", index=False)
-    data = live.collect(top_n=2)
+    data = live.collect(top_n=2, figures=in_profit)
     assert set(data["sports"]) == {"tennis", "basketball"}               # no football ranking yet
     by = {w["wallet"]: w for w in data["wallets"]}
     assert set(by) == {"0xa", "0xb", "0xc"}                             # 0xd ranks third: not watched
@@ -56,7 +61,7 @@ def test_every_watched_account_gets_its_clv_in_each_sport(live, tmp_path, monkey
     assert "basketball" not in by["0xa"]["clv"]                          # too few basketball matches
     live.write_watched(data)
     (tmp_path / "raw" / "pm_tennis_wallet_stats.csv").unlink()          # a rebuild without this run's tables
-    again = {w["wallet"]: w for w in live.collect(top_n=2)["wallets"]}
+    again = {w["wallet"]: w for w in live.collect(top_n=2, figures=in_profit)["wallets"]}
     assert again["0xc"]["clv"]["tennis"] == by["0xc"]["clv"]["tennis"]  # falls back to what the page showed
 
 
@@ -106,7 +111,7 @@ def test_each_sport_shows_its_best_and_counts_after_fees(live, tmp_path, monkeyp
         significant=[True, False], clv_net_mean=[0.008, 0.001], clv_net_t=[3.9, 0.4], fees=[120.0, 80.0],
         taker_share=[0.25, 1.0])
     lb.to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
-    data = live.collect(top_n=5)
+    data = live.collect(top_n=5, figures=in_profit)
     # an unproven wallet still shows when the sport has room: a sport without a proven one is not left empty
     assert [w["wallet"] for w in data["wallets"]] == ["0xr", "0xl"]
     assert (data["sports"]["tennis"]["significant"], data["sports"]["tennis"]["elite"]) == (1, 1)
@@ -124,21 +129,21 @@ def test_the_proven_come_first_even_below_the_cut(live):
     assert list(watch.index) == ["0xa", "0xb", "0xc"] and proven == 0
 
 
-def test_all_time_profit_comes_from_polymarket(live):
-    class Resp:
-        status_code = 200
-        def __init__(self, data): self._d = data
-        def json(self): return self._d
-        def raise_for_status(self): pass
-
-    class Http:
-        def get(self, url, params=None, headers=None, timeout=None):
-            assert url.endswith("/v2/leaderboard") and params["time_period"] == "all"
-            return Resp({"data": {"pnl": -1969623.78, "volume": 69436312.9} if params["user"] == "0xa" else None})
-
-    wallets = [{"wallet": "0xa"}, {"wallet": "0xb"}]
-    live.alltime(wallets, Http())
-    assert wallets[0]["alltime"] == {"pnl": -1969624, "vol": 69436313} and "alltime" not in wallets[1]
+def test_only_wallets_in_profit_over_all_time_are_watched(live, tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
+    monkeypatch.setattr(config, "REPORTS_DIR", tmp_path)
+    monkeypatch.setattr(live, "STATS_DIR", tmp_path / "raw")
+    monkeypatch.setattr(live, "WATCHED", tmp_path / "pm_watched_clv.csv")
+    _ranking(tmp_path / "pm_tennis_traders.csv", [("Loser", "0xl"), ("Unknown", "0xu"), ("Star", "0xs"),
+                                                  ("Fourth", "0xf"), ("Fifth", "0xv")])
+    lb = pd.read_csv(tmp_path / "pm_tennis_traders.csv").assign(elite=[True, False, False, False, False])
+    lb.to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
+    alltime = {"0xl": (-55155.0, 5.8e7), "0xs": (135823.6, 7641402.4), "0xf": (0.4, 900.0), "0xv": (9.0, 99.0)}
+    data = live.collect(top_n=2, figures=alltime.get)
+    # the proven loser and the wallet whose figure cannot be read are passed over; the next two move up
+    assert [w["wallet"] for w in data["wallets"]] == ["0xs", "0xf"]
+    assert data["wallets"][0]["alltime"] == {"pnl": 135824, "vol": 7641402}
+    assert data["sports"]["tennis"]["elite"] == 1                        # the count is the ranking's own
 
 
 def test_each_watched_account_gets_its_record_by_polyinsiders_method(live):

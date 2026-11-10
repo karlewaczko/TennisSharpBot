@@ -305,6 +305,44 @@ def test_positions_keep_open_singles_only():
     assert got[0]["avg_price"] == 0.7 and got[0]["initial_value"] == pytest.approx(70)    # what the shares held cost
 
 
+def test_all_time_figures_are_asked_once_and_an_outage_cannot_stall_a_run():
+    class Resp:
+        def __init__(self, code, data=None): self.status_code, self._d = code, data
+        def json(self): return self._d
+        def raise_for_status(self): pass
+
+    asked = []
+
+    class Http:
+        def get(self, url, params=None, headers=None, timeout=None):
+            assert url.endswith("/v2/leaderboard") and params["time_period"] == "all"
+            asked.append(params["user"])
+            if params["user"] == "0xa":
+                return Resp(200, {"data": {"pnl": -1969623.78, "volume": 69436312.9}})
+            return Resp(503)                                          # Polymarket down for everyone else
+
+    figures = pt.alltime_lookup({"0xk": (500.0, 9000.0)}, http=Http(), sleep=lambda s: None)
+    assert figures("0xa") == (-1969623.78, 69436312.9) and figures("0xa") == (-1969623.78, 69436312.9)
+    assert asked == ["0xa"]                                           # asked once
+    assert figures("0xk") == (500.0, 9000.0)                          # unreadable: the last figure known stands in
+    assert figures("0xb") is None and figures("0xc") is None          # never known: unknown
+    before = len(asked)
+    assert figures("0xd") is None and len(asked) == before            # three misses in a row: no more asking
+
+
+def test_only_the_wallets_in_profit_over_all_time_count():
+    lb = pd.DataFrame({"wallet": ["0xl", "0xu", "0xs", "0xz", "0xf", "0xg"], "rank": range(1, 7)})
+    alltime = {"0xl": (-55155.0, 5.8e7), "0xs": (135824.0, 7.6e6), "0xz": (0.0, 10.0),
+               "0xf": (11152.0, 504765.0), "0xg": (1.0, 2.0)}
+    assert list(pt.in_profit(lb, 2, alltime.get)["wallet"]) == ["0xs", "0xf"]     # loss, unknown, nought: out
+    assert list(pt.in_profit(lb, 9, alltime.get, depth=3)["wallet"]) == ["0xs"]   # looks no deeper than asked
+    by_index = lb.set_index("wallet")
+    assert list(pt.in_profit(by_index, 1, alltime.get).index) == ["0xs"]          # a ranking keyed by wallet
+    radar = pd.DataFrame({"wallet": ["0xs", "0xn"], "alltime_pnl": [100.0, None], "alltime_vol": [900.0, 5.0]})
+    ranking = pd.DataFrame({"wallet": ["0xs"], "alltime_pnl": [135824.0], "alltime_vol": [7.6e6]})
+    assert pt.known_alltime(radar, None, ranking) == {"0xs": (135824.0, 7.6e6)}   # the later table wins
+
+
 @pytest.fixture(scope="module")
 def bd():
     scripts = Path(__file__).parent.parent / "scripts"
@@ -332,7 +370,7 @@ def test_pro_positions_land_on_the_card_with_the_fair_value(bd, tmp_path, monkey
                                       "url": "https://polymarket.com/event/atp-fritz-altmaie-2026-10-23"}]}]
     held = [{"wallet": "0xW", "slug": "atp-fritz-altmaie-2026-10-23", "title": "Lyon", "outcome": "Daniel Altmaier",
              "avg_price": 0.2, "cur_price": 0.24, "size": 500, "initial_value": 100, "current_value": 120}]
-    out = bd.pro_positions(board, fetch=lambda w: held)
+    out = bd.pro_positions(board, fetch=lambda w: held, figures=lambda w: (1.0, 2.0))
     p = out["positions"][0]
     assert p["side"] == "Altmaier D." and p["fair"] == 0.22
     assert p["best_book"] == "bet365" and p["best_odds"] == 4.5    # the anonymous schedule quote is left out

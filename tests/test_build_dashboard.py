@@ -370,6 +370,12 @@ def test_pro_positions_show_ten_and_always_the_proven(bd, tmp_path, monkeypatch)
                   "elite": [False] * 11 + [True], "clv_net_mean": 0.01, "clv_net_t": 2.0}
                  ).to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
     asked = []
-    out = bd.pro_positions([], fetch=lambda w: asked.append(w) or [])
+    out = bd.pro_positions([], fetch=lambda w: asked.append(w) or [], figures=lambda w: (1.0, 2.0))
     board = [r["wallet"] for r in out["leaderboard"]]
     assert board == [f"0x{i}" for i in range(9)] + ["0x11"] and asked == board     # rank 12 is in: it meets every criterion
+    loss = {"0x2": (-5.0, 9.0), "0x11": (-1.0, 9.0)}                          # in loss over all time: never watched
+    out = bd.pro_positions([], fetch=lambda w: [], figures=lambda w: loss.get(w, (1.0, 2.0)))
+    assert [r["wallet"] for r in out["leaderboard"]] == [f"0x{i}" for i in (0, 1, 3, 4, 5, 6, 7, 8, 9, 10)]
+    assert out["leaderboard"][0]["alltime_pnl"] == 1.0
+    out = bd.pro_positions([], fetch=lambda w: [], figures=lambda w: None)
+    assert out["leaderboard"] == [] and out["note"] == "keine Wallet über alle Zeit im Gewinn"

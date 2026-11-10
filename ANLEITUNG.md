@@ -83,7 +83,7 @@ Einmalig einschalten:
 2. Bei „Source“ **Deploy from a branch** wählen.
 3. Branch **main** und Ordner **/docs** wählen, dann **Save**.
 
-Nach ein bis zwei Minuten ist die Seite erreichbar. Auf der Liste stehen je Sportart die zehn besten Profile der Rangliste. Ein ★ tragen die, die alle fünf Kriterien erfüllen. Sie sind immer dabei, auch wenn sie in der Rangliste weiter hinten stehen. Die Kriterien:
+Nach ein bis zwei Minuten ist die Seite erreichbar. Auf der Liste stehen je Sportart die zehn besten Profile der Rangliste, die seit Kontoeröffnung auf Polymarket im Gewinn sind. Wer über alle Zeit im Minus ist, wird übersprungen, auch wenn er im letzten Monat gut war. Ein ★ tragen die, die alle fünf Kriterien erfüllen. Sie sind immer dabei, auch wenn sie in der Rangliste weiter hinten stehen. Die Kriterien:
 
 1. Vorsprung auf den Schlusskurs nach Polymarkets Gebühren, statistisch abgesichert
 2. Vorsprung in beiden Hälften des letzten Monats
