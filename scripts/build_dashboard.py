@@ -433,20 +433,30 @@ def _slug_of(url) -> str | None:
 
 
 def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
-                  fetch=None) -> dict:
-    """Open tennis positions of the best-ranked Polymarket wallets, each
-    placed on the card where the match is on it: the side, the price the
-    wallet paid, the price now, and the sharp fair value next to it.
+                  fetch=None, figures=None) -> dict:
+    """Open tennis positions of the best-ranked Polymarket wallets in profit
+    over all time, each placed on the card where the match is on it: the
+    side, the price the wallet paid, the price now, and the sharp fair
+    value next to it.
 
     The ranking is scripts/update_pm_traders.py's (closing-line value over
-    the last month, weekly). A position is information, not a tip: a
-    market maker's position is inventory, and a wallet that beat the close
-    last month can still be wrong on this match."""
+    the last month, daily). `figures` (wallet -> (all-time profit, volume)
+    or None) defaults to Polymarket's leaderboard, with the figures the
+    radar and the ranking hold where it cannot be read; a wallet in loss or
+    of unknown standing is left out (pt.in_profit). A position is
+    information, not a tip: a market maker's position is inventory, and a
+    wallet that beat the close last month can still be wrong on this match."""
     fetch = fetch or pt.positions
     try:
         lb = pd.read_csv(config.PROCESSED_DIR / "pm_tennis_traders.csv")
     except (OSError, ValueError):
         return {"leaderboard": [], "positions": [], "note": "noch keine Rangliste"}
+    if figures is None:
+        try:
+            radar = pd.read_csv(config.PROCESSED_DIR / "pm_watched_clv.csv")
+        except (OSError, ValueError):
+            radar = None
+        figures = pt.alltime_lookup(pt.known_alltime(radar, lb))
     flag = "elite" if "elite" in lb.columns else "significant" if "significant" in lb.columns else None
     if flag:                                     # those meeting every criterion (pt.mark_elite) first
         lb = (lb.assign(_proven=lb[flag].fillna(False).astype(bool))
@@ -460,7 +470,11 @@ def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
         for q in e.get("prediction_markets") or []:
             if q.get("venue") == "Polymarket" and _slug_of(q.get("url")):
                 by_slug[_slug_of(q.get("url"))] = e
-    picked = lb.head(max_wallets).sort_values("rank")
+    picked = pt.in_profit(lb, max_wallets, figures).sort_values("rank")
+    if picked.empty:
+        return {"leaderboard": [], "positions": [], "note": "keine Wallet über alle Zeit im Gewinn"}
+    known = [figures(w) for w in picked["wallet"]]       # in profit, so known
+    picked = picked.assign(alltime_pnl=[f[0] for f in known], alltime_vol=[f[1] for f in known])
     rows = []
     for r in picked.itertuples(index=False):
         try:

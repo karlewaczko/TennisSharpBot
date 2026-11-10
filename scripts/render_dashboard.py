@@ -603,7 +603,7 @@ def pm_pros_section(data: dict) -> str:
              'geschlagen haben, nach Polymarkets Taker-Gebühren (Closing Line Value, CLV, in Cent je Anteil); '
              'sortiert nach der t-Statistik. In die Rangliste kommen nur Wallets mit mindestens 20&nbsp;Matches und '
              '2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer Richtung setzen: '
-             'Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Gezeigt werden die zehn besten. '
+             'Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Gezeigt werden die zehn besten, die über alle Zeit auf Polymarket im Gewinn sind. '
              '&#9733; markiert die, die alle fünf Kriterien erfüllen, darunter eine Signifikanzprüfung (höchstens '
              '10&nbsp;% Glückstreffer unter den Gelisteten); sie sind immer dabei. Kalshi '
              'veröffentlicht keine Trader-Daten. <a href="profis.html">Profi-Radar: was die Profile '
