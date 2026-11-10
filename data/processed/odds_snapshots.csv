@@ -27746,3 +27746,483 @@ taken_at,match_id,date,start_time,tournament,player1,player2,venue,kind,odds1,od
 2026-11-10T11:18:04+00:00,3375981,2026-11-11,2026-11-11T01:00+00:00,Yokohama ITF,Uemura M.,Chang H.,TennisExplorer,book,4.1,1.19,
 2026-11-10T11:18:04+00:00,3375981,2026-11-11,2026-11-11T01:00+00:00,Yokohama ITF,Uemura M.,Chang H.,Polymarket,prediction,3.8554216867469875,1.2376237623762376,400.7269
 2026-11-10T11:18:04+00:00,3375981,2026-11-11,2026-11-11T01:00+00:00,Yokohama ITF,Uemura M.,Chang H.,Kalshi,prediction,4.125463598971934,1.2327416173570018,7.35
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,10Bet,book,1.6,2.25,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,1xBet,book,1.62,2.3,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,BetVictor,book,1.57,2.25,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,Betsson,book,1.6,2.3,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,Betway,book,1.65,2.25,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,Coral,book,1.57,2.25,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,Interwetten,book,1.6,2.3,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,Ladbrokes,book,1.57,2.25,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,Unibet,book,1.62,2.28,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,William Hill,book,1.67,2.2,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,bet-at-home,book,1.58,2.25,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,bet365,book,1.62,2.3,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,bwin,book,1.6,2.3,
+2026-11-10T15:16:48+00:00,3371799,2026-11-10,2026-11-10T17:00+00:00,Stockholm,Rune H.,Bergs Z.,Kalshi,prediction,1.5957794824248825,2.3422878999749375,8429.5245
+2026-11-10T15:16:48+00:00,3375519,2026-11-10,2026-11-10T18:30+00:00,Stockholm,Lorenzo Musetti,Toby Samuel,TennisExplorer,book,1.25,3.87,
+2026-11-10T15:16:48+00:00,3375519,2026-11-10,2026-11-10T18:30+00:00,Stockholm,Lorenzo Musetti,Toby Samuel,Polymarket,prediction,1.2681021583098733,4.186640430386636,90890.0423
+2026-11-10T15:16:48+00:00,3375519,2026-11-10,2026-11-10T18:30+00:00,Stockholm,Lorenzo Musetti,Toby Samuel,Kalshi,prediction,1.2626071322151684,4.125463598971934,27969.723700000002
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,10Bet,book,2.5,1.5,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,BetVictor,book,2.4,1.5,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,Betfair,book,2.56,1.56,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,Betsson,book,2.5,1.53,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,Betway,book,2.6,1.5,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,Coral,book,2.4,1.53,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,Interwetten,book,2.5,1.53,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,Ladbrokes,book,2.4,1.53,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,Unibet,book,2.43,1.56,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,William Hill,book,2.5,1.53,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,bet-at-home,book,2.5,1.55,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,bwin,book,2.45,1.53,
+2026-11-10T15:16:48+00:00,3372301,2026-11-10,2026-11-10T20:00+00:00,Masters Cup WTA,Kostyuk M.,Pegula J.,Kalshi,prediction,2.5221189834851647,1.5240928599297696,154654.1252
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,10Bet,book,1.53,2.4,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,Betfair,book,1.6,2.46,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,Betsson,book,1.58,2.39,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,Betway,book,1.55,2.4,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,Coral,book,1.55,2.3,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,Ladbrokes,book,1.55,2.3,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,William Hill,book,1.57,2.38,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,bet-at-home,book,1.55,2.4,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,bwin,book,1.57,2.35,
+2026-11-10T15:16:48+00:00,3370033,2026-11-10,2026-11-10T21:30+00:00,Masters Cup WTA,Gauff C.,Noskova L.,Kalshi,prediction,1.5957794824248825,2.399232245681382,86653.85680000001
+2026-11-10T15:16:48+00:00,3373801,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Alice Tubello,Julia Riera,TennisExplorer,book,1.79,1.95,
+2026-11-10T15:16:48+00:00,3373801,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Alice Tubello,Julia Riera,Kalshi,prediction,1.8266942132154018,2.0101633860800208,2670.2495
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,10Bet,book,2.5,1.5,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,1xBet,book,2.47,1.48,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,Betsson,book,2.47,1.48,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,Betway,book,2.6,1.5,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,Coral,book,2.6,1.44,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,Interwetten,book,2.4,1.5,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,Ladbrokes,book,2.6,1.44,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,Pinnacle,book,2.64,1.5,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,William Hill,book,2.5,1.5,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,bet-at-home,book,2.5,1.45,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,bet365,book,2.5,1.5,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,bwin,book,2.6,1.45,
+2026-11-10T15:16:48+00:00,3373805,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Carole Monnet,Leyre Romero Gormaz,Kalshi,prediction,2.6586693891441215,1.5016706085520142,3732.9688
+2026-11-10T15:16:48+00:00,3373823,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Lucia Bronzetti,Julieta Pareja,TennisExplorer,book,2.44,1.52,
+2026-11-10T15:16:48+00:00,3373823,2026-11-10,2026-11-10T15:30+00:00,Sopo WTA,Lucia Bronzetti,Julieta Pareja,Kalshi,prediction,2.5221189834851647,1.5240928599297696,4311.342000000001
+2026-11-10T15:16:48+00:00,3373807,2026-11-10,2026-11-10T17:00+00:00,Sopo WTA,Andreescu B.,Masarova R.,TennisExplorer,book,1.29,3.43,
+2026-11-10T15:16:48+00:00,3373807,2026-11-10,2026-11-10T17:00+00:00,Sopo WTA,Andreescu B.,Masarova R.,Kalshi,prediction,1.3104013104013104,3.65673497447599,946.5125
+2026-11-10T15:16:48+00:00,3373827,2026-11-10,2026-11-10T17:00+00:00,Sopo WTA,Katrina Scott,Andrea Lazaro Garcia,TennisExplorer,book,4.52,1.18,
+2026-11-10T15:16:48+00:00,3373827,2026-11-10,2026-11-10T17:00+00:00,Sopo WTA,Katrina Scott,Andrea Lazaro Garcia,Kalshi,prediction,4.734848484848485,1.2183636644967608,1258.7015000000001
+2026-11-10T15:16:48+00:00,3373829,2026-11-10,2026-11-10T17:00+00:00,Sopo WTA,Jazmin Ortenzi,Leolia Jeanjean,TennisExplorer,book,2.45,1.52,
+2026-11-10T15:16:48+00:00,3373815,2026-11-10,2026-11-10T18:30+00:00,Sopo WTA,Laura Samson,Carolina Alves,TennisExplorer,book,1.22,4.03,
+2026-11-10T15:16:48+00:00,3373815,2026-11-10,2026-11-10T18:30+00:00,Sopo WTA,Laura Samson,Carolina Alves,Kalshi,prediction,1.2327416173570018,4.512370664175838,4264.278
+2026-11-10T15:16:48+00:00,3370043,2026-11-11,2026-11-11T20:00+00:00,Masters Cup WTA,Svitolina E.,Muchova K.,10Bet,book,2.25,1.6,
+2026-11-10T15:16:48+00:00,3370043,2026-11-11,2026-11-11T20:00+00:00,Masters Cup WTA,Svitolina E.,Muchova K.,BetVictor,book,2.25,1.57,
+2026-11-10T15:16:48+00:00,3370043,2026-11-11,2026-11-11T20:00+00:00,Masters Cup WTA,Svitolina E.,Muchova K.,Betfair,book,2.29,1.64,
+2026-11-10T15:16:48+00:00,3370043,2026-11-11,2026-11-11T20:00+00:00,Masters Cup WTA,Svitolina E.,Muchova K.,Betsson,book,2.32,1.62,
+2026-11-10T15:16:48+00:00,3370043,2026-11-11,2026-11-11T20:00+00:00,Masters Cup WTA,Svitolina E.,Muchova K.,Interwetten,book,2.3,1.6,
+2026-11-10T15:16:48+00:00,3370043,2026-11-11,2026-11-11T20:00+00:00,Masters Cup WTA,Svitolina E.,Muchova K.,William Hill,book,2.3,1.62,
+2026-11-10T15:16:48+00:00,3370043,2026-11-11,2026-11-11T20:00+00:00,Masters Cup WTA,Svitolina E.,Muchova K.,bet-at-home,book,2.3,1.58,
+2026-11-10T15:16:48+00:00,3370037,2026-11-11,2026-11-11T21:30+00:00,Masters Cup WTA,Sabalenka A.,Andreeva M.,10Bet,book,1.73,2.05,
+2026-11-10T15:16:48+00:00,3370037,2026-11-11,2026-11-11T21:30+00:00,Masters Cup WTA,Sabalenka A.,Andreeva M.,BetVictor,book,1.73,2.0,
+2026-11-10T15:16:48+00:00,3370037,2026-11-11,2026-11-11T21:30+00:00,Masters Cup WTA,Sabalenka A.,Andreeva M.,Betfair,book,1.79,2.08,
+2026-11-10T15:16:48+00:00,3370037,2026-11-11,2026-11-11T21:30+00:00,Masters Cup WTA,Sabalenka A.,Andreeva M.,Betsson,book,1.75,2.09,
+2026-11-10T15:16:48+00:00,3370037,2026-11-11,2026-11-11T21:30+00:00,Masters Cup WTA,Sabalenka A.,Andreeva M.,Betway,book,1.75,2.05,
+2026-11-10T15:16:48+00:00,3370037,2026-11-11,2026-11-11T21:30+00:00,Masters Cup WTA,Sabalenka A.,Andreeva M.,Interwetten,book,1.75,2.1,
+2026-11-10T15:16:48+00:00,3370037,2026-11-11,2026-11-11T21:30+00:00,Masters Cup WTA,Sabalenka A.,Andreeva M.,William Hill,book,1.8,2.0,
+2026-11-10T15:16:48+00:00,3370037,2026-11-11,2026-11-11T21:30+00:00,Masters Cup WTA,Sabalenka A.,Andreeva M.,bet-at-home,book,1.73,2.05,
+2026-11-10T15:16:48+00:00,3375299,2026-11-11,2026-11-11T15:00+00:00,Sopo WTA,Irene Burillo Escorihuela,Julia Grabher,10Bet,book,3.75,1.25,
+2026-11-10T15:16:48+00:00,3375299,2026-11-11,2026-11-11T15:00+00:00,Sopo WTA,Irene Burillo Escorihuela,Julia Grabher,1xBet,book,3.84,1.22,
+2026-11-10T15:16:48+00:00,3375299,2026-11-11,2026-11-11T15:00+00:00,Sopo WTA,Irene Burillo Escorihuela,Julia Grabher,Betfair,book,3.0,1.15,
+2026-11-10T15:16:48+00:00,3375299,2026-11-11,2026-11-11T15:00+00:00,Sopo WTA,Irene Burillo Escorihuela,Julia Grabher,Betsson,book,3.8,1.23,
+2026-11-10T15:16:48+00:00,3375299,2026-11-11,2026-11-11T15:00+00:00,Sopo WTA,Irene Burillo Escorihuela,Julia Grabher,William Hill,book,3.75,1.25,
+2026-11-10T15:16:48+00:00,3375299,2026-11-11,2026-11-11T15:00+00:00,Sopo WTA,Irene Burillo Escorihuela,Julia Grabher,Polymarket,prediction,2.313850710352168,1.2681021583098733,8692.2848
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,10Bet,book,1.29,3.4,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,1xBet,book,1.3,3.52,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,Betsson,book,1.29,3.5,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,Betway,book,1.3,3.5,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,Coral,book,1.28,3.5,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,Interwetten,book,1.3,3.5,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,Ladbrokes,book,1.28,3.5,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,William Hill,book,1.3,3.5,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,bet-at-home,book,1.25,3.45,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,bwin,book,1.28,3.6,
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,Polymarket,prediction,1.334009231343881,3.5732790194922366,18714.7292
+2026-11-10T15:16:48+00:00,3374621,2026-11-11,2026-11-11T10:00+00:00,Stockholm,Fritz T.,Norrie C.,Kalshi,prediction,1.3104013104013104,3.65673497447599,255.13690000000003
+2026-11-10T15:16:48+00:00,3374625,2026-11-11,2026-11-11T12:00+00:00,Stockholm,Gojo B.,Humbert U.,TennisExplorer,book,2.87,1.4,
+2026-11-10T15:16:48+00:00,3374625,2026-11-11,2026-11-11T12:00+00:00,Stockholm,Gojo B.,Humbert U.,Polymarket,prediction,2.932078403776517,1.447429365446966,20750.3049
+2026-11-10T15:16:48+00:00,3374625,2026-11-11,2026-11-11T12:00+00:00,Stockholm,Gojo B.,Humbert U.,Kalshi,prediction,2.983008781977854,1.4184940416157783,12197.489999999998
+2026-11-10T15:16:48+00:00,3376033,2026-11-11,2026-11-11T12:00+00:00,Stockholm,Shevchenko A.,Ruud C.,10Bet,book,4.0,1.22,
+2026-11-10T15:16:48+00:00,3376033,2026-11-11,2026-11-11T12:00+00:00,Stockholm,Shevchenko A.,Ruud C.,Betfair,book,3.14,1.16,
+2026-11-10T15:16:48+00:00,3376033,2026-11-11,2026-11-11T12:00+00:00,Stockholm,Shevchenko A.,Ruud C.,Betsson,book,4.2,1.22,
+2026-11-10T15:16:48+00:00,3376033,2026-11-11,2026-11-11T12:00+00:00,Stockholm,Shevchenko A.,Ruud C.,bet-at-home,book,4.0,1.2,
+2026-11-10T15:16:48+00:00,3376033,2026-11-11,2026-11-11T12:00+00:00,Stockholm,Shevchenko A.,Ruud C.,Kalshi,prediction,3.2850108241106657,1.1390598427869605,5.7913
+2026-11-10T15:16:48+00:00,3372247,2026-11-10,2026-11-10T15:45+00:00,Orleans challenger,Sebastian Baez,Daniil Glinka,TennisExplorer,book,1.88,1.84,
+2026-11-10T15:16:48+00:00,3372247,2026-11-10,2026-11-10T15:45+00:00,Orleans challenger,Sebastian Baez,Daniil Glinka,Kalshi,prediction,1.895759754157875,1.9323671497584543,2516.3173
+2026-11-10T15:16:48+00:00,3375211,2026-11-10,2026-11-10T16:30+00:00,Orleans challenger,Mochizuki S.,Hemery C.,TennisExplorer,book,1.63,2.17,
+2026-11-10T15:16:48+00:00,3375211,2026-11-10,2026-11-10T16:30+00:00,Orleans challenger,Mochizuki S.,Hemery C.,Polymarket,prediction,1.6886757404843125,2.2108241952599927,23623.7453
+2026-11-10T15:16:48+00:00,3375211,2026-11-10,2026-11-10T16:30+00:00,Orleans challenger,Mochizuki S.,Hemery C.,Kalshi,prediction,1.674895988959086,2.186996990692141,1279.1617999999999
+2026-11-10T15:16:48+00:00,3372263,2026-11-10,2026-11-10T18:00+00:00,Orleans challenger,Basavareddy N.,Herbert P.H.,TennisExplorer,book,1.45,2.6,
+2026-11-10T15:16:48+00:00,3372263,2026-11-10,2026-11-10T18:00+00:00,Orleans challenger,Basavareddy N.,Herbert P.H.,Kalshi,prediction,1.4588381521188896,2.73280043724807,7466.9818000000005
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,10Bet,book,4.0,1.2,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,1xBet,book,4.15,1.19,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,BetVictor,book,4.0,1.2,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,Betsson,book,4.0,1.21,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,Betway,book,4.25,1.18,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,Interwetten,book,4.0,1.2,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,William Hill,book,4.0,1.22,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,bet-at-home,book,4.1,1.2,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,bet365,book,4.0,1.22,
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,Polymarket,prediction,4.580956961909343,1.2376237623762376,30471.7638
+2026-11-10T15:16:48+00:00,3375215,2026-11-10,2026-11-10T19:30+00:00,Orleans challenger,Grenier H.,Jacquet K.,Kalshi,prediction,4.310121890247056,1.2474847588549587,2436.817
+2026-11-10T15:16:48+00:00,3375235,2026-11-10,2026-11-10T16:30+00:00,Knoxville challenger,Petr Nesterov,Timo Legout,TennisExplorer,book,3.44,1.28,
+2026-11-10T15:16:48+00:00,3375235,2026-11-10,2026-11-10T16:30+00:00,Knoxville challenger,Petr Nesterov,Timo Legout,Polymarket,prediction,3.5732790194922366,1.316872427983539,23160.7286
+2026-11-10T15:16:48+00:00,3375235,2026-11-10,2026-11-10T16:30+00:00,Knoxville challenger,Petr Nesterov,Timo Legout,Kalshi,prediction,3.5236454226084133,1.3271963772847686,343.5839
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,10Bet,book,1.8,1.9,
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,1xBet,book,1.85,1.83,
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,BetVictor,book,1.83,1.83,
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,Betsson,book,1.82,1.89,
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,Betway,book,1.83,1.85,
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,Interwetten,book,1.8,1.9,
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,William Hill,book,1.83,1.83,
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,bet-at-home,book,1.88,1.85,
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,Polymarket,prediction,1.9512195121951221,1.91389391286041,55312.8972
+2026-11-10T15:16:48+00:00,3375233,2026-11-10,2026-11-10T18:00+00:00,Knoxville challenger,Daniel Milavsky,Murphy Cassone,Kalshi,prediction,1.9323671497584543,1.895759754157875,893.137
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,10Bet,book,1.75,1.95,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,1xBet,book,1.74,1.95,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,BetVictor,book,1.75,1.91,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,Betsson,book,1.77,1.94,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,Betway,book,1.8,1.91,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,Coral,book,1.8,1.91,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,Interwetten,book,1.75,1.95,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,Ladbrokes,book,1.8,1.91,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,William Hill,book,1.8,1.91,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,bet-at-home,book,1.75,1.95,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,bwin,book,1.8,1.91,
+2026-11-10T15:16:48+00:00,3373229,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Aidan Mayo,Michael Mmoh,Kalshi,prediction,1.7940823986164036,2.0515471743014997,41.59010000000001
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,10Bet,book,1.95,1.75,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,1xBet,book,1.94,1.75,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,BetVictor,book,1.95,1.73,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,Betsson,book,1.99,1.73,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,Betway,book,1.91,1.8,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,Coral,book,1.95,1.75,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,Interwetten,book,1.95,1.75,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,Ladbrokes,book,1.95,1.75,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,William Hill,book,1.91,1.8,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,bet-at-home,book,2.0,1.75,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,bet365,book,2.0,1.72,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,bwin,book,1.95,1.75,
+2026-11-10T15:16:48+00:00,3373233,2026-11-10,2026-11-10T19:30+00:00,Knoxville challenger,Alexis Galarneau,Stefan Kozlov,Kalshi,prediction,2.0101633860800208,1.8266942132154018,2704.5652999999998
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,10Bet,book,1.73,2.0,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,1xBet,book,1.7,2.01,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,BetVictor,book,1.7,2.0,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,Betsson,book,1.67,2.07,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,Coral,book,1.73,2.0,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,Interwetten,book,1.7,2.05,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,Ladbrokes,book,1.73,2.0,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,Unibet,book,1.72,2.08,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,William Hill,book,1.73,2.0,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,bet-at-home,book,1.73,2.0,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,bwin,book,1.72,2.0,
+2026-11-10T15:16:48+00:00,3373235,2026-11-10,2026-11-10T21:00+00:00,Knoxville challenger,Braden Shick,Andres Andrade,Kalshi,prediction,1.7940823986164036,2.0515471743014997,513.9804
+2026-11-10T15:16:48+00:00,3375241,2026-11-10,2026-11-10T21:30+00:00,Knoxville challenger,Giles Hussey,Michael Zheng,TennisExplorer,book,3.83,1.23,
+2026-11-10T15:16:48+00:00,3375241,2026-11-10,2026-11-10T21:30+00:00,Knoxville challenger,Giles Hussey,Michael Zheng,Polymarket,prediction,3.8554216867469875,1.3001872269606822,34611.8355
+2026-11-10T15:16:48+00:00,3375241,2026-11-10,2026-11-10T21:30+00:00,Knoxville challenger,Giles Hussey,Michael Zheng,Kalshi,prediction,3.956196986960375,1.2781235101872834,1013.6695
+2026-11-10T15:16:48+00:00,3373223,2026-11-10,2026-11-10T22:30+00:00,Knoxville challenger,Abedallah Shelbayh,Harry Wendelken,TennisExplorer,book,1.9,1.81,
+2026-11-10T15:16:48+00:00,3373223,2026-11-10,2026-11-10T22:30+00:00,Knoxville challenger,Abedallah Shelbayh,Harry Wendelken,Kalshi,prediction,2.0101633860800208,1.895759754157875,31.119899999999998
+2026-11-10T15:16:48+00:00,3373237,2026-11-10,2026-11-10T23:30+00:00,Knoxville challenger,Marcos Giron,Maks Kasnikowski,TennisExplorer,book,1.53,2.37,
+2026-11-10T15:16:48+00:00,3373237,2026-11-10,2026-11-10T23:30+00:00,Knoxville challenger,Marcos Giron,Maks Kasnikowski,Kalshi,prediction,1.5957794824248825,2.399232245681382,972.0293999999999
+2026-11-10T15:16:48+00:00,3375303,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Alan Magadan,Oriol Roca Batalla,TennisExplorer,book,4.88,1.15,
+2026-11-10T15:16:48+00:00,3375303,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Alan Magadan,Oriol Roca Batalla,Polymarket,prediction,5.0582968714433845,1.1677127426653044,13789.3187
+2026-11-10T15:16:48+00:00,3375303,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Alan Magadan,Oriol Roca Batalla,Kalshi,prediction,5.5593544477615255,1.1772905364677517,638.9324
+2026-11-10T15:16:48+00:00,3375313,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Nikolas Sanchez Izquierdo,Nicolas Jarry,TennisExplorer,book,2.11,1.67,
+2026-11-10T15:16:48+00:00,3375313,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Nikolas Sanchez Izquierdo,Nicolas Jarry,Polymarket,prediction,2.2108241952599927,1.7174605628118265,35751.5569
+2026-11-10T15:16:48+00:00,3375313,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Nikolas Sanchez Izquierdo,Nicolas Jarry,Kalshi,prediction,2.186996990692141,1.732357669493874,278.5944
+2026-11-10T15:16:48+00:00,3375315,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Monteiro T.,Misolic F.,TennisExplorer,book,2.12,1.66,
+2026-11-10T15:16:48+00:00,3375315,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Monteiro T.,Misolic F.,Polymarket,prediction,2.2108241952599927,1.7174605628118265,50316.1289
+2026-11-10T15:16:48+00:00,3375315,2026-11-10,2026-11-10T16:30+00:00,Lima 3 challenger,Monteiro T.,Misolic F.,Kalshi,prediction,2.186996990692141,1.674895988959086,7415.9854
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,10Bet,book,2.15,1.65,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,1xBet,book,2.1,1.66,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,BetVictor,book,2.1,1.62,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,Betsson,book,2.16,1.62,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,Betway,book,2.2,1.6,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,Coral,book,2.15,1.61,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,Interwetten,book,2.2,1.6,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,Ladbrokes,book,2.15,1.61,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,William Hill,book,2.2,1.62,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,bet-at-home,book,2.15,1.65,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,bet365,book,2.1,1.66,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,bwin,book,2.15,1.62,
+2026-11-10T15:16:48+00:00,3373213,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Cecchinato M.,Comesana F.,Kalshi,prediction,2.3422878999749375,1.6476283214127425,860.5459999999999
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,10Bet,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,1xBet,book,1.42,2.66,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,BetVictor,book,1.4,2.63,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,Betsson,book,1.41,2.7,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,Betway,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,Coral,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,Interwetten,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,Ladbrokes,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,William Hill,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,bet-at-home,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,bet365,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,bwin,book,1.4,2.75,
+2026-11-10T15:16:48+00:00,3373215,2026-11-10,2026-11-10T18:00+00:00,Lima 3 challenger,Elmer Moller,Genaro Alberto Olivieri,Kalshi,prediction,1.4383687747399427,2.8945486964399945,16.3097
+2026-11-10T15:16:48+00:00,3372217,2026-11-10,2026-11-10T15:45+00:00,Monastir challenger,Mika Petkovic,Gianluca Cadenasso,TennisExplorer,book,2.42,1.51,
+2026-11-10T15:16:48+00:00,3372217,2026-11-10,2026-11-10T15:45+00:00,Monastir challenger,Mika Petkovic,Gianluca Cadenasso,Kalshi,prediction,2.459099035295448,1.5472283724550027,7960.727999999999
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,Betsson,book,2.09,1.66,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,Betway,book,2.1,1.65,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,Coral,book,2.0,1.73,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,Interwetten,book,2.1,1.65,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,Ladbrokes,book,2.0,1.73,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,Pinnacle,book,2.14,1.74,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,William Hill,book,2.1,1.67,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,bet-at-home,book,2.1,1.65,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,bwin,book,2.0,1.72,
+2026-11-10T15:16:48+00:00,3372215,2026-11-10,2026-11-10T16:05+00:00,Monastir challenger,Duje Ajdukovic,Moez Echargui,Kalshi,prediction,2.139838442197614,1.7031219929252315,9162.8934
+2026-11-10T15:16:48+00:00,3372231,2026-11-10,2026-11-10T15:30+00:00,Hersonissos 5 challenger,Andrej Nedic,Michele Ribecai,TennisExplorer,book,2.61,1.45,
+2026-11-10T15:16:48+00:00,3372231,2026-11-10,2026-11-10T15:30+00:00,Hersonissos 5 challenger,Andrej Nedic,Michele Ribecai,Kalshi,prediction,2.6586693891441215,1.4799292001870632,12374.877000000002
+2026-11-10T15:16:48+00:00,3372229,2026-11-10,2026-11-10T16:40+00:00,Hersonissos 5 challenger,Radu Mihai Papoe,Philip Henning,TennisExplorer,book,2.2,1.61,
+2026-11-10T15:16:48+00:00,3372229,2026-11-10,2026-11-10T16:40+00:00,Hersonissos 5 challenger,Radu Mihai Papoe,Philip Henning,Kalshi,prediction,2.288057256344783,1.6476283214127425,10528.598699999999
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,10Bet,book,1.25,3.6,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,1xBet,book,1.25,3.57,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,BetVictor,book,1.25,3.4,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,Betfair,book,1.28,3.71,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,Betsson,book,1.25,3.55,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,Coral,book,1.28,3.6,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,Interwetten,book,1.25,3.6,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,Ladbrokes,book,1.28,3.6,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,bet-at-home,book,1.25,3.5,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,bet365,book,1.25,3.75,
+2026-11-10T15:16:48+00:00,3372249,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Rodionov J.,Martinez P.,bwin,book,1.26,3.5,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,10Bet,book,2.45,1.5,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,1xBet,book,2.45,1.49,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,BetVictor,book,2.38,1.5,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,Betsson,book,2.46,1.48,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,Betway,book,2.3,1.55,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,Coral,book,2.45,1.5,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,Interwetten,book,2.4,1.5,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,Ladbrokes,book,2.45,1.5,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,William Hill,book,2.38,1.53,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,bet-at-home,book,2.4,1.5,
+2026-11-10T15:16:48+00:00,3372251,2026-11-11,2026-11-11T09:00+00:00,Orleans challenger,Matteo Martineau,Hugo Gaston,bwin,book,2.4,1.5,
+2026-11-10T15:16:48+00:00,3375301,2026-11-11,2026-11-11T10:00+00:00,Orleans challenger,Benjamin Bonzi,Tom Gentzsch,TennisExplorer,book,1.14,4.73,
+2026-11-10T15:16:48+00:00,3375301,2026-11-11,2026-11-11T10:00+00:00,Orleans challenger,Benjamin Bonzi,Tom Gentzsch,Polymarket,prediction,1.2681021583098733,4.186640430386636,10891.1211
+2026-11-10T15:16:48+00:00,3376021,2026-11-11,2026-11-11T10:00+00:00,Orleans challenger,Svrcina D.,Virtanen O.,TennisExplorer,book,1.96,1.74,
+2026-11-10T15:16:48+00:00,3376137,2026-11-11,2026-11-11T10:00+00:00,Orleans challenger,Mattia Bellucci,Sascha Gueymard Wayenburg,1xBet,book,1.43,2.62,
+2026-11-10T15:16:48+00:00,3375899,2026-11-11,2026-11-11T00:00+00:00,Brisbane 4 challenger,Matthew Dellavedova,Sebastian Gorzny,TennisExplorer,book,1.97,1.74,
+2026-11-10T15:16:48+00:00,3375899,2026-11-11,2026-11-11T00:00+00:00,Brisbane 4 challenger,Matthew Dellavedova,Sebastian Gorzny,Polymarket,prediction,2.0727321719124063,1.74727425216662,1581.5541
+2026-11-10T15:16:48+00:00,3375899,2026-11-11,2026-11-11T00:00+00:00,Brisbane 4 challenger,Matthew Dellavedova,Sebastian Gorzny,Kalshi,prediction,2.0515471743014997,1.7626580883973029,62.17530000000001
+2026-11-10T15:16:48+00:00,3371857,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,James Mccabe,Jan Kumstat,TennisExplorer,book,2.53,1.47,
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,10Bet,book,1.67,2.1,
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,1xBet,book,1.67,2.05,
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,BetVictor,book,1.67,2.05,
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,Betfair,book,1.69,2.03,
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,Betsson,book,1.68,2.06,
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,Interwetten,book,1.7,2.05,
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,bet-at-home,book,1.68,2.05,
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,Polymarket,prediction,1.7781729273171814,2.1167605097159305,5071.9694
+2026-11-10T15:16:48+00:00,3375901,2026-11-11,2026-11-11T01:30+00:00,Brisbane 4 challenger,Bernard Tomic,Omar Jasika,Kalshi,prediction,1.732357669493874,2.0947321675450574,2301.5822000000003
+2026-11-10T15:16:48+00:00,3375917,2026-11-11,2026-11-11T04:30+00:00,Brisbane 4 challenger,August Holmgren,Christopher Oconnell,TennisExplorer,book,2.4,1.51,
+2026-11-10T15:16:48+00:00,3375917,2026-11-11,2026-11-11T04:30+00:00,Brisbane 4 challenger,August Holmgren,Christopher Oconnell,Polymarket,prediction,2.4882120951989948,1.447429365446966,1101.0532
+2026-11-10T15:16:48+00:00,3375521,2026-11-11,2026-11-11T15:00+00:00,Knoxville challenger,Nicolas Mejia,Max Hans Rehberg,TennisExplorer,book,2.03,1.68,
+2026-11-10T15:16:48+00:00,3375521,2026-11-11,2026-11-11T15:00+00:00,Knoxville challenger,Nicolas Mejia,Max Hans Rehberg,Polymarket,prediction,2.313850710352168,1.6608674710801454,2159.8339
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,10Bet,book,1.53,2.38,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,1xBet,book,1.54,2.32,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,BetVictor,book,1.53,2.3,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,Betsson,book,1.54,2.31,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,Betway,book,1.55,2.3,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,Coral,book,1.53,2.37,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,Interwetten,book,1.55,2.3,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,Ladbrokes,book,1.53,2.37,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,William Hill,book,1.57,2.25,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,bet-at-home,book,1.55,2.3,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,bet365,book,1.53,2.37,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,bwin,book,1.53,2.35,
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,Polymarket,prediction,1.6079884868024346,2.369134910387472,43916.5324
+2026-11-10T15:16:48+00:00,3375311,2026-11-11,2026-11-11T00:00+00:00,Lima 3 challenger,Gonzalo Bueno,Carlos Sanchez Jover,Kalshi,prediction,1.571111655763152,2.399232245681382,2394.8112
+2026-11-10T15:16:48+00:00,3375525,2026-11-11,2026-11-11T15:00+00:00,Lima 3 challenger,Lautaro Midon,Miguel Tobon,TennisExplorer,book,1.39,2.66,
+2026-11-10T15:16:48+00:00,3375525,2026-11-11,2026-11-11T15:00+00:00,Lima 3 challenger,Lautaro Midon,Miguel Tobon,Polymarket,prediction,1.3883200633073949,2.691645133505599,2055.4975
+2026-11-10T15:16:48+00:00,3375533,2026-11-11,2026-11-11T03:20+00:00,Matsuyama challenger,Joel Schwaerzler,Kaichi Uchida,TennisExplorer,book,1.21,4.05,
+2026-11-10T15:16:48+00:00,3375533,2026-11-11,2026-11-11T03:20+00:00,Matsuyama challenger,Joel Schwaerzler,Kaichi Uchida,Polymarket,prediction,1.2376237623762376,4.580956961909343,3975.4508
+2026-11-10T15:16:48+00:00,3375909,2026-11-11,2026-11-11T03:30+00:00,Matsuyama challenger,Yu Hsiou Hsu,Niels Mcdonald,TennisExplorer,book,1.31,3.17,
+2026-11-10T15:16:48+00:00,3375909,2026-11-11,2026-11-11T03:30+00:00,Matsuyama challenger,Yu Hsiou Hsu,Niels Mcdonald,Polymarket,prediction,1.3516161950652494,3.3300587755373883,5777.5387
+2026-11-10T15:16:48+00:00,3375919,2026-11-11,2026-11-11T05:00+00:00,Matsuyama challenger,Fajing Sun,Billy Harris,TennisExplorer,book,2.38,1.49,
+2026-11-10T15:16:48+00:00,3375919,2026-11-11,2026-11-11T05:00+00:00,Matsuyama challenger,Fajing Sun,Billy Harris,Polymarket,prediction,2.4882120951989948,1.447429365446966,1127.8479
+2026-11-10T15:16:48+00:00,3372213,2026-11-11,2026-11-11T10:00+00:00,Monastir challenger,Kilian Feldbausch,Tiago Pereira,TennisExplorer,book,1.33,3.14,
+2026-11-10T15:16:48+00:00,3376035,2026-11-11,2026-11-11T10:00+00:00,Monastir challenger,Moise Kouame,Jonas Forejtek,TennisExplorer,book,1.39,2.53,
+2026-11-10T15:16:48+00:00,3376037,2026-11-11,2026-11-11T10:00+00:00,Monastir challenger,Eliakim Coulibaly,Luka Mikrut,TennisExplorer,book,2.04,1.63,
+2026-11-10T15:16:48+00:00,3376001,2026-11-11,2026-11-11T08:00+00:00,Hersonissos 5 challenger,Robin Bertrand,Henry Searle,1xBet,book,2.59,1.44,
+2026-11-10T15:16:48+00:00,3376001,2026-11-11,2026-11-11T08:00+00:00,Hersonissos 5 challenger,Robin Bertrand,Henry Searle,Betfair,book,2.41,1.32,
+2026-11-10T15:16:48+00:00,3376001,2026-11-11,2026-11-11T08:00+00:00,Hersonissos 5 challenger,Robin Bertrand,Henry Searle,Betsson,book,2.5,1.47,
+2026-11-10T15:16:48+00:00,3376001,2026-11-11,2026-11-11T08:00+00:00,Hersonissos 5 challenger,Robin Bertrand,Henry Searle,Interwetten,book,2.55,1.45,
+2026-11-10T15:16:48+00:00,3376001,2026-11-11,2026-11-11T08:00+00:00,Hersonissos 5 challenger,Robin Bertrand,Henry Searle,bet-at-home,book,2.5,1.45,
+2026-11-10T15:16:48+00:00,3376001,2026-11-11,2026-11-11T08:00+00:00,Hersonissos 5 challenger,Robin Bertrand,Henry Searle,Polymarket,prediction,2.691645133505599,1.3883200633073949,1166.8929
+2026-11-10T15:16:48+00:00,3376019,2026-11-11,2026-11-11T09:30+00:00,Hersonissos 5 challenger,Michael Geerts,Sumit Nagal,TennisExplorer,book,2.65,1.39,
+2026-11-10T15:16:48+00:00,3376019,2026-11-11,2026-11-11T09:30+00:00,Hersonissos 5 challenger,Michael Geerts,Sumit Nagal,Polymarket,prediction,2.6201674286986942,1.3697129081744468,636.7159
+2026-11-10T15:16:48+00:00,3376023,2026-11-11,2026-11-11T09:30+00:00,Hersonissos 5 challenger,Francesco Maestrelli,Johannus Monday,TennisExplorer,book,1.59,2.15,
+2026-11-10T15:16:48+00:00,3376025,2026-11-11,2026-11-11T09:30+00:00,Hersonissos 5 challenger,Felix Gill,Massimo Giunta,10Bet,book,1.7,2.05,
+2026-11-10T15:16:48+00:00,3376025,2026-11-11,2026-11-11T09:30+00:00,Hersonissos 5 challenger,Felix Gill,Massimo Giunta,1xBet,book,1.7,2.01,
+2026-11-10T15:16:48+00:00,3376025,2026-11-11,2026-11-11T09:30+00:00,Hersonissos 5 challenger,Felix Gill,Massimo Giunta,Betsson,book,1.67,2.09,
+2026-11-10T15:16:48+00:00,3376025,2026-11-11,2026-11-11T09:30+00:00,Hersonissos 5 challenger,Felix Gill,Massimo Giunta,Betway,book,1.73,2.0,
+2026-11-10T15:16:48+00:00,3376025,2026-11-11,2026-11-11T09:30+00:00,Hersonissos 5 challenger,Felix Gill,Massimo Giunta,bet-at-home,book,1.68,2.05,
+2026-11-10T15:16:48+00:00,3375535,2026-11-12,2026-11-12T00:00+00:00,Brisbane 4 challenger,Carl Emil Overbeck,Juncheng Shang,TennisExplorer,book,3.38,1.23,
+2026-11-10T15:16:48+00:00,3375535,2026-11-12,2026-11-12T00:00+00:00,Brisbane 4 challenger,Carl Emil Overbeck,Juncheng Shang,Polymarket,prediction,3.3300587755373883,1.3001872269606822,1003.007
+2026-11-10T15:16:48+00:00,3376009,2026-11-12,2026-11-12T00:00+00:00,Brisbane 4 challenger,Cruz Hewitt,Akira Santillan,TennisExplorer,book,1.69,2.04,
+2026-11-10T15:16:48+00:00,3376009,2026-11-12,2026-11-12T00:00+00:00,Brisbane 4 challenger,Cruz Hewitt,Akira Santillan,Polymarket,prediction,1.2526697524098234,1.9900695529308747,287.6014
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,1xBet,book,1.09,5.9,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,BetVictor,book,1.1,5.5,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,Betfair,book,1.05,6.13,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,Betsson,book,1.09,6.0,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,Coral,book,1.1,6.0,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,Interwetten,book,1.1,6.0,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,Ladbrokes,book,1.1,6.0,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,bet-at-home,book,1.09,6.0,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,bwin,book,1.1,6.0,
+2026-11-10T15:16:48+00:00,3375907,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rei Sakamoto,Kasidit Samrej,Polymarket,prediction,1.1420022725845225,5.647962497529016,8565.1095
+2026-11-10T15:16:48+00:00,3375921,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Max Schoenhaus,Taro Daniel,TennisExplorer,book,2.19,1.58,
+2026-11-10T15:16:48+00:00,3375921,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Max Schoenhaus,Taro Daniel,Polymarket,prediction,1.489824498674056,1.6608674710801454,273.427
+2026-11-10T15:16:48+00:00,3375923,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rio Noguchi,Yi Zhou,1xBet,book,3.41,1.27,
+2026-11-10T15:16:48+00:00,3375923,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rio Noguchi,Yi Zhou,Betfair,book,2.58,1.22,
+2026-11-10T15:16:48+00:00,3375923,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rio Noguchi,Yi Zhou,Betsson,book,3.4,1.27,
+2026-11-10T15:16:48+00:00,3375923,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rio Noguchi,Yi Zhou,Interwetten,book,3.4,1.27,
+2026-11-10T15:16:48+00:00,3375923,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rio Noguchi,Yi Zhou,bet-at-home,book,3.4,1.25,
+2026-11-10T15:16:48+00:00,3375923,2026-11-12,2026-11-12T00:00+00:00,Matsuyama challenger,Rio Noguchi,Yi Zhou,Polymarket,prediction,2.552452907243861,1.334009231343881,240.1485
+2026-11-10T15:16:48+00:00,3376039,2026-11-12,2026-11-12T08:00+00:00,Hersonissos 5 challenger,Lorenzo Carboni,Ioannis Xilas,1xBet,book,1.99,1.71,
+2026-11-10T15:16:48+00:00,3376039,2026-11-12,2026-11-12T08:00+00:00,Hersonissos 5 challenger,Lorenzo Carboni,Ioannis Xilas,Betfair,book,1.78,1.51,
+2026-11-10T15:16:48+00:00,3375757,2026-11-10,2026-11-10T17:00+00:00,Chihuahua ITF,Colmegna M.,Oz I.,TennisExplorer,book,3.81,1.2,
+2026-11-10T15:16:48+00:00,3375757,2026-11-10,2026-11-10T17:00+00:00,Chihuahua ITF,Colmegna M.,Oz I.,Polymarket,prediction,4.186640430386636,1.2376237623762376,3793.4813
+2026-11-10T15:16:48+00:00,3375757,2026-11-10,2026-11-10T17:00+00:00,Chihuahua ITF,Colmegna M.,Oz I.,Kalshi,prediction,4.310121890247056,1.2474847588549587,810.4129
+2026-11-10T15:16:48+00:00,3375759,2026-11-10,2026-11-10T17:00+00:00,Chihuahua ITF,Nava Elkin A.,Zolotareva A.,TennisExplorer,book,8.69,1.02,
+2026-11-10T15:16:48+00:00,3375759,2026-11-10,2026-11-10T17:00+00:00,Chihuahua ITF,Nava Elkin A.,Zolotareva A.,Polymarket,prediction,15.91849729385546,1.0293837594124278,523.5496
+2026-11-10T15:16:48+00:00,3375759,2026-11-10,2026-11-10T17:00+00:00,Chihuahua ITF,Nava Elkin A.,Zolotareva A.,Kalshi,prediction,23.425787106446773,1.0287674234622757,141.2996
+2026-11-10T15:16:48+00:00,3375763,2026-11-10,2026-11-10T18:00+00:00,Chihuahua ITF,Cross K.,Hernandez Miranda J.,TennisExplorer,book,1.01,11.14,
+2026-11-10T15:16:48+00:00,3375763,2026-11-10,2026-11-10T18:00+00:00,Chihuahua ITF,Cross K.,Hernandez Miranda J.,Polymarket,prediction,1.050006562541016,15.91849729385546,656.0799
+2026-11-10T15:16:48+00:00,3375763,2026-11-10,2026-11-10T18:00+00:00,Chihuahua ITF,Cross K.,Hernandez Miranda J.,Kalshi,prediction,1.0489602181837254,18.752930145335206,6.012
+2026-11-10T15:16:48+00:00,3375761,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Tikhonova A.,Tona M.,1xBet,book,1.33,2.95,
+2026-11-10T15:16:48+00:00,3375761,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Tikhonova A.,Tona M.,Unibet,book,1.34,2.95,
+2026-11-10T15:16:48+00:00,3375761,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Tikhonova A.,Tona M.,bet-at-home,book,1.33,2.85,
+2026-11-10T15:16:48+00:00,3375761,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Tikhonova A.,Tona M.,Polymarket,prediction,1.3883200633073949,3.2206119162640903,1982.4547
+2026-11-10T15:16:48+00:00,3375761,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Tikhonova A.,Tona M.,Kalshi,prediction,1.3991884706870015,2.983008781977854,169.15699999999998
+2026-11-10T15:16:48+00:00,3375765,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Marton I.,Tran D.,TennisExplorer,book,2.17,1.52,
+2026-11-10T15:16:48+00:00,3375765,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Marton I.,Tran D.,Polymarket,prediction,2.313850710352168,1.6339869281045751,2546.438
+2026-11-10T15:16:48+00:00,3375765,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Marton I.,Tran D.,Kalshi,prediction,2.288057256344783,1.674895988959086,69.91999999999999
+2026-11-10T15:16:48+00:00,3375767,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Lim A.,Rodriguez V.,TennisExplorer,book,3.33,1.23,
+2026-11-10T15:16:48+00:00,3375767,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Lim A.,Rodriguez V.,Polymarket,prediction,3.8554216867469875,1.283936034306771,1604.4207
+2026-11-10T15:16:48+00:00,3375767,2026-11-10,2026-11-10T18:30+00:00,Chihuahua ITF,Lim A.,Rodriguez V.,Kalshi,prediction,4.125463598971934,1.2940494430411198,106.92
+2026-11-10T15:16:48+00:00,3375755,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Regalado Macias F.,Wolff V.,TennisExplorer,book,7.01,1.02,
+2026-11-10T15:16:48+00:00,3375755,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Regalado Macias F.,Wolff V.,Polymarket,prediction,15.91849729385546,1.050006562541016,386.0574
+2026-11-10T15:16:48+00:00,3375755,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Regalado Macias F.,Wolff V.,Kalshi,prediction,18.752930145335206,1.0189815890406493,2876.5
+2026-11-10T15:16:48+00:00,3375769,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Millan Acosta I.,Zamburek A.,TennisExplorer,book,2.77,1.38,
+2026-11-10T15:16:48+00:00,3375769,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Millan Acosta I.,Zamburek A.,Polymarket,prediction,2.847218267752406,1.4683101952118403,3877.9133
+2026-11-10T15:16:48+00:00,3375769,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Millan Acosta I.,Zamburek A.,Kalshi,prediction,2.8945486964399945,1.5240928599297696,68.25
+2026-11-10T15:16:48+00:00,3375771,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Hinojosa Gomez J.,Castillo Meza M.,1xBet,book,1.28,3.23,
+2026-11-10T15:16:48+00:00,3375771,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Hinojosa Gomez J.,Castillo Meza M.,Betway,book,1.33,3.25,
+2026-11-10T15:16:48+00:00,3375771,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Hinojosa Gomez J.,Castillo Meza M.,Interwetten,book,1.3,3.0,
+2026-11-10T15:16:48+00:00,3375771,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Hinojosa Gomez J.,Castillo Meza M.,Pinnacle,book,1.32,3.37,
+2026-11-10T15:16:48+00:00,3375771,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Hinojosa Gomez J.,Castillo Meza M.,Polymarket,prediction,1.3697129081744468,3.2206119162640903,3608.1815
+2026-11-10T15:16:48+00:00,3375771,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Hinojosa Gomez J.,Castillo Meza M.,Kalshi,prediction,1.3804280155104893,3.4000652812534,68.42
+2026-11-10T15:16:48+00:00,3375773,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Pawlikowska Z.,Johnson S.,TennisExplorer,book,2.73,1.34,
+2026-11-10T15:16:48+00:00,3375773,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Pawlikowska Z.,Johnson S.,Polymarket,prediction,3.0222437137330753,1.4074595355383535,2125.5846
+2026-11-10T15:16:48+00:00,3375773,2026-11-10,2026-11-10T20:00+00:00,Chihuahua ITF,Pawlikowska Z.,Johnson S.,Kalshi,prediction,2.983008781977854,1.3804280155104893,225.41
+2026-11-10T15:16:48+00:00,3375777,2026-11-10,2026-11-10T21:00+00:00,Chihuahua ITF,Avataneo S.,Bulgaru M.,TennisExplorer,book,12.21,1.01,
+2026-11-10T15:16:48+00:00,3375777,2026-11-10,2026-11-10T21:00+00:00,Chihuahua ITF,Avataneo S.,Bulgaru M.,Polymarket,prediction,13.650945327963962,1.0395874916833001,876.2374
+2026-11-10T15:16:48+00:00,3375777,2026-11-10,2026-11-10T21:00+00:00,Chihuahua ITF,Avataneo S.,Bulgaru M.,Kalshi,prediction,18.752930145335206,1.0287674234622757,521.77
+2026-11-10T15:16:48+00:00,3375775,2026-11-10,2026-11-10T21:30+00:00,Chihuahua ITF,Odorizzi C.,Marmorstein J.,TennisExplorer,book,1.07,6.29,
+2026-11-10T15:16:48+00:00,3375775,2026-11-10,2026-11-10T21:30+00:00,Chihuahua ITF,Odorizzi C.,Marmorstein J.,Polymarket,prediction,1.1174495331854575,7.37164129593454,976.4131
+2026-11-10T15:16:48+00:00,3375775,2026-11-10,2026-11-10T21:30+00:00,Chihuahua ITF,Odorizzi C.,Marmorstein J.,Kalshi,prediction,1.1150099291634192,7.250737762567341,138.3864
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,Betsson,book,1.67,2.06,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,Betway,book,1.59,2.25,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,Coral,book,1.53,2.3,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,Interwetten,book,1.55,2.2,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,Ladbrokes,book,1.53,2.3,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,Unibet,book,1.65,2.04,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,William Hill,book,1.53,2.3,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,bet-at-home,book,1.55,2.25,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,bwin,book,1.53,2.3,
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,Polymarket,prediction,1.5584698942578177,2.369134910387472,745.5261
+2026-11-10T15:16:48+00:00,3375779,2026-11-10,2026-11-10T22:00+00:00,Chihuahua ITF,Rapolu M.,Cherubini D.,Kalshi,prediction,1.571111655763152,2.459099035295448,12.9962
+2026-11-10T15:16:48+00:00,3375781,2026-11-10,2026-11-10T22:30+00:00,Chihuahua ITF,Reyes Romero I.,Papamichail D.,TennisExplorer,book,9.64,1.02,
+2026-11-10T15:16:48+00:00,3375781,2026-11-10,2026-11-10T22:30+00:00,Chihuahua ITF,Reyes Romero I.,Papamichail D.,Polymarket,prediction,15.91849729385546,1.0395874916833001,538.6149
+2026-11-10T15:16:48+00:00,3375781,2026-11-10,2026-11-10T22:30+00:00,Chihuahua ITF,Reyes Romero I.,Papamichail D.,Kalshi,prediction,15.63770563582911,1.0189815890406493,1172.565
+2026-11-10T15:16:48+00:00,3375807,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Djoubri S.,Shcherbinina A.,TennisExplorer,book,3.19,1.26,
+2026-11-10T15:16:48+00:00,3375807,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Djoubri S.,Shcherbinina A.,Polymarket,prediction,3.5732790194922366,1.3001872269606822,3091.6834
+2026-11-10T15:16:48+00:00,3375807,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Djoubri S.,Shcherbinina A.,Kalshi,prediction,3.65673497447599,1.3104013104013104,62.115
+2026-11-10T15:16:48+00:00,3375809,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Clarke Z.,Amariei I.,TennisExplorer,book,2.48,1.37,
+2026-11-10T15:16:48+00:00,3375809,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Clarke Z.,Amariei I.,Polymarket,prediction,2.4882120951989948,1.5584698942578177,2353.6549
+2026-11-10T15:16:48+00:00,3375809,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Clarke Z.,Amariei I.,Kalshi,prediction,2.6586693891441215,1.4588381521188896,234.52
+2026-11-10T15:16:48+00:00,3375811,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Cabezas Dominguez S.,Ivanova D.,TennisExplorer,book,1.27,3.35,
+2026-11-10T15:16:48+00:00,3375811,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Cabezas Dominguez S.,Ivanova D.,Polymarket,prediction,1.3001872269606822,3.1182275994324824,785.5407
+2026-11-10T15:16:48+00:00,3375811,2026-11-10,2026-11-10T17:20+00:00,Weston 2 ITF,Cabezas Dominguez S.,Ivanova D.,Kalshi,prediction,1.3444528547439691,3.4000652812534,91.45
+2026-11-10T15:16:48+00:00,3375471,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Keller K.,Dean J.,TennisExplorer,book,1.39,2.71,
+2026-11-10T15:16:48+00:00,3375471,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Keller K.,Dean J.,Polymarket,prediction,1.4074595355383535,2.847218267752406,7334.5296
+2026-11-10T15:16:48+00:00,3375471,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Keller K.,Dean J.,Kalshi,prediction,1.4184940416157783,3.0771787194628475,53.94
+2026-11-10T15:16:48+00:00,3375473,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Lopez A.,Paskauskas K.,TennisExplorer,book,4.08,1.19,
+2026-11-10T15:16:48+00:00,3375473,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Lopez A.,Paskauskas K.,Polymarket,prediction,4.374835943652113,1.2376237623762376,1355.5715
+2026-11-10T15:16:48+00:00,3375473,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Lopez A.,Paskauskas K.,Kalshi,prediction,4.512370664175838,1.2327416173570018,43.42999999999999
+2026-11-10T15:16:48+00:00,3375483,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Moe K.,Kunz J.,TennisExplorer,book,1.35,2.88,
+2026-11-10T15:16:48+00:00,3375483,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Moe K.,Kunz J.,Polymarket,prediction,1.3883200633073949,3.0222437137330753,4011.7597
+2026-11-10T15:16:48+00:00,3375483,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Moe K.,Kunz J.,Kalshi,prediction,1.3804280155104893,3.2850108241106657,14.409999999999998
+2026-11-10T15:16:48+00:00,3375485,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Malygina A.,Gowda T.,TennisExplorer,book,2.07,1.66,
+2026-11-10T15:16:48+00:00,3375485,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Malygina A.,Gowda T.,Polymarket,prediction,2.1167605097159305,1.6339869281045751,383.1089
+2026-11-10T15:16:48+00:00,3375485,2026-11-10,2026-11-10T21:00+00:00,Lincoln ITF,Malygina A.,Gowda T.,Kalshi,prediction,2.2363509908153065,1.674895988959086,18.97
+2026-11-10T15:16:48+00:00,3375277,2026-11-10,2026-11-10T18:00+00:00,Lincoln ITF,Rennard C.,Coe R.,TennisExplorer,book,1.08,6.38,
+2026-11-10T15:16:48+00:00,3375277,2026-11-10,2026-11-10T18:00+00:00,Lincoln ITF,Rennard C.,Coe R.,Polymarket,prediction,1.0606478437029339,8.70359893816093,389.6179
+2026-11-10T15:16:48+00:00,3375277,2026-11-10,2026-11-10T18:00+00:00,Lincoln ITF,Rennard C.,Coe R.,Kalshi,prediction,1.0809034623499705,7.849786485807586,167.79080000000002
+2026-11-10T15:16:48+00:00,3375281,2026-11-10,2026-11-10T18:00+00:00,Lincoln ITF,Okuwaki R.,Rahimkhani N.,TennisExplorer,book,1.17,4.45,
+2026-11-10T15:16:48+00:00,3375281,2026-11-10,2026-11-10T18:00+00:00,Lincoln ITF,Okuwaki R.,Rahimkhani N.,Polymarket,prediction,1.3001872269606822,3.8554216867469875,362.7908
+2026-11-10T15:16:48+00:00,3375281,2026-11-10,2026-11-10T18:00+00:00,Lincoln ITF,Okuwaki R.,Rahimkhani N.,Kalshi,prediction,1.1642460051808947,4.980749403555259,123.86999999999999
+2026-11-10T15:16:48+00:00,3374023,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Shumate S.,Rademacher B.,TennisExplorer,book,1.05,9.0,
+2026-11-10T15:16:48+00:00,3374023,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Shumate S.,Rademacher B.,Polymarket,prediction,1.071518502445741,7.37164129593454,416.4086
+2026-11-10T15:16:48+00:00,3374023,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Shumate S.,Rademacher B.,Kalshi,prediction,1.0809034623499705,9.40733772342427,139.1644
+2026-11-10T15:16:48+00:00,3374027,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Gagnon C.,Rossini T.,TennisExplorer,book,1.47,2.49,
+2026-11-10T15:16:48+00:00,3374027,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Gagnon C.,Rossini T.,Polymarket,prediction,1.3516161950652494,2.691645133505599,431.5099
+2026-11-10T15:16:48+00:00,3374027,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Gagnon C.,Rossini T.,Kalshi,prediction,1.3804280155104893,2.8945486964399945,46.03209999999999
+2026-11-10T15:16:48+00:00,3375275,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Kyselova A.,Kock K.,TennisExplorer,book,1.56,2.27,
+2026-11-10T15:16:48+00:00,3375275,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Kyselova A.,Kock K.,Polymarket,prediction,1.4683101952118403,2.1627466882941335,279.8888
+2026-11-10T15:16:48+00:00,3375275,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Kyselova A.,Kock K.,Kalshi,prediction,1.571111655763152,2.288057256344783,70.1716
+2026-11-10T15:16:48+00:00,3375279,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Bedard J.,Esposito Cogan A.,TennisExplorer,book,10.0,1.04,
+2026-11-10T15:16:48+00:00,3375279,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Bedard J.,Esposito Cogan A.,Polymarket,prediction,11.950286806883364,1.0606478437029339,437.7174
+2026-11-10T15:16:48+00:00,3375279,2026-11-10,2026-11-10T19:00+00:00,Lincoln ITF,Bedard J.,Esposito Cogan A.,Kalshi,prediction,15.63770563582911,1.0593803895977323,2.5599999999999996
+2026-11-10T15:16:48+00:00,3375591,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Reami A.,Allen K.,TennisExplorer,book,1.19,4.03,
+2026-11-10T15:16:48+00:00,3375591,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Reami A.,Allen K.,Polymarket,prediction,1.208634484759119,4.014129736673089,1165.254
+2026-11-10T15:16:48+00:00,3375591,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Reami A.,Allen K.,Kalshi,prediction,1.2183636644967608,4.734848484848485,1707.842
+2026-11-10T15:16:48+00:00,3375593,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Sahdiieva A.,Catanzarite A.,TennisExplorer,book,1.49,2.4,
+2026-11-10T15:16:48+00:00,3375593,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Sahdiieva A.,Catanzarite A.,Polymarket,prediction,1.5828294659533382,2.369134910387472,5347.7549
+2026-11-10T15:16:48+00:00,3375593,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Sahdiieva A.,Catanzarite A.,Kalshi,prediction,1.6212710765239948,2.459099035295448,55.53
+2026-11-10T15:16:48+00:00,3375595,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Fetecau I.,Gomez C.,TennisExplorer,book,1.35,2.84,
+2026-11-10T15:16:48+00:00,3375595,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Fetecau I.,Gomez C.,Polymarket,prediction,1.3697129081744468,2.767208578346593,3619.101
+2026-11-10T15:16:48+00:00,3375595,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Fetecau I.,Gomez C.,Kalshi,prediction,1.4184940416157783,2.811294657415633,0.0103
+2026-11-10T15:16:48+00:00,3375597,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Plekhanova D.,Podhajecka D.,TennisExplorer,book,1.12,5.13,
+2026-11-10T15:16:48+00:00,3375597,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Plekhanova D.,Podhajecka D.,Polymarket,prediction,1.1174495331854575,6.39488409272582,710.2138
+2026-11-10T15:16:48+00:00,3375597,2026-11-10,2026-11-10T16:00+00:00,Weston 2 ITF,Plekhanova D.,Podhajecka D.,Kalshi,prediction,1.1390598427869605,7.250737762567341,5.86
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,1xBet,book,2.18,1.58,
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,Betfair,book,2.25,1.57,
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,Coral,book,2.2,1.6,
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,Ladbrokes,book,2.2,1.6,
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,William Hill,book,2.15,1.62,
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,bet-at-home,book,2.15,1.58,
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,bwin,book,2.18,1.59,
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,Polymarket,prediction,2.2108241952599927,1.6608674710801454,959.5895
+2026-11-10T15:16:48+00:00,3374205,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yamalapalli S.,Gadecki O.,Kalshi,prediction,2.288057256344783,1.5957794824248825,174.574
+2026-11-10T15:16:48+00:00,3374207,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Broadus S.,Inglis M.,TennisExplorer,book,3.31,1.28,
+2026-11-10T15:16:48+00:00,3374207,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Broadus S.,Inglis M.,Polymarket,prediction,3.2206119162640903,1.334009231343881,896.4075
+2026-11-10T15:16:48+00:00,3374207,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Broadus S.,Inglis M.,Kalshi,prediction,3.5236454226084133,1.3271963772847686,63.8284
+2026-11-10T15:16:48+00:00,3374209,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Naito Y.,Yamaguchi M.,TennisExplorer,book,1.46,2.49,
+2026-11-10T15:16:48+00:00,3374209,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Naito Y.,Yamaguchi M.,Polymarket,prediction,1.5348722986247545,2.552452907243861,910.7285
+2026-11-10T15:16:48+00:00,3374209,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Naito Y.,Yamaguchi M.,Kalshi,prediction,1.5240928599297696,2.588547747057468,16.686500000000002
+2026-11-10T15:16:48+00:00,3374211,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yao X.,Alame R.,TennisExplorer,book,1.04,8.3,
+2026-11-10T15:16:48+00:00,3374211,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yao X.,Alame R.,Polymarket,prediction,1.0606478437029339,10.627557255964717,758.5335
+2026-11-10T15:16:48+00:00,3374211,2026-11-11,2026-11-11T00:00+00:00,Brisbane ITF,Yao X.,Alame R.,Kalshi,prediction,1.0593803895977323,11.743705373919578,59.779999999999994
+2026-11-10T15:16:48+00:00,3374393,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Garland J.,Sato H.,1xBet,book,1.15,4.35,
+2026-11-10T15:16:48+00:00,3374393,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Garland J.,Sato H.,Betfair,book,1.14,5.0,
+2026-11-10T15:16:48+00:00,3374393,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Garland J.,Sato H.,bet-at-home,book,1.14,4.7,
+2026-11-10T15:16:48+00:00,3374393,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Garland J.,Sato H.,bet365,book,1.16,4.5,
+2026-11-10T15:16:48+00:00,3374393,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Garland J.,Sato H.,Polymarket,prediction,1.105583195135434,4.186640430386636,155.9301
+2026-11-10T15:16:48+00:00,3374393,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Garland J.,Sato H.,Kalshi,prediction,1.1906505357332087,3.956196986960375,20.97
+2026-11-10T15:16:48+00:00,3374395,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Sharma A.,Kokkinis T.,TennisExplorer,book,1.2,3.94,
+2026-11-10T15:16:48+00:00,3374395,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Sharma A.,Kokkinis T.,Polymarket,prediction,1.2526697524098234,4.014129736673089,706.6044
+2026-11-10T15:16:48+00:00,3374395,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Sharma A.,Kokkinis T.,Kalshi,prediction,1.2474847588549587,4.310121890247056,122.655
+2026-11-10T15:16:48+00:00,3374399,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Bennemann E.,Wei S.,TennisExplorer,book,3.25,1.29,
+2026-11-10T15:16:48+00:00,3374399,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Bennemann E.,Wei S.,Polymarket,prediction,3.1182275994324824,1.316872427983539,198.0248
+2026-11-10T15:16:48+00:00,3374399,2026-11-11,2026-11-11T01:30+00:00,Brisbane ITF,Bennemann E.,Wei S.,Kalshi,prediction,3.4000652812534,1.3621899655638376,89.0
+2026-11-10T15:16:48+00:00,3374397,2026-11-11,2026-11-11T03:00+00:00,Brisbane ITF,Yuan C.,Jones E.,1xBet,book,7.85,1.04,
+2026-11-10T15:16:48+00:00,3374397,2026-11-11,2026-11-11T03:00+00:00,Brisbane ITF,Yuan C.,Jones E.,bet-at-home,book,7.75,1.03,
+2026-11-10T15:16:48+00:00,3374397,2026-11-11,2026-11-11T03:00+00:00,Brisbane ITF,Yuan C.,Jones E.,Polymarket,prediction,1.0939781970145335,1.0606478437029339,88.9786
+2026-11-10T15:16:48+00:00,3374397,2026-11-11,2026-11-11T03:00+00:00,Brisbane ITF,Yuan C.,Jones E.,Kalshi,prediction,10.445718822140746,1.0809034623499705,6.15
+2026-11-10T15:16:48+00:00,3375753,2026-11-11,2026-11-11T01:00+00:00,Chihuahua ITF,Allegre C.,Garcia Anzures G.,TennisExplorer,book,1.06,6.75,
+2026-11-10T15:16:48+00:00,3375753,2026-11-11,2026-11-11T01:00+00:00,Chihuahua ITF,Allegre C.,Garcia Anzures G.,Polymarket,prediction,1.0606478437029339,6.39488409272582,207.5957
+2026-11-10T15:16:48+00:00,3375753,2026-11-11,2026-11-11T01:00+00:00,Chihuahua ITF,Allegre C.,Garcia Anzures G.,Kalshi,prediction,1.0700256913168484,7.849786485807586,50.67
