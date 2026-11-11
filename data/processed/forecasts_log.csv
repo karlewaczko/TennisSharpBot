@@ -4383,3 +4383,57 @@ taken_at,match_id,date,tournament,circuit,player1,player2,surface,best_of,market
 2026-11-11T11:03:01+00:00,3376439,2026-11-11,Chihuahua ITF,ITF,Tona M.,Garcia J.,Clay,3,0.5369,TennisExplorer,,,,0.4941
 2026-11-11T11:03:01+00:00,3376101,2026-11-11,Heraklion 10 ITF,ITF,Zantedeschi A.,Lew Yan Foon A.,Clay,3,0.6373,Betfair,,0.7172,,
 2026-11-11T11:03:01+00:00,3375013,2026-11-11,Heraklion 10 ITF,ITF,Karatancheva L.,Cortez Llorca L.,Clay,3,0.4328,TennisExplorer,,0.4088,,
+2026-11-11T22:01:01+00:00,3370037,2026-11-11,Masters Cup WTA,Tour,Sabalenka A.,Andreeva M.,Hard,3,0.5186,Betfair,0.5004,0.7091,,0.5493
+2026-11-11T22:01:01+00:00,3372299,2026-11-12,Masters Cup WTA,Tour,Kostyuk M.,Gauff C.,Hard,3,0.3001,Pinnacle,0.2991,0.2957,,0.3823
+2026-11-11T22:01:01+00:00,3370035,2026-11-12,Masters Cup WTA,Tour,Pegula J.,Noskova L.,Hard,3,0.4799,Betfair,0.4505,0.6071,,0.6233
+2026-11-11T22:01:01+00:00,3377137,2026-11-12,Sopo WTA,Tour,Elizabeth Mandlik,Andrea Lazaro Garcia,Clay,3,0.4463,TennisExplorer,,0.3183,0.318,0.5423
+2026-11-11T22:01:01+00:00,3377081,2026-11-12,Sopo WTA,Tour,Alice Tubello,Polona Hercog,Clay,3,0.7031,TennisExplorer,,0.7058,0.706,0.5163
+2026-11-11T22:01:01+00:00,3377037,2026-11-12,Stockholm,Tour,Michelsen A.,Tabilo A.,Hard,3,0.765,Kalshi Mid,0.779,0.6659,,0.6536
+2026-11-11T22:01:01+00:00,3377329,2026-11-12,Stockholm,Tour,Tirante T.A.,Shevchenko A.,Hard,3,0.4321,TennisExplorer,0.4252,0.6624,,0.7105
+2026-11-11T22:01:01+00:00,3377331,2026-11-12,Stockholm,Tour,Fritz T.,Rune H.,Hard,3,0.6179,TennisExplorer,0.5891,,,0.7161
+2026-11-11T22:01:01+00:00,3377083,2026-11-12,Stockholm,Tour,Musetti L.,Humbert U.,Hard,3,0.655,Kalshi Mid,0.6466,0.6028,,0.6395
+2026-11-11T22:01:01+00:00,3376021,2026-11-12,Orleans challenger,Challenger,Svrcina D.,Virtanen O.,Hard,3,0.4255,TennisExplorer,0.4244,0.6405,,0.4759
+2026-11-11T22:01:01+00:00,3377111,2026-11-12,Orleans challenger,Challenger,Pedro Martinez,Matteo Martineau,Hard,3,0.4498,Betway,,0.5823,,0.5884
+2026-11-11T22:01:01+00:00,3376379,2026-11-12,Orleans challenger,Challenger,Baez S.,Hemery C.,Hard,3,0.7298,TennisExplorer,0.7025,0.8234,,0.4352
+2026-11-11T22:01:01+00:00,3376381,2026-11-12,Orleans challenger,Challenger,Basavareddy N.,Jacquet K.,Hard,3,0.575,Polymarket Mid,0.5557,0.4424,,0.5556
+2026-11-11T22:01:01+00:00,3376697,2026-11-12,Brisbane 4 challenger,Challenger,Christian Langmo,James Mccabe,Hard,3,0.386,TennisExplorer,,0.2929,,0.3142
+2026-11-11T22:01:01+00:00,3375535,2026-11-12,Brisbane 4 challenger,Challenger,Carl Emil Overbeck,Juncheng Shang,Hard,3,0.245,Polymarket Mid,,0.0779,,0.5394
+2026-11-11T22:01:01+00:00,3376009,2026-11-12,Brisbane 4 challenger,Challenger,Cruz Hewitt,Akira Santillan,Hard,3,0.545,Polymarket Mid,,0.6801,,0.3848
+2026-11-11T22:01:01+00:00,3375521,2026-11-12,Knoxville challenger,Challenger,Nicolas Mejia,Max Hans Rehberg,Hard,3,0.375,Polymarket Mid,,0.4924,,0.3924
+2026-11-11T22:01:01+00:00,3376431,2026-11-12,Knoxville challenger,Challenger,Stefan Kozlov,Braden Shick,Hard,3,0.6891,Betfair,,0.5142,,0.5551
+2026-11-11T22:01:01+00:00,3376447,2026-11-12,Knoxville challenger,Challenger,Giron M.,Shelbayh A.,Hard,3,0.7159,TennisExplorer,0.721,0.7077,,0.5341
+2026-11-11T22:01:01+00:00,3375525,2026-11-12,Lima 3 challenger,Challenger,Lautaro Midon,Miguel Tobon,Clay,3,0.645,Polymarket Mid,,0.7662,,0.6717
+2026-11-11T22:01:01+00:00,3376361,2026-11-12,Lima 3 challenger,Challenger,Alan Magadan,Alex Barrena,Clay,3,0.2359,TennisExplorer,,0.2691,,0.4623
+2026-11-11T22:01:01+00:00,3376401,2026-11-12,Lima 3 challenger,Challenger,Franco Roncadelli,Francisco Comesana,Clay,3,0.1927,Betfair,,0.286,,0.4854
+2026-11-11T22:01:01+00:00,3376415,2026-11-12,Lima 3 challenger,Challenger,Genaro Alberto Olivieri,Juan Pablo Varillas,Clay,3,0.405,Polymarket Mid,,0.4541,,0.3452
+2026-11-11T22:01:01+00:00,3375923,2026-11-12,Matsuyama challenger,Challenger,Rio Noguchi,Yi Zhou,Hard,3,0.3539,Pinnacle,,0.4223,,0.5667
+2026-11-11T22:01:01+00:00,3375907,2026-11-12,Matsuyama challenger,Challenger,Rei Sakamoto,Kasidit Samrej,Hard,3,0.8602,Pinnacle,,0.8124,,0.7675
+2026-11-11T22:01:01+00:00,3375921,2026-11-12,Matsuyama challenger,Challenger,Max Schoenhaus,Taro Daniel,Hard,3,0.365,Polymarket Mid,,0.2596,,0.4803
+2026-11-11T22:01:01+00:00,3376253,2026-11-12,Monastir challenger,Challenger,Marvin Moeller,Aziz Ouakaa,Hard,3,0.745,Polymarket Mid,,0.8873,,0.9248
+2026-11-11T22:01:01+00:00,3376367,2026-11-12,Monastir challenger,Challenger,Moez Echargui,Mika Petkovic,Hard,3,0.665,Polymarket Mid,,0.7963,,0.5703
+2026-11-11T22:01:01+00:00,3376039,2026-11-12,Hersonissos 5 challenger,Challenger,Lorenzo Carboni,Ioannis Xilas,Hard,3,0.435,Polymarket Mid,,0.2692,,0.2878
+2026-11-11T22:01:01+00:00,3376257,2026-11-12,Hersonissos 5 challenger,Challenger,Michele Ribecai,Carlo Alberto Caniato,Hard,3,0.435,Polymarket Mid,,0.4618,,0.3103
+2026-11-11T22:01:01+00:00,3376255,2026-11-12,Hersonissos 5 challenger,Challenger,Cezar Cretu,Philip Henning,Hard,3,0.365,Polymarket Mid,,0.5102,,0.3772
+2026-11-11T22:01:01+00:00,3376213,2026-11-12,Hersonissos 5 challenger,Challenger,Adrian Andreev,Raul Brancaccio,Hard,3,0.4844,Betfair,,0.4787,,0.4664
+2026-11-11T22:01:01+00:00,3376781,2026-11-13,Brisbane 4 challenger,Challenger,Bernard Tomic,August Holmgren,Hard,3,0.4228,TennisExplorer,,0.6075,,0.5718
+2026-11-11T22:01:01+00:00,3376891,2026-11-13,Brisbane 4 challenger,Challenger,Sebastian Gorzny,Alex Bolt,Hard,3,0.4589,TennisExplorer,,0.3525,,0.4056
+2026-11-11T22:01:01+00:00,3376467,2026-11-13,Matsuyama challenger,Challenger,Yu Hsiou Hsu,Jay Dylan Hara Friend,Hard,3,0.4295,10Bet,,0.2969,,0.4197
+2026-11-11T22:01:01+00:00,3376723,2026-11-13,Matsuyama challenger,Challenger,Kaichi Uchida,Billy Harris,Hard,3,0.2283,TennisExplorer,,0.2341,,0.3815
+2026-11-11T22:01:01+00:00,3377173,2026-11-13,Monastir challenger,Challenger,Jonas Forejtek,Luka Mikrut,Hard,3,0.4108,Betsson,,0.3302,,0.3301
+2026-11-11T22:01:01+00:00,3376889,2026-11-13,Hersonissos 5 challenger,Challenger,Massimo Giunta,Henry Searle,Hard,3,0.4298,Betfair,,0.3611,,0.5925
+2026-11-11T22:01:01+00:00,3377009,2026-11-13,Hersonissos 5 challenger,Challenger,Francesco Maestrelli,Sumit Nagal,Hard,3,0.569,Betfair,,0.5198,,0.4771
+2026-11-11T22:01:01+00:00,3375913,2026-11-12,Brisbane ITF,ITF,Sakatsume H.,Huang Y.,Hard,3,0.7498,TennisExplorer,,0.8489,,
+2026-11-11T22:01:01+00:00,3376425,2026-11-12,Brisbane ITF,ITF,Gadecki O.,Broadus S.,Hard,3,0.5567,TennisExplorer,,0.5708,,
+2026-11-11T22:01:01+00:00,3375915,2026-11-12,Brisbane ITF,ITF,Bains N.,Bai Z.,Hard,3,0.3323,TennisExplorer,,0.3291,,
+2026-11-11T22:01:01+00:00,3376437,2026-11-12,Brisbane ITF,ITF,Naito Y.,Yao X.,Hard,3,0.4559,William Hill,,0.435,,
+2026-11-11T22:01:01+00:00,3376551,2026-11-12,Brisbane ITF,ITF,Garland J.,Wei S.,Hard,3,0.6313,Betfair,,0.775,,
+2026-11-11T22:01:01+00:00,3375537,2026-11-12,Brisbane ITF,ITF,Micic E.,Kinoshita H.,Hard,3,0.4169,TennisExplorer,,0.523,,0.5009
+2026-11-11T22:01:01+00:00,3376755,2026-11-12,Brisbane ITF,ITF,Sharma A.,Jones E.,Hard,3,0.4186,Betway,,,,0.6655
+2026-11-11T22:01:01+00:00,3376375,2026-11-12,Chihuahua ITF,ITF,Rodriguez V.,Wolff V.,Clay,3,0.2708,Betfair,,0.4777,,0.553
+2026-11-11T22:01:01+00:00,3376419,2026-11-12,Chihuahua ITF,ITF,Johnson S.,Bulgaru M.,Clay,3,0.661,TennisExplorer,,,,0.6504
+2026-11-11T22:01:01+00:00,3376711,2026-11-12,Yokohama ITF,ITF,Matsuda R.,Ma Y.,Hard,3,0.2569,TennisExplorer,,,,0.3889
+2026-11-11T22:01:01+00:00,3376773,2026-11-12,Yokohama ITF,ITF,Kobori M.,Saito S.,Hard,3,0.306,Betfair,,0.3452,,
+2026-11-11T22:01:01+00:00,3376429,2026-11-12,Yokohama ITF,ITF,Watson H.,Chang H.,Hard,3,0.6307,TennisExplorer,,0.7924,,
+2026-11-11T22:01:01+00:00,3376775,2026-11-12,Yokohama ITF,ITF,Okamura K.,Wang Y.,Hard,3,0.5831,TennisExplorer,,,,0.3472
+2026-11-11T22:01:01+00:00,3376853,2026-11-12,Heraklion 10 ITF,ITF,Bertea E.,Sakellaridi S.,Clay,3,0.8187,TennisExplorer,,0.8708,,0.4544
+2026-11-11T22:01:01+00:00,3376973,2026-11-12,Heraklion 10 ITF,ITF,Zantedeschi A.,Ebeling Koning L.,Clay,3,0.4006,TennisExplorer,,0.5349,,
