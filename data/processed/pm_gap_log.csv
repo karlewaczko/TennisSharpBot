@@ -2593,3 +2593,35 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-10T21:21:12+00:00,3375987,2026-11-11,Yokohama ITF,ITF,Kobori M.,Polymarket,0.65,0.6554,Pinnacle,0.02,2051.2595
 2026-11-10T21:21:12+00:00,3375987,2026-11-11,Yokohama ITF,ITF,Aikawa M.,Kalshi,0.375,0.3446,Pinnacle,0.01,223.568
 2026-11-10T21:21:12+00:00,3375987,2026-11-11,Yokohama ITF,ITF,Kobori M.,Kalshi,0.635,0.6554,Pinnacle,0.01,223.568
+2026-11-11T11:03:01+00:00,3376377,2026-11-11,Stockholm,Tour,Kecmanovic M.,Polymarket,0.295,0.2915,Pinnacle,0.01,31371.8519
+2026-11-11T11:03:01+00:00,3376377,2026-11-11,Stockholm,Tour,Rune H.,Polymarket,0.705,0.7085,Pinnacle,0.01,31371.8519
+2026-11-11T11:03:01+00:00,3376377,2026-11-11,Stockholm,Tour,Kecmanovic M.,Kalshi,0.295,0.2915,Pinnacle,0.01,9054.812999999998
+2026-11-11T11:03:01+00:00,3376377,2026-11-11,Stockholm,Tour,Rune H.,Kalshi,0.705,0.7085,Pinnacle,0.01,9054.812999999998
+2026-11-11T11:03:01+00:00,3370043,2026-11-11,Masters Cup WTA,Tour,Svitolina E.,Kalshi,0.425,0.4328,Betfair,0.01,56346.351
+2026-11-11T11:03:01+00:00,3370043,2026-11-11,Masters Cup WTA,Tour,Muchova K.,Kalshi,0.575,0.5672,Betfair,0.01,56346.351
+2026-11-11T11:03:01+00:00,3370037,2026-11-11,Masters Cup WTA,Tour,Sabalenka A.,Kalshi,0.505,0.5026,Pinnacle,0.01,52924.1486
+2026-11-11T11:03:01+00:00,3370037,2026-11-11,Masters Cup WTA,Tour,Andreeva M.,Kalshi,0.495,0.4974,Pinnacle,0.01,52924.1486
+2026-11-11T11:03:01+00:00,3376249,2026-11-11,Sopo WTA,Tour,Polona Hercog,Polymarket,0.445,0.4325,Pinnacle,0.01,13364.9056
+2026-11-11T11:03:01+00:00,3376249,2026-11-11,Sopo WTA,Tour,Carole Monnet,Polymarket,0.555,0.5675,Pinnacle,0.01,13364.9056
+2026-11-11T11:03:01+00:00,3376249,2026-11-11,Sopo WTA,Tour,Polona Hercog,Kalshi,0.445,0.4325,Pinnacle,0.01,988.0174000000001
+2026-11-11T11:03:01+00:00,3376249,2026-11-11,Sopo WTA,Tour,Carole Monnet,Kalshi,0.555,0.5675,Pinnacle,0.01,988.0174000000001
+2026-11-11T11:03:01+00:00,3376397,2026-11-11,Sopo WTA,Tour,Maria Lourdes Carle,Polymarket,0.335,0.324,Pinnacle,0.01,6909.4534
+2026-11-11T11:03:01+00:00,3376397,2026-11-11,Sopo WTA,Tour,Marina Bassols Ribera,Polymarket,0.665,0.676,Pinnacle,0.01,6909.4534
+2026-11-11T11:03:01+00:00,3376397,2026-11-11,Sopo WTA,Tour,Maria Lourdes Carle,Kalshi,0.325,0.324,Pinnacle,0.01,153.2656
+2026-11-11T11:03:01+00:00,3376397,2026-11-11,Sopo WTA,Tour,Marina Bassols Ribera,Kalshi,0.675,0.676,Pinnacle,0.01,153.2656
+2026-11-11T11:03:01+00:00,3376401,2026-11-12,Lima 3 challenger,Challenger,Franco Roncadelli,Polymarket,0.255,0.2103,Betfair,0.09,1057.3308
+2026-11-11T11:03:01+00:00,3376401,2026-11-12,Lima 3 challenger,Challenger,Francisco Comesana,Polymarket,0.745,0.7897,Betfair,0.09,1057.3308
+2026-11-11T11:03:01+00:00,3376039,2026-11-12,Hersonissos 5 challenger,Challenger,Lorenzo Carboni,Polymarket,0.435,0.442,Betfair,0.07,2187.4254
+2026-11-11T11:03:01+00:00,3376039,2026-11-12,Hersonissos 5 challenger,Challenger,Ioannis Xilas,Polymarket,0.565,0.558,Betfair,0.07,2187.4254
+2026-11-11T11:03:01+00:00,3376213,2026-11-12,Hersonissos 5 challenger,Challenger,Adrian Andreev,Polymarket,0.475,0.486,Betfair,0.03,1398.9195
+2026-11-11T11:03:01+00:00,3376213,2026-11-12,Hersonissos 5 challenger,Challenger,Raul Brancaccio,Polymarket,0.525,0.514,Betfair,0.03,1398.9195
+2026-11-11T11:03:01+00:00,3376467,2026-11-13,Matsuyama challenger,Challenger,Yu Hsiou Hsu,Polymarket,0.445,0.4304,Betfair,0.07,2038.1147
+2026-11-11T11:03:01+00:00,3376467,2026-11-13,Matsuyama challenger,Challenger,Jay Dylan Hara Friend,Polymarket,0.555,0.5696,Betfair,0.07,2038.1147
+2026-11-11T11:03:01+00:00,3376101,2026-11-11,Heraklion 10 ITF,ITF,Zantedeschi A.,Polymarket,0.62,0.6373,Betfair,0.08,1620.9056
+2026-11-11T11:03:01+00:00,3376101,2026-11-11,Heraklion 10 ITF,ITF,Lew Yan Foon A.,Polymarket,0.38,0.3627,Betfair,0.08,1620.9056
+2026-11-11T11:03:01+00:00,3376101,2026-11-11,Heraklion 10 ITF,ITF,Zantedeschi A.,Kalshi,0.635,0.6373,Betfair,0.03,168.68
+2026-11-11T11:03:01+00:00,3376101,2026-11-11,Heraklion 10 ITF,ITF,Lew Yan Foon A.,Kalshi,0.36,0.3627,Betfair,0.04,168.68
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,ITF,Gailis R.,Polymarket,0.805,0.8219,Pinnacle,0.01,2647.6054
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,ITF,Bohrer Martins C.,Polymarket,0.195,0.1781,Pinnacle,0.01,2647.6054
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,ITF,Gailis R.,Kalshi,0.795,0.8219,Pinnacle,0.01,11.15
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,ITF,Bohrer Martins C.,Kalshi,0.205,0.1781,Pinnacle,0.01,11.15

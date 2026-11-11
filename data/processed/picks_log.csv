@@ -536,3 +536,9 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-10T21:21:12+00:00,3375779,2026-11-10,Chihuahua ITF,Cherubini D.,Polymarket,prediction,value,2.62,0.417,0.0925,Betfair
 2026-11-10T21:21:12+00:00,3375779,2026-11-10,Chihuahua ITF,Cherubini D.,Kalshi,prediction,value,2.459,0.417,0.0253,Betfair
 2026-11-10T21:21:12+00:00,3374393,2026-11-11,Brisbane ITF,Garland J.,Polymarket,prediction,value,1.195,0.8386,0.0018,Betfair
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,Gailis R.,1xBet,book,value,1.23,0.8219,0.0109,Pinnacle
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,Gailis R.,BetVictor,book,value,1.25,0.8219,0.0273,Pinnacle
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,Gailis R.,Unibet,book,value,1.22,0.8219,0.0027,Pinnacle
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,Gailis R.,William Hill,book,value,1.22,0.8219,0.0027,Pinnacle
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,Gailis R.,Polymarket,prediction,value,1.223,0.8219,0.0051,Pinnacle
+2026-11-11T11:03:01+00:00,3376601,2026-11-11,Weston 2 ITF,Gailis R.,Kalshi,prediction,value,1.233,0.8219,0.0131,Pinnacle
