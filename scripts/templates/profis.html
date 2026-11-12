@@ -202,7 +202,7 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> jedes Wallet der Rangliste mit einem Vorsprung auf den Schlusskurs, das seit Kontoeröffnung im Gewinn ist (laut Polymarkets Rangliste). Der Vorsprung zählt nach Polymarkets Taker-Gebühr, und Käufe zum eigenen Gebot (als Market Maker) zählen abzüglich des Schnitts aller Market Maker der Sportart: Wer zum eigenen Gebot kauft, liegt schon durch die Spanne zwischen Kauf- und Verkaufskurs vorn, ohne etwas zu wissen. <b>Belegt</b> ist der Vorsprung, wenn er eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Belegten sollen es höchstens 10&nbsp;% sein. <b>Kandidaten</b> bestehen eine lockerere Prüfung (höchstens 25&nbsp;% Glückstreffer): Vorsprung wahrscheinlich, noch nicht sicher. Wer über alle Zeit im Minus ist, fehlt, auch wenn er in den letzten 30&nbsp;Tagen vorn lag. In die Rangliste kommt nur, wer mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz hat und überwiegend vor dem Spiel und auf eine Seite setzt. Ein &#9733; tragen die, die alle fünf Kriterien erfüllen. (1) Ein belegter Vorsprung, wie oben beschrieben. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage (Baseball: 60). (3) In diesem Zeitraum nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarkets Rangliste und laut Summe aller Positionen (PolyInsiders Methode). (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verliert den Stern, und wer seinen Vorsprung verliert oder über alle Zeit ins Minus rutscht, verschwindet von der Liste.</p>
+    <p><b>Wer hier steht:</b> jedes Wallet der Rangliste mit einem Vorsprung auf den Schlusskurs, das seit Kontoeröffnung im Gewinn ist (laut Polymarkets Rangliste). Der Vorsprung zählt nach Polymarkets Taker-Gebühr, und Käufe zum eigenen Gebot (als Market Maker) zählen gegen die anderen Market Maker im selben Spiel: Wer zum eigenen Gebot kauft, liegt schon durch die Spanne zwischen Kauf- und Verkaufskurs vorn, ohne etwas zu wissen, und in dünnen Spielen ist die Spanne breit. <b>Belegt</b> ist der Vorsprung, wenn er eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Belegten sollen es höchstens 10&nbsp;% sein. <b>Kandidaten</b> bestehen eine lockerere Prüfung (höchstens 25&nbsp;% Glückstreffer): Vorsprung wahrscheinlich, noch nicht sicher. Wer über alle Zeit im Minus ist, fehlt, auch wenn er in den letzten 30&nbsp;Tagen vorn lag. In die Rangliste kommt nur, wer mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz hat und überwiegend vor dem Spiel und auf eine Seite setzt. Ein &#9733; tragen die, die alle fünf Kriterien erfüllen. (1) Ein belegter Vorsprung, wie oben beschrieben. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage (Baseball: 60). (3) In diesem Zeitraum nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarkets Rangliste und laut Summe aller Positionen (PolyInsiders Methode). (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verliert den Stern, und wer seinen Vorsprung verliert oder über alle Zeit ins Minus rutscht, verschwindet von der Liste.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
     <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Trefferquote und Gewinn aus allen Positionen werden täglich nach PolyInsiders veröffentlichter Methode aus Polymarkets eigenen Daten berechnet, denn PolyInsider lässt keine automatischen Abrufe von GitHub zu. Die Links „PolyInsider ↗“ führen zu Wal-Wetten ab 5.000&nbsp;$ und frischen Wallets auf dem jeweiligen Spiel. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
@@ -278,11 +278,9 @@ footer p { margin: 0; }
   };
   const fmtClv = (x) => `${signed(x * 100, (v) => nf1.format(v))}\u00a0¢`;
   function clvTip(sport, c) {
-    const mb = (D.sports[sport] || {}).maker_baseline;
     return `Vorsprung ${LABEL[sport]} nach Gebühren: Käufe vor dem Start im Schnitt ${fmtClv(c.clv)} je Anteil ` +
       `${c.clv >= 0 ? "besser" : "schlechter"} als der letzte Kurs vor Spielbeginn` +
-      (c.maker ? `, ${nf0.format(c.maker * 100)} % davon zum eigenen Gebot, gezählt abzüglich des Schnitts der Market Maker` +
-        (mb != null ? ` (${fmtClv(mb)})` : "") : "") +
+      (c.maker ? `, ${nf0.format(c.maker * 100)} % davon zum eigenen Gebot, gezählt gegen die anderen Market Maker im selben Spiel` : "") +
       (c.net != null && c.net !== c.clv ? `; ohne diesen Abzug ${fmtClv(c.net)}` : "") +
       (c.gross != null && c.gross !== (c.net ?? c.clv) ? `, vor Gebühren ${fmtClv(c.gross)}` : "") +
       `, über ${c.matches} Spiele in 30 Tagen` + (c.t != null ? `, t = ${nf1.format(c.t)}` : "") +
@@ -885,8 +883,8 @@ footer p { margin: 0; }
     });
     $("profiles-sub").textContent = `Jedes Wallet der Rangliste mit belegtem oder wahrscheinlichem Vorsprung (Kandidat), das über alle Zeit ` +
       `im Gewinn ist. \u2605: erfüllt alle fünf Kriterien (siehe unten). Vorsprung: um wie viele Cent je Anteil die Käufe vor Spielbeginn im ` +
-      `Schnitt besser waren als der letzte Kurs vor dem Start, nach Polymarkets Taker-Gebühr; Käufe zum eigenen Gebot zählen abzüglich ` +
-      `des Schnitts aller Market Maker. Je Sportart über die letzten 30 Tage, täglich neu berechnet. Rang: Platz in der Rangliste der ` +
+      `Schnitt besser waren als der letzte Kurs vor dem Start, nach Polymarkets Taker-Gebühr; Käufe zum eigenen Gebot zählen gegen ` +
+      `die anderen Market Maker im selben Spiel. Je Sportart über die letzten 30 Tage, täglich neu berechnet. Rang: Platz in der Rangliste der ` +
       `Sportart; „ohne Rang“ heißt zu viel live, zu wenig Einsatz oder Käufe und Verkäufe im Gleichgewicht. Polymarket gesamt: Gewinn über ` +
       `alle Märkte seit Kontoeröffnung, wie auf dem Profil. ${parts.join(" · ")}`;
   }

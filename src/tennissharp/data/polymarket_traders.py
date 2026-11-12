@@ -382,6 +382,7 @@ TABLE_COLUMNS = ["name", "wallet", "markets", "pre_markets", "stake", "pnl", "ro
 MIN_HALF_MATCHES = 5   # pre-match matches in each half of the window for the consistency check
 FDR_Q = 0.10   # share of lucky wallets tolerated among those marked significant
 CANDIDATE_Q = 0.25   # the same for candidates: an edge likely, not yet beyond doubt
+MIN_OTHER_MAKERS = 500.0   # other makers' pre-match dollars in a match for a baseline of its own
 
 
 def _mean_t(x: pd.Series) -> tuple[float | None, float | None]:
@@ -407,22 +408,45 @@ def maker_baseline(per_market: pd.DataFrame) -> float:
 
 def with_edge(per_market: pd.DataFrame, baseline: float | None = None) -> pd.DataFrame:
     """Each wallet-market row with `maker_share` (its pre-match risk filled
-    as maker) and `clv_edge`: the closing-line value after fees, the maker
-    fills counted against the makers' average (maker_baseline), so a wallet
-    is ahead only if it prices better than makers do or beats the close
-    after paying the spread. Rows from before fees or makers were counted
-    are taken as they are."""
+    as maker), `maker_base` and `clv_edge`: the closing-line value after
+    fees, the maker fills counted against `maker_base`, what the other
+    makers' fills in the same match beat the close by (dollar-weighted,
+    the wallet itself left out; the sport's average, maker_baseline or
+    `baseline`, where they put up less than MIN_OTHER_MAKERS; never below
+    nought). A thin match has a wide spread, and every maker in it looks
+    ahead; a wallet is ahead only if it prices better than the other makers
+    in its matches, or beats the close after paying the spread. Rows from
+    before fees or makers were counted are taken as they are."""
     pm = per_market
     if "clv_net" not in pm:                 # rows from before fees were counted
         pm = pm.assign(clv_net=pm["clv"], fees=0.0, taker_stake=0.0)
     if "clv_edge" in pm:
         return pm
-    b = maker_baseline(pm) if baseline is None else baseline
-    if "maker_pre" in pm:
-        share = (pm["maker_pre"] / pm["pre_stake"].where(pm["pre_stake"] > 0)).clip(0.0, 1.0).fillna(0.0)
+    if "maker_pre" not in pm:
+        return pm.assign(maker_share=0.0, maker_base=0.0, clv_edge=pm["clv_net"])
+    sport = maker_baseline(pm) if baseline is None else baseline
+    dollars = pm["maker_pre"].where(pm["clv_maker"].notna(), 0.0).fillna(0.0)
+    ahead = pm["clv_maker"].fillna(0.0) * dollars
+    if "slug" in pm:
+        others = dollars.groupby(pm["slug"]).transform("sum") - dollars
+        others_ahead = ahead.groupby(pm["slug"]).transform("sum") - ahead
+        base = (others_ahead / others.where(others >= MIN_OTHER_MAKERS)).fillna(sport)
     else:
-        share = pd.Series(0.0, index=pm.index)
-    return pm.assign(maker_share=share, clv_edge=pm["clv_net"] - b * share)
+        base = pd.Series(sport, index=pm.index)
+    base = base.clip(lower=0.0)
+    share = (pm["maker_pre"] / pm["pre_stake"].where(pm["pre_stake"] > 0)).clip(0.0, 1.0).fillna(0.0)
+    return pm.assign(maker_share=share, maker_base=base, clv_edge=pm["clv_net"] - base * share)
+
+
+def maker_summary(per_market: pd.DataFrame) -> dict:
+    """The makers' baselines for a report: the sport's average and the
+    median of the per-match ones that maker fills were counted against."""
+    out = {"maker_baseline": round(maker_baseline(per_market), 5), "maker_baseline_match_median": None}
+    if not per_market.empty and "maker_pre" in per_market:
+        e = with_edge(per_market)
+        med = e.loc[e["maker_share"] > 0, "maker_base"].median()
+        out["maker_baseline_match_median"] = round(float(med), 5) if pd.notna(med) else None
+    return out
 
 
 def wallet_table(per_market: pd.DataFrame) -> pd.DataFrame:
@@ -667,7 +691,7 @@ def leaderboard(per_market: pd.DataFrame, markets: pd.DataFrame | None = None,
 
     A maker that only buys still earns the spread on every fill, so the
     ranking runs on `clv_edge` (with_edge): maker fills count against the
-    makers' average.
+    other makers' fills in the same match.
 
     Among hundreds of wallets some beat the close by luck alone, so
     `significant` marks the ones whose edge survives a false-discovery

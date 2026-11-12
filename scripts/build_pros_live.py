@@ -9,7 +9,7 @@ Pages serves the docs folder of main.
 
 Every wallet of a sport's ranking with an edge is watched (pt.watch_list):
 proven beyond luck or likely (a candidate), measured with makers' fills
-counted against the makers' average, and in profit over all time on
+counted against the other makers in the same match, and in profit over all time on
 Polymarket. Those that meet every criterion (pt.mark_elite) come first and
 carry a star. A wallet whose all-time figure cannot be read is left out."""
 from __future__ import annotations
@@ -92,7 +92,7 @@ def _flag(r, col):
 
 def _figures(r, rank) -> dict:
     """A wallet's 30-day figures in one sport: its edge (`clv`: CLV after
-    fees with maker fills counted against the makers' average, and its
+    fees with maker fills counted against the other makers, and its
     t-statistic `t`; the older figures where a table predates them), CLV
     after fees without that correction (`net`) and before fees (`gross`)."""
     edge, net = _num(r, "clv_edge_mean", 4), _num(r, "clv_net_mean", 4)
@@ -166,8 +166,7 @@ def collect(cap: int = pt.WATCH_CAP, figures=None) -> dict:
         sports[sport] = {"label": SPORTS[sport], "measured_at": rep.get("measured_at"),
                          "window_days": rep.get("window_days"), "ranked": int(len(lb)),
                          "significant": _count(lb, "significant"), "candidates": _count(lb, "candidate"),
-                         "elite": _count(lb, "elite"), "watched": int(len(watch)),
-                         "maker_baseline": rep.get("maker_baseline")}
+                         "elite": _count(lb, "elite"), "watched": int(len(watch))}
         for wallet, r in watch.iterrows():
             w = wallets.setdefault(wallet, {"wallet": wallet, "name": "", "ranks": {}, "clv": {}})
             if isinstance(r["name"], str) and r["name"] and not w["name"]:

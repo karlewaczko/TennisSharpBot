@@ -432,7 +432,7 @@ def _slug_of(url) -> str | None:
 def pro_positions(price_board: list[dict], max_wallets: int = pt.WATCH_CAP,
                   fetch=None, figures=None) -> dict:
     """Open tennis positions of every ranked Polymarket wallet with an edge
-    (proven or likely, makers counted against the makers' average) and in
+    (proven or likely, makers counted against the other makers) and in
     profit over all time (pt.watch_list), each placed on the card where the
     match is on it: the side, the price the wallet paid, the price now, and
     the sharp fair value next to it.

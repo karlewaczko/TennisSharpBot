@@ -196,6 +196,24 @@ def test_the_edge_counts_maker_fills_against_the_makers_average():
     assert pt.with_edge(old)["clv_edge"].iloc[0] == pytest.approx(0.01)  # rows from before makers were counted
 
 
+def test_a_maker_is_measured_against_the_other_makers_in_its_match():
+    row = lambda w, slug, d, c: {"wallet": w, "slug": slug, "pre_stake": d, "maker_pre": d, "clv_maker": c,  # noqa: E731
+                                 "clv": c, "clv_net": c}
+    pm = pd.DataFrame([row("star", "thin", 1000.0, 0.030), row("a", "thin", 600.0, 0.020), row("b", "thin", 400.0, 0.025),
+                       row("star", "deep", 1000.0, 0.004), row("c", "deep", 300.0, 0.002),     # too few others: sport's average
+                       {"wallet": "taker", "slug": "thin", "pre_stake": 500.0, "maker_pre": 0.0, "clv_maker": None,
+                        "clv": -0.01, "clv_net": -0.015}])
+    e = pt.with_edge(pm).set_index(["wallet", "slug"])
+    others = (0.020 * 600 + 0.025 * 400) / 1000                          # the star itself left out
+    assert e.loc[("star", "thin"), "maker_base"] == pytest.approx(others)
+    assert e.loc[("star", "thin"), "clv_edge"] == pytest.approx(0.030 - others)
+    assert e.loc[("star", "deep"), "maker_base"] == pytest.approx(pt.maker_baseline(pm))
+    assert e.loc[("taker", "thin"), "clv_edge"] == pytest.approx(-0.015)    # it paid the spread: unchanged
+    summary = pt.maker_summary(pm)
+    assert summary["maker_baseline"] == pytest.approx(pt.maker_baseline(pm), abs=1e-5)
+    assert summary["maker_baseline_match_median"] > 0
+
+
 def test_candidates_pass_a_looser_check_than_the_proven():
     t = pd.Series(list(np.linspace(-2.0, 2.0, 294)) + [3.0, 3.1, 3.2, 3.3, 6.0, 7.0])
     n = pd.Series([30] * 300)
