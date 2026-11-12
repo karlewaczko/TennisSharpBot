@@ -425,27 +425,25 @@ def stats_summary(book, name_1: str, name_2: str, surface: str, tour: str, best_
             "tour_avg_spw": round(tour_avg, 4), "h2h": book.head_to_head(full_1, full_2)}
 
 
-PRO_WALLETS = 10
-
-
 def _slug_of(url) -> str | None:
     return str(url).rstrip("/").rsplit("/", 1)[-1] if url else None
 
 
-def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
+def pro_positions(price_board: list[dict], max_wallets: int = pt.WATCH_CAP,
                   fetch=None, figures=None) -> dict:
-    """Open tennis positions of the best-ranked Polymarket wallets in profit
-    over all time, each placed on the card where the match is on it: the
-    side, the price the wallet paid, the price now, and the sharp fair
-    value next to it.
+    """Open tennis positions of every ranked Polymarket wallet with an edge
+    (proven or likely, makers counted against the other makers) and in
+    profit over all time (pt.watch_list), each placed on the card where the
+    match is on it: the side, the price the wallet paid, the price now, and
+    the sharp fair value next to it.
 
     The ranking is scripts/update_pm_traders.py's (closing-line value over
     the last month, daily). `figures` (wallet -> (all-time profit, volume)
     or None) defaults to Polymarket's leaderboard, with the figures the
     radar and the ranking hold where it cannot be read; a wallet in loss or
-    of unknown standing is left out (pt.in_profit). A position is
-    information, not a tip: a market maker's position is inventory, and a
-    wallet that beat the close last month can still be wrong on this match."""
+    of unknown standing is left out. A position is information, not a tip:
+    a wallet that beat the close last month can still be wrong on this
+    match."""
     fetch = fetch or pt.positions
     try:
         lb = pd.read_csv(config.PROCESSED_DIR / "pm_tennis_traders.csv")
@@ -457,22 +455,21 @@ def pro_positions(price_board: list[dict], max_wallets: int = PRO_WALLETS,
         except (OSError, ValueError):
             radar = None
         figures = pt.alltime_lookup(pt.known_alltime(radar, lb))
-    flag = "elite" if "elite" in lb.columns else "significant" if "significant" in lb.columns else None
-    if flag:                                     # those meeting every criterion (pt.mark_elite) first
-        lb = (lb.assign(_proven=lb[flag].fillna(False).astype(bool))
-                .sort_values(["_proven", "rank"], ascending=[False, True]).drop(columns="_proven"))
     if lb.empty:
         return {"leaderboard": [], "positions": [], "note": "Rangliste leer"}
-    if "clv_net_mean" in lb.columns:             # CLV after fees where the ranking has it
-        lb = lb.assign(clv_mean=lb["clv_net_mean"], clv_t=lb["clv_net_t"])
+    for col in ("clv_edge", "clv_net"):          # the edge where the ranking has it, else CLV after fees
+        if f"{col}_mean" in lb.columns:
+            lb = lb.assign(clv_mean=lb[f"{col}_mean"], clv_t=lb[f"{col}_t"])
+            break
     by_slug = {}
     for e in price_board:
         for q in e.get("prediction_markets") or []:
             if q.get("venue") == "Polymarket" and _slug_of(q.get("url")):
                 by_slug[_slug_of(q.get("url"))] = e
-    picked = pt.in_profit(lb, max_wallets, figures).sort_values("rank")
+    picked = pt.watch_list(lb, figures, max_wallets).sort_values("rank")
     if picked.empty:
-        return {"leaderboard": [], "positions": [], "note": "keine Wallet über alle Zeit im Gewinn"}
+        return {"leaderboard": [], "positions": [],
+                "note": "keine Wallet mit Vorsprung, die über alle Zeit im Gewinn ist"}
     known = [figures(w) for w in picked["wallet"]]       # in profit, so known
     picked = picked.assign(alltime_pnl=[f[0] for f in known], alltime_vol=[f[1] for f in known])
     rows = []

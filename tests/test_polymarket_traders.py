@@ -166,6 +166,74 @@ def test_taker_fees_come_off_profit_and_closing_line_value():
     assert free[0]["fees"] == 0                                          # a market without fees
 
 
+def test_maker_fills_are_told_apart_with_or_without_a_fee():
+    trades = [{**_t("T", "BUY", 0, 100, 0.40, START - 3600), "transactionHash": "0x1"},   # the taker
+              {**_t("M", "SELL", 0, 100, 0.40, START - 3600), "transactionHash": "0x1"},  # its maker
+              _t("C", "BUY", 0, 10, 0.50, START - 60)]
+    takers = {pt.taker_key(trades[0])}
+    by = {r["wallet"]: r for r in pt.account_market(trades, winner=0, start_ts=START, takers=takers)[1]}
+    assert by["T"]["taker_stake"] == pytest.approx(40.0) and by["T"]["maker_pre"] == 0   # a taker, fee or not
+    assert by["M"]["maker_pre"] == pytest.approx(60.0) and by["M"]["clv_maker"] == pytest.approx(-0.10)
+    blind = {r["wallet"]: r for r in pt.account_market(trades, winner=0, start_ts=START)[1]}
+    assert blind["M"]["maker_pre"] == 0 and blind["M"]["clv_maker"] is None   # no taker listing: nobody counts
+
+
+def test_the_edge_counts_maker_fills_against_the_makers_average():
+    pm = pd.DataFrame([
+        {"wallet": "maker", "pre_stake": 100.0, "maker_pre": 100.0, "clv_maker": 0.010, "clv": 0.010, "clv_net": 0.010},
+        {"wallet": "other", "pre_stake": 300.0, "maker_pre": 300.0, "clv_maker": 0.002, "clv": 0.002, "clv_net": 0.002},
+        {"wallet": "taker", "pre_stake": 200.0, "maker_pre": 0.0, "clv_maker": None, "clv": 0.012, "clv_net": 0.010},
+        {"wallet": "half", "pre_stake": 100.0, "maker_pre": 50.0, "clv_maker": 0.004, "clv": 0.008, "clv_net": 0.008},
+    ])
+    b = pt.maker_baseline(pm)
+    assert b == pytest.approx((0.010 * 100 + 0.002 * 300 + 0.004 * 50) / 450)     # dollar-weighted: 0.4c
+    e = pt.with_edge(pm).set_index("wallet")
+    assert e.loc["maker", "clv_edge"] == pytest.approx(0.010 - b)
+    assert e.loc["taker", "clv_edge"] == pytest.approx(0.010)            # it paid the spread: unchanged
+    assert e.loc["half", "clv_edge"] == pytest.approx(0.008 - b / 2)
+    assert pt.maker_baseline(pm.assign(clv_maker=-0.01)) == 0.0          # makers in the red: no bonus for making
+    old = pd.DataFrame([{"wallet": "x", "pre_stake": 10.0, "clv": 0.01}])
+    assert pt.with_edge(old)["clv_edge"].iloc[0] == pytest.approx(0.01)  # rows from before makers were counted
+
+
+def test_a_maker_is_measured_against_the_other_makers_in_its_match():
+    row = lambda w, slug, d, c: {"wallet": w, "slug": slug, "pre_stake": d, "maker_pre": d, "clv_maker": c,  # noqa: E731
+                                 "clv": c, "clv_net": c}
+    pm = pd.DataFrame([row("star", "thin", 1000.0, 0.030), row("a", "thin", 600.0, 0.020), row("b", "thin", 400.0, 0.025),
+                       row("star", "deep", 1000.0, 0.004), row("c", "deep", 300.0, 0.002),     # too few others: sport's average
+                       {"wallet": "taker", "slug": "thin", "pre_stake": 500.0, "maker_pre": 0.0, "clv_maker": None,
+                        "clv": -0.01, "clv_net": -0.015}])
+    e = pt.with_edge(pm).set_index(["wallet", "slug"])
+    others = (0.020 * 600 + 0.025 * 400) / 1000                          # the star itself left out
+    assert e.loc[("star", "thin"), "maker_base"] == pytest.approx(others)
+    assert e.loc[("star", "thin"), "clv_edge"] == pytest.approx(0.030 - others)
+    assert e.loc[("star", "deep"), "maker_base"] == pytest.approx(pt.maker_baseline(pm))
+    assert e.loc[("taker", "thin"), "clv_edge"] == pytest.approx(-0.015)    # it paid the spread: unchanged
+    summary = pt.maker_summary(pm)
+    assert summary["maker_baseline"] == pytest.approx(pt.maker_baseline(pm), abs=1e-5)
+    assert summary["maker_baseline_match_median"] > 0
+
+
+def test_candidates_pass_a_looser_check_than_the_proven():
+    t = pd.Series(list(np.linspace(-2.0, 2.0, 294)) + [3.0, 3.1, 3.2, 3.3, 6.0, 7.0])
+    n = pd.Series([30] * 300)
+    assert list(t[pt.significant(t, n)]) == [6.0, 7.0]
+    assert list(t[pt.significant(t, n, pt.CANDIDATE_Q)]) == [3.0, 3.1, 3.2, 3.3, 6.0, 7.0]
+
+
+def test_the_watch_list_holds_every_wallet_with_an_edge_in_profit():
+    lb = pd.DataFrame({"wallet": ["0xa", "0xb", "0xc", "0xd", "0xe", "0xf"], "rank": range(1, 7),
+                       "elite": [False, False, True, False, False, False],
+                       "significant": [False, True, True, False, True, False],
+                       "candidate": [True, False, False, False, False, True]})
+    alltime = {"0xa": (1.0, 2.0), "0xb": (1.0, 2.0), "0xc": (1.0, 2.0), "0xd": (1.0, 2.0), "0xe": (-5.0, 9.0),
+               "0xf": (1.0, 2.0)}
+    # every criterion first, then the proven, then the candidates; 0xd has no edge, 0xe is in loss
+    assert list(pt.watch_list(lb, alltime.get)["wallet"]) == ["0xc", "0xb", "0xa", "0xf"]
+    assert list(pt.watch_list(lb, alltime.get, cap=2)["wallet"]) == ["0xc", "0xb"]
+    assert pt.watch_list(lb.drop(columns=["elite", "significant", "candidate"]), alltime.get).empty
+
+
 def test_only_edges_beyond_luck_count_as_significant():
     t = pd.Series(list(np.linspace(-2.0, 2.5, 297)) + [6.0, 6.5, 7.0])
     flags = pt.significant(t, pd.Series([30] * 300))
@@ -186,6 +254,10 @@ def test_a_football_match_counts_once_per_wallet():
     ]
     ev = pt.by_event(pd.DataFrame(rows))
     w = ev.set_index("wallet").loc["W"]
+    makers = pd.DataFrame([{**r, "maker_pre": m, "clv_maker": c} for r, (m, c) in
+                           zip(rows, [(100.0, 0.02), (50.0, 0.04), (0.0, None), (0.0, None)])])
+    mk = pt.by_event(makers).set_index("wallet").loc["W"]
+    assert mk["maker_pre"] == pytest.approx(150.0) and mk["clv_maker"] == pytest.approx((0.02 * 100 + 0.04 * 50) / 150)
     assert len(ev) == 2 and w["name"] == "Wally" and w["trades"] == 6 and bool(w["both_sides"])
     assert w["pnl"] == pytest.approx(35.0) and w["stake"] == pytest.approx(450.0)
     assert w["clv"] == pytest.approx((0.02 * 100 + 0.05 * 200) / 300)
@@ -361,7 +433,7 @@ def test_pro_positions_land_on_the_card_with_the_fair_value(bd, tmp_path, monkey
     monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
     pd.DataFrame([{"rank": 1, "name": "Pro", "wallet": "0xW", "markets": 20, "pre_markets": 15,
                    "stake": 9000, "pnl": 800, "roi": 0.09, "clv_mean": 0.03, "clv_t": 3.1,
-                   "win_share": 0.6, "live_share": 0.1, "two_sided_share": 0.2}]
+                   "win_share": 0.6, "live_share": 0.1, "two_sided_share": 0.2, "significant": True}]
                  ).to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
     board = [{"match_id": "7", "date": "2026-10-23", "tournament": "Lyon", "players": ["Fritz T.", "Altmaier D."],
               "fair": [0.78, 0.22], "fair_source": "Pinnacle", "fair_quality": "sharp", "ref_book": "Pinnacle",

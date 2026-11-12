@@ -139,6 +139,8 @@ def write_outputs(pm: pd.DataFrame, mk: pd.DataFrame, days: int, tours,
         "wallets": int(pm["wallet"].nunique()) if len(pm) else 0,
         "ranked_wallets": int(len(lb)),
         "significant_wallets": int(lb["significant"].astype(bool).sum()) if len(lb) else 0,
+        "candidate_wallets": int(lb["candidate"].fillna(False).astype(bool).sum()) if len(lb) else 0,
+        **pt.maker_summary(ev),
         "elite_wallets": int(lb["elite"].astype(bool).sum()) if len(lb) else 0,
         "markets_trimmed_to_bigger_trades": (int((mk["min_trade_usd"] > 0).sum())
                                              if "min_trade_usd" in mk.columns else 0),
