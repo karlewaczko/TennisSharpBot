@@ -429,13 +429,13 @@ def _slug_of(url) -> str | None:
     return str(url).rstrip("/").rsplit("/", 1)[-1] if url else None
 
 
-def pro_positions(price_board: list[dict], max_wallets: int = pt.WATCH_CAP,
+def pro_positions(price_board: list[dict], max_wallets: int = pt.TOP_PER_SPORT,
                   fetch=None, figures=None) -> dict:
-    """Open tennis positions of every ranked Polymarket wallet with an edge
-    (proven or likely, makers counted against the other makers) and in
-    profit over all time (pt.watch_list), each placed on the card where the
-    match is on it: the side, the price the wallet paid, the price now, and
-    the sharp fair value next to it.
+    """Open tennis positions of the ten best-ranked Polymarket wallets in
+    profit over all time (pt.watch_list: proven edges first, makers counted
+    against the other makers), each placed on the card where the match is
+    on it: the side, the price the wallet paid, the price now, and the
+    sharp fair value next to it.
 
     The ranking is scripts/update_pm_traders.py's (closing-line value over
     the last month, daily). `figures` (wallet -> (all-time profit, volume)
@@ -469,7 +469,7 @@ def pro_positions(price_board: list[dict], max_wallets: int = pt.WATCH_CAP,
     picked = pt.watch_list(lb, figures, max_wallets).sort_values("rank")
     if picked.empty:
         return {"leaderboard": [], "positions": [],
-                "note": "keine Wallet mit Vorsprung, die über alle Zeit im Gewinn ist"}
+                "note": "keine Wallet über alle Zeit im Gewinn"}
     known = [figures(w) for w in picked["wallet"]]       # in profit, so known
     picked = picked.assign(alltime_pnl=[f[0] for f in known], alltime_vol=[f[1] for f in known])
     rows = []

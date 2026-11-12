@@ -363,7 +363,7 @@ def test_tourless_rows_take_a_profile_only_when_one_table_knows_the_name(bd, boa
     assert m["tour"] == "wta" and "fair" not in m
 
 
-def test_pro_positions_show_every_wallet_with_an_edge_in_profit(bd, tmp_path, monkeypatch):
+def test_pro_positions_show_the_ten_best_in_profit_proven_first(bd, tmp_path, monkeypatch):
     from tennissharp import config
     monkeypatch.setattr(config, "PROCESSED_DIR", tmp_path)
     pd.DataFrame({"rank": range(1, 13), "name": [f"w{i}" for i in range(12)], "wallet": [f"0x{i}" for i in range(12)],
@@ -373,10 +373,11 @@ def test_pro_positions_show_every_wallet_with_an_edge_in_profit(bd, tmp_path, mo
     asked = []
     out = bd.pro_positions([], fetch=lambda w: asked.append(w) or [], figures=lambda w: (1.0, 2.0))
     board = [r["wallet"] for r in out["leaderboard"]]
-    assert board == [f"0x{i}" for i in range(7)] + ["0x11"] and sorted(asked) == sorted(board)   # no edge: 0x7-0x10
+    # rank 12 is in: it meets every criterion; the proven and the candidates, then the next places up to ten
+    assert board == [f"0x{i}" for i in range(9)] + ["0x11"] and sorted(asked) == sorted(board)
     assert out["leaderboard"][0]["clv_mean"] == 0.01 and out["leaderboard"][0]["alltime_pnl"] == 1.0
     loss = {"0x2": (-5.0, 9.0), "0x11": (-1.0, 9.0)}                          # in loss over all time: never watched
     out = bd.pro_positions([], fetch=lambda w: [], figures=lambda w: loss.get(w, (1.0, 2.0)))
-    assert [r["wallet"] for r in out["leaderboard"]] == [f"0x{i}" for i in (0, 1, 3, 4, 5, 6)]
+    assert [r["wallet"] for r in out["leaderboard"]] == [f"0x{i}" for i in (0, 1, 3, 4, 5, 6, 7, 8, 9, 10)]
     out = bd.pro_positions([], fetch=lambda w: [], figures=lambda w: None)
-    assert out["leaderboard"] == [] and out["note"] == "keine Wallet mit Vorsprung, die über alle Zeit im Gewinn ist"
+    assert out["leaderboard"] == [] and out["note"] == "keine Wallet über alle Zeit im Gewinn"

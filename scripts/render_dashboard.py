@@ -605,9 +605,10 @@ def pm_pros_section(data: dict) -> str:
              'denn wer zum eigenen Gebot kauft, liegt schon durch die Spanne vorn. Sortiert nach der t-Statistik dieses '
              'Vorsprungs. In die Rangliste kommen nur Wallets mit mindestens 20&nbsp;Matches und '
              '2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer Richtung setzen. '
-             'Gezeigt werden alle, deren Vorsprung belegt ist (höchstens 10&nbsp;% Glückstreffer unter ihnen) '
-             'oder wahrscheinlich (Kandidat, höchstens 25&nbsp;%), und die über alle Zeit auf Polymarket im '
-             'Gewinn sind. &#9733; markiert die, die alle fünf Kriterien erfüllen. Kalshi '
+             'Gezeigt werden die zehn besten, die über alle Zeit auf Polymarket im Gewinn sind: zuerst die mit '
+             'belegtem Vorsprung (höchstens 10&nbsp;% Glückstreffer unter ihnen), dann Kandidaten (Vorsprung '
+             'wahrscheinlich, höchstens 25&nbsp;%), dann die nächsten Plätze. &#9733; markiert die, die alle fünf '
+             'Kriterien erfüllen. Kalshi '
              'veröffentlicht keine Trader-Daten. <a href="profis.html">Profi-Radar: was die Profile '
              'bei Tennis, Fußball, Basketball, American Football und Baseball gerade setzen, live</a>.</p>'
              + (f'<p class="note">{" ".join(facts)}</p>' if facts else ""))
@@ -619,7 +620,8 @@ def pm_pros_section(data: dict) -> str:
     for r in lb:
         star = (' <span class="s" title="erfüllt alle fünf Kriterien">&#9733;</span>' if r.get("elite") is True else
                 ' <span class="s" title="Vorsprung wahrscheinlich, noch nicht belegt">Kandidat</span>'
-                if r.get("candidate") is True else "")
+                if r.get("candidate") is True else "" if r.get("significant") is True else
+                ' <span class="s" title="Vorsprung vom Zufall nicht zu unterscheiden">nicht belegt</span>')
         trs.append(f'<tr><td class="num">{int(r["rank"])}</td><td class="m">{_pro_link(r.get("name"), r["wallet"])}{star}</td>'
                    f'<td class="num">{int(r["pre_markets"])}</td><td class="num">{_usd(r["stake"])}</td>'
                    f'<td class="num">{_usd(r["pnl"])}</td>'
@@ -655,7 +657,7 @@ def pm_pros_section(data: dict) -> str:
                     f'Position auf einer Partie dieser Karte ({len(pos)} offene Tennis-Positionen insgesamt).</p>')
     total = sh.get("ranked_wallets") or len(lb)
     return (f'<div class="sec"><h2>Profis auf Polymarket</h2><span class="rule"></span>'
-            f'<span class="count">{len(lb)} von {total} mit Vorsprung, {len(on_card)} Positionen auf der Karte</span></div>'
+            f'<span class="count">Top {len(lb)} von {total}, {len(on_card)} Positionen auf der Karte</span></div>'
             f'{intro}{table}{pos_html}')
 
 
