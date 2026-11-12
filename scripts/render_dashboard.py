@@ -567,7 +567,7 @@ def _pro_link(name, wallet) -> str:
 
 
 def pm_pros_section(data: dict) -> str:
-    """Polymarket's best-ranked tennis wallets and what they hold."""
+    """Polymarket's tennis wallets with an edge and what they hold."""
     pros = data.get("pm_pros") or {}
     lb = pros.get("leaderboard") or []
     pos = pros.get("positions") or []
@@ -600,12 +600,14 @@ def pm_pros_section(data: dict) -> str:
     intro = ('<p class="note"><b>Wie die Rangliste entsteht:</b> Jeder Polymarket-Trade ist öffentlich, mit '
              'Wallet und Profilnamen. Für jede Wallet wird über die entschiedenen ATP- und WTA-Matches des '
              'letzten Monats gemessen, ob ihre Käufe vor Spielbeginn den letzten Kurs vor dem Start '
-             'geschlagen haben, nach Polymarkets Taker-Gebühren (Closing Line Value, CLV, in Cent je Anteil); '
-             'sortiert nach der t-Statistik. In die Rangliste kommen nur Wallets mit mindestens 20&nbsp;Matches und '
-             '2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer Richtung setzen: '
-             'Market Maker und Live-Bots halten Lagerbestand, keine Tipps. Gezeigt werden die zehn besten, die über alle Zeit auf Polymarket im Gewinn sind. '
-             '&#9733; markiert die, die alle fünf Kriterien erfüllen, darunter eine Signifikanzprüfung (höchstens '
-             '10&nbsp;% Glückstreffer unter den Gelisteten); sie sind immer dabei. Kalshi '
+             'geschlagen haben, nach Polymarkets Taker-Gebühren (Closing Line Value, CLV, in Cent je Anteil). '
+             'Käufe zum eigenen Gebot (als Market Maker) zählen abzüglich des Schnitts aller Market Maker, denn '
+             'wer zum eigenen Gebot kauft, liegt schon durch die Spanne vorn. Sortiert nach der t-Statistik dieses '
+             'Vorsprungs. In die Rangliste kommen nur Wallets mit mindestens 20&nbsp;Matches und '
+             '2&thinsp;000&nbsp;$ Einsatz, die überwiegend vor dem Start und mit klarer Richtung setzen. '
+             'Gezeigt werden alle, deren Vorsprung belegt ist (höchstens 10&nbsp;% Glückstreffer unter ihnen) '
+             'oder wahrscheinlich (Kandidat, höchstens 25&nbsp;%), und die über alle Zeit auf Polymarket im '
+             'Gewinn sind. &#9733; markiert die, die alle fünf Kriterien erfüllen. Kalshi '
              'veröffentlicht keine Trader-Daten. <a href="profis.html">Profi-Radar: was die Profile '
              'bei Tennis, Fußball, Basketball, American Football und Baseball gerade setzen, live</a>.</p>'
              + (f'<p class="note">{" ".join(facts)}</p>' if facts else ""))
@@ -615,7 +617,9 @@ def pm_pros_section(data: dict) -> str:
                 f'{intro}<p class="note">Rangliste: {esc(note)}.</p>')
     trs = []
     for r in lb:
-        star = ' <span class="s" title="erfüllt alle fünf Kriterien">&#9733;</span>' if r.get("elite") is True else ""
+        star = (' <span class="s" title="erfüllt alle fünf Kriterien">&#9733;</span>' if r.get("elite") is True else
+                ' <span class="s" title="Vorsprung wahrscheinlich, noch nicht belegt">Kandidat</span>'
+                if r.get("candidate") is True else "")
         trs.append(f'<tr><td class="num">{int(r["rank"])}</td><td class="m">{_pro_link(r.get("name"), r["wallet"])}{star}</td>'
                    f'<td class="num">{int(r["pre_markets"])}</td><td class="num">{_usd(r["stake"])}</td>'
                    f'<td class="num">{_usd(r["pnl"])}</td>'
@@ -624,7 +628,7 @@ def pm_pros_section(data: dict) -> str:
                    f'<td class="num">{float(r["clv_t"]):.1f}</td>'
                    f'<td class="num">{pct(r.get("live_share"), 0)}</td></tr>')
     table = _table([("#", "num"), ("Profil", ""), ("Matches vor Start", "num"), ("Einsatz", "num"),
-                    ("Gewinn", "num"), ("ROI", "num"), ("CLV &Oslash; n. Geb.", "num"), ("t", "num"),
+                    ("Gewinn", "num"), ("ROI", "num"), ("Vorsprung &Oslash;", "num"), ("t", "num"),
                     ("Live-Anteil", "num")], "".join(trs))
     on_card = [p for p in pos if p.get("match_id")]
     if on_card:
@@ -643,19 +647,17 @@ def pm_pros_section(data: dict) -> str:
         ptable = _table([("Partie", ""), ("Profil", ""), ("Seite", ""), ("Einstieg &rarr; jetzt", "num"),
                          ("Einsatz", "num"), ("Fair", "num"), ("Beste Buchquote", "num"), ("EV", "num")],
                         "".join(prs))
-        pos_html = (f'<p class="note" style="margin-top:14px">Offene Positionen der Top-{PRO_SHOWN} auf Partien '
+        pos_html = (f'<p class="note" style="margin-top:14px">Offene Positionen dieser Profile auf Partien '
                     f'dieser Karte. EV ist die beste Buchquote gegen den fairen Preis, nicht gegen die '
                     f'Meinung des Profils.</p>{ptable}')
     else:
-        pos_html = (f'<p class="note" style="margin-top:14px">Keines der Top-{PRO_SHOWN}-Profile hält gerade eine '
+        pos_html = (f'<p class="note" style="margin-top:14px">Keines dieser Profile hält gerade eine '
                     f'Position auf einer Partie dieser Karte ({len(pos)} offene Tennis-Positionen insgesamt).</p>')
     total = sh.get("ranked_wallets") or len(lb)
     return (f'<div class="sec"><h2>Profis auf Polymarket</h2><span class="rule"></span>'
-            f'<span class="count">Top {len(lb)} von {total}, {len(on_card)} Positionen auf der Karte</span></div>'
+            f'<span class="count">{len(lb)} von {total} mit Vorsprung, {len(on_card)} Positionen auf der Karte</span></div>'
             f'{intro}{table}{pos_html}')
 
-
-PRO_SHOWN = 20
 
 
 def arb_section(data: dict) -> str:

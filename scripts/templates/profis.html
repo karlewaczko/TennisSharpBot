@@ -151,7 +151,7 @@ footer p { margin: 0; }
       <button class="chip" type="button" data-sport="football" aria-pressed="false">American Football</button>
       <button class="chip" type="button" data-sport="baseball" aria-pressed="false">Baseball</button>
       <label class="field" for="pre"><input type="checkbox" id="pre"> nur vor Spielbeginn</label>
-      <label class="field" for="own" title="Nur Wetten in der Sportart, in der das Profil zu den zehn besten gehört"><input type="checkbox" id="own" checked> nur in ihrer Sportart</label>
+      <label class="field" for="own" title="Nur Wetten in der Sportart, in der das Profil einen Vorsprung hat"><input type="checkbox" id="own" checked> nur in ihrer Sportart</label>
       <label class="field" for="min">ab
         <select id="min"><option value="0">0 $</option><option value="100" selected>100 $</option><option value="1000">1.000 $</option><option value="10000">10.000 $</option></select>
       </label>
@@ -202,7 +202,7 @@ footer p { margin: 0; }
   </section>
 
   <footer>
-    <p><b>Wer hier steht:</b> je Sportart die zehn besten Wallets der Rangliste, die seit Kontoeröffnung im Gewinn sind (laut Polymarkets Rangliste), sortiert danach, wie klar ihr Vorsprung auf den Schlusskurs nach Gebühren ist (t-Wert). Wer über alle Zeit im Minus ist, wird übersprungen, auch wenn er in den letzten 30&nbsp;Tagen vorn lag. In die Rangliste kommt nur, wer mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz hat und überwiegend vor dem Spiel und auf eine Seite setzt. Ein &#9733; tragen die, die alle fünf Kriterien erfüllen; sie sind immer dabei, auch hinter Platz zehn. (1) Ein Vorsprung auf den Schlusskurs nach Polymarkets Taker-Gebühr, der eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Gelisteten sollen es höchstens 10&nbsp;% sein. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage (Baseball: 60). (3) In diesem Zeitraum nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarkets Rangliste und laut Summe aller Positionen (PolyInsiders Methode). (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verliert den Stern, und wer aus den besten zehn fällt oder über alle Zeit ins Minus rutscht, verschwindet von der Liste.</p>
+    <p><b>Wer hier steht:</b> jedes Wallet der Rangliste mit einem Vorsprung auf den Schlusskurs, das seit Kontoeröffnung im Gewinn ist (laut Polymarkets Rangliste). Der Vorsprung zählt nach Polymarkets Taker-Gebühr, und Käufe zum eigenen Gebot (als Market Maker) zählen abzüglich des Schnitts aller Market Maker der Sportart: Wer zum eigenen Gebot kauft, liegt schon durch die Spanne zwischen Kauf- und Verkaufskurs vorn, ohne etwas zu wissen. <b>Belegt</b> ist der Vorsprung, wenn er eine Signifikanzprüfung besteht: Unter Hunderten Wallets liegen einige allein durch Glück vorn, unter den Belegten sollen es höchstens 10&nbsp;% sein. <b>Kandidaten</b> bestehen eine lockerere Prüfung (höchstens 25&nbsp;% Glückstreffer): Vorsprung wahrscheinlich, noch nicht sicher. Wer über alle Zeit im Minus ist, fehlt, auch wenn er in den letzten 30&nbsp;Tagen vorn lag. In die Rangliste kommt nur, wer mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz hat und überwiegend vor dem Spiel und auf eine Seite setzt. Ein &#9733; tragen die, die alle fünf Kriterien erfüllen. (1) Ein belegter Vorsprung, wie oben beschrieben. (2) Der Vorsprung zeigt sich in beiden Hälften der letzten 30&nbsp;Tage (Baseball: 60). (3) In diesem Zeitraum nach Gebühren im Gewinn. (4) Über alle Märkte seit Kontoeröffnung im Gewinn, laut Polymarkets Rangliste und laut Summe aller Positionen (PolyInsiders Methode). (5) Mindestens 20&nbsp;Spiele und 2.000&nbsp;$ Einsatz, überwiegend vor dem Spiel und auf eine Seite: Market Maker und Live-Bots fallen heraus. Alles wird täglich neu berechnet; wer ein Kriterium verfehlt, verliert den Stern, und wer seinen Vorsprung verliert oder über alle Zeit ins Minus rutscht, verschwindet von der Liste.</p>
     <p><b>Was das heißt:</b> Eine Position ist Information, kein Tipp. Der Vorsprung der Besten liegt bei etwa einem Cent je Anteil, und wenn du eine Wette hier siehst, ist der Kurs oft schon in ihre Richtung gelaufen. Polymarket hat keine deutsche Lizenz.</p>
     <p>Daten: Polymarket Data API und Gamma API, direkt aus deinem Browser abgerufen. Trefferquote und Gewinn aus allen Positionen werden täglich nach PolyInsiders veröffentlichter Methode aus Polymarkets eigenen Daten berechnet, denn PolyInsider lässt keine automatischen Abrufe von GitHub zu. Die Links „PolyInsider ↗“ führen zu Wal-Wetten ab 5.000&nbsp;$ und frischen Wallets auf dem jeweiligen Spiel. Kurse in Cent je Anteil, daneben als Dezimalquote ohne Gebühren.</p>
   </footer>
@@ -256,7 +256,7 @@ footer p { margin: 0; }
   // outrights ("epl-2027-champion") are left out.
   const isMatch = (slug) => /-\d{4}-\d{2}-\d{2}(?:-more-markets)?$/.test(String(slug || ""));
   const passSport = (slug) => { const s = sportOf(slug); return s !== "other" && isMatch(slug) && (S.sport === "all" || S.sport === s); };
-  // A wallet counts as a pro only in the sport whose ten best it is among.
+  // A wallet counts as a pro only in the sport where it has an edge.
   const provenIn = (w, slug) => !S.own || Boolean(w.ranks[sportOf(slug)]);
   const shortName = (w) => {
     const n = w.name || "";
@@ -265,8 +265,11 @@ footer p { margin: 0; }
   const proLink = (w) => `<a href="https://polymarket.com/profile/${esc(w.wallet)}" target="_blank" rel="noopener">${esc(shortName(w))}</a>`;
   const PI = "https://polyinsider.io/en";
   const piMarket = (slug) => `<a class="meta" href="${PI}/markets/${esc(baseSlug(slug))}" target="_blank" rel="noopener" title="Wal-Wetten ab 5.000 $ und frische Wallets auf diesem Spiel bei PolyInsider">PolyInsider ↗</a>`;
-  // ★: the wallet meets every criterion in that sport, not only a top-ten place.
-  const star = (w, sport) => (((w.clv || {})[sport] || {}).elite === true ? " \u2605" : "");
+  // ★: the wallet meets every criterion in that sport; a candidate's edge is likely, not proven.
+  const star = (w, sport) => {
+    const c = (w.clv || {})[sport] || {};
+    return c.elite === true ? " \u2605" : c.cand === true ? " Kandidat" : "";
+  };
   const badges = (w) => Object.entries(w.ranks).sort((a, b) => a[1] - b[1])
     .map(([s, r]) => `<span class="badge">${esc(LABEL[s] || s)} #${r}${star(w, s)}</span>`).join("");
   const moveTag = (m, unit) => {
@@ -275,12 +278,17 @@ footer p { margin: 0; }
   };
   const fmtClv = (x) => `${signed(x * 100, (v) => nf1.format(v))}\u00a0¢`;
   function clvTip(sport, c) {
-    return `Closing Line Value ${LABEL[sport]} nach Gebühren: Käufe vor dem Start im Schnitt ${fmtClv(c.clv)} je Anteil ` +
+    const mb = (D.sports[sport] || {}).maker_baseline;
+    return `Vorsprung ${LABEL[sport]} nach Gebühren: Käufe vor dem Start im Schnitt ${fmtClv(c.clv)} je Anteil ` +
       `${c.clv >= 0 ? "besser" : "schlechter"} als der letzte Kurs vor Spielbeginn` +
-      (c.gross != null && c.gross !== c.clv ? ` (vor Gebühren ${fmtClv(c.gross)})` : "") +
+      (c.maker ? `, ${nf0.format(c.maker * 100)} % davon zum eigenen Gebot, gezählt abzüglich des Schnitts der Market Maker` +
+        (mb != null ? ` (${fmtClv(mb)})` : "") : "") +
+      (c.net != null && c.net !== c.clv ? `; ohne diesen Abzug ${fmtClv(c.net)}` : "") +
+      (c.gross != null && c.gross !== (c.net ?? c.clv) ? `, vor Gebühren ${fmtClv(c.gross)}` : "") +
       `, über ${c.matches} Spiele in 30 Tagen` + (c.t != null ? `, t = ${nf1.format(c.t)}` : "") +
       (c.rank ? `, Rang ${c.rank} von ${D.sports[sport].ranked}` : ", nicht in der Rangliste") +
-      (c.elite === true ? ", erfüllt alle fünf Kriterien" : c.sig === true ? ", statistisch abgesichert" :
+      (c.elite === true ? ", erfüllt alle fünf Kriterien" : c.sig === true ? ", Vorsprung belegt" :
+        c.cand === true ? ", Kandidat: Vorsprung wahrscheinlich, noch nicht belegt" :
         c.sig === false ? ", vom Zufall nicht zu unterscheiden" : "") +
       `. Einsatz ${usd(c.stake)}, Gewinn nach Gebühren ${signed(c.pnl, (v) => usd(v))}` +
       (c.fees != null ? `, Gebühren ${usd(c.fees)}` : "") +
@@ -855,9 +863,9 @@ footer p { margin: 0; }
       if (!c) return `<td class="num na${hl}"><span class="meta">\u2013<br>unter 10 Spielen</span></td>`;
       return `<td class="num${hl}" title="${esc(clvTip(sport, c))}"><b class="${c.clv >= 0 ? "buy" : "sell"}">${fmtClv(c.clv)}</b><br>` +
              `<span class="meta">${c.rank ? `#${c.rank}` : "ohne Rang"} · ${nf0.format(c.matches)} Spiele` +
-             `${c.rank && c.sig === false ? " · nicht signifikant" : ""}</span></td>`;
+             `${c.rank && c.cand === true ? " · Kandidat" : c.rank && c.sig === false ? " · nicht belegt" : ""}</span></td>`;
     };
-    let html = `<table><thead><tr><th>Profil</th>${sports.map((s) => `<th class="num${S.sport === s ? " hl" : ""}">CLV ${esc(LABEL[s])}</th>`).join("")}` +
+    let html = `<table><thead><tr><th>Profil</th>${sports.map((s) => `<th class="num${S.sport === s ? " hl" : ""}">Vorsprung ${esc(LABEL[s])}</th>`).join("")}` +
                '<th class="num" title="Gewinn oder Verlust über alle Polymarket-Märkte seit Kontoeröffnung, wie auf dem Profil">Polymarket gesamt</th>' +
                '<th class="num" title="Anteil der abgeschlossenen Märkte, die im Gewinn endeten, insgesamt und im letzten Monat: nach PolyInsiders Methode täglich aus Polymarkets eigenen Daten berechnet">Trefferquote</th>' +
                '<th class="num">Offen jetzt</th><th>Letzte Wette</th><th>Adresse</th></tr></thead><tbody>';
@@ -870,12 +878,17 @@ footer p { margin: 0; }
     }
     $("profiles").innerHTML = html + "</tbody></table>";
     labelCells($("profiles"));
-    const parts = Object.entries(D.sports).map(([s, v]) => `${LABEL[s]}: ${v.elite ?? v.significant ?? v.ranked} von ${v.ranked} Wallets der Rangliste erfüllen alle Kriterien, Stand ${v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013"}`);
-    $("profiles-sub").textContent = `Je Sportart die ${D.top_n} besten Wallets der Rangliste. Wer alle fünf Kriterien erfüllt (siehe unten), ` +
-      `ist immer dabei und trägt ein \u2605; bei den übrigen ist der Vorsprung nicht abgesichert. CLV nach Gebühren: um wie viele Cent je Anteil ihre Käufe vor Spielbeginn im Schnitt besser waren als der letzte Kurs ` +
-      `vor dem Start, nach Polymarkets Taker-Gebühr, je Sportart über die letzten 30 Tage und täglich neu berechnet. Rang: Platz in der ` +
-      `Rangliste der Sportart; „ohne Rang“ heißt zu viel live, zu wenig Einsatz oder ein Market Maker. Polymarket gesamt: Gewinn über ` +
-      `alle Märkte seit Kontoeröffnung, wie auf dem Profil. ${parts.join(" · ")}.`;
+    const parts = Object.entries(D.sports).map(([s, v]) => {
+      const n = v.watched ?? 0, stand = v.measured_at ? day.format(new Date(v.measured_at)) : "\u2013";
+      return `${LABEL[s]}: ${n ? `${n} beobachtet` : "kein Wallet mit Vorsprung"} (${v.significant ?? 0} belegt, ` +
+        `${v.candidates ?? 0} Kandidaten, ${v.elite ?? 0} \u2605, von ${v.ranked} in der Rangliste), Stand ${stand}`;
+    });
+    $("profiles-sub").textContent = `Jedes Wallet der Rangliste mit belegtem oder wahrscheinlichem Vorsprung (Kandidat), das über alle Zeit ` +
+      `im Gewinn ist. \u2605: erfüllt alle fünf Kriterien (siehe unten). Vorsprung: um wie viele Cent je Anteil die Käufe vor Spielbeginn im ` +
+      `Schnitt besser waren als der letzte Kurs vor dem Start, nach Polymarkets Taker-Gebühr; Käufe zum eigenen Gebot zählen abzüglich ` +
+      `des Schnitts aller Market Maker. Je Sportart über die letzten 30 Tage, täglich neu berechnet. Rang: Platz in der Rangliste der ` +
+      `Sportart; „ohne Rang“ heißt zu viel live, zu wenig Einsatz oder Käufe und Verkäufe im Gleichgewicht. Polymarket gesamt: Gewinn über ` +
+      `alle Märkte seit Kontoeröffnung, wie auf dem Profil. ${parts.join(" · ")}`;
   }
 
   function renderStatus() {

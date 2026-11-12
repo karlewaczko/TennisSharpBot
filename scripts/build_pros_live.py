@@ -7,11 +7,11 @@ top of each sport's ranking from scripts/update_pm_traders.py, and which
 sport each league code at the start of an event slug belongs to. GitHub
 Pages serves the docs folder of main.
 
-Each sport's ten best among the wallets in profit over all time on
-Polymarket are watched: the wallets that meet every criterion
-(pt.mark_elite) first, marked as such on the page, then the ranking's next
-places, so a sport without a proven wallet still shows its best. A wallet
-whose all-time figure cannot be read is left out (pt.in_profit)."""
+Every wallet of a sport's ranking with an edge is watched (pt.watch_list):
+proven beyond luck or likely (a candidate), measured with makers' fills
+counted against the makers' average, and in profit over all time on
+Polymarket. Those that meet every criterion (pt.mark_elite) come first and
+carry a star. A wallet whose all-time figure cannot be read is left out."""
 from __future__ import annotations
 
 import _bootstrap  # noqa: F401
@@ -28,7 +28,6 @@ from tennissharp.data import polymarket_traders as pt
 
 SPORTS = {"tennis": "Tennis", "soccer": "Fußball", "basketball": "Basketball", "football": "American Football",
           "baseball": "Baseball"}
-TOP_N = 10
 TEMPLATE = Path(__file__).parent / "templates" / "profis.html"
 OUT = config.REPO_ROOT / "docs" / "profis.html"
 PLACEHOLDER = "__PROS_DATA__"
@@ -76,7 +75,8 @@ def _table(path: Path) -> pd.DataFrame | None:
     return None if df.empty else df.drop_duplicates("wallet").set_index("wallet")
 
 
-FIGURES = ["rank", "clv", "gross", "t", "matches", "stake", "pnl", "fees", "taker", "sig", "elite"]
+FIGURES = ["rank", "clv", "net", "gross", "t", "matches", "stake", "pnl", "fees", "taker", "maker", "sig", "cand",
+           "elite"]
 
 
 def _num(r, col, digits=None):
@@ -86,17 +86,24 @@ def _num(r, col, digits=None):
     return round(float(v), digits) if digits is not None else round(float(v))
 
 
+def _flag(r, col):
+    return bool(r[col]) if col in r.index and pd.notna(r[col]) else None
+
+
 def _figures(r, rank) -> dict:
-    """A wallet's 30-day figures in one sport: CLV after fees (`clv`; the
-    gross figure where a table predates fees), before fees (`gross`)."""
-    net = _num(r, "clv_net_mean", 4)
-    t = _num(r, "clv_net_t", 2) if net is not None else _num(r, "clv_t", 2)
-    sig = r["significant"] if "significant" in r.index and pd.notna(r["significant"]) else None
-    elite = r["elite"] if "elite" in r.index and pd.notna(r["elite"]) else None
-    return {"rank": rank, "clv": net if net is not None else _num(r, "clv_mean", 4), "gross": _num(r, "clv_mean", 4),
-            "t": t, "matches": int(r["pre_markets"]), "stake": _num(r, "stake"), "pnl": _num(r, "pnl"),
-            "fees": _num(r, "fees"), "taker": _num(r, "taker_share", 3), "sig": bool(sig) if sig is not None else None,
-            "elite": bool(elite) if elite is not None else None}
+    """A wallet's 30-day figures in one sport: its edge (`clv`: CLV after
+    fees with maker fills counted against the makers' average, and its
+    t-statistic `t`; the older figures where a table predates them), CLV
+    after fees without that correction (`net`) and before fees (`gross`)."""
+    edge, net = _num(r, "clv_edge_mean", 4), _num(r, "clv_net_mean", 4)
+    clv = next((x for x in (edge, net, _num(r, "clv_mean", 4)) if x is not None), None)
+    t = next((x for x in (_num(r, "clv_edge_t", 2) if edge is not None else None,
+                          _num(r, "clv_net_t", 2) if net is not None else None, _num(r, "clv_t", 2))
+              if x is not None), None)
+    return {"rank": rank, "clv": clv, "net": net, "gross": _num(r, "clv_mean", 4), "t": t,
+            "matches": int(r["pre_markets"]), "stake": _num(r, "stake"), "pnl": _num(r, "pnl"),
+            "fees": _num(r, "fees"), "taker": _num(r, "taker_share", 3), "maker": _num(r, "maker_share", 3),
+            "sig": _flag(r, "significant"), "cand": _flag(r, "candidate"), "elite": _flag(r, "elite")}
 
 
 def _previous() -> dict:
@@ -111,7 +118,7 @@ def _previous() -> dict:
         fig = {k: (None if k not in r.index or pd.isna(r[k]) else r[k]) for k in FIGURES}
         for k in ("rank", "matches", "stake", "pnl", "fees"):
             fig[k] = int(fig[k]) if fig[k] is not None else None
-        for k in ("sig", "elite"):
+        for k in ("sig", "cand", "elite"):
             fig[k] = bool(fig[k]) if fig.get(k) is not None else None
         out[(r["wallet"], r["sport"])] = fig
     return out
@@ -132,27 +139,19 @@ def second_opinion(wallets: list[dict], fetch=None) -> None:
                    "closed_1m": figures.get("closedPredictions_1m"), "complete": figures.get("complete", True)}
 
 
-def best_first(lb: pd.DataFrame, top_n: int, figures=None) -> tuple[pd.DataFrame, int]:
-    """A sport's `top_n` best among the wallets in profit over all time
-    (`figures`: wallet -> (profit, volume) or None, see pt.alltime_lookup;
-    without it the ranking is taken as it is): the proven ones (every
-    criterion met, or an edge beyond luck in an older ranking) by rank,
-    then the rest by rank; and how many of the whole ranking are proven."""
-    flag = "elite" if "elite" in lb.columns else "significant" if "significant" in lb.columns else None
-    proven = lb[flag].fillna(False).astype(bool) if flag else pd.Series(False, index=lb.index)
-    order = lb.assign(_proven=proven).sort_values(["_proven", "rank"], ascending=[False, True]).drop(columns="_proven")
-    watch = pt.in_profit(order, top_n, figures) if figures else order.head(top_n)
-    return watch, int(proven.sum())
+def _count(lb: pd.DataFrame, col: str) -> int:
+    return int(lb[col].fillna(False).astype(bool).sum()) if col in lb.columns else 0
 
 
-def collect(top_n: int = TOP_N, figures=None) -> dict:
-    """The watched wallets (the top of each sport's ranking among those in
-    profit over all time on Polymarket), once each, with their all-time
-    figures and their closing-line value in every sport they have enough
-    matches in: from the ranking where they are ranked, else from the run's
-    table of all wallets. `figures` (wallet -> (profit, volume) or None)
-    defaults to Polymarket's leaderboard, read fresh, with the figures the
-    last build and the rankings hold where it cannot be read."""
+def collect(cap: int = pt.WATCH_CAP, figures=None) -> dict:
+    """The watched wallets (every wallet of a sport's ranking with an edge
+    proven or likely and in profit over all time on Polymarket, see
+    pt.watch_list), once each, with their all-time figures and their
+    closing-line value in every sport they have enough matches in: from the
+    ranking where they are ranked, else from the run's table of all
+    wallets. `figures` (wallet -> (profit, volume) or None) defaults to
+    Polymarket's leaderboard, read fresh, with the figures the last build
+    and the rankings hold where it cannot be read."""
     boards = {sport: lb for sport in SPORTS
               if (lb := _table(config.PROCESSED_DIR / f"pm_{sport}_traders.csv")) is not None}
     if figures is None:
@@ -163,12 +162,12 @@ def collect(top_n: int = TOP_N, figures=None) -> dict:
         if table is not None:
             stats[sport] = table
         rep = _report(sport)
-        watch, proven = best_first(lb, top_n, figures)
+        watch = pt.watch_list(lb, figures, cap)
         sports[sport] = {"label": SPORTS[sport], "measured_at": rep.get("measured_at"),
                          "window_days": rep.get("window_days"), "ranked": int(len(lb)),
-                         "significant": int(lb["significant"].fillna(False).astype(bool).sum())
-                         if "significant" in lb.columns else int(len(lb)),
-                         "elite": proven}
+                         "significant": _count(lb, "significant"), "candidates": _count(lb, "candidate"),
+                         "elite": _count(lb, "elite"), "watched": int(len(watch)),
+                         "maker_baseline": rep.get("maker_baseline")}
         for wallet, r in watch.iterrows():
             w = wallets.setdefault(wallet, {"wallet": wallet, "name": "", "ranks": {}, "clv": {}})
             if isinstance(r["name"], str) and r["name"] and not w["name"]:
@@ -186,7 +185,7 @@ def collect(top_n: int = TOP_N, figures=None) -> dict:
                 w["clv"][sport] = _figures(stats[sport].loc[w["wallet"]], None)
             elif (w["wallet"], sport) in previous:
                 w["clv"][sport] = previous[(w["wallet"], sport)]
-    return {"sports": sports, "wallets": list(wallets.values()), "top_n": top_n}
+    return {"sports": sports, "wallets": list(wallets.values()), "cap": cap}
 
 
 def write_watched(data: dict, path: Path = None) -> None:
@@ -212,10 +211,10 @@ def render(data: dict, template: str) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--top", type=int, default=TOP_N, help="wallets watched per sport")
+    ap.add_argument("--cap", type=int, default=pt.WATCH_CAP, help="most wallets watched per sport")
     ap.add_argument("-o", "--out", type=Path, default=OUT)
     args = ap.parse_args()
-    data = collect(args.top)                             # asks each candidate's all-time figures
+    data = collect(args.cap)                             # asks each candidate's all-time figures
     second_opinion(data["wallets"])
     data["prefixes"] = sport_prefixes()
     data["tags"] = {sport: list(tags) for sport, tags in pt.SPORT_TAGS.items()}   # the jump alarm lists each sport's moneylines by tag
@@ -223,8 +222,7 @@ def main() -> None:
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(render(data, TEMPLATE.read_text()))
     write_watched(data)
-    watched = {sport: sum(sport in w["ranks"] for w in data["wallets"]) for sport in data["sports"]}
-    ranked = ", ".join(f"{sport} {watched[sport]} of {info['ranked']}" for sport, info in data["sports"].items())
+    ranked = ", ".join(f"{sport} {info['watched']} of {info['ranked']}" for sport, info in data["sports"].items())
     print(f"{args.out}: {len(data['wallets'])} wallets in profit over all time watched ({ranked} ranked), "
           f"{len(data['prefixes'])} league codes")
 
