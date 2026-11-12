@@ -524,7 +524,7 @@ def alltime(wallet: str, http=requests, sleep=time.sleep) -> tuple[float, float]
 
 
 ALLTIME_MISSES = 3     # all-time figures unreadable in a row before a run stops asking
-WATCH_CAP = 40         # most wallets watched in one sport, should a ranking ever hold more
+TOP_PER_SPORT = 10     # wallets watched in one sport
 
 
 def known_alltime(*tables: pd.DataFrame | None) -> dict:
@@ -575,19 +575,18 @@ def in_profit(lb: pd.DataFrame, top_n: int, figures, depth: int | None = None) -
     return lb.loc[keep]
 
 
-def watch_list(lb: pd.DataFrame, figures, cap: int = WATCH_CAP) -> pd.DataFrame:
-    """Every wallet of a ranking worth watching: an edge beyond luck
-    (`significant`, or `elite` from an older ranking) or likely
-    (`candidate`), and in profit over all time on Polymarket (`figures`,
-    see alltime_lookup). Those meeting every criterion first, then the
-    proven, then the candidates, each by rank; at most `cap`."""
+def watch_list(lb: pd.DataFrame, figures, top_n: int = TOP_PER_SPORT) -> pd.DataFrame:
+    """A sport's `top_n` best wallets among those in profit over all time
+    on Polymarket (`figures`, see alltime_lookup): those meeting every
+    criterion first, then those with an edge beyond luck (`significant`),
+    then the candidates (`candidate`), then the rest of the ranking, each
+    by rank, so a sport without a proven wallet still shows its best."""
     def flag(col):
         return lb[col].fillna(False).astype(bool) if col in lb.columns else pd.Series(False, index=lb.index)
     elite, proven, likely = flag("elite"), flag("significant"), flag("candidate")
     tier = pd.Series(np.select([elite, proven, likely], [0, 1, 2], default=3), index=lb.index)
-    order = lb.assign(_tier=tier).sort_values(["_tier", "rank"])
-    order = order[order["_tier"] < 3].drop(columns="_tier")
-    return in_profit(order, cap, figures)
+    order = lb.assign(_tier=tier).sort_values(["_tier", "rank"]).drop(columns="_tier")
+    return in_profit(order, top_n, figures)
 
 
 def track_record(wallet: str, http=requests, sleep=time.sleep, now: float | None = None) -> dict | None:

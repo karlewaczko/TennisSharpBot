@@ -56,7 +56,8 @@ def test_every_watched_account_gets_its_clv_in_each_sport(live, tmp_path, monkey
     data = live.collect(figures=in_profit)
     assert set(data["sports"]) == {"tennis", "basketball"}               # no football ranking yet
     by = {w["wallet"]: w for w in data["wallets"]}
-    assert set(by) == {"0xa", "0xb", "0xc"}                             # 0xd has no edge: not watched
+    assert set(by) == {"0xa", "0xb", "0xc", "0xd"}                      # the ten best: room for all
+    assert by["0xd"]["clv"]["tennis"]["sig"] is False and by["0xd"]["clv"]["tennis"]["cand"] is False
     assert by["0xb"]["ranks"] == {"tennis": 2, "basketball": 1}
     old = {"net": None, "fees": None, "taker": None, "maker": None, "elite": None}   # from before fees were counted
     assert by["0xb"]["clv"]["tennis"] == {"rank": 2, "clv": 0.012, "gross": 0.012, "t": 3.2, "matches": 30,
@@ -118,9 +119,10 @@ def test_each_sport_shows_its_best_and_counts_after_fees(live, tmp_path, monkeyp
         taker_share=[0.25, 1.0])
     lb.to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
     data = live.collect(figures=in_profit)
-    assert [w["wallet"] for w in data["wallets"]] == ["0xr"]                 # a wallet without an edge is not watched
+    # an unproven wallet still shows when the sport has room: a sport without a proven one is not left empty
+    assert [w["wallet"] for w in data["wallets"]] == ["0xr", "0xl"]
     info = data["sports"]["tennis"]
-    assert (info["significant"], info["candidates"], info["elite"], info["watched"], info["ranked"]) == (1, 0, 0, 1, 2)
+    assert (info["significant"], info["candidates"], info["elite"], info["watched"], info["ranked"]) == (1, 0, 0, 2, 2)
     fig = data["wallets"][0]["clv"]["tennis"]
     assert (fig["clv"], fig["net"], fig["gross"], fig["t"], fig["fees"], fig["taker"], fig["sig"]) == \
         (0.008, 0.008, 0.012, 3.9, 120, 0.25, True)
@@ -142,11 +144,12 @@ def test_only_wallets_in_profit_over_all_time_are_watched(live, tmp_path, monkey
     lb.to_csv(tmp_path / "pm_tennis_traders.csv", index=False)
     alltime = {"0xl": (-55155.0, 5.8e7), "0xs": (135823.6, 7641402.4), "0xf": (0.4, 900.0), "0xv": (9.0, 99.0)}
     data = live.collect(figures=alltime.get)
-    # the loser and the wallet whose figure cannot be read are left out, and so is the one without an edge
-    assert [w["wallet"] for w in data["wallets"]] == ["0xs", "0xf"]
+    # the loser and the wallet whose figure cannot be read are passed over; the next ones move up
+    assert [w["wallet"] for w in data["wallets"]] == ["0xs", "0xf", "0xv"]
     assert data["wallets"][0]["alltime"] == {"pnl": 135824, "vol": 7641402}
     assert data["wallets"][1]["clv"]["tennis"]["cand"] is True
-    assert (data["sports"]["tennis"]["elite"], data["sports"]["tennis"]["watched"]) == (1, 2)   # the ranking's own count
+    assert (data["sports"]["tennis"]["elite"], data["sports"]["tennis"]["watched"]) == (1, 3)   # the ranking's own count
+    assert data["top_n"] == 10
 
 
 def test_each_watched_account_gets_its_record_by_polyinsiders_method(live):

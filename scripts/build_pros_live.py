@@ -7,11 +7,13 @@ top of each sport's ranking from scripts/update_pm_traders.py, and which
 sport each league code at the start of an event slug belongs to. GitHub
 Pages serves the docs folder of main.
 
-Every wallet of a sport's ranking with an edge is watched (pt.watch_list):
-proven beyond luck or likely (a candidate), measured with makers' fills
-counted against the other makers in the same match, and in profit over all time on
-Polymarket. Those that meet every criterion (pt.mark_elite) come first and
-carry a star. A wallet whose all-time figure cannot be read is left out."""
+Each sport's ten best wallets among those in profit over all time on
+Polymarket are watched (pt.watch_list), ranked by their edge: closing-line
+value after fees with makers' fills counted against the other makers in
+the same match. Those that meet every criterion (pt.mark_elite) come first
+and carry a star, then those whose edge is proven, then the candidates,
+then the ranking's next places. A wallet whose all-time figure cannot be
+read is left out."""
 from __future__ import annotations
 
 import _bootstrap  # noqa: F401
@@ -143,10 +145,10 @@ def _count(lb: pd.DataFrame, col: str) -> int:
     return int(lb[col].fillna(False).astype(bool).sum()) if col in lb.columns else 0
 
 
-def collect(cap: int = pt.WATCH_CAP, figures=None) -> dict:
-    """The watched wallets (every wallet of a sport's ranking with an edge
-    proven or likely and in profit over all time on Polymarket, see
-    pt.watch_list), once each, with their all-time figures and their
+def collect(top_n: int = pt.TOP_PER_SPORT, figures=None) -> dict:
+    """The watched wallets (each sport's `top_n` best among those in profit
+    over all time on Polymarket, see pt.watch_list), once each, with their
+    all-time figures and their
     closing-line value in every sport they have enough matches in: from the
     ranking where they are ranked, else from the run's table of all
     wallets. `figures` (wallet -> (profit, volume) or None) defaults to
@@ -162,7 +164,7 @@ def collect(cap: int = pt.WATCH_CAP, figures=None) -> dict:
         if table is not None:
             stats[sport] = table
         rep = _report(sport)
-        watch = pt.watch_list(lb, figures, cap)
+        watch = pt.watch_list(lb, figures, top_n)
         sports[sport] = {"label": SPORTS[sport], "measured_at": rep.get("measured_at"),
                          "window_days": rep.get("window_days"), "ranked": int(len(lb)),
                          "significant": _count(lb, "significant"), "candidates": _count(lb, "candidate"),
@@ -184,7 +186,7 @@ def collect(cap: int = pt.WATCH_CAP, figures=None) -> dict:
                 w["clv"][sport] = _figures(stats[sport].loc[w["wallet"]], None)
             elif (w["wallet"], sport) in previous:
                 w["clv"][sport] = previous[(w["wallet"], sport)]
-    return {"sports": sports, "wallets": list(wallets.values()), "cap": cap}
+    return {"sports": sports, "wallets": list(wallets.values()), "top_n": top_n}
 
 
 def write_watched(data: dict, path: Path = None) -> None:
@@ -210,10 +212,10 @@ def render(data: dict, template: str) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--cap", type=int, default=pt.WATCH_CAP, help="most wallets watched per sport")
+    ap.add_argument("--top", type=int, default=pt.TOP_PER_SPORT, help="wallets watched per sport")
     ap.add_argument("-o", "--out", type=Path, default=OUT)
     args = ap.parse_args()
-    data = collect(args.cap)                             # asks each candidate's all-time figures
+    data = collect(args.top)                             # asks each candidate's all-time figures
     second_opinion(data["wallets"])
     data["prefixes"] = sport_prefixes()
     data["tags"] = {sport: list(tags) for sport, tags in pt.SPORT_TAGS.items()}   # the jump alarm lists each sport's moneylines by tag

@@ -221,17 +221,19 @@ def test_candidates_pass_a_looser_check_than_the_proven():
     assert list(t[pt.significant(t, n, pt.CANDIDATE_Q)]) == [3.0, 3.1, 3.2, 3.3, 6.0, 7.0]
 
 
-def test_the_watch_list_holds_every_wallet_with_an_edge_in_profit():
+def test_the_watch_list_takes_the_ten_best_in_profit_proven_first():
     lb = pd.DataFrame({"wallet": ["0xa", "0xb", "0xc", "0xd", "0xe", "0xf"], "rank": range(1, 7),
                        "elite": [False, False, True, False, False, False],
                        "significant": [False, True, True, False, True, False],
                        "candidate": [True, False, False, False, False, True]})
     alltime = {"0xa": (1.0, 2.0), "0xb": (1.0, 2.0), "0xc": (1.0, 2.0), "0xd": (1.0, 2.0), "0xe": (-5.0, 9.0),
                "0xf": (1.0, 2.0)}
-    # every criterion first, then the proven, then the candidates; 0xd has no edge, 0xe is in loss
-    assert list(pt.watch_list(lb, alltime.get)["wallet"]) == ["0xc", "0xb", "0xa", "0xf"]
-    assert list(pt.watch_list(lb, alltime.get, cap=2)["wallet"]) == ["0xc", "0xb"]
-    assert pt.watch_list(lb.drop(columns=["elite", "significant", "candidate"]), alltime.get).empty
+    # every criterion first, then the proven, the candidates and the rest of the ranking; 0xe is in loss
+    assert list(pt.watch_list(lb, alltime.get)["wallet"]) == ["0xc", "0xb", "0xa", "0xf", "0xd"]
+    assert list(pt.watch_list(lb, alltime.get, top_n=2)["wallet"]) == ["0xc", "0xb"]
+    assert pt.TOP_PER_SPORT == 10
+    plain = lb.drop(columns=["elite", "significant", "candidate"])          # an old ranking: just its order
+    assert list(pt.watch_list(plain, alltime.get)["wallet"]) == ["0xa", "0xb", "0xc", "0xd", "0xf"]
 
 
 def test_only_edges_beyond_luck_count_as_significant():
