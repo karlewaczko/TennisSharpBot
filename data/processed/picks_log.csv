@@ -551,3 +551,5 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-11T22:01:01+00:00,3376971,2026-11-12,Heraklion 10 ITF,Nguyen Tan L.,William Hill,book,value,1.44,0.7032,0.0126,Betfair
 2026-11-11T22:01:01+00:00,3376971,2026-11-12,Heraklion 10 ITF,Nguyen Tan L.,bet-at-home,book,value,1.43,0.7032,0.0056,Betfair
 2026-11-11T22:01:01+00:00,3376971,2026-11-12,Heraklion 10 ITF,Nguyen Tan L.,Polymarket,prediction,value,1.427,0.7032,0.0036,Betfair
+2026-11-12T11:18:26+00:00,3370041,2026-11-13,Masters Cup WTA,Andreeva M.,1xBet,book,value,1.45,0.6928,0.0046,Betfair
+2026-11-12T11:18:26+00:00,3377009,2026-11-13,Hersonissos 5 challenger,Francesco Maestrelli,Polymarket,prediction,value,1.778,0.5891,0.0475,Betfair
