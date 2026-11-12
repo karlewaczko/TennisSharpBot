@@ -1,34 +1,34 @@
 {
- "measured_at": "2026-11-11T12:43:45+00:00",
+ "measured_at": "2026-11-12T13:39:54+00:00",
  "sport": "baseball",
  "window_days": 60,
  "tours": null,
- "markets": 399,
- "matches": 399,
- "wallets": 21048,
- "ranked_wallets": 187,
- "significant_wallets": 0,
- "elite_wallets": 0,
+ "markets": 381,
+ "matches": 381,
+ "wallets": 20351,
+ "ranked_wallets": 181,
+ "significant_wallets": 3,
+ "elite_wallets": 1,
  "markets_trimmed_to_bigger_trades": 0,
  "market_structure": {
-  "stake_usd": 155514097,
-  "in_play_share": 0.627,
+  "stake_usd": 150689783,
+  "in_play_share": 0.625,
   "top20_share": 0.488,
   "top20_pre_match_share": 0.616
  },
  "skill_persistence": {
-  "wallets": 388,
-  "corr": 0.556,
-  "rank_corr": 0.651,
-  "top_decile_next": 0.0004,
-  "bottom_decile_next": -0.019,
-  "all_next": -0.0114
+  "wallets": 381,
+  "corr": 0.522,
+  "rank_corr": 0.616,
+  "top_decile_next": -0.001,
+  "bottom_decile_next": -0.02,
+  "all_next": -0.0115
  },
  "polymarket_closing_calibration": {
-  "n": 399,
-  "brier": 0.2292,
-  "log_loss": 0.6493,
-  "favourite_won": 0.619,
+  "n": 381,
+  "brier": 0.2296,
+  "log_loss": 0.6501,
+  "favourite_won": 0.617,
   "bins": [
    {
     "range": "(-0.001, 0.2]",
@@ -38,21 +38,21 @@
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 42,
-    "price": 0.311,
-    "won": 0.19
+    "n": 40,
+    "price": 0.31,
+    "won": 0.2
    },
    {
     "range": "(0.35, 0.5]",
-    "n": 204,
-    "price": 0.439,
-    "won": 0.412
+    "n": 194,
+    "price": 0.438,
+    "won": 0.418
    },
    {
     "range": "(0.5, 0.65]",
-    "n": 129,
-    "price": 0.571,
-    "won": 0.597
+    "n": 123,
+    "price": 0.57,
+    "won": 0.602
    },
    {
     "range": "(0.65, 0.8]",
@@ -68,5 +68,36 @@
    }
   ]
  },
- "leader_preview": []
+ "leader_preview": [
+  {
+   "rank": 3,
+   "name": "forecastication4",
+   "wallet": "0x885ffdf360e5b0b6e6acb963fb3f8ba2344c8ed9",
+   "elite": true,
+   "markets": 43,
+   "pre_markets": 43,
+   "stake": 28088.5515,
+   "pnl": 32223.7349,
+   "roi": 1.1472,
+   "fees": 1.2511,
+   "clv_net_mean": 0.0151,
+   "clv_net_t": 3.3577,
+   "significant": true,
+   "clv_net_first": 0.0172,
+   "clv_net_second": 0.014,
+   "consistent": true,
+   "alltime_pnl": 186476.3072,
+   "alltime_vol": 4965988.9301,
+   "pi_pnl": 184496.5998,
+   "pi_win_rate": 51.443,
+   "pi_closed": 6514.0,
+   "clv_mean": 0.0151,
+   "clv_t": 3.3626,
+   "win_share": 0.6279,
+   "live_share": 0.0,
+   "taker_share": 0.0015,
+   "two_sided_share": 0.2093,
+   "directional": 0.9133
+  }
+ ]
 }
