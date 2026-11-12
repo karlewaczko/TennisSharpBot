@@ -2699,3 +2699,39 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-12T11:18:26+00:00,3377431,2026-11-12,Chihuahua ITF,ITF,Papamichail D.,Polymarket,0.54,0.5526,Betfair,0.02,2967.1786
 2026-11-12T11:18:26+00:00,3377431,2026-11-12,Chihuahua ITF,ITF,Bulgaru M.,Kalshi,0.445,0.4474,Betfair,0.03,197.92000000000002
 2026-11-12T11:18:26+00:00,3377431,2026-11-12,Chihuahua ITF,ITF,Papamichail D.,Kalshi,0.535,0.5526,Betfair,0.03,197.92000000000002
+2026-11-12T22:25:05+00:00,3370035,2026-11-12,Masters Cup WTA,Tour,Pegula J.,Kalshi,0.425,0.4405,Pinnacle,0.01,3217.1515
+2026-11-12T22:25:05+00:00,3370035,2026-11-12,Masters Cup WTA,Tour,Noskova L.,Kalshi,0.565,0.5595,Pinnacle,0.01,3217.1515
+2026-11-12T22:25:05+00:00,3370041,2026-11-13,Masters Cup WTA,Tour,Andreeva M.,Kalshi,0.705,0.7089,Pinnacle,0.01,10608.7454
+2026-11-12T22:25:05+00:00,3370041,2026-11-13,Masters Cup WTA,Tour,Muchova K.,Kalshi,0.295,0.2911,Pinnacle,0.01,10608.7454
+2026-11-12T22:25:05+00:00,3370039,2026-11-13,Masters Cup WTA,Tour,Sabalenka A.,Kalshi,0.63,0.631,Pinnacle,0.02,18585.9956
+2026-11-12T22:25:05+00:00,3370039,2026-11-13,Masters Cup WTA,Tour,Svitolina E.,Kalshi,0.365,0.369,Pinnacle,0.01,18585.9956
+2026-11-12T22:25:05+00:00,3377811,2026-11-13,Orleans challenger,Challenger,Sascha Gueymard Wayenburg,Polymarket,0.36,0.3818,Betfair,0.04,2163.3828
+2026-11-12T22:25:05+00:00,3377811,2026-11-13,Orleans challenger,Challenger,Otto Virtanen,Polymarket,0.64,0.6182,Betfair,0.04,2163.3828
+2026-11-12T22:25:05+00:00,3377585,2026-11-13,Brisbane 4 challenger,Challenger,Sweeny D.,Polymarket,0.355,0.3597,Betfair,0.01,13597.1406
+2026-11-12T22:25:05+00:00,3377585,2026-11-13,Brisbane 4 challenger,Challenger,Shang J.,Polymarket,0.645,0.6403,Betfair,0.01,13597.1406
+2026-11-12T22:25:05+00:00,3377585,2026-11-13,Brisbane 4 challenger,Challenger,Sweeny D.,Kalshi,0.355,0.3597,Betfair,0.01,4939.5021
+2026-11-12T22:25:05+00:00,3377585,2026-11-13,Brisbane 4 challenger,Challenger,Shang J.,Kalshi,0.645,0.6403,Betfair,0.01,4939.5021
+2026-11-12T22:25:05+00:00,3376415,2026-11-13,Lima 3 challenger,Challenger,Genaro Alberto Olivieri,Polymarket,0.395,0.405,Pinnacle,0.01,66916.8715
+2026-11-12T22:25:05+00:00,3376415,2026-11-13,Lima 3 challenger,Challenger,Juan Pablo Varillas,Polymarket,0.605,0.595,Pinnacle,0.01,66916.8715
+2026-11-12T22:25:05+00:00,3376415,2026-11-13,Lima 3 challenger,Challenger,Genaro Alberto Olivieri,Kalshi,0.395,0.405,Pinnacle,0.01,8570.0932
+2026-11-12T22:25:05+00:00,3376415,2026-11-13,Lima 3 challenger,Challenger,Juan Pablo Varillas,Kalshi,0.605,0.595,Pinnacle,0.01,8570.0932
+2026-11-12T22:25:05+00:00,3376889,2026-11-13,Hersonissos 5 challenger,Challenger,Massimo Giunta,Polymarket,0.375,0.3774,Betfair,0.01,12131.629
+2026-11-12T22:25:05+00:00,3376889,2026-11-13,Hersonissos 5 challenger,Challenger,Henry Searle,Polymarket,0.625,0.6226,Betfair,0.01,12131.629
+2026-11-12T22:25:05+00:00,3376889,2026-11-13,Hersonissos 5 challenger,Challenger,Massimo Giunta,Kalshi,0.375,0.3774,Betfair,0.01,3969.4066000000003
+2026-11-12T22:25:05+00:00,3376889,2026-11-13,Hersonissos 5 challenger,Challenger,Henry Searle,Kalshi,0.625,0.6226,Betfair,0.01,3969.4066000000003
+2026-11-12T22:25:05+00:00,3377009,2026-11-13,Hersonissos 5 challenger,Challenger,Francesco Maestrelli,Polymarket,0.575,0.5726,Pinnacle,0.01,12567.2583
+2026-11-12T22:25:05+00:00,3377009,2026-11-13,Hersonissos 5 challenger,Challenger,Sumit Nagal,Polymarket,0.425,0.4274,Pinnacle,0.01,12567.2583
+2026-11-12T22:25:05+00:00,3377009,2026-11-13,Hersonissos 5 challenger,Challenger,Francesco Maestrelli,Kalshi,0.575,0.5726,Pinnacle,0.01,4389.5632
+2026-11-12T22:25:05+00:00,3377009,2026-11-13,Hersonissos 5 challenger,Challenger,Sumit Nagal,Kalshi,0.425,0.4274,Pinnacle,0.01,4389.5632
+2026-11-12T22:25:05+00:00,3377429,2026-11-13,Brisbane ITF,ITF,Garland J.,Polymarket,0.655,0.6566,Betfair,0.01,822.3808
+2026-11-12T22:25:05+00:00,3377429,2026-11-13,Brisbane ITF,ITF,Gadecki O.,Polymarket,0.345,0.3434,Betfair,0.01,822.3808
+2026-11-12T22:25:05+00:00,3377429,2026-11-13,Brisbane ITF,ITF,Garland J.,Kalshi,0.65,0.6566,Betfair,0.02,224.546
+2026-11-12T22:25:05+00:00,3377429,2026-11-13,Brisbane ITF,ITF,Gadecki O.,Kalshi,0.34,0.3434,Betfair,0.02,224.546
+2026-11-12T22:25:05+00:00,3377593,2026-11-13,Maanshan 8 ITF,ITF,Wang J.,Polymarket,0.31,0.306,Betfair,0.02,678.3624
+2026-11-12T22:25:05+00:00,3377593,2026-11-13,Maanshan 8 ITF,ITF,Tikhonova A.,Polymarket,0.69,0.694,Betfair,0.02,678.3624
+2026-11-12T22:25:05+00:00,3377593,2026-11-13,Maanshan 8 ITF,ITF,Wang J.,Kalshi,0.32,0.306,Betfair,0.02,4.98
+2026-11-12T22:25:05+00:00,3377593,2026-11-13,Maanshan 8 ITF,ITF,Tikhonova A.,Kalshi,0.68,0.694,Betfair,0.02,4.98
+2026-11-12T22:25:05+00:00,3377631,2026-11-13,Maanshan 8 ITF,ITF,Naklo T.,Polymarket,0.715,0.7295,Pinnacle,0.03,740.5087
+2026-11-12T22:25:05+00:00,3377631,2026-11-13,Maanshan 8 ITF,ITF,Yamazaki I.,Polymarket,0.285,0.2705,Pinnacle,0.03,740.5087
+2026-11-12T22:25:05+00:00,3377631,2026-11-13,Maanshan 8 ITF,ITF,Naklo T.,Kalshi,0.715,0.7295,Pinnacle,0.03,187.2784
+2026-11-12T22:25:05+00:00,3377631,2026-11-13,Maanshan 8 ITF,ITF,Yamazaki I.,Kalshi,0.27,0.2705,Pinnacle,0.02,187.2784
