@@ -1,5 +1,5 @@
 {
- "measured_at": "2026-11-12T13:35:32+00:00",
+ "measured_at": "2026-11-12T22:18:35+00:00",
  "sport": "football",
  "window_days": 30,
  "tours": null,
@@ -8,6 +8,9 @@
  "wallets": 16039,
  "ranked_wallets": 100,
  "significant_wallets": 0,
+ "candidate_wallets": 0,
+ "maker_baseline": 0.0,
+ "maker_baseline_match_median": 0.00033,
  "elite_wallets": 0,
  "markets_trimmed_to_bigger_trades": 0,
  "market_structure": {
