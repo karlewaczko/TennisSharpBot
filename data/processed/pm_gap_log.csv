@@ -2803,3 +2803,33 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-12T22:51:18+00:00,3377631,2026-11-13,Maanshan 8 ITF,ITF,Yamazaki I.,Polymarket,0.285,0.2705,Pinnacle,0.03,5010.3213
 2026-11-12T22:51:18+00:00,3377631,2026-11-13,Maanshan 8 ITF,ITF,Naklo T.,Kalshi,0.715,0.7295,Pinnacle,0.03,233.9984
 2026-11-12T22:51:18+00:00,3377631,2026-11-13,Maanshan 8 ITF,ITF,Yamazaki I.,Kalshi,0.27,0.2705,Pinnacle,0.02,233.9984
+2026-11-13T11:03:22+00:00,3370041,2026-11-13,Masters Cup WTA,Tour,Andreeva M.,Kalshi,0.725,0.7283,Betfair,0.01,18028.6724
+2026-11-13T11:03:22+00:00,3370041,2026-11-13,Masters Cup WTA,Tour,Muchova K.,Kalshi,0.275,0.2717,Betfair,0.01,18028.6724
+2026-11-13T11:03:22+00:00,3370039,2026-11-13,Masters Cup WTA,Tour,Sabalenka A.,Kalshi,0.645,0.6402,Pinnacle,0.01,21258.362999999998
+2026-11-13T11:03:22+00:00,3370039,2026-11-13,Masters Cup WTA,Tour,Svitolina E.,Kalshi,0.355,0.3598,Pinnacle,0.01,21258.362999999998
+2026-11-13T11:03:22+00:00,3377811,2026-11-13,Orleans challenger,Challenger,Sascha Gueymard Wayenburg,Polymarket,0.365,0.3634,Betfair,0.01,13842.1445
+2026-11-13T11:03:22+00:00,3377811,2026-11-13,Orleans challenger,Challenger,Otto Virtanen,Polymarket,0.635,0.6366,Betfair,0.01,13842.1445
+2026-11-13T11:03:22+00:00,3377811,2026-11-13,Orleans challenger,Challenger,Sascha Gueymard Wayenburg,Kalshi,0.365,0.3634,Betfair,0.01,4882.6319
+2026-11-13T11:03:22+00:00,3377811,2026-11-13,Orleans challenger,Challenger,Otto Virtanen,Kalshi,0.635,0.6366,Betfair,0.01,4882.6319
+2026-11-13T11:03:22+00:00,3377373,2026-11-13,Knoxville challenger,Challenger,Liam Draxl,Polymarket,0.345,0.3453,Betfair,0.01,32656.4879
+2026-11-13T11:03:22+00:00,3377373,2026-11-13,Knoxville challenger,Challenger,Clement Chidekh,Polymarket,0.655,0.6547,Betfair,0.01,32656.4879
+2026-11-13T11:03:22+00:00,3377373,2026-11-13,Knoxville challenger,Challenger,Liam Draxl,Kalshi,0.345,0.3453,Betfair,0.01,4380.1337
+2026-11-13T11:03:22+00:00,3377373,2026-11-13,Knoxville challenger,Challenger,Clement Chidekh,Kalshi,0.655,0.6547,Betfair,0.01,4380.1337
+2026-11-13T11:03:22+00:00,3377425,2026-11-13,Knoxville challenger,Challenger,Max Hans Rehberg,Polymarket,0.545,0.5412,Betfair,0.01,23173.7977
+2026-11-13T11:03:22+00:00,3377425,2026-11-13,Knoxville challenger,Challenger,Daniel Milavsky,Polymarket,0.455,0.4588,Betfair,0.01,23173.7977
+2026-11-13T11:03:22+00:00,3377425,2026-11-13,Knoxville challenger,Challenger,Max Hans Rehberg,Kalshi,0.545,0.5412,Betfair,0.01,4043.0358000000006
+2026-11-13T11:03:22+00:00,3377425,2026-11-13,Knoxville challenger,Challenger,Daniel Milavsky,Kalshi,0.455,0.4588,Betfair,0.01,4043.0358000000006
+2026-11-13T11:03:22+00:00,3377173,2026-11-13,Monastir challenger,Challenger,Jonas Forejtek,Polymarket,0.375,0.3779,Betfair,0.01,59371.8557
+2026-11-13T11:03:22+00:00,3377173,2026-11-13,Monastir challenger,Challenger,Luka Mikrut,Polymarket,0.625,0.6221,Betfair,0.01,59371.8557
+2026-11-13T11:03:22+00:00,3377173,2026-11-13,Monastir challenger,Challenger,Jonas Forejtek,Kalshi,0.385,0.3779,Betfair,0.01,9810.798
+2026-11-13T11:03:22+00:00,3377173,2026-11-13,Monastir challenger,Challenger,Luka Mikrut,Kalshi,0.615,0.6221,Betfair,0.01,9810.798
+2026-11-13T11:03:22+00:00,3378077,2026-11-14,Matsuyama challenger,Challenger,Rio Noguchi,Polymarket,0.495,0.485,Betfair,0.01,18805.4717
+2026-11-13T11:03:22+00:00,3378077,2026-11-14,Matsuyama challenger,Challenger,Yu Hsiou Hsu,Polymarket,0.505,0.515,Betfair,0.01,18805.4717
+2026-11-13T11:03:22+00:00,3378065,2026-11-13,Chihuahua ITF,ITF,Wolff V.,Polymarket,0.555,0.5509,Pinnacle,0.03,598.3385
+2026-11-13T11:03:22+00:00,3378065,2026-11-13,Chihuahua ITF,ITF,Bulgaru M.,Polymarket,0.445,0.4491,Pinnacle,0.03,598.3385
+2026-11-13T11:03:22+00:00,3378065,2026-11-13,Chihuahua ITF,ITF,Wolff V.,Kalshi,0.545,0.5509,Pinnacle,0.05,364.99199999999996
+2026-11-13T11:03:22+00:00,3378065,2026-11-13,Chihuahua ITF,ITF,Bulgaru M.,Kalshi,0.435,0.4491,Pinnacle,0.03,364.99199999999996
+2026-11-13T11:03:22+00:00,3378007,2026-11-13,Lincoln ITF,ITF,Esposito Cogan A.,Polymarket,0.29,0.2866,Pinnacle,0.02,1045.2823
+2026-11-13T11:03:22+00:00,3378007,2026-11-13,Lincoln ITF,ITF,Refaat M.,Polymarket,0.71,0.7134,Pinnacle,0.02,1045.2823
+2026-11-13T11:03:22+00:00,3378007,2026-11-13,Lincoln ITF,ITF,Esposito Cogan A.,Kalshi,0.3,0.2866,Pinnacle,0.02,52.36
+2026-11-13T11:03:22+00:00,3378007,2026-11-13,Lincoln ITF,ITF,Refaat M.,Kalshi,0.69,0.7134,Pinnacle,0.02,52.36
