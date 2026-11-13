@@ -1,28 +1,33 @@
 name: Sharp-move alerts - NBA (Polymarket, Kalshi)
 
-# Every evening, for the hours before the NBA tips off (games start from
-# about 00:00 UTC), scripts/sharp_move_alert.py watches Polymarket's and
+# Around the clock, scripts/sharp_move_alert.py watches Polymarket's and
 # Kalshi's NBA moneylines every 20 seconds and posts a side rising 3+ points
-# within half an hour to Telegram and/or Discord, with the lowest bet365
-# price still worth taking (data/reports/profi_wetten_und_edge.md, 4j).
+# within half an hour before the start to Telegram and/or Discord, with the
+# lowest bet365 price still worth taking (data/reports/profi_wetten_und_edge.md, 4j).
+#
+# A GitHub job runs six hours at most, so each run watches for 350 minutes
+# and then starts the next one itself (workflow_dispatch with the run's own
+# token, which GitHub allows). The schedule every six hours restarts the
+# chain should a run ever fail to. GitHub's terms meant Actions for
+# building and testing software; a watcher that never stops is a grey zone,
+# and the same script runs on any PC (see ANLEITUNG.md).
 #
 # Channels come from repository secrets (Settings -> Secrets and variables
 # -> Actions): TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID, and/or
 # DISCORD_WEBHOOK_URL. Without them the run only logs. Run it by hand with
-# "test" ticked to send one test message. A GitHub job runs six hours at
-# most; a scheduled start can come late.
+# "test" ticked to send one test message.
 #
 # Its own concurrency group: the data workflows must not wait six hours
 # behind it. Only the alert log is committed.
 
 on:
   schedule:
-    - cron: "37 20 * * *"
+    - cron: "7 */6 * * *"
   workflow_dispatch:
     inputs:
       minutes:
         description: "Minutes to watch"
-        default: "345"
+        default: "350"
       test:
         description: "Only send a test message"
         type: boolean
@@ -30,6 +35,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: sharp-moves
@@ -61,7 +67,7 @@ jobs:
           if [ "${{ github.event.inputs.test }}" = "true" ]; then
             python scripts/sharp_move_alert.py --test
           else
-            python scripts/sharp_move_alert.py --minutes "${{ github.event.inputs.minutes || '345' }}"
+            python scripts/sharp_move_alert.py --minutes "${{ github.event.inputs.minutes || '350' }}"
           fi
 
       - name: Commit the alert log
@@ -84,3 +90,11 @@ jobs:
             sleep 15
           done
           exit 1
+
+      # The chain: each run starts the next before it ends; a pending run
+      # waits in the concurrency group until this one has finished.
+      - name: Start the next watch
+        if: ${{ !cancelled() && github.event.inputs.test != 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run sharp-moves.yml --ref "${GITHUB_REF_NAME}" -f minutes=350 -f test=false

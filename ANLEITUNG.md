@@ -111,7 +111,7 @@ Darunter folgt der Bereich **Frische Wallets**. Er zeigt neue Konten, die in ihr
 
 ### Kurssprung-Alarm per Telegram oder Discord (NBA)
 
-Jeden Abend ab etwa 21:40 Uhr bis etwa 3:20 Uhr (österreichische Zeit) beobachtet GitHub die NBA-Siegerwetten bei Polymarket und Kalshi, alle 20 Sekunden. Der Start kann sich bei GitHub etwas verzögern. Steigt die Siegchance einer Seite binnen 30 Minuten um 3 Prozentpunkte oder mehr (die faire Quote fällt also, etwa von 1,82 auf 1,69), kommt eine Nachricht wie diese:
+Rund um die Uhr beobachtet GitHub die NBA-Siegerwetten bei Polymarket und Kalshi, alle 20 Sekunden. Ein Lauf dauert knapp sechs Stunden und startet dann den nächsten selbst. Fällt die Kette einmal aus, startet ein Zeitplan sie spätestens nach sechs Stunden neu. Steigt die Siegchance einer Seite binnen 30 Minuten um 3 Prozentpunkte oder mehr (die faire Quote fällt also, etwa von 1,82 auf 1,69), kommt eine Nachricht wie diese:
 
 > 🏀 NBA · Lakers – Celtics · Start 14.11. 01:30
 > Kalshi: Lakers Quote 1,82 → 1,69 in 30 Min.
@@ -138,7 +138,21 @@ Du kannst auch beides einrichten.
 
 **Testen:** Auf GitHub unter **Actions** den Workflow **„Sharp-move alerts - NBA (Polymarket, Kalshi)“** öffnen, **Run workflow** drücken, einen Haken bei **„Only send a test message“** setzen und starten. Nach etwa einer Minute sollte die Testnachricht im Kanal sein.
 
+**Auf dem eigenen PC:** GitHub sieht Actions eigentlich für Bau und Test von Software vor. Eine Überwachung rund um die Uhr ist dort eine Grauzone, GitHub könnte sie stoppen. Dann läuft dasselbe Programm auf deinem PC. Öffne im Projektordner ein Terminal und starte `python scripts/sharp_move_alert.py --minutes 100000`. Die Zugangsdaten liest es aus `config/.env` (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` oder `DISCORD_WEBHOOK_URL`).
+
 Auf dem Profi-Radar zeigt der Kurssprung-Alarm jetzt ebenfalls **„bet365 lohnt ab“**. Er sieht dort aber nur Polymarket, denn Kalshi lässt sich vom Browser aus nicht abfragen.
+
+### Wo finde ich was?
+
+| Was | Wo |
+|---|---|
+| Dashboard (Tennis-Karte, Value-Wetten, Profis auf Polymarket) | https://karlewaczko.github.io/TennisSharpBot/ |
+| Profi-Radar: Wetten der besten Wallets, Konsens, Kurssprung-Alarm mit „bet365 lohnt ab“ | https://karlewaczko.github.io/TennisSharpBot/profis.html |
+| Kurssprung-Alarm (NBA): Läufe, Testnachricht | https://github.com/karlewaczko/TennisSharpBot/actions/workflows/sharp-moves.yml |
+| Protokoll aller Alarme (entsteht mit dem ersten Alarm) | https://github.com/karlewaczko/TennisSharpBot/blob/main/data/processed/sharp_move_alerts.csv |
+| Telegram- oder Discord-Zugang eintragen | https://github.com/karlewaczko/TennisSharpBot/settings/secrets/actions |
+| Bericht mit allen Auswertungen (bet365 nach Kurssprüngen: Abschnitt 4j) | https://github.com/karlewaczko/TennisSharpBot/blob/main/data/reports/profi_wetten_und_edge.md |
+| Diese Anleitung | https://github.com/karlewaczko/TennisSharpBot/blob/main/ANLEITUNG.md |
 
 ## Was du am Ende hast
 
