@@ -1,0 +1,86 @@
+name: Sharp-move alerts - NBA (Polymarket, Kalshi)
+
+# Every evening, for the hours before the NBA tips off (games start from
+# about 00:00 UTC), scripts/sharp_move_alert.py watches Polymarket's and
+# Kalshi's NBA moneylines every 20 seconds and posts a side rising 3+ points
+# within half an hour to Telegram and/or Discord, with the lowest bet365
+# price still worth taking (data/reports/profi_wetten_und_edge.md, 4j).
+#
+# Channels come from repository secrets (Settings -> Secrets and variables
+# -> Actions): TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID, and/or
+# DISCORD_WEBHOOK_URL. Without them the run only logs. Run it by hand with
+# "test" ticked to send one test message. A GitHub job runs six hours at
+# most; a scheduled start can come late.
+#
+# Its own concurrency group: the data workflows must not wait six hours
+# behind it. Only the alert log is committed.
+
+on:
+  schedule:
+    - cron: "37 20 * * *"
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "Minutes to watch"
+        default: "345"
+      test:
+        description: "Only send a test message"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sharp-moves
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 358
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install requests pandas numpy
+
+      - name: Watch NBA moneylines
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          if [ "${{ github.event.inputs.test }}" = "true" ]; then
+            python scripts/sharp_move_alert.py --test
+          else
+            python scripts/sharp_move_alert.py --minutes "${{ github.event.inputs.minutes || '345' }}"
+          fi
+
+      - name: Commit the alert log
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          [ -f data/processed/sharp_move_alerts.csv ] || exit 0
+          git add data/processed/sharp_move_alerts.csv
+          if git diff --cached --quiet; then
+            echo "No new alerts."
+            exit 0
+          fi
+          git commit -m "Sharp-move alerts ($(date -u +%Y-%m-%d))"
+          for attempt in 1 2 3; do
+            if git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 15
+          done
+          exit 1

@@ -109,6 +109,37 @@ Auf dem Handy erscheinen Spiele, Wetten und Profile als Karten statt als breite 
 
 Darunter folgt der Bereich **Frische Wallets**. Er zeigt neue Konten, die in ihren ersten 24 Stunden mindestens 10.000 $ auf eine Seite setzen und bisher nur diesen einen Markt gehandelt haben. Den Mindestbetrag kannst du auf 25.000, 50.000 oder 100.000 $ hochsetzen. Mit „auch Märkte außerhalb des Sports“ siehst du zusätzlich Politik und Co. Neue Einträge werden farbig markiert. Mit „Benachrichtigen“ meldet sich der Browser, solange die Seite offen ist; am iPhone geht das nicht in einem normalen Safari-Tab. Das ist ein mögliches Insider-Muster, kein Beweis.
 
+### Kurssprung-Alarm per Telegram oder Discord (NBA)
+
+Jeden Abend ab etwa 21:40 Uhr bis etwa 3:20 Uhr (österreichische Zeit) beobachtet GitHub die NBA-Siegerwetten bei Polymarket und Kalshi, alle 20 Sekunden. Der Start kann sich bei GitHub etwas verzögern. Steigt eine Seite binnen 30 Minuten um 3 Punkte oder mehr, kommt eine Nachricht wie diese:
+
+> 🏀 NBA · Lakers – Celtics · Start 14.11. 01:30
+> Kalshi: Lakers 55 % → 59 % in 30 Min.
+> Polymarket jetzt 58 %
+> bet365 lohnt ab Quote 1,75 (fair 1,71)
+
+Öffne dann sofort bet365. Liegt die Quote dort noch auf oder über dem genannten Wert, ist die Wette nach unserer Rechnung etwas wert. bet365 zieht meist binnen 1 bis 3 Minuten nach.
+
+**Das ist ein Test.** In der Auswertung vom 13. November (Bericht, Abschnitt 4j) brachte das bei NBA-Siegerwetten im Schnitt +4 %, im Median aber etwa null. Jeder Alarm wird in `data/processed/sharp_move_alerts.csv` mitgeschrieben. Nach zwei bis vier Wochen rechnen wir nach, ob es sich lohnt.
+
+So richtest du den Kanal ein. Token und Webhook gehören nur in die GitHub-Secrets, nie in eine Datei oder einen Chat.
+
+**Telegram:**
+1. In Telegram `@BotFather` öffnen, `/newbot` schicken, einen Namen vergeben und den Token kopieren.
+2. Einen Kanal anlegen und den Bot dort als Administrator hinzufügen.
+3. Die Kanal-ID herausfinden: Bei einem öffentlichen Kanal ist es `@kanalname`. Bei einem privaten ist es eine Zahl, die mit `-100` beginnt. Du bekommst sie, wenn du eine Nachricht aus dem Kanal an `@userinfobot` weiterleitest.
+4. Auf GitHub im Repository **Settings → Secrets and variables → Actions → New repository secret** zwei Secrets anlegen: `TELEGRAM_BOT_TOKEN` mit dem Token und `TELEGRAM_CHAT_ID` mit der Kanal-ID.
+
+**Discord:**
+1. Im Discord-Kanal **Kanal bearbeiten → Integrationen → Webhooks → Neuer Webhook** wählen und die Webhook-URL kopieren.
+2. Auf GitHub als Secret `DISCORD_WEBHOOK_URL` speichern.
+
+Du kannst auch beides einrichten.
+
+**Testen:** Auf GitHub unter **Actions** den Workflow **„Sharp-move alerts - NBA (Polymarket, Kalshi)“** öffnen, **Run workflow** drücken, einen Haken bei **„Only send a test message“** setzen und starten. Nach etwa einer Minute sollte die Testnachricht im Kanal sein.
+
+Auf dem Profi-Radar zeigt der Kurssprung-Alarm jetzt ebenfalls **„bet365 lohnt ab“**. Er sieht dort aber nur Polymarket, denn Kalshi lässt sich vom Browser aus nicht abfragen.
+
 ## Was du am Ende hast
 
 Einen Telegram-Bot, den du wie einen Chat-Partner fragen kannst:
