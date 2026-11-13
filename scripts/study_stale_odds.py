@@ -458,10 +458,22 @@ def on_grid(p: pd.Series, cut: pd.Timestamp) -> pd.Series | None:
     return p.reindex(p.index.union(grid)).ffill().reindex(grid)
 
 
-def moves(P: pd.Series, jump: float) -> list[dict]:
-    """A venue's big pre-match moves on one outcome's minute prices."""
+def moves(P: pd.Series, jump: float, live: bool = False) -> list[dict]:
+    """A venue's big pre-match moves on one outcome's minute prices.
+
+    By default a move must hold three hours on and is timed where it
+    crossed half way: a clean event for timing the venues, but one picked
+    with hindsight. `live` takes every move at the minute it reached
+    `jump` within 30 minutes, held or not: what a bettor alerted then sees."""
     out = []
     for t, sgn in first_jumps(P, jump):
+        if live:
+            t0, t1 = t - WINDOW, min(t + AFTER, P.index[-1])
+            if t0 < P.index[0]:
+                continue
+            out.append({"t0": t0, "t1": t1, "sgn": sgn, "t_x": t, "move": float((P[t] - P[t0]) * sgn),
+                        "close": float(P.iloc[-1]), "p_at": float(P[t])})
+            continue
         t0, t1 = t - BEFORE, min(t + AFTER, P.index[-1])
         if t0 < P.index[0] or t1 - t < WINDOW or (P[t1] - P[t0]) * sgn < jump:
             continue
@@ -504,7 +516,8 @@ def judge(x: dict, src: dict, b365: Bet365, cut: pd.Timestamp) -> dict:
             "beat_bet365_close": round(o_stale / o_close - 1, 4) if o_close else None}
 
 
-def study_match(match: dict, start: pd.Timestamp, sources: list[dict], jump: float, b365: Bet365) -> tuple[list, list]:
+def study_match(match: dict, start: pd.Timestamp, sources: list[dict], jump: float, b365: Bet365,
+                live: bool = False) -> tuple[list, list]:
     cut = start - pd.Timedelta(minutes=2)
     rows, grids = [], []
     for src in sources:
@@ -513,7 +526,7 @@ def study_match(match: dict, start: pd.Timestamp, sources: list[dict], jump: flo
         if P is None:
             continue
         grids.append((src, P))
-        for x in moves(P, jump):
+        for x in moves(P, jump, live):
             rows.append({"match": f"{match['home']} - {match['away']}", "start": start.isoformat(), **judge(x, src, b365, cut)})
     # who moves first, Polymarket or Kalshi: the same outcome on both
     pairs = []
@@ -562,7 +575,10 @@ def main() -> None:
     ap.add_argument("--days", type=int, default=6)
     ap.add_argument("--jump", type=float, default=0.03)
     ap.add_argument("--leagues", default=",".join(LEAGUES))
+    ap.add_argument("--live", action="store_true",
+                    help="every move at the minute it reached --jump, held or not (report: stale_odds_bet365_live.json)")
     args = ap.parse_args()
+    out = OUT.with_name("stale_odds_bet365_live.json") if args.live else OUT
     now = pd.Timestamp.now(tz="UTC")
     rows, pairs, counts = [], [], {}
     for code in args.leagues.split(","):
@@ -585,7 +601,7 @@ def main() -> None:
                             and find_match(sorted(set(names))[:2], day, [match]) is not None:
                         sources += kalshi_for_match(group, match, b365, code)
                         break
-                r, p = study_match(match, e["start"], sources, args.jump, b365)
+                r, p = study_match(match, e["start"], sources, args.jump, b365, args.live)
                 for x in r:
                     x["league"] = code
                 rows += r
@@ -600,12 +616,12 @@ def main() -> None:
     for p in pairs:
         lead_by.setdefault(LEAGUES[p["league"]][0], {}).setdefault(p["kind"], []).append(p)
     report = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "days": args.days,
-              "jump": args.jump, "bookmaker": "bet365.us (BetExplorer from a US address)", "matches": counts,
+              "jump": args.jump, "live": args.live, "bookmaker": "bet365.us (BetExplorer from a US address)", "matches": counts,
               "by_sport": {s: {v: {k: summary(x) for k, x in kinds.items()} for v, kinds in venues.items()} for s, venues in by.items()},
               "by_venue": {v: summary([r for r in rows if r["venue"] == v]) for v in ("Polymarket", "Kalshi")},
               "kalshi_vs_polymarket": {s: {k: lead(x) for k, x in kinds.items()} for s, kinds in lead_by.items()},
               "all": summary(rows), "moves": rows, "pairs": pairs}
-    OUT.write_text(json.dumps(report, indent=1, default=str))
+    out.write_text(json.dumps(report, indent=1, default=str))
     print(json.dumps({k: report[k] for k in ("matches", "by_venue", "kalshi_vs_polymarket")}, indent=1, default=str))
 
 
