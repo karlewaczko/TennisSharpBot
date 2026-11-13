@@ -111,11 +111,11 @@ Darunter folgt der Bereich **Frische Wallets**. Er zeigt neue Konten, die in ihr
 
 ### Kurssprung-Alarm per Telegram oder Discord (NBA)
 
-Jeden Abend ab etwa 21:40 Uhr bis etwa 3:20 Uhr (österreichische Zeit) beobachtet GitHub die NBA-Siegerwetten bei Polymarket und Kalshi, alle 20 Sekunden. Der Start kann sich bei GitHub etwas verzögern. Steigt eine Seite binnen 30 Minuten um 3 Punkte oder mehr, kommt eine Nachricht wie diese:
+Jeden Abend ab etwa 21:40 Uhr bis etwa 3:20 Uhr (österreichische Zeit) beobachtet GitHub die NBA-Siegerwetten bei Polymarket und Kalshi, alle 20 Sekunden. Der Start kann sich bei GitHub etwas verzögern. Steigt die Siegchance einer Seite binnen 30 Minuten um 3 Prozentpunkte oder mehr (die faire Quote fällt also, etwa von 1,82 auf 1,69), kommt eine Nachricht wie diese:
 
 > 🏀 NBA · Lakers – Celtics · Start 14.11. 01:30
-> Kalshi: Lakers 55 % → 59 % in 30 Min.
-> Polymarket jetzt 58 %
+> Kalshi: Lakers Quote 1,82 → 1,69 in 30 Min.
+> Polymarket jetzt Quote 1,72
 > bet365 lohnt ab Quote 1,75 (fair 1,71)
 
 Öffne dann sofort bet365. Liegt die Quote dort noch auf oder über dem genannten Wert, ist die Wette nach unserer Rechnung etwas wert. bet365 zieht meist binnen 1 bis 3 Minuten nach.

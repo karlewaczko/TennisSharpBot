@@ -574,7 +574,7 @@ footer p { margin: 0; }
   function renderJumps() {
     $("jumps-sub").innerHTML = `Siegwetten der fünf Sportarten, deren Polymarket-Kurs vor dem Anpfiff binnen 30&nbsp;Minuten um mindestens ` +
       `<b>${nf0.format(S.jumpMin * 100)}&nbsp;Punkte</b> gesprungen ist (1&nbsp;Cent = 1&nbsp;Prozentpunkt Siegchance), aus Polymarkets Minutenverlauf der ` +
-      `letzten Stunden, ohne die ersten zwei Stunden eines neuen Marktes (da findet der Eröffnungskurs erst seinen Platz). Vorher: der Kurs eine halbe Stunde vor dem Sprung. Quote = 1&nbsp;/ Kurs, also ohne Buchmacher-Marge. ` +
+      `letzten Stunden, ohne die ersten zwei Stunden eines neuen Marktes (da findet der Eröffnungskurs erst seinen Platz). Quote vorher: die faire Quote eine halbe Stunde vor dem Sprung. Quote = 1&nbsp;/ Kurs, also ohne Buchmacher-Marge. ` +
       `Blass: Der Sprung hat sich mehr als zur Hälfte zurückgebildet. <b>Was ein Sprung bedeutet:</b> Im Tennis bewegte sich Polymarket in unserer Messung (173 Matches, 22 große Sprünge) praktisch gleichzeitig mit den schnellsten Buchmachern, im Median 1&nbsp;Minute auseinander, und gut 8&nbsp;Minuten vor dem mittleren. Ein Sprung zeigt also, dass gerade etwas passiert. Pinnacle hat ihn aber meist schon, und der alte Kurs langsamer Buchmacher schlug danach Pinnacles Schlusskurs im Schnitt nicht (Bericht, Abschnitt 4i). ` +
       `<b>bet365 lohnt ab:</b> die niedrigste Quote, die bei der Siegchance von jetzt noch etwas bringt (faire Quote plus 2&nbsp;%). Über alle Sportarten gerechnet (13.&nbsp;November, 851 Sprünge bei Polymarket und Kalshi) brachte bet365s Quote eine Minute nach einem Sprung nur bei <b>NBA-Siegerwetten</b> etwas: +4&nbsp;% im Schnitt, Median etwa null, +7&nbsp;% wenn bet365 noch nicht reagiert hatte. Handicap, Über/Unter, NHL, Fußball und Tennis brachten nichts (Bericht, Abschnitt 4j). Kalshi meldet die NBA-Sprünge oft eine Minute früher; die kommen per Telegram oder Discord, denn Kalshi lässt sich vom Browser aus nicht abfragen.`;
     if (!J.loaded) return;
@@ -585,7 +585,7 @@ footer p { margin: 0; }
       if (J.shown && J.notify) {
         try {
           new Notification(`Kurssprung: ${r.label} ${signed((r.pn - r.pb) * 100, nf0.format)} Punkte`,
-                           { body: `${r.x.title} · Start ${until(r.x.start)} · ${cents(r.pb)} → ${cents(r.pn)}` +
+                           { body: `${r.x.title} · Start ${until(r.x.start)} · Quote ${odds(r.pb)} → ${odds(r.pn)}` +
                                    (leastOdds(r.pn) != null ? ` · bet365 lohnt ab ${nf2.format(leastOdds(r.pn))}` : "") });
         } catch (e) { /* the page still shows it */ }
       }
@@ -596,7 +596,7 @@ footer p { margin: 0; }
         `Gerade kein Kurssprung ab ${nf0.format(S.jumpMin * 100)} Punkten vor Spielbeginn in dieser Auswahl (Märkte ab ${usd(S.jumpVol)} Volumen, ${J.markets.size} beobachtet).`}</p>`;
       return;
     }
-    let html = '<table><thead><tr><th>Sprung</th><th>Spiel</th><th>Steigt</th><th class="num">Vorher</th><th class="num">Jetzt</th><th class="num">bet365 lohnt ab</th><th class="num">Volumen</th></tr></thead><tbody>';
+    let html = '<table><thead><tr><th>Sprung</th><th>Spiel</th><th>Steigt</th><th class="num">Quote vorher</th><th class="num">Quote jetzt</th><th class="num">bet365 lohnt ab</th><th class="num">Volumen</th></tr></thead><tbody>';
     for (const r of rows.slice(0, 40)) {
       const x = r.x, at = r.a.t * 1000, fresh = J.seen.get(r.a.cid + ":" + r.a.t) > 0 && now - J.seen.get(r.a.cid + ":" + r.a.t) < 10 * 60e3;
       const cls = [fresh ? "new" : "", r.held ? "" : "faded"].filter(Boolean).join(" ");
@@ -605,9 +605,9 @@ footer p { margin: 0; }
               `<span class="meta">Start ${esc(until(x.start))}</span><br>` +
               `<a class="meta" href="https://polymarket.com/event/${esc(baseSlug(x.eventSlug))}" target="_blank" rel="noopener">Polymarket ↗</a> ${piMarket(x.eventSlug)}</td>` +
               `<td class="side">${esc(r.label)}${r.held ? "" : '<br><span class="meta">wieder zurück</span>'}</td>` +
-              `<td class="num">${cents(r.pb)}<br><span class="meta">Quote ${odds(r.pb)}</span></td>` +
-              `<td class="num">${cents(r.pn)} ${moveTag(r.pn - r.pb, " ¢")}<br><span class="meta">Quote ${odds(r.pn)}` +
-              `${Math.round(r.top * 100) > Math.round(r.pn * 100) ? ` · Spitze ${cents(r.top)}` : ""}</span></td>` +
+              `<td class="num"><b>${odds(r.pb)}</b><br><span class="meta">${cents(r.pb)}</span></td>` +
+              `<td class="num"><b>${odds(r.pn)}</b><br><span class="meta">${cents(r.pn)} ${moveTag(r.pn - r.pb, " ¢")}` +
+              `${Math.round(r.top * 100) > Math.round(r.pn * 100) ? ` · Spitze ${odds(r.top)}` : ""}</span></td>` +
               `<td class="num"><b>${leastOdds(r.pn) != null ? nf2.format(leastOdds(r.pn)) : "\u2013"}</b><br><span class="meta">fair ${odds(r.pn)}</span></td>` +
               `<td class="num">${usd(x.volume)}<br><span class="meta">Liquidität ${usd(x.liquidity)}</span></td></tr>`;
     }

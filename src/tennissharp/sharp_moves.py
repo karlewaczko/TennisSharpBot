@@ -70,6 +70,11 @@ def fmt_odds(o: float | None) -> str:
     return "–" if o is None else f"{o:.2f}".replace(".", ",")
 
 
+def fair_odds(p: float) -> float | None:
+    """A chance as decimal odds without any margin: 1 / p."""
+    return 1 / p if 0 < p < 1 else None
+
+
 def alert_text(league: str, game: str, start_local: str, team: str, venue: str, before: float, now: float,
                others: dict[str, float], link: str | None = None) -> tuple[str, float, float | None]:
     """The message, the fair chance (the venues' prices for the side now, averaged) and the minimum odds."""
@@ -77,9 +82,9 @@ def alert_text(league: str, game: str, start_local: str, team: str, venue: str, 
     fair = sum(prices) / len(prices)
     least = min_odds(fair)
     lines = [f"{league} · {game} · Start {start_local}",
-             f"{venue}: {team} {fmt_pct(before)} → {fmt_pct(now)} in 30 Min."]
-    lines += [f"{v} jetzt {fmt_pct(p)}" for v, p in others.items()]
-    lines.append(f"bet365 lohnt ab Quote {fmt_odds(least)} (fair {fmt_odds(1 / fair)})")
+             f"{venue}: {team} Quote {fmt_odds(fair_odds(before))} → {fmt_odds(fair_odds(now))} in 30 Min."]
+    lines += [f"{v} jetzt Quote {fmt_odds(fair_odds(p))}" for v, p in others.items()]
+    lines.append(f"bet365 lohnt ab Quote {fmt_odds(least)} (fair {fmt_odds(fair_odds(fair))})")
     lines.append("Test: nur Siegerwette, sofort prüfen, bet365 zieht meist binnen 1–3 Minuten nach.")
     if link:
         lines.append(link)
