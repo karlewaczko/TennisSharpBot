@@ -431,6 +431,8 @@ def first_jumps(x: pd.Series, jump: float):
 
 
 def crossing(s: pd.Series, t0, t1, sgn: int, least: float):
+    if s.empty:
+        return None
     pre, post = s[s.index <= t0], s[s.index <= t1]
     if pre.empty or post.empty or (post.iloc[-1] - pre.iloc[-1]) * sgn < least:
         return None
@@ -440,11 +442,15 @@ def crossing(s: pd.Series, t0, t1, sgn: int, least: float):
 
 
 def level(s: pd.Series, t):
+    if s.empty:
+        return np.nan
     s = s[s.index <= t]
     return float(s.iloc[-1]) if len(s) else np.nan
 
 
 def on_grid(p: pd.Series, cut: pd.Timestamp) -> pd.Series | None:
+    if p.empty:                                   # an empty series has no time index to compare
+        return None
     p = p[p.index < cut]
     if len(p) < 60:
         return None
