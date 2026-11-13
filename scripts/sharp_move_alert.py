@@ -14,9 +14,11 @@ DISCORD_WEBHOOK_URL is; without either the alert is only printed and logged.
 Every alert is appended to data/processed/sharp_move_alerts.csv, so the test
 can be reckoned up against the closing prices later.
 
-.github/workflows/sharp-moves.yml runs it every evening for the hours before
-the NBA tips off. Kalshi refuses requests from a browser, so this cannot
-live in docs/profis.html; the radar there shows Polymarket's jumps only.
+.github/workflows/sharp-moves.yml runs it around the clock, in runs of 350
+minutes that each start the next. On a PC it runs as long as --minutes says
+and reads the channels from config/.env. Kalshi refuses requests from a
+browser, so this cannot live in docs/profis.html; the radar there shows
+Polymarket's jumps only.
 """
 import _bootstrap  # noqa: F401
 import argparse
@@ -217,7 +219,7 @@ def local(ts: float) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--minutes", type=float, default=345, help="how long to watch")
+    ap.add_argument("--minutes", type=float, default=350, help="how long to watch")
     ap.add_argument("--poll", type=float, default=20, help="seconds between price checks")
     ap.add_argument("--leagues", default="nba")
     ap.add_argument("--test", action="store_true", help="send one test message and stop")
