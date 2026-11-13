@@ -33,5 +33,6 @@ def test_the_lowest_price_worth_taking():
 def test_the_message_names_the_jump_and_the_price_to_beat():
     text, fair, least = sm.alert_text("🏀 NBA", "Lakers – Celtics", "14.11. 01:30", "Lakers", "Kalshi", 0.55, 0.59,
                                       {"Polymarket": 0.57}, "https://polymarket.com/event/nba-lal-bos-2026-11-13")
-    assert "Kalshi: Lakers 55 % → 59 % in 30 Min." in text and "Polymarket jetzt 57 %" in text
+    assert "Kalshi: Lakers Quote 1,82 → 1,69 in 30 Min." in text and "Polymarket jetzt Quote 1,75" in text
+    assert "%" not in text                                                # odds only, no chances
     assert fair == 0.58 and least == sm.min_odds(0.58) and f"ab Quote {least:.2f}".replace(".", ",") in text
