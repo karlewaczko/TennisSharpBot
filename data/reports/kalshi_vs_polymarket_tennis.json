@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-11-13T00:17:46+00:00",
+ "days": 6,
+ "jump": 0.03,
+ "matches_on_both": 52,
+ "kalshi_vs_polymarket": {
+  "n": 5,
+  "median_min": -1.0,
+  "polymarket_first": 0.4,
+  "same_minute": 0.4,
+  "kalshi_first": 0.2
+ },
+ "moves": [
+  {
+   "slug": "atp-dzumhur-montes-2026-11-07",
+   "found_in": "Polymarket",
+   "t": "2026-11-07T05:14:00+00:00",
+   "kalshi_after_polymarket_min": 12.0
+  },
+  {
+   "slug": "atp-ruud-alcaraz-2026-11-07",
+   "found_in": "Kalshi",
+   "t": "2026-11-07T15:36:00+00:00",
+   "kalshi_after_polymarket_min": -5.0
+  },
+  {
+   "slug": "atp-ymer-cerund-2026-11-08",
+   "found_in": "Polymarket",
+   "t": "2026-11-08T10:46:00+00:00",
+   "kalshi_after_polymarket_min": 64.0
+  },
+  {
+   "slug": "atp-etcheve-tirante-2026-11-10",
+   "found_in": "Polymarket",
+   "t": "2026-11-10T13:14:00+00:00",
+   "kalshi_after_polymarket_min": -1.0
+  },
+  {
+   "slug": "atp-musetti-humbert-2026-11-12",
+   "found_in": "Polymarket",
+   "t": "2026-11-11T20:10:00+00:00",
+   "kalshi_after_polymarket_min": -1.0
+  }
+ ]
+}

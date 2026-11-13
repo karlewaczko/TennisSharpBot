@@ -162,7 +162,7 @@ footer p { margin: 0; }
   <section id="sec-jumps">
     <div class="sechead"><h2><button class="stoggle" type="button" aria-expanded="true" data-sec="jumps">Kurssprünge vor Spielbeginn</button></h2>
       <div class="controls">
-        <label class="field" for="jmin">ab <select id="jmin"><option value="0.03">3 Punkten</option><option value="0.05" selected>5 Punkten</option><option value="0.1">10 Punkten</option></select></label>
+        <label class="field" for="jmin">ab <select id="jmin"><option value="0.03" selected>3 Punkten</option><option value="0.05">5 Punkten</option><option value="0.1">10 Punkten</option></select></label>
         <label class="field" for="jvol">Volumen ab <select id="jvol"><option value="1000">1.000 $</option><option value="5000" selected>5.000 $</option><option value="25000">25.000 $</option><option value="100000">100.000 $</option></select></label>
         <button class="chip ghost" type="button" id="jnotify">Benachrichtigen</button>
       </div></div>
@@ -217,7 +217,7 @@ footer p { margin: 0; }
   const GAMMA = "https://gamma-api.polymarket.com";
   const REFRESH_S = 90, FEED_HOURS = 48, POOL = 6, MERGE_GAP_S = 600;
   const LABEL = { tennis: "Tennis", soccer: "Fußball", basketball: "Basketball", football: "American Football", baseball: "Baseball" };
-  const S = { feedShown: 30, sport: "all", pre: false, own: true, min: 100, sort: "stake", freshMin: 10000, freshAll: false, jumpMin: 0.05, jumpVol: 5000,
+  const S = { feedShown: 30, sport: "all", pre: false, own: true, min: 100, sort: "stake", freshMin: 10000, freshAll: false, jumpMin: 0.03, jumpVol: 5000,
               pos: new Map(), trades: new Map(), events: new Map(),
               loaded: new Set(), updated: 0, next: 0, failed: 0, loading: false, error: "" };
 
@@ -477,6 +477,9 @@ footer p { margin: 0; }
   // jumps fell there, the opening price finding its level, not news.
   const CLOB = "https://clob.polymarket.com";
   const JUMP_WINDOW_S = 1800, JUMP_LOOK_S = 3 * 3600, JUMP_KEEP_MS = 6 * 3600e3, JUMP_FLOOR = 1000, JUMP_SETTLE_S = 2 * 3600;
+  // The lowest bookmaker odds still worth taking on a side whose fair chance is p: fair odds plus 2 %, rounded up (tennissharp.sharp_moves).
+  const JUMP_MARGIN = 0.02;
+  const leastOdds = (p) => (p > 0 && p < 1 ? Math.ceil((1 + JUMP_MARGIN) / p * 100 - 1e-9) / 100 : null);
   const J = { markets: new Map(), alerts: new Map(), checked: new Map(), seen: new Map(), loaded: false, busy: false, notify: false, shown: false, error: false };
   const gameStart = (s) => Date.parse(String(s || "").trim().replace(" ", "T").replace(/([+-]\d\d)$/, "$1:00")) || null;
   const isoUTC = (ms) => new Date(ms).toISOString().replace(/\.\d+Z$/, "Z");
@@ -572,7 +575,8 @@ footer p { margin: 0; }
     $("jumps-sub").innerHTML = `Siegwetten der fünf Sportarten, deren Polymarket-Kurs vor dem Anpfiff binnen 30&nbsp;Minuten um mindestens ` +
       `<b>${nf0.format(S.jumpMin * 100)}&nbsp;Punkte</b> gesprungen ist (1&nbsp;Cent = 1&nbsp;Prozentpunkt Siegchance), aus Polymarkets Minutenverlauf der ` +
       `letzten Stunden, ohne die ersten zwei Stunden eines neuen Marktes (da findet der Eröffnungskurs erst seinen Platz). Vorher: der Kurs eine halbe Stunde vor dem Sprung. Quote = 1&nbsp;/ Kurs, also ohne Buchmacher-Marge. ` +
-      `Blass: Der Sprung hat sich mehr als zur Hälfte zurückgebildet. <b>Was ein Sprung bedeutet:</b> Im Tennis bewegte sich Polymarket in unserer Messung (173 Matches, 22 große Sprünge) praktisch gleichzeitig mit den schnellsten Buchmachern, im Median 1&nbsp;Minute auseinander, und gut 8&nbsp;Minuten vor dem mittleren. Ein Sprung zeigt also, dass gerade etwas passiert. Pinnacle hat ihn aber meist schon, und der alte Kurs langsamer Buchmacher schlug danach Pinnacles Schlusskurs im Schnitt nicht (Bericht, Abschnitt 4i).`;
+      `Blass: Der Sprung hat sich mehr als zur Hälfte zurückgebildet. <b>Was ein Sprung bedeutet:</b> Im Tennis bewegte sich Polymarket in unserer Messung (173 Matches, 22 große Sprünge) praktisch gleichzeitig mit den schnellsten Buchmachern, im Median 1&nbsp;Minute auseinander, und gut 8&nbsp;Minuten vor dem mittleren. Ein Sprung zeigt also, dass gerade etwas passiert. Pinnacle hat ihn aber meist schon, und der alte Kurs langsamer Buchmacher schlug danach Pinnacles Schlusskurs im Schnitt nicht (Bericht, Abschnitt 4i). ` +
+      `<b>bet365 lohnt ab:</b> die niedrigste Quote, die bei der Siegchance von jetzt noch etwas bringt (faire Quote plus 2&nbsp;%). Über alle Sportarten gerechnet (13.&nbsp;November, 851 Sprünge bei Polymarket und Kalshi) brachte bet365s Quote eine Minute nach einem Sprung nur bei <b>NBA-Siegerwetten</b> etwas: +4&nbsp;% im Schnitt, Median etwa null, +7&nbsp;% wenn bet365 noch nicht reagiert hatte. Handicap, Über/Unter, NHL, Fußball und Tennis brachten nichts (Bericht, Abschnitt 4j). Kalshi meldet die NBA-Sprünge oft eine Minute früher; die kommen per Telegram oder Discord, denn Kalshi lässt sich vom Browser aus nicht abfragen.`;
     if (!J.loaded) return;
     const rows = jumpRows(), el = $("jumps"), now = Date.now();
     for (const r of rows) {
@@ -581,7 +585,8 @@ footer p { margin: 0; }
       if (J.shown && J.notify) {
         try {
           new Notification(`Kurssprung: ${r.label} ${signed((r.pn - r.pb) * 100, nf0.format)} Punkte`,
-                           { body: `${r.x.title} · Start ${until(r.x.start)} · ${cents(r.pb)} → ${cents(r.pn)}` });
+                           { body: `${r.x.title} · Start ${until(r.x.start)} · ${cents(r.pb)} → ${cents(r.pn)}` +
+                                   (leastOdds(r.pn) != null ? ` · bet365 lohnt ab ${nf2.format(leastOdds(r.pn))}` : "") });
         } catch (e) { /* the page still shows it */ }
       }
     }
@@ -591,7 +596,7 @@ footer p { margin: 0; }
         `Gerade kein Kurssprung ab ${nf0.format(S.jumpMin * 100)} Punkten vor Spielbeginn in dieser Auswahl (Märkte ab ${usd(S.jumpVol)} Volumen, ${J.markets.size} beobachtet).`}</p>`;
       return;
     }
-    let html = '<table><thead><tr><th>Sprung</th><th>Spiel</th><th>Steigt</th><th class="num">Vorher</th><th class="num">Jetzt</th><th class="num">Volumen</th></tr></thead><tbody>';
+    let html = '<table><thead><tr><th>Sprung</th><th>Spiel</th><th>Steigt</th><th class="num">Vorher</th><th class="num">Jetzt</th><th class="num">bet365 lohnt ab</th><th class="num">Volumen</th></tr></thead><tbody>';
     for (const r of rows.slice(0, 40)) {
       const x = r.x, at = r.a.t * 1000, fresh = J.seen.get(r.a.cid + ":" + r.a.t) > 0 && now - J.seen.get(r.a.cid + ":" + r.a.t) < 10 * 60e3;
       const cls = [fresh ? "new" : "", r.held ? "" : "faded"].filter(Boolean).join(" ");
@@ -603,6 +608,7 @@ footer p { margin: 0; }
               `<td class="num">${cents(r.pb)}<br><span class="meta">Quote ${odds(r.pb)}</span></td>` +
               `<td class="num">${cents(r.pn)} ${moveTag(r.pn - r.pb, " ¢")}<br><span class="meta">Quote ${odds(r.pn)}` +
               `${Math.round(r.top * 100) > Math.round(r.pn * 100) ? ` · Spitze ${cents(r.top)}` : ""}</span></td>` +
+              `<td class="num"><b>${leastOdds(r.pn) != null ? nf2.format(leastOdds(r.pn)) : "\u2013"}</b><br><span class="meta">fair ${odds(r.pn)}</span></td>` +
               `<td class="num">${usd(x.volume)}<br><span class="meta">Liquidität ${usd(x.liquidity)}</span></td></tr>`;
     }
     el.innerHTML = html + "</tbody></table>";

@@ -569,6 +569,31 @@ In 20 der 22 Sprünge zogen Buchmacher mit. In 2 bewegte sich nur Polymarket und
 - **Belastbar** wird die Pinnacle-Frage erst mit einer eigenen, minutengenauen Aufzeichnung, etwa über die PS3838-API mit eigenem Konto.
 - **Die Stichprobe ist klein:** 22 Sprünge. Die Zahlen zeigen Größenordnungen, keine genauen Werte.
 
+## 4j. bet365 nach Kurssprüngen bei Polymarket und Kalshi, alle Sportarten (13. November 2026)
+
+Frage: Wenn Polymarket oder Kalshi vor Spielbeginn stark springt, hat bet365 dann noch die alte, zu hohe Quote, und ist die etwas wert? Ohne Steuer gerechnet.
+
+Methode (`scripts/study_stale_odds.py`, `scripts/study_kalshi_tennis.py`, `scripts/study_pm_leadlag.py`), 7. bis 13. November:
+
+- **Quellen:** Polymarket in Minutenkursen, Kalshi in Minutenkerzen (Mitte aus Geld und Brief), bet365 aus BetExplorers Quotenverlauf. Für Tennis kommen TennisExplorer mit Pinnacle und Betfair dazu.
+- **US-Adresse:** BetExplorer zeigt einer US-Adresse nur US-Bücher, also bet365.us statt bet365.com. Pinnacle und Betfair gibt es dort nur im Tennis. American Football führt BetExplorer gar nicht.
+- **Sprung:** 3 Punkte oder mehr in 30 Minuten.
+- **Live-Rechnung:** Wette eine Minute nach dem Sprung zur dann gültigen bet365-Quote, ob der Sprung hält oder nicht. Wert gegen den letzten Kurs der Börse vor Spielbeginn. Eine erste Rechnung zählte nur Sprünge, die drei Stunden hielten. Das ist im Nachhinein ausgewählt, ihre Werte (NBA-Sieger +6 bis +7 %) waren daher zu hoch.
+
+Ergebnisse (Live-Rechnung, 851 Sprünge, 293 mit bet365-Kurs):
+
+| Markt | Fälle | Wert Schnitt | Median | bet365 eine Minute später noch unverändert |
+|---|---|---|---|---|
+| NBA Sieger | 75 | +4,3 % (±3,0) | +0,4 % | 28 Fälle: +6,9 % (±6,2), Median +2,2 % |
+| NBA Handicap/Über-Unter | 167 | um 0 bis −2 % | negativ | ohne Wert; bet365 verschiebt oft die Linie statt die Quote |
+| NHL Sieger | 11 | −1,7 % | −1,1 % | – |
+| Fußball (5 Ligen) | 40 | negativ | negativ | – |
+| Tennis (TennisExplorer, bet365.com) | 11 | −2,2 % | −1,3 % | Vorwoche +0,8 % / −1,1 % |
+
+- **Tempo:** bet365 zieht im Median 0 bis 3 Minuten nach. Länger als 5 Minuten blieb die alte Quote nur in 9 bis 26 % der Sieger-Märkte.
+- **Kalshi gegen Polymarket:** praktisch gleich schnell. Bei NBA-Siegern war Kalshi in 45 % von 65 Fällen zuerst, beide in derselben Minute in 46 %. Bei Handicap und Über/Unter in zwei Dritteln dieselbe Minute. Tennis: 5 Fälle, kein Unterschied.
+- **Lesart:** Ein möglicher Vorteil zeigt sich nur bei NBA-Siegerwetten, wenn bet365 nach dem Sprung noch nicht reagiert hat. Die Stichprobe ist klein (6 Tage) und von wenigen großen Treffern getragen, und es geht um bet365.us. Vor echtem Einsatz braucht es einen Vorwärtstest mit Alarm in Sekunden statt Minuten.
+
 ## 5. Datenquellen — Bewertung
 
 | Quelle | Taugt für | Status |
