@@ -2935,3 +2935,35 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-15T10:59:47+00:00,3378649,2026-11-17,Kobe challenger,Challenger,Taro Daniel,Polymarket,0.685,0.6858,Betfair,0.09,4542.7103
 2026-11-15T10:59:47+00:00,3379991,2026-11-17,Montevideo challenger,Challenger,Juan Pablo Varillas,Polymarket,0.47,0.5035,Betfair,0.08,361.149
 2026-11-15T10:59:47+00:00,3379991,2026-11-17,Montevideo challenger,Challenger,Gonzalo Bueno,Polymarket,0.53,0.4965,Betfair,0.08,361.149
+2026-11-15T20:26:45+00:00,3380183,2026-11-16,Colina WTA,Tour,Podoroska N.,Polymarket,0.63,0.6474,Betfair,0.06,4988.4131
+2026-11-15T20:26:45+00:00,3380183,2026-11-16,Colina WTA,Tour,Lepchenko V.,Polymarket,0.37,0.3526,Betfair,0.06,4988.4131
+2026-11-15T20:26:45+00:00,3380193,2026-11-16,Colina WTA,Tour,Sofia Costoulas,Polymarket,0.365,0.3607,Betfair,0.05,5352.3489
+2026-11-15T20:26:45+00:00,3380193,2026-11-16,Colina WTA,Tour,Nuria Brancaccio,Polymarket,0.635,0.6393,Betfair,0.05,5352.3489
+2026-11-15T20:26:45+00:00,3380197,2026-11-16,Colina WTA,Tour,Irene Burillo Escorihuela,Polymarket,0.54,0.5531,Betfair,0.12,585.9709
+2026-11-15T20:26:45+00:00,3380197,2026-11-16,Colina WTA,Tour,Darja Semenistaja,Polymarket,0.46,0.4469,Betfair,0.12,585.9709
+2026-11-15T20:26:45+00:00,3379047,2026-11-16,Helsinki challenger,Challenger,Nicolai Budkov Kjaer,Polymarket,0.575,0.5764,Betfair,0.03,2828.7342
+2026-11-15T20:26:45+00:00,3379047,2026-11-16,Helsinki challenger,Challenger,Mika Brunold,Polymarket,0.425,0.4236,Betfair,0.03,2828.7342
+2026-11-15T20:26:45+00:00,3379991,2026-11-16,Montevideo challenger,Challenger,Juan Pablo Varillas,Polymarket,0.51,0.5053,Betfair,0.14,431.231
+2026-11-15T20:26:45+00:00,3379991,2026-11-16,Montevideo challenger,Challenger,Gonzalo Bueno,Polymarket,0.49,0.4947,Betfair,0.14,431.231
+2026-11-15T20:26:45+00:00,3379993,2026-11-16,Montevideo challenger,Challenger,Boyer T.,Polymarket,0.375,0.4106,Betfair,0.03,1049.5136
+2026-11-15T20:26:45+00:00,3379993,2026-11-16,Montevideo challenger,Challenger,Dellien H.,Polymarket,0.625,0.5894,Betfair,0.03,1049.5136
+2026-11-15T20:26:45+00:00,3378595,2026-11-16,Sydney challenger,Challenger,Omar Jasika,Polymarket,0.415,0.4357,Betfair,0.01,6505.5082
+2026-11-15T20:26:45+00:00,3378595,2026-11-16,Sydney challenger,Challenger,Alex Bolt,Polymarket,0.585,0.5643,Betfair,0.01,6505.5082
+2026-11-15T20:26:45+00:00,3378595,2026-11-16,Sydney challenger,Challenger,Omar Jasika,Kalshi,0.415,0.4357,Betfair,0.03,338.42459999999994
+2026-11-15T20:26:45+00:00,3378595,2026-11-16,Sydney challenger,Challenger,Alex Bolt,Kalshi,0.575,0.5643,Betfair,0.01,338.42459999999994
+2026-11-15T20:26:45+00:00,3378579,2026-11-16,Sydney challenger,Challenger,Dane Sweeny,Polymarket,0.745,0.7687,Betfair,0.01,3747.3279
+2026-11-15T20:26:45+00:00,3378579,2026-11-16,Sydney challenger,Challenger,Christian Langmo,Polymarket,0.255,0.2313,Betfair,0.01,3747.3279
+2026-11-15T20:26:45+00:00,3378589,2026-11-16,Sydney challenger,Challenger,Li Tu,Polymarket,0.49,0.4982,Betfair,0.08,473.8572
+2026-11-15T20:26:45+00:00,3378589,2026-11-16,Sydney challenger,Challenger,James Mccabe,Polymarket,0.51,0.5018,Betfair,0.08,473.8572
+2026-11-15T20:26:45+00:00,3379169,2026-11-17,Metz challenger,Challenger,Alexandre Muller,Polymarket,0.415,0.4017,Betfair,0.05,7001.9827
+2026-11-15T20:26:45+00:00,3379169,2026-11-17,Metz challenger,Challenger,Zsombor Piros,Polymarket,0.585,0.5983,Betfair,0.05,7001.9827
+2026-11-15T20:26:45+00:00,3380047,2026-11-17,Drummondville challenger,Challenger,Braden Shick,Polymarket,0.305,0.2799,Betfair,0.07,2825.1956
+2026-11-15T20:26:45+00:00,3380047,2026-11-17,Drummondville challenger,Challenger,Aidan Mayo,Polymarket,0.695,0.7201,Betfair,0.07,2825.1956
+2026-11-15T20:26:45+00:00,3380053,2026-11-17,Drummondville challenger,Challenger,Keegan Rice,Polymarket,0.23,0.272,Betfair,0.06,1028.5767
+2026-11-15T20:26:45+00:00,3380053,2026-11-17,Drummondville challenger,Challenger,Liam Draxl,Polymarket,0.77,0.728,Betfair,0.06,1028.5767
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Challenger,Cannon Kingsley,Polymarket,0.515,0.6044,Betfair,0.05,1355.3713
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Challenger,Justin Boulais,Polymarket,0.485,0.3956,Betfair,0.05,1355.3713
+2026-11-15T20:26:45+00:00,3378643,2026-11-17,Kobe challenger,Challenger,Niels Mcdonald,Polymarket,0.34,0.3433,Betfair,0.08,3544.1238
+2026-11-15T20:26:45+00:00,3378643,2026-11-17,Kobe challenger,Challenger,Keegan Smith,Polymarket,0.66,0.6567,Betfair,0.08,3544.1238
+2026-11-15T20:26:45+00:00,3378649,2026-11-17,Kobe challenger,Challenger,Daniel Michalski,Polymarket,0.285,0.266,Betfair,0.03,1060.0316
+2026-11-15T20:26:45+00:00,3378649,2026-11-17,Kobe challenger,Challenger,Taro Daniel,Polymarket,0.715,0.734,Betfair,0.03,1060.0316

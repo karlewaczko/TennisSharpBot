@@ -572,3 +572,17 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-15T10:59:47+00:00,3379047,2026-11-17,Helsinki challenger,Mika Brunold,1xBet,book,value,2.27,0.4435,0.0067,Betfair
 2026-11-15T10:59:47+00:00,3379047,2026-11-17,Helsinki challenger,Mika Brunold,Betsson,book,value,2.29,0.4435,0.0156,Betfair
 2026-11-15T10:59:47+00:00,3379047,2026-11-17,Helsinki challenger,Nicolai Budkov Kjaer,Polymarket,prediction,value,1.843,0.5565,0.0259,Betfair
+2026-11-15T20:26:45+00:00,3379991,2026-11-16,Montevideo challenger,Juan Pablo Varillas,1xBet,book,value,1.98,0.5053,0.0005,Betfair
+2026-11-15T20:26:45+00:00,3379993,2026-11-16,Montevideo challenger,Boyer T.,Polymarket,prediction,value,2.488,0.4106,0.0216,Betfair
+2026-11-15T20:26:45+00:00,3378595,2026-11-16,Sydney challenger,Omar Jasika,Polymarket,prediction,value,2.314,0.4357,0.0082,Betfair
+2026-11-15T20:26:45+00:00,3378579,2026-11-16,Sydney challenger,Christian Langmo,Coral,book,value,4.33,0.2313,0.0014,Betfair
+2026-11-15T20:26:45+00:00,3378579,2026-11-16,Sydney challenger,Christian Langmo,Ladbrokes,book,value,4.33,0.2313,0.0014,Betfair
+2026-11-15T20:26:45+00:00,3378579,2026-11-16,Sydney challenger,Dane Sweeny,Polymarket,prediction,value,1.317,0.7687,0.0123,Betfair
+2026-11-15T20:26:45+00:00,3380053,2026-11-17,Drummondville challenger,Keegan Rice,Polymarket,prediction,value,3.709,0.272,0.0088,Betfair
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,10Bet,book,value,1.7,0.6044,0.0275,Betfair
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,1xBet,book,value,1.7,0.6044,0.0275,Betfair
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,BetVictor,book,value,1.7,0.6044,0.0275,Betfair
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,Betsson,book,value,1.7,0.6044,0.0275,Betfair
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,Interwetten,book,value,1.7,0.6044,0.0275,Betfair
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,bwin,book,value,1.72,0.6044,0.0396,Betfair
+2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,Polymarket,prediction,value,1.81,0.6044,0.0941,Betfair
