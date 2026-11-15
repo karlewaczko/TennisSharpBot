@@ -560,3 +560,15 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-14T19:58:27+00:00,3377747,2026-11-16,Masters Cup ATP,Medvedev D.,Polymarket,prediction,value,1.3,0.7702,0.0015,Betfair
 2026-11-15T01:06:35+00:00,3379047,2026-11-17,Helsinki challenger,Mika Brunold,1xBet,book,value,2.27,0.4467,0.0139,Betfair
 2026-11-15T01:06:35+00:00,3379047,2026-11-17,Helsinki challenger,Mika Brunold,Betsson,book,value,2.29,0.4467,0.0228,Betfair
+2026-11-15T10:59:47+00:00,3380047,2026-11-16,Drummondville challenger,Aidan Mayo,1xBet,book,value,1.33,0.7645,0.0168,Betfair
+2026-11-15T10:59:47+00:00,3380047,2026-11-16,Drummondville challenger,Aidan Mayo,Betsson,book,value,1.33,0.7645,0.0168,Betfair
+2026-11-15T10:59:47+00:00,3380047,2026-11-16,Drummondville challenger,Aidan Mayo,bet-at-home,book,value,1.33,0.7645,0.0168,Betfair
+2026-11-15T10:59:47+00:00,3378579,2026-11-16,Sydney challenger,Christian Langmo,10Bet,book,value,4.0,0.2625,0.0502,Betfair
+2026-11-15T10:59:47+00:00,3378579,2026-11-16,Sydney challenger,Christian Langmo,BetVictor,book,value,4.0,0.2625,0.0502,Betfair
+2026-11-15T10:59:47+00:00,3378579,2026-11-16,Sydney challenger,Christian Langmo,Betsson,book,value,4.1,0.2625,0.0764,Betfair
+2026-11-15T10:59:47+00:00,3378579,2026-11-16,Sydney challenger,Christian Langmo,Interwetten,book,value,4.0,0.2625,0.0502,Betfair
+2026-11-15T10:59:47+00:00,3378579,2026-11-16,Sydney challenger,Christian Langmo,bet-at-home,book,value,4.0,0.2625,0.0502,Betfair
+2026-11-15T10:59:47+00:00,3378579,2026-11-16,Sydney challenger,Dane Sweeny,Polymarket,prediction,value,1.49,0.7375,0.0987,Betfair
+2026-11-15T10:59:47+00:00,3379047,2026-11-17,Helsinki challenger,Mika Brunold,1xBet,book,value,2.27,0.4435,0.0067,Betfair
+2026-11-15T10:59:47+00:00,3379047,2026-11-17,Helsinki challenger,Mika Brunold,Betsson,book,value,2.29,0.4435,0.0156,Betfair
+2026-11-15T10:59:47+00:00,3379047,2026-11-17,Helsinki challenger,Nicolai Budkov Kjaer,Polymarket,prediction,value,1.843,0.5565,0.0259,Betfair

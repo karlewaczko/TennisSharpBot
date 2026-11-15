@@ -2907,3 +2907,31 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-15T01:06:35+00:00,3378697,2026-11-15,Sharm El Sheikh 21 ITF,ITF,Alhussein Abdel Aziz L.,Polymarket,0.735,0.7284,Betfair,0.07,419.6005
 2026-11-15T01:06:35+00:00,3378697,2026-11-15,Sharm El Sheikh 21 ITF,ITF,Snigireva A.,Kalshi,0.27,0.2716,Betfair,0.04,302.1338
 2026-11-15T01:06:35+00:00,3378697,2026-11-15,Sharm El Sheikh 21 ITF,ITF,Alhussein Abdel Aziz L.,Kalshi,0.71,0.7284,Betfair,0.04,302.1338
+2026-11-15T10:59:47+00:00,3377733,2026-11-15,Masters Cup ATP,Tour,Zverev A.,Kalshi,0.725,0.7223,Pinnacle,0.01,133651.5526
+2026-11-15T10:59:47+00:00,3377733,2026-11-15,Masters Cup ATP,Tour,Jodar R.,Kalshi,0.285,0.2777,Pinnacle,0.01,133651.5526
+2026-11-15T10:59:47+00:00,3380105,2026-11-15,Masters Cup WTA,Tour,Andreeva M.,Polymarket,0.715,0.7162,Pinnacle,0.01,56270.3687
+2026-11-15T10:59:47+00:00,3380105,2026-11-15,Masters Cup WTA,Tour,Svitolina E.,Polymarket,0.285,0.2838,Pinnacle,0.01,56270.3687
+2026-11-15T10:59:47+00:00,3380105,2026-11-15,Masters Cup WTA,Tour,Andreeva M.,Kalshi,0.725,0.7162,Pinnacle,0.01,27524.228499999997
+2026-11-15T10:59:47+00:00,3380105,2026-11-15,Masters Cup WTA,Tour,Svitolina E.,Kalshi,0.285,0.2838,Pinnacle,0.01,27524.228499999997
+2026-11-15T10:59:47+00:00,3379537,2026-11-15,Colina WTA,Tour,Zhibek Kulambayeva,Kalshi,0.585,0.579,Pinnacle,0.01,993.2377
+2026-11-15T10:59:47+00:00,3379537,2026-11-15,Colina WTA,Tour,Valeriya Strakhova,Kalshi,0.415,0.421,Pinnacle,0.01,993.2377
+2026-11-15T10:59:47+00:00,3377747,2026-11-16,Masters Cup ATP,Tour,Medvedev D.,Kalshi,0.765,0.761,Betfair,0.01,151.64049999999997
+2026-11-15T10:59:47+00:00,3377747,2026-11-16,Masters Cup ATP,Tour,Cobolli F.,Kalshi,0.235,0.239,Betfair,0.01,151.64049999999997
+2026-11-15T10:59:47+00:00,3380047,2026-11-16,Drummondville challenger,Challenger,Braden Shick,Polymarket,0.23,0.2355,Betfair,0.04,3350.3664
+2026-11-15T10:59:47+00:00,3380047,2026-11-16,Drummondville challenger,Challenger,Aidan Mayo,Polymarket,0.77,0.7645,Betfair,0.04,3350.3664
+2026-11-15T10:59:47+00:00,3378595,2026-11-16,Sydney challenger,Challenger,Omar Jasika,Polymarket,0.45,0.4594,Betfair,0.06,453.6422
+2026-11-15T10:59:47+00:00,3378595,2026-11-16,Sydney challenger,Challenger,Alex Bolt,Polymarket,0.55,0.5406,Betfair,0.06,453.6422
+2026-11-15T10:59:47+00:00,3378579,2026-11-16,Sydney challenger,Challenger,Dane Sweeny,Polymarket,0.65,0.7375,Betfair,0.02,1303.0504
+2026-11-15T10:59:47+00:00,3378579,2026-11-16,Sydney challenger,Challenger,Christian Langmo,Polymarket,0.35,0.2625,Betfair,0.02,1303.0504
+2026-11-15T10:59:47+00:00,3378589,2026-11-16,Sydney challenger,Challenger,Li Tu,Polymarket,0.48,0.4982,Betfair,0.1,286.8072
+2026-11-15T10:59:47+00:00,3378589,2026-11-16,Sydney challenger,Challenger,James Mccabe,Polymarket,0.52,0.5018,Betfair,0.1,286.8072
+2026-11-15T10:59:47+00:00,3379047,2026-11-17,Helsinki challenger,Challenger,Nicolai Budkov Kjaer,Polymarket,0.525,0.5565,Betfair,0.01,217.6194
+2026-11-15T10:59:47+00:00,3379047,2026-11-17,Helsinki challenger,Challenger,Mika Brunold,Polymarket,0.475,0.4435,Betfair,0.01,217.6194
+2026-11-15T10:59:47+00:00,3379167,2026-11-17,Metz challenger,Challenger,Nikoloz Basilashvili,Polymarket,0.82,0.8545,Betfair,0.08,3220.8431
+2026-11-15T10:59:47+00:00,3379167,2026-11-17,Metz challenger,Challenger,Max Houkes,Polymarket,0.18,0.1455,Betfair,0.08,3220.8431
+2026-11-15T10:59:47+00:00,3378643,2026-11-17,Kobe challenger,Challenger,Niels Mcdonald,Polymarket,0.36,0.3433,Betfair,0.12,3532.7088
+2026-11-15T10:59:47+00:00,3378643,2026-11-17,Kobe challenger,Challenger,Keegan Smith,Polymarket,0.64,0.6567,Betfair,0.12,3532.7088
+2026-11-15T10:59:47+00:00,3378649,2026-11-17,Kobe challenger,Challenger,Daniel Michalski,Polymarket,0.315,0.3142,Betfair,0.09,4542.7103
+2026-11-15T10:59:47+00:00,3378649,2026-11-17,Kobe challenger,Challenger,Taro Daniel,Polymarket,0.685,0.6858,Betfair,0.09,4542.7103
+2026-11-15T10:59:47+00:00,3379991,2026-11-17,Montevideo challenger,Challenger,Juan Pablo Varillas,Polymarket,0.47,0.5035,Betfair,0.08,361.149
+2026-11-15T10:59:47+00:00,3379991,2026-11-17,Montevideo challenger,Challenger,Gonzalo Bueno,Polymarket,0.53,0.4965,Betfair,0.08,361.149
