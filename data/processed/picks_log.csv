@@ -558,3 +558,5 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-13T21:27:43+00:00,3370039,2026-11-13,Masters Cup WTA,Sabalenka A.,bet365,book,value,1.44,0.698,0.0051,Kalshi Mid
 2026-11-14T10:30:42+00:00,3377747,2026-11-16,Masters Cup ATP,Medvedev D.,Polymarket,prediction,value,1.3,0.7734,0.0056,Betfair
 2026-11-14T19:58:27+00:00,3377747,2026-11-16,Masters Cup ATP,Medvedev D.,Polymarket,prediction,value,1.3,0.7702,0.0015,Betfair
+2026-11-15T01:06:35+00:00,3379047,2026-11-17,Helsinki challenger,Mika Brunold,1xBet,book,value,2.27,0.4467,0.0139,Betfair
+2026-11-15T01:06:35+00:00,3379047,2026-11-17,Helsinki challenger,Mika Brunold,Betsson,book,value,2.29,0.4467,0.0228,Betfair
