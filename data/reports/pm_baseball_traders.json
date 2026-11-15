@@ -1,37 +1,37 @@
 {
- "measured_at": "2026-11-14T12:24:46+00:00",
+ "measured_at": "2026-11-15T12:48:47+00:00",
  "sport": "baseball",
  "window_days": 60,
  "tours": null,
- "markets": 349,
- "matches": 349,
- "wallets": 19563,
- "ranked_wallets": 163,
+ "markets": 330,
+ "matches": 330,
+ "wallets": 19266,
+ "ranked_wallets": 150,
  "significant_wallets": 0,
  "candidate_wallets": 0,
- "maker_baseline": 0.0,
- "maker_baseline_match_median": 0.00048,
+ "maker_baseline": 0.00013,
+ "maker_baseline_match_median": 0.00039,
  "elite_wallets": 0,
  "markets_trimmed_to_bigger_trades": 0,
  "market_structure": {
-  "stake_usd": 140190112,
-  "in_play_share": 0.62,
-  "top20_share": 0.489,
-  "top20_pre_match_share": 0.618
+  "stake_usd": 132045501,
+  "in_play_share": 0.615,
+  "top20_share": 0.488,
+  "top20_pre_match_share": 0.617
  },
  "skill_persistence": {
-  "wallets": 349,
-  "corr": 0.421,
-  "rank_corr": 0.572,
-  "top_decile_next": -0.0002,
-  "bottom_decile_next": -0.0129,
-  "all_next": -0.0114
+  "wallets": 341,
+  "corr": 0.474,
+  "rank_corr": 0.61,
+  "top_decile_next": 0.0002,
+  "bottom_decile_next": -0.0179,
+  "all_next": -0.0117
  },
  "polymarket_closing_calibration": {
-  "n": 349,
-  "brier": 0.2284,
-  "log_loss": 0.6476,
-  "favourite_won": 0.628,
+  "n": 330,
+  "brier": 0.2271,
+  "log_loss": 0.6448,
+  "favourite_won": 0.636,
   "bins": [
    {
     "range": "(-0.001, 0.2]",
@@ -41,27 +41,27 @@
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 39,
+    "n": 37,
     "price": 0.311,
-    "won": 0.205
+    "won": 0.216
    },
    {
     "range": "(0.35, 0.5]",
-    "n": 173,
-    "price": 0.439,
-    "won": 0.416
+    "n": 165,
+    "price": 0.44,
+    "won": 0.406
    },
    {
     "range": "(0.5, 0.65]",
-    "n": 115,
-    "price": 0.57,
-    "won": 0.617
+    "n": 109,
+    "price": 0.569,
+    "won": 0.633
    },
    {
     "range": "(0.65, 0.8]",
-    "n": 20,
-    "price": 0.696,
-    "won": 0.75
+    "n": 17,
+    "price": 0.701,
+    "won": 0.765
    },
    {
     "range": "(0.8, 1.0]",
