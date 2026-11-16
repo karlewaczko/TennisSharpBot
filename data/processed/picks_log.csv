@@ -586,3 +586,6 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,Interwetten,book,value,1.7,0.6044,0.0275,Betfair
 2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,bwin,book,value,1.72,0.6044,0.0396,Betfair
 2026-11-15T20:26:45+00:00,3380057,2026-11-17,Drummondville challenger,Cannon Kingsley,Polymarket,prediction,value,1.81,0.6044,0.0941,Betfair
+2026-11-16T01:06:02+00:00,3380197,2026-11-17,Colina WTA,Darja Semenistaja,Polymarket,prediction,value,2.369,0.4483,0.0621,Betfair
+2026-11-16T01:06:02+00:00,3380053,2026-11-17,Drummondville challenger,Keegan Rice,Polymarket,prediction,value,3.709,0.276,0.0238,Betfair
+2026-11-16T01:06:02+00:00,3380211,2026-11-16,Sydney 5 ITF,Khan L.,Kalshi,prediction,value,46.79,0.0215,0.006,Polymarket Mid
