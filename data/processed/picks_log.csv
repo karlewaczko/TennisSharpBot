@@ -596,3 +596,10 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,Coral,book,value,3.4,0.296,0.0065,Betfair
 2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,Interwetten,book,value,3.4,0.296,0.0065,Betfair
 2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,Ladbrokes,book,value,3.4,0.296,0.0065,Betfair
+2026-11-16T23:46:35+00:00,3381937,2026-11-17,Metz challenger,Grenier H.,Polymarket,prediction,value,2.932,0.3495,0.0247,Betfair
+2026-11-16T23:46:35+00:00,3381937,2026-11-17,Metz challenger,Grenier H.,Kalshi,prediction,value,2.983,0.3495,0.0425,Betfair
+2026-11-16T23:46:35+00:00,3380047,2026-11-17,Drummondville challenger,Braden Shick,10Bet,book,value,3.4,0.2955,0.0046,Betfair
+2026-11-16T23:46:35+00:00,3380047,2026-11-17,Drummondville challenger,Braden Shick,Coral,book,value,3.4,0.2955,0.0046,Betfair
+2026-11-16T23:46:35+00:00,3380047,2026-11-17,Drummondville challenger,Braden Shick,Interwetten,book,value,3.4,0.2955,0.0046,Betfair
+2026-11-16T23:46:35+00:00,3380047,2026-11-17,Drummondville challenger,Braden Shick,Ladbrokes,book,value,3.4,0.2955,0.0046,Betfair
+2026-11-16T23:46:35+00:00,3380047,2026-11-17,Drummondville challenger,Braden Shick,bet365,book,value,3.5,0.2955,0.0342,Betfair
