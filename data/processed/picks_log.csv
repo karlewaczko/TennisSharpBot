@@ -589,3 +589,10 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-16T01:06:02+00:00,3380197,2026-11-17,Colina WTA,Darja Semenistaja,Polymarket,prediction,value,2.369,0.4483,0.0621,Betfair
 2026-11-16T01:06:02+00:00,3380053,2026-11-17,Drummondville challenger,Keegan Rice,Polymarket,prediction,value,3.709,0.276,0.0238,Betfair
 2026-11-16T01:06:02+00:00,3380211,2026-11-16,Sydney 5 ITF,Khan L.,Kalshi,prediction,value,46.79,0.0215,0.006,Polymarket Mid
+2026-11-16T11:26:09+00:00,3380197,2026-11-17,Colina WTA,Darja Semenistaja,Polymarket,prediction,value,2.369,0.4622,0.0951,Betfair
+2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,10Bet,book,value,3.4,0.296,0.0065,Betfair
+2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,1xBet,book,value,3.49,0.296,0.0332,Betfair
+2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,Betsson,book,value,3.4,0.296,0.0065,Betfair
+2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,Coral,book,value,3.4,0.296,0.0065,Betfair
+2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,Interwetten,book,value,3.4,0.296,0.0065,Betfair
+2026-11-16T11:26:09+00:00,3378649,2026-11-17,Kobe challenger,Daniel Michalski,Ladbrokes,book,value,3.4,0.296,0.0065,Betfair
