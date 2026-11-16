@@ -67,3 +67,8 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-16T03:31:51+00:00,nba,nba-mem-was-2026-11-16,Wizards,Kalshi,0.33,0.365,Polymarket=0.3550,0.36,2.84,2026-11-17T00:00+00:00,printed
 2026-11-16T04:06:31+00:00,nba,nba-chi-cle-2026-11-16,Bulls,Polymarket,0.205,0.235,Kalshi=0.2300,0.2325,4.39,2026-11-17T00:00+00:00,printed
 2026-11-16T12:49:10+00:00,nba,nba-hou-mia-2026-11-16,Rockets,Polymarket,0.525,0.555,Kalshi=0.5450,0.55,1.86,2026-11-17T00:30+00:00,printed
+2026-11-16T18:00:16+00:00,nba,nba-phi-bkn-2026-11-16,Nets,Polymarket,0.325,0.355,Kalshi=0.3250,0.34,3.0,2026-11-17T00:30+00:00,printed
+2026-11-16T18:30:16+00:00,nba,nba-hou-mia-2026-11-16,Heat,Polymarket,0.435,0.465,Kalshi=0.4550,0.46,2.22,2026-11-17T00:30+00:00,printed
+2026-11-16T18:31:56+00:00,nba,nba-phi-bkn-2026-11-16,76ers,Polymarket,0.635,0.665,Kalshi=0.6550,0.66,1.55,2026-11-17T00:30+00:00,printed
+2026-11-16T22:30:16+00:00,nba,nba-det-sas-2026-11-17,Spurs,Polymarket,0.765,0.805,Kalshi=0.7800,0.7925,1.29,2026-11-18T01:00+00:00,printed
+2026-11-16T22:34:16+00:00,nba,nba-det-sas-2026-11-17,Pistons,Polymarket,0.235,0.265,Kalshi=0.2500,0.2575,3.97,2026-11-18T01:00+00:00,printed
