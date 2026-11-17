@@ -88,3 +88,8 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-17T02:14:57+00:00,nba,nba-por-min-2026-11-17,Timberwolves,Kalshi,0.5,0.535,Polymarket=0.5200,0.5275,1.94,2026-11-18T01:00+00:00,printed
 2026-11-17T02:14:57+00:00,nba,kalshi KXNBAGAME-26NOV16PHXDEN,Phoenix,Kalshi,0.205,0.255,,0.255,4.0,2026-11-17T02:30+00:00,printed
 2026-11-17T04:16:17+00:00,nba,nba-por-min-2026-11-17,Trail Blazers,Polymarket,0.405,0.445,Kalshi=0.4500,0.4475,2.28,2026-11-18T01:00+00:00,printed
+2026-11-17T17:26:08+00:00,nba,nba-nyk-tor-2026-11-17,Knicks,Polymarket,0.575,0.605,Kalshi=0.6050,0.605,1.69,2026-11-18T00:30+00:00,printed
+2026-11-17T19:15:08+00:00,nba,nba-por-min-2026-11-17,Timberwolves,Polymarket,0.535,0.565,Kalshi=0.5350,0.55,1.86,2026-11-18T01:00+00:00,printed
+2026-11-17T22:00:28+00:00,nba,nba-phi-orl-2026-11-18,Magic,Polymarket,0.415,0.455,Kalshi=0.4000,0.4275,2.39,2026-11-19T00:00+00:00,printed
+2026-11-17T22:07:08+00:00,nba,nba-mem-cle-2026-11-18,Cavaliers,Polymarket,0.61,0.64,Kalshi=0.6150,0.6275,1.63,2026-11-19T00:00+00:00,printed
+2026-11-17T22:32:48+00:00,nba,nba-phi-orl-2026-11-18,76ers,Polymarket,0.535,0.565,Kalshi=0.5750,0.57,1.79,2026-11-19T00:00+00:00,printed
