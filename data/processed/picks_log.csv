@@ -623,3 +623,8 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-17T16:30:38+00:00,3381933,2026-11-18,Helsinki challenger,Toby Samuel,bwin,book,value,1.4,0.7155,0.0017,Betfair
 2026-11-17T16:30:38+00:00,3381933,2026-11-18,Helsinki challenger,Toby Samuel,Polymarket,prediction,value,1.447,0.7155,0.0356,Betfair
 2026-11-17T16:30:38+00:00,3381333,2026-11-18,Sydney 5 ITF,Garland J.,Kalshi,prediction,value,1.152,0.8699,0.0017,Pinnacle
+2026-11-17T22:55:51+00:00,3380057,2026-11-18,Drummondville challenger,Justin Boulais,10Bet,book,value,1.95,0.5131,0.0005,Betfair
+2026-11-17T22:55:51+00:00,3380057,2026-11-18,Drummondville challenger,Justin Boulais,Betsson,book,value,1.97,0.5131,0.0107,Betfair
+2026-11-17T22:55:51+00:00,3380057,2026-11-18,Drummondville challenger,Justin Boulais,Interwetten,book,value,1.95,0.5131,0.0005,Betfair
+2026-11-17T22:55:51+00:00,3380057,2026-11-18,Drummondville challenger,Justin Boulais,bet-at-home,book,value,1.95,0.5131,0.0005,Betfair
+2026-11-17T22:55:51+00:00,3382885,2026-11-19,Helsinki challenger,Virtanen O.,Polymarket,prediction,value,1.352,0.7406,0.001,Betfair
