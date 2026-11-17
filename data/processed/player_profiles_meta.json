@@ -1,42 +1,42 @@
 {
- "generated_at": "2026-11-10T15:14:46+00:00",
+ "generated_at": "2026-11-17T05:54:16+00:00",
  "ta_elo_last_update": {
-  "atp": "2026-11-09",
-  "wta": "2026-11-09"
+  "atp": "2026-11-16",
+  "wta": "2026-11-16"
  },
  "ta_yelo_last_update": {
-  "atp": "2026-11-09",
-  "wta": "2026-11-09"
+  "atp": "2026-11-16",
+  "wta": "2026-11-16"
  },
  "stats_window": {
-  "from": "2025-11-10",
-  "to": "2026-11-10"
+  "from": "2025-11-17",
+  "to": "2026-11-17"
  },
  "stats_last_match": {
-  "atp": "2026-11-09",
+  "atp": "2026-11-14",
   "wta": "2026-11-03"
  },
  "players": {
   "atp": {
    "total": 1130,
-   "with_elo": 551,
-   "with_yelo": 577,
-   "with_stats": 1124,
-   "with_elo_and_stats": 547
+   "with_elo": 555,
+   "with_yelo": 578,
+   "with_stats": 1123,
+   "with_elo_and_stats": 550
   },
   "wta": {
-   "total": 592,
-   "with_elo": 505,
+   "total": 584,
+   "with_elo": 504,
    "with_yelo": 547,
-   "with_stats": 341,
-   "with_elo_and_stats": 305
+   "with_stats": 328,
+   "with_elo_and_stats": 301
   }
  },
  "errors": [],
  "ta_fetched_at": {
-  "elo": "2026-11-10T15:14:28+00:00",
-  "yelo": "2026-11-10T15:14:28+00:00",
-  "surface_speed": "2026-11-10T05:54:17+00:00"
+  "elo": "2026-11-17T05:53:34+00:00",
+  "yelo": "2026-11-17T05:53:34+00:00",
+  "surface_speed": "2026-11-17T05:53:34+00:00"
  },
  "statistics_ok": true
 }
