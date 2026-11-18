@@ -110,3 +110,5 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-18T03:43:09+00:00,nba,kalshi KXNBAGAME-26NOV17UTALAC,Utah,Kalshi,0.325,0.385,,0.385,2.65,2026-11-18T04:00+00:00,printed
 2026-11-18T03:44:49+00:00,nba,kalshi KXNBAGAME-26NOV17UTALAC,Los Angeles C,Kalshi,0.675,0.705,,0.705,1.45,2026-11-18T04:00+00:00,printed
 2026-11-18T04:16:29+00:00,nba,kalshi KXNBAGAME-26NOV17CHALAL,Charlotte,Kalshi,0.275,0.315,,0.315,3.24,2026-11-18T04:30+00:00,printed
+2026-11-18T06:12:29+00:00,nba,nba-uta-lal-2026-11-18,Jazz,Kalshi,0.17,0.2,Polymarket=0.1950,0.1975,5.17,2026-11-19T03:00+00:00,printed
+2026-11-18T06:56:29+00:00,nba,nba-was-tor-2026-11-18,Wizards,Kalshi,0.275,0.305,Polymarket=0.2950,0.3,3.4,2026-11-19T00:30+00:00,printed
