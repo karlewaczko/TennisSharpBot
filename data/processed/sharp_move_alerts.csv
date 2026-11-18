@@ -113,3 +113,7 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-18T06:12:29+00:00,nba,nba-uta-lal-2026-11-18,Jazz,Kalshi,0.17,0.2,Polymarket=0.1950,0.1975,5.17,2026-11-19T03:00+00:00,printed
 2026-11-18T06:56:29+00:00,nba,nba-was-tor-2026-11-18,Wizards,Kalshi,0.275,0.305,Polymarket=0.2950,0.3,3.4,2026-11-19T00:30+00:00,printed
 2026-11-18T13:13:31+00:00,nba,nba-gsw-dal-2026-11-18,Warriors,Polymarket,0.335,0.365,Kalshi=0.3550,0.36,2.84,2026-11-19T01:00+00:00,printed
+2026-11-18T17:37:59+00:00,nba,nba-was-tor-2026-11-18,Wizards,Polymarket,0.305,0.345,Kalshi=0.3350,0.34,3.0,2026-11-19T00:30+00:00,printed
+2026-11-18T18:10:19+00:00,nba,nba-was-tor-2026-11-18,Raptors,Kalshi,0.605,0.635,Polymarket=0.6350,0.635,1.61,2026-11-19T00:30+00:00,printed
+2026-11-18T19:00:19+00:00,nba,nba-det-nop-2026-11-18,Pelicans,Polymarket,0.295,0.345,Kalshi=0.3050,0.325,3.14,2026-11-19T01:00+00:00,printed
+2026-11-18T20:56:59+00:00,nba,nba-uta-lal-2026-11-18,Lakers,Polymarket,0.775,0.815,Kalshi=0.7900,0.8025,1.28,2026-11-19T03:00+00:00,printed
