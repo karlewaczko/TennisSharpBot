@@ -628,3 +628,12 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-17T22:55:51+00:00,3380057,2026-11-18,Drummondville challenger,Justin Boulais,Interwetten,book,value,1.95,0.5131,0.0005,Betfair
 2026-11-17T22:55:51+00:00,3380057,2026-11-18,Drummondville challenger,Justin Boulais,bet-at-home,book,value,1.95,0.5131,0.0005,Betfair
 2026-11-17T22:55:51+00:00,3382885,2026-11-19,Helsinki challenger,Virtanen O.,Polymarket,prediction,value,1.352,0.7406,0.001,Betfair
+2026-11-18T11:47:24+00:00,3382853,2026-11-19,Colina WTA,Anastasia Zolotareva,Polymarket,prediction,value,3.855,0.2872,0.1074,Betfair
+2026-11-18T11:47:24+00:00,3380057,2026-11-18,Drummondville challenger,Justin Boulais,Kalshi,prediction,value,1.97,0.5137,0.0122,Betfair
+2026-11-18T11:47:24+00:00,3382841,2026-11-19,Helsinki challenger,Svrcina D.,10Bet,book,value,1.55,0.6527,0.0117,Betfair
+2026-11-18T11:47:24+00:00,3382841,2026-11-19,Helsinki challenger,Svrcina D.,Betsson,book,value,1.55,0.6527,0.0117,Betfair
+2026-11-18T11:47:24+00:00,3382841,2026-11-19,Helsinki challenger,Svrcina D.,Interwetten,book,value,1.55,0.6527,0.0117,Betfair
+2026-11-18T11:47:24+00:00,3382841,2026-11-19,Helsinki challenger,Svrcina D.,bet-at-home,book,value,1.55,0.6527,0.0117,Betfair
+2026-11-18T11:47:24+00:00,3382885,2026-11-19,Helsinki challenger,Virtanen O.,Polymarket,prediction,value,1.317,0.774,0.0192,Betfair
+2026-11-18T11:47:24+00:00,3383357,2026-11-19,Drummondville challenger,Aidan Mayo,Polymarket,prediction,value,1.388,0.7224,0.0029,Betfair
+2026-11-18T11:47:24+00:00,3382553,2026-11-18,Funchal ITF,Du Pree B.,Polymarket,prediction,value,1.747,0.5851,0.0223,Betfair
