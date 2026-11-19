@@ -645,3 +645,5 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-19T11:45:46+00:00,3383529,2026-11-19,Drummondville challenger,Liam Draxl,Unibet,book,value,1.71,0.5892,0.0076,Betfair
 2026-11-19T11:45:46+00:00,3383263,2026-11-19,Funchal ITF,Voloshchuk A.,Polymarket,prediction,value,1.407,0.7164,0.0083,Pinnacle
 2026-11-19T11:45:46+00:00,3384015,2026-11-20,Sydney 5 ITF,Garland J.,Kalshi,prediction,value,1.732,0.5871,0.0171,Betfair
+2026-11-19T22:42:26+00:00,3377743,2026-11-20,Masters Cup ATP,Cobolli F.,Betfair,book,value,4.9,0.2067,0.0127,Pinnacle
+2026-11-19T22:42:26+00:00,3384019,2026-11-20,Sydney challenger,Schoolkate T.,Unibet,book,value,1.42,0.7116,0.0105,Pinnacle
