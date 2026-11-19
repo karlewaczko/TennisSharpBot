@@ -640,3 +640,8 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-18T22:38:18+00:00,3383361,2026-11-19,Montevideo challenger,Oriol Roca Batalla,Polymarket,prediction,value,1.49,0.685,0.0205,Betfair
 2026-11-18T22:38:18+00:00,3383505,2026-11-19,Sydney challenger,Hiroki Moriya,Polymarket,prediction,value,3.33,0.3099,0.0319,Betfair
 2026-11-18T22:38:18+00:00,3383751,2026-11-19,Trnava 5 ITF,Dudeney A.,Kalshi,prediction,value,2.288,0.4387,0.0038,Betfair
+2026-11-19T11:45:46+00:00,3383753,2026-11-19,Metz challenger,Gaston H.,Polymarket,prediction,value,1.717,0.5891,0.0118,Betfair
+2026-11-19T11:45:46+00:00,3383753,2026-11-19,Metz challenger,Gaston H.,Kalshi,prediction,value,1.703,0.5891,0.0033,Betfair
+2026-11-19T11:45:46+00:00,3383529,2026-11-19,Drummondville challenger,Liam Draxl,Unibet,book,value,1.71,0.5892,0.0076,Betfair
+2026-11-19T11:45:46+00:00,3383263,2026-11-19,Funchal ITF,Voloshchuk A.,Polymarket,prediction,value,1.407,0.7164,0.0083,Pinnacle
+2026-11-19T11:45:46+00:00,3384015,2026-11-20,Sydney 5 ITF,Garland J.,Kalshi,prediction,value,1.732,0.5871,0.0171,Betfair
