@@ -56,3 +56,11 @@ def test_score_compares_with_market():
                       {"p": 0.4, "odds_w": 2.0, "odds_l": 1.8, "n_min": 3}])
     assert s["n"] == 2 and s["hit_rate"] == 0.5
     assert s["with_odds"]["n"] == 2 and s["with_odds"]["market_log_loss"] > 0
+
+
+def test_fit_scale_recovers_a_line_and_drops_a_wrong_namesake():
+    pairs = [(1400 + 10 * i, 100 + 1.1 * (1400 + 10 * i)) for i in range(40)] + [(1500, 3000)]
+    a, b = te_elo.fit_scale(pairs)
+    assert abs(b - 1.1) < 1e-3 and abs(a - 100) < 0.5
+    assert te_elo.fit_scale(pairs[:10]) is None
+    assert abs(te_elo.on_ta_scale(1500, (100, 1.1)) - 1750) < 1e-9

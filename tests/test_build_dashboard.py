@@ -400,3 +400,12 @@ def test_own_elo_fills_in_where_tennis_abstract_has_nobody(bd, board_inputs):
     assert by_id["6"]["te"] == [{"elo": 1700, "n": 40}, {"elo": 1500, "n": 3}]
     assert by_id["1"]["elo_basis"] != "te" and by_id["1"]["elo"] > 0.5   # Tennis Abstract wins where it has both
     assert board["days"][1]["n_elo"] == 2
+
+
+def test_mixed_elo_puts_ours_on_tennis_abstracts_scale(bd):
+    own = {"prob": 0.5, "sides": [{"elo": 1500, "n": 30}, {"elo": 1600, "n": 30}]}
+    sides = [{"elo": 1800.0}, None]
+    out = bd.mixed_elo(sides, own, (100.0, 1.0))          # ours 1600 -> 1700 on TA's scale
+    assert out["elo_basis"] == "mixed" and abs(out["elo"] - 0.64) < 0.01
+    assert bd.mixed_elo([None, None], own, (100.0, 1.0)) is None
+    assert bd.mixed_elo(sides, own, None) is None

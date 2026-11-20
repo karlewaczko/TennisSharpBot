@@ -22,6 +22,7 @@ import math
 from collections import defaultdict
 from dataclasses import dataclass
 
+import numpy as np
 import pandas as pd
 
 from .elo import expected_score, k_factor
@@ -185,3 +186,27 @@ def score(record: list[dict]) -> dict:
             "elo_hit_rate": round(float((m["p"] > 0.5).mean()), 4),
             "market_hit_rate": round(float((m["q"] > 0.5).mean()), 4)}
     return out
+
+
+SCALE_MIN_MATCHES = 40   # matches in our pool before a player helps fit the scale
+
+
+def fit_scale(pairs: list[tuple[float, float]]) -> tuple[float, float] | None:
+    """Least squares `ta = a + b * ours` over players both pools rate, so a
+    rating of ours can face one of Tennis Abstract's: (a, b), or None with
+    fewer than 30 pairs. Pairs more than 300 points off the first fit (a
+    namesake matched wrongly) are dropped and the line fitted again."""
+    if len(pairs) < 30:
+        return None
+    df = pd.DataFrame(pairs, columns=["ours", "ta"])
+    for _ in range(2):
+        b, a = np.polyfit(df["ours"], df["ta"], 1)
+        keep = (df["ta"] - (a + b * df["ours"])).abs() <= 300
+        if keep.all() or keep.sum() < 30:
+            break
+        df = df[keep]
+    return round(float(a), 2), round(float(b), 4)
+
+
+def on_ta_scale(elo: float, scale: tuple[float, float]) -> float:
+    return scale[0] + scale[1] * elo

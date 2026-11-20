@@ -655,6 +655,35 @@ def own_elo(ratings: "te_elo.Ratings | None", slug_1, slug_2) -> dict | None:
     return {"prob": round(p, 4), "sides": [{"elo": round(x.elo), "n": x.matches} for x in sides]}
 
 
+def mixed_elo(sides: list, own: dict, scale: tuple[float, float] | None) -> dict | None:
+    """One player rated by Tennis Abstract, the other only by us: Tennis
+    Abstract's overall Elo against ours on its scale."""
+    if scale is None:
+        return None
+    ta = [s.get("elo") if s else None for s in sides]
+    if (ta[0] is None) == (ta[1] is None):
+        return None
+    r = [ta[k] if ta[k] is not None else te_elo.on_ta_scale(own["sides"][k]["elo"], scale) for k in (0, 1)]
+    return {"elo": round(_ta_elo_probability(r[0], r[1]), 4), "elo_basis": "mixed"}
+
+
+def own_elo_scale(ratings: "te_elo.Ratings | None", profiles: "ProfileBook") -> tuple[float, float] | None:
+    """Our ratings against Tennis Abstract's for the players both know well
+    (te_elo.fit_scale). A name that resolves in both tours, or to nobody,
+    is left out."""
+    if ratings is None:
+        return None
+    pairs = []
+    for p in ratings.players.values():
+        if p.matches < te_elo.SCALE_MIN_MATCHES:
+            continue
+        tours = ["wta"] if p.level == "WTA" else ["atp"] if p.level in ("ATP", "Challenger") else ["atp", "wta"]
+        hits = [r for t in tours if (r := profiles.resolve(p.name, t)) is not None]
+        if len(hits) == 1 and pd.notna(hits[0].get("elo")):
+            pairs.append((p.elo, float(hits[0]["elo"])))
+    return te_elo.fit_scale(pairs)
+
+
 def load_own_elo() -> "te_elo.Ratings | None":
     path = config.PROCESSED_DIR / "te_elo_current.csv"
     if not path.exists():
@@ -683,7 +712,8 @@ def _score_text(m) -> str | None:
 
 def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: list[dict],
                       profiles: ProfileBook, threshold: float, surface_of=None,
-                      now=None, days: int = 2, ratings: "te_elo.Ratings | None" = None) -> dict:
+                      now=None, days: int = 2, ratings: "te_elo.Ratings | None" = None,
+                      scale: tuple[float, float] | None = None) -> dict:
     """Every singles match of today and tomorrow (Berlin dates), each with
     the player table, the market, every forecast this run has, and the
     verdict for a BetInAsia bettor.
@@ -695,7 +725,10 @@ def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: lis
 
     Where Tennis Abstract rates neither or only one of the two (most ITF and
     UTR matches), the Elo comes from `ratings`, our own over TennisExplorer's
-    results (te_elo), with both players' match counts beside it."""
+    results (te_elo), with both players' match counts beside it. Where
+    Tennis Abstract rates one of them, that one keeps Tennis Abstract's
+    rating and ours for the other is put on its scale (`scale`, see
+    own_elo_scale): basis "mixed"."""
     now = pd.Timestamp(now or pd.Timestamp.now(tz="UTC")).tz_convert("UTC")
     first = now.tz_convert(BERLIN).date()
     wanted = [(first + dt.timedelta(days=i)).isoformat() for i in range(days)]
@@ -739,7 +772,7 @@ def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: lis
         fc = profile_forecasts(sides[0], sides[1], profiles.tour_avg.get(tour, 0.62), best_of)
         own = own_elo(ratings, m.get("player1_slug"), m.get("player2_slug"))
         if own and fc.get("elo") is None:
-            fc.update(elo=own["prob"], elo_basis="te")
+            fc.update(mixed_elo(sides, own, scale) or {"elo": own["prob"], "elo_basis": "te"})
 
         odds = ([round(float(m["odds1"]), 3), round(float(m["odds2"]), 3)]
                 if pd.notna(m.get("odds1")) and pd.notna(m.get("odds2")) else None)
@@ -1250,10 +1283,11 @@ def main() -> None:
         sharpness.pop("leader_preview", None)
     except (OSError, ValueError):
         sharpness = {}
+    book, own = ProfileBook.load(), load_own_elo()
     every = all_matches_board(
-        sched_all, price_board, matches, ProfileBook.load(), args.threshold,
+        sched_all, price_board, matches, book, args.threshold,
         surface_of=lambda t: surface_by_name.get(tourney_matching.normalize_tourney_name(t)),
-        ratings=load_own_elo())
+        ratings=own, scale=own_elo_scale(own, book))
     generated_at = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     payload = {
         "generated_at": generated_at,
