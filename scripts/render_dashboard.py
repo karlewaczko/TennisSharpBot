@@ -16,6 +16,7 @@ import json
 from pathlib import Path
 
 from tennissharp import config
+from tennissharp.te_elo import MIN_SURE
 
 HTML = """<title>Value Radar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -877,8 +878,11 @@ def _join(words) -> str:
     return words[0] if len(words) == 1 else ", ".join(words[:-1]) + " und " + words[-1]
 
 
-def _am_meta(prof: dict | None) -> str:
+def _am_meta(prof: dict | None, own: dict | None = None) -> str:
     if not prof:
+        if own:
+            return (f'<span class="meta">TE-Elo {own["elo"]:.0f} &middot; '
+                    f'{own["n"]} Partie{"" if own["n"] == 1 else "n"}</span>')
         return '<span class="meta">kein Profil</span>'
     bits = []
     if prof.get("rank"):
@@ -911,7 +915,11 @@ def _am_note(m: dict, thresh: str) -> str:
         return 'Keine belastbare Quote &mdash; keine Bewertung.'
     fav = 0 if fair[0] >= fair[1] else 1
     parts = [f'Favorit laut Markt: <b>{esc(m["players"][fav])}</b> ({_pp(fair[fav])}&thinsp;%).']
-    have = {k: v for k, v in (("Modell", m.get("model")), ("Elo", m.get("elo")),
+    elo_name = "Elo"
+    if m.get("elo_basis") == "te":
+        own = (m.get("te") or [{}, {}])
+        elo_name = ("TE-Elo" if min(o.get("n", 0) for o in own) >= MIN_SURE else "TE-Elo (unsicher)")
+    have = {k: v for k, v in (("Modell", m.get("model")), (elo_name, m.get("elo")),
                               ("Statistik", m.get("stat"))) if v is not None}
     against = [k for k, v in have.items() if (v >= 0.5) != (fav == 0)]
     agree = [k for k in have if k not in against]
@@ -935,7 +943,7 @@ def _am_note(m: dict, thresh: str) -> str:
         parts.append('Pinnacle quotiert noch nicht &mdash; kein BetInAsia-Preis zum Pr&uuml;fen.')
     elif m.get("pinnacle"):
         parts.append('Pinnacle-Preis da, aber kein Modellwert &mdash; kein Signal m&ouml;glich.')
-    elif not any(m.get("profiles") or []):
+    elif not any(m.get("profiles") or []) and m.get("elo") is None:
         parts.append('Keine Spielerdaten, kein Modell, kein Pinnacle-Preis.')
     else:
         parts.append('Kein Modellwert, kein Pinnacle-Preis.')
@@ -999,7 +1007,8 @@ def _is_rich(m: dict) -> bool:
     the rest -- no profile, model or Pinnacle price, or already under way --
     one line."""
     return m["status"] == "upcoming" and bool(
-        any(m.get("profiles") or []) or m.get("model") is not None or m.get("pinnacle"))
+        any(m.get("profiles") or []) or m.get("model") is not None or m.get("pinnacle")
+        or m.get("elo") is not None)
 
 
 def _am_line(m: dict) -> str:
@@ -1032,9 +1041,13 @@ def _am_match(m: dict, thresh: str) -> str:
     fair, pin, best, odds = m.get("fair"), m.get("pinnacle"), m.get("best"), m.get("odds")
     ev = m.get("ev_bia")
     profs = ((m.get("profiles") or []) + [None, None])[:2]
+    own = ((m.get("te") or []) + [None, None])[:2]
+    unsure = m.get("elo_basis") == "te" and min((o or {}).get("n", 0) for o in own) < MIN_SURE
     fav = (0 if fair[0] >= fair[1] else 1) if fair else None
     sig = m.get("signal")
     status_word = {"live": '<span class="chip live">live</span>', "finished": "Ende"}.get(m["status"], "")
+    elo_title = (' title="TE-Elo, ein Spieler unter %d Partien: unsicher"' % MIN_SURE if unsure
+                 else ' title="TE-Elo: eigenes Elo aus TennisExplorer-Ergebnissen"' if m.get("elo_basis") == "te" else "")
     lines = []
     for i in (0, 1):
         def side(p):
@@ -1061,10 +1074,11 @@ def _am_match(m: dict, thresh: str) -> str:
         lines.append(
             f'<div class="am-p">'
             f'<span class="t">{(m.get("time") or "&ndash;") if i == 0 else status_word}</span>'
-            f'<span class="nm">{name}{_am_meta(profs[i])}</span>'
+            f'<span class="nm">{name}{_am_meta(profs[i], own[i])}</span>'
             f'<span class="num">{_pp(side(fair[0])) if fair else "&ndash;"}</span>'
             f'<span class="num x">{_pp(side(m.get("model")))}</span>'
-            f'<span class="num x{gap_cls(m.get("elo"))}">{_pp(side(m.get("elo")))}</span>'
+            f'<span class="num x{" soft" if unsure else gap_cls(m.get("elo"))}"'
+            f'{elo_title}>{_pp(side(m.get("elo")))}</span>'
             f'<span class="num x{gap_cls(m.get("stat"))}">{_pp(side(m.get("stat")))}</span>'
             f'<span class="{cls}" title="{src}">{odds_fmt(price)}</span>'
             f'<span class="num">{ev_html}</span></div>')
@@ -1086,6 +1100,8 @@ def all_matches_section(data: dict) -> str:
         f'jeweiligen Spieler. <b>Markt</b> = fairer Preis ohne Marge (Pinnacle, sonst Betfair oder '
         f'liquider Polymarket/Kalshi-Mittelkurs, sonst die Spielplan-Quote). <b>Modell</b> = '
         f'trainiertes Modell mit Marktpreis, <b>Elo</b> = Tennis-Abstract-Elo (Belag, wo bekannt), '
+        f'sonst <b>TE-Elo</b>, unser eigenes Elo aus zwei Jahren TennisExplorer-Ergebnissen, das auch ITF- und '
+        f'UTR-Spieler kennt (grau: ein Spieler hat weniger als {MIN_SURE} Partien, der Wert ist unsicher), '
         f'<b>Stat.</b> = Punktmodell aus Aufschlag und Return der letzten 52 Wochen. <b>Quote</b>: '
         f'schwarz = {books}, bei BetInAsia spielbar; grau = anderes Buch oder Spielplan-Quote. '
         f'Partien ohne Spielerdaten, Modell und Pinnacle-Preis sowie laufende und beendete stehen '
@@ -1099,7 +1115,8 @@ def all_matches_section(data: dict) -> str:
         out.append(
             f'<h3 class="am-day">{label}{_DAYS_LONG[d.weekday()]}, {d.day}. {_MONTHS[d.month - 1]}'
             f'<span class="n">{day["n"]} Partien &middot; {day["n_upcoming"]} offen &middot; '
-            f'{day["n_profiled"]} mit Spielerprofil &middot; {day["n_model"]} mit Modell &middot; '
+            f'{day["n_profiled"]} mit Spielerprofil &middot; {day.get("n_elo", 0)} mit Elo &middot; '
+            f'{day["n_model"]} mit Modell &middot; '
             f'{day["n_pinnacle"]} mit Pinnacle &middot; {day["n_signals"]} Signal(e)</span></h3>')
         groups: dict = {}
         for m in board["matches"]:

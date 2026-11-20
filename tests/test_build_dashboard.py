@@ -381,3 +381,22 @@ def test_pro_positions_show_the_ten_best_in_profit_proven_first(bd, tmp_path, mo
     assert [r["wallet"] for r in out["leaderboard"]] == [f"0x{i}" for i in (0, 1, 3, 4, 5, 6, 7, 8, 9, 10)]
     out = bd.pro_positions([], fetch=lambda w: [], figures=lambda w: None)
     assert out["leaderboard"] == [] and out["note"] == "keine Wallet über alle Zeit im Gewinn"
+
+
+def test_own_elo_fills_in_where_tennis_abstract_has_nobody(bd, board_inputs):
+    from tennissharp import te_elo
+    sched, price_board, matches, profiles = board_inputs
+    sched = sched.assign(player1_slug=None, player2_slug=None)
+    sched.loc[sched["match_id"] == "6", ["player1_slug", "player2_slug"]] = ["swiatek", "nobody"]
+    sched.loc[sched["match_id"] == "1", ["player1_slug", "player2_slug"]] = ["sinner", "zverev"]
+    r = te_elo.Ratings()
+    for slug, elo, n in (("swiatek", 1700.0, 40), ("nobody", 1500.0, 3), ("sinner", 1500.0, 50),
+                         ("zverev", 1900.0, 50)):
+        r.players[slug] = te_elo.Player(slug, elo, n, "ITF", "2026-01-01", "2026-10-01")
+    board = bd.all_matches_board(sched, price_board, matches, profiles, 0.05,
+                                 now=pd.Timestamp("2026-10-25 08:00", tz="UTC"), ratings=r)
+    by_id = {m["id"]: m for m in board["matches"]}
+    assert by_id["6"]["elo_basis"] == "te" and by_id["6"]["elo"] > 0.7
+    assert by_id["6"]["te"] == [{"elo": 1700, "n": 40}, {"elo": 1500, "n": 3}]
+    assert by_id["1"]["elo_basis"] != "te" and by_id["1"]["elo"] > 0.5   # Tennis Abstract wins where it has both
+    assert board["days"][1]["n_elo"] == 2
