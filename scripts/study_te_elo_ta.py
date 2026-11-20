@@ -62,41 +62,46 @@ def main() -> None:
 
     cache: dict = {}
 
-    def ta_of(slug, name, level, day):
+    tour_of = {"M": "atp", "W": "wta"}
+
+    def ta_of(slug, day):
+        p = r.players[slug]
         snap = max(d for d in dates if d <= day)
         key = (slug, snap)
         if key not in cache:
-            tours = ["wta"] if level == "WTA" else ["atp"] if level in ("ATP", "Challenger") else ["atp", "wta"]
-            hits = [x for t in tours if (x := books[snap].resolve(name, t)) is not None]
-            cache[key] = float(hits[0]["elo"]) if len(hits) == 1 and pd.notna(hits[0].get("elo")) else None
+            hit = books[snap].resolve(p.name, tour_of[p.sex]) if p.sex in tour_of else None
+            cache[key] = float(hit["elo"]) if hit is not None and pd.notna(hit.get("elo")) else None
         return cache[key]
 
-    pairs = [(p.elo, e) for s, p in r.players.items() if p.matches >= te_elo.SCALE_MIN_MATCHES
-             if (e := ta_of(s, p.name, p.level, dates[0])) is not None]
-    scale = te_elo.fit_scale(pairs)
-    print(f"Skala aus {len(pairs)} Spielern: TA = {scale[0]} + {scale[1]} x TE", flush=True)
+    scale, n_pairs = {}, {}
+    for sex, tour in tour_of.items():
+        pairs = [(p.elo, e) for s, p in r.players.items() if p.matches >= te_elo.SCALE_MIN_MATCHES and p.sex == sex
+                 if (e := ta_of(s, dates[0])) is not None]
+        scale[tour], n_pairs[tour] = te_elo.fit_scale(pairs), len(pairs)
+        print(f"{tour}: Skala aus {len(pairs)} Spielern: {scale[tour]}", flush=True)
 
     rec = {"both": [], "both_te": [], "mixed": [], "mixed_te": [], "none": []}
     for x in rows[rows["date"] >= dates[0]].itertuples(index=False):
         pw, pl = r.players.get(x.winner), r.players.get(x.loser)
         if pw and pl:
             ours = expected_score(pw.elo, pl.elo)
-            tw, tl = ta_of(x.winner, x.winner_name, x.level, x.date), ta_of(x.loser, x.loser_name, x.level, x.date)
+            tw, tl = ta_of(x.winner, x.date), ta_of(x.loser, x.date)
+            sc = scale.get(tour_of.get(pw.sex or pl.sex, ""))
             base = {"odds_w": x.odds_w, "odds_l": x.odds_l, "date": x.date, "level": x.level,
                     "n_min": min(pw.matches, pl.matches)}
             if tw is not None and tl is not None:
                 rec["both"].append({**base, "p": expected_score(tw, tl)})
                 rec["both_te"].append({**base, "p": ours})
-            elif tw is not None or tl is not None:
-                a = tw if tw is not None else te_elo.on_ta_scale(pw.elo, scale)
-                b = tl if tl is not None else te_elo.on_ta_scale(pl.elo, scale)
+            elif (tw is not None or tl is not None) and sc:
+                a = tw if tw is not None else te_elo.on_ta_scale(pw.elo, sc)
+                b = tl if tl is not None else te_elo.on_ta_scale(pl.elo, sc)
                 rec["mixed"].append({**base, "p": expected_score(a, b)})
                 rec["mixed_te"].append({**base, "p": ours})
             else:
                 rec["none"].append({**base, "p": ours})
         r.update(x)
 
-    report = {"since": dates[0], "snapshots": dates, "scale": scale, "scale_players": len(pairs),
+    report = {"since": dates[0], "snapshots": dates, "scale": scale, "scale_players": n_pairs,
               "both_rated_by_ta": {"ta": te_elo.score(rec["both"]), "ours": te_elo.score(rec["both_te"])},
               "one_rated_by_ta": {"mixed": te_elo.score(rec["mixed"]), "ours": te_elo.score(rec["mixed_te"])},
               "neither": te_elo.score(rec["none"])}

@@ -392,7 +392,7 @@ def test_own_elo_fills_in_where_tennis_abstract_has_nobody(bd, board_inputs):
     r = te_elo.Ratings()
     for slug, elo, n in (("swiatek", 1700.0, 40), ("nobody", 1500.0, 3), ("sinner", 1500.0, 50),
                          ("zverev", 1900.0, 50)):
-        r.players[slug] = te_elo.Player(slug, elo, n, "ITF", "2026-01-01", "2026-10-01")
+        r.players[slug] = te_elo.Player(slug, "W", elo, n, "ITF", "2026-01-01", "2026-10-01")
     board = bd.all_matches_board(sched, price_board, matches, profiles, 0.05,
                                  now=pd.Timestamp("2026-10-25 08:00", tz="UTC"), ratings=r)
     by_id = {m["id"]: m for m in board["matches"]}

@@ -30,7 +30,7 @@ from .elo import expected_score, k_factor
 LEVELS = ("ATP", "WTA", "Challenger", "ITF", "UTR", "Liga")
 DEFAULT = 1500.0
 MIN_SURE = 15          # matches each player needs before a forecast counts as settled
-COLUMNS = ["slug", "name", "elo", "matches", "level", "first_date", "last_date"]
+COLUMNS = ["slug", "name", "sex", "elo", "matches", "level", "first_date", "last_date"]
 
 
 def level_of(tournament: str, url: str = "") -> str:
@@ -47,10 +47,21 @@ def level_of(tournament: str, url: str = "") -> str:
     return "WTA" if "-women/" in str(url) else "ATP"
 
 
+def sex_of(url) -> str:
+    """"W" for a women's event, "M" for a men's, "" where the page links none
+    (its collective Futures band)."""
+    url = str(url or "")
+    return "W" if "-women/" in url else "M" if "-men/" in url else ""
+
+
+def start_key(level: str, sex: str) -> str:
+    return f"{level}-{sex}" if sex else level
+
+
 def results(day: pd.DataFrame) -> pd.DataFrame:
     """The finished singles of one result page, winner first, in playing
     order: no doubles, no walkovers (no games played), no unfinished rows."""
-    cols = ["date", "time", "tournament", "level", "winner", "winner_name", "loser", "loser_name",
+    cols = ["date", "time", "tournament", "level", "sex", "winner", "winner_name", "loser", "loser_name",
             "odds_w", "odds_l", "match_id"]
     if day is None or day.empty:
         return pd.DataFrame(columns=cols)
@@ -66,6 +77,7 @@ def results(day: pd.DataFrame) -> pd.DataFrame:
     out = pd.DataFrame({
         "date": d["date"], "time": d["time"].fillna("99:99"), "tournament": d["tournament"],
         "level": [level_of(t, u) for t, u in zip(d["tournament"], d.get("tournament_url", ""))],
+        "sex": [sex_of(u) for u in (d["tournament_url"] if "tournament_url" in d else [""] * len(d))],
         "winner": pick("player1_slug", "player2_slug"), "winner_name": pick("player1", "player2"),
         "loser": pick("player2_slug", "player1_slug"), "loser_name": pick("player2", "player1"),
         "odds_w": pick("odds1", "odds2"), "odds_l": pick("odds2", "odds1"), "match_id": d["match_id"]})
@@ -75,6 +87,7 @@ def results(day: pd.DataFrame) -> pd.DataFrame:
 @dataclass
 class Player:
     name: str
+    sex: str
     elo: float
     matches: int
     level: str
@@ -90,10 +103,13 @@ class Ratings:
         self.start = dict(start or {})
         self.players: dict[str, Player] = {}
 
-    def _get(self, slug: str, name: str, level: str, date: str) -> Player:
+    def _get(self, slug: str, name: str, level: str, date: str, sex: str = "") -> Player:
         p = self.players.get(slug)
         if p is None:
-            p = self.players[slug] = Player(name, self.start.get(level, DEFAULT), 0, level, date, date)
+            first = self.start.get(start_key(level, sex), self.start.get(level, DEFAULT))
+            p = self.players[slug] = Player(name, sex, first, 0, level, date, date)
+        elif sex and not p.sex:
+            p.sex = sex
         return p
 
     def prob(self, a: str, b: str) -> float | None:
@@ -105,8 +121,10 @@ class Ratings:
 
     def update(self, r) -> float:
         """Play one result row; the winner's chance beforehand."""
-        w = self._get(r.winner, str(r.winner_name), r.level, str(r.date))
-        lo = self._get(r.loser, str(r.loser_name), r.level, str(r.date))
+        sex = getattr(r, "sex", "") or ""
+        sex = sex if isinstance(sex, str) else ""
+        w = self._get(r.winner, str(r.winner_name), r.level, str(r.date), sex)
+        lo = self._get(r.loser, str(r.loser_name), r.level, str(r.date), sex)
         e = expected_score(w.elo, lo.elo)
         kw, kl = k_factor(w.matches, None), k_factor(lo.matches, None)
         w.elo += kw * (1 - e)
@@ -130,7 +148,7 @@ class Ratings:
                 record[-1]["p"] = e
 
     def table(self) -> pd.DataFrame:
-        rows = [{"slug": s, "name": p.name, "elo": round(p.elo, 1), "matches": p.matches, "level": p.level,
+        rows = [{"slug": s, "name": p.name, "sex": p.sex, "elo": round(p.elo, 1), "matches": p.matches, "level": p.level,
                  "first_date": p.first_date, "last_date": p.last_date} for s, p in self.players.items()]
         return pd.DataFrame(rows, columns=COLUMNS).sort_values("slug").reset_index(drop=True)
 
@@ -138,15 +156,17 @@ class Ratings:
     def from_table(cls, df: pd.DataFrame, start: dict[str, float] | None = None) -> "Ratings":
         r = cls(start)
         for row in df.itertuples(index=False):
-            r.players[row.slug] = Player(str(row.name), float(row.elo), int(row.matches), str(row.level),
-                                         str(row.first_date), str(row.last_date))
+            sex = getattr(row, "sex", "")
+            r.players[row.slug] = Player(str(row.name), sex if isinstance(sex, str) else "", float(row.elo),
+                                         int(row.matches), str(row.level), str(row.first_date), str(row.last_date))
         return r
 
 
 def level_start(rows: pd.DataFrame, min_matches: int = 20) -> dict[str, float]:
-    """A newcomer's rating per level: the median rating, after one pass over
-    `rows` from 1500, of the established players (`min_matches`+) whose most
-    frequent level it is."""
+    """A newcomer's rating per level, and per level and sex (start_key): the
+    median rating, after one pass over `rows` from 1500, of the established
+    players (`min_matches`+) whose most frequent level it is. Men and women
+    never meet, so each pool's levels are learnt on their own."""
     r = Ratings()
     r.play(rows)
     seen: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
@@ -157,7 +177,10 @@ def level_start(rows: pd.DataFrame, min_matches: int = 20) -> dict[str, float]:
     for slug, counts in seen.items():
         p = r.players[slug]
         if p.matches >= min_matches:
-            by_level[max(counts, key=counts.get)].append(p.elo)
+            level = max(counts, key=counts.get)
+            by_level[level].append(p.elo)
+            if p.sex:
+                by_level[start_key(level, p.sex)].append(p.elo)
     return {lv: round(float(pd.Series(v).median()), 1) for lv, v in by_level.items() if len(v) >= 20}
 
 

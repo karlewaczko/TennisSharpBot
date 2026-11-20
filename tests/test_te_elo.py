@@ -64,3 +64,11 @@ def test_fit_scale_recovers_a_line_and_drops_a_wrong_namesake():
     assert abs(b - 1.1) < 1e-3 and abs(a - 100) < 0.5
     assert te_elo.fit_scale(pairs[:10]) is None
     assert abs(te_elo.on_ta_scale(1500, (100, 1.1)) - 1750) < 1e-9
+
+
+def test_newcomers_start_by_level_and_sex():
+    r = te_elo.Ratings({"ITF": 1500.0, "ITF-W": 1450.0})
+    assert r._get("w", "W", "ITF", "2026-01-01", "W").elo == 1450.0
+    assert r._get("m", "M", "ITF", "2026-01-01", "M").elo == 1500.0
+    assert te_elo.sex_of("https://x/funchal-itf/2026/wta-women/") == "W"
+    assert te_elo.sex_of(None) == ""
