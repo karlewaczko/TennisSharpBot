@@ -647,3 +647,9 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-19T11:45:46+00:00,3384015,2026-11-20,Sydney 5 ITF,Garland J.,Kalshi,prediction,value,1.732,0.5871,0.0171,Betfair
 2026-11-19T22:42:26+00:00,3377743,2026-11-20,Masters Cup ATP,Cobolli F.,Betfair,book,value,4.9,0.2067,0.0127,Pinnacle
 2026-11-19T22:42:26+00:00,3384019,2026-11-20,Sydney challenger,Schoolkate T.,Unibet,book,value,1.42,0.7116,0.0105,Pinnacle
+2026-11-20T11:45:24+00:00,3377743,2026-11-20,Masters Cup ATP,Alcaraz C.,bet-at-home,book,value,1.23,0.8205,0.0092,Pinnacle
+2026-11-20T11:45:24+00:00,3384475,2026-11-20,Funchal ITF,Defalco J.,Polymarket,prediction,value,1.914,0.5361,0.026,Betfair
+2026-11-20T11:45:24+00:00,3384475,2026-11-20,Funchal ITF,Defalco J.,Kalshi,prediction,value,1.932,0.5361,0.0359,Betfair
+2026-11-20T11:45:24+00:00,3384549,2026-11-21,Sydney 5 ITF,Zhang S.,bet-at-home,book,value,1.45,0.71,0.0295,Betfair
+2026-11-20T11:45:24+00:00,3384549,2026-11-21,Sydney 5 ITF,Zhang S.,Kalshi,prediction,value,1.438,0.71,0.0212,Betfair
+2026-11-20T11:45:24+00:00,3384553,2026-11-21,Orlando 7 ITF,Shcherbinina A.,Polymarket,prediction,value,1.878,0.5534,0.0393,Betfair
