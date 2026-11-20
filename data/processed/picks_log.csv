@@ -653,3 +653,7 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-20T11:45:24+00:00,3384549,2026-11-21,Sydney 5 ITF,Zhang S.,bet-at-home,book,value,1.45,0.71,0.0295,Betfair
 2026-11-20T11:45:24+00:00,3384549,2026-11-21,Sydney 5 ITF,Zhang S.,Kalshi,prediction,value,1.438,0.71,0.0212,Betfair
 2026-11-20T11:45:24+00:00,3384553,2026-11-21,Orlando 7 ITF,Shcherbinina A.,Polymarket,prediction,value,1.878,0.5534,0.0393,Betfair
+2026-11-20T14:10:13+00:00,3384549,2026-11-21,Sydney 5 ITF,Zhang S.,1xBet,book,value,1.47,0.6936,0.0196,Betfair
+2026-11-20T14:10:13+00:00,3384549,2026-11-21,Sydney 5 ITF,Zhang S.,Interwetten,book,value,1.47,0.6936,0.0196,Betfair
+2026-11-20T14:10:13+00:00,3384549,2026-11-21,Sydney 5 ITF,Zhang S.,Polymarket,prediction,value,1.468,0.6936,0.0184,Betfair
+2026-11-20T14:10:13+00:00,3384549,2026-11-21,Sydney 5 ITF,Zhang S.,Kalshi,prediction,value,1.524,0.6936,0.0571,Betfair
