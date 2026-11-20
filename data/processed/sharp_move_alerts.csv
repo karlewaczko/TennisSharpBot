@@ -147,3 +147,15 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-19T09:00:16+00:00,nba,nba-gsw-mem-2026-11-19,Warriors,Polymarket,0.255,0.285,Kalshi=0.2700,0.2775,3.68,2026-11-20T01:00+00:00,printed
 2026-11-19T15:30:05+00:00,nba,nba-ind-cle-2026-11-20,Pacers,Kalshi,0.315,0.35,Polymarket=0.3350,0.3425,2.98,2026-11-21T00:30+00:00,printed
 2026-11-19T19:00:23+00:00,nba,nba-gsw-mem-2026-11-19,Warriors,Polymarket,0.315,0.345,Kalshi=0.3200,0.3325,3.07,2026-11-20T01:00+00:00,printed
+2026-11-19T21:30:28+00:00,nba,nba-tor-det-2026-11-20,Pistons,Polymarket,0.665,0.72,Kalshi=0.7250,0.7225,1.42,2026-11-21T00:30+00:00,printed
+2026-11-19T22:00:28+00:00,nba,nba-cha-atl-2026-11-20,Hornets,Polymarket,0.365,0.395,Kalshi=0.3850,0.39,2.62,2026-11-21T00:00+00:00,printed
+2026-11-19T23:31:48+00:00,nba,nba-hou-den-2026-11-20,Nuggets,Polymarket,0.525,0.555,Kalshi=0.5550,0.555,1.84,2026-11-21T03:00+00:00,printed
+2026-11-19T23:33:48+00:00,nba,nba-tor-det-2026-11-20,Raptors,Polymarket,0.265,0.305,Kalshi=0.2850,0.295,3.46,2026-11-21T00:30+00:00,printed
+2026-11-19T23:44:48+00:00,nba,nba-cha-atl-2026-11-20,Hawks,Polymarket,0.625,0.655,Kalshi=0.6500,0.6525,1.57,2026-11-21T00:00+00:00,printed
+2026-11-20T00:19:28+00:00,nba,nba-por-mil-2026-11-19,Bucks,Kalshi,0.185,0.215,Polymarket=0.2050,0.21,4.86,2026-11-20T01:00+00:00,printed
+2026-11-20T01:12:08+00:00,nba,kalshi KXNBAGAME-26NOV19NYKMIN,Minnesota,Kalshi,0.485,0.515,,0.515,1.99,2026-11-20T01:30+00:00,printed
+2026-11-20T01:12:48+00:00,nba,kalshi KXNBAGAME-26NOV19GSWMEM,Memphis,Kalshi,0.665,0.715,,0.715,1.43,2026-11-20T01:30+00:00,printed
+2026-11-20T01:12:48+00:00,nba,kalshi KXNBAGAME-26NOV19LACSAS,Los Angeles C,Kalshi,0.115,0.145,,0.145,7.04,2026-11-20T01:30+00:00,printed
+2026-11-20T01:17:48+00:00,nba,kalshi KXNBAGAME-26NOV19NYKMIN,New York,Kalshi,0.515,0.545,,0.545,1.88,2026-11-20T01:30+00:00,printed
+2026-11-20T02:05:28+00:00,nba,nba-phx-uta-2026-11-20,Jazz,Polymarket,0.365,0.395,Kalshi=0.3850,0.39,2.62,2026-11-21T02:30+00:00,printed
+2026-11-20T02:30:48+00:00,nba,nba-was-chi-2026-11-20,Wizards,Polymarket,0.415,0.445,Kalshi=0.4300,0.4375,2.34,2026-11-21T01:00+00:00,printed
