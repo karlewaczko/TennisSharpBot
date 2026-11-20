@@ -398,14 +398,13 @@ def test_own_elo_fills_in_where_tennis_abstract_has_nobody(bd, board_inputs):
     by_id = {m["id"]: m for m in board["matches"]}
     assert by_id["6"]["elo_basis"] == "te" and by_id["6"]["elo"] > 0.7
     assert by_id["6"]["te"] == [{"elo": 1700, "n": 40}, {"elo": 1500, "n": 3}]
-    assert by_id["1"]["elo_basis"] != "te" and by_id["1"]["elo"] > 0.5   # Tennis Abstract wins where it has both
+    ta_only = next(m["elo"] for m in _board(bd, *board_inputs)["matches"] if m["id"] == "1")
+    assert by_id["1"]["elo_basis"].endswith("+te")                          # both rated: blended with ours
+    assert abs(by_id["1"]["elo"] - bd.blend_elo(ta_only, r.prob("sinner", "zverev"))) < 1e-3
     assert board["days"][1]["n_elo"] == 2
 
 
-def test_mixed_elo_puts_ours_on_tennis_abstracts_scale(bd):
-    own = {"prob": 0.5, "sides": [{"elo": 1500, "n": 30}, {"elo": 1600, "n": 30}]}
-    sides = [{"elo": 1800.0}, None]
-    out = bd.mixed_elo(sides, own, (100.0, 1.0))          # ours 1600 -> 1700 on TA's scale
-    assert out["elo_basis"] == "mixed" and abs(out["elo"] - 0.64) < 0.01
-    assert bd.mixed_elo([None, None], own, (100.0, 1.0)) is None
-    assert bd.mixed_elo(sides, own, None) is None
+def test_blend_elo_averages_log_odds(bd):
+    assert bd.blend_elo(0.6, 0.6) == 0.6
+    assert abs(bd.blend_elo(0.8, 0.2) - 0.5) < 1e-9
+    assert bd.blend_elo(0.9, 0.5, w=1.0) == 0.9

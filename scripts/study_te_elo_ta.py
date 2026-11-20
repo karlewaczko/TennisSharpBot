@@ -15,11 +15,14 @@ forecast. Scored three ways against the results and the de-vigged odds:
   only one rated by it: its Elo against ours on its scale ("mixed") against ours alone
   neither: ours alone
 
+and, for the first two, blends of Tennis Abstract's forecast and ours.
+
 Results go to data/reports/te_elo_ta.json.
 """
 import _bootstrap  # noqa: F401
 import importlib.util
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -46,6 +49,16 @@ def book_for(snap: pd.DataFrame, bd):
         g = g.assign(matches=1, matches_with_stats=0, spw=0.62)
         frames[tour] = g
     return bd.ProfileBook(frames)
+
+
+def blends(rec: list[dict]) -> dict:
+    """Log loss of w * Tennis Abstract + (1 - w) * ours, in log-odds, per w."""
+    logit = lambda p: math.log(p / (1 - p))  # noqa: E731
+    out = {}
+    for w in (0.0, 0.25, 0.5, 0.75, 1.0):
+        mixed = [{**x, "p": 1 / (1 + math.exp(-(w * logit(x["p"]) + (1 - w) * logit(x["ours"]))))} for x in rec]
+        out[str(w)] = te_elo.score(mixed).get("log_loss")
+    return out
 
 
 def main() -> None:
@@ -90,12 +103,12 @@ def main() -> None:
             base = {"odds_w": x.odds_w, "odds_l": x.odds_l, "date": x.date, "level": x.level,
                     "n_min": min(pw.matches, pl.matches)}
             if tw is not None and tl is not None:
-                rec["both"].append({**base, "p": expected_score(tw, tl)})
+                rec["both"].append({**base, "p": expected_score(tw, tl), "ours": ours})
                 rec["both_te"].append({**base, "p": ours})
             elif (tw is not None or tl is not None) and sc:
                 a = tw if tw is not None else te_elo.on_ta_scale(pw.elo, sc)
                 b = tl if tl is not None else te_elo.on_ta_scale(pl.elo, sc)
-                rec["mixed"].append({**base, "p": expected_score(a, b)})
+                rec["mixed"].append({**base, "p": expected_score(a, b), "ours": ours})
                 rec["mixed_te"].append({**base, "p": ours})
             else:
                 rec["none"].append({**base, "p": ours})
@@ -104,7 +117,9 @@ def main() -> None:
     report = {"since": dates[0], "snapshots": dates, "scale": scale, "scale_players": n_pairs,
               "both_rated_by_ta": {"ta": te_elo.score(rec["both"]), "ours": te_elo.score(rec["both_te"])},
               "one_rated_by_ta": {"mixed": te_elo.score(rec["mixed"]), "ours": te_elo.score(rec["mixed_te"])},
-              "neither": te_elo.score(rec["none"])}
+              "neither": te_elo.score(rec["none"]),
+              # Tennis Abstract's weight w in a blend of log-odds, w * TA + (1 - w) * ours
+              "blend_both": blends(rec["both"]), "blend_one": blends(rec["mixed"])}
     OUT.write_text(json.dumps(report, indent=1))
     print(json.dumps(report, indent=1))
 

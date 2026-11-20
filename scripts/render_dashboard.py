@@ -916,12 +916,9 @@ def _am_note(m: dict, thresh: str) -> str:
     fav = 0 if fair[0] >= fair[1] else 1
     parts = [f'Favorit laut Markt: <b>{esc(m["players"][fav])}</b> ({_pp(fair[fav])}&thinsp;%).']
     elo_name = "Elo"
-    if m.get("elo_basis") in ("te", "mixed"):
+    if m.get("elo_basis") == "te":
         own = (m.get("te") or [{}, {}])
-        profs = ((m.get("profiles") or []) + [None, None])[:2]
-        ours = [k for k in (0, 1) if not (profs[k] or {}).get("elo")]
-        sure = min(own[k].get("n", 0) for k in ours) >= MIN_SURE
-        elo_name = ("TE-Elo" if m["elo_basis"] == "te" else "TA/TE-Elo") + ("" if sure else " (unsicher)")
+        elo_name = "TE-Elo" + ("" if min(o.get("n", 0) for o in own) >= MIN_SURE else " (unsicher)")
     have = {k: v for k, v in (("Modell", m.get("model")), (elo_name, m.get("elo")),
                               ("Statistik", m.get("stat"))) if v is not None}
     against = [k for k, v in have.items() if (v >= 0.5) != (fav == 0)]
@@ -1045,15 +1042,14 @@ def _am_match(m: dict, thresh: str) -> str:
     ev = m.get("ev_bia")
     profs = ((m.get("profiles") or []) + [None, None])[:2]
     own = ((m.get("te") or []) + [None, None])[:2]
-    ours = [k for k in (0, 1) if not (profs[k] or {}).get("elo")]
-    unsure = (m.get("elo_basis") in ("te", "mixed")
-              and min((own[k] or {}).get("n", 0) for k in ours) < MIN_SURE)
+    unsure = m.get("elo_basis") == "te" and min((o or {}).get("n", 0) for o in own) < MIN_SURE
     fav = (0 if fair[0] >= fair[1] else 1) if fair else None
     sig = m.get("signal")
     status_word = {"live": '<span class="chip live">live</span>', "finished": "Ende"}.get(m["status"], "")
     elo_title = (' title="TE-Elo, ein Spieler unter %d Partien: unsicher"' % MIN_SURE if unsure
                  else ' title="TE-Elo: eigenes Elo aus TennisExplorer-Ergebnissen"' if m.get("elo_basis") == "te"
-                 else ' title="Tennis-Abstract-Elo gegen TE-Elo auf TA-Skala"' if m.get("elo_basis") == "mixed" else "")
+                 else ' title="Mittel aus Tennis-Abstract-Elo und TE-Elo"'
+                 if str(m.get("elo_basis") or "").endswith("+te") else "")
     lines = []
     for i in (0, 1):
         def side(p):
@@ -1105,11 +1101,11 @@ def all_matches_section(data: dict) -> str:
         f'<p class="am-legend">Zeiten in deutscher Zeit, Wahrscheinlichkeiten in Prozent f&uuml;r den '
         f'jeweiligen Spieler. <b>Markt</b> = fairer Preis ohne Marge (Pinnacle, sonst Betfair oder '
         f'liquider Polymarket/Kalshi-Mittelkurs, sonst die Spielplan-Quote). <b>Modell</b> = '
-        f'trainiertes Modell mit Marktpreis, <b>Elo</b> = Tennis-Abstract-Elo (Belag, wo bekannt), '
-        f'sonst <b>TE-Elo</b>, unser eigenes Elo aus zwei Jahren TennisExplorer-Ergebnissen, das auch ITF- und '
-        f'UTR-Spieler kennt; steht nur einer der beiden bei Tennis Abstract, z&auml;hlt dessen Elo gegen '
-        f'unser auf die Tennis-Abstract-Skala umgerechnetes (grau: ein nur von uns bewerteter Spieler '
-        f'hat weniger als {MIN_SURE} Partien, der Wert ist unsicher), '
+        f'trainiertes Modell mit Marktpreis, <b>Elo</b> = Mittel aus Tennis-Abstract-Elo (Belag, wo '
+        f'bekannt) und <b>TE-Elo</b>, unserem eigenen Elo aus zwei Jahren TennisExplorer-Ergebnissen; '
+        f'kennt Tennis Abstract nicht beide Spieler (die meisten ITF- und UTR-Partien), steht das TE-Elo '
+        f'allein, so traf es im R&uuml;ckblick am besten (grau: ein Spieler hat weniger als {MIN_SURE} '
+        f'Partien, der Wert ist unsicher), '
         f'<b>Stat.</b> = Punktmodell aus Aufschlag und Return der letzten 52 Wochen. <b>Quote</b>: '
         f'schwarz = {books}, bei BetInAsia spielbar; grau = anderes Buch oder Spielplan-Quote. '
         f'Partien ohne Spielerdaten, Modell und Pinnacle-Preis sowie laufende und beendete stehen '
