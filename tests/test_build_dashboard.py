@@ -381,3 +381,30 @@ def test_pro_positions_show_the_ten_best_in_profit_proven_first(bd, tmp_path, mo
     assert [r["wallet"] for r in out["leaderboard"]] == [f"0x{i}" for i in (0, 1, 3, 4, 5, 6, 7, 8, 9, 10)]
     out = bd.pro_positions([], fetch=lambda w: [], figures=lambda w: None)
     assert out["leaderboard"] == [] and out["note"] == "keine Wallet über alle Zeit im Gewinn"
+
+
+def test_own_elo_fills_in_where_tennis_abstract_has_nobody(bd, board_inputs):
+    from tennissharp import te_elo
+    sched, price_board, matches, profiles = board_inputs
+    sched = sched.assign(player1_slug=None, player2_slug=None)
+    sched.loc[sched["match_id"] == "6", ["player1_slug", "player2_slug"]] = ["swiatek", "nobody"]
+    sched.loc[sched["match_id"] == "1", ["player1_slug", "player2_slug"]] = ["sinner", "zverev"]
+    r = te_elo.Ratings()
+    for slug, elo, n in (("swiatek", 1700.0, 40), ("nobody", 1500.0, 3), ("sinner", 1500.0, 50),
+                         ("zverev", 1900.0, 50)):
+        r.players[slug] = te_elo.Player(slug, "W", elo, n, "ITF", "2026-01-01", "2026-10-01")
+    board = bd.all_matches_board(sched, price_board, matches, profiles, 0.05,
+                                 now=pd.Timestamp("2026-10-25 08:00", tz="UTC"), ratings=r)
+    by_id = {m["id"]: m for m in board["matches"]}
+    assert by_id["6"]["elo_basis"] == "te" and by_id["6"]["elo"] > 0.7
+    assert by_id["6"]["te"] == [{"elo": 1700, "n": 40}, {"elo": 1500, "n": 3}]
+    ta_only = next(m["elo"] for m in _board(bd, *board_inputs)["matches"] if m["id"] == "1")
+    assert by_id["1"]["elo_basis"].endswith("+te")                          # both rated: blended with ours
+    assert abs(by_id["1"]["elo"] - bd.blend_elo(ta_only, r.prob("sinner", "zverev"))) < 1e-3
+    assert board["days"][1]["n_elo"] == 2
+
+
+def test_blend_elo_averages_log_odds(bd):
+    assert bd.blend_elo(0.6, 0.6) == 0.6
+    assert abs(bd.blend_elo(0.8, 0.2) - 0.5) < 1e-9
+    assert bd.blend_elo(0.9, 0.5, w=1.0) == 0.9

@@ -1,6 +1,7 @@
 name: Rebuild value dashboard
 
-# The light job: no retraining. It refreshes the three TennisExplorer
+# The light job: no retraining. It plays yesterday's results into our own
+# Elo (scripts/update_te_elo.py), refreshes the three TennisExplorer
 # schedule pages, reads Polymarket, Kalshi and Tennis Abstract's tournament
 # forecasts, rebuilds the price board and the model table from the
 # committed model files, appends the run's quotes and forecasts to the
@@ -40,6 +41,11 @@ jobs:
       - name: Install dependencies
         run: pip install pandas numpy scikit-learn joblib requests lxml python-dateutil tabulate
 
+      # Our Elo over TennisExplorer's results (ITF and UTR included): plays
+      # the days since its last run, once a day in practice.
+      - name: Update our own Elo (TE-Elo)
+        run: python scripts/update_te_elo.py || echo "TE-Elo update failed; the card keeps yesterday's."
+
       - name: Rebuild the card (schedule, books, Polymarket, Kalshi, Tennis Abstract)
         run: |
           python scripts/build_dashboard.py --refresh-schedule --limit 250 --itf-limit 40
@@ -54,7 +60,8 @@ jobs:
           git add docs data/reports/dashboard.html data/processed/dashboard.json \
                   data/processed/tennisexplorer_upcoming.csv data/processed/odds_snapshots.csv \
                   data/processed/picks_log.csv data/processed/forecasts_log.csv \
-                  data/processed/pm_gap_log.csv data/processed/pm_pro_positions_log.csv
+                  data/processed/pm_gap_log.csv data/processed/pm_pro_positions_log.csv \
+                  data/processed/te_elo_current.csv data/processed/te_elo_meta.json
           if git diff --cached --quiet; then
             echo "No changes."
             exit 0

@@ -56,6 +56,15 @@ Dashboard jetzt ein **Preisbrett**:
   Returnprofile der letzten 52 Wochen und ein Punktmodell daraus. Die
   Matchlogs der Spielerseiten sperrt Tennis Abstract per robots.txt; dieselben
   Statistiken kommen deshalb von TennisMyLife.
+- **TE-Elo für jede Partie, auch ITF und UTR:** Tennis Abstract kennt nur
+  rund 1.000 Spieler. Für alle anderen rechnet das Projekt ein eigenes Elo
+  aus zwei Jahren TennisExplorer-Ergebnissen (rund 237.000 Partien, 18.000
+  Spieler) und spielt jeden Tag die Ergebnisse vom Vortag ein. Die
+  Elo-Spalte zeigt: kennt Tennis Abstract beide Spieler, das Mittel aus
+  Tennis-Abstract-Elo und TE-Elo, sonst das TE-Elo allein. So traf es im
+  Rückblick am besten. Grau heißt unsicher (ein Spieler unter 15 Partien).
+  Ehrlich: Das TE-Elo trifft 69 % der Sieger, der Markt 72 %. Es ist ein
+  Hinweis, kein Signal.
 - **Spielertabelle, jeden Dienstag neu:** `data/processed/player_profiles_atp.csv`
   und `player_profiles_wta.csv` enthalten jeden ATP- und WTA-Spieler mit
   Elo, Belag-Elo, Saison-Elo (yElo) sowie Aufschlag-, Return-, Hold- und

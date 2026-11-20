@@ -1,0 +1,196 @@
+{
+ "generated_at": "2026-11-20T13:37:45+00:00",
+ "days": 730,
+ "test_days": 90,
+ "matches": 236765,
+ "start": {
+  "ITF": 1590.0,
+  "ITF-M": 1621.7,
+  "Challenger": 1836.2,
+  "Challenger-M": 1836.2,
+  "ITF-W": 1597.6,
+  "UTR": 1494.0,
+  "UTR-M": 1508.8,
+  "WTA": 1890.6,
+  "WTA-W": 1890.6,
+  "UTR-W": 1467.1,
+  "ATP": 1892.6,
+  "ATP-M": 1892.6,
+  "Liga": 1669.3
+ },
+ "all": {
+  "n": 32276,
+  "log_loss": 0.5726,
+  "brier": 0.1957,
+  "hit_rate": 0.6935,
+  "with_odds": {
+   "n": 23529,
+   "elo_log_loss": 0.5787,
+   "market_log_loss": 0.5411,
+   "elo_brier": 0.1984,
+   "market_brier": 0.1823,
+   "elo_hit_rate": 0.688,
+   "market_hit_rate": 0.7198
+  }
+ },
+ "settled": {
+  "n": 23106,
+  "log_loss": 0.5695,
+  "brier": 0.1946,
+  "hit_rate": 0.6955,
+  "with_odds": {
+   "n": 19831,
+   "elo_log_loss": 0.5829,
+   "market_log_loss": 0.5533,
+   "elo_brier": 0.2002,
+   "market_brier": 0.1873,
+   "elo_hit_rate": 0.6843,
+   "market_hit_rate": 0.7113
+  }
+ },
+ "by_level": {
+  "ATP": {
+   "n": 1098,
+   "log_loss": 0.6381,
+   "brier": 0.2228,
+   "hit_rate": 0.6357,
+   "with_odds": {
+    "n": 1003,
+    "elo_log_loss": 0.6267,
+    "market_log_loss": 0.5791,
+    "elo_brier": 0.2191,
+    "market_brier": 0.1981,
+    "elo_hit_rate": 0.6381,
+    "market_hit_rate": 0.675
+   }
+  },
+  "Challenger": {
+   "n": 3445,
+   "log_loss": 0.6121,
+   "brier": 0.2138,
+   "hit_rate": 0.6438,
+   "with_odds": {
+    "n": 3433,
+    "elo_log_loss": 0.6119,
+    "market_log_loss": 0.5769,
+    "elo_brier": 0.2137,
+    "market_brier": 0.1982,
+    "elo_hit_rate": 0.6443,
+    "market_hit_rate": 0.6834
+   }
+  },
+  "ITF": {
+   "n": 21482,
+   "log_loss": 0.5593,
+   "brier": 0.1898,
+   "hit_rate": 0.7084,
+   "with_odds": {
+    "n": 13702,
+    "elo_log_loss": 0.5643,
+    "market_log_loss": 0.5241,
+    "elo_brier": 0.1918,
+    "market_brier": 0.1751,
+    "elo_hit_rate": 0.7064,
+    "market_hit_rate": 0.7367
+   }
+  },
+  "Liga": {
+   "n": 8,
+   "log_loss": 0.9767,
+   "brier": 0.3735,
+   "hit_rate": 0.25
+  },
+  "UTR": {
+   "n": 4266,
+   "log_loss": 0.5757,
+   "brier": 0.197,
+   "hit_rate": 0.6902,
+   "with_odds": {
+    "n": 3517,
+    "elo_log_loss": 0.5769,
+    "market_log_loss": 0.5488,
+    "elo_brier": 0.1975,
+    "market_brier": 0.1847,
+    "elo_hit_rate": 0.6892,
+    "market_hit_rate": 0.7182
+   }
+  },
+  "WTA": {
+   "n": 1977,
+   "log_loss": 0.603,
+   "brier": 0.2093,
+   "hit_rate": 0.6586,
+   "with_odds": {
+    "n": 1874,
+    "elo_log_loss": 0.6014,
+    "market_log_loss": 0.565,
+    "elo_brier": 0.2091,
+    "market_brier": 0.1938,
+    "elo_hit_rate": 0.6574,
+    "market_hit_rate": 0.6905
+   }
+  }
+ },
+ "by_matches": {
+  "0-4": {
+   "n": 4245,
+   "log_loss": 0.6415,
+   "brier": 0.2242,
+   "hit_rate": 0.6379,
+   "with_odds": {
+    "n": 1244,
+    "elo_log_loss": 0.5598,
+    "market_log_loss": 0.4345,
+    "elo_brier": 0.1904,
+    "market_brier": 0.1387,
+    "elo_hit_rate": 0.7026,
+    "market_hit_rate": 0.795
+   }
+  },
+  "5-14": {
+   "n": 4925,
+   "log_loss": 0.5274,
+   "brier": 0.1764,
+   "hit_rate": 0.7316,
+   "with_odds": {
+    "n": 2454,
+    "elo_log_loss": 0.5549,
+    "market_log_loss": 0.4965,
+    "elo_brier": 0.1881,
+    "market_brier": 0.1642,
+    "elo_hit_rate": 0.7103,
+    "market_hit_rate": 0.751
+   }
+  },
+  "15-39": {
+   "n": 7149,
+   "log_loss": 0.5257,
+   "brier": 0.1763,
+   "hit_rate": 0.7351,
+   "with_odds": {
+    "n": 4876,
+    "elo_log_loss": 0.5475,
+    "market_log_loss": 0.519,
+    "elo_brier": 0.1854,
+    "market_brier": 0.1728,
+    "elo_hit_rate": 0.718,
+    "market_hit_rate": 0.7404
+   }
+  },
+  "40+": {
+   "n": 15957,
+   "log_loss": 0.5892,
+   "brier": 0.2027,
+   "hit_rate": 0.6778,
+   "with_odds": {
+    "n": 14955,
+    "elo_log_loss": 0.5944,
+    "market_log_loss": 0.5645,
+    "elo_brier": 0.205,
+    "market_brier": 0.1921,
+    "elo_hit_rate": 0.6733,
+    "market_hit_rate": 0.7018
+   }
+  }
+ }
+}

@@ -61,6 +61,7 @@ matching problem when combining sources that don't share a schema.
 | [tennis-data.co.uk](http://www.tennis-data.co.uk/) | ATP/WTA results + odds (2000/2007+) | every `update_data.py` run | primary training data, backtesting |
 | [Tennis Abstract](https://tennisabstract.com) Elo ratings | overall/hard/clay/grass Elo, current snapshot | every run (`data/processed/ta_elo_current.csv`); standalone per-tour files (same columns) in `ta_elo_atp_general.csv` / `ta_elo_wta_general.csv` | **live/current-match scoring and cross-checks only** — see caveat below |
 | Tennis Abstract surface speed | per-tournament-*edition* ace-rate-based speed rating (ATP-only source, but applied to WTA matches at shared venues too — see below) | every run (`data/processed/ta_surface_speed_history.csv`); closed seasons cached under `data/raw/surface_speed/`, only the current season is re-fetched | a real training feature (`tourney_surface_speed`), safe for backtesting |
+| TennisExplorer result pages | every finished singles match of a day, all levels, with the players' slugs and the closing odds | daily (`scripts/update_te_elo.py`, cached under `data/raw/te_results/`) | TE-Elo (`data/processed/te_elo_current.csv`) |
 | [TennisExplorer](https://www.tennisexplorer.com) | today/tomorrow's schedule + odds + final scores, on-demand H2H, on-demand odds-movement history | every run (`data/processed/tennisexplorer_upcoming.csv`); H2H and odds history fetched live on demand | free alternative to The Odds API for live schedule/odds; `fetch_head_to_head()` for H2H; `fetch_match_odds_history()` for per-bookmaker opening-vs-current odds ("Quotenverlauf") |
 | Serve/Return leaderboards | ATP (Top50/51-100/Challenger) + WTA (Top50/51-100), overall and per surface | every run (`data/processed/ta_leaders_{tour}_{pool}_{serve\|return}_{surface}.csv`, 50 files), now computed by `player_stats.leader_tables` from the TennisMyLife match database — tennisabstract.com's own source files sit under `/jsmatches/`, which its robots.txt disallows (checked 2026-10-23) | `/leaders` API endpoint |
 | Tennis Abstract tournament forecasts (`/current/`) | the site's own next-round win probability for every pairing of every event it is forecasting, plus head-to-head and title odds | every `build_dashboard.py` run (`data/tennisabstract_forecast.py`) | "TA-Forecast" column of the forecast comparison; logged to `forecasts_log.csv` |
@@ -291,6 +292,28 @@ results on equal terms. A disagreement with the market is information, not
 an edge: on the US Open card measured in September, Tennis Abstract's
 forecast sat 6.45 pp from the market on average, our model 1.24 pp, and the
 market is calibrated to within 0.8 pp.
+
+**TE-Elo: an Elo for every player, ITF and UTR included.** Tennis Abstract
+rates about 550 men and 500 women, so on a typical day two thirds of the
+card (ITF and UTR) had no market-free opinion. `src/tennissharp/te_elo.py`
+keeps one more Elo over TennisExplorer's daily result pages: every singles
+match of the last two years (236,765 matches, 17,988 players by page slug,
+men and women as two pools), FiveThirtyEight's dynamic K, newcomers starting
+at the median established rating of their first level and sex (UTR women
+1467, ITF men 1622, ATP 1893 ...). `scripts/update_te_elo.py --rebuild`
+builds it, the dashboard workflow plays each new day in
+(`data/processed/te_elo_current.csv`). Over the last 90 days (32,276
+matches, 23,529 with odds) it picked 68.8 % of winners against the market's
+72.0 % (log loss 0.579 against 0.541): a usable rating, and the market is
+still better (`data/reports/te_elo_backtest.json`). Tennis Abstract's
+weekly snapshots since 19 Oct (`scripts/study_te_elo_ta.py`,
+`data/reports/te_elo_ta.json`) settled how to combine the two: where it
+rates both players, half its Elo and half ours in log-odds beat either alone
+(log loss 0.638 against 0.649 and 0.651, 1,651 matches); where it rates only
+one, ours alone beat its rating against ours put on its scale (0.530 against
+0.587, 1,681 matches). The Elo column shows exactly that, with each side's
+TE-Elo and match count on the card and the value greyed where a player has
+fewer than 15 matches.
 
 **Every match, today and tomorrow.** The top of the page lists every
 singles match on TennisExplorer's schedule for today and tomorrow in German

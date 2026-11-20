@@ -1,0 +1,117 @@
+{
+ "since": "2026-10-19",
+ "snapshots": [
+  "2026-10-19",
+  "2026-10-26",
+  "2026-11-02",
+  "2026-11-09",
+  "2026-11-16"
+ ],
+ "scale": {
+  "atp": [
+   -1121.48,
+   1.2779
+  ],
+  "wta": [
+   -1034.69,
+   1.264
+  ]
+ },
+ "scale_players": {
+  "atp": 539,
+  "wta": 510
+ },
+ "both_rated_by_ta": {
+  "ta": {
+   "n": 1651,
+   "log_loss": 0.6491,
+   "brier": 0.2287,
+   "hit_rate": 0.6205,
+   "with_odds": {
+    "n": 1647,
+    "elo_log_loss": 0.6481,
+    "market_log_loss": 0.6155,
+    "elo_brier": 0.2283,
+    "market_brier": 0.2137,
+    "elo_hit_rate": 0.6211,
+    "market_hit_rate": 0.6521
+   }
+  },
+  "ours": {
+   "n": 1651,
+   "log_loss": 0.6506,
+   "brier": 0.2299,
+   "hit_rate": 0.6154,
+   "with_odds": {
+    "n": 1647,
+    "elo_log_loss": 0.6498,
+    "market_log_loss": 0.6155,
+    "elo_brier": 0.2295,
+    "market_brier": 0.2137,
+    "elo_hit_rate": 0.6163,
+    "market_hit_rate": 0.6521
+   }
+  }
+ },
+ "one_rated_by_ta": {
+  "mixed": {
+   "n": 1681,
+   "log_loss": 0.5866,
+   "brier": 0.1998,
+   "hit_rate": 0.6913,
+   "with_odds": {
+    "n": 1652,
+    "elo_log_loss": 0.5848,
+    "market_log_loss": 0.5028,
+    "elo_brier": 0.1999,
+    "market_brier": 0.1672,
+    "elo_hit_rate": 0.6901,
+    "market_hit_rate": 0.7542
+   }
+  },
+  "ours": {
+   "n": 1681,
+   "log_loss": 0.5303,
+   "brier": 0.1787,
+   "hit_rate": 0.724,
+   "with_odds": {
+    "n": 1652,
+    "elo_log_loss": 0.5327,
+    "market_log_loss": 0.5028,
+    "elo_brier": 0.1795,
+    "market_brier": 0.1672,
+    "elo_hit_rate": 0.7234,
+    "market_hit_rate": 0.7542
+   }
+  }
+ },
+ "neither": {
+  "n": 7688,
+  "log_loss": 0.555,
+  "brier": 0.1881,
+  "hit_rate": 0.7111,
+  "with_odds": {
+   "n": 4927,
+   "elo_log_loss": 0.571,
+   "market_log_loss": 0.5324,
+   "elo_brier": 0.195,
+   "market_brier": 0.1786,
+   "elo_hit_rate": 0.6958,
+   "market_hit_rate": 0.7286
+  }
+ },
+ "blend_both": {
+  "0.0": 0.6506,
+  "0.25": 0.6414,
+  "0.5": 0.6383,
+  "0.75": 0.641,
+  "1.0": 0.6491
+ },
+ "blend_one": {
+  "0.0": 0.5303,
+  "0.25": 0.5346,
+  "0.5": 0.5459,
+  "0.75": 0.5635,
+  "1.0": 0.5866
+ }
+}

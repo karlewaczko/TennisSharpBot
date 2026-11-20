@@ -39,6 +39,7 @@ import argparse
 import datetime as dt
 import importlib.util
 import json
+import math
 import time
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -46,7 +47,7 @@ from zoneinfo import ZoneInfo
 import joblib
 import pandas as pd
 
-from tennissharp import config, market_compare as mc, odds_math, player_stats as ps, tourney_matching
+from tennissharp import config, market_compare as mc, odds_math, player_stats as ps, te_elo, tourney_matching
 from tennissharp.elo import normalize_surface
 from tennissharp.backtest import DEFAULT_EDGE_THRESHOLD, MIN_MATCHES_PLAYED
 from tennissharp.data import (kalshi, polymarket, polymarket_traders as pt,
@@ -642,6 +643,33 @@ def profile_forecasts(a: dict | None, b: dict | None, tour_avg: float, best_of: 
     return out
 
 
+def own_elo(ratings: "te_elo.Ratings | None", slug_1, slug_2) -> dict | None:
+    """Our Elo (te_elo) for a pair of TennisExplorer slugs: the first
+    player's chance and each side's rating and match count; None when either
+    player has never been seen."""
+    if ratings is None or not isinstance(slug_1, str) or not isinstance(slug_2, str):
+        return None
+    p = ratings.prob(slug_1, slug_2)
+    if p is None:
+        return None
+    sides = [ratings.players[s] for s in (slug_1, slug_2)]
+    return {"prob": round(p, 4), "sides": [{"elo": round(x.elo), "n": x.matches} for x in sides]}
+
+
+def blend_elo(ta: float, ours: float, w: float = 0.5) -> float:
+    """Tennis Abstract's chance and ours, blended in log-odds with weight `w` on theirs."""
+    logit = lambda p: math.log(p / (1 - p))  # noqa: E731
+    x = w * logit(min(max(ta, 1e-6), 1 - 1e-6)) + (1 - w) * logit(min(max(ours, 1e-6), 1 - 1e-6))
+    return round(1 / (1 + math.exp(-x)), 4)
+
+
+def load_own_elo() -> "te_elo.Ratings | None":
+    path = config.PROCESSED_DIR / "te_elo_current.csv"
+    if not path.exists():
+        return None
+    return te_elo.Ratings.from_table(pd.read_csv(path, dtype={"slug": str}))
+
+
 def _compact(value):
     """Drops empty fields: most of the list is ITF and UTR matches with no
     profile, model or book, and their nulls would be most of the payload."""
@@ -663,7 +691,7 @@ def _score_text(m) -> str | None:
 
 def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: list[dict],
                       profiles: ProfileBook, threshold: float, surface_of=None,
-                      now=None, days: int = 2) -> dict:
+                      now=None, days: int = 2, ratings: "te_elo.Ratings | None" = None) -> dict:
     """Every singles match of today and tomorrow (Berlin dates), each with
     the player table, the market, every forecast this run has, and the
     verdict for a BetInAsia bettor.
@@ -671,7 +699,16 @@ def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: lis
     A signal is the model table's own signal (trained model, not stale,
     sharp reference, EV past the threshold) priced at a BetInAsia book. Elo
     and point-model gaps are shown, never signalled -- the same rule as the
-    model table, for the reasons given there."""
+    model table, for the reasons given there.
+
+    The Elo column blends Tennis Abstract's with `ratings`, our own over
+    TennisExplorer's results (te_elo), half and half in log-odds where
+    Tennis Abstract rates both players; where it rates one or neither (most
+    ITF and UTR matches) ours stands alone, with both players' match counts
+    beside it. On the 3,300 matches since Tennis Abstract's first weekly
+    snapshot (scripts/study_te_elo_ta.py) the blend beat either alone where
+    both were rated, and ours alone beat Tennis Abstract's rating against
+    ours put on its scale where one was."""
     now = pd.Timestamp(now or pd.Timestamp.now(tz="UTC")).tz_convert("UTC")
     first = now.tz_convert(BERLIN).date()
     wanted = [(first + dt.timedelta(days=i)).isoformat() for i in range(days)]
@@ -713,6 +750,11 @@ def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: lis
         if sides[0] and sides[1] and sides[0]["name"] == sides[1]["name"]:
             sides = [None, None]
         fc = profile_forecasts(sides[0], sides[1], profiles.tour_avg.get(tour, 0.62), best_of)
+        own = own_elo(ratings, m.get("player1_slug"), m.get("player2_slug"))
+        if own and fc.get("elo") is not None:
+            fc.update(elo=blend_elo(fc["elo"], own["prob"]), elo_basis=f'{fc["elo_basis"]}+te')
+        elif own:
+            fc.update(elo=own["prob"], elo_basis="te")
 
         odds = ([round(float(m["odds1"]), 3), round(float(m["odds2"]), 3)]
                 if pd.notna(m.get("odds1")) and pd.notna(m.get("odds2")) else None)
@@ -766,6 +808,7 @@ def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: lis
             "model": model_p, "method": sc.get("method") or entry.get("method"),
             "stale": sc.get("stale_players") or [],
             "elo": fc.get("elo"), "elo_basis": fc.get("elo_basis"), "stat": fc.get("stat"),
+            "te": own["sides"] if own else None,
             "ta_forecast": (entry.get("ta_forecast") or {}).get("prob_1"),
             "h2h": [h2h["wins_a"], h2h["wins_b"]] if h2h else None,
             "ev_bia": ev_bia, "signal": signal, "soft": soft,
@@ -782,6 +825,7 @@ def all_matches_board(sched: pd.DataFrame, price_board: list[dict], matches: lis
             "n_upcoming": sum(r["status"] == "upcoming" for r in sub),
             "n_profiled": sum(1 for r in sub if r["profiles"][0] and r["profiles"][1]),
             "n_model": sum(r["model"] is not None for r in sub),
+            "n_elo": sum(r["elo"] is not None for r in sub),
             "n_pinnacle": sum(r["pinnacle"] is not None for r in sub),
             "n_signals": sum(r["signal"] is not None for r in sub),
         })
@@ -1223,7 +1267,8 @@ def main() -> None:
         sharpness = {}
     every = all_matches_board(
         sched_all, price_board, matches, ProfileBook.load(), args.threshold,
-        surface_of=lambda t: surface_by_name.get(tourney_matching.normalize_tourney_name(t)))
+        surface_of=lambda t: surface_by_name.get(tourney_matching.normalize_tourney_name(t)),
+        ratings=load_own_elo())
     generated_at = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     payload = {
         "generated_at": generated_at,
