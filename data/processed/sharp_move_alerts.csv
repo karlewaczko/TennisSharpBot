@@ -159,3 +159,5 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-20T01:17:48+00:00,nba,kalshi KXNBAGAME-26NOV19NYKMIN,New York,Kalshi,0.515,0.545,,0.545,1.88,2026-11-20T01:30+00:00,printed
 2026-11-20T02:05:28+00:00,nba,nba-phx-uta-2026-11-20,Jazz,Polymarket,0.365,0.395,Kalshi=0.3850,0.39,2.62,2026-11-21T02:30+00:00,printed
 2026-11-20T02:30:48+00:00,nba,nba-was-chi-2026-11-20,Wizards,Polymarket,0.415,0.445,Kalshi=0.4300,0.4375,2.34,2026-11-21T01:00+00:00,printed
+2026-11-20T03:29:33+00:00,nba,nba-hou-den-2026-11-20,Rockets,Polymarket,0.445,0.475,Kalshi=0.4600,0.4675,2.19,2026-11-21T03:00+00:00,printed
+2026-11-20T06:45:13+00:00,nba,nba-mil-phi-2026-11-21,76ers,Polymarket,0.815,0.86,Kalshi=0.8400,0.85,1.2,2026-11-21T18:00+00:00,printed
