@@ -661,3 +661,5 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-20T22:16:36+00:00,3384561,2026-11-21,Kobe challenger,Yosuke Watanuki,Polymarket,prediction,value,1.155,0.8699,0.0044,Pinnacle
 2026-11-20T22:16:36+00:00,3384561,2026-11-21,Kobe challenger,Yosuke Watanuki,Kalshi,prediction,value,1.152,0.8699,0.0016,Pinnacle
 2026-11-20T22:16:36+00:00,3384783,2026-11-21,Trnava 5 ITF,Yaneva E.,Polymarket,prediction,value,1.3,0.7812,0.0157,Pinnacle
+2026-11-21T20:56:20+00:00,3385476,2026-11-23,Hersonissos 6 challenger,Sergey Fomin,1xBet,book,value,3.15,0.3386,0.0666,Betfair
+2026-11-21T20:56:20+00:00,3385476,2026-11-23,Hersonissos 6 challenger,Sergey Fomin,Interwetten,book,value,3.2,0.3386,0.0835,Betfair
