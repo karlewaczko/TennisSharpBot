@@ -3489,3 +3489,29 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-22T11:30:22+00:00,3385232,2026-11-24,Yokohama challenger,Challenger,Hayato Matsuoka,Polymarket,0.625,0.6531,Betfair,0.05,4353.4559
 2026-11-22T11:30:22+00:00,3385238,2026-11-24,Yokohama challenger,Challenger,Yosuke Watanuki,Polymarket,0.895,0.8966,Betfair,0.09,4259.1553
 2026-11-22T11:30:22+00:00,3385238,2026-11-24,Yokohama challenger,Challenger,Kaichi Uchida,Polymarket,0.105,0.1034,Betfair,0.09,4259.1553
+2026-11-22T21:07:10+00:00,3386784,2026-11-23,Buenos Aires WTA,Tour,Nuria Brancaccio,Polymarket,0.49,0.7897,Betfair,0.74,168.7288
+2026-11-22T21:07:10+00:00,3386784,2026-11-23,Buenos Aires WTA,Tour,Anastasia Zolotareva,Polymarket,0.51,0.2103,Betfair,0.74,168.7288
+2026-11-22T21:07:10+00:00,3385192,2026-11-23,Playford 2 challenger,Challenger,Enzo Aguiard,Polymarket,0.475,0.478,Pinnacle,0.01,14613.8281
+2026-11-22T21:07:10+00:00,3385192,2026-11-23,Playford 2 challenger,Challenger,Blake Ellis,Polymarket,0.525,0.522,Pinnacle,0.01,14613.8281
+2026-11-22T21:07:10+00:00,3385192,2026-11-23,Playford 2 challenger,Challenger,Enzo Aguiard,Kalshi,0.47,0.478,Pinnacle,0.02,4268.676600000001
+2026-11-22T21:07:10+00:00,3385192,2026-11-23,Playford 2 challenger,Challenger,Blake Ellis,Kalshi,0.535,0.522,Pinnacle,0.01,4268.676600000001
+2026-11-22T21:07:10+00:00,3385180,2026-11-23,Playford 2 challenger,Challenger,Tai Sach,Polymarket,0.235,0.172,Betfair,0.21,3953.1814
+2026-11-22T21:07:10+00:00,3385180,2026-11-23,Playford 2 challenger,Challenger,Christian Langmo,Polymarket,0.765,0.8413,Betfair,0.21,3953.1814
+2026-11-22T21:07:10+00:00,3385184,2026-11-23,Playford 2 challenger,Challenger,Edward Winter,Polymarket,0.35,0.4134,Betfair,0.04,4902.6194
+2026-11-22T21:07:10+00:00,3385184,2026-11-23,Playford 2 challenger,Challenger,Li Tu,Polymarket,0.65,0.5866,Betfair,0.04,4902.6194
+2026-11-22T21:07:10+00:00,3386142,2026-11-24,Florianopolis challenger,Challenger,Johan Nikles,Polymarket,0.32,0.2695,Betfair,0.08,6188.3901
+2026-11-22T21:07:10+00:00,3386142,2026-11-24,Florianopolis challenger,Challenger,Pedro Boscardin Dias,Polymarket,0.68,0.7305,Betfair,0.08,6188.3901
+2026-11-22T21:07:10+00:00,3386144,2026-11-24,Florianopolis challenger,Challenger,Pedro Sakamoto,Polymarket,0.195,0.2232,Betfair,0.03,3101.8804
+2026-11-22T21:07:10+00:00,3386144,2026-11-24,Florianopolis challenger,Challenger,Guido Ivan Justo,Polymarket,0.805,0.7768,Betfair,0.03,3101.8804
+2026-11-22T21:07:10+00:00,3385228,2026-11-24,Yokohama challenger,Challenger,Rio Noguchi,Polymarket,0.675,0.6841,Betfair,0.07,1573.0009
+2026-11-22T21:07:10+00:00,3385228,2026-11-24,Yokohama challenger,Challenger,Maximus Jones,Polymarket,0.325,0.3159,Betfair,0.07,1573.0009
+2026-11-22T21:07:10+00:00,3385232,2026-11-24,Yokohama challenger,Challenger,Koki Matsuda,Polymarket,0.375,0.3209,Betfair,0.05,4595.7469
+2026-11-22T21:07:10+00:00,3385232,2026-11-24,Yokohama challenger,Challenger,Hayato Matsuoka,Polymarket,0.625,0.6791,Betfair,0.05,4595.7469
+2026-11-22T21:07:10+00:00,3385238,2026-11-24,Yokohama challenger,Challenger,Yosuke Watanuki,Polymarket,0.885,0.8813,Betfair,0.07,5374.9454
+2026-11-22T21:07:10+00:00,3385238,2026-11-24,Yokohama challenger,Challenger,Kaichi Uchida,Polymarket,0.115,0.1187,Betfair,0.07,5374.9454
+2026-11-22T21:07:10+00:00,3385394,2026-11-24,Ankara challenger,Challenger,Yanaki Milev,Polymarket,0.4,0.366,Betfair,0.04,1455.8942
+2026-11-22T21:07:10+00:00,3385394,2026-11-24,Ankara challenger,Challenger,Oleg Prihodko,Polymarket,0.6,0.634,Betfair,0.04,1455.8942
+2026-11-22T21:07:10+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Challenger,Ioannis Xilas,Polymarket,0.71,0.6671,Betfair,0.04,3514.5729
+2026-11-22T21:07:10+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Challenger,Sergey Fomin,Polymarket,0.29,0.3329,Betfair,0.04,3514.5729
+2026-11-22T21:07:10+00:00,3385482,2026-11-24,Hersonissos 6 challenger,Challenger,Johannus Monday,Polymarket,0.425,0.4234,Betfair,0.05,7984.7412
+2026-11-22T21:07:10+00:00,3385482,2026-11-24,Hersonissos 6 challenger,Challenger,Philip Henning,Polymarket,0.575,0.5766,Betfair,0.05,7984.7412
