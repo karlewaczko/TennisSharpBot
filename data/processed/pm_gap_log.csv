@@ -3459,3 +3459,33 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-22T01:23:13+00:00,3385384,2026-11-22,Trnava 5 ITF,ITF,Stojsavljevic M.,Polymarket,0.365,0.3473,Betfair,0.03,1331.2359
 2026-11-22T01:23:13+00:00,3385384,2026-11-22,Trnava 5 ITF,ITF,Yaneva E.,Kalshi,0.63,0.6527,Betfair,0.06,72.54
 2026-11-22T01:23:13+00:00,3385384,2026-11-22,Trnava 5 ITF,ITF,Stojsavljevic M.,Kalshi,0.35,0.3473,Betfair,0.02,72.54
+2026-11-22T11:30:22+00:00,3386170,2026-11-22,Colina WTA,Tour,Romero Gormaz L.,Polymarket,0.445,0.4518,Pinnacle,0.01,25134.2821
+2026-11-22T11:30:22+00:00,3386170,2026-11-22,Colina WTA,Tour,Masarova R.,Polymarket,0.555,0.5482,Pinnacle,0.01,25134.2821
+2026-11-22T11:30:22+00:00,3386170,2026-11-22,Colina WTA,Tour,Romero Gormaz L.,Kalshi,0.455,0.4518,Pinnacle,0.01,498.873
+2026-11-22T11:30:22+00:00,3386170,2026-11-22,Colina WTA,Tour,Masarova R.,Kalshi,0.545,0.5482,Pinnacle,0.01,498.873
+2026-11-22T11:30:22+00:00,3386160,2026-11-22,Montevideo challenger,Challenger,Matheus Pucinelli De Almeida,Polymarket,0.35,0.3553,Betfair,0.02,20252.8078
+2026-11-22T11:30:22+00:00,3386160,2026-11-22,Montevideo challenger,Challenger,Thiago Seyboth Wild,Polymarket,0.65,0.6447,Betfair,0.02,20252.8078
+2026-11-22T11:30:22+00:00,3386160,2026-11-22,Montevideo challenger,Challenger,Matheus Pucinelli De Almeida,Kalshi,0.355,0.3553,Betfair,0.01,1547.4102
+2026-11-22T11:30:22+00:00,3386160,2026-11-22,Montevideo challenger,Challenger,Thiago Seyboth Wild,Kalshi,0.645,0.6447,Betfair,0.01,1547.4102
+2026-11-22T11:30:22+00:00,3386130,2026-11-23,Florianopolis challenger,Challenger,Max Alcala Gurri,Polymarket,0.725,0.8056,Betfair,0.11,6019.74
+2026-11-22T11:30:22+00:00,3386130,2026-11-23,Florianopolis challenger,Challenger,Gonzalo Villanueva,Polymarket,0.275,0.1944,Betfair,0.11,6019.74
+2026-11-22T11:30:22+00:00,3386142,2026-11-23,Florianopolis challenger,Challenger,Johan Nikles,Polymarket,0.305,0.2959,Betfair,0.09,2955.8012
+2026-11-22T11:30:22+00:00,3386142,2026-11-23,Florianopolis challenger,Challenger,Pedro Boscardin Dias,Polymarket,0.695,0.7041,Betfair,0.09,2955.8012
+2026-11-22T11:30:22+00:00,3386144,2026-11-23,Florianopolis challenger,Challenger,Pedro Sakamoto,Polymarket,0.27,0.2114,Betfair,0.08,2832.1531
+2026-11-22T11:30:22+00:00,3386144,2026-11-23,Florianopolis challenger,Challenger,Guido Ivan Justo,Polymarket,0.73,0.7886,Betfair,0.08,2832.1531
+2026-11-22T11:30:22+00:00,3385180,2026-11-23,Playford 2 challenger,Challenger,Tai Sach,Polymarket,0.235,0.172,Betfair,0.21,2557.9157
+2026-11-22T11:30:22+00:00,3385180,2026-11-23,Playford 2 challenger,Challenger,Christian Langmo,Polymarket,0.765,0.8413,Betfair,0.21,2557.9157
+2026-11-22T11:30:22+00:00,3385184,2026-11-23,Playford 2 challenger,Challenger,Edward Winter,Polymarket,0.315,0.4134,Betfair,0.01,3735.1168
+2026-11-22T11:30:22+00:00,3385184,2026-11-23,Playford 2 challenger,Challenger,Li Tu,Polymarket,0.685,0.5866,Betfair,0.01,3735.1168
+2026-11-22T11:30:22+00:00,3385244,2026-11-23,Yokohama challenger,Challenger,Ognjen Milic,Polymarket,0.39,0.3832,Betfair,0.06,3306.0328
+2026-11-22T11:30:22+00:00,3385244,2026-11-23,Yokohama challenger,Challenger,Keegan Smith,Polymarket,0.61,0.6168,Betfair,0.06,3306.0328
+2026-11-22T11:30:22+00:00,3385658,2026-11-23,Monastir 2 challenger,Challenger,Robert Strombachs,Polymarket,0.465,0.461,Betfair,0.03,9153.0106
+2026-11-22T11:30:22+00:00,3385658,2026-11-23,Monastir 2 challenger,Challenger,Tiago Pereira,Polymarket,0.535,0.539,Betfair,0.03,9153.0106
+2026-11-22T11:30:22+00:00,3385476,2026-11-23,Hersonissos 6 challenger,Challenger,Ioannis Xilas,Polymarket,0.715,0.6862,Betfair,0.07,6390.669
+2026-11-22T11:30:22+00:00,3385476,2026-11-23,Hersonissos 6 challenger,Challenger,Sergey Fomin,Polymarket,0.285,0.3138,Betfair,0.07,6390.669
+2026-11-22T11:30:22+00:00,3385482,2026-11-23,Hersonissos 6 challenger,Challenger,Johannus Monday,Polymarket,0.42,0.3979,Betfair,0.02,4619.778
+2026-11-22T11:30:22+00:00,3385482,2026-11-23,Hersonissos 6 challenger,Challenger,Philip Henning,Polymarket,0.58,0.6021,Betfair,0.02,4619.778
+2026-11-22T11:30:22+00:00,3385232,2026-11-24,Yokohama challenger,Challenger,Koki Matsuda,Polymarket,0.375,0.3469,Betfair,0.05,4353.4559
+2026-11-22T11:30:22+00:00,3385232,2026-11-24,Yokohama challenger,Challenger,Hayato Matsuoka,Polymarket,0.625,0.6531,Betfair,0.05,4353.4559
+2026-11-22T11:30:22+00:00,3385238,2026-11-24,Yokohama challenger,Challenger,Yosuke Watanuki,Polymarket,0.895,0.8966,Betfair,0.09,4259.1553
+2026-11-22T11:30:22+00:00,3385238,2026-11-24,Yokohama challenger,Challenger,Kaichi Uchida,Polymarket,0.105,0.1034,Betfair,0.09,4259.1553

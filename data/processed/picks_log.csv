@@ -668,3 +668,13 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-22T01:23:13+00:00,3385184,2026-11-22,Playford 2 challenger,Edward Winter,Polymarket,prediction,value,3.022,0.4384,0.325,Betfair
 2026-11-22T01:23:13+00:00,3385476,2026-11-23,Hersonissos 6 challenger,Sergey Fomin,1xBet,book,value,3.09,0.3386,0.0463,Betfair
 2026-11-22T01:23:13+00:00,3385476,2026-11-23,Hersonissos 6 challenger,Sergey Fomin,Polymarket,prediction,value,3.022,0.3386,0.0233,Betfair
+2026-11-22T11:30:22+00:00,3386130,2026-11-23,Florianopolis challenger,Max Alcala Gurri,Polymarket,prediction,value,1.268,0.8056,0.0216,Betfair
+2026-11-22T11:30:22+00:00,3386142,2026-11-23,Florianopolis challenger,Johan Nikles,BetVictor,book,value,3.4,0.2959,0.0061,Betfair
+2026-11-22T11:30:22+00:00,3386142,2026-11-23,Florianopolis challenger,Johan Nikles,Betsson,book,value,3.4,0.2959,0.0061,Betfair
+2026-11-22T11:30:22+00:00,3386142,2026-11-23,Florianopolis challenger,Johan Nikles,Interwetten,book,value,3.4,0.2959,0.0061,Betfair
+2026-11-22T11:30:22+00:00,3386144,2026-11-23,Florianopolis challenger,Guido Ivan Justo,Polymarket,prediction,value,1.284,0.7886,0.0126,Betfair
+2026-11-22T11:30:22+00:00,3385184,2026-11-23,Playford 2 challenger,Edward Winter,Betsson,book,value,2.5,0.4134,0.0335,Betfair
+2026-11-22T11:30:22+00:00,3385184,2026-11-23,Playford 2 challenger,Edward Winter,bet-at-home,book,value,2.5,0.4134,0.0335,Betfair
+2026-11-22T11:30:22+00:00,3385184,2026-11-23,Playford 2 challenger,Edward Winter,Polymarket,prediction,value,3.022,0.4134,0.2495,Betfair
+2026-11-22T11:30:22+00:00,3385476,2026-11-23,Hersonissos 6 challenger,Sergey Fomin,Betsson,book,value,3.2,0.3138,0.0042,Betfair
+2026-11-22T11:30:22+00:00,3385476,2026-11-23,Hersonissos 6 challenger,Sergey Fomin,Interwetten,book,value,3.2,0.3138,0.0042,Betfair
