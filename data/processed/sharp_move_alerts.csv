@@ -202,3 +202,7 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-22T03:08:59+00:00,nba,kalshi KXNBAGAME-26NOV21BOSSAC,Sacramento,Kalshi,0.165,0.195,,0.195,5.24,2026-11-22T03:30+00:00,printed
 2026-11-22T03:13:19+00:00,nba,kalshi KXNBAGAME-26NOV21BOSSAC,Boston,Kalshi,0.835,0.865,,0.865,1.18,2026-11-22T03:30+00:00,printed
 2026-11-22T12:20:00+00:00,nba,nba-dal-uta-2026-11-22,Jazz,Polymarket,0.455,0.495,Kalshi=0.4850,0.49,2.09,2026-11-23T00:00+00:00,printed
+2026-11-22T15:38:43+00:00,nba,nba-den-chi-2026-11-22,Nuggets,Kalshi,0.765,0.795,Polymarket=0.7850,0.79,1.3,2026-11-23T00:00+00:00,printed
+2026-11-22T17:43:23+00:00,nba,nba-phx-nop-2026-11-23,Pelicans,Kalshi,0.355,0.39,Polymarket=0.3700,0.38,2.69,2026-11-24T01:00+00:00,printed
+2026-11-22T18:00:43+00:00,nba,nba-ind-nyk-2026-11-22,Pacers,Polymarket,0.245,0.275,Kalshi=0.2650,0.27,3.78,2026-11-23T01:00+00:00,printed
+2026-11-22T19:00:43+00:00,nba,nba-dal-uta-2026-11-22,Mavericks,Polymarket,0.505,0.535,Kalshi=0.5050,0.52,1.97,2026-11-23T00:00+00:00,printed
