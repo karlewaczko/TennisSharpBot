@@ -712,3 +712,8 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-23T01:47:33+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Betsson,book,value,3.2,0.3329,0.0653,Betfair
 2026-11-23T01:47:33+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Betway,book,value,3.2,0.3329,0.0653,Betfair
 2026-11-23T01:47:33+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Interwetten,book,value,3.2,0.3329,0.0653,Betfair
+2026-11-23T12:51:17+00:00,3386778,2026-11-23,Buenos Aires WTA,Ipek Oz,Kalshi,prediction,value,2.095,0.495,0.0369,Polymarket Mid
+2026-11-23T12:51:17+00:00,3385394,2026-11-24,Ankara challenger,Yanaki Milev,Betsson,book,value,2.6,0.3867,0.0053,Betfair
+2026-11-23T12:51:17+00:00,3385394,2026-11-24,Ankara challenger,Yanaki Milev,Coral,book,value,2.6,0.3867,0.0053,Betfair
+2026-11-23T12:51:17+00:00,3385394,2026-11-24,Ankara challenger,Yanaki Milev,Ladbrokes,book,value,2.6,0.3867,0.0053,Betfair
+2026-11-23T12:51:17+00:00,3385394,2026-11-24,Ankara challenger,Yanaki Milev,bwin,book,value,2.6,0.3867,0.0053,Betfair
