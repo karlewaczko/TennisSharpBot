@@ -697,3 +697,18 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-22T21:07:10+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Betway,book,value,3.2,0.3329,0.0653,Betfair
 2026-11-22T21:07:10+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Interwetten,book,value,3.2,0.3329,0.0653,Betfair
 2026-11-22T21:07:10+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Polymarket,prediction,value,3.118,0.3329,0.0381,Betfair
+2026-11-23T01:47:33+00:00,3386784,2026-11-23,Buenos Aires WTA,Nuria Brancaccio,Polymarket,prediction,value,1.284,0.7897,0.0139,Betfair
+2026-11-23T01:47:33+00:00,3385184,2026-11-23,Playford 2 challenger,Edward Winter,Betsson,book,value,2.47,0.431,0.0645,Betfair
+2026-11-23T01:47:33+00:00,3385184,2026-11-23,Playford 2 challenger,Edward Winter,Betway,book,value,2.6,0.431,0.1205,Betfair
+2026-11-23T01:47:33+00:00,3385184,2026-11-23,Playford 2 challenger,Edward Winter,bet-at-home,book,value,2.5,0.431,0.0774,Betfair
+2026-11-23T01:47:33+00:00,3385194,2026-11-23,Playford 2 challenger,Omar Jasika,BetVictor,book,value,2.3,0.495,0.1385,Polymarket Mid
+2026-11-23T01:47:33+00:00,3385194,2026-11-23,Playford 2 challenger,Omar Jasika,Betway,book,value,2.4,0.495,0.188,Polymarket Mid
+2026-11-23T01:47:33+00:00,3385194,2026-11-23,Playford 2 challenger,Omar Jasika,bet-at-home,book,value,2.3,0.495,0.1385,Polymarket Mid
+2026-11-23T01:47:33+00:00,3386138,2026-11-24,Florianopolis challenger,Joaquin Aguilar Cardozo,10Bet,book,value,1.29,0.7907,0.02,Betfair
+2026-11-23T01:47:33+00:00,3386138,2026-11-24,Florianopolis challenger,Joaquin Aguilar Cardozo,Interwetten,book,value,1.27,0.7907,0.0041,Betfair
+2026-11-23T01:47:33+00:00,3385238,2026-11-24,Yokohama challenger,Kaichi Uchida,1xBet,book,value,8.0,0.128,0.0238,Betfair
+2026-11-23T01:47:33+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,1xBet,book,value,3.15,0.3329,0.0487,Betfair
+2026-11-23T01:47:33+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,BetVictor,book,value,3.1,0.3329,0.032,Betfair
+2026-11-23T01:47:33+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Betsson,book,value,3.2,0.3329,0.0653,Betfair
+2026-11-23T01:47:33+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Betway,book,value,3.2,0.3329,0.0653,Betfair
+2026-11-23T01:47:33+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Interwetten,book,value,3.2,0.3329,0.0653,Betfair
