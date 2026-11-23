@@ -206,3 +206,21 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-22T17:43:23+00:00,nba,nba-phx-nop-2026-11-23,Pelicans,Kalshi,0.355,0.39,Polymarket=0.3700,0.38,2.69,2026-11-24T01:00+00:00,printed
 2026-11-22T18:00:43+00:00,nba,nba-ind-nyk-2026-11-22,Pacers,Polymarket,0.245,0.275,Kalshi=0.2650,0.27,3.78,2026-11-23T01:00+00:00,printed
 2026-11-22T19:00:43+00:00,nba,nba-dal-uta-2026-11-22,Mavericks,Polymarket,0.505,0.535,Kalshi=0.5050,0.52,1.97,2026-11-23T00:00+00:00,printed
+2026-11-22T20:43:42+00:00,nba,kalshi KXNBAGAME-26NOV22DETATL,Atlanta,Kalshi,0.445,0.495,,0.495,2.07,2026-11-22T21:00+00:00,printed
+2026-11-22T20:48:42+00:00,nba,nba-bos-gsw-2026-11-22,Warriors,Polymarket,0.245,0.275,Kalshi=0.2650,0.27,3.78,2026-11-23T01:30+00:00,printed
+2026-11-22T21:30:22+00:00,nba,nba-okc-mia-2026-11-22,Heat,Polymarket,0.61,0.69,Kalshi=0.6850,0.6875,1.49,2026-11-22T23:00+00:00,printed
+2026-11-22T21:41:42+00:00,nba,nba-okc-ind-2026-11-23,Pacers,Kalshi,0.275,0.31,Polymarket=0.3050,0.3075,3.32,2026-11-24T00:30+00:00,printed
+2026-11-22T22:00:22+00:00,nba,nba-okc-mia-2026-11-22,Thunder,Polymarket,0.31,0.355,Kalshi=0.2650,0.31,3.3,2026-11-22T23:00+00:00,printed
+2026-11-22T22:00:42+00:00,nba,nba-por-phi-2026-11-23,76ers,Polymarket,0.585,0.625,Kalshi=0.5900,0.6075,1.68,2026-11-24T00:00+00:00,printed
+2026-11-22T22:17:42+00:00,nba,nba-den-chi-2026-11-22,Bulls,Polymarket,0.205,0.235,Kalshi=0.2150,0.225,4.54,2026-11-23T00:00+00:00,printed
+2026-11-22T23:09:42+00:00,nba,nba-mil-tor-2026-11-23,Bucks,Polymarket,0.195,0.225,Kalshi=0.2050,0.215,4.75,2026-11-24T00:30+00:00,printed
+2026-11-22T23:53:02+00:00,nba,nba-por-phi-2026-11-23,Trail Blazers,Polymarket,0.375,0.405,Kalshi=0.4000,0.4025,2.54,2026-11-24T00:00+00:00,printed
+2026-11-22T23:59:02+00:00,nba,nba-lac-hou-2026-11-23,Rockets,Polymarket,0.815,0.845,Kalshi=0.8150,0.83,1.23,2026-11-24T01:30+00:00,printed
+2026-11-23T00:12:22+00:00,nba,kalshi KXNBAGAME-26NOV22DALUTA,Utah,Kalshi,0.445,0.485,,0.485,2.11,2026-11-23T00:30+00:00,printed
+2026-11-23T00:12:22+00:00,nba,kalshi KXNBAGAME-26NOV22ORLWAS,Washington,Kalshi,0.355,0.405,,0.405,2.52,2026-11-23T00:30+00:00,printed
+2026-11-23T00:12:22+00:00,nba,kalshi KXNBAGAME-26NOV22DENCHI,Denver,Kalshi,0.775,0.815,,0.815,1.26,2026-11-23T00:30+00:00,printed
+2026-11-23T00:14:02+00:00,nba,kalshi KXNBAGAME-26NOV22DALUTA,Dallas,Kalshi,0.555,0.605,,0.605,1.69,2026-11-23T00:30+00:00,printed
+2026-11-23T00:15:22+00:00,nba,nba-ind-nyk-2026-11-22,Knicks,Polymarket,0.725,0.755,Kalshi=0.7350,0.745,1.37,2026-11-23T01:00+00:00,printed
+2026-11-23T00:27:22+00:00,nba,nba-mem-cha-2026-11-23,Hornets,Polymarket,0.405,0.435,Kalshi=0.4150,0.425,2.4,2026-11-24T00:00+00:00,printed
+2026-11-23T00:30:02+00:00,nba,nba-ind-nyk-2026-11-22,Pacers,Polymarket,0.275,0.305,Kalshi=0.2750,0.29,3.52,2026-11-23T01:00+00:00,printed
+2026-11-23T01:15:22+00:00,nba,nba-sas-sac-2026-11-23,Kings,Polymarket,0.125,0.17,Kalshi=0.1300,0.15,6.8,2026-11-24T03:00+00:00,printed
