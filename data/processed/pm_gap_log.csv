@@ -3629,3 +3629,41 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-24T18:20:50+00:00,3387318,2026-11-25,Kolkata ITF,ITF,Ahlawat S.,Polymarket,0.34,0.3247,Betfair,0.04,1570.0905
 2026-11-24T18:20:50+00:00,3387318,2026-11-25,Kolkata ITF,ITF,Yodpetch K.,Kalshi,0.645,0.6753,Betfair,0.03,3.9600000000000004
 2026-11-24T18:20:50+00:00,3387318,2026-11-25,Kolkata ITF,ITF,Ahlawat S.,Kalshi,0.325,0.3247,Betfair,0.01,3.9600000000000004
+2026-11-24T23:56:48+00:00,3388040,2026-11-25,Buenos Aires WTA,Tour,Ipek Oz,Polymarket,0.305,0.2691,Betfair,0.03,676.0221
+2026-11-24T23:56:48+00:00,3388040,2026-11-25,Buenos Aires WTA,Tour,Julia Riera,Polymarket,0.695,0.7309,Betfair,0.03,676.0221
+2026-11-24T23:56:48+00:00,3388705,2026-11-25,Buenos Aires WTA,Tour,Solana Sierra,Polymarket,0.565,0.5682,Betfair,0.07,7648.2224
+2026-11-24T23:56:48+00:00,3388705,2026-11-25,Buenos Aires WTA,Tour,Carole Monnet,Polymarket,0.435,0.4318,Betfair,0.07,7648.2224
+2026-11-24T23:56:48+00:00,3388699,2026-11-26,Buenos Aires WTA,Tour,Irene Burillo Escorihuela,Polymarket,0.53,0.3168,Betfair,0.82,111.6022
+2026-11-24T23:56:48+00:00,3388699,2026-11-26,Buenos Aires WTA,Tour,Laura Samson,Polymarket,0.47,0.6832,Betfair,0.82,111.6022
+2026-11-24T23:56:48+00:00,3386142,2026-11-25,Florianopolis challenger,Challenger,Johan Nikles,Kalshi,0.315,0.3132,Pinnacle,0.01,7559.92
+2026-11-24T23:56:48+00:00,3386142,2026-11-25,Florianopolis challenger,Challenger,Pedro Boscardin Dias,Kalshi,0.685,0.6868,Pinnacle,0.01,7559.92
+2026-11-24T23:56:48+00:00,3388042,2026-11-25,Playford 2 challenger,Challenger,Hiroki Moriya,Polymarket,0.445,0.4419,Pinnacle,0.01,91622.8666
+2026-11-24T23:56:48+00:00,3388042,2026-11-25,Playford 2 challenger,Challenger,Matthew Dellavedova,Polymarket,0.555,0.5581,Pinnacle,0.01,91622.8666
+2026-11-24T23:56:48+00:00,3388042,2026-11-25,Playford 2 challenger,Challenger,Hiroki Moriya,Kalshi,0.455,0.4419,Pinnacle,0.01,7656.287900000001
+2026-11-24T23:56:48+00:00,3388042,2026-11-25,Playford 2 challenger,Challenger,Matthew Dellavedova,Kalshi,0.545,0.5581,Pinnacle,0.01,7656.287900000001
+2026-11-24T23:56:48+00:00,3388052,2026-11-25,Playford 2 challenger,Challenger,Akira Santillan,Polymarket,0.55,0.5476,Pinnacle,0.02,26544.1919
+2026-11-24T23:56:48+00:00,3388052,2026-11-25,Playford 2 challenger,Challenger,Christian Langmo,Polymarket,0.45,0.4524,Pinnacle,0.02,26544.1919
+2026-11-24T23:56:48+00:00,3388052,2026-11-25,Playford 2 challenger,Challenger,Akira Santillan,Kalshi,0.555,0.5476,Pinnacle,0.01,6457.2642
+2026-11-24T23:56:48+00:00,3388052,2026-11-25,Playford 2 challenger,Challenger,Christian Langmo,Kalshi,0.455,0.4524,Pinnacle,0.01,6457.2642
+2026-11-24T23:56:48+00:00,3388236,2026-11-25,Playford 2 challenger,Challenger,Omar Jasika,Polymarket,0.52,0.5071,Betfair,0.04,1394.1622
+2026-11-24T23:56:48+00:00,3388236,2026-11-25,Playford 2 challenger,Challenger,Li Tu,Polymarket,0.48,0.4929,Betfair,0.04,1394.1622
+2026-11-24T23:56:48+00:00,3388224,2026-11-25,Yokohama challenger,Challenger,Kaichi Uchida,Polymarket,0.545,0.5354,Pinnacle,0.01,45937.6816
+2026-11-24T23:56:48+00:00,3388224,2026-11-25,Yokohama challenger,Challenger,Mitsuki Wei Kang Leong,Polymarket,0.455,0.4646,Pinnacle,0.01,45937.6816
+2026-11-24T23:56:48+00:00,3388224,2026-11-25,Yokohama challenger,Challenger,Kaichi Uchida,Kalshi,0.535,0.5354,Pinnacle,0.01,10060.2956
+2026-11-24T23:56:48+00:00,3388224,2026-11-25,Yokohama challenger,Challenger,Mitsuki Wei Kang Leong,Kalshi,0.465,0.4646,Pinnacle,0.01,10060.2956
+2026-11-24T23:56:48+00:00,3388477,2026-11-26,Florianopolis challenger,Challenger,Max Alcala Gurri,Polymarket,0.68,0.7372,Betfair,0.06,3811.1589
+2026-11-24T23:56:48+00:00,3388477,2026-11-26,Florianopolis challenger,Challenger,Eduardo Ribeiro,Polymarket,0.32,0.2628,Betfair,0.06,3811.1589
+2026-11-24T23:56:48+00:00,3388425,2026-11-26,Hersonissos 6 challenger,Challenger,Gilles Arnaud Bailly,Polymarket,0.8,0.7981,Betfair,0.08,5807.2664
+2026-11-24T23:56:48+00:00,3388425,2026-11-26,Hersonissos 6 challenger,Challenger,Maximus Jones,Polymarket,0.2,0.2019,Betfair,0.08,5807.2664
+2026-11-24T23:56:48+00:00,3387022,2026-11-25,Florianopolis 3 ITF,ITF,Perez Alarcon L.,Polymarket,0.93,0.9418,Betfair,0.02,3123.2348
+2026-11-24T23:56:48+00:00,3387022,2026-11-25,Florianopolis 3 ITF,ITF,Candiotto A.,Polymarket,0.07,0.0582,Betfair,0.02,3123.2348
+2026-11-24T23:56:48+00:00,3387022,2026-11-25,Florianopolis 3 ITF,ITF,Perez Alarcon L.,Kalshi,0.92,0.9418,Betfair,0.02,399.0299
+2026-11-24T23:56:48+00:00,3387022,2026-11-25,Florianopolis 3 ITF,ITF,Candiotto A.,Kalshi,0.065,0.0582,Betfair,0.01,399.0299
+2026-11-24T23:56:48+00:00,3388571,2026-11-25,Trnava 8 ITF,ITF,Ristic M.,Polymarket,0.665,0.6727,Betfair,0.03,5981.8621
+2026-11-24T23:56:48+00:00,3388571,2026-11-25,Trnava 8 ITF,ITF,Laboutkova A.,Polymarket,0.335,0.3273,Betfair,0.03,5981.8621
+2026-11-24T23:56:48+00:00,3388571,2026-11-25,Trnava 8 ITF,ITF,Ristic M.,Kalshi,0.66,0.6727,Betfair,0.04,282.0572
+2026-11-24T23:56:48+00:00,3388571,2026-11-25,Trnava 8 ITF,ITF,Laboutkova A.,Kalshi,0.325,0.3273,Betfair,0.03,282.0572
+2026-11-24T23:56:48+00:00,3388387,2026-11-25,Heraklion 12 ITF,ITF,Bayerlova M.,Polymarket,0.125,0.1111,Pinnacle,0.05,3290.0641
+2026-11-24T23:56:48+00:00,3388387,2026-11-25,Heraklion 12 ITF,ITF,Pedone G.,Polymarket,0.875,0.8889,Pinnacle,0.05,3290.0641
+2026-11-24T23:56:48+00:00,3388387,2026-11-25,Heraklion 12 ITF,ITF,Bayerlova M.,Kalshi,0.115,0.1111,Pinnacle,0.03,276.1428
+2026-11-24T23:56:48+00:00,3388387,2026-11-25,Heraklion 12 ITF,ITF,Pedone G.,Kalshi,0.865,0.8889,Pinnacle,0.03,276.1428

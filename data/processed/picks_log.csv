@@ -760,3 +760,11 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,Fullana L.,Kalshi,prediction,value,1.294,0.8449,0.0933,Betfair
 2026-11-24T18:20:50+00:00,3388048,2026-11-25,Playford 2 challenger,Blake Ellis,Kalshi,prediction,value,3.956,0.255,0.0088,Polymarket Mid
 2026-11-24T18:20:50+00:00,3387022,2026-11-24,Florianopolis 3 ITF,Perez Alarcon L.,Kalshi,prediction,value,1.07,0.9418,0.0077,Betfair
+2026-11-24T23:56:48+00:00,3388040,2026-11-25,Buenos Aires WTA,Julia Riera,Polymarket,prediction,value,1.388,0.7309,0.0147,Betfair
+2026-11-24T23:56:48+00:00,3388473,2026-11-26,Buenos Aires WTA,Nuria Brancaccio,Betsson,book,value,2.65,0.3794,0.0053,Betfair
+2026-11-24T23:56:48+00:00,3388699,2026-11-26,Buenos Aires WTA,Irene Burillo Escorihuela,Betway,book,value,3.2,0.3168,0.0139,Betfair
+2026-11-24T23:56:48+00:00,3388236,2026-11-25,Playford 2 challenger,Li Tu,BetVictor,book,value,2.05,0.4929,0.0105,Betfair
+2026-11-24T23:56:48+00:00,3388236,2026-11-25,Playford 2 challenger,Li Tu,Betsson,book,value,2.09,0.4929,0.0302,Betfair
+2026-11-24T23:56:48+00:00,3388477,2026-11-26,Florianopolis challenger,Max Alcala Gurri,Polymarket,prediction,value,1.388,0.7372,0.0234,Betfair
+2026-11-24T23:56:48+00:00,3387022,2026-11-25,Florianopolis 3 ITF,Perez Alarcon L.,Kalshi,prediction,value,1.07,0.9418,0.0077,Betfair
+2026-11-24T23:56:48+00:00,3388387,2026-11-25,Heraklion 12 ITF,Pedone G.,Kalshi,prediction,value,1.127,0.8889,0.0017,Pinnacle
