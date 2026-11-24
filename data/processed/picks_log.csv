@@ -729,3 +729,32 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Betway,book,value,3.2,0.3329,0.0653,Betfair
 2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Interwetten,book,value,3.2,0.3329,0.0653,Betfair
 2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Kalshi,prediction,value,3.285,0.3329,0.0936,Betfair
+2026-11-24T13:48:25+00:00,3388042,2026-11-25,Playford 2 challenger,Hiroki Moriya,BetVictor,book,value,2.9,0.3534,0.0249,Betfair
+2026-11-24T13:48:25+00:00,3388042,2026-11-25,Playford 2 challenger,Hiroki Moriya,Betsson,book,value,3.0,0.3534,0.0603,Betfair
+2026-11-24T13:48:25+00:00,3388042,2026-11-25,Playford 2 challenger,Hiroki Moriya,Betway,book,value,3.0,0.3534,0.0603,Betfair
+2026-11-24T13:48:25+00:00,3388042,2026-11-25,Playford 2 challenger,Hiroki Moriya,Interwetten,book,value,3.05,0.3534,0.0779,Betfair
+2026-11-24T13:48:25+00:00,3388042,2026-11-25,Playford 2 challenger,Hiroki Moriya,William Hill,book,value,3.0,0.3534,0.0603,Betfair
+2026-11-24T13:48:25+00:00,3388042,2026-11-25,Playford 2 challenger,Hiroki Moriya,bet-at-home,book,value,3.0,0.3534,0.0603,Betfair
+2026-11-24T13:48:25+00:00,3388042,2026-11-25,Playford 2 challenger,Hiroki Moriya,bet365,book,value,3.0,0.3534,0.0603,Betfair
+2026-11-24T13:48:25+00:00,3388042,2026-11-25,Playford 2 challenger,Hiroki Moriya,Kalshi,prediction,value,3.077,0.3534,0.0875,Betfair
+2026-11-24T13:48:25+00:00,3388048,2026-11-25,Playford 2 challenger,Tristan Schoolkate,Betsson,book,value,1.24,0.8431,0.0454,Betfair
+2026-11-24T13:48:25+00:00,3388048,2026-11-25,Playford 2 challenger,Tristan Schoolkate,bet-at-home,book,value,1.23,0.8431,0.037,Betfair
+2026-11-24T13:48:25+00:00,3388048,2026-11-25,Playford 2 challenger,Tristan Schoolkate,Polymarket,prediction,value,1.253,0.8431,0.0561,Betfair
+2026-11-24T13:48:25+00:00,3388048,2026-11-25,Playford 2 challenger,Tristan Schoolkate,Kalshi,prediction,value,1.247,0.8431,0.0518,Betfair
+2026-11-24T13:48:25+00:00,3388236,2026-11-25,Playford 2 challenger,Li Tu,BetVictor,book,value,2.05,0.4927,0.0101,Betfair
+2026-11-24T13:48:25+00:00,3388236,2026-11-25,Playford 2 challenger,Li Tu,Betsson,book,value,2.09,0.4927,0.0298,Betfair
+2026-11-24T13:48:25+00:00,3388236,2026-11-25,Playford 2 challenger,Li Tu,bet-at-home,book,value,2.05,0.4927,0.0101,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,10Bet,book,value,2.2,0.468,0.0296,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,1xBet,book,value,2.16,0.468,0.0109,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,Betsson,book,value,2.24,0.468,0.0484,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,Betway,book,value,2.2,0.468,0.0296,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,Coral,book,value,2.15,0.468,0.0062,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,Interwetten,book,value,2.2,0.468,0.0296,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,Ladbrokes,book,value,2.15,0.468,0.0062,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,William Hill,book,value,2.25,0.468,0.053,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,bet-at-home,book,value,2.2,0.468,0.0296,Betfair
+2026-11-24T13:48:25+00:00,3388224,2026-11-25,Yokohama challenger,Kaichi Uchida,bwin,book,value,2.15,0.468,0.0062,Betfair
+2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,Fullana L.,1xBet,book,value,1.24,0.8449,0.0476,Betfair
+2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,Fullana L.,Betway,book,value,1.25,0.8449,0.0561,Betfair
+2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,Fullana L.,Polymarket,prediction,value,1.268,0.8449,0.0714,Betfair
+2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,Fullana L.,Kalshi,prediction,value,1.294,0.8449,0.0933,Betfair
