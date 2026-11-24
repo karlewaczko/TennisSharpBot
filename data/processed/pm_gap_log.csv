@@ -3599,3 +3599,33 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,ITF,Konishi Camargo Silva J.,Polymarket,0.245,0.1651,Betfair,0.05,1823.4293
 2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,ITF,Fullana L.,Kalshi,0.755,0.8449,Betfair,0.01,214.7875
 2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,ITF,Konishi Camargo Silva J.,Kalshi,0.24,0.1651,Betfair,0.02,214.7875
+2026-11-24T18:20:50+00:00,3386788,2026-11-24,Buenos Aires WTA,Tour,Podoroska N.,Kalshi,0.455,0.4565,Betfair,0.01,1088.8088000000002
+2026-11-24T18:20:50+00:00,3386788,2026-11-24,Buenos Aires WTA,Tour,Romero Gormaz L.,Kalshi,0.535,0.5435,Betfair,0.01,1088.8088000000002
+2026-11-24T18:20:50+00:00,3387984,2026-11-24,Buenos Aires WTA,Tour,Polona Hercog,Polymarket,0.635,0.6336,Pinnacle,0.01,21457.8789
+2026-11-24T18:20:50+00:00,3387984,2026-11-24,Buenos Aires WTA,Tour,Sofia Costoulas,Polymarket,0.365,0.3664,Pinnacle,0.01,21457.8789
+2026-11-24T18:20:50+00:00,3387984,2026-11-24,Buenos Aires WTA,Tour,Polona Hercog,Kalshi,0.635,0.6336,Pinnacle,0.01,1811.3135
+2026-11-24T18:20:50+00:00,3387984,2026-11-24,Buenos Aires WTA,Tour,Sofia Costoulas,Kalshi,0.365,0.3664,Pinnacle,0.01,1811.3135
+2026-11-24T18:20:50+00:00,3388040,2026-11-26,Buenos Aires WTA,Tour,Ipek Oz,Polymarket,0.325,0.2912,Betfair,0.07,4412.7645
+2026-11-24T18:20:50+00:00,3388040,2026-11-26,Buenos Aires WTA,Tour,Julia Riera,Polymarket,0.675,0.7088,Betfair,0.07,4412.7645
+2026-11-24T18:20:50+00:00,3386142,2026-11-24,Florianopolis challenger,Challenger,Johan Nikles,Kalshi,0.315,0.3132,Pinnacle,0.01,9935.5615
+2026-11-24T18:20:50+00:00,3386142,2026-11-24,Florianopolis challenger,Challenger,Pedro Boscardin Dias,Kalshi,0.685,0.6868,Pinnacle,0.01,9935.5615
+2026-11-24T18:20:50+00:00,3388236,2026-11-25,Playford 2 challenger,Challenger,Omar Jasika,Polymarket,0.505,0.5403,Betfair,0.05,1313.2984
+2026-11-24T18:20:50+00:00,3388236,2026-11-25,Playford 2 challenger,Challenger,Li Tu,Polymarket,0.495,0.4597,Betfair,0.05,1313.2984
+2026-11-24T18:20:50+00:00,3388224,2026-11-25,Yokohama challenger,Challenger,Kaichi Uchida,Polymarket,0.495,0.4881,Betfair,0.01,12062.0785
+2026-11-24T18:20:50+00:00,3388224,2026-11-25,Yokohama challenger,Challenger,Mitsuki Wei Kang Leong,Polymarket,0.505,0.5119,Betfair,0.01,12062.0785
+2026-11-24T18:20:50+00:00,3388224,2026-11-25,Yokohama challenger,Challenger,Kaichi Uchida,Kalshi,0.475,0.4881,Betfair,0.01,157.39999999999998
+2026-11-24T18:20:50+00:00,3388224,2026-11-25,Yokohama challenger,Challenger,Mitsuki Wei Kang Leong,Kalshi,0.515,0.5119,Betfair,0.01,157.39999999999998
+2026-11-24T18:20:50+00:00,3388425,2026-11-26,Hersonissos 6 challenger,Challenger,Gilles Arnaud Bailly,Polymarket,0.8,0.7985,Betfair,0.06,5808.7707
+2026-11-24T18:20:50+00:00,3388425,2026-11-26,Hersonissos 6 challenger,Challenger,Maximus Jones,Polymarket,0.2,0.2015,Betfair,0.06,5808.7707
+2026-11-24T18:20:50+00:00,3387022,2026-11-24,Florianopolis 3 ITF,ITF,Perez Alarcon L.,Polymarket,0.92,0.9418,Betfair,0.04,1727.2086
+2026-11-24T18:20:50+00:00,3387022,2026-11-24,Florianopolis 3 ITF,ITF,Candiotto A.,Polymarket,0.08,0.0582,Betfair,0.04,1727.2086
+2026-11-24T18:20:50+00:00,3387022,2026-11-24,Florianopolis 3 ITF,ITF,Perez Alarcon L.,Kalshi,0.915,0.9418,Betfair,0.03,1972.0167000000001
+2026-11-24T18:20:50+00:00,3387022,2026-11-24,Florianopolis 3 ITF,ITF,Candiotto A.,Kalshi,0.075,0.0582,Betfair,0.03,1972.0167000000001
+2026-11-24T18:20:50+00:00,3388387,2026-11-25,Heraklion 12 ITF,ITF,Bayerlova M.,Polymarket,0.125,0.1111,Pinnacle,0.07,446.1043
+2026-11-24T18:20:50+00:00,3388387,2026-11-25,Heraklion 12 ITF,ITF,Pedone G.,Polymarket,0.875,0.8889,Pinnacle,0.07,446.1043
+2026-11-24T18:20:50+00:00,3388387,2026-11-25,Heraklion 12 ITF,ITF,Bayerlova M.,Kalshi,0.12,0.1111,Pinnacle,0.04,8.790000000000001
+2026-11-24T18:20:50+00:00,3388387,2026-11-25,Heraklion 12 ITF,ITF,Pedone G.,Kalshi,0.85,0.8889,Pinnacle,0.08,8.790000000000001
+2026-11-24T18:20:50+00:00,3387318,2026-11-25,Kolkata ITF,ITF,Yodpetch K.,Polymarket,0.66,0.6753,Betfair,0.04,1570.0905
+2026-11-24T18:20:50+00:00,3387318,2026-11-25,Kolkata ITF,ITF,Ahlawat S.,Polymarket,0.34,0.3247,Betfair,0.04,1570.0905
+2026-11-24T18:20:50+00:00,3387318,2026-11-25,Kolkata ITF,ITF,Yodpetch K.,Kalshi,0.645,0.6753,Betfair,0.03,3.9600000000000004
+2026-11-24T18:20:50+00:00,3387318,2026-11-25,Kolkata ITF,ITF,Ahlawat S.,Kalshi,0.325,0.3247,Betfair,0.01,3.9600000000000004

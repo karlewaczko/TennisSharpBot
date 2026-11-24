@@ -758,3 +758,5 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,Fullana L.,Betway,book,value,1.25,0.8449,0.0561,Betfair
 2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,Fullana L.,Polymarket,prediction,value,1.268,0.8449,0.0714,Betfair
 2026-11-24T13:48:25+00:00,3388182,2026-11-24,Florianopolis 3 ITF,Fullana L.,Kalshi,prediction,value,1.294,0.8449,0.0933,Betfair
+2026-11-24T18:20:50+00:00,3388048,2026-11-25,Playford 2 challenger,Blake Ellis,Kalshi,prediction,value,3.956,0.255,0.0088,Polymarket Mid
+2026-11-24T18:20:50+00:00,3387022,2026-11-24,Florianopolis 3 ITF,Perez Alarcon L.,Kalshi,prediction,value,1.07,0.9418,0.0077,Betfair
