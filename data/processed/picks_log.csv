@@ -717,3 +717,15 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-23T12:51:17+00:00,3385394,2026-11-24,Ankara challenger,Yanaki Milev,Coral,book,value,2.6,0.3867,0.0053,Betfair
 2026-11-23T12:51:17+00:00,3385394,2026-11-24,Ankara challenger,Yanaki Milev,Ladbrokes,book,value,2.6,0.3867,0.0053,Betfair
 2026-11-23T12:51:17+00:00,3385394,2026-11-24,Ankara challenger,Yanaki Milev,bwin,book,value,2.6,0.3867,0.0053,Betfair
+2026-11-24T02:16:41+00:00,3387966,2026-11-24,Florianopolis challenger,Franco Roncadelli,1xBet,book,value,1.34,0.7927,0.0623,Betfair
+2026-11-24T02:16:41+00:00,3387966,2026-11-24,Florianopolis challenger,Franco Roncadelli,Betsson,book,value,1.35,0.7927,0.0702,Betfair
+2026-11-24T02:16:41+00:00,3387966,2026-11-24,Florianopolis challenger,Franco Roncadelli,Interwetten,book,value,1.35,0.7927,0.0702,Betfair
+2026-11-24T02:16:41+00:00,3387966,2026-11-24,Florianopolis challenger,Franco Roncadelli,bet-at-home,book,value,1.33,0.7927,0.0543,Betfair
+2026-11-24T02:16:41+00:00,3387966,2026-11-24,Florianopolis challenger,Franco Roncadelli,Polymarket,prediction,value,1.334,0.7927,0.0575,Betfair
+2026-11-24T02:16:41+00:00,3387966,2026-11-24,Florianopolis challenger,Franco Roncadelli,Kalshi,prediction,value,1.294,0.7927,0.0258,Betfair
+2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,1xBet,book,value,3.05,0.3329,0.0154,Betfair
+2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,BetVictor,book,value,3.1,0.3329,0.032,Betfair
+2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Betsson,book,value,3.15,0.3329,0.0487,Betfair
+2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Betway,book,value,3.2,0.3329,0.0653,Betfair
+2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Interwetten,book,value,3.2,0.3329,0.0653,Betfair
+2026-11-24T02:16:41+00:00,3385476,2026-11-24,Hersonissos 6 challenger,Sergey Fomin,Kalshi,prediction,value,3.285,0.3329,0.0936,Betfair
