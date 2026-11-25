@@ -261,3 +261,6 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-25T03:15:15+00:00,nba,kalshi KXNBAGAME-26NOV24DALDEN,Denver,Kalshi,0.695,0.745,,0.745,1.37,2026-11-25T03:30+00:00,printed
 2026-11-25T03:21:15+00:00,nba,kalshi KXNBAGAME-26NOV24DALDEN,Dallas,Kalshi,0.305,0.345,,0.345,2.96,2026-11-25T03:30+00:00,printed
 2026-11-25T16:50:34+00:00,nba,nba-cle-nyk-2026-11-25,Knicks,Polymarket,0.575,0.605,Kalshi=0.5950,0.6,1.7,2026-11-26T00:30+00:00,printed
+2026-11-25T17:45:20+00:00,nba,nba-cle-nyk-2026-11-25,Cavaliers,Polymarket,0.405,0.455,Kalshi=0.4050,0.43,2.38,2026-11-26T00:30+00:00,printed
+2026-11-25T20:15:20+00:00,nba,nba-mia-phi-2026-11-25,Heat,Polymarket,0.475,0.515,Kalshi=0.4850,0.5,2.04,2026-11-25T22:00+00:00,printed
+2026-11-25T21:30:20+00:00,nba,nba-cle-nyk-2026-11-25,Knicks,Polymarket,0.535,0.585,Kalshi=0.5450,0.565,1.81,2026-11-26T00:30+00:00,printed
