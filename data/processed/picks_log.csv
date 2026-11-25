@@ -768,3 +768,9 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-24T23:56:48+00:00,3388477,2026-11-26,Florianopolis challenger,Max Alcala Gurri,Polymarket,prediction,value,1.388,0.7372,0.0234,Betfair
 2026-11-24T23:56:48+00:00,3387022,2026-11-25,Florianopolis 3 ITF,Perez Alarcon L.,Kalshi,prediction,value,1.07,0.9418,0.0077,Betfair
 2026-11-24T23:56:48+00:00,3388387,2026-11-25,Heraklion 12 ITF,Pedone G.,Kalshi,prediction,value,1.127,0.8889,0.0017,Pinnacle
+2026-11-25T13:01:05+00:00,3388473,2026-11-26,Buenos Aires WTA,Nuria Brancaccio,10Bet,book,value,2.65,0.383,0.015,Betfair
+2026-11-25T13:01:05+00:00,3388473,2026-11-26,Buenos Aires WTA,Nuria Brancaccio,1xBet,book,value,2.62,0.383,0.0035,Betfair
+2026-11-25T13:01:05+00:00,3388473,2026-11-26,Buenos Aires WTA,Nuria Brancaccio,Betsson,book,value,2.65,0.383,0.015,Betfair
+2026-11-25T13:01:05+00:00,3388473,2026-11-26,Buenos Aires WTA,Nuria Brancaccio,bet-at-home,book,value,2.65,0.383,0.015,Betfair
+2026-11-25T13:01:05+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,Polymarket,prediction,value,1.878,0.5456,0.0247,Betfair
+2026-11-25T13:01:05+00:00,3388435,2026-11-26,Monastir 2 challenger,Petr Bar Biryukov,Polymarket,prediction,value,1.661,0.6094,0.0121,Betfair
