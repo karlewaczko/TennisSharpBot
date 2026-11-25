@@ -1,73 +1,73 @@
 {
- "measured_at": "2026-11-24T15:36:36+00:00",
+ "measured_at": "2026-11-25T15:27:52+00:00",
  "sport": "basketball",
  "window_days": 30,
  "tours": null,
- "markets": 1142,
- "matches": 1142,
- "wallets": 28851,
- "ranked_wallets": 314,
+ "markets": 1178,
+ "matches": 1178,
+ "wallets": 28902,
+ "ranked_wallets": 306,
  "significant_wallets": 2,
- "candidate_wallets": 0,
+ "candidate_wallets": 1,
  "maker_baseline": 0.0,
- "maker_baseline_match_median": 0.00046,
+ "maker_baseline_match_median": 0.00045,
  "elite_wallets": 0,
- "markets_trimmed_to_bigger_trades": 9,
+ "markets_trimmed_to_bigger_trades": 8,
  "market_structure": {
-  "stake_usd": 414443734,
-  "in_play_share": 0.649,
-  "top20_share": 0.38,
-  "top20_pre_match_share": 0.524
+  "stake_usd": 401429353,
+  "in_play_share": 0.652,
+  "top20_share": 0.376,
+  "top20_pre_match_share": 0.528
  },
  "skill_persistence": {
-  "wallets": 785,
-  "corr": 0.516,
-  "rank_corr": 0.505,
-  "top_decile_next": 0.0063,
-  "bottom_decile_next": -0.0195,
-  "all_next": -0.0118
+  "wallets": 789,
+  "corr": 0.498,
+  "rank_corr": 0.525,
+  "top_decile_next": 0.0043,
+  "bottom_decile_next": -0.0194,
+  "all_next": -0.0126
  },
  "polymarket_closing_calibration": {
-  "n": 1136,
-  "brier": 0.2052,
-  "log_loss": 0.5911,
-  "favourite_won": 0.667,
+  "n": 1172,
+  "brier": 0.2079,
+  "log_loss": 0.597,
+  "favourite_won": 0.658,
   "bins": [
    {
     "range": "(-0.001, 0.2]",
-    "n": 206,
+    "n": 209,
     "price": 0.088,
-    "won": 0.131
+    "won": 0.134
    },
    {
     "range": "(0.2, 0.35]",
-    "n": 177,
-    "price": 0.28,
-    "won": 0.401
+    "n": 182,
+    "price": 0.281,
+    "won": 0.412
    },
    {
     "range": "(0.35, 0.5]",
-    "n": 250,
+    "n": 264,
     "price": 0.428,
-    "won": 0.44
+    "won": 0.443
    },
    {
     "range": "(0.5, 0.65]",
-    "n": 239,
-    "price": 0.573,
-    "won": 0.502
+    "n": 251,
+    "price": 0.572,
+    "won": 0.494
    },
    {
     "range": "(0.65, 0.8]",
-    "n": 163,
-    "price": 0.726,
-    "won": 0.73
+    "n": 166,
+    "price": 0.727,
+    "won": 0.723
    },
    {
     "range": "(0.8, 1.0]",
-    "n": 101,
+    "n": 100,
     "price": 0.881,
-    "won": 0.881
+    "won": 0.88
    }
   ]
  },
