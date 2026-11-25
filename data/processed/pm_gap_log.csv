@@ -3685,3 +3685,27 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-25T13:01:05+00:00,3388425,2026-11-26,Hersonissos 6 challenger,Challenger,Maximus Jones,Polymarket,0.19,0.2019,Betfair,0.08,3396.2486
 2026-11-25T13:01:05+00:00,3388867,2026-11-27,Yokohama challenger,Challenger,Masamichi Imamura,Polymarket,0.545,0.5529,Betfair,0.01,4841.5781
 2026-11-25T13:01:05+00:00,3388867,2026-11-27,Yokohama challenger,Challenger,David Jorda Sanchis,Polymarket,0.455,0.4471,Betfair,0.01,4841.5781
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Tour,Sofia Costoulas,Polymarket,0.575,0.6717,Betfair,0.01,9095.9616
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Tour,Varvara Lepchenko,Polymarket,0.425,0.3283,Betfair,0.01,9095.9616
+2026-11-25T23:41:16+00:00,3388699,2026-11-26,Buenos Aires WTA,Tour,Irene Burillo Escorihuela,Polymarket,0.285,0.2872,Betfair,0.01,8244.6707
+2026-11-25T23:41:16+00:00,3388699,2026-11-26,Buenos Aires WTA,Tour,Laura Samson,Polymarket,0.715,0.7128,Betfair,0.01,8244.6707
+2026-11-25T23:41:16+00:00,3388236,2026-11-26,Playford 2 challenger,Challenger,Omar Jasika,Polymarket,0.53,0.522,Pinnacle,0.02,88357.1896
+2026-11-25T23:41:16+00:00,3388236,2026-11-26,Playford 2 challenger,Challenger,Li Tu,Polymarket,0.47,0.478,Pinnacle,0.02,88357.1896
+2026-11-25T23:41:16+00:00,3388236,2026-11-26,Playford 2 challenger,Challenger,Omar Jasika,Kalshi,0.525,0.522,Pinnacle,0.01,6224.1565
+2026-11-25T23:41:16+00:00,3388236,2026-11-26,Playford 2 challenger,Challenger,Li Tu,Kalshi,0.475,0.478,Pinnacle,0.01,6224.1565
+2026-11-25T23:41:16+00:00,3388855,2026-11-26,Playford 2 challenger,Challenger,Christian Langmo,Polymarket,0.485,0.4768,Betfair,0.03,1167.8579
+2026-11-25T23:41:16+00:00,3388855,2026-11-26,Playford 2 challenger,Challenger,Matthew Dellavedova,Polymarket,0.515,0.5232,Betfair,0.03,1167.8579
+2026-11-25T23:41:16+00:00,3388435,2026-11-26,Monastir 2 challenger,Challenger,Semen Pankin,Polymarket,0.385,0.375,Betfair,0.05,6318.3104
+2026-11-25T23:41:16+00:00,3388435,2026-11-26,Monastir 2 challenger,Challenger,Petr Bar Biryukov,Polymarket,0.615,0.625,Betfair,0.05,6318.3104
+2026-11-25T23:41:16+00:00,3388435,2026-11-26,Monastir 2 challenger,Challenger,Semen Pankin,Kalshi,0.365,0.375,Betfair,0.03,44.1942
+2026-11-25T23:41:16+00:00,3388435,2026-11-26,Monastir 2 challenger,Challenger,Petr Bar Biryukov,Kalshi,0.615,0.625,Betfair,0.05,44.1942
+2026-11-25T23:41:16+00:00,3388867,2026-11-27,Yokohama challenger,Challenger,Masamichi Imamura,Polymarket,0.545,0.5529,Betfair,0.01,4362.2928
+2026-11-25T23:41:16+00:00,3388867,2026-11-27,Yokohama challenger,Challenger,David Jorda Sanchis,Polymarket,0.455,0.4471,Betfair,0.01,4362.2928
+2026-11-25T23:41:16+00:00,3389167,2026-11-26,Trnava 8 ITF,ITF,Ngounoue C.,Polymarket,0.4,0.4112,Betfair,0.02,4850.5696
+2026-11-25T23:41:16+00:00,3389167,2026-11-26,Trnava 8 ITF,ITF,Palicova B.,Polymarket,0.6,0.5888,Betfair,0.02,4850.5696
+2026-11-25T23:41:16+00:00,3389167,2026-11-26,Trnava 8 ITF,ITF,Ngounoue C.,Kalshi,0.4,0.4112,Betfair,0.02,105.45
+2026-11-25T23:41:16+00:00,3389167,2026-11-26,Trnava 8 ITF,ITF,Palicova B.,Kalshi,0.58,0.5888,Betfair,0.02,105.45
+2026-11-25T23:41:16+00:00,3389193,2026-11-26,Trnava 8 ITF,ITF,Vladson L.,Polymarket,0.21,0.2103,Betfair,0.06,816.8527
+2026-11-25T23:41:16+00:00,3389193,2026-11-26,Trnava 8 ITF,ITF,Malygina E.,Polymarket,0.79,0.7897,Betfair,0.06,816.8527
+2026-11-25T23:41:16+00:00,3389193,2026-11-26,Trnava 8 ITF,ITF,Vladson L.,Kalshi,0.195,0.2103,Betfair,0.05,201.1616
+2026-11-25T23:41:16+00:00,3389193,2026-11-26,Trnava 8 ITF,ITF,Malygina E.,Kalshi,0.775,0.7897,Betfair,0.05,201.1616

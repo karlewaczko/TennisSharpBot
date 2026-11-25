@@ -774,3 +774,18 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-25T13:01:05+00:00,3388473,2026-11-26,Buenos Aires WTA,Nuria Brancaccio,bet-at-home,book,value,2.65,0.383,0.015,Betfair
 2026-11-25T13:01:05+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,Polymarket,prediction,value,1.878,0.5456,0.0247,Betfair
 2026-11-25T13:01:05+00:00,3388435,2026-11-26,Monastir 2 challenger,Petr Bar Biryukov,Polymarket,prediction,value,1.661,0.6094,0.0121,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,1xBet,book,value,1.67,0.6717,0.1218,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,BetVictor,book,value,1.7,0.6717,0.142,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,Betsson,book,value,1.7,0.6717,0.142,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,Coral,book,value,1.67,0.6717,0.1218,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,Interwetten,book,value,1.7,0.6717,0.142,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,Ladbrokes,book,value,1.67,0.6717,0.1218,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,Unibet,book,value,1.7,0.6717,0.142,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,William Hill,book,value,1.67,0.6717,0.1218,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,bet-at-home,book,value,1.65,0.6717,0.1084,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,bwin,book,value,1.67,0.6717,0.1218,Betfair
+2026-11-25T23:41:16+00:00,3388707,2026-11-26,Buenos Aires WTA,Sofia Costoulas,Polymarket,prediction,value,1.689,0.6717,0.1344,Betfair
+2026-11-25T23:41:16+00:00,3388855,2026-11-26,Playford 2 challenger,Christian Langmo,BetVictor,book,value,2.25,0.4768,0.0728,Betfair
+2026-11-25T23:41:16+00:00,3388855,2026-11-26,Playford 2 challenger,Christian Langmo,Betsson,book,value,2.34,0.4768,0.1158,Betfair
+2026-11-25T23:41:16+00:00,3388855,2026-11-26,Playford 2 challenger,Christian Langmo,Interwetten,book,value,2.3,0.4768,0.0967,Betfair
+2026-11-25T23:41:16+00:00,3388855,2026-11-26,Playford 2 challenger,Christian Langmo,bet-at-home,book,value,2.25,0.4768,0.0728,Betfair
