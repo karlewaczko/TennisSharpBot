@@ -3731,3 +3731,31 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-26T12:40:31+00:00,3388443,2026-11-26,Florianopolis 3 ITF,ITF,Pigossi L.,Polymarket,0.935,0.9371,Betfair,0.03,1089.0161
 2026-11-26T12:40:31+00:00,3388443,2026-11-26,Florianopolis 3 ITF,ITF,Tran D.,Kalshi,0.06,0.0629,Betfair,0.02,399.393
 2026-11-26T12:40:31+00:00,3388443,2026-11-26,Florianopolis 3 ITF,ITF,Pigossi L.,Kalshi,0.93,0.9371,Betfair,0.02,399.393
+2026-11-26T23:53:54+00:00,3389227,2026-11-27,Buenos Aires WTA,Tour,Alicia Herrero Linana,Polymarket,0.37,0.3602,Betfair,0.02,10391.5764
+2026-11-26T23:53:54+00:00,3389227,2026-11-27,Buenos Aires WTA,Tour,Julia Riera,Polymarket,0.63,0.6398,Betfair,0.02,10391.5764
+2026-11-26T23:53:54+00:00,3389615,2026-11-27,Buenos Aires WTA,Tour,Varvara Lepchenko,Polymarket,0.235,0.243,Betfair,0.01,4697.2908
+2026-11-26T23:53:54+00:00,3389615,2026-11-27,Buenos Aires WTA,Tour,Laura Samson,Polymarket,0.765,0.757,Betfair,0.01,4697.2908
+2026-11-26T23:53:54+00:00,3388855,2026-11-27,Playford 2 challenger,Challenger,Christian Langmo,Polymarket,0.465,0.4603,Betfair,0.01,92725.6571
+2026-11-26T23:53:54+00:00,3388855,2026-11-27,Playford 2 challenger,Challenger,Matthew Dellavedova,Polymarket,0.535,0.5397,Betfair,0.01,92725.6571
+2026-11-26T23:53:54+00:00,3388855,2026-11-27,Playford 2 challenger,Challenger,Christian Langmo,Kalshi,0.465,0.4603,Betfair,0.01,9887.3288
+2026-11-26T23:53:54+00:00,3388855,2026-11-27,Playford 2 challenger,Challenger,Matthew Dellavedova,Kalshi,0.535,0.5397,Betfair,0.01,9887.3288
+2026-11-26T23:53:54+00:00,3389241,2026-11-27,Playford 2 challenger,Challenger,Omar Jasika,Polymarket,0.525,0.5201,Betfair,0.01,57980.8707
+2026-11-26T23:53:54+00:00,3389241,2026-11-27,Playford 2 challenger,Challenger,Alex Bolt,Polymarket,0.475,0.4799,Betfair,0.01,57980.8707
+2026-11-26T23:53:54+00:00,3389241,2026-11-27,Playford 2 challenger,Challenger,Omar Jasika,Kalshi,0.525,0.5201,Betfair,0.01,6206.6304
+2026-11-26T23:53:54+00:00,3389241,2026-11-27,Playford 2 challenger,Challenger,Alex Bolt,Kalshi,0.475,0.4799,Betfair,0.01,6206.6304
+2026-11-26T23:53:54+00:00,3389385,2026-11-27,Monastir 2 challenger,Challenger,Federico Bondioli,Polymarket,0.67,0.6675,Betfair,0.02,9293.404
+2026-11-26T23:53:54+00:00,3389385,2026-11-27,Monastir 2 challenger,Challenger,Semen Pankin,Polymarket,0.33,0.3325,Betfair,0.02,9293.404
+2026-11-26T23:53:54+00:00,3389385,2026-11-27,Monastir 2 challenger,Challenger,Federico Bondioli,Kalshi,0.67,0.6675,Betfair,0.02,6067.7624000000005
+2026-11-26T23:53:54+00:00,3389385,2026-11-27,Monastir 2 challenger,Challenger,Semen Pankin,Kalshi,0.33,0.3325,Betfair,0.02,6067.7624000000005
+2026-11-26T23:53:54+00:00,3389501,2026-11-27,Trnava 8 ITF,ITF,Ponchet J.,Polymarket,0.255,0.2462,Betfair,0.03,7267.5256
+2026-11-26T23:53:54+00:00,3389501,2026-11-27,Trnava 8 ITF,ITF,Minnen G.,Polymarket,0.745,0.7538,Betfair,0.03,7267.5256
+2026-11-26T23:53:54+00:00,3389501,2026-11-27,Trnava 8 ITF,ITF,Ponchet J.,Kalshi,0.245,0.2462,Betfair,0.03,288.5
+2026-11-26T23:53:54+00:00,3389501,2026-11-27,Trnava 8 ITF,ITF,Minnen G.,Kalshi,0.745,0.7538,Betfair,0.03,288.5
+2026-11-26T23:53:54+00:00,3389423,2026-11-27,Trnava 8 ITF,ITF,Lamens S.,Polymarket,0.725,0.7376,Betfair,0.03,1403.5095
+2026-11-26T23:53:54+00:00,3389423,2026-11-27,Trnava 8 ITF,ITF,Malygina E.,Polymarket,0.275,0.2624,Betfair,0.03,1403.5095
+2026-11-26T23:53:54+00:00,3389423,2026-11-27,Trnava 8 ITF,ITF,Lamens S.,Kalshi,0.715,0.7376,Betfair,0.05,535.91
+2026-11-26T23:53:54+00:00,3389423,2026-11-27,Trnava 8 ITF,ITF,Malygina E.,Kalshi,0.265,0.2624,Betfair,0.03,535.91
+2026-11-26T23:53:54+00:00,3389419,2026-11-27,Sharm El Sheikh 23 ITF,ITF,Popovic K.,Polymarket,0.575,0.5962,Betfair,0.03,716.2514
+2026-11-26T23:53:54+00:00,3389419,2026-11-27,Sharm El Sheikh 23 ITF,ITF,Lukosiute A.,Polymarket,0.425,0.4038,Betfair,0.03,716.2514
+2026-11-26T23:53:54+00:00,3389419,2026-11-27,Sharm El Sheikh 23 ITF,ITF,Popovic K.,Kalshi,0.58,0.5962,Betfair,0.02,87.71849999999999
+2026-11-26T23:53:54+00:00,3389419,2026-11-27,Sharm El Sheikh 23 ITF,ITF,Lukosiute A.,Kalshi,0.415,0.4038,Betfair,0.01,87.71849999999999
