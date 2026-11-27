@@ -3771,3 +3771,27 @@ taken_at,match_id,date,tournament,circuit,player,venue,mid,fair,fair_source,spre
 2026-11-27T12:27:30+00:00,3389531,2026-11-27,Florianopolis challenger,Challenger,Franco Roncadelli,Kalshi,0.535,0.5245,Betfair,0.01,11793.8194
 2026-11-27T12:27:30+00:00,3389639,2026-11-27,Playford 2 challenger,Challenger,Dane Sweeny,Polymarket,0.695,0.6943,Pinnacle,0.01,17700.1866
 2026-11-27T12:27:30+00:00,3389639,2026-11-27,Playford 2 challenger,Challenger,Christian Langmo,Polymarket,0.305,0.3057,Pinnacle,0.01,17700.1866
+2026-11-27T23:29:38+00:00,3389639,2026-11-27,Playford 2 challenger,Challenger,Dane Sweeny,Polymarket,0.685,0.6876,Betfair,0.01,46631.1964
+2026-11-27T23:29:38+00:00,3389639,2026-11-27,Playford 2 challenger,Challenger,Christian Langmo,Polymarket,0.315,0.3124,Betfair,0.01,46631.1964
+2026-11-27T23:29:38+00:00,3389639,2026-11-27,Playford 2 challenger,Challenger,Dane Sweeny,Kalshi,0.685,0.6876,Betfair,0.01,4695.8393
+2026-11-27T23:29:38+00:00,3389639,2026-11-27,Playford 2 challenger,Challenger,Christian Langmo,Kalshi,0.315,0.3124,Betfair,0.01,4695.8393
+2026-11-27T23:29:38+00:00,3389729,2026-11-28,Playford 2 challenger,Challenger,Omar Jasika,Polymarket,0.455,0.4534,Betfair,0.01,116858.2804
+2026-11-27T23:29:38+00:00,3389729,2026-11-28,Playford 2 challenger,Challenger,Tristan Schoolkate,Polymarket,0.545,0.5466,Betfair,0.01,116858.2804
+2026-11-27T23:29:38+00:00,3389729,2026-11-28,Playford 2 challenger,Challenger,Omar Jasika,Kalshi,0.465,0.4534,Betfair,0.01,4245.477
+2026-11-27T23:29:38+00:00,3389729,2026-11-28,Playford 2 challenger,Challenger,Tristan Schoolkate,Kalshi,0.535,0.5466,Betfair,0.01,4245.477
+2026-11-27T23:29:38+00:00,3389719,2026-11-28,Yokohama challenger,Challenger,Masamichi Imamura,Polymarket,0.515,0.5201,Betfair,0.01,84810.2075
+2026-11-27T23:29:38+00:00,3389719,2026-11-28,Yokohama challenger,Challenger,Kaichi Uchida,Polymarket,0.485,0.4799,Betfair,0.01,84810.2075
+2026-11-27T23:29:38+00:00,3389719,2026-11-28,Yokohama challenger,Challenger,Masamichi Imamura,Kalshi,0.525,0.5201,Betfair,0.01,4804.2176
+2026-11-27T23:29:38+00:00,3389719,2026-11-28,Yokohama challenger,Challenger,Kaichi Uchida,Kalshi,0.475,0.4799,Betfair,0.01,4804.2176
+2026-11-27T23:29:38+00:00,3389807,2026-11-28,Trnava 8 ITF,ITF,Falei A.,Polymarket,0.42,0.4263,Betfair,0.02,5706.6846
+2026-11-27T23:29:38+00:00,3389807,2026-11-28,Trnava 8 ITF,ITF,Lamens S.,Polymarket,0.58,0.5737,Betfair,0.02,5706.6846
+2026-11-27T23:29:38+00:00,3389807,2026-11-28,Trnava 8 ITF,ITF,Falei A.,Kalshi,0.41,0.4263,Betfair,0.04,441.15
+2026-11-27T23:29:38+00:00,3389807,2026-11-28,Trnava 8 ITF,ITF,Lamens S.,Kalshi,0.58,0.5737,Betfair,0.04,441.15
+2026-11-27T23:29:38+00:00,3389805,2026-11-28,Trnava 8 ITF,ITF,Yaneva E.,Polymarket,0.405,0.3875,Pinnacle,0.03,5469.2182
+2026-11-27T23:29:38+00:00,3389805,2026-11-28,Trnava 8 ITF,ITF,Minnen G.,Polymarket,0.595,0.6125,Pinnacle,0.03,5469.2182
+2026-11-27T23:29:38+00:00,3389805,2026-11-28,Trnava 8 ITF,ITF,Yaneva E.,Kalshi,0.425,0.3875,Pinnacle,0.01,58.898599999999995
+2026-11-27T23:29:38+00:00,3389805,2026-11-28,Trnava 8 ITF,ITF,Minnen G.,Kalshi,0.585,0.6125,Pinnacle,0.01,58.898599999999995
+2026-11-27T23:29:38+00:00,3389801,2026-11-28,Sharm El Sheikh 23 ITF,ITF,Popovic K.,Polymarket,0.585,0.6333,Betfair,0.05,541.8558
+2026-11-27T23:29:38+00:00,3389801,2026-11-28,Sharm El Sheikh 23 ITF,ITF,Samir S.,Polymarket,0.415,0.3667,Betfair,0.05,541.8558
+2026-11-27T23:29:38+00:00,3389801,2026-11-28,Sharm El Sheikh 23 ITF,ITF,Popovic K.,Kalshi,0.57,0.6333,Betfair,0.04,55.089999999999996
+2026-11-27T23:29:38+00:00,3389801,2026-11-28,Sharm El Sheikh 23 ITF,ITF,Samir S.,Kalshi,0.41,0.3667,Betfair,0.04,55.089999999999996

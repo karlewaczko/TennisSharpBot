@@ -791,3 +791,6 @@ taken_at,match_id,date,tournament,player,venue,kind,source,odds,fair_prob,ev,ref
 2026-11-25T23:41:16+00:00,3388855,2026-11-26,Playford 2 challenger,Christian Langmo,bet-at-home,book,value,2.25,0.4768,0.0728,Betfair
 2026-11-26T12:40:31+00:00,3389229,2026-11-27,Buenos Aires WTA,Veronika Erjavec,10Bet,book,value,1.95,0.5137,0.0017,Betfair
 2026-11-26T12:40:31+00:00,3388993,2026-11-26,Florianopolis 3 ITF,Ce G.,Polymarket,prediction,value,1.689,0.5974,0.0087,Betfair
+2026-11-27T23:29:38+00:00,3389805,2026-11-28,Trnava 8 ITF,Minnen G.,Kalshi,prediction,value,1.648,0.6125,0.0092,Pinnacle
+2026-11-27T23:29:38+00:00,3389801,2026-11-28,Sharm El Sheikh 23 ITF,Popovic K.,Polymarket,prediction,value,1.608,0.6333,0.0184,Betfair
+2026-11-27T23:29:38+00:00,3389801,2026-11-28,Sharm El Sheikh 23 ITF,Popovic K.,Kalshi,prediction,value,1.648,0.6333,0.0435,Betfair
