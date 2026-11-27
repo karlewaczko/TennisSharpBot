@@ -1,399 +1,211 @@
 tournament,tournament_url,player1,player1_slug,odds1,odds2,match_id,sets_won1,time,player2,player2_slug,sets_won2,score,date
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Cekirge K.,cekirge,1.14,4.35,3388587,,08:30,Avdeev F.,avdeev-b12b4,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Siftar J.,siftar,,,3388589,,08:30,Ion N.,ion-36cdd,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Ion N.,ion-36cdd,,,3388591,,08:30,Jutresa H.,jutresa,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Ion N.,ion-36cdd,,,3388593,,08:30,Kovacs V.,kovacs-b05be,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Font O.,font-b1b3e,8.0,1.02,3388279,,09:30,Dando J.,dando,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Siftar J.,siftar,,,3388603,,12:00,Boros A.,boros,,,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Beale J.,beale-21f5c,,,3386986,,03:30,Nicholls D.,nicholls-51063,,,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Ibraimi Y.,ibraimi-bd8e2,,,3386992,,03:30,Nicholls D.,nicholls-51063,,,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Connaughton L.,connaughton,2.11,1.63,3386990,,04:55,Nicholls D.,nicholls-51063,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Garcia Alonso C.,garcia-alonso-b05d1,6.25,1.07,3388285,,08:30,Borodulina V.,borodulina,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Anson Sanchez C.,anson-sanchez,1.31,3.0,3388647,,09:30,Iankovskaia A.,iankovskaia,,,2026-11-26
-Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Maristany Zuleta De Reales G.,maristany-zuleta-de-reales,1.4,2.83,3388473,2.0,18:10,Brancaccio N.,brancaccio-a1afd,1.0,1-6 6-3 6-1,2026-11-26
-Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Lepchenko V.,lepchenko,2.3,1.57,3388707,2.0,18:10,Costoulas S.,costoulas,1.0,6-3 7-7,2026-11-26
-Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Samson L.,samson-587bc,1.34,3.09,3388699,2.0,20:15,Burillo Escorihuela I.,burillo-escorihuela,0.0,6-3 6-3,2026-11-26
-Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Carle M.,carle-f03da,2.85,1.39,3389221,,21:50,Podoroska N.,podoroska,,,2026-11-26
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Semenistaja D.,semenistaja,1.02,10.8,3389081,2.0,13:10,Konishi Camargo Silva J.,konishi-camargo-silva,0.0,6-2 6-0,2026-11-26
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Rodriguez V.,rodriguez-21567,2.58,1.44,3388465,2.0,13:10,Sanchez A.,sanchez-e4e94,0.0,7-5,2026-11-26
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Strakhova V.,strakhova,2.04,1.69,3388993,2.0,14:30,Ce G.,ce,0.0,6-1,2026-11-26
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Perez Alarcon L.,perez-alarcon,1.34,3.01,3389083,2.0,16:00,Gatica B.,gatica,0.0,6-2 6-2,2026-11-26
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Pigossi L.,pigossi-5e7c8,1.03,12.12,3388443,2.0,16:30,Tran D.,tran-40ae7,0.0,7-5 6-1,2026-11-26
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Egorova D.,egorova-5b1bf,1.06,7.66,3388415,2.0,17:40,Labrana F.,labrana,0.0,6-2 6-3,2026-11-26
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Bulgaru M.,bulgaru,1.02,16.67,3388327,2.0,20:20,Carbone dos Santos M.,carbone-dos-santos,1.0,2-6 6-1 6-1,2026-11-26
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Roura Llaverias R.,roura-llaverias,2.47,1.48,3388431,2.0,22:15,Alves C.,alves-5a2e8,0.0,6-1 6-4,2026-11-26
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Lamens S.,lamens,1.29,3.28,3388983,2.0,09:10,Kovackova A.,kovackova,0.0,6-4 6-3,2026-11-26
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Friedsam A.,friedsam,1.72,2.0,3388575,2.0,09:10,Khomutsianskaya D.,khomutsianskaya,0.0,7-2,2026-11-26
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Falei A.,falei-4bd6b,2.25,1.58,3389155,2.0,09:20,Kovackova J.,kovackova-1f88f,1.0,6-3 4-6 6-4,2026-11-26
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Malygina E.,malygina,1.3,3.25,3389193,2.0,11:10,Vladson L.,vladson,0.0,6-3 6-1,2026-11-26
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Ngounoue C.,ngounoue-8ab66,2.37,1.52,3389167,2.0,11:15,Palicova B.,palicova,0.0,6-2 6-1,2026-11-26
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Ponchet J.,ponchet,1.18,4.42,3389023,2.0,11:40,Laboutkova A.,laboutkova,1.0,6-2 7-7,2026-11-26
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Minnen G.,minnen,1.15,4.78,3388985,2.0,12:45,Zavatska K.,zavatska,0.0,6-2 6-1,2026-11-26
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Yaneva E.,yaneva,1.12,5.4,3389175,2.0,13:00,Zeltina B.,zeltina,0.0,6-0 6-1,2026-11-26
-Ortisei ITF,https://www.tennisexplorer.com/ortisei-itf/2026/wta-women/,Perelygina E.,perelygina,1.75,1.97,3389165,2.0,10:10,Kuzmova K.,kuzmova-d77dc,0.0,6-4 6-4,2026-11-26
-Ortisei ITF,https://www.tennisexplorer.com/ortisei-itf/2026/wta-women/,Brockmann T.,brockmann,2.01,1.71,3389147,2.0,12:05,De Stefano S.,de-stefano,0.0,7-5 6-4,2026-11-26
-Ortisei ITF,https://www.tennisexplorer.com/ortisei-itf/2026/wta-women/,Vlasselaer C.,vlasselaer,6.37,1.09,3389043,2.0,13:50,Stojsavljevic M.,stojsavljevic,0.0,6-3 6-2,2026-11-26
-Ortisei ITF,https://www.tennisexplorer.com/ortisei-itf/2026/wta-women/,Ewald W.,ewald-6136e,1.15,4.45,3388941,2.0,14:10,Mazzola A.,mazzola-f08fb,0.0,6-2 6-3,2026-11-26
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Panagiotidou L.,panagiotidou-d2239,2.13,1.67,3388973,1.0,07:40,Shapatava S.,shapatava,0.0,4-6 3-0,2026-11-26
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Allen V.,allen-f9d71,2.0,1.72,3388885,2.0,07:40,Shaikh H.,shaikh-8b6c9,1.0,6-4 3-6 6-3,2026-11-26
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Dorofeeva-Rybas F.,dorofeeva-rybas,1.65,2.11,3388995,2.0,07:40,Struplova J.,struplova,0.0,6-4 6-2,2026-11-26
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Popa G.,popa-5ef18,1.24,3.55,3388391,2.0,07:50,Zhenikhova S.,zhenikhova,0.0,6-3 6-0,2026-11-26
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Matoula M.,matoula-3cf1e,1.06,7.39,3388931,2.0,09:05,Barbulescu B.,barbulescu-68dbb,0.0,6-1 6-0,2026-11-26
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Pedone G.,pedone,2.4,1.5,3389085,2.0,09:25,Stoyanov A.,stoyanov,1.0,4-6 6-3 6-3,2026-11-26
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Cortez Llorca L.,cortez-llorca,1.19,4.31,3388975,2.0,09:30,Glushkova D.,glushkova,0.0,6-2,2026-11-26
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Cvetkovic A.,cvetkovic-da1f9,1.45,2.56,3388389,2.0,10:25,Stankovic A.,stankovic-c7d3f,0.0,6-1 6-0,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Mrazova V.,mrazova-ecaf3,,,3388795,,07:30,Varsa A.,varsa,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Kubalova K.,kubalova-2d2a1,8.5,1.01,3388811,,07:30,Svatikova L.,svatikova,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Marcinkevica D.,marcinkevica,1.19,3.95,3388803,2.0,07:30,Heinzova I.,heinzova,0.0,6-3 6-2,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Lopez Alcaraz E.,lopez-alcaraz,1.08,5.62,3388663,2.0,08:00,Avdeeva V.,avdeeva-1c802,0.0,6-2 6-0,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Cabassers Morros M.,cabassers-morros-97a35,2.03,1.65,3388661,2.0,08:00,Font J.,font-4cd36,1.0,7-6 1-6 6-3,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Hradecka L.,hradecka-f26f5,1.2,3.75,3388799,2.0,09:05,Novakova E.,novakova-0c52f,1.0,4-6 6-1 6-2,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Kruijer N.,kruijer,1.22,3.8,3388653,2.0,09:45,Martellenghi E.,martellenghi,0.0,6-3 6-4,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Molnar K.,molnar-23ddd,1.01,7.5,3388801,,10:40,Skapets A.,skapets,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Adrover Gallego I.,adrover-gallego,1.01,10.33,3388287,,10:50,Sevald N.,sevald,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Aranda Arcas L.,aranda-arcas,,,3388667,,10:50,Cabrera Burns M.,cabrera-burns,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Gaillard D.,gaillard-edd42,1.3,3.14,3388655,2.0,11:00,Cabassers Morros A.,cabassers-morros,1.0,5-7 7-5 7-6,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Hejtmanek A.,hejtmanek-4837e,4.55,1.15,3388807,,11:15,Vargova V.,vargova,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Matouskova B.,matouskova-8da47,1.01,9.0,3388809,,12:00,Freigassner V.,freigassner,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Borodulina V.,borodulina,1.07,5.75,3388829,,12:40,Wedenski S.,wedenski,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Zrnic V.,zrnic,,,3388813,,13:10,Nweke D.,nweke,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Garcia Alonso C.,garcia-alonso-b05d1,3.45,1.26,3388819,,13:30,Iankovskaia A.,iankovskaia,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Garcia Alonso C.,garcia-alonso-b05d1,1.23,3.43,3389365,2.0,14:00,Ordonez Anduiza P.,ordonez-anduiza,0.0,6-4 6-0,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Cabassers Morros A.,cabassers-morros,,,3388825,,15:30,Olariu A.,olariu,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Gaillard D.,gaillard-edd42,2.85,1.33,3388823,2.0,15:40,Martellenghi E.,martellenghi,0.0,6-0 6-3,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Swarbrick E.,swarbrick,1.82,1.83,3388691,2.0,00:35,Khan A.,khan-5c75e,0.0,7-6 6-2,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Khan L.,khan-a7c2a,1.07,6.08,3388677,2.0,00:40,Collins O.,collins-c8d26,0.0,6-1 6-3,2026-11-26
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Noguchi S.,noguchi-ae6d2,1.19,4.21,3388883,2.0,07:00,Safta A.,safta,1.0,3-6 6-2 6-4,2026-11-26
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Teixido Garcia M.,teixido-garcia-b8df4,2.02,1.7,3389037,2.0,07:00,Solar Donoso L.,solar-donoso,1.0,4-6 6-2 6-4,2026-11-26
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Trevisan F.,trevisan-1d3e4,1.43,2.6,3388881,2.0,07:00,Diaz Adrover C.,diaz-adrover,0.0,6-1 6-3,2026-11-26
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Amiraghyan A.,amiraghyan,1.31,3.16,3388929,2.0,07:00,Tsujioka S.,tsujioka,0.0,6-3 6-1,2026-11-26
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Lacinova A.,lacinova,1.5,2.69,3388927,2.0,07:00,Obradovic A.,obradovic-33b41,1.0,6-4 3-6 6-4,2026-11-26
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Gomez V.,gomez-fd7f2,3.59,1.24,3388879,2.0,08:30,Yoruk I.,yoruk,1.0,6-3 4-6 6-4,2026-11-26
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Petkovic A.,petkovic-1cadf,1.07,6.93,3389019,2.0,08:30,Kovalchuk K.,kovalchuk-b882c,0.0,6-3 6-0,2026-11-26
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Todoni C.,todoni-0af2b,1.08,6.63,3389035,2.0,08:30,Kenzhibayeva S.,kenzhibayeva,0.0,7-5 6-0,2026-11-26
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Pankratova M.,pankratova,1.06,7.34,3388849,2.0,04:00,Sanjay Mohanty S.,sanjay-mohanty,0.0,6-2 6-1,2026-11-26
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Dipakbhai Kanabar J.,dipakbhai-kanabar,1.21,3.73,3388847,2.0,04:00,Jamshidi E.,jamshidi-c35bb,0.0,6-3 6-0,2026-11-26
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Dekkers F.,dekkers,1.52,2.35,3388851,2.0,04:00,Bhatia K.,bhatia-ca8f3,0.0,6-4 6-2,2026-11-26
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Lin F.,lin-0807a,1.28,3.26,3388933,2.0,05:30,Yashina E.,yashina,1.0,5-7 6-1 6-4,2026-11-26
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Nugroho P.,nugroho-ee7f1,1.02,21.0,3388887,2.0,05:30,Mikhailova M.,mikhailova,0.0,6-1 6-0,2026-11-26
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Rao S.,rao-b4b18,1.61,2.17,3388889,2.0,05:30,Oigawa S.,oigawa-dc981,0.0,6-3 6-4,2026-11-26
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Yodpetch K.,yodpetch,1.05,8.91,3388891,2.0,07:30,Fernando D.,fernando-f333d,0.0,6-1 6-4,2026-11-26
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Laron M.,laron,1.07,6.96,3388893,2.0,07:30,Lakshmi Prabha A.,lakshmi-prabha,1.0,6-1 6-7,2026-11-26
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Wobker I.,wobker,1.18,4.29,3388977,2.0,10:00,Losciale V.,losciale,1.0,3-6 6-3 6-1,2026-11-26
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Makarova M.,makarova-b3ef2,1.15,4.72,3389039,2.0,10:00,Fontenel C.,fontenel,0.0,6-1 6-0,2026-11-26
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Firman A.,firman-27649,1.05,8.58,3388445,2.0,10:00,Almeida S.,almeida-19fc6,0.0,6-2 6-1,2026-11-26
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Tomase E.,tomase,1.72,2.0,3389093,2.0,11:30,Jialin T.,jialin,1.0,0-6 6-2 6-4,2026-11-26
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Voracek E.,voracek,1.04,7.81,3389091,2.0,11:30,Reva A.,reva,0.0,6-1 6-2,2026-11-26
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Adeshina E.,adeshina-d7cbe,1.52,2.36,3389041,2.0,11:30,Andrienko M.,andrienko-add97,0.0,6-4 6-2,2026-11-26
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Iliev S.,iliev-33d70,1.39,2.74,3388481,2.0,12:30,Shkutova A.,shkutova,0.0,6-1 6-0,2026-11-26
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Honer A.,honer,1.05,8.24,3389141,2.0,12:30,Blazkova K.,blazkova,0.0,6-2 6-1,2026-11-26
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Marinkovic I.,marinkovic-79d74,1.57,2.27,3389163,2.0,08:30,Taranova V.,taranova-cf2c0,1.0,1-6 6-2 6-4,2026-11-26
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Luciano L.,luciano-2f974,1.9,1.8,3389143,2.0,08:30,Brune Olsen A.,brune-olsen,1.0,6-2 5-7 6-4,2026-11-26
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Choi S.,choi-fbe16,1.3,3.14,3388939,2.0,08:30,Pascual Montalvo I.,pascual-montalvo,0.0,6-3 6-4,2026-11-26
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Inisan E.,inisan,1.83,1.85,3389103,2.0,08:30,Manta N.,manta-f6cd2,1.0,6-4 1-6 6-2,2026-11-26
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Taraba Wallberg N.,taraba-wallberg,1.21,3.91,3389097,2.0,10:00,Pawlak L.,pawlak-ecc54,0.0,6-1 6-1,2026-11-26
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Bonelli E.,bonelli-0b73a,2.9,1.36,3389101,2.0,10:00,Horvit M.,horvit,0.0,6-2 6-3,2026-11-26
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Hageman M.,hageman-84fbb,1.13,5.15,3389099,2.0,10:00,Ben Ezzedine M.,ben-ezzedine,0.0,6-2 6-4,2026-11-26
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Dal S.,dal,1.32,3.08,3388937,2.0,10:00,Lim A.,lim-136f7,0.0,6-4 7-5,2026-11-26
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Kubareva A.,kubareva,1.08,6.49,3388943,2.0,08:00,Kikawada R.,kikawada,0.0,6-2 6-2,2026-11-26
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Ma C.,ma-1c89c,1.01,10.2,3389151,2.0,08:00,Gorska D.,gorska,0.0,6-2 6-2,2026-11-26
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Lukosiute A.,lukosiute,1.66,2.08,3389045,2.0,08:00,Bartone K.,bartone,1.0,6-3 2-6 6-4,2026-11-26
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Dmitruk K.,dmitruk-06407,1.37,2.81,3389105,2.0,08:00,Lee E.,lee-d4739,0.0,6-4 6-4,2026-11-26
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Samir S.,samir,1.01,12.06,3389173,2.0,09:30,Denisenko J.,denisenko-49e1f,0.0,6-1 6-0,2026-11-26
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Popovic K.,popovic-9c138,1.03,9.27,3389107,2.0,09:30,Khomitskaya A.,khomitskaya,0.0,6-2 6-3,2026-11-26
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Rutlauka S.,rutlauka,1.11,5.49,3389185,2.0,09:30,Avataneo S.,avataneo,0.0,6-3 6-1,2026-11-26
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Snigireva A.,snigireva,1.57,2.23,3389149,2.0,10:00,El Sayed A.,el-sayed-b01e9,0.0,6-1,2026-11-26
-UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Doldan Z.,doldan-3d86a,,,3389253,,13:00,Sarno M.,sarno,,,2026-11-26
-UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Markus K.,markus-89775,1.02,8.25,3389257,2.0,15:20,Boyden M.,boyden-5ed00,0.0,6-1 6-2,2026-11-26
-UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Gobbi Monllau A.,gobbi-monllau,9.0,1.01,3389255,,15:35,Meabe S.,meabe-12cf7,,,2026-11-26
-UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Rabin S.,rabin,,,3389261,,17:00,Markus C.,markus-e2563,,,2026-11-26
-UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Zornada E.,zornada,,,3389259,,18:05,Kawano Cho G.,kawano-cho,,,2026-11-26
-UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Duarte A.,duarte-31528,1.53,2.23,3389265,2.0,18:25,Doldan H.,doldan-d3852,0.0,6-2 6-3,2026-11-26
-UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Chlpac A.,chlpac,1.6,2.05,3389263,,19:15,Madrid Rocca M.,madrid-rocca-92c98,,,2026-11-26
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,La Serna J.,la-serna,1.1,6.02,3389169,2.0,13:05,Cigarran T.,cigarran,0.0,6-2 6-1,2026-11-26
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Ribeiro E.,ribeiro-a7963,2.95,1.36,3388477,2.0,13:05,Alcala Gurri M.,alcala-gurri,0.0,6-2,2026-11-26
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Justo G.,justo,1.49,2.48,3389199,2.0,13:05,Barranco Cosano J.,barranco-cosano,0.0,7-4,2026-11-26
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Roncadelli F.,roncadelli,1.37,2.9,3388457,2.0,14:45,Nijboer R.,nijboer,0.0,6-3 7-5,2026-11-26
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Meligeni Rodrigues Alves F.,meligeni-rodrigues-alves,1.25,3.67,3389213,2.0,15:00,Zarate C.,zarate-fab15,0.0,6-2 6-1,2026-11-26
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Marcondes I.,marcondes,1.34,3.09,3389223,2.0,15:45,Nikles J.,nikles,0.0,6-2 6-4,2026-11-26
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Olivieri G.,olivieri-ff875,2.11,1.67,3388495,2.0,16:50,Aguilar Cardozo J.,aguilar-cardozo,1.0,4-6 6-2 6-4,2026-11-26
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Zanellato N.,zanellato,8.75,1.05,3389271,2.0,17:20,Moller E.,moller-6ea06,1.0,0-6 6-4 6-2,2026-11-26
-Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Overbeck C.,overbeck,2.39,1.53,3388226,2.0,00:40,Kubler J.,kubler-21879,0.0,6-3 6-4,2026-11-26
-Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Jasika O.,jasika,1.77,1.97,3388236,2.0,00:40,Tu L.,tu-41622,0.0,6-3 7-5,2026-11-26
-Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Sweeny D.,sweeny,1.2,4.27,3388228,2.0,02:20,Jones H.,jones-44ce4,0.0,6-2 6-2,2026-11-26
-Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Bolt A.,bolt-fa7eb,1.16,4.8,3388044,2.0,03:40,Pham D.,pham-88743,0.0,6-4 6-0,2026-11-26
-Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Matsuoka H.,matsuoka-5fe86,1.2,4.21,3388220,2.0,02:10,Isomura K.,isomura-6342d,1.0,4-6 6-1 6-1,2026-11-26
-Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Shimizu Y.,shimizu-38ca9,1.29,3.37,3388733,2.0,02:10,Staeheli L.,staeheli,0.0,6-1 6-3,2026-11-26
-Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Noguchi R.,noguchi-08bde,1.77,1.96,3388727,2.0,03:30,Hassan B.,hassan-1d510,0.0,6-4 6-4,2026-11-26
-Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Honda N.,honda-48d1d,2.11,1.67,3388719,2.0,04:15,Takahashi Y.,takahashi-aebfd,0.0,6-3 6-1,2026-11-26
-Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Ursu V.,ursu-62e97,4.39,1.18,3388267,2.0,08:10,Gulin S.,gulin-1ef00,0.0,7-2,2026-11-26
-Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Rincon D.,rincon-d1dab,1.3,3.28,3388289,2.0,08:10,Bobichon M.,bobichon,0.0,7-5,2026-11-26
-Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Guna R.,guna-31d13,2.63,1.44,3388911,2.0,09:35,Wiskandt M.,wiskandt,0.0,6-2 6-4,2026-11-26
-Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Kirkin E.,kirkin,1.23,3.9,3388957,2.0,10:15,Maute J.,maute,0.0,7-5 6-3,2026-11-26
-Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Tabacco G.,tabacco-3fc98,3.32,1.3,3388497,2.0,10:05,Coulibaly E.,coulibaly-f4551,0.0,6-2 6-0,2026-11-26
-Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Pankin S.,pankin,2.33,1.55,3388435,2.0,10:05,Bar Biryukov P.,bar-biryukov,0.0,6-2,2026-11-26
-Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Bondioli F.,bondioli,1.17,4.51,3388479,2.0,10:05,Scaglia M.,scaglia-80e23,0.0,7-1,2026-11-26
-Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Kelm Y.,kelm,2.57,1.46,3388501,2.0,11:55,Romano F.,romano-cf2f0,0.0,6-4 6-4,2026-11-26
-San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Heredia S.,heredia-f10e3,3.31,1.3,3388709,2.0,17:05,Vales A.,vales,0.0,6-3 6-3,2026-11-26
-San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Alvarez Valdes L.,alvarez-valdes,1.07,7.23,3388711,2.0,17:10,Gomez J.,gomez-0d12e,0.0,6-1 6-3,2026-11-26
-San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Nefve A.,nefve,2.96,1.36,3388713,2.0,18:40,Willwerth B.,willwerth,0.0,6-4 7-5,2026-11-26
-San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Andrade Da Silva L.,andrade-da-silva,1.07,7.82,3388493,,20:30,Duran D.,duran-fd3b3,,,2026-11-26
-San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Legout T.,legout,1.14,5.19,3388721,,23:05,Poling K.,poling,,,2026-11-26
-Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Bailly G.,bailly-a8c26,1.19,4.33,3388425,2.0,08:10,Jones M.,jones-de732,0.0,6-1 6-3,2026-11-26
-Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Ovcharenko O.,ovcharenko-bb3a3,2.68,1.42,3388423,2.0,08:10,Kravchenko G.,kravchenko-62c4a,0.0,6-4 6-3,2026-11-26
-Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Pietri B.,pietri,3.1,1.34,3388437,2.0,08:10,Demin Y.,demin,0.0,7-5 6-4,2026-11-26
-Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Xilas I.,xilas,1.59,2.24,3388461,2.0,11:35,Peniston R.,peniston,1.0,6-3 3-6 6-3,2026-11-26
-Futures 2026,,Mukund S.,mukund,1.18,4.18,3388853,2.0,04:40,Kamath M.,kamath-85263,1.0,4-6 6-3 6-2,2026-11-26
-Futures 2026,,Singh K.,singh-e3612,1.04,9.13,3388232,2.0,04:40,Krivoshchekov M.,krivoshchekov-fea1d,0.0,6-2 6-3,2026-11-26
-Futures 2026,,Sureshkumar M.,sureshkumar,1.33,3.04,3388945,2.0,04:50,Kshitij A.,kshitij,0.0,6-3 6-3,2026-11-26
-Futures 2026,,Duhan C.,duhan,1.33,3.04,3388947,2.0,05:50,Kalyanpur A.,kalyanpur,1.0,7-7 6-2,2026-11-26
-Futures 2026,,Rejchtman Vinciguerra W.,rejchtman-vinciguerra,1.16,4.64,3388955,2.0,06:05,Hans K.,hans-ed1de,0.0,6-3 6-0,2026-11-26
-Futures 2026,,Javia D.,javia,1.07,7.06,3388953,2.0,06:30,Lakshmanan A.,lakshmanan-2b3a9,1.0,7-6,2026-11-26
-Futures 2026,,Lomakin G.,lomakin-0fb5e,1.75,1.96,3388951,2.0,07:30,Ianin N.,ianin,1.0,7-7 6-3,2026-11-26
-Futures 2026,,Chauhan H.,chauhan-6fd6b,2.81,1.37,3388949,2.0,07:40,Djosic N.,djosic,0.0,6-2,2026-11-26
-Futures 2026,,Michnev P.,michnev,1.5,2.41,3389013,2.0,08:40,Hignett L.,hignett-94faa,0.0,6-1 6-2,2026-11-26
-Futures 2026,,Sorger S.,sorger,1.15,4.74,3388921,2.0,08:40,Bozemoj B.,bozemoj,0.0,6-3 6-4,2026-11-26
-Futures 2026,,Siniakov D.,siniakov,1.11,5.6,3388925,2.0,10:00,Gundacker J.,gundacker,0.0,6-4 6-2,2026-11-26
-Futures 2026,,Friberg K.,friberg,1.14,4.92,3388265,2.0,10:25,Homola P.,homola,0.0,6-3 6-3,2026-11-26
-Futures 2026,,Gengel M.,gengel,1.05,8.29,3389005,2.0,11:45,Duda A.,duda-264f0,0.0,6-3 6-2,2026-11-26
-Futures 2026,,Beaven J.,beaven,4.37,1.18,3388923,2.0,12:15,Sesko Z.,sesko,1.0,6-7 7-4,2026-11-26
-Futures 2026,,Paroulek T.,paroulek,1.74,1.97,3389011,2.0,13:10,Braynin A.,braynin,1.0,6-7 7-4,2026-11-26
-Futures 2026,,Pieczonka F.,pieczonka-07acc,1.04,8.69,3388971,2.0,15:05,Piening C.,piening,0.0,6-0 7-5,2026-11-26
-Futures 2026,,Giotis R.,giotis,,,3389069,2.0,,Nikolic M.,nikolic-4504b,0.0,6-3 6-4,2026-11-26
-Futures 2026,,Figl M.,figl,5.5,1.12,3387246,2.0,07:00,Weis A.,weis-6ba1c,1.0,2-6 7-5,2026-11-26
-Futures 2026,,Radjenovic V.,radjenovic,1.85,1.85,3388987,1.0,07:00,Tiurnev E.,tiurnev,0.0,3-6 2-1,2026-11-26
-Futures 2026,,Giotis R.,giotis,4.05,1.2,3389267,2.0,07:00,Perfetti N.,perfetti-6f712,0.0,6-2 6-4,2026-11-26
-Futures 2026,,Rolland D.,rolland,1.79,1.91,3389009,2.0,07:30,Cizek J.,cizek-2b924,1.0,5-7 6-2 6-3,2026-11-26
-Futures 2026,,Basile P.,basile-67dd4,1.03,9.73,3388967,1.0,07:30,Kontopoulos T.,kontopoulos,0.0,6-1 5-1,2026-11-26
-Futures 2026,,Delicata L.,delicata-c34a5,1.21,3.91,3389003,2.0,07:30,Garcia Hernandez S.,garcia-hernandez-08407,1.0,6-2 1-6 6-2,2026-11-26
-Futures 2026,,Curras Abasolo T.,curras-abasolo,1.02,12.3,3388919,2.0,07:30,De La Cierva Sanchez P.,de-la-cierva-sanchez,0.0,6-4 6-1,2026-11-26
-Futures 2026,,Lechno-Wasiutynski F.,lechno-wasiutynski,1.69,2.02,3389017,2.0,08:00,Bakshi A.,bakshi-c841e,1.0,2-6 6-1 6-1,2026-11-26
-Futures 2026,,Makk P.,makk,1.04,8.27,3389135,1.0,08:00,Stanke C.,stanke,0.0,5-3,2026-11-26
-Futures 2026,,Paardekooper S.,paardekooper,1.5,2.43,3389033,2.0,08:00,Ibrahim K.,ibrahim-6343c,1.0,6-7 7-3,2026-11-26
-Futures 2026,,Purtseladze S.,purtseladze,1.17,4.52,3389133,2.0,08:00,Doig C.,doig,1.0,6-7 6-2,2026-11-26
-Futures 2026,,Van Der Meerschen M.,van-der-meerschen,1.22,3.91,3389071,2.0,08:30,Wagner A.,wagner-9b166,1.0,4-6 6-3 6-3,2026-11-26
-Futures 2026,,Gima S.,gima-59cd8,1.34,2.96,3388963,2.0,08:30,Breazu V.,breazu,0.0,6-1 6-1,2026-11-26
-Futures 2026,,Jeran A.,jeran,2.0,1.72,3389049,2.0,08:30,Gusic Wan B.,gusic-wan,1.0,6-3 4-6 7-5,2026-11-26
-Futures 2026,,Van Wyk K.,van-wyk-15b5e,1.2,4.15,3388981,2.0,08:30,Fondriest M.,fondriest,0.0,6-3 6-1,2026-11-26
-Futures 2026,,Ujvary M.,ujvary,1.15,4.69,3389025,2.0,08:30,Kucukhuseyin C.,kucukhuseyin-74f1b,0.0,6-3 7-5,2026-11-26
-Futures 2026,,Vaisman T.,vaisman,,,3388915,2.0,08:30,Ciric A.,ciric-6368a,0.0,6-4,2026-11-26
-Futures 2026,,Paolini A.,paolini-fa166,4.25,1.19,3389001,2.0,08:30,Wazny A.,wazny,1.0,6-7 6-1,2026-11-26
-Futures 2026,,Cocola S.,cocola,1.64,2.12,3388979,2.0,08:30,Herrmann T.,herrmann-6dbf7,1.0,7-7 5-4,2026-11-26
-Futures 2026,,Nortey I.,nortey-0c11d,2.16,1.63,3389051,2.0,08:30,Dimic M.,dimic,0.0,7-1,2026-11-26
-Futures 2026,,Hallquist Lithen J.,hallquist-lithen,1.2,4.0,3388257,2.0,09:00,Habib A.,habib-0d044,1.0,2-6 6-4 6-0,2026-11-26
-Futures 2026,,Geladaris O.,geladaris,2.58,1.44,3389073,2.0,09:00,Hasson J.,hasson,1.0,5-7 6-3 6-2,2026-11-26
-Futures 2026,,Gannon C.,gannon,1.17,4.54,3388873,2.0,09:00,Jones A.,jones-28bc0,1.0,6-1 2-6 6-1,2026-11-26
-Futures 2026,,Garcia A.,garcia-ca82f,1.1,5.88,3389125,2.0,09:00,Dominguez Alonso J.,dominguez-alonso-33f7b,0.0,6-1 6-1,2026-11-26
-Futures 2026,,Borrelli L.,borrelli-c1bd0,7.29,1.07,3389027,2.0,09:00,Velcz Z.,velcz,0.0,6-1 6-2,2026-11-26
-Futures 2026,,Kaouk M.,kaouk,1.22,3.85,3388969,2.0,09:00,Longwe-Smit T.,longwe-smit,0.0,6-2 6-0,2026-11-26
-Futures 2026,,Rodenas P.,rodenas,1.05,8.56,3388989,2.0,09:00,Perez Socas R.,perez-socas,0.0,6-2 6-4,2026-11-26
-Futures 2026,,Perez Contri S.,perez-contri,1.11,5.68,3389127,2.0,09:00,Arce Fernandez M.,arce-fernandez,0.0,6-3 6-3,2026-11-26
-Futures 2026,,Pleshivtsev E.,pleshivtsev,1.26,3.51,3389131,2.0,09:30,Kharlamov R.,kharlamov,1.0,3-6 6-2 6-1,2026-11-26
-Futures 2026,,Elsayed A.,elsayed-8f65f,1.16,4.52,3388877,2.0,09:30,Waldner N.,waldner-d423c,1.0,4-6 6-4 7-5,2026-11-26
-Futures 2026,,Arzhankin A.,arzhankin,1.01,11.33,3389079,1.0,09:30,Alekseychuk A.,alekseychuk,0.0,5-0,2026-11-26
-Futures 2026,,Iakubenko V.,iakubenko,1.4,2.68,3388991,2.0,09:30,Ivanov S.,ivanov-1c006,0.0,6-2 6-2,2026-11-26
-Futures 2026,,Behrmann T.,behrmann-1306c,,,3389319,2.0,09:30,Figl M.,figl,1.0,7-7 6-3,2026-11-26
-Futures 2026,,Kupcic J.,kupcic,1.96,1.75,3388997,2.0,10:00,Barun B.,barun,1.0,3-6 6-3 6-4,2026-11-26
-Futures 2026,,Neimanis R.,neimanis,2.14,1.63,3388895,2.0,10:00,Castagnola L.,castagnola,0.0,6-3 6-2,2026-11-26
-Futures 2026,,Salvestre D.,salvestre,1.48,2.49,3389053,2.0,10:00,Marino P.,marino-81908,0.0,6-4 6-4,2026-11-26
-Futures 2026,,Shah K.,shah-f263b,2.54,1.45,3389153,2.0,10:00,Thies C.,thies-154a0,0.0,7-4,2026-11-26
-Futures 2026,,Tkemaladze Z.,tkemaladze,2.13,1.64,3389031,2.0,10:30,Gonzalez E.,gonzalez-90622,1.0,3-6 6-1 6-4,2026-11-26
-Futures 2026,,de Schepper K.,de-schepper,2.07,1.67,3389187,2.0,10:30,Perez Ramos P.,perez-ramos,1.0,6-2 6-7,2026-11-26
-Futures 2026,,Hernandez C.,hernandez-a75e3,,,3389015,2.0,10:30,Garcia E.,garcia-f521e,0.0,6-3 6-4,2026-11-26
-Futures 2026,,Morais D.,morais-c304a,1.5,2.4,3389129,2.0,10:30,Manzano Lapuerta P.,manzano-lapuerta,0.0,7-1,2026-11-26
-Futures 2026,,Gagliardo L.,gagliardo,1.01,11.0,3388010,1.0,16:00,Scramin do Lago J.,scramin-do-lago,0.0,3-6 6-2 3-0,2026-11-26
-Futures 2026,,Valente R.,valente-54a99,1.09,6.21,3388166,2.0,16:00,Ortiz Gamonal D.,ortiz-gamonal,0.0,6-1 6-2,2026-11-26
-Futures 2026,,Cundom J.,cundom,1.17,4.44,3388154,2.0,16:00,Eldin R.,eldin-39a5d,0.0,6-3 6-2,2026-11-26
-Futures 2026,,Biletic I.,biletic-48b1c,1.16,4.62,3388164,2.0,16:00,Guadagno V.,guadagno,0.0,7-5 6-4,2026-11-26
-Futures 2026,,Lora S.,lora-b6d7a,2.52,1.47,3388006,2.0,17:30,Price Pelaez S.,price-pelaez,1.0,2-6,2026-11-26
-Futures 2026,,Monzon I.,monzon-8e6ef,1.04,9.1,3388168,2.0,17:30,Sverzut Corsini L.,sverzut-corsini,0.0,6-4 6-2,2026-11-26
-Futures 2026,,De Krom M.,de-krom,1.22,3.81,3388002,2.0,17:30,Tenti F.,tenti-9fe5e,1.0,6-7 6-1,2026-11-26
-Futures 2026,,De la Pena B.,de-la-pena-1f846,1.28,3.37,3388000,2.0,17:30,Braga V.,braga-1d9dd,0.0,,2026-11-26
-Futures 2026,,Remondy Pagotto V.,remondy-pagotto,,,3388004,2.0,19:00,Verduguez V.,verduguez,0.0,6-0 6-0,2026-11-26
-Futures 2026,,Malla B.,malla,1.22,3.82,3388012,2.0,19:00,De Dios F.,de-dios,0.0,6-1 6-4,2026-11-26
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Franchini S.,franchini-cfb10,1.13,4.75,3389293,2.0,13:00,Benitez V.,benitez-c429c,1.0,6-4 1-6 6-3,2026-11-26
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Carraro L.,carraro,1.12,5.0,3389291,2.0,13:00,Jara-Lozano N.,jara-lozano,0.0,6-4 6-3,2026-11-26
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Descotte M.,descotte,3.8,1.2,3388623,2.0,15:25,Aguilar Cardozo F.,aguilar-cardozo-9f958,1.0,7-5 4-6 6-3,2026-11-26
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Branchetti G.,branchetti,1.34,2.9,3388783,2.0,16:05,Doria L.,doria,0.0,6-3 6-2,2026-11-26
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Tischner T.,tischner,1.18,4.0,3389297,,17:10,Lopez D.,lopez-2370a,,,2026-11-26
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Perlov F.,perlov,9.0,1.01,3389295,,17:45,Lingua Lavallen A.,lingua-lavallen,,,2026-11-26
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Meneo T.,meneo,1.96,1.74,3388611,2.0,19:05,Mitoma P.,mitoma,1.0,0-6 7-5 6-3,2026-11-26
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Crosio F.,crosio,1.62,2.11,3388617,2.0,19:20,Fernandez Badia A.,fernandez-badia,1.0,6-1 4-6 6-2,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Jutresa H.,jutresa,1.34,2.78,3389285,2.0,07:30,Zavaczki M.,zavaczki-ef35f,0.0,6-2 6-4,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Naharro D.,naharro,1.2,3.68,3388601,2.0,08:00,Ayllon Prado A.,ayllon-prado,0.0,6-4 6-1,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Garcia Garcia A.,garcia-garcia-1839d,4.35,1.15,3388599,2.0,08:00,Schneider V.,schneider-a5eef,0.0,6-4 6-2,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Sabanov I.,sabanov-1bd16,7.25,1.03,3388755,,08:30,Horak O.,horak-d773c,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Siftar J.,siftar,1.21,3.55,3388741,2.0,09:20,Kovacs V.,kovacs-b05be,0.0,6-4 7-5,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Gimenez Perez C.,gimenez-perez,7.5,1.03,3388595,,10:15,Porras J.,porras,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Corthey L.,corthey,2.05,1.63,3388597,2.0,10:25,Seres F.,seres,0.0,6-4 6-3,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Wassermann M.,wassermann-1c33c,1.28,3.15,3388745,2.0,11:20,Kis Balazs R.,kis-balazs,1.0,2-6 7-6 6-2,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Sabanov M.,sabanov-3a81b,2.3,1.5,3388757,2.0,11:35,Madarasz G.,madarasz-31016,0.0,6-3 6-4,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Cowcher K.,cowcher,4.0,1.18,3388281,2.0,12:30,Mandou Berranger I.,mandou-berranger,0.0,7-6 6-0,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Krstic V.,krstic,1.01,9.0,3388283,,12:40,Leeman D.,leeman,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,De Ruiter C.,de-ruiter-a91d2,9.0,1.01,3388743,,13:15,Valkusz M.,valkusz,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Lootsma N.,lootsma,1.21,3.55,3389205,2.0,13:15,McDonnell C.,mcdonnell,0.0,7-6 6-3,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Naharro D.,naharro,2.55,1.4,3388777,,13:50,Schneider V.,schneider-a5eef,,,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Morega D.,morega,2.85,1.33,3388775,2.0,14:30,Ayllon Prado A.,ayllon-prado,0.0,6-4 6-3,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Gubi T.,gubi,1.18,4.0,3389287,2.0,15:10,Chetverikov R.,chetverikov,0.0,6-2 6-4,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Cekirge K.,cekirge,4.68,1.12,3388763,2.0,15:10,Dando J.,dando,0.0,7-5 6-2,2026-11-26
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Avdeev F.,avdeev-b12b4,1.34,2.78,3389289,2.0,16:15,Herberg A.,herberg,0.0,6-3 6-3,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Stewart A.,stewart-f4060,1.26,3.33,3388901,2.0,00:55,Vasiliadis E.,vasiliadis-4c114,0.0,6-3 6-3,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Nield M.,nield-5a27e,,,3388673,,01:10,Jones S.,jones-2fc9a,,,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Brown O.,brown-59d07,1.02,8.17,3387082,,02:05,Valsamis E.,valsamis,,,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Patton T.,patton-59123,1.55,2.22,3386982,2.0,02:40,Connaughton L.,connaughton,1.0,6-0 2-6 6-4,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Mehrotra A.,mehrotra,1.12,4.7,3387074,2.0,02:40,Staley J.,staley,0.0,6-4 6-4,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Stewart A.,stewart-f4060,4.35,1.15,3387070,2.0,03:30,Van Sambeek F.,van-sambeek,0.0,6-4 7-5,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Gaal C.,gaal-89550,1.19,3.85,3388669,2.0,04:00,Bagaric D.,bagaric-b34c3,1.0,2-6 6-4 6-1,2026-11-26
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Beale J.,beale-21f5c,1.01,25.0,3388869,,04:55,Girdler J.,girdler,,,2026-11-26
-Davis Cup,https://www.tennisexplorer.com/davis-cup/2026/atp-men/,Norrie C.,norrie,1.98,1.78,3389313,2.0,09:15,Struff J.,struff,1.0,6-3 3-6 6-2,2026-11-26
-Davis Cup,https://www.tennisexplorer.com/davis-cup/2026/atp-men/,Zverev A.,zverev-6f768,1.05,10.2,3389315,2.0,11:10,Fery A.,fery,0.0,6-3 6-2,2026-11-26
-Davis Cup,https://www.tennisexplorer.com/davis-cup/2026/atp-men/,Merida Aguilar D.,merida-aguilar,,,3389535,2.0,16:35,Schwaerzler J.,schwaerzler,0.0,6-4 6-4,2026-11-26
-Davis Cup,https://www.tennisexplorer.com/davis-cup/2026/atp-men/,Jodar R.,jodar,1.14,5.47,3389537,2.0,18:15,Rodionov J.,rodionov-f5e38,1.0,2-6 6-0 6-1,2026-11-26
-Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Herrero Linana A.,herrero-linana,2.46,1.49,3389227,,15:00,Riera J.,riera-4b182,,,2026-11-27
-Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Monnet C.,monnet,1.8,1.94,3389229,,18:00,Erjavec V.,erjavec,,,2026-11-27
-Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Lepchenko V.,lepchenko,3.42,1.27,3389615,,18:00,Samson L.,samson-587bc,,,2026-11-27
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Semenistaja D.,semenistaja,1.45,2.53,3389529,,15:00,Strakhova V.,strakhova,,,2026-11-27
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Egorova D.,egorova-5b1bf,1.11,5.26,3389585,,15:00,Rodriguez V.,rodriguez-21567,,,2026-11-27
-Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Perez Alarcon L.,perez-alarcon,1.53,2.29,3389587,,15:00,Pigossi L.,pigossi-5e7c8,,,2026-11-27
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Falei A.,falei-4bd6b,1.8,1.89,3389421,,09:00,Ngounoue C.,ngounoue-8ab66,,,2026-11-27
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Ponchet J.,ponchet,3.57,1.25,3389501,,09:00,Minnen G.,minnen,,,2026-11-27
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Lamens S.,lamens,1.28,3.29,3389423,,10:30,Malygina E.,malygina,,,2026-11-27
-Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Yaneva E.,yaneva,1.21,3.86,3389475,,10:30,Friedsam A.,friedsam,,,2026-11-27
-Ortisei ITF,https://www.tennisexplorer.com/ortisei-itf/2026/wta-women/,Brockmann T.,brockmann,1.8,1.86,3389515,,10:00,Ewald W.,ewald-6136e,,,2026-11-27
-Ortisei ITF,https://www.tennisexplorer.com/ortisei-itf/2026/wta-women/,Vlasselaer C.,vlasselaer,1.88,1.74,3389513,,11:30,Perelygina E.,perelygina,,,2026-11-27
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Cortez Llorca L.,cortez-llorca,2.18,1.57,3389391,,07:30,Dorofeeva-Rybas F.,dorofeeva-rybas,,,2026-11-27
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Panagiotidou L.,panagiotidou-d2239,4.8,1.15,3389401,,07:30,Pedone G.,pedone,,,2026-11-27
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Matoula M.,matoula-3cf1e,1.12,5.16,3389369,,08:00,Allen V.,allen-f9d71,,,2026-11-27
-Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Cvetkovic A.,cvetkovic-da1f9,2.15,1.61,3389379,,09:00,Popa G.,popa-5ef18,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Tischner T.,tischner,1.18,4.0,3389297,,17:10,Lopez D.,lopez-2370a,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Font O.,font-b1b3e,8.0,1.02,3388279,,09:50,Dando J.,dando,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Naharro D.,naharro,2.55,1.4,3388777,,13:50,Schneider V.,schneider-a5eef,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Garcia Alonso C.,garcia-alonso-b05d1,6.25,1.07,3388285,,09:00,Borodulina V.,borodulina,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Borodulina V.,borodulina,1.07,5.75,3388829,,12:40,Wedenski S.,wedenski,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Garcia Alonso C.,garcia-alonso-b05d1,3.45,1.26,3388819,,13:30,Iankovskaia A.,iankovskaia,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Cabassers Morros A.,cabassers-morros,,,3388825,,15:30,Olariu A.,olariu,,,2026-11-27
+Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Marcondes I.,marcondes,2.29,1.58,3389541,,13:00,Justo G.,justo,,,2026-11-27
+Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Meligeni Rodrigues Alves F.,meligeni-rodrigues-alves,1.04,10.03,3389593,,14:30,Zanellato N.,zanellato,,,2026-11-27
+Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Ribeiro E.,ribeiro-a7963,1.93,1.79,3389531,,17:30,Roncadelli F.,roncadelli,,,2026-11-27
+Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,La Serna J.,la-serna,1.69,2.07,3389591,,17:30,Olivieri G.,olivieri-ff875,,,2026-11-27
+Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Sweeny D.,sweeny,1.46,2.58,3389237,2.0,00:40,Overbeck C.,overbeck,1.0,6-4 4-6 6-3,2026-11-27
+Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Langmo C.,langmo,2.05,1.72,3388855,2.0,00:40,Dellavedova M.,dellavedova,0.0,6-4,2026-11-27
+Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Schoolkate T.,schoolkate,1.12,5.64,3388729,2.0,02:45,Bouzige M.,bouzige,1.0,5-7 6-3,2026-11-27
+Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Jasika O.,jasika,1.85,1.87,3389241,2.0,05:25,Bolt A.,bolt-fa7eb,1.0,2-6 6-1 6-2,2026-11-27
+Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Sweeny D.,sweeny,1.39,2.84,3389639,,23:30,Langmo C.,langmo,,,2026-11-27
+Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Honda N.,honda-48d1d,3.65,1.26,3389311,1.0,02:10,Shimizu Y.,shimizu-38ca9,0.0,6-0 2-0,2026-11-27
+Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Matsuoka H.,matsuoka-5fe86,2.44,1.51,3389249,2.0,02:10,Noguchi R.,noguchi-08bde,0.0,6-0 6-1,2026-11-27
+Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Imamura M.,imamura-da963,1.79,1.94,3388867,2.0,03:20,Jorda Sanchis D.,jorda-sanchis,0.0,7-5 6-3,2026-11-27
+Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Uchida K.,uchida-ea757,2.42,1.51,3388871,2.0,03:20,Milic O.,milic-b10f4,1.0,7-6 4-2,2026-11-27
+Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Duran T.,duran-a44ae,1.58,2.28,3389331,1.0,08:10,Ursu V.,ursu-62e97,0.0,7-5 5-1,2026-11-27
+Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Faurel T.,faurel-53b9f,1.26,3.6,3389367,2.0,08:10,Guna R.,guna-31d13,0.0,7-2,2026-11-27
+Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Dedura-Palomero D.,dedura-palomero-d612d,1.61,2.23,3389383,2.0,09:40,Kirkin E.,kirkin,0.0,7-5 6-4,2026-11-27
+Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Donald M.,donald-1f277,2.73,1.41,3389339,2.0,10:05,Rincon D.,rincon-d1dab,0.0,7-5 6-3,2026-11-27
+Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Coppejans K.,coppejans,1.52,2.39,3389059,2.0,10:10,Blanch D.,blanch-5d667,0.0,6-3 6-4,2026-11-27
+Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Debru G.,debru-5353d,1.62,2.2,3388959,2.0,10:10,Vives Marcos P.,vives-marcos,0.0,6-3,2026-11-27
+Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Bondioli F.,bondioli,1.46,2.59,3389385,,12:00,Pankin S.,pankin,,,2026-11-27
+Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Tabacco G.,tabacco-3fc98,1.68,2.1,3389405,,12:20,Kelm Y.,kelm,,,2026-11-27
+San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Andrade Da Silva L.,andrade-da-silva,1.52,2.43,3389629,,18:00,Ambrogi L.,ambrogi,,,2026-11-27
+San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Alvarez Valdes L.,alvarez-valdes,1.15,4.84,3389613,,19:00,Nefve A.,nefve,,,2026-11-27
+San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Legout T.,legout,1.08,6.97,3389635,,19:30,Heredia S.,heredia-f10e3,,,2026-11-27
+San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Bicknell B.,bicknell-8dc8a,2.11,1.66,3389235,,22:30,Queiroz Miguel L.,queiroz-miguel-da6d9,,,2026-11-27
+Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Henning P.,henning-421d6,1.43,2.66,3388913,2.0,09:10,Sanchez Quilez A.,sanchez-quilez,1.0,3-6 6-3 6-0,2026-11-27
+Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Ovcharenko O.,ovcharenko-bb3a3,2.14,1.65,3389451,2.0,09:10,Xilas I.,xilas,1.0,4-6 6-4 6-4,2026-11-27
+Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Bailly G.,bailly-a8c26,1.19,4.31,3389341,,11:25,Pietri B.,pietri,,,2026-11-27
+Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Ghetu G.,ghetu,3.72,1.25,3388961,,12:30,Martin A.,martin-e6e6e,,,2026-11-27
+Futures 2026,,Singh K.,singh-e3612,1.05,8.52,3389371,2.0,05:10,Lomakin G.,lomakin-0fb5e,0.0,6-4 6-4,2026-11-27
+Futures 2026,,Javia D.,javia,1.22,3.88,3389335,2.0,06:20,Duhan C.,duhan,0.0,6-2 6-4,2026-11-27
+Futures 2026,,Sureshkumar M.,sureshkumar,1.97,1.73,3389327,2.0,06:55,Mukund S.,mukund,1.0,5-7 7-1,2026-11-27
+Futures 2026,,Rejchtman Vinciguerra W.,rejchtman-vinciguerra,1.21,4.0,3389337,2.0,07:55,Chauhan H.,chauhan-6fd6b,0.0,6-4 6-4,2026-11-27
+Futures 2026,,Friberg K.,friberg,1.73,1.98,3389387,2.0,09:10,Michnev P.,michnev,0.0,6-4 6-1,2026-11-27
+Futures 2026,,Pieczonka F.,pieczonka-07acc,1.71,2.02,3389527,2.0,09:10,Gengel M.,gengel,1.0,7-7 6-3,2026-11-27
+Futures 2026,,Beaven J.,beaven,4.24,1.19,3389489,,11:50,Siniakov D.,siniakov,,,2026-11-27
+Futures 2026,,Sorger S.,sorger,1.24,3.64,3389519,,12:55,Paroulek T.,paroulek,,,2026-11-27
+Futures 2026,,Gima S.,gima-59cd8,1.06,7.38,3389427,2.0,07:00,Vaisman T.,vaisman,0.0,6-1 6-4,2026-11-27
+Futures 2026,,Radjenovic V.,radjenovic,1.25,3.58,3389349,2.0,07:00,Giotis R.,giotis,1.0,6-3 5-7 7-5,2026-11-27
+Futures 2026,,Behrmann T.,behrmann-1306c,1.27,3.36,3389543,2.0,07:00,Van Der Meerschen M.,van-der-meerschen,0.0,6-3,2026-11-27
+Futures 2026,,Delicata L.,delicata-c34a5,2.11,1.65,3389409,2.0,07:30,Geladaris O.,geladaris,1.0,6-1 5-7 6-2,2026-11-27
+Futures 2026,,Basile P.,basile-67dd4,1.29,3.28,3389333,2.0,07:30,Curras Abasolo T.,curras-abasolo,0.0,6-1 6-2,2026-11-27
+Futures 2026,,Gannon C.,gannon,1.45,2.56,3389411,2.0,07:30,Rolland D.,rolland,1.0,6-3 3-6 7-5,2026-11-27
+Futures 2026,,Purtseladze S.,purtseladze,1.39,2.73,3389377,2.0,08:00,Lechno-Wasiutynski F.,lechno-wasiutynski,0.0,6-2 6-4,2026-11-27
+Futures 2026,,Arzhankin A.,arzhankin,1.31,3.15,3389399,2.0,08:00,Pleshivtsev E.,pleshivtsev,0.0,6-2 6-4,2026-11-27
+Futures 2026,,Makk P.,makk,1.28,3.35,3389375,2.0,08:00,Paardekooper S.,paardekooper,0.0,6-4,2026-11-27
+Futures 2026,,Paolini A.,paolini-fa166,1.67,2.06,3389429,2.0,08:30,Ujvary M.,ujvary,0.0,6-4 6-1,2026-11-27
+Futures 2026,,Kaouk M.,kaouk,1.04,8.79,3389431,2.0,09:00,Borrelli L.,borrelli-c1bd0,0.0,7-1,2026-11-27
+Futures 2026,,Iakubenko V.,iakubenko,1.83,1.85,3389437,1.0,09:30,Elsayed A.,elsayed-8f65f,0.0,6-2 2-1,2026-11-27
+Futures 2026,,Hernandez C.,hernandez-a75e3,1.86,1.82,3389435,2.0,10:00,Morais D.,morais-c304a,0.0,6-2 6-3,2026-11-27
+Futures 2026,,Perez Contri S.,perez-contri,1.48,2.45,3389457,2.0,10:00,de Schepper K.,de-schepper,0.0,6-2 6-4,2026-11-27
+Futures 2026,,Garcia A.,garcia-ca82f,1.17,4.44,3389433,2.0,10:00,Tkemaladze Z.,tkemaladze,0.0,6-4 6-3,2026-11-27
+Futures 2026,,Cocola S.,cocola,2.29,1.55,3389473,,10:15,Salvestre D.,salvestre,,,2026-11-27
+Futures 2026,,Neimanis R.,neimanis,1.3,3.21,3389469,,10:30,Jeran A.,jeran,,,2026-11-27
+Futures 2026,,Nortey I.,nortey-0c11d,2.19,1.61,3389443,,10:45,Kupcic J.,kupcic,,,2026-11-27
+Futures 2026,,Rodenas P.,rodenas,1.4,2.71,3389373,,11:30,Hallquist Lithen J.,hallquist-lithen,,,2026-11-27
+Futures 2026,,Shah K.,shah-f263b,5.26,1.13,3389471,,12:00,Van Wyk K.,van-wyk-15b5e,,,2026-11-27
+Futures 2026,,Rocha L.,rocha-1d2ba,1.65,2.11,3389601,,16:00,De la Pena B.,de-la-pena-1f846,,,2026-11-27
+Futures 2026,,Valente R.,valente-54a99,3.41,1.27,3389603,,16:00,De Krom M.,de-krom,,,2026-11-27
+Futures 2026,,Remondy Pagotto V.,remondy-pagotto,1.29,3.2,3389607,,16:00,Lora S.,lora-b6d7a,,,2026-11-27
+Futures 2026,,Bruna N.,bruna-45ba3,3.6,1.24,3389609,,16:00,Gagliardo L.,gagliardo,,,2026-11-27
+Futures 2026,,Dellien M.,dellien-e101c,1.12,5.42,3389581,,17:30,Biletic I.,biletic-48b1c,,,2026-11-27
+Futures 2026,,Cundom J.,cundom,2.22,1.58,3389583,,17:30,Torrealba B.,torrealba,,,2026-11-27
+Futures 2026,,Ciancaglini Rivera N.,ciancaglini-rivera,7.15,1.07,3389605,,17:30,Monzon I.,monzon-8e6ef,,,2026-11-27
+Futures 2026,,Malla B.,malla,1.02,11.24,3389623,,17:30,Bini V.,bini-0f521,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Vietri B.,vietri,1.4,2.55,3388615,,13:00,Benitez V.,benitez-c429c,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Tischner T.,tischner,,,3388621,,13:00,Crosio F.,crosio,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Franchini S.,franchini-cfb10,2.23,1.54,3388625,,13:00,Jara-Lozano N.,jara-lozano,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Vankan M.,vankan,,,3388785,,14:10,Lopez D.,lopez-2370a,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,De Pellegrin V.,de-pellegrin,1.6,2.08,3389691,,16:00,Doria L.,doria,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Ciurletti A.,ciurletti,6.0,1.07,3389693,,16:00,Aguilar Cardozo F.,aguilar-cardozo-9f958,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Descotte M.,descotte,1.11,5.0,3389695,,17:10,Meneo T.,meneo,,,2026-11-27
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Branchetti G.,branchetti,4.0,1.18,3389697,,17:35,Lingua Lavallen A.,lingua-lavallen,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Mandou Berranger I.,mandou-berranger,3.5,1.24,3389561,2.0,08:00,Krstic V.,krstic,0.0,6-3 7-6,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Leeman D.,leeman,1.98,1.68,3388769,2.0,08:00,Janev K.,janev,0.0,6-4 6-4,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,McDonnell C.,mcdonnell,1.21,3.55,3388751,,09:00,Chetverikov R.,chetverikov,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Zavaczki M.,zavaczki-ef35f,2.5,1.42,3389673,,09:00,Kovacs V.,kovacs-b05be,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Seres F.,seres,9.0,1.01,3389675,,09:50,Porras J.,porras,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Corthey L.,corthey,1.65,2.0,3389677,,10:05,Martinez Sanz A.,martinez-sanz,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Kisantal B.,kisantal-caf10,4.0,1.18,3388747,,11:00,Lootsma N.,lootsma,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Mitev A.,mitev-5778e,4.35,1.15,3388753,,11:00,Madarasz G.,madarasz-31016,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Sabanov M.,sabanov-3a81b,4.55,1.14,3389563,,11:10,Valkusz M.,valkusz,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Font O.,font-b1b3e,1.55,2.15,3388773,,11:20,Herberg A.,herberg,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Koenders R.,koenders,1.44,2.5,3388761,,12:00,Jutresa H.,jutresa,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Ayllon Prado A.,ayllon-prado,,,3388767,,12:00,Schneider V.,schneider-a5eef,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Sabanov I.,sabanov-1bd16,1.95,1.65,3388749,,12:10,Wassermann M.,wassermann-1c33c,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Avdeev F.,avdeev-b12b4,4.23,1.15,3389679,,12:10,Dando J.,dando,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Sallay P.,sallay,3.35,1.26,3388759,,12:30,Horak O.,horak-d773c,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Garcia Garcia A.,garcia-garcia-1839d,1.24,3.5,3388771,,12:30,Morega D.,morega,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Ayllon Prado A.,ayllon-prado,3.55,1.21,3389681,,13:20,Romeo F.,romeo-75564,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Cowcher K.,cowcher,1.45,2.45,3389683,,13:40,Janev K.,janev,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Leeman D.,leeman,4.23,1.15,3389565,,14:30,Mandou Berranger I.,mandou-berranger,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Gimenez Perez C.,gimenez-perez,1.4,2.55,3388765,,14:50,Martinez Sanz A.,martinez-sanz,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Corthey L.,corthey,9.0,1.01,3389567,,15:40,Porras J.,porras,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Beale J.,beale-21f5c,1.41,2.57,3389353,,23:30,Brown O.,brown-59d07,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Jones S.,jones-2fc9a,1.03,11.25,3389355,,23:30,Bruce-Smith J.,bruce-smith,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Staley J.,staley,1.55,2.22,3389357,,23:30,Connaughton L.,connaughton,,,2026-11-27
+Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Herrero Linana A.,herrero-linana,2.12,1.68,3389227,,15:00,Riera J.,riera-4b182,,,2026-11-27
+Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Monnet C.,monnet,1.79,1.95,3389229,,18:00,Erjavec V.,erjavec,,,2026-11-27
+Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Lepchenko V.,lepchenko,3.96,1.22,3389615,,18:00,Samson L.,samson-587bc,,,2026-11-27
+Buenos Aires WTA,https://www.tennisexplorer.com/buenos-aires-wta/2026/wta-women/,Maristany Zuleta De Reales G.,maristany-zuleta-de-reales,1.37,2.92,3389633,,19:30,Carle M.,carle-f03da,,,2026-11-27
+Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Egorova D.,egorova-5b1bf,1.13,5.22,3389585,,14:00,Rodriguez V.,rodriguez-21567,,,2026-11-27
+Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Semenistaja D.,semenistaja,1.4,2.73,3389529,,15:30,Strakhova V.,strakhova,,,2026-11-27
+Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Perez Alarcon L.,perez-alarcon,1.49,2.45,3389587,,16:00,Pigossi L.,pigossi-5e7c8,,,2026-11-27
+Florianopolis 3 ITF,https://www.tennisexplorer.com/florianopolis-3-itf/2026/wta-women/,Bulgaru M.,bulgaru,1.61,2.17,3389627,,17:00,Roura Llaverias R.,roura-llaverias,,,2026-11-27
+Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Minnen G.,minnen,1.25,3.61,3389501,2.0,09:10,Ponchet J.,ponchet,0.0,6-1 6-3,2026-11-27
+Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Falei A.,falei-4bd6b,1.8,1.91,3389421,2.0,09:20,Ngounoue C.,ngounoue-8ab66,0.0,6-2 6-3,2026-11-27
+Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Yaneva E.,yaneva,1.21,3.91,3389475,,10:30,Friedsam A.,friedsam,,,2026-11-27
+Trnava 8 ITF,https://www.tennisexplorer.com/trnava-8-itf/2026/wta-women/,Lamens S.,lamens,1.3,3.26,3389423,,10:50,Malygina E.,malygina,,,2026-11-27
+Ortisei ITF,https://www.tennisexplorer.com/ortisei-itf/2026/wta-women/,Ewald W.,ewald-6136e,1.98,1.73,3389515,2.0,10:10,Brockmann T.,brockmann,0.0,6-3 6-1,2026-11-27
+Ortisei ITF,https://www.tennisexplorer.com/ortisei-itf/2026/wta-women/,Vlasselaer C.,vlasselaer,1.97,1.75,3389513,,11:30,Perelygina E.,perelygina,,,2026-11-27
+Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Dorofeeva-Rybas F.,dorofeeva-rybas,1.6,2.19,3389391,2.0,07:40,Cortez Llorca L.,cortez-llorca,0.0,6-0 6-1,2026-11-27
+Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Pedone G.,pedone,1.14,4.79,3389401,2.0,07:40,Panagiotidou L.,panagiotidou-d2239,0.0,7-5 6-2,2026-11-27
+Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Matoula M.,matoula-3cf1e,1.12,5.49,3389369,2.0,08:10,Allen V.,allen-f9d71,0.0,6-3 6-3,2026-11-27
+Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Popa G.,popa-5ef18,1.68,2.04,3389379,2.0,09:20,Cvetkovic A.,cvetkovic-da1f9,0.0,6-3 7-5,2026-11-27
 UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Zrnic V.,zrnic,,,3388797,,07:30,Varsa A.,varsa,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Molnar K.,molnar-23ddd,1.22,3.5,3389569,,07:30,Hradecka L.,hradecka-f26f5,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Hrdinkova D.,hrdinkova,,,3389571,,07:30,Skapets A.,skapets,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Aranda Arcas L.,aranda-arcas,,,3388827,,08:00,Sevald N.,sevald,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Hrdinkova D.,hrdinkova,1.01,21.0,3389571,,07:30,Skapets A.,skapets,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Hejtmanek A.,hejtmanek-4837e,1.02,8.25,3389685,,07:30,Freigassner V.,freigassner,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Molnar K.,molnar-23ddd,1.21,3.68,3389569,2.0,07:30,Hradecka L.,hradecka-f26f5,1.0,6-1 3-6 6-4,2026-11-27
 UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Cabrera Burns M.,cabrera-burns,,,3388835,,08:00,Wu H.,wu-ccf21,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Anson Sanchez C.,anson-sanchez,,,3388839,,08:00,Wedenski S.,wedenski,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Terziyska J.,terziyska,,,3388815,,08:40,Nweke D.,nweke,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Franchi F.,franchi,,,3389573,,08:40,Vargova V.,vargova,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Avdeeva V.,avdeeva-1c802,2.44,1.46,3388817,,09:15,Liu M.,liu-27a02,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Kubalova K.,kubalova-2d2a1,,,3388805,,10:00,Heinzova I.,heinzova,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Borodulina V.,borodulina,,,3389575,,10:45,Ordonez Anduiza P.,ordonez-anduiza,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Kruijer N.,kruijer,,,3388821,,12:00,Olariu A.,olariu,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Cabassers Morros A.,cabassers-morros,,,3388837,,12:00,Martellenghi E.,martellenghi,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Aranda Arcas L.,aranda-arcas,1.18,4.0,3388827,2.0,08:00,Sevald N.,sevald,0.0,6-1 6-1,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Franchi F.,franchi,15.5,1.01,3389573,,08:35,Vargova V.,vargova,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Avdeeva V.,avdeeva-1c802,2.51,1.44,3388817,,09:40,Liu M.,liu-27a02,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Terziyska J.,terziyska,1.01,9.0,3388815,,09:55,Nweke D.,nweke,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Lopez Alcaraz E.,lopez-alcaraz,1.03,7.75,3389687,,10:30,Cabassers Morros M.,cabassers-morros-97a35,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Tomecková G.,tomeckova,,,3389689,,10:45,Svatikova L.,svatikova,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Anson Sanchez C.,anson-sanchez,,,3388839,,10:50,Wedenski S.,wedenski,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Kubalova K.,kubalova-2d2a1,1.98,1.68,3388805,,10:55,Heinzova I.,heinzova,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Anson Sanchez C.,anson-sanchez,,,3389743,,11:20,Sanchez Bronzetti V.,sanchez-bronzetti-bb0cd,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Borodulina V.,borodulina,1.01,14.5,3389575,,12:00,Ordonez Anduiza P.,ordonez-anduiza,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Kruijer N.,kruijer,,,3388821,,12:30,Olariu A.,olariu,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Cabassers Morros A.,cabassers-morros,1.65,1.98,3388837,,12:30,Martellenghi E.,martellenghi,,,2026-11-27
 UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Cabrera Burns M.,cabrera-burns,,,3388831,,13:30,Sevald N.,sevald,,,2026-11-27
 UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Adrover Gallego I.,adrover-gallego,,,3388833,,13:30,Wu H.,wu-ccf21,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Font J.,font-4cd36,,,3389577,,14:45,Liu M.,liu-27a02,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Caldicott T.,caldicott,2.93,1.33,3389553,,01:00,Kim E.,kim-0d524,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Swarbrick E.,swarbrick,1.3,3.0,3389555,,01:00,Theodorakopoulos Z.,theodorakopoulos,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Tran E.,tran-bf348,1.1,5.0,3389557,,01:00,Khan A.,khan-5c75e,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Carbis J.,carbis,2.55,1.41,3389559,,01:00,Quigley O.,quigley-4837a,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Font J.,font-4cd36,3.57,1.22,3389577,,14:45,Liu M.,liu-27a02,,,2026-11-27
+UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/wta-women/,Avdeeva V.,avdeeva-1c802,1.3,3.05,3389745,,15:30,Cabassers Morros M.,cabassers-morros-97a35,,,2026-11-27
 UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Nannapaneni L.,nannapaneni,,,3389595,,01:00,Harvey A.,harvey-3f577,,,2026-11-27
 UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Collins O.,collins-c8d26,,,3389597,,01:00,Tsai V.,tsai-c8dbc,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Zylberman A.,zylberman,3.98,1.18,3389303,,01:30,Khan L.,khan-a7c2a,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Dunne K.,dunne-7c15f,2.9,1.32,3389301,,02:30,Mcphee K.,mcphee,,,2026-11-27
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Lacinova A.,lacinova,1.84,1.83,3389343,,07:00,Amiraghyan A.,amiraghyan,,,2026-11-27
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Todoni C.,todoni-0af2b,1.1,5.85,3389389,,07:00,Teixido Garcia M.,teixido-garcia-b8df4,,,2026-11-27
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Trevisan F.,trevisan-1d3e4,1.7,2.02,3389345,,08:30,Noguchi S.,noguchi-ae6d2,,,2026-11-27
-Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Gomez V.,gomez-fd7f2,6.04,1.09,3389413,,08:30,Petkovic A.,petkovic-1cadf,,,2026-11-27
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Dipakbhai Kanabar J.,dipakbhai-kanabar,,,3389299,,04:00,Pankratova M.,pankratova,,,2026-11-27
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Nugroho P.,nugroho-ee7f1,1.02,11.68,3389321,,04:00,Rao S.,rao-b4b18,,,2026-11-27
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Dekkers F.,dekkers,3.74,1.22,3389323,,05:30,Lin F.,lin-0807a,,,2026-11-27
-Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Yodpetch K.,yodpetch,1.58,2.22,3389381,,05:30,Laron M.,laron,,,2026-11-27
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Adeshina E.,adeshina-d7cbe,1.48,2.45,3389463,,10:00,Firman A.,firman-27649,,,2026-11-27
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Tomase E.,tomase,2.89,1.36,3389511,,10:00,Honer A.,honer,,,2026-11-27
-Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Voracek E.,voracek,5.19,1.12,3389465,,11:30,Makarova M.,makarova-b3ef2,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Zylberman A.,zylberman,3.98,1.18,3389303,,03:00,Khan L.,khan-a7c2a,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Caldicott T.,caldicott,2.93,1.33,3389553,,22:00,Kim E.,kim-0d524,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Swarbrick E.,swarbrick,1.3,3.0,3389555,,22:00,Theodorakopoulos Z.,theodorakopoulos,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Tran E.,tran-bf348,1.1,5.0,3389557,,22:00,Khan A.,khan-5c75e,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Carbis J.,carbis,2.55,1.41,3389559,,22:00,Quigley O.,quigley-4837a,,,2026-11-27
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/wta-women/,Dunne K.,dunne-7c15f,2.25,1.63,3389301,,23:10,Mcphee K.,mcphee,,,2026-11-27
+Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Todoni C.,todoni-0af2b,1.1,5.85,3389389,2.0,07:00,Teixido Garcia M.,teixido-garcia-b8df4,0.0,6-2 7-5,2026-11-27
+Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Amiraghyan A.,amiraghyan,1.84,1.83,3389343,2.0,07:00,Lacinova A.,lacinova,0.0,6-3 6-3,2026-11-27
+Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Petkovic A.,petkovic-1cadf,1.08,6.36,3389413,2.0,08:30,Gomez V.,gomez-fd7f2,0.0,6-4 6-3,2026-11-27
+Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Trevisan F.,trevisan-1d3e4,1.69,2.04,3389345,2.0,08:30,Noguchi S.,noguchi-ae6d2,0.0,7-4,2026-11-27
+Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Nugroho P.,nugroho-ee7f1,1.02,11.3,3389321,2.0,04:00,Rao S.,rao-b4b18,0.0,6-1 6-0,2026-11-27
+Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Dipakbhai Kanabar J.,dipakbhai-kanabar,1.78,1.92,3389299,2.0,04:00,Pankratova M.,pankratova,0.0,7-2,2026-11-27
+Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Yodpetch K.,yodpetch,1.6,2.18,3389381,2.0,05:30,Laron M.,laron,0.0,6-1 6-4,2026-11-27
+Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Dekkers F.,dekkers,3.8,1.22,3389323,1.0,05:30,Lin F.,lin-0807a,0.0,6-2 0-0,2026-11-27
+Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Tomase E.,tomase,2.9,1.36,3389511,,10:00,Honer A.,honer,,,2026-11-27
+Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Adeshina E.,adeshina-d7cbe,1.45,2.56,3389463,2.0,10:00,Firman A.,firman-27649,0.0,6-0 6-1,2026-11-27
+Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Voracek E.,voracek,5.29,1.12,3389465,,11:30,Makarova M.,makarova-b3ef2,,,2026-11-27
 Lousada ITF,https://www.tennisexplorer.com/lousada-itf/2026/wta-women/,Iliev S.,iliev-33d70,2.24,1.57,3389495,,11:30,Wobker I.,wobker,,,2026-11-27
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Marinkovic I.,marinkovic-79d74,1.45,2.55,3389395,,09:00,Inisan E.,inisan,,,2026-11-27
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Taraba Wallberg N.,taraba-wallberg,1.06,7.5,3389415,,09:00,Hageman M.,hageman-84fbb,,,2026-11-27
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Dal S.,dal,1.25,3.54,3389467,,09:00,Choi S.,choi-fbe16,,,2026-11-27
-Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Bonelli E.,bonelli-0b73a,1.53,2.34,3389417,,10:30,Luciano L.,luciano-2f974,,,2026-11-27
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Dmitruk K.,dmitruk-06407,3.12,1.3,3389347,,08:00,Ma C.,ma-1c89c,,,2026-11-27
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Popovic K.,popovic-9c138,1.56,2.23,3389419,,08:00,Lukosiute A.,lukosiute,,,2026-11-27
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Kubareva A.,kubareva,1.18,4.21,3389441,,08:00,Snigireva A.,snigireva,,,2026-11-27
-Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Rutlauka S.,rutlauka,3.2,1.29,3389397,,09:30,Samir S.,samir,,,2026-11-27
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Marcondes I.,marcondes,2.08,1.66,3389541,,13:00,Justo G.,justo,,,2026-11-27
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Meligeni Rodrigues Alves F.,meligeni-rodrigues-alves,1.02,10.54,3389593,,14:30,Zanellato N.,zanellato,,,2026-11-27
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,Ribeiro E.,ribeiro-a7963,1.91,1.79,3389531,,17:30,Roncadelli F.,roncadelli,,,2026-11-27
-Florianopolis challenger,https://www.tennisexplorer.com/florianopolis-challenger/2026/atp-men/,La Serna J.,la-serna,1.58,2.2,3389591,,17:30,Olivieri G.,olivieri-ff875,,,2026-11-27
-Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Langmo C.,langmo,2.04,1.73,3388855,,00:30,Dellavedova M.,dellavedova,,,2026-11-27
-Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Sweeny D.,sweeny,1.48,2.53,3389237,,00:30,Overbeck C.,overbeck,,,2026-11-27
-Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Bouzige M.,bouzige,5.44,1.13,3388729,,02:00,Schoolkate T.,schoolkate,,,2026-11-27
-Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Jasika O.,jasika,1.81,1.93,3389241,,03:30,Bolt A.,bolt-fa7eb,,,2026-11-27
-Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Noguchi R.,noguchi-08bde,1.54,2.37,3389249,,02:00,Matsuoka H.,matsuoka-5fe86,,,2026-11-27
-Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Shimizu Y.,shimizu-38ca9,1.26,3.67,3389311,,02:00,Honda N.,honda-48d1d,,,2026-11-27
-Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Imamura M.,imamura-da963,1.81,1.92,3388867,,03:30,Jorda Sanchis D.,jorda-sanchis,,,2026-11-27
-Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Uchida K.,uchida-ea757,2.41,1.52,3388871,,03:30,Milic O.,milic-b10f4,,,2026-11-27
-Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Ursu V.,ursu-62e97,2.36,1.54,3389331,,08:00,Duran T.,duran-a44ae,,,2026-11-27
-Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Faurel T.,faurel-53b9f,1.26,3.59,3389367,,08:00,Guna R.,guna-31d13,,,2026-11-27
-Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Donald M.,donald-1f277,2.69,1.43,3389339,,09:30,Rincon D.,rincon-d1dab,,,2026-11-27
-Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Dedura-Palomero D.,dedura-palomero-d612d,1.58,2.26,3389383,,09:30,Kirkin E.,kirkin,,,2026-11-27
-Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Vives Marcos P.,vives-marcos,2.14,1.64,3388959,,10:00,Debru G.,debru-5353d,,,2026-11-27
-Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Coppejans K.,coppejans,1.52,2.39,3389059,,10:00,Blanch D.,blanch-5d667,,,2026-11-27
-Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Bondioli F.,bondioli,1.43,2.69,3389385,,11:30,Pankin S.,pankin,,,2026-11-27
-Monastir 2 challenger,https://www.tennisexplorer.com/monastir-2-challenger/2026/atp-men/,Tabacco G.,tabacco-3fc98,1.72,2.04,3389405,,11:30,Kelm Y.,kelm,,,2026-11-27
-San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Bicknell B.,bicknell-8dc8a,1.98,1.72,3389235,,16:00,Queiroz Miguel L.,queiroz-miguel-da6d9,,,2026-11-27
-San Salvador challenger,https://www.tennisexplorer.com/san-salvador-challenger/2026/atp-men/,Alvarez Valdes L.,alvarez-valdes,1.15,4.31,3389613,,16:00,Nefve A.,nefve,,,2026-11-27
-Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Sanchez Quilez A.,sanchez-quilez,2.6,1.45,3388913,,09:00,Henning P.,henning-421d6,,,2026-11-27
-Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Ovcharenko O.,ovcharenko-bb3a3,2.13,1.65,3389451,,09:00,Xilas I.,xilas,,,2026-11-27
-Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Ghetu G.,ghetu,3.67,1.25,3388961,,10:30,Martin A.,martin-e6e6e,,,2026-11-27
-Hersonissos 6 challenger,https://www.tennisexplorer.com/hersonissos-6-challenger/2026/atp-men/,Bailly G.,bailly-a8c26,1.18,4.25,3389341,,10:30,Pietri B.,pietri,,,2026-11-27
-Futures 2026,,Singh K.,singh-e3612,1.04,8.8,3389371,,05:00,Lomakin G.,lomakin-0fb5e,,,2026-11-27
-Futures 2026,,Duhan C.,duhan,3.8,1.22,3389335,,06:00,Javia D.,javia,,,2026-11-27
-Futures 2026,,Sureshkumar M.,sureshkumar,1.96,1.73,3389327,,06:30,Mukund S.,mukund,,,2026-11-27
-Futures 2026,,Rejchtman Vinciguerra W.,rejchtman-vinciguerra,1.21,3.89,3389337,,07:30,Chauhan H.,chauhan-6fd6b,,,2026-11-27
-Futures 2026,,Michnev P.,michnev,1.97,1.73,3389387,,09:00,Friberg K.,friberg,,,2026-11-27
-Futures 2026,,Pieczonka F.,pieczonka-07acc,1.69,2.04,3389527,,09:00,Gengel M.,gengel,,,2026-11-27
-Futures 2026,,Beaven J.,beaven,4.24,1.18,3389489,,10:30,Siniakov D.,siniakov,,,2026-11-27
-Futures 2026,,Sorger S.,sorger,1.23,3.7,3389519,,12:00,Paroulek T.,paroulek,,,2026-11-27
-Futures 2026,,Dellien M.,dellien-e101c,,,3389581,,,Biletic I.,biletic-48b1c,,,2026-11-27
-Futures 2026,,Cundom J.,cundom,,,3389583,,,Torrealba B.,torrealba,,,2026-11-27
-Futures 2026,,Rocha L.,rocha-1d2ba,,,3389601,,,De la Pena B.,de-la-pena-1f846,,,2026-11-27
-Futures 2026,,Valente R.,valente-54a99,,,3389603,,,De Krom M.,de-krom,,,2026-11-27
-Futures 2026,,Ciancaglini Rivera N.,ciancaglini-rivera,,,3389605,,,Monzon I.,monzon-8e6ef,,,2026-11-27
-Futures 2026,,Remondy Pagotto V.,remondy-pagotto,,,3389607,,,Lora S.,lora-b6d7a,,,2026-11-27
-Futures 2026,,Malla B.,malla,,,3389623,,,Bini V.,bini-0f521,,,2026-11-27
-Futures 2026,,Giotis R.,giotis,3.14,1.3,3389349,,07:00,Radjenovic V.,radjenovic,,,2026-11-27
-Futures 2026,,Gima S.,gima-59cd8,1.06,7.16,3389427,,07:00,Vaisman T.,vaisman,,,2026-11-27
-Futures 2026,,Van Der Meerschen M.,van-der-meerschen,3.36,1.27,3389543,,07:00,Behrmann T.,behrmann-1306c,,,2026-11-27
-Futures 2026,,Basile P.,basile-67dd4,1.29,3.28,3389333,,07:30,Curras Abasolo T.,curras-abasolo,,,2026-11-27
-Futures 2026,,Geladaris O.,geladaris,1.66,2.08,3389409,,07:30,Delicata L.,delicata-c34a5,,,2026-11-27
-Futures 2026,,Rolland D.,rolland,2.56,1.44,3389411,,07:30,Gannon C.,gannon,,,2026-11-27
-Futures 2026,,Makk P.,makk,1.28,3.36,3389375,,08:00,Paardekooper S.,paardekooper,,,2026-11-27
-Futures 2026,,Lechno-Wasiutynski F.,lechno-wasiutynski,2.69,1.4,3389377,,08:00,Purtseladze S.,purtseladze,,,2026-11-27
-Futures 2026,,Arzhankin A.,arzhankin,1.31,3.15,3389399,,08:00,Pleshivtsev E.,pleshivtsev,,,2026-11-27
-Futures 2026,,Paolini A.,paolini-fa166,1.7,2.01,3389429,,08:30,Ujvary M.,ujvary,,,2026-11-27
-Futures 2026,,Kaouk M.,kaouk,1.04,8.58,3389431,,09:00,Borrelli L.,borrelli-c1bd0,,,2026-11-27
-Futures 2026,,Nortey I.,nortey-0c11d,2.17,1.61,3389443,,09:00,Kupcic J.,kupcic,,,2026-11-27
-Futures 2026,,Neimanis R.,neimanis,1.3,3.25,3389469,,09:00,Jeran A.,jeran,,,2026-11-27
-Futures 2026,,Cocola S.,cocola,2.28,1.55,3389473,,09:00,Salvestre D.,salvestre,,,2026-11-27
-Futures 2026,,Elsayed A.,elsayed-8f65f,1.85,1.83,3389437,,09:30,Iakubenko V.,iakubenko,,,2026-11-27
-Futures 2026,,Tkemaladze Z.,tkemaladze,4.49,1.17,3389433,,10:00,Garcia A.,garcia-ca82f,,,2026-11-27
-Futures 2026,,Hernandez C.,hernandez-a75e3,1.85,1.83,3389435,,10:00,Morais D.,morais-c304a,,,2026-11-27
-Futures 2026,,Perez Contri S.,perez-contri,1.45,2.55,3389457,,10:00,de Schepper K.,de-schepper,,,2026-11-27
-Futures 2026,,Shah K.,shah-f263b,4.49,1.17,3389471,,10:00,Van Wyk K.,van-wyk-15b5e,,,2026-11-27
-Futures 2026,,Rodenas P.,rodenas,1.4,2.69,3389373,,11:30,Hallquist Lithen J.,hallquist-lithen,,,2026-11-27
-Futures 2026,,Bruna N.,bruna-45ba3,,,3389609,,13:30,Gagliardo L.,gagliardo,,,2026-11-27
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Vietri B.,vietri,1.33,2.75,3388615,,13:00,Benitez V.,benitez-c429c,,,2026-11-27
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Tischner T.,tischner,,,3388621,,13:00,Crosio F.,crosio,,,2026-11-27
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Franchini S.,franchini-cfb10,2.2,1.54,3388625,,13:00,Jara-Lozano N.,jara-lozano,,,2026-11-27
-UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Vankan M.,vankan,,,3388785,,14:10,Lopez D.,lopez-2370a,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Leeman D.,leeman,2.05,1.6,3388769,,08:00,Janev K.,janev,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Krstic V.,krstic,1.25,3.28,3389561,,08:00,Mandou Berranger I.,mandou-berranger,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,McDonnell C.,mcdonnell,,,3388751,,08:30,Chetverikov R.,chetverikov,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Mitev A.,mitev-5778e,4.5,1.12,3388753,,09:40,Madarasz G.,madarasz-31016,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Kisantal B.,kisantal-caf10,4.0,1.15,3388747,,10:00,Lootsma N.,lootsma,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Font O.,font-b1b3e,,,3388773,,10:45,Herberg A.,herberg,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Sabanov I.,sabanov-1bd16,,,3388749,,11:00,Wassermann M.,wassermann-1c33c,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Koenders R.,koenders,,,3388761,,11:00,Jutresa H.,jutresa,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Sabanov M.,sabanov-3a81b,4.25,1.12,3389563,,11:10,Valkusz M.,valkusz,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Ayllon Prado A.,ayllon-prado,,,3388767,,12:00,Schneider V.,schneider-a5eef,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Garcia Garcia A.,garcia-garcia-1839d,,,3388771,,12:00,Morega D.,morega,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Sallay P.,sallay,,,3388759,,12:30,Horak O.,horak-d773c,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Leeman D.,leeman,,,3389565,,13:30,Mandou Berranger I.,mandou-berranger,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Gimenez Perez C.,gimenez-perez,,,3388765,,14:45,Martinez Sanz A.,martinez-sanz,,,2026-11-27
-UTR Pro Tennis Series 5,https://www.tennisexplorer.com/utr-pro-tennis-series-5/2026/atp-men/,Corthey L.,corthey,,,3389567,,14:45,Porras J.,porras,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Beale J.,beale-21f5c,1.43,2.46,3389353,,01:00,Brown O.,brown-59d07,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Jones S.,jones-2fc9a,1.03,9.75,3389355,,01:00,Bruce-Smith J.,bruce-smith,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Staley J.,staley,1.66,2.0,3389357,,01:00,Connaughton L.,connaughton,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Stewart A.,stewart-f4060,2.48,1.44,3389359,,01:00,Gaal C.,gaal-89550,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Nield M.,nield-5a27e,1.86,1.78,3389361,,01:00,Vasiliadis E.,vasiliadis-4c114,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Ishikawa H.,ishikawa-10be7,1.27,3.22,3389363,,01:00,Girdler J.,girdler,,,2026-11-27
-UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Bagaric D.,bagaric-b34c3,,,3389551,,01:00,Valsamis E.,valsamis,,,2026-11-27
+Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Taraba Wallberg N.,taraba-wallberg,1.05,7.9,3389415,,10:00,Hageman M.,hageman-84fbb,,,2026-11-27
+Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Dal S.,dal,1.25,3.53,3389467,,10:15,Choi S.,choi-fbe16,,,2026-11-27
+Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Marinkovic I.,marinkovic-79d74,1.44,2.61,3389395,,10:45,Inisan E.,inisan,,,2026-11-27
+Monastir 60 ITF,https://www.tennisexplorer.com/monastir-60-itf/2026/wta-women/,Bonelli E.,bonelli-0b73a,1.53,2.33,3389417,,11:30,Luciano L.,luciano-2f974,,,2026-11-27
+Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Ma C.,ma-1c89c,1.3,3.12,3389347,2.0,08:00,Dmitruk K.,dmitruk-06407,1.0,3-6 7-4,2026-11-27
+Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Kubareva A.,kubareva,1.18,4.3,3389441,2.0,08:00,Snigireva A.,snigireva,0.0,6-3 6-4,2026-11-27
+Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Popovic K.,popovic-9c138,1.56,2.24,3389419,2.0,08:00,Lukosiute A.,lukosiute,0.0,6-4 6-1,2026-11-27
+Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Samir S.,samir,1.3,3.19,3389397,2.0,09:30,Rutlauka S.,rutlauka,0.0,6-2 6-3,2026-11-27
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Zornada E.,zornada,,,3389653,,13:00,Boyden M.,boyden-5ed00,,,2026-11-27
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Doldan H.,doldan-d3852,1.25,3.4,3389655,,13:00,Rabin S.,rabin,,,2026-11-27
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Sarno M.,sarno,1.83,1.83,3389657,,14:10,Caffarena J.,caffarena-d56c0,,,2026-11-27
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Duarte A.,duarte-31528,,,3389659,,14:10,Markus C.,markus-e2563,,,2026-11-27
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Kawano Cho G.,kawano-cho,5.63,1.09,3389661,,16:00,Markus K.,markus-89775,,,2026-11-27
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Chlpac A.,chlpac,3.0,1.3,3389663,,16:05,Meabe S.,meabe-12cf7,,,2026-11-27
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Doldan Z.,doldan-3d86a,,,3389665,,17:10,Montori Rodriguez M.,montori-rodriguez,,,2026-11-27
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Madrid Rocca M.,madrid-rocca-92c98,1.28,3.13,3389667,,17:10,Gobbi Monllau A.,gobbi-monllau,,,2026-11-27
+Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Pedone G.,pedone,,,3389737,,08:00,Dorofeeva-Rybas F.,dorofeeva-rybas,,,2026-11-28
+Heraklion 12 ITF,https://www.tennisexplorer.com/heraklion-12-itf/2026/wta-women/,Matoula M.,matoula-3cf1e,,,3389767,,08:00,Popa G.,popa-5ef18,,,2026-11-28
+Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Todoni C.,todoni-0af2b,1.88,1.82,3389735,,07:00,Amiraghyan A.,amiraghyan,,,2026-11-28
+Antalya 35 ITF,https://www.tennisexplorer.com/antalya-35-itf/2026/wta-women/,Petkovic A.,petkovic-1cadf,1.66,2.08,3389765,,08:00,Trevisan F.,trevisan-1d3e4,,,2026-11-28
+Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Nugroho P.,nugroho-ee7f1,1.12,5.38,3389725,,04:00,Yodpetch K.,yodpetch,,,2026-11-28
+Kolkata ITF,https://www.tennisexplorer.com/kolkata-itf/2026/wta-women/,Dipakbhai Kanabar J.,dipakbhai-kanabar,,,3389727,,05:30,Dekkers F.,dekkers,,,2026-11-28
+Sharm El Sheikh 23 ITF,https://www.tennisexplorer.com/sharm-el-sheikh-23-itf/2026/wta-women/,Kubareva A.,kubareva,,,3389773,,,Ma C.,ma-1c89c,,,2026-11-28
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Lambert M.,lambert-ec9f4,,,3389669,,22:30,Walker B.,walker-d0d49,,,2026-11-28
+UTR Pro Match Series,https://www.tennisexplorer.com/utr-pro-match-series/2026/wta-women/,Center O.,center,,,3389671,,23:40,Nordikyan K.,nordikyan,,,2026-11-28
+Playford 2 challenger,https://www.tennisexplorer.com/playford-2-challenger/2026/atp-men/,Jasika O.,jasika,2.58,1.46,3389729,,02:00,Schoolkate T.,schoolkate,,,2026-11-28
+Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Honda N.,honda-48d1d,3.26,1.31,3389643,,02:00,Matsuoka H.,matsuoka-5fe86,,,2026-11-28
+Yokohama challenger,https://www.tennisexplorer.com/yokohama-challenger/2026/atp-men/,Imamura M.,imamura-da963,1.73,2.02,3389719,,02:00,Uchida K.,uchida-ea757,,,2026-11-28
+Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Dedura-Palomero D.,dedura-palomero-d612d,2.01,1.7,3389747,,08:00,Faurel T.,faurel-53b9f,,,2026-11-28
+Ankara challenger,https://www.tennisexplorer.com/ankara-challenger/2026/atp-men/,Duran T.,duran-a44ae,2.01,1.62,3389749,,08:00,Donald M.,donald-1f277,,,2026-11-28
+Futures 2026,,Singh K.,singh-e3612,,,3389739,,04:30,Sureshkumar M.,sureshkumar,,,2026-11-28
+Futures 2026,,Javia D.,javia,,,3389741,,04:30,Rejchtman Vinciguerra W.,rejchtman-vinciguerra,,,2026-11-28
+Futures 2026,,Basile P.,basile-67dd4,,,3389757,,,Kaouk M.,kaouk,,,2026-11-28
+Futures 2026,,Delicata L.,delicata-c34a5,,,3389759,,,Gannon C.,gannon,,,2026-11-28
+Futures 2026,,Makk P.,makk,,,3389761,,,Arzhankin A.,arzhankin,,,2026-11-28
+Futures 2026,,Purtseladze S.,purtseladze,,,3389763,,,Iakubenko V.,iakubenko,,,2026-11-28
+Futures 2026,,Radjenovic V.,radjenovic,5.1,1.13,3389751,,07:00,Gima S.,gima-59cd8,,,2026-11-28
+Futures 2026,,Behrmann T.,behrmann-1306c,1.15,4.65,3389753,,07:00,Paolini A.,paolini-fa166,,,2026-11-28
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Berger B.,berger-f4b4b,,,3389699,,22:30,Tallakson A.,tallakson-158fc,,,2026-11-28
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Nagy B.,nagy-7d2d1,,,3389701,,22:30,Patoux B.,patoux,,,2026-11-28
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Juuhl Sivertsen S.,juuhl-sivertsen,,,3389703,,22:30,Van Loben Sels E.,van-loben-sels,,,2026-11-28
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Hammond L.,hammond-8a3cf,,,3389705,,22:30,Clark M.,clark-7030f,,,2026-11-28
+UTR Pro Tennis Series 3,https://www.tennisexplorer.com/utr-pro-tennis-series-3/2026/atp-men/,Mangat D.,mangat-16643,,,3389707,,23:40,Cruz C.,cruz-afbff,,,2026-11-28
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Stewart A.,stewart-f4060,2.48,1.44,3389359,,02:30,Gaal C.,gaal-89550,,,2026-11-28
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Nield M.,nield-5a27e,1.86,1.78,3389361,,02:30,Vasiliadis E.,vasiliadis-4c114,,,2026-11-28
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Ishikawa H.,ishikawa-10be7,1.27,3.22,3389363,,02:30,Girdler J.,girdler,,,2026-11-28
+UTR Pro Tennis Series 9,https://www.tennisexplorer.com/utr-pro-tennis-series-9/2026/atp-men/,Bagaric D.,bagaric-b34c3,,,3389551,,02:30,Valsamis E.,valsamis,,,2026-11-28
