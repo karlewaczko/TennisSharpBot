@@ -313,3 +313,4 @@ alerted_at,league,game,team,venue,before,now,others,fair,min_odds,start,sent
 2026-11-28T02:47:21+00:00,nba,kalshi KXNBAGAME-26NOV27LALSAS,Los Angeles L,Kalshi,0.325,0.355,,0.355,2.88,2026-11-28T03:00+00:00,printed
 2026-11-28T04:40:45+00:00,nba,nba-phi-hou-2026-11-28,Rockets,Polymarket,0.785,0.815,Kalshi=0.8050,0.81,1.26,2026-11-29T01:30+00:00,printed
 2026-11-28T05:10:45+00:00,nba,nba-phi-hou-2026-11-28,76ers,Polymarket,0.185,0.215,Kalshi=0.2150,0.215,4.75,2026-11-29T01:30+00:00,printed
+2026-11-28T15:33:51+00:00,nba,nba-ind-chi-2026-11-28,Pacers,Polymarket,0.435,0.465,Kalshi=0.4450,0.455,2.25,2026-11-29T01:00+00:00,printed
